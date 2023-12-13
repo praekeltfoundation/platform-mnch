@@ -8,6 +8,17 @@ The content for this flow, except for some navigation items at this stage,  is s
 
 A full list of required content can be found in the Content Depencies section at the bottom of this stack.
 
+## This stack updates the following contact fields
+
+* `onboarding_part_3`,  gets set to `incomplete` at the start of this stack, and `complete` at the end
+* `user_sentiment`, set as per user selection from the list `Excited`, `Happy`, `Worried`, `Scared`, `Skip`
+* `location_type`, set as per user selection from the list `Tradional/chiefdom`, `Urban/town`, `Farm/rural`, `I don't understand`, `Skip`
+* `relationship_status`, set as per user selection from the list `Single`, `In A Relationship`, `Married`, `It's complicated`, `Skip`
+* `year_of_birth`, Set to the year of birth provided by the user
+* `education`, set as per user selection from the list `Primary school`, `High school`, `Diploma`, `Degree`, `Masters degree`, `Doctoral degree`, `None`, `Skip`
+* `socioeconomic_status`,set as per user selection from the list `R0-R500`, `R501-R2500`, `R2501-R10000`, `R10001-R20000`, `R20001-R35000`, `More than R35000e`, `None`, `Skip`
+* `social_support`, set based on user button press of `Yes` or `No`
+
 ## Connections to other stacks
 
 * If the user chooses to add more children, we send them to this stack -  [Onboarding: Babies Info](https://whatsapp.who.turn.io/app/stacks/f4ceb1a6-44b5-49a4-8c0a-c395d0787059/404dd56e-59ef-4002-b9b9-9956743b22a9)
@@ -64,10 +75,12 @@ end
 
 # User Sentiment
 
-Message asking the user to select a Feeling
+Message asking the user to select a Feeling from a list of options
 
 ```stack
 card UserSentiment, then: UserSentimentError do
+  update_contact(onboarding_part_3: "incomplete")
+
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -231,7 +244,7 @@ end
 
 # Location
 
-Message that asks the user to enter their Location
+Message that asks the user to enter their Location Type from a list of options
 
 ```stack
 card Location, then: LocationError do
@@ -314,7 +327,7 @@ end
 
 # Relationship status
 
-Message that asks the user to enter their Relationship Status
+Message that asks the user to enter their Relationship Status from a list of options
 
 ```stack
 card RelationshipStatus, then: RelationshipStatusError do
@@ -389,7 +402,7 @@ end
 
 # Year of birth
 
-Message that asks the user to enter their Year of Birth
+Message that asks the user to enter their Year of Birth as a 4 digit number
 
 ### TODO
 
@@ -534,7 +547,7 @@ end
 
 # Confirm Year of Birth
 
-Message that asks the user to enter their Year of Birth
+Message that asks the user to enter their Year of Birth by clicking a Yes or No button
 
 ```stack
 card YearOfBirthConfirmation, then: YearOfBirthConfirmationError do
@@ -586,7 +599,7 @@ end
 
 # Education
 
-Message that asks the user to enter their level of Education
+Message that asks the user to enter their level of Education from a list of options
 
 ```stack
 card Education, then: EducationError do
@@ -679,7 +692,7 @@ end
 
 # Socioeconomic status
 
-Message that asks the user to enter their Socioeconomic Status
+Message that asks the user to enter their Socioeconomic Status from a list of options
 
 ```stack
 card SocioeconomicStatus, then: SocioeconomicStatusError do
@@ -1075,14 +1088,3 @@ TODO: Should we have all the error messages and acknowledgement messages here, o
 
 * `button-error` , Generic error for invalid input on buttons (and lists?)
 * `invalid-year` , Error message for invalid YearOfBirth input
-
-## This stack updates the following contact fields
-
-* `onboarding_part_3` , Error message ...
-* `user_sentiment` , Error message ...
-* `location_type` , Error message ...
-* `relationship_status` , Error message ...
-* `year_of_birth` , Error message ...
-* `education` , Error message ...
-* `socioeconomic_status` , Error message ...
-* `social_support` , Error message ...
