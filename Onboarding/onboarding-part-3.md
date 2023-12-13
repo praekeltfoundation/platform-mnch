@@ -10,7 +10,7 @@ A full list of required content can be found in the Content Depencies section at
 
 ## Connections to other stacks
 
-* If the user chooses to add more children, we send them to this stack -  [Onboarding: Babies Info](https://whatsapp.who.turn.io/app/stacks/f4ceb1a6-44b5-49a4-8c0a-c395d0787059/404dd56e-59ef-4002-b9b9-9956743b22a9) ,
+* If the user chooses to add more children, we send them to this stack -  [Onboarding: Babies Info](https://whatsapp.who.turn.io/app/stacks/f4ceb1a6-44b5-49a4-8c0a-c395d0787059/404dd56e-59ef-4002-b9b9-9956743b22a9)
 
 <!--
  dictionary: "config"
@@ -20,7 +20,7 @@ columns: []
 
 | Key               | Value                                    |
 | ----------------- | ---------------------------------------- |
-| contentrepo_token | be62e6cf171b5464b2944dfaa9fddf6278858c39 |
+| contentrepo_token | xxx |
 
 # Setup
 
@@ -422,7 +422,7 @@ card YearOfBirth, then: ValidateYearOfBirth do
   year_of_birth = ask("@message.message")
 end
 
-card CheckYearOfBirth when year_of_birth > year(now()), then: CheckYearOfBirth do
+card ValidateYearOfBirth when year_of_birth > year(now()), then: ValidateYearOfBirth do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -447,7 +447,7 @@ card CheckYearOfBirth when year_of_birth > year(now()), then: CheckYearOfBirth d
   year_of_birth = ask("@message.message")
 end
 
-card CheckYearOfBirth when isnumber(year_of_birth) != true, then: CheckYearOfBirth do
+card ValidateYearOfBirth when isnumber(year_of_birth) != true, then: ValidateYearOfBirth do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -472,7 +472,7 @@ card CheckYearOfBirth when isnumber(year_of_birth) != true, then: CheckYearOfBir
   year_of_birth = ask("@message.message")
 end
 
-card CheckYearOfBirth when len("@year_of_birth") != 4, then: CheckYearOfBirth do
+card ValidateYearOfBirth when len("@year_of_birth") != 4, then: ValidateYearOfBirth do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -505,8 +505,29 @@ card ValidateYearOfBirth, then: YearOfBirthError do
   log("Invalid input for Year of Birth")
 end
 
-card YearOfBirthError do
-  text("Invalid input for Year of Birth")
+card YearOfBirthError, then: YearOfBirthError do
+  search =
+    get(
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "invalid-year"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  message = page.body.body.text.value
+  year_of_birth = ask("@message.message")
 end
 
 ```
@@ -516,7 +537,7 @@ end
 Message that asks the user to enter their Year of Birth
 
 ```stack
-card YearOfBirthConfirmation, then: ValidateYearOfBirthConfirmation do
+card YearOfBirthConfirmation, then: YearOfBirthConfirmationError do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -561,10 +582,6 @@ card YearOfBirthNo, then: YearOfBirth do
   log("TODO: go back ")
 end
 
-card ValidateYearOfBirthConfirmation do
-  log("Invalid input for Year of Birth Confirmation")
-end
-
 ```
 
 # Education
@@ -572,7 +589,7 @@ end
 Message that asks the user to enter their level of Education
 
 ```stack
-card Education, then: ValidateEducation do
+card Education, then: EducationError do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -658,10 +675,6 @@ card SkipEducation, then: SocioeconomicStatus do
   update_contact(education: "Skip")
 end
 
-card ValidateEducation, then: EducationError do
-  log("Invalid input for Education")
-end
-
 ```
 
 # Socioeconomic status
@@ -669,7 +682,7 @@ end
 Message that asks the user to enter their Socioeconomic Status
 
 ```stack
-card SocioeconomicStatus, then: ValidateSocioeconomicStatus do
+card SocioeconomicStatus, then: SocioeconomicStatusError do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -755,10 +768,6 @@ card SkipSocioeconomicStatus, then: SocialSupport do
   update_contact(socioeconomic_status: "Skip")
 end
 
-card ValidateSocioeconomicStatus, then: SocioeconomicStatusError do
-  log("Invalid input for Socioeconomic Status")
-end
-
 ```
 
 # Social support
@@ -766,7 +775,7 @@ end
 Message that asks the user to enter their Social Support
 
 ```stack
-card SocialSupport, then: ValidateSocialSupport do
+card SocialSupport, then: SocialSupportError do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -810,10 +819,6 @@ card SocialSupportNo, then: AdditionalChildren do
   update_contact(social_support: "No")
 end
 
-card ValidateSocialSupport, then: SocialSupportError do
-  log("Invalid input for Social Support")
-end
-
 ```
 
 # Additional Child/ren?
@@ -821,7 +826,7 @@ end
 Ask the user if they would like to add additional children
 
 ```stack
-card AdditionalChildren, then: ValidateAdditionalChildren do
+card AdditionalChildren, then: AdditionalChildrenError do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -877,10 +882,6 @@ end
 
 card AdditionalChildrenNotNow do
   log("here not now")
-end
-
-card ValidateAdditionalChildren, then: AdditionalChildrenError do
-  log("Invalid input for Additional Children")
 end
 
 ```
