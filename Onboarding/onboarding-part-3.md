@@ -12,7 +12,7 @@ A full list of required content can be found in the Content Depencies section at
 
 * `onboarding_part_3`,  gets set to `incomplete` at the start of this stack, and `complete` at the end
 * `user_sentiment`, set as per user selection from the list `Excited`, `Happy`, `Worried`, `Scared`, `Skip`
-* `location_type`, set as per user selection from the list `Tradional/chiefdom`, `Urban/town`, `Farm/rural`, `I don't understand`, `Skip`
+* `location_type`, set as per user selection from the list `Traditional/chiefdom`, `Urban/town`, `Farm/rural`, `I don't understand`, `Skip`
 * `relationship_status`, set as per user selection from the list `Single`, `In A Relationship`, `Married`, `It's complicated`, `Skip`
 * `year_of_birth`, Set to the year of birth provided by the user
 * `education`, set as per user selection from the list `Primary school`, `High school`, `Diploma`, `Degree`, `Masters degree`, `Doctoral degree`, `None`, `Skip`
@@ -272,7 +272,7 @@ card Location, then: LocationError do
 
   location =
     list("Location",
-      TraditionalChiefdom: "Tradional/chiefdom",
+      TraditionalChiefdom: "Traditional/chiefdom",
       UrbanTown: "Urban/town",
       FarmRural: "Farm/rural",
       IDontUnderstand: "I don't understand",
