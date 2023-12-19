@@ -6,16 +6,16 @@ This flow is about capturing the details of a pregnancy, asking for the day and 
 
 The content for this flow, except for navigation items and validation errors at this stage,  is stored in ContentRepo.  The flow uses the ContentRepo API to fetch content, referencing it by slug.
 
+A full list of required content can be found in the Content Depencies section at the bottom of this stack.
+
 ## This stack updates the following contact fields
 
 * `onboarding_part_2`,  gets set to `incomplete` at the start of this stack, and `complete` at the end
-* `edd`, Expectede Due Date, gets set at the end of this stack after we have the EDD month and day provided by the user
-
+* `edd`, Expected Due Date, gets set at the end of this stack after we have the EDD month and day provided by the user
 
 ## Connections to other stacks
 
-* If the user chooses to add more children, we send them to `Onboarding: Pt 4 - Babies Info`
-* If the user selects `Not Now` at the end, we run the stack `Reminders: Schedule Onboarding Re-engagement Msg #1`
+* When the user confirms the EDD is correct by clicking `Yes, it is correct`, we start them on the `Onboarding:Pt 3 - Mother Detail` stack
 
 <!--
  dictionary: "config"
@@ -119,7 +119,7 @@ Presents the user with a list of 9 months to select from, starting from the curr
 <!-- { section: "32d45c54-1f17-4912-a555-2fa9ebe5d4d1", x: 0, y: 0} -->
 
 ```stack
-card EDDMonth do
+card EDDMonth, then: EDDMonthError do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -168,6 +168,43 @@ card EDDMonth do
   end
 end
 
+card EDDMonthError, then: EDDMonthError do
+  search =
+    get(
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "edd-month-error"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ],
+      query: [["whatsapp", "true"]]
+    )
+
+  list("Month", [
+    ThisMonth,
+    ThisMonthPlusOne,
+    ThisMonthPlusTwo,
+    ThisMonthPlusThree,
+    ThisMonthPlusFour,
+    ThisMonthPlusFive,
+    ThisMonthPlusSix,
+    ThisMonthPlusSeven,
+    ThisMonthPlusEight,
+    EDDMonthUnknown
+  ]) do
+    text("@page.body.body.text.value.message")
+  end
+end
+
 card ThisMonth, "@datevalue(this_month, \"%B\")", then: EDDDay do
   edd_date_month = month(this_month)
   edd_date_year = year(this_month)
@@ -179,7 +216,6 @@ card ThisMonthPlusOne, "@datevalue(this_month_plus_one, \"%B\")", then: EDDDay d
 end
 
 card ThisMonthPlusTwo, "@datevalue(this_month_plus_two, \"%B\")", then: EDDDay do
-  log("This is ThisMonthPlusTwo")
   edd_date_month = month(this_month_plus_two)
   edd_date_year = year(this_month_plus_two)
 end
@@ -214,42 +250,6 @@ card ThisMonthPlusEight, "@datevalue(this_month_plus_eight, \"%B\")", then: EDDD
   edd_date_year = year(this_month_plus_eight)
 end
 
-```
-
-# EDD Month Number Error
-
-Shows if month entered is not valid
-
-```stack
-card EDDMonthNumberError, then: EDDMonth do
-  search =
-    get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "edd-month-number-error"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
-      ],
-      query: [["whatsapp", "true"]]
-    )
-
-  text("@page.body.body.text.value.message")
-end
-
-```
-
-# EDD Month Unknown
-
-```stack
 card EDDMonthUnknown, "I don't know" do
   search =
     get(
@@ -285,6 +285,8 @@ end
 ```
 
 # EDD Day
+
+Asks the user to input the day of the month that the baby is expected to be born
 
 ```stack
 card EDDDay, then: ValidateEDDDay do
@@ -329,13 +331,6 @@ card ValidateEDDDay, then: EDDConfirmation do
   log("Default validate EDD Day")
 end
 
-```
-
-# EDD Day Number Error
-
-Shown when the edd day provided is not an integer, or not within range.
-
-```stack
 card EDDDayNumberError, then: EDDConfirmation do
   search =
     get(
@@ -390,7 +385,6 @@ card EDDConfirmation, then: SaveEDDAndContinue do
 
   edd_date_full = date(edd_date_year, edd_date_month, edd_day)
   edd_date_full_str = datevalue(edd_date_full, "%Y-%m-%d")
-  text("TODO ask Rudi about this date formatting issue - @edd_date_full_str")
   question = substitute("@page.body.body.text.value.message", "{{edd}}", "@edd_date_full_str")
 
   buttons(
@@ -482,7 +476,6 @@ Content is stored in the content repo, and referenced in the stack by slug. This
 
 ## Error Message Slugs
 
-TODO: Should we have all the error messages and acknowledgement messages here, or document them more "locally" to the code sections that use them below?
-
-* `xxx` , xx
-* `xxxxx` , xx
+* `button-error` , Generic error for invalid input on buttons (and lists?)
+* `edd-month-error` , Error message for invalid EDD Month input
+* `edd-day-number-error` Error message for invalid EDD Day
