@@ -21,7 +21,8 @@ A full list of required content can be found in the Content Depencies section at
 
 ## Connections to other stacks
 
-* If the user chooses to add more children, we send them to this stack -  [Onboarding: Babies Info](https://whatsapp.who.turn.io/app/stacks/f4ceb1a6-44b5-49a4-8c0a-c395d0787059/404dd56e-59ef-4002-b9b9-9956743b22a9)
+* If the user chooses to add more children, we start them on the `Onboarding: Pt 4 - Babies Info`
+* If the user selects `Not Now` at the end, we run the stack `Reminders: Schedule Onboarding Re-engagement Msg #1`
 
 <!--
  dictionary: "config"
