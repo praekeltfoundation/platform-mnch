@@ -55,6 +55,7 @@ card GetContentSet, then: CalculateTimestamp do
     )
 
   contentset = find(contentsets.body.results, &(&1.name == "Pregnancy"))
+
   contentset_name = @contentset.name
 
   contentset =
@@ -84,14 +85,17 @@ card CalculateTimestamp, then: GetMessage do
     )[1]
 
   offset = if(details.before_or_after == "before", details.time * -1, details.time * 1)
-  schedule_timestamp = datetime_add("@contact['edd']", offset, unit)
+  schedule_timestamp = datetime_add("@contact['@contact_field']", offset, unit)
 
   schedule_date =
     date(year(schedule_timestamp), month(schedule_timestamp), day(schedule_timestamp))
 end
 
-card GetMessage when schedule_date == today(), then: SendMessage do
+card GetMessage when schedule_date == today(), then: CheckIfContentSetReachedMax do
   page = contentset.pages[page]
+  # Ordered content sets need to be ordered by weeks descending.
+  # For eg. week 5 should be listed before week 4.
+  contentset_max_id = contentset.pages[count(contentset.pages) - 1].id
 
   page =
     get(
@@ -105,16 +109,16 @@ card GetMessage when schedule_date == today(), then: SendMessage do
   page = page.body
 end
 
-card GetMessage when schedule_date != today(), then: CalculateTimestamp do
-  page = page + 1
-end
-
 card GetMessage, then: CalculateTimestamp do
   page = page + 1
 end
 
-card SendMessage when page.body.is_whatsapp_template, then: CheckContentSetMaxID do
-  page_id = @page.id
+card CheckIfContentSetReachedMax when page.id == contentset_max_id, then: SendMessage do
+  update_contact(content_completed: "@contact['content_completed'] @contentset_name,")
+end
+
+card SendMessage when page.body.is_whatsapp_template do
+  update_contact(pages_seen: "@contact['pages_seen'] @page.meta.slug,")
 
   send_message_template(
     "@lower(page.body.whatsapp_template_name)",
@@ -122,59 +126,6 @@ card SendMessage when page.body.is_whatsapp_template, then: CheckContentSetMaxID
     ["@contact['whatsapp_profile_name']"],
     buttons: [Button1, Button2, Button3]
   )
-
-  update_contact(pages_seen: "@contact['pages_seen'] @page.meta.slug,")
-end
-
-```
-
-```stack
-card CheckContentSetMaxID, then: GetMaxID do
-  log("CheckContentSetMaxID")
-
-  contentsets =
-    get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/orderedcontent/",
-      headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
-      ]
-    )
-
-  contentset = find(contentsets.body.results, &(&1.name == "Pregnancy"))
-
-  contentset_name = @contentset.name
-
-  contentset =
-    get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/orderedcontent/@contentset.id/",
-      headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
-      ]
-    )
-
-  contentset = contentset.body
-  page = 0
-end
-
-card GetMaxID when page == count(contentset.pages), then: UpdateContentCompleted do
-  log("Reached last content set")
-  max_id = @details.id
-end
-
-card GetMaxID, then: FetchPage do
-  log("GetMaxID")
-  details = contentset.pages[page]
-end
-
-card FetchPage, then: GetMaxID do
-  log("Fetchpage")
-  details = contentset.pages[page]
-  page = page + 1
-end
-
-card UpdateContentCompleted when page_id == max_id do
-  log("UpdateContentCompleted")
-  update_contact(content_completed: "@contact['content_completed'] @contentset_name,")
 end
 
 ```
