@@ -28,6 +28,20 @@ columns: []
 | ----------------- | ---------------------------------------- |
 | contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 
+# Steps
+
+1. Get the Pregnancy ordered content set
+2. Loop through all the pages in it
+3. If page is NOT today, Ignore it, but get next page
+4. If page = today, send it
+5. Exit
+
+# Debug notes
+
+EDD is set as 2024-04-09
+5 weeks before EDD is 5 March
+4 weeks before EDD is 12 March
+
 <!-- { section: "ee62614a-95eb-4e52-8ede-b2ddbea826d2", x: 0, y: 0} -->
 
 ```stack
@@ -41,6 +55,8 @@ card GetContentSet, then: CalculateTimestamp do
     )
 
   contentset = find(contentsets.body.results, &(&1.name == "Pregnancy"))
+
+  contentset_name = @contentset.name
 
   contentset =
     get(
@@ -69,12 +85,17 @@ card CalculateTimestamp, then: GetMessage do
     )[1]
 
   offset = if(details.before_or_after == "before", details.time * -1, details.time * 1)
-  timestamp = datetime_add("@contact[contact_field]", offset, unit)
-  date = date(year(timestamp), month(timestamp), day(timestamp))
+  schedule_timestamp = datetime_add("@contact['@contact_field']", offset, unit)
+
+  schedule_date =
+    date(year(schedule_timestamp), month(schedule_timestamp), day(schedule_timestamp))
 end
 
-card GetMessage when date == today(), then: SendMessage do
+card GetMessage when schedule_date == today(), then: CheckIfContentSetReachedMax do
   page = contentset.pages[page]
+  # Ordered content sets need to be ordered by weeks descending.
+  # For eg. week 5 should be listed before week 4.
+  contentset_max_id = contentset.pages[count(contentset.pages) - 1].id
 
   page =
     get(
@@ -92,16 +113,24 @@ card GetMessage, then: CalculateTimestamp do
   page = page + 1
 end
 
+card CheckIfContentSetReachedMax when page.id == contentset_max_id, then: SendMessage do
+  update_contact(content_completed: "@contact['content_completed'] @contentset_name,")
+end
+
 card SendMessage when page.body.is_whatsapp_template do
-  send_message_template("@lower(page.body.whatsapp_template_name)", "en_US", ["@contact.name"],
+  update_contact(pages_seen: "@contact['pages_seen'] @page.meta.slug,")
+
+  send_message_template(
+    "@lower(page.body.whatsapp_template_name)",
+    "en_US",
+    ["@contact['whatsapp_profile_name']"],
     buttons: [Button1, Button2, Button3]
   )
 end
 
-card SendMessage do
-  text("TODO: send normal message")
-end
+```
 
+```stack
 card Button1 do
   text("TODO: Template button actions")
 end
