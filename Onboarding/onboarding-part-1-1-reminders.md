@@ -10,7 +10,7 @@ columns: []
 
 | Key               | Value                                    |
 | ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+| contentrepo_token | 0997af3ee64a22c4d2f9dbe7f59a5c5393fbe396 |
 
 <!-- { section: "3e991636-f6d9-436c-a5dd-2fe3296a9359", x: 0, y: 0} -->
 
@@ -41,8 +41,8 @@ card Reminder do
 
   buttons(
     PrivacyPolicy: "@button_labels[0]",
-    RemindNo: "@button_labels[1]",
-    RemindTomorrow: "@button_labels[2]"
+    RemindTomorrow: "@button_labels[1]",
+    RemindNo: "@button_labels[2]"
   ) do
     text("@message.message")
   end
@@ -76,7 +76,6 @@ card RemindNo do
 
   message = page.body.body.text.value
   text("@message.message")
-  # TODO: End journey?
 end
 
 card RemindTomorrow do
@@ -102,6 +101,8 @@ card RemindTomorrow do
 
   message = page.body.body.text.value
   text("@message.message")
+  # Cancel any previous scheduled instance of this stack
+  cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
   schedule_stack("ce992f8b-49d8-4876-8bfd-a62b6482206d", in: 60 * 60 * 23)
 end
 
