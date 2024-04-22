@@ -10,7 +10,7 @@ columns: []
 
 | Key               | Value                                    |
 | ----------------- | ---------------------------------------- |
-| contentrepo_token | 0997af3ee64a22c4d2f9dbe7f59a5c5393fbe396 |
+| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 
 <!-- { section: "3e991636-f6d9-436c-a5dd-2fe3296a9359", x: 0, y: 0} -->
 

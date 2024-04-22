@@ -12,7 +12,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 * `privacy_policy` , this stack sets the privacy policy to `yes` if they accept it or `no` if they don't.
 * `opted_in`, this stack sets the opt in value to `yes` or `no`
 * `intent`, set according to user choice, to one of: `create profile`, `get health advice` or `explore`
-* `data_preference`, this stack allows the user to select their data preference
+* `data_preference`, this stack allows the user to select their data preference and stores one of `all`, `text and images`, `text only`
 
 ## Flow results
 
@@ -82,13 +82,13 @@ card GoToPrivacyPolicy
      when contact.privacy_policy_accepted == "yes" and
             (contact.opted_in == "" or contact.opted_in == "no"),
      then: OptIn do
-  log("Privacy Policy not accepted, go to Opt In")
+  log("Privacy Policy accepted and not opted in, go to Opt In")
 end
 
 card GoToPrivacyPolicy
      when contact.privacy_policy_accepted == "yes" and contact.opted_in == "yes",
      then: UserIntent do
-  log("Privacy Policy not accepted, go to User Intent")
+  log("Privacy Policy accepted and opted in, go to User Intent")
 end
 
 card GoToPrivacyPolicy when contact.privacy_policy_accepted == "no", then: PrivacyPolicy do
@@ -128,19 +128,19 @@ card WelcomeMessage, then: WelcomeMessageError do
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
 
-  buttons(PrivacyPolicy: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
+  buttons(DefaultLanguageSelection: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
     text("@message.message")
   end
 end
 
 card WelcomeMessageError, then: WelcomeMessageError do
-  buttons(PrivacyPolicy: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
+  buttons(DefaultLanguageSelection: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
     text("@button_error_text")
   end
 end
 
 card DefaultLanguageSelection, then: PrivacyPolicy do
-  update_contact(language: "English")
+  update_contact(language: "eng")
 end
 
 ```
@@ -178,12 +178,12 @@ card LanguageOptions, then: LanguageOptionsError do
 
   language =
     list("Languages",
-      LanguageSelection: "list_items[0]",
-      LanguageSelection: "list_items[1]",
-      LanguageSelection: "list_items[2]",
-      LanguageSelection: "list_items[3]",
-      LanguageSelection: "list_items[4]",
-      LanguageSelection: "list_items[5]"
+      Language1: "list_items[0]",
+      Language2: "list_items[1]",
+      Language3: "list_items[2]",
+      Language4: "list_items[3]",
+      Language5: "list_items[4]",
+      Language6: "list_items[5]"
     ) do
       text("@message.message")
     end
@@ -192,19 +192,45 @@ end
 card LanguageOptionsError, then: LanguageOptionsError do
   language =
     list("Languages",
-      LanguageSelection: "list_items[0]",
-      LanguageSelection: "list_items[1]",
-      LanguageSelection: "list_items[2]",
-      LanguageSelection: "list_items[3]",
-      LanguageSelection: "list_items[4]",
-      LanguageSelection: "list_items[5]"
+      Language1: "list_items[0]",
+      Language2: "list_items[1]",
+      Language3: "list_items[2]",
+      Language4: "list_items[3]",
+      Language5: "list_items[4]",
+      Language6: "list_items[5]"
     ) do
       text("@button_error_text")
     end
 end
 
-card LanguageSelection, then: LanguageConfirmation do
-  update_contact(language: "@language")
+card Language1, then: LanguageConfirmation do
+  # English
+  update_contact(language: "en")
+end
+
+card Language2, then: LanguageConfirmation do
+  # French
+  update_contact(language: "fr")
+end
+
+card Language3, then: LanguageConfirmation do
+  # Portuguese
+  update_contact(language: "pt")
+end
+
+card Language4, then: LanguageConfirmation do
+  # Arabic
+  update_contact(language: "ar")
+end
+
+card Language5, then: LanguageConfirmation do
+  # Spanish
+  update_contact(language: "es")
+end
+
+card Language6, then: LanguageConfirmation do
+  # Chinese
+  update_contact(language: "zh")
 end
 
 ```
@@ -469,9 +495,9 @@ end
 
 Values saved into the `intent` contact field:
 
-* CreateProfile
-* Explore
-* SpeakToAgent
+* create profile
+* explore
+* get health advice
 
 ```stack
 card UserIntent, then: UserIntentError do
@@ -519,15 +545,15 @@ card UserIntentError, then: UserIntentError do
 end
 
 card CreateProfile, then: DataPreferences do
-  update_contact(intent: "@intent.label")
+  update_contact(intent: "create profile")
 end
 
 card Explore, then: DataPreferences do
-  update_contact(intent: "@intent.label")
+  update_contact(intent: "explore")
 end
 
 card SpeakToAgent do
-  update_contact(intent: "@intent.label")
+  update_contact(intent: "get health advice")
   # TODO: Kick off Speak to agent workflow
 end
 
@@ -539,9 +565,9 @@ Options for rich data messages, or pure text messages to save on data costs.
 
 Values saved into data_preference contact field:
 
-* DataRich
-* DataStandard
-* DataSaver
+* all
+* text and images
+* text only
 
 ```stack
 card DataPreferences do
@@ -570,12 +596,24 @@ card DataPreferences do
 
   data_preference =
     buttons(
-      DataPreferencesSelected: "@button_labels[0]",
-      DataPreferencesSelected: "@button_labels[1]",
-      DataPreferencesSelected: "@button_labels[2]"
+      DataPreferenceAll: "@button_labels[0]",
+      DataPreferenceTextAndImages: "@button_labels[1]",
+      DataPreferenceTextOnly: "@button_labels[2]"
     ) do
       text("@message.message")
     end
+end
+
+card DataPreferenceAll, then: DataPreferencesSelected do
+  update_contact(data_preference: "all")
+end
+
+card DataPreferenceTextAndImages, then: DataPreferencesSelected do
+  update_contact(data_preference: "text and images")
+end
+
+card DataPreferenceTextOnly, then: DataPreferencesSelected do
+  update_contact(data_preference: "text only")
 end
 
 card DataPreferencesSelected do
