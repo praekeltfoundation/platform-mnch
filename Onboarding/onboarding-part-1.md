@@ -140,7 +140,7 @@ card WelcomeMessageError, then: WelcomeMessageError do
 end
 
 card DefaultLanguageSelection, then: PrivacyPolicy do
-  update_contact(language: "eng")
+  update_contact(language: "en")
 end
 
 ```
