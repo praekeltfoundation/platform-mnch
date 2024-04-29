@@ -4,9 +4,9 @@ version: "0.1.0"
 columns: [] 
 -->
 
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | 22bbdd2a426526b55df8b3ed77eaa3523acfc6e7 |
+| Key               | Value                                     |
+| ----------------- |-------------------------------------------|
+| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 
 # Tour Card 01
 
@@ -321,111 +321,19 @@ end
 
 card DisplayGuidedTourMenu do
   buttons(
-    CreatProfile: "@button_labels[0]",
+    CreateProfiles: "@button_labels[0]",
     SpeakToAgent: "@button_labels[1]"
   ) do
     text("@message.message")
   end
 end
 
-card CreatProfile do
-  text("Go to create profile")
+card CreateProfiles do
   run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
 card SpeakToAgent do
-  text("Speak to an agent")
   run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
-end
-
-```
-
-# Reminder
-
-```stack
-card Reminder do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_reminder"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
-
-  buttons(
-    RemindTomorrow: "@button_labels[1]",
-    RemindNo: "@button_labels[2]"
-  ) do
-    text("@message.message")
-  end
-end
-
-card RemindNo do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_reminder_later"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  message = page.body.body.text.value
-  text("@message.message")
-end
-
-card RemindTomorrow do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "reminder_tomorrow"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  message = page.body.body.text.value
-  text("@message.message")
-  # Cancel any previous scheduled instance of this stack
-  cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
-  schedule_stack("ce992f8b-49d8-4876-8bfd-a62b6482206d", in: 60 * 60 * 23)
 end
 
 ```
