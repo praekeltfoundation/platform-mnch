@@ -22,6 +22,8 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Connections to other stacks
 
 * Onboarding Part 1.1 is scheduled if they don't agree to the privacy policy
+* Goes to "Onboarding Part 2" to collect the mother's details, if they select "Expecting" as their intent
+* Goes to "Onboarding Part 4" to collect the baby's details, if they select "Newborn baby" or "My children" as their intent
 
 <!--
  dictionary: "config"
@@ -109,7 +111,7 @@ card WelcomeMessage, then: WelcomeMessageError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "welcome"]
+        ["slug", "mnch_onboarding_welcome"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -140,7 +142,7 @@ card WelcomeMessageError, then: WelcomeMessageError do
 end
 
 card DefaultLanguageSelection, then: PrivacyPolicy do
-  update_contact(language: "en")
+  update_contact(language: "eng")
 end
 
 ```
@@ -157,7 +159,7 @@ card LanguageOptions, then: LanguageOptionsError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "languages"]
+        ["slug", "mnch_onboarding_languages"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -245,7 +247,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "language_updated"]
+        ["slug", "mnch_onboarding_language_updated"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -294,7 +296,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "pp_document"]
+        ["slug", "mnch_onboarding_pp_document"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -358,7 +360,7 @@ card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "pp_not_accepted"]
+        ["slug", "mnch_onboarding_pp_not_accepted"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -405,7 +407,7 @@ card ReadSummary, then: ReadSummaryError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "pp_summary"]
+        ["slug", "mnch_onboarding_pp_summary"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -457,7 +459,7 @@ card OptIn do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "opt_in"]
+        ["slug", "mnch_onboarding_opt_in"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -505,7 +507,7 @@ card UserIntent, then: UserIntentError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "intent"]
+        ["slug", "mnch_onboarding_intent"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -575,7 +577,7 @@ card DataPreferences do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "data_preferences"]
+        ["slug", "mnch_onboarding_data_preferences"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -621,7 +623,7 @@ card DataPreferencesSelected do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "data_preferences_yes"]
+        ["slug", "mnch_onboarding_data_preferences_yes"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -701,16 +703,16 @@ end
 
 Content is stored in the content repo, and referenced in the stack by slug. This means that we require the following slugs to be present in the contentrepo, and we're making the following assumptions:
 
-* `welcome` , whatsapp message with two buttons
-* `languages` , whatsapp message with 6 options.
-* `language-updated`, whatsapp message with two buttons, variable `{language selection}` in message content will be replaced with selected language
-* `pp_document`, whatsapp message with three buttons, and a document
-* `pp_not_accepted`, whatsapp message with two buttons
-* `pp_summary`, whatsapp message with two buttons, and a document
-* `opt_in`, whatsapp message with two buttons
-* `intent`, whatsapp message with 7-item list (hardcoded for now)
-* `data_preferences`, whatsapp message with 3 buttons
-* `data_preferences_yes`, whatsapp message
+* `mnch_onboarding_welcome` , whatsapp message with two buttons
+* `mnch_onboarding_languages` , whatsapp message with 6 options.
+* `mnch_onboarding_language-updated`, whatsapp message with two buttons, variable `{language selection}` in message content will be replaced with selected language
+* `mnch_onboarding_pp_document`, whatsapp message with three buttons, and a document
+* `mnch_onboarding_pp_not_accepted`, whatsapp message with two buttons
+* `mnch_onboarding_pp_summary`, whatsapp message with two buttons, and a document
+* `mnch_onboarding_opt_in`, whatsapp message with two buttons
+* `mnch_onboarding_intent`, whatsapp message with 7-item list (hardcoded for now)
+* `mnch_onboarding_data_preferences`, whatsapp message with 3 buttons
+* `mnch_onboarding_data_preferences_yes`, whatsapp message
 
 ## Error messages
 
