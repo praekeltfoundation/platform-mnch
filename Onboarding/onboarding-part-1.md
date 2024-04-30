@@ -42,7 +42,7 @@ Here we do any setup and fetching of values before we start the flow.
 <!-- { section: "152df000-7e2b-4bb7-8a42-7c269f7fb568", x: 0, y: 0} -->
 
 ```stack
-card FetchError, then: WelcomeMessage do
+card FetchError, then: GoToPrivacyPolicy do
   # Fetch and store the error message, so that we don't need to do it for every error card
 
   search =
