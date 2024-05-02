@@ -1,3 +1,11 @@
+<!-- { section: "607a0693-f24a-4add-b858-3702946bc63b", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED")
+when has_any_phrase(event.message.text.body, ["onboard"])
+
+```
+
 # Onboarding: Pt 1 - Welcome
 
 This is the first flow that users interact with during onboarding.
@@ -9,7 +17,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Contact fields
 
 * `language` , this stack allows the user to select their language.
-* `privacy_policy` , this stack sets the privacy policy to `yes` if they accept it or `no` if they don't.
+* `privacy_policy_accepted` , this stack sets the privacy policy to `yes` if they accept it or `no` if they don't.
 * `opted_in`, this stack sets the opt in value to `yes` or `no`
 * `intent`, set according to user choice, to one of: `create profile`, `get health advice` or `explore`
 * `data_preference`, this stack allows the user to select their data preference and stores one of `all`, `text and images`, `text only`
@@ -44,12 +52,13 @@ Here we do any setup and fetching of values before we start the flow.
 ```stack
 card FetchError, then: GoToPrivacyPolicy do
   # Fetch and store the error message, so that we don't need to do it for every error card
+  log("Starting the Intro & Welcome journey")
 
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "button-error"]
+        ["slug", "error"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -176,16 +185,16 @@ card LanguageOptions, then: LanguageOptionsError do
     )
 
   message = page.body.body.text.value
-  list_items = map(message.list_items[0], & &1.value.value)
+  list_items = map(message.list_items, & &1.value)
 
   language =
     list("Languages",
-      Language1: "list_items[0]",
-      Language2: "list_items[1]",
-      Language3: "list_items[2]",
-      Language4: "list_items[3]",
-      Language5: "list_items[4]",
-      Language6: "list_items[5]"
+      Language1: "@list_items[0]",
+      Language2: "@list_items[1]",
+      Language3: "@list_items[2]",
+      Language4: "@list_items[3]",
+      Language5: "@list_items[4]",
+      Language6: "@list_items[5]"
     ) do
       text("@message.message")
     end
@@ -194,12 +203,12 @@ end
 card LanguageOptionsError, then: LanguageOptionsError do
   language =
     list("Languages",
-      Language1: "list_items[0]",
-      Language2: "list_items[1]",
-      Language3: "list_items[2]",
-      Language4: "list_items[3]",
-      Language5: "list_items[4]",
-      Language6: "list_items[5]"
+      Language1: "@list_items[0]",
+      Language2: "@list_items[1]",
+      Language3: "@list_items[2]",
+      Language4: "@list_items[3]",
+      Language5: "@list_items[4]",
+      Language6: "@list_items[5]"
     ) do
       text("@button_error_text")
     end
@@ -207,32 +216,38 @@ end
 
 card Language1, then: LanguageConfirmation do
   # English
-  update_contact(language: "en")
+  selected_language = "English"
+  update_contact(language: "eng")
 end
 
 card Language2, then: LanguageConfirmation do
   # French
-  update_contact(language: "fr")
+  selected_language = "Français"
+  update_contact(language: "fra")
 end
 
 card Language3, then: LanguageConfirmation do
   # Portuguese
-  update_contact(language: "pt")
+  selected_language = "Português"
+  update_contact(language: "por")
 end
 
 card Language4, then: LanguageConfirmation do
   # Arabic
-  update_contact(language: "ar")
+  selected_language = "عربي"
+  update_contact(language: "ara")
 end
 
 card Language5, then: LanguageConfirmation do
   # Spanish
-  update_contact(language: "es")
+  selected_language = "Español"
+  update_contact(language: "spa")
 end
 
 card Language6, then: LanguageConfirmation do
   # Chinese
-  update_contact(language: "zh")
+  selected_language = "中国人"
+  update_contact(language: "zho")
 end
 
 ```
@@ -264,7 +279,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
     )
 
   message = page.body.body.text.value
-  message_text = substitute(message.message, "{language selection}", "@language.label")
+  message_text = substitute(message.message, "{language selection}", "@selected_language")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(OkThanks: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
@@ -314,13 +329,13 @@ card PrivacyPolicy, then: PrivacyPolicyError do
 
   message = page.body.body.text.value
 
-  document =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
+  # document =
+  #  get(
+  #    "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+  #    headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+  #  )
 
-  document_url = document.body.meta.download_url
+  # document_url = document.body.meta.download_url
 
   button_labels = map(message.buttons, & &1.value.title)
 
@@ -329,7 +344,8 @@ card PrivacyPolicy, then: PrivacyPolicyError do
     DeclinePrivacyPolicy: "@button_labels[1]",
     ReadSummary: "@button_labels[2]"
   ) do
-    document("@document_url")
+    # TODO: When we finally have the document, upload it and make this work
+    # document("@document_url")
     text("@message.message")
   end
 end
@@ -425,18 +441,19 @@ card ReadSummary, then: ReadSummaryError do
 
   message = page.body.body.text.value
 
-  document =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
+  # document =
+  #   get(
+  #     "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+  #     headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+  #   )
 
-  document_url = document.body.meta.download_url
+  # document_url = document.body.meta.download_url
 
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(AcceptPrivacyPolicy: "@button_labels[0]", DeclinePrivacyPolicy: "@button_labels[1]") do
-    document("@document_url")
+    # TODO: When we finally have the document, upload it and make this work
+    # document("@document_url")
     text("@message.message")
   end
 end
@@ -483,11 +500,13 @@ card OptIn do
 end
 
 card OptInAccept, then: UserIntent do
-  update_contact(opted_in: "yes")
+  log("OptIn Accepted")
+  # update_contact(opted_in: Yes)
 end
 
 card OptInDecideLater, then: UserIntent do
-  update_contact(opted_in: "no")
+  log("OptIn Declined")
+  # update_contact(opted_in: No)
   # TODO: kick off opt-in reminder flow
 end
 
@@ -640,29 +659,30 @@ card DataPreferencesSelected do
     )
 
   message = page.body.body.text.value
-  message_text = substitute(message.message, "{option choice}", "@data_preference.label")
+  message_text = substitute(message.message, "{option choice}", "@contact.data_preference")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(SelectNextJourney: "@button_labels[0]") do
     text("@message_text")
   end
-
-  write_result("intro_completed", "yes")
 end
 
 card SelectNextJourney when intent == "CreateProfile" do
-  # TODO: Go to CreateProfile journey
-  text("@intent")
+  # Go to CreateProfile journey
+  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  write_result("intro_completed", "yes")
 end
 
 card SelectNextJourney when intent == "Explore" do
   # TODO: Go to Explore journey
   text("@intent")
+  write_result("intro_completed", "yes")
 end
 
 card SelectNextJourney do
   # TODO: How did we get here and what should we do in this case?
   text("@intent")
+  write_result("intro_completed", "yes")
 end
 
 ```
