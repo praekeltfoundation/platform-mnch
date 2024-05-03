@@ -35,7 +35,7 @@ columns: []
 
 | Key               | Value                                    |
 | ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+| contentrepo_token | 22bbdd2a426526b55df8b3ed77eaa3523acfc6e7 |
 
 ## Setup
 
@@ -647,7 +647,7 @@ card PregnancyContentBranch do
       ]
     )
 
-  buttons(Loading2: "@button_labels[0]") do
+  buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
     text("@message.message")
   end
@@ -655,7 +655,7 @@ end
 
 # Text only
 card PregnancyContentBranch when @contact.data_preference == "text only" do
-  buttons(Loading2: "@button_labels[0]") do
+  buttons(Loading1: "@button_labels[0]") do
     text("@message.message")
   end
 end
