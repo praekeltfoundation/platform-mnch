@@ -667,21 +667,23 @@ card DataPreferencesSelected do
   end
 end
 
-card SelectNextJourney when intent == "CreateProfile" do
-  # Go to CreateProfile journey
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+card SelectNextJourney when intent == "create_profile" do
+  # Go to Profile Classifier journey
+  log("Navigating to Profile Classifier")
+  text("TODO: Profile Classifier")
   write_result("intro_completed", "yes")
 end
 
-card SelectNextJourney when intent == "Explore" do
+card SelectNextJourney when intent == "explore" do
   # TODO: Go to Explore journey
-  text("@intent")
+  log("Navigating to Explore")
+  text("TODO: Explore")
   write_result("intro_completed", "yes")
 end
 
 card SelectNextJourney do
   # TODO: How did we get here and what should we do in this case?
-  text("@intent")
+  log("Unknown intent @intent. User stuck.")
   write_result("intro_completed", "yes")
 end
 
