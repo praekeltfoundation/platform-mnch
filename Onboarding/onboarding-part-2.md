@@ -1,3 +1,10 @@
+<!-- { section: "e544152f-bf53-4d7c-ae1b-c84314772219", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "profile")
+
+```
+
 # Onboarding: Pt 2 - Profile Pregnancy Health
 
 This is the main onboarding flow that users interact with during onboarding. They are directed here to complete their profile for pregnancy health if they are pregnant, have a partner who is pregnant, or are curious about the content.
@@ -432,8 +439,9 @@ card SaveEDDAndContinue, then: ContinueEDDBranch do
   update_contact(edd: "@edd_date_full_str")
 end
 
-card ContinueEDDBranch when status == "im_pregnant", then: OtherChildren do
-  log("User is pregnant. Navigating to Other Children question.")
+card ContinueEDDBranch when status == "im_pregnant", then: PregnantFeeling do
+  # TODO: Confirm (SxD to confirm with DS and MERL) whether it's ok for us to skip the Other Children question in this flow as its part of the Personal Questions
+  log("User is pregnant. Navigating to Feelings question.")
 end
 
 card ContinueEDDBranch when status == "partner_pregnant", then: PartnerPregnantGender do
@@ -473,15 +481,17 @@ card OtherChildren do
     )
 
   message = page.body.body.text.value
-  list_items = map(message.list_items[0], & &1.value.value)
+  list_items = map(message.list_items, & &1.value)
+
+  log("@list_items")
 
   children =
     list("Other children",
-      Children0: "list_item[0]",
-      Children1: "list_item[1]",
-      Children2: "list_item[2]",
-      Children3: "list_item[3]",
-      Children4: "list_item[4]"
+      Children0: "@list_items[0]",
+      Children1: "@list_items[1]",
+      Children2: "@list_items[2]",
+      Children3: "@list_items[3]",
+      Children4: "@list_items[4]"
     ) do
       text("@message.message")
     end
@@ -574,15 +584,15 @@ card PregnantFeeling do
     )
 
   message = page.body.body.text.value
-  list_items = map(message.list_items[0], & &1.value.value)
+  list_items = map(message.list_items, & &1.value)
 
   feeling =
     list("I'm feeling",
-      SaveFeeling: "list_item[0]",
-      SaveFeeling: "list_item[1]",
-      SaveFeeling: "list_item[2]",
-      SaveFeeling: "list_item[3]",
-      SaveFeeling: "list_item[4]"
+      SaveFeeling: "@list_items[0]",
+      SaveFeeling: "@list_items[1]",
+      SaveFeeling: "@list_items[2]",
+      SaveFeeling: "@list_items[3]",
+      SaveFeeling: "@list_items[4]"
     ) do
       text("@message.message")
     end
@@ -637,9 +647,8 @@ card PregnancyContentBranch do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(Loading2: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
@@ -1172,15 +1181,15 @@ card PartnerPregnantGender do
   end
 end
 
-card PartnerGenderMale, then: OtherChildren do
+card PartnerGenderMale, then: PregnancyContentStart do
   update_contact(gender: "male")
 end
 
-card PartnerGenderFemale, then: OtherChildren do
+card PartnerGenderFemale, then: PregnancyContentStart do
   update_contact(gender: "female")
 end
 
-card PartnerGenderOther, then: OtherChildren do
+card PartnerGenderOther, then: PregnancyContentStart do
   update_contact(gender: "other")
 end
 
