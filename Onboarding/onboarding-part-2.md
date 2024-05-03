@@ -1,6 +1,6 @@
 # Onboarding: Pt 2 - Profile Pregnancy Health
 
-This is the main onboarding flow that users interact with during onboarding. They are directed here to complete their profile for pregnancy health if they are pregnant, have a partner who is pregnant, or are curios about the content.
+This is the main onboarding flow that users interact with during onboarding. They are directed here to complete their profile for pregnancy health if they are pregnant, have a partner who is pregnant, or are curious about the content.
 
 All content for this flow is stored in the ContentRepo. This stack uses the ContentRepo API to fetch the content, referencing it by the slug. A list of these slugs can be found at the end of this stack.
 
@@ -12,7 +12,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 
 ## Flow results
 
-* `pregnancy_status`, One of `im_pregnant`, `partner_pregnant` or `curios`
+* `pregnancy_status`, One of `im_pregnant`, `partner_pregnant` or `curious`
 * `profile_completion`, How much of the profile they have completed e.g. 0%, 50%, 100%
 * `pregnancy_sentiment`, How they are feeling about their pregnancy. This result applies only to users that have selected `im_pregnant` as their above status.
 
@@ -70,7 +70,7 @@ This is the first Profile question. This one applies to all flows, and from here
 
 * I'm pregnant
 * Partner is pregnant
-* Just curios
+* Just curious
 
 ```stack
 card Question1 do
@@ -101,7 +101,7 @@ card Question1 do
     buttons(
       ImPregnant: "@button_labels[0]",
       PartnerPregnant: "@button_labels[1]",
-      Curios: "@button_labels[2]"
+      Curious: "@button_labels[2]"
     ) do
       text("@message.message")
     end
@@ -109,6 +109,7 @@ end
 
 card ImPregnant, then: PregnantEDDMonth do
   update_contact(gender: "female")
+  update_contact(pregnancy_status: "@status")
   write_result("pregnancy_status", status)
   write_result("profile_completion", "0%")
 end
@@ -426,7 +427,7 @@ end
 
 ```stack
 card SaveEDDAndContinue, then: ContinueEDDBranch do
-  edd_date_full_str = datevalue(edd_date_full, "%Y/%m/%d")
+  edd_date_full_str = datevalue(edd_date_full, "%Y-%m-%d")
   log("EDD Saved as @edd_date_full_str")
   update_contact(edd: "@edd_date_full_str")
 end
@@ -1135,6 +1136,7 @@ This flow first starts off with the same EDD calculator as the `I'm pregnant` op
 card PartnerPregnant, then: PregnantEDDMonth do
   write_result("pregnancy_status", status)
   write_result("profile_completion", "0%")
+  update_contact(pregnancy_status: "@status")
 end
 
 card PartnerPregnantGender do
@@ -1184,12 +1186,13 @@ end
 
 ```
 
-## Curios
+## Curious
 
 ```stack
-card Curios do
+card Curious do
   write_result("pregnancy_status", status)
   write_result("profile_completion", "0%")
+  update_contact(pregnancy_status: "@status")
 end
 
 ```
