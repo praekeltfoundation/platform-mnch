@@ -150,8 +150,12 @@ card WelcomeMessageError, then: WelcomeMessageError do
   end
 end
 
-card DefaultLanguageSelection, then: PrivacyPolicy do
+card DefaultLanguageSelection when contact.language == "", then: PrivacyPolicy do
   update_contact(language: "eng")
+end
+
+card DefaultLanguageSelection, then: PrivacyPolicy do
+  log("Language already set to @contact.language - continuing.")
 end
 
 ```
