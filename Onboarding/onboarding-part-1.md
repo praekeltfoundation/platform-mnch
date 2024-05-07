@@ -41,7 +41,7 @@ columns: []
 
 | Key               | Value                                    |
 | ----------------- | ---------------------------------------- |
-| contentrepo_token | 22bbdd2a426526b55df8b3ed77eaa3523acfc6e7 |
+| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 
 ## Setup
 
