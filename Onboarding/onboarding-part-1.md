@@ -476,7 +476,7 @@ end
 Opt in for push messages
 
 ```stack
-card OptIn do
+card OptIn, then: OptInError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -498,20 +498,30 @@ card OptIn do
     )
 
   message = page.body.body.text.value
+  button_labels = map(message.buttons, & &1.value.title)
 
   buttons(OptInAccept: "@button_labels[0]", OptInDecideLater: "@button_labels[1]") do
     text("@message.message")
   end
 end
 
+card OptInError, then: OptInError do
+  buttons(
+    OptInAccept: "@button_labels[0]",
+    OptInDecideLater: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
 card OptInAccept, then: UserIntent do
   log("OptIn Accepted")
-  # update_contact(opted_in: Yes)
+  update_contact(opted_in: "true")
 end
 
 card OptInDecideLater, then: UserIntent do
   log("OptIn Declined")
-  # update_contact(opted_in: No)
+  update_contact(opted_in: "false")
   # TODO: kick off opt-in reminder flow
 end
 
@@ -566,7 +576,7 @@ card UserIntentError, then: UserIntentError do
     Explore: "@button_labels[1]",
     SpeakToAgent: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@button_error_text")
   end
 end
 
@@ -596,7 +606,7 @@ Values saved into data_preference contact field:
 * text only
 
 ```stack
-card DataPreferences do
+card DataPreferences, then: DataPreferencesError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -628,6 +638,16 @@ card DataPreferences do
     ) do
       text("@message.message")
     end
+end
+
+card DataPreferencesError, then: DataPreferencesError do
+  buttons(
+    DataPreferenceAll: "@button_labels[0]",
+    DataPreferenceTextAndImages: "@button_labels[1]",
+    DataPreferenceTextOnly: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
+  end
 end
 
 card DataPreferenceAll, then: DataPreferencesSelected do
