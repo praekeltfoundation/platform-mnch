@@ -159,10 +159,6 @@ card DefaultLanguageSelection, then: PrivacyPolicy do
   update_contact(language: "eng")
 end
 
-card DefaultLanguageSelection, then: PrivacyPolicy do
-  log("Language already set to @contact.language - continuing.")
-end
-
 ```
 
 ## Language Options
