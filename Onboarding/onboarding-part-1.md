@@ -150,12 +150,13 @@ card WelcomeMessageError, then: WelcomeMessageError do
   end
 end
 
-card DefaultLanguageSelection when contact.language == "", then: PrivacyPolicy do
-  update_contact(language: "eng")
+card DefaultLanguageSelection when len("@contact.language") > 0, then: PrivacyPolicy do
+  log("Language already set to @contact.language - continuing.")
 end
 
 card DefaultLanguageSelection, then: PrivacyPolicy do
-  log("Language already set to @contact.language - continuing.")
+  log("Language not set. Setting to English.")
+  update_contact(language: "eng")
 end
 
 ```
@@ -674,7 +675,7 @@ end
 card SelectNextJourney when intent == "create_profile" do
   # Go to Profile Classifier journey
   log("Navigating to Profile Classifier")
-  text("TODO: Profile Classifier")
+  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
   write_result("intro_completed", "yes")
 end
 
