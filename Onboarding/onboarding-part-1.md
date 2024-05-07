@@ -1,3 +1,11 @@
+<!-- { section: "607a0693-f24a-4add-b858-3702946bc63b", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED")
+when has_any_phrase(event.message.text.body, ["onboard"])
+
+```
+
 # Onboarding: Pt 1 - Welcome
 
 This is the first flow that users interact with during onboarding.
@@ -9,7 +17,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Contact fields
 
 * `language` , this stack allows the user to select their language.
-* `privacy_policy` , this stack sets the privacy policy to `yes` if they accept it or `no` if they don't.
+* `privacy_policy_accepted` , this stack sets the privacy policy to `yes` if they accept it or `no` if they don't.
 * `opted_in`, this stack sets the opt in value to `yes` or `no`
 * `intent`, set according to user choice, to one of: `create profile`, `get health advice` or `explore`
 * `data_preference`, this stack allows the user to select their data preference and stores one of `all`, `text and images`, `text only`
@@ -22,6 +30,8 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Connections to other stacks
 
 * Onboarding Part 1.1 is scheduled if they don't agree to the privacy policy
+* Goes to "Onboarding Part 2" to collect the mother's details, if they select "Expecting" as their intent
+* Goes to "Onboarding Part 4" to collect the baby's details, if they select "Newborn baby" or "My children" as their intent
 
 <!--
  dictionary: "config"
@@ -40,14 +50,15 @@ Here we do any setup and fetching of values before we start the flow.
 <!-- { section: "152df000-7e2b-4bb7-8a42-7c269f7fb568", x: 0, y: 0} -->
 
 ```stack
-card FetchError, then: WelcomeMessage do
+card FetchError, then: GoToPrivacyPolicy do
   # Fetch and store the error message, so that we don't need to do it for every error card
+  log("Starting the Intro & Welcome journey")
 
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "button-error"]
+        ["slug", "error"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -109,7 +120,7 @@ card WelcomeMessage, then: WelcomeMessageError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "welcome"]
+        ["slug", "mnch_onboarding_welcome"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -139,7 +150,12 @@ card WelcomeMessageError, then: WelcomeMessageError do
   end
 end
 
+card DefaultLanguageSelection when len("@contact.language") > 0, then: PrivacyPolicy do
+  log("Language already set to @contact.language - continuing.")
+end
+
 card DefaultLanguageSelection, then: PrivacyPolicy do
+  log("Language not set. Setting to English.")
   update_contact(language: "eng")
 end
 
@@ -157,7 +173,7 @@ card LanguageOptions, then: LanguageOptionsError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "languages"]
+        ["slug", "mnch_onboarding_languages"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -174,16 +190,16 @@ card LanguageOptions, then: LanguageOptionsError do
     )
 
   message = page.body.body.text.value
-  list_items = map(message.list_items[0], & &1.value.value)
+  list_items = map(message.list_items, & &1.value)
 
   language =
     list("Languages",
-      Language1: "list_items[0]",
-      Language2: "list_items[1]",
-      Language3: "list_items[2]",
-      Language4: "list_items[3]",
-      Language5: "list_items[4]",
-      Language6: "list_items[5]"
+      Language1: "@list_items[0]",
+      Language2: "@list_items[1]",
+      Language3: "@list_items[2]",
+      Language4: "@list_items[3]",
+      Language5: "@list_items[4]",
+      Language6: "@list_items[5]"
     ) do
       text("@message.message")
     end
@@ -192,12 +208,12 @@ end
 card LanguageOptionsError, then: LanguageOptionsError do
   language =
     list("Languages",
-      Language1: "list_items[0]",
-      Language2: "list_items[1]",
-      Language3: "list_items[2]",
-      Language4: "list_items[3]",
-      Language5: "list_items[4]",
-      Language6: "list_items[5]"
+      Language1: "@list_items[0]",
+      Language2: "@list_items[1]",
+      Language3: "@list_items[2]",
+      Language4: "@list_items[3]",
+      Language5: "@list_items[4]",
+      Language6: "@list_items[5]"
     ) do
       text("@button_error_text")
     end
@@ -205,32 +221,38 @@ end
 
 card Language1, then: LanguageConfirmation do
   # English
-  update_contact(language: "en")
+  selected_language = "English"
+  update_contact(language: "eng")
 end
 
 card Language2, then: LanguageConfirmation do
   # French
-  update_contact(language: "fr")
+  selected_language = "Français"
+  update_contact(language: "fra")
 end
 
 card Language3, then: LanguageConfirmation do
   # Portuguese
-  update_contact(language: "pt")
+  selected_language = "Português"
+  update_contact(language: "por")
 end
 
 card Language4, then: LanguageConfirmation do
   # Arabic
-  update_contact(language: "ar")
+  selected_language = "عربي"
+  update_contact(language: "ara")
 end
 
 card Language5, then: LanguageConfirmation do
   # Spanish
-  update_contact(language: "es")
+  selected_language = "Español"
+  update_contact(language: "spa")
 end
 
 card Language6, then: LanguageConfirmation do
   # Chinese
-  update_contact(language: "zh")
+  selected_language = "中国人"
+  update_contact(language: "zho")
 end
 
 ```
@@ -245,7 +267,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "language_updated"]
+        ["slug", "mnch_onboarding_language_updated"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -262,7 +284,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
     )
 
   message = page.body.body.text.value
-  message_text = substitute(message.message, "{language selection}", "@language.label")
+  message_text = substitute(message.message, "{language selection}", "@selected_language")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(OkThanks: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
@@ -294,7 +316,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "pp_document"]
+        ["slug", "mnch_onboarding_pp_document"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -312,13 +334,13 @@ card PrivacyPolicy, then: PrivacyPolicyError do
 
   message = page.body.body.text.value
 
-  document =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
+  # document =
+  #  get(
+  #    "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+  #    headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+  #  )
 
-  document_url = document.body.meta.download_url
+  # document_url = document.body.meta.download_url
 
   button_labels = map(message.buttons, & &1.value.title)
 
@@ -327,7 +349,8 @@ card PrivacyPolicy, then: PrivacyPolicyError do
     DeclinePrivacyPolicy: "@button_labels[1]",
     ReadSummary: "@button_labels[2]"
   ) do
-    document("@document_url")
+    # TODO: When we finally have the document, upload it and make this work
+    # document("@document_url")
     text("@message.message")
   end
 end
@@ -358,7 +381,7 @@ card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "pp_not_accepted"]
+        ["slug", "mnch_onboarding_pp_not_accepted"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -405,7 +428,7 @@ card ReadSummary, then: ReadSummaryError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "pp_summary"]
+        ["slug", "mnch_onboarding_pp_summary"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -423,18 +446,19 @@ card ReadSummary, then: ReadSummaryError do
 
   message = page.body.body.text.value
 
-  document =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
+  # document =
+  #   get(
+  #     "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+  #     headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+  #   )
 
-  document_url = document.body.meta.download_url
+  # document_url = document.body.meta.download_url
 
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(AcceptPrivacyPolicy: "@button_labels[0]", DeclinePrivacyPolicy: "@button_labels[1]") do
-    document("@document_url")
+    # TODO: When we finally have the document, upload it and make this work
+    # document("@document_url")
     text("@message.message")
   end
 end
@@ -457,7 +481,7 @@ card OptIn do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "opt_in"]
+        ["slug", "mnch_onboarding_opt_in"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -481,11 +505,13 @@ card OptIn do
 end
 
 card OptInAccept, then: UserIntent do
-  update_contact(opted_in: "yes")
+  log("OptIn Accepted")
+  # update_contact(opted_in: Yes)
 end
 
 card OptInDecideLater, then: UserIntent do
-  update_contact(opted_in: "no")
+  log("OptIn Declined")
+  # update_contact(opted_in: No)
   # TODO: kick off opt-in reminder flow
 end
 
@@ -505,7 +531,7 @@ card UserIntent, then: UserIntentError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "intent"]
+        ["slug", "mnch_onboarding_intent"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -575,7 +601,7 @@ card DataPreferences do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "data_preferences"]
+        ["slug", "mnch_onboarding_data_preferences"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -621,7 +647,7 @@ card DataPreferencesSelected do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "data_preferences_yes"]
+        ["slug", "mnch_onboarding_data_preferences_yes"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -638,29 +664,32 @@ card DataPreferencesSelected do
     )
 
   message = page.body.body.text.value
-  message_text = substitute(message.message, "{option choice}", "@data_preference.label")
+  message_text = substitute(message.message, "{option choice}", "@contact.data_preference")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(SelectNextJourney: "@button_labels[0]") do
     text("@message_text")
   end
+end
 
+card SelectNextJourney when intent == "create_profile" do
+  # Go to Profile Classifier journey
+  log("Navigating to Profile Classifier")
+  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
   write_result("intro_completed", "yes")
 end
 
-card SelectNextJourney when intent == "CreateProfile" do
-  # TODO: Go to CreateProfile journey
-  text("@intent")
-end
-
-card SelectNextJourney when intent == "Explore" do
+card SelectNextJourney when intent == "explore" do
   # TODO: Go to Explore journey
-  text("@intent")
+  log("Navigating to Explore")
+  text("TODO: Explore")
+  write_result("intro_completed", "yes")
 end
 
 card SelectNextJourney do
   # TODO: How did we get here and what should we do in this case?
-  text("@intent")
+  log("Unknown intent @intent. User stuck.")
+  write_result("intro_completed", "yes")
 end
 
 ```
@@ -701,16 +730,16 @@ end
 
 Content is stored in the content repo, and referenced in the stack by slug. This means that we require the following slugs to be present in the contentrepo, and we're making the following assumptions:
 
-* `welcome` , whatsapp message with two buttons
-* `languages` , whatsapp message with 6 options.
-* `language-updated`, whatsapp message with two buttons, variable `{language selection}` in message content will be replaced with selected language
-* `pp_document`, whatsapp message with three buttons, and a document
-* `pp_not_accepted`, whatsapp message with two buttons
-* `pp_summary`, whatsapp message with two buttons, and a document
-* `opt_in`, whatsapp message with two buttons
-* `intent`, whatsapp message with 7-item list (hardcoded for now)
-* `data_preferences`, whatsapp message with 3 buttons
-* `data_preferences_yes`, whatsapp message
+* `mnch_onboarding_welcome` , whatsapp message with two buttons
+* `mnch_onboarding_languages` , whatsapp message with 6 options.
+* `mnch_onboarding_language-updated`, whatsapp message with two buttons, variable `{language selection}` in message content will be replaced with selected language
+* `mnch_onboarding_pp_document`, whatsapp message with three buttons, and a document
+* `mnch_onboarding_pp_not_accepted`, whatsapp message with two buttons
+* `mnch_onboarding_pp_summary`, whatsapp message with two buttons, and a document
+* `mnch_onboarding_opt_in`, whatsapp message with two buttons
+* `mnch_onboarding_intent`, whatsapp message with 7-item list (hardcoded for now)
+* `mnch_onboarding_data_preferences`, whatsapp message with 3 buttons
+* `mnch_onboarding_data_preferences_yes`, whatsapp message
 
 ## Error messages
 
