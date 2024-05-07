@@ -662,7 +662,7 @@ card DataPreferenceTextOnly, then: DataPreferencesSelected do
   update_contact(data_preference: "text only")
 end
 
-card DataPreferencesSelected do
+card DataPreferencesSelected, then: DataPreferencesSelectedError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -689,6 +689,12 @@ card DataPreferencesSelected do
 
   buttons(SelectNextJourney: "@button_labels[0]") do
     text("@message_text")
+  end
+end
+
+card DataPreferencesSelectedError, then: DataPreferencesSelectedError do
+  buttons(SelectNextJourney: "@button_labels[0]") do
+    text("@button_error_text")
   end
 end
 
