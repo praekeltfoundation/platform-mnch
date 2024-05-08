@@ -57,7 +57,7 @@ else:
 [[rules]]
 id = "wagtail-key"
 description = "Detected a Wagtail Key, risking unauthorized access to CMS."
-regex = '''(?!(.)\1{39})[a-zA-Z0-9]{40}'''
+regex = '''[a-zA-Z0-9]{40}'''
 ```
 5. Make sure your pre-commit file is executable (`chmod 755 pre-commit`)
 
