@@ -52,7 +52,7 @@ else:
     print('gitleaks precommit disabled\
      (enable with `git config hooks.gitleaks true`)')
 ```
-4. Make a gitleaks.toml file, [copy their toml file](https://github.com/gitleaks/gitleaks/blob/master/config/gitleaks.toml) just for good measure, then add this to the bottom. The regex checks for 40 character keys, however it allows 40 repeating characters, allowing us to put in placeholders.
+4. Make a gitleaks.toml file, [copy their toml file](https://github.com/gitleaks/gitleaks/blob/master/config/gitleaks.toml) just for good measure, then add this to the bottom. The regex checks for 40 character keys, so placeholders will have to be less than that (Go doesn't support lookaheads, so we can't use a fancier regex to exclude repeating characters).
 ```
 [[rules]]
 id = "wagtail-key"
