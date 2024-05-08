@@ -22,6 +22,11 @@ In this flow we allow the user to select one or multiple Domains, and then prior
 
 ## Connections to other stacks
 
+* Intro & Welcome starts this stack
+* Goes to Profile Pregnancy Health if they select `pregnancy_information`
+* Goes to Profile HCW if they select `info_for_health_professionals`
+* Goes to Generic Profile if they select anything else or nothing
+
 <!--
  dictionary: "config"
 version: "0.1.0"
@@ -93,7 +98,7 @@ card Name, then: NameValidation do
   name = ask("@message.message")
 end
 
-card NameValidation when lower(name) == "skip" do
+card NameValidation when lower("@name") == "skip" do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -122,12 +127,12 @@ card NameValidation when lower(name) == "skip" do
   end
 end
 
-card NameValidation when has_number(name) or len(name) > 20, then: NameValidation do
+card NameValidation when has_number("@name") == true or len("@name") > 20, then: NameValidation do
   name = ask("@name_error_text")
 end
 
 card NameValidation, then: Domains1 do
-  # log("Name @name validated")
+  log("Name @name validated @has_number(\"@name\")")
   update_contact(name: "@name")
 end
 
@@ -138,6 +143,8 @@ end
 Each of the Domains has a text only and text and images branch.
 
 ## Domains 1
+
+Introductory message to domains.
 
 ```stack
 card Domains1, then: Domains1Branch do
@@ -194,6 +201,8 @@ end
 ```
 
 ## Domains 2
+
+Love and relationships
 
 ```stack
 card Domains2, then: Domains2Branch do
@@ -252,6 +261,8 @@ end
 ```
 
 ## Domains 3
+
+Pregnancy Information
 
 ```stack
 card Domains3, then: Domains3Branch do
@@ -312,6 +323,8 @@ end
 
 ## Domains 4
 
+Baby and Child Health
+
 ```stack
 card Domains4, then: Domains4Branch do
   search =
@@ -370,6 +383,8 @@ end
 ```
 
 ## Domains 5
+
+Well-Being
 
 ```stack
 card Domains5, then: Domains5Branch do
@@ -430,6 +445,8 @@ end
 
 ## Domains 6
 
+Family Planning
+
 ```stack
 card Domains6, then: Domains6Branch do
   search =
@@ -488,6 +505,8 @@ end
 ```
 
 ## Domains 7
+
+Info for health professionals
 
 ```stack
 card Domains7, then: Domains7Branch do
