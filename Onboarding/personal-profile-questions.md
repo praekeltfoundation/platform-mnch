@@ -1,3 +1,9 @@
+```stack
+trigger(on: "MESSAGE RECEIVED")
+when has_any_phrase(event.message.text.body, ["personal"])
+
+```
+
 # Onboarding: Personal Profile Questions
 
 This is the flow for the personal profile questions which are asked in various user profile journeys. All quastions are skippable.
