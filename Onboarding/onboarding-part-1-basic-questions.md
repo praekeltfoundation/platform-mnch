@@ -110,6 +110,9 @@ card FetchError, then: YearOfBirth do
     )
 
   unrecognised_year = page.body.body.text.value.message
+
+  # It seems that you can't do this calc in the when statement, so have to do it ahead of time
+  min_yob = year(now()) - 150
 end
 
 ```
@@ -146,7 +149,7 @@ card YearOfBirth, then: ValidateYearOfBirth do
 end
 
 card ValidateYearOfBirth
-     when isnumber(year_of_birth) != true and lower("@year_of_birth") == "skip",
+     when has_only_phrase(lower("@year_of_birth"), "skip"),
      then: Province do
   log("Skipping Age")
 end
@@ -160,6 +163,10 @@ card ValidateYearOfBirth when isnumber(year_of_birth) != true, then: ValidateYea
 end
 
 card ValidateYearOfBirth when len("@year_of_birth") != 4, then: ValidateYearOfBirth do
+  year_of_birth = ask("@unrecognised_year")
+end
+
+card ValidateYearOfBirth when year_of_birth < min_yob, then: ValidateYearOfBirth do
   year_of_birth = ask("@unrecognised_year")
 end
 
