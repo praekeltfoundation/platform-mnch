@@ -17,6 +17,7 @@ In this flow we allow the user to select one or multiple Domains, and then prior
 * `well_being`, a boolean that is set to true if the user selects this domain
 * `family_planning`, a boolean that is set to true if the user selects this domain
 * `info_for_health_professionals`, a boolean that is set to true if the user selects this domain
+* `checkpoint`, the checkpoint for where we are in onboarding
 
 ## Flow results
 
@@ -42,6 +43,10 @@ columns: []
 Here we do any setup and fetching of values before we start the flow.
 
 ```stack
+card Checkpoint, then: NameError do
+  update_contact(checkpoint: "profile_classifier")
+end
+
 card NameError, then: Name do
   search =
     get(
@@ -64,6 +69,28 @@ card NameError, then: Name do
     )
 
   name_error_text = page.body.body.text.value.message
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_error_handling_button"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  button_error_text = page.body.body.text.value.message
 end
 
 ```
@@ -174,14 +201,14 @@ card Domains1, then: Domains1Branch do
 end
 
 # Text only
-card Domains1Branch when @contact.data_preference == "text only" do
+card Domains1Branch when @contact.data_preference == "text only", then: Domains1Error do
   buttons(Domains2: "@button_labels[0]") do
     text("@message_text")
   end
 end
 
 # Show image
-card Domains1Branch do
+card Domains1Branch, then: Domains1Error do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -195,6 +222,12 @@ card Domains1Branch do
   buttons(Domains2: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
     text("@message_text")
+  end
+end
+
+card Domains1Error do
+  buttons(Domains2: "@button_labels[0]") do
+    text("@button_error_text")
   end
 end
 
@@ -231,13 +264,13 @@ card Domains2, then: Domains2Branch do
 end
 
 # Text only
-card Domains2Branch when @contact.data_preference == "text only" do
+card Domains2Branch when @contact.data_preference == "text only", then: Domains2Error do
   buttons(AddDomain2: "@button_labels[0]", Domains3: "@button_labels[1]") do
     text("@message.message")
   end
 end
 
-card Domains2Branch do
+card Domains2Branch, then: Domains2Error do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -256,6 +289,12 @@ end
 
 card AddDomain2, then: Domains3 do
   update_contact(love_and_relationships: "true")
+end
+
+card Domains2Error do
+  buttons(AddDomain2: "@button_labels[0]", Domains3: "@button_labels[1]") do
+    text("@button_error_text")
+  end
 end
 
 ```
@@ -291,14 +330,14 @@ card Domains3, then: Domains3Branch do
 end
 
 # Text only
-card Domains3Branch when @contact.data_preference == "text only" do
+card Domains3Branch when @contact.data_preference == "text only", then: Domains3Error do
   buttons(AddDomain3: "@button_labels[0]", Domains4: "@button_labels[1]") do
     text("@message.message")
   end
 end
 
 # Show image
-card Domains3Branch do
+card Domains3Branch, then: Domains3Error do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -317,6 +356,12 @@ end
 
 card AddDomain3, then: Domains4 do
   update_contact(pregnancy_information: "true")
+end
+
+card Domains3Error do
+  buttons(AddDomain3: "@button_labels[0]", Domains4: "@button_labels[1]") do
+    text("@button_error_text")
+  end
 end
 
 ```
@@ -352,14 +397,14 @@ card Domains4, then: Domains4Branch do
 end
 
 # Text only
-card Domains4Branch when @contact.data_preference == "text only" do
+card Domains4Branch when @contact.data_preference == "text only", then: Domains4Error do
   buttons(AddDomain4: "@button_labels[0]", Domains5: "@button_labels[1]") do
     text("@message.message")
   end
 end
 
 # Show image
-card Domains4Branch do
+card Domains4Branch, then: Domains4Error do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -378,6 +423,12 @@ end
 
 card AddDomain4, then: Domains5 do
   update_contact(baby_and_child: "true")
+end
+
+card Domains4Error do
+  buttons(AddDomain4: "@button_labels[0]", Domains5: "@button_labels[1]") do
+    text("@button_error_text")
+  end
 end
 
 ```
@@ -413,14 +464,14 @@ card Domains5, then: Domains5Branch do
 end
 
 # Text only
-card Domains5Branch when @contact.data_preference == "text only" do
+card Domains5Branch when @contact.data_preference == "text only", then: Domains5Error do
   buttons(AddDomain5: "@button_labels[0]", Domains6: "@button_labels[1]") do
     text("@message.message")
   end
 end
 
 # Show image
-card Domains5Branch do
+card Domains5Branch, then: Domains5Error do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -439,6 +490,12 @@ end
 
 card AddDomain5, then: Domains6 do
   update_contact(well_being: "true")
+end
+
+card Domains5Error do
+  buttons(AddDomain5: "@button_labels[0]", Domains6: "@button_labels[1]") do
+    text("@button_error_text")
+  end
 end
 
 ```
@@ -474,14 +531,14 @@ card Domains6, then: Domains6Branch do
 end
 
 # Text only
-card Domains6Branch when @contact.data_preference == "text only" do
+card Domains6Branch when @contact.data_preference == "text only", then: Domains6Error do
   buttons(AddDomain6: "@button_labels[0]", Domains7: "@button_labels[1]") do
     text("@message.message")
   end
 end
 
 # Show image
-card Domains6Branch do
+card Domains6Branch, then: Domains6Error do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -500,6 +557,12 @@ end
 
 card AddDomain6, then: Domains7 do
   update_contact(family_planning: "true")
+end
+
+card Domains6Error do
+  buttons(AddDomain6: "@button_labels[0]", Domains7: "@button_labels[1]") do
+    text("@button_error_text")
+  end
 end
 
 ```
@@ -535,14 +598,14 @@ card Domains7, then: Domains7Branch do
 end
 
 # Text only
-card Domains7Branch when @contact.data_preference == "text only" do
+card Domains7Branch when @contact.data_preference == "text only", then: Domains7Error do
   buttons(AddDomain7: "@button_labels[0]", GoToNext: "@button_labels[1]") do
     text("@message.message")
   end
 end
 
 # Show image
-card Domains7Branch do
+card Domains7Branch, then: Domains7Error do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -561,6 +624,12 @@ end
 
 card AddDomain7, then: GoToNext do
   update_contact(info_for_health_professionals: "true")
+end
+
+card Domains7Error do
+  buttons(AddDomain7: "@button_labels[0]", GoToNext: "@button_labels[1]") do
+    text("@button_error_text")
+  end
 end
 
 ```
