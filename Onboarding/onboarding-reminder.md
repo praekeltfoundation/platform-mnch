@@ -20,7 +20,7 @@ card Reminder do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "reminder"]
+        ["slug", "mnch_onboarding_reminder"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -58,7 +58,7 @@ card RemindNo do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "reminder_no"]
+        ["slug", "mnch_onboarding_reminder_no"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -83,7 +83,7 @@ card RemindTomorrow do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "reminder_tomorrow"]
+        ["slug", "mnch_onboarding_reminder_tomorrow"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
