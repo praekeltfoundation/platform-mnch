@@ -67,6 +67,28 @@ card FetchError, then: Question1 do
     )
 
   button_error_text = page.body.body.text.value.message
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_error_handling_list_message"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  list_error_text = page.body.body.text.value.message
 end
 
 ```
@@ -687,7 +709,7 @@ card Loading1, then: Loading1Branch do
     )
 
   message = page.body.body.text.value
-  message = substitute(message.message, "{@username}", "@contact.profile_name")
+  loading_message = substitute(message.message, "{@username}", "@contact.profile_name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -706,14 +728,14 @@ card Loading1Branch do
   image("@image_data.body.meta.download_url")
 
   buttons(Loading2: "@button_labels[0]") do
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
 # Text only
 card Loading1Branch when @contact.data_preference == "text only" do
   buttons(Loading2: "@button_labels[0]") do
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
@@ -1146,7 +1168,7 @@ card PartnerPregnant, then: PregnantEDDMonth do
   update_contact(pregnancy_status: "@status")
 end
 
-card PartnerPregnantGender do
+card PartnerPregnantGender, then: PartnerPregnantGenderError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -1176,6 +1198,16 @@ card PartnerPregnantGender do
     PartnerGenderOther: "@button_labels[2]"
   ) do
     text("@message.message")
+  end
+end
+
+card PartnerPregnantGenderError, then: PartnerPregnantGenderError do
+  buttons(
+    PartnerGenderMale: "@button_labels[0]",
+    PartnerGenderFemale: "@button_labels[1]",
+    PartnerGenderOther: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -1222,14 +1254,15 @@ card Loading01Secondary, then: DisplayLoading01Secondary do
 end
 
 # Text only
-card DisplayLoading01Secondary when contact.data_preference == "text only" do
+card DisplayLoading01Secondary when contact.data_preference == "text only",
+  then: DisplayLoading01SecondaryError do
   buttons(Loading02Secondary: "@button_labels[0]") do
     text("@message.message")
   end
 end
 
 # Display with image
-card DisplayLoading01Secondary do
+card DisplayLoading01Secondary, then: DisplayLoading01SecondaryError do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -1243,6 +1276,12 @@ card DisplayLoading01Secondary do
   buttons(Loading02Secondary: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
     text("@message.message")
+  end
+end
+
+card DisplayLoading01SecondaryError, then: DisplayLoading01SecondaryError do
+  buttons(Loading02Secondary: "@button_labels[0]") do
+    text("@button_error_text")
   end
 end
 
@@ -1277,14 +1316,15 @@ card Loading02Secondary, then: DisplayLoading02Secondary do
 end
 
 # Text only
-card DisplayLoading02Secondary when contact.data_preference == "text only" do
+card DisplayLoading02Secondary when contact.data_preference == "text only",
+  then: DisplayLoading02SecondaryError do
   buttons(ContentIntro: "@button_labels[0]") do
     text("@message.message")
   end
 end
 
 # Display with image
-card DisplayLoading02Secondary do
+card DisplayLoading02Secondary, then: DisplayLoading02SecondaryError do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -1298,6 +1338,12 @@ card DisplayLoading02Secondary do
   buttons(ContentIntro: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
     text("@message.message")
+  end
+end
+
+card DisplayLoading02SecondaryError, then: DisplayLoading02SecondaryError do
+  buttons(ContentIntro: "@button_labels[0]") do
+    text("@button_error_text")
   end
 end
 
@@ -1328,14 +1374,14 @@ card ContentIntro, then: DisplayContentIntro do
     )
 
   message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
   menu_items = map(message.list_items, & &1.value)
 end
 
 # #TODO Content
 
 # Text only
-card DisplayContentIntro when contact.data_preference == "text only" do
+card DisplayContentIntro when contact.data_preference == "text only",
+  then: DisplayContentIntroError do
   selected_topic =
     list("Select option",
       Topic1: "@menu_items[0]",
@@ -1349,7 +1395,7 @@ card DisplayContentIntro when contact.data_preference == "text only" do
 end
 
 # Display with image
-card DisplayContentIntro do
+card DisplayContentIntro, then: DisplayContentIntroError do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -1371,6 +1417,19 @@ card DisplayContentIntro do
       Other: "@menu_items[4]"
     ) do
       text("@message.message")
+    end
+end
+
+card DisplayContentIntroError, then: DisplayContentIntroError do
+  selected_topic =
+    list("Select option",
+      Topic1: "@menu_items[0]",
+      Topic2: "@menu_items[1]",
+      Topic3: "@menu_items[2]",
+      Topic4: "@menu_items[3]",
+      Other: "@menu_items[4]"
+    ) do
+      text("@list_error_text")
     end
 end
 
@@ -1427,7 +1486,8 @@ end
 # TODO Content
 
 # Text only
-card DisplayArticleTopic01Secondary when contact.data_preference == "text only" do
+card DisplayArticleTopic01Secondary when contact.data_preference == "text only",
+  then: DisplayArticleTopic01SecondaryError do
   buttons(
     ProfileProgress50: "@button_labels[0]",
     ContentFeedback: "@button_labels[1]",
@@ -1438,7 +1498,7 @@ card DisplayArticleTopic01Secondary when contact.data_preference == "text only" 
 end
 
 # Display with image
-card DisplayArticleTopic01Secondary do
+card DisplayArticleTopic01Secondary, then: DisplayArticleTopic01SecondaryError do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -1456,6 +1516,16 @@ card DisplayArticleTopic01Secondary do
   ) do
     image("@image_data.body.meta.download_url")
     text("@message.message")
+  end
+end
+
+card DisplayArticleTopic01SecondaryError, then: DisplayArticleTopic01SecondaryError do
+  buttons(
+    ProfileProgress50: "@button_labels[0]",
+    ContentFeedback: "@button_labels[1]",
+    ContentIntro: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -1489,12 +1559,21 @@ card ContentFeedback, then: DisplayContentFeedback do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayContentFeedback do
+card DisplayContentFeedback, then: DisplayContentFeedbackError do
   buttons(
     ReminderOptIn: "@button_labels[0]",
     ContentFeedbackNo: "@button_labels[1]"
   ) do
     text("@message.message")
+  end
+end
+
+card DisplayContentFeedbackError, then: DisplayContentFeedbackError do
+  buttons(
+    ReminderOptIn: "@button_labels[0]",
+    ContentFeedbackNo: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -1528,13 +1607,23 @@ card ContentFeedbackNo, then: DisplayContentFeedbackNo do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayContentFeedbackNo do
+card DisplayContentFeedbackNo, then: DisplayContentFeedbackNoError do
   buttons(
     SecondaryOnboarding: "@button_labels[0]",
     ProfileProgress50: "@button_labels[1]",
     ProfileProgress50: "@button_labels[2]"
   ) do
     text("@message.message")
+  end
+end
+
+card DisplayContentFeedbackNoError, then: DisplayContentFeedbackNoError do
+  buttons(
+    SecondaryOnboarding: "@button_labels[0]",
+    ProfileProgress50: "@button_labels[1]",
+    ProfileProgress50: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -1576,7 +1665,16 @@ card ReminderOptIn
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayReminderOptIn do
+card DisplayReminderOptIn, then: DisplayReminderOptInError do
+  buttons(
+    ReminderOptInYes: "@button_labels[0]",
+    ReminderOptInNo: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
+card DisplayReminderOptInError, then: DisplayReminderOptInError do
   buttons(
     ReminderOptInYes: "@button_labels[0]",
     ReminderOptInNo: "@button_labels[1]"
@@ -1686,7 +1784,7 @@ card Curious, then: DisplayCurious do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayCurious do
+card DisplayCurious, then: DisplayCuriousError do
   gender =
     buttons(
       MaleGender: "@button_labels[0]",
@@ -1694,6 +1792,17 @@ card DisplayCurious do
       OtherGender: "@button_labels[2]"
     ) do
       text("@message.message")
+    end
+end
+
+card DisplayCuriousError, then: DisplayCuriousError do
+  gender =
+    buttons(
+      MaleGender: "@button_labels[0]",
+      FemaleGender: "@button_labels[1]",
+      OtherGender: "@button_labels[2]"
+    ) do
+      text("@button_error_text")
     end
 end
 
@@ -1744,7 +1853,7 @@ card Curious02, then: DisplayCurious02 do
   menu_items = map(message.list_items, & &1.value)
 end
 
-card DisplayCurious02 do
+card DisplayCurious02, then: DisplayCurious02Error do
   selected_child =
     list("Other children",
       Children0: "@menu_items[0]",
@@ -1754,6 +1863,19 @@ card DisplayCurious02 do
       Children4: "@menu_items[4]"
     ) do
       text("@message.message")
+    end
+end
+
+card DisplayCurious02Error, then: DisplayCurious02Error do
+  selected_child =
+    list("Other children",
+      Children0: "@menu_items[0]",
+      Children1: "@menu_items[1]",
+      Children2: "@menu_items[2]",
+      Children3: "@menu_items[3]",
+      Children4: "@menu_items[4]"
+    ) do
+      text("@list_error_text")
     end
 end
 
@@ -1808,11 +1930,23 @@ card Curious03, then: DisplayCurious03 do
     )
 
   message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
   menu_items = map(message.list_items, & &1.value)
 end
 
-card DisplayCurious03 do
+card DisplayCurious03, then: DisplayCurious03Error do
+  selected_topic =
+    list("Select option",
+      Topic_1: "@menu_items[0]",
+      Topic_2: "@menu_items[1]",
+      Topic_3: "@menu_items[2]",
+      Topic_4: "@menu_items[3]",
+      OtherTopic: "@menu_items[4]"
+    ) do
+      text("@message.message")
+    end
+end
+
+card DisplayCurious03Error, then: DisplayCurious03Error do
   selected_topic =
     list("Select option",
       Topic_1: "@menu_items[0]",
@@ -1900,6 +2034,12 @@ card DisplayLoadingComponent01 do
   end
 end
 
+card DisplayLoadingComponent01Error, then: DisplayLoadingComponent01Error do
+  buttons(LoadingComponent02: "@button_labels[0]") do
+    text("@button_error_text")
+  end
+end
+
 ```
 
 ## Loading Component 02
@@ -1933,14 +2073,15 @@ end
 # TODO Content
 
 # Text only
-card DisplayLoadingComponent02 when contact.data_preference == "text only" do
+card DisplayLoadingComponent02 when contact.data_preference == "text only",
+  then: DisplayLoadingComponent02Error do
   buttons(CuriousContentIntro: "@button_labels[0]") do
     text("@message.message")
   end
 end
 
 # Display with image
-card DisplayLoadingComponent02 do
+card DisplayLoadingComponent02, then: DisplayLoadingComponent02Error do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -1953,6 +2094,12 @@ card DisplayLoadingComponent02 do
 
   buttons(CuriousContentIntro: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
+    text("@message.message")
+  end
+end
+
+card DisplayLoadingComponent02Error, then: DisplayLoadingComponent02Error do
+  buttons(CuriousContentIntro: "@button_labels[0]") do
     text("@message.message")
   end
 end
@@ -1984,14 +2131,14 @@ card CuriousContentIntro, then: DisplayCuriousContentIntro do
     )
 
   message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
   menu_items = map(message.list_items, &[&1.value, &1.value])
 end
 
 # #TODO Content
 
 # Text only
-card DisplayCuriousContentIntro when contact.data_preference == "text only" do
+card DisplayCuriousContentIntro when contact.data_preference == "text only",
+  then: DisplayCuriousContentIntroError do
   selected_topic =
     list("Choose a topic", ArticleTopic01, menu_items) do
       text("@message.message")
@@ -1999,7 +2146,7 @@ card DisplayCuriousContentIntro when contact.data_preference == "text only" do
 end
 
 # Display with image
-card DisplayCuriousContentIntro do
+card DisplayCuriousContentIntro, then: DisplayCuriousContentIntroError do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -2016,6 +2163,13 @@ card DisplayCuriousContentIntro do
   selected_topic =
     list("Choose a topic", ArticleTopic01, menu_items) do
       text("@message.message")
+    end
+end
+
+card DisplayCuriousContentIntroError, then: DisplayCuriousContentIntroError do
+  selected_topic =
+    list("Choose a topic", ArticleTopic01, menu_items) do
+      text("@list_error_text")
     end
 end
 
@@ -2052,7 +2206,8 @@ end
 # TODO Content
 
 # Text only
-card DisplayArticleTopic01 when contact.data_preference == "text only" do
+card DisplayArticleTopic01 when contact.data_preference == "text only",
+  then: DisplayArticleTopic01Error do
   buttons(
     ProfileProgress50: "@button_labels[0]",
     CuriousContent05: "@button_labels[1]",
@@ -2063,7 +2218,7 @@ card DisplayArticleTopic01 when contact.data_preference == "text only" do
 end
 
 # Display with image
-card DisplayArticleTopic01 do
+card DisplayArticleTopic01, then: DisplayArticleTopic01Error do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -2081,6 +2236,16 @@ card DisplayArticleTopic01 do
   ) do
     image("@image_data.body.meta.download_url")
     text("@message.message")
+  end
+end
+
+card DisplayArticleTopic01Error, then: DisplayArticleTopic01Error do
+  buttons(
+    ProfileProgress50: "@button_labels[0]",
+    CuriousContent05: "@button_labels[1]",
+    CuriousContentIntro: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -2114,12 +2279,21 @@ card CuriousContent05, then: DisplayCuriousContent05 do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayCuriousContent05 do
+card DisplayCuriousContent05, then: DisplayCuriousContent05Error do
   buttons(
     CuriousReminderOptIn: "@button_labels[0]",
     CuriousContentFeedback: "@button_labels[1]"
   ) do
     text("@message.message")
+  end
+end
+
+card DisplayCuriousContent05Error, then: DisplayCuriousContent05Error do
+  buttons(
+    CuriousReminderOptIn: "@button_labels[0]",
+    CuriousContentFeedback: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -2153,13 +2327,23 @@ card CuriousContentFeedback, then: DisplayCuriousContentFeedback do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayCuriousContentFeedback do
+card DisplayCuriousContentFeedback, then: DisplayCuriousContentFeedbackError do
   buttons(
     BaseProfile: "@button_labels[0]",
     ProfileProgress50: "@button_labels[1]",
     ProfileProgress50: "@button_labels[2]"
   ) do
     text("@message.message")
+  end
+end
+
+card DisplayCuriousContentFeedbackError, then: DisplayCuriousContentFeedbackError do
+  buttons(
+    BaseProfile: "@button_labels[0]",
+    ProfileProgress50: "@button_labels[1]",
+    ProfileProgress50: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
   end
 end
 
