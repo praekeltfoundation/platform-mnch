@@ -1,14 +1,70 @@
 # EDD Reminder
 
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "eddreminder")
+
+```
+
 <!--
  dictionary: "config"
 version: "0.1.0"
 columns: [] 
 -->
 
-| Key               | Value                          |
-| ----------------- |--------------------------------|
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+| Key               | Value                                   |
+| ----------------- |-----------------------------------------|
+| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+
+```stack
+card FetchError, then: EDDReminder do
+  # Fetch and store the error message, so that we don't need to do it for every error card
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_error_handling_button"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  button_error_text = page.body.body.text.value.message
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_error_handling_list_message"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  list_error_text = page.body.body.text.value.message
+end
+
+```
 
 <!-- { section: "6053de2e-cff0-4e46-9682-b623e3b3e36e", x: 0, y: 0} -->
 
@@ -39,7 +95,8 @@ card EDDReminder, then: DisplayEDDReminder do
 end
 
 # Text only
-card DisplayEDDReminder when contact.data_preference == "text only" do
+card DisplayEDDReminder when contact.data_preference == "text only",
+  then: DisplayEDDReminderError do
   buttons(
     EDDGotIt: "@button_labels[0]",
     EDDMonth: "@button_labels[1]",
@@ -50,7 +107,7 @@ card DisplayEDDReminder when contact.data_preference == "text only" do
 end
 
 # Display with image
-card DisplayEDDReminder do
+card DisplayEDDReminder, then: DisplayEDDReminderError do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -61,14 +118,23 @@ card DisplayEDDReminder do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(
     EDDGotIt: "@button_labels[0]",
     EDDMonth: "@button_labels[1]",
     EDDRUnknown: "@button_labels[2]"
   ) do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
+  end
+end
+
+card DisplayEDDReminderError, then: DisplayEDDReminderError do
+  buttons(
+    EDDGotIt: "@button_labels[0]",
+    EDDMonth: "@button_labels[1]",
+    EDDRUnknown: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -102,9 +168,15 @@ card EDDGotIt, then: DisplayEDDGotIt do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayEDDGotIt do
+card DisplayEDDGotIt, then: DisplayEDDGotItError do
   buttons(MainMenu: "@button_labels[0]") do
     text("@message.message")
+  end
+end
+
+card DisplayEDDGotItError, then: DisplayEDDGotItError do
+  buttons(MainMenu: "@button_labels[0]") do
+    text("@button_error_text")
   end
 end
 
@@ -113,7 +185,7 @@ end
 # EDD Month
 
 ```stack
-card EDDMonth do
+card EDDMonth, then: EDDMonthError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -155,8 +227,8 @@ card EDDMonth do
     ThisMonthPlusFive,
     ThisMonthPlusSix,
     ThisMonthPlusSeven,
-    ThisMonthPlusEight
-    # EDDMonthUnknown
+    ThisMonthPlusEight,
+    EDDMonthUnknown
   ]) do
     text("@page.body.body.text.value.message")
   end
@@ -192,10 +264,10 @@ card EDDMonthError, then: EDDMonthError do
     ThisMonthPlusFive,
     ThisMonthPlusSix,
     ThisMonthPlusSeven,
-    ThisMonthPlusEight
-    # EDDMonthUnknown
+    ThisMonthPlusEight,
+    EDDMonthUnknown
   ]) do
-    text("@page.body.body.text.value.message")
+    text("@list_error_text")
   end
 end
 
@@ -244,7 +316,7 @@ card ThisMonthPlusEight, "@datevalue(this_month_plus_eight, \"%B\")", then: EDDD
   edd_date_year = year(this_month_plus_eight)
 end
 
-card EDDMonthUnknown, "I don't know" do
+card EDDMonthUnknown, "I don't know", then: EDDMonthUnknownError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -273,6 +345,15 @@ card EDDMonthUnknown, "I don't know" do
     EDDLater: "@button_labels[1]"
   ) do
     text("@page.body.body.text.value.message")
+  end
+end
+
+card EDDMonthUnknownError, then: EDDMonthUnknownError do
+  buttons(
+    EDDMonth: "@button_labels[0]",
+    EDDLater: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -315,7 +396,7 @@ card ValidateEDDDay when edd_day < 1 or edd_day > 31, then: EDDDayError do
   text("invalid day")
 end
 
-card ValidateEDDDay when not isnumber(edd_day) and (edd_day != "skip" or edd_day != "Skip"),
+card ValidateEDDDay when not isnumber(edd_day) and has_any_phrase(lower("@edd_day"), "skip"),
   then: EDDDayError do
   # TODO display error message
   text("invalid day is a string")
@@ -361,9 +442,15 @@ card EDDConfirm, then: DisplayEDDConfirm do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayEDDConfirm do
+card DisplayEDDConfirm, then: DisplayEDDConfirmError do
   buttons(MainMenu: "@button_labels[0]") do
     text("@message.message")
+  end
+end
+
+card DisplayEDDConfirmError, then: DisplayEDDConfirmError do
+  buttons(MainMenu: "@button_labels[0]") do
+    text("@button_error_text")
   end
 end
 
@@ -398,7 +485,8 @@ card EDDRUnknown, then: DisplayEDDUnknown do
 end
 
 # Text only
-card DisplayEDDUnknown when contact.data_preference == "text only" do
+card DisplayEDDUnknown when contact.data_preference == "text only",
+  then: DisplayEDDUnknownError do
   buttons(
     EDDMonth: "@button_labels[0]",
     EDDLater: "@button_labels[1]"
@@ -408,7 +496,7 @@ card DisplayEDDUnknown when contact.data_preference == "text only" do
 end
 
 # Display with image
-card DisplayEDDUnknown do
+card DisplayEDDUnknown, then: DisplayEDDUnknownError do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -426,6 +514,15 @@ card DisplayEDDUnknown do
     EDDLater: "@button_labels[1]"
   ) do
     text("@message.message")
+  end
+end
+
+card DisplayEDDUnknownError, then: DisplayEDDUnknownError do
+  buttons(
+    EDDMonth: "@button_labels[0]",
+    EDDLater: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -459,7 +556,16 @@ card EDDLater, then: DisplayEDDLater do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card DisplayEDDLater do
+card DisplayEDDLater, then: DisplayEDDLaterError do
+  buttons(
+    MainMenu: "@button_labels[0]",
+    HealthGuide: "@button_labels[1]"
+  ) do
+    text("@message.message")
+  end
+end
+
+card DisplayEDDLaterError, then: DisplayEDDLaterError do
   buttons(
     MainMenu: "@button_labels[0]",
     HealthGuide: "@button_labels[1]"
