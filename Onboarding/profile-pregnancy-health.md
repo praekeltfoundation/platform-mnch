@@ -16,6 +16,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 * `gender`, This stack sets the gender field for the user. If the user selects `im_pregnant` as their status below it defaults to `female`, otherwise it lets them set it to `male`, `female` or `other`.
 * `edd`, Expected Due Date, gets set after we have the EDD month and day provided by the user.
 * `other_children`, How many other children this user has.
+* `checkpoint`, the checkpoint for where we are in onboarding. One of `basic_pregnancy_profile`, `pregnant_mom_profile`, `pregnancy_basic_info`, `pregnancy_personal_info`, `pregnancy_daily_life_info`
 
 ## Flow results
 
@@ -33,15 +34,19 @@ version: "0.1.0"
 columns: [] 
 -->
 
-| Key               | Value                                   |
-| ----------------- |-----------------------------------------|
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+| Key               | Value                                    |
+| ----------------- | ---------------------------------------- |
+| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
 
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
 
 ```stack
+card Checkpoint, then: FetchError do
+  update_contact(checkpoint: "basic_pregnancy_profile")
+end
+
 card FetchError, then: Question1 do
   # Fetch and store the error message, so that we don't need to do it for every error card
 
@@ -49,7 +54,7 @@ card FetchError, then: Question1 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "button-error"]
+        ["slug", "mnch_onboarding_error_handling_button"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -89,6 +94,28 @@ card FetchError, then: Question1 do
     )
 
   list_error_text = page.body.body.text.value.message
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_unrecognised_number"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  unrecognised_number_text = page.body.body.text.value.message
 end
 
 ```
@@ -102,7 +129,7 @@ This is the first Profile question. This one applies to all flows, and from here
 * Just curious
 
 ```stack
-card Question1 do
+card Question1, then: Question1Error do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -136,9 +163,21 @@ card Question1 do
     end
 end
 
+card Question1Error, then: Question1Error do
+  status =
+    buttons(
+      ImPregnant: "@button_labels[0]",
+      PartnerPregnant: "@button_labels[1]",
+      Curious: "@button_labels[2]"
+    ) do
+      text("@button_error_text")
+    end
+end
+
 card ImPregnant, then: PregnantEDDMonth do
   update_contact(gender: "female")
   update_contact(pregnancy_status: "@status")
+  update_contact(checkpoint: "pregnant_mom_profile")
   write_result("pregnancy_status", status)
   write_result("profile_completion", "0%")
 end
@@ -156,7 +195,7 @@ Asks the user to select the month that the baby is expected  to be born.
 Presents the user with a list of 9 months to select from, starting from the current month, up to this month +8. Also provides an option if the month is unknown
 
 ```stack
-card PregnantEDDMonth do
+card PregnantEDDMonth, then: EDDMonthError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -206,26 +245,6 @@ card PregnantEDDMonth do
 end
 
 card EDDMonthError, then: EDDMonthError do
-  search =
-    get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "edd-month-error"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
-      ],
-      query: [["whatsapp", "true"]]
-    )
-
   list("Month", [
     ThisMonth,
     ThisMonthPlusOne,
@@ -238,7 +257,7 @@ card EDDMonthError, then: EDDMonthError do
     ThisMonthPlusEight,
     EDDMonthUnknown
   ]) do
-    text("@page.body.body.text.value.message")
+    text("@list_error_text")
   end
 end
 
@@ -360,6 +379,13 @@ card PregnantEDDDay, then: ValidateEDDDay do
       query: [["whatsapp", "true"]]
     )
 
+  long_months = [1, 3, 5, 7, 8, 10, 12]
+  short_months = [4, 6, 9, 11]
+  #  February  
+  max_date = 29
+  max_date = if has_member(long_months, edd_date_month), do: 31, else: max_date
+  max_date = if has_member(short_months, edd_date_month), do: 30, else: max_date
+  log("max day @max_date, edd date month @edd_date_month")
   edd_day = ask("@page.body.body.text.value.message")
 end
 
@@ -369,41 +395,22 @@ card ValidateEDDDay when not has_pattern("@edd_day", "^\d+$"),
 end
 
 card ValidateEDDDay when edd_day < 1, then: EDDDayNumberError do
-  log("Edd day number lower than list index")
+  log("Edd day number lower than first day of month")
 end
 
-card ValidateEDDDay when edd_day > 31,
+card ValidateEDDDay when edd_day > max_date,
   then: EDDDayNumberError do
-  log("Edd day number higher than list index")
+  log("Edd day number higher than max date")
 end
 
 card ValidateEDDDay, then: EDDConfirmation do
   log("Default validate EDD Day")
 end
 
-card EDDDayNumberError, then: EDDConfirmation do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "edd-day-number-error"],
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
-      ],
-      query: [["whatsapp", "true"]]
-    )
-
-  edd_day = ask("@page.body.body.text.value.message")
+card EDDDayNumberError, then: ValidateEDDDay do
+  message = substitute(unrecognised_number_text, "{minimum}", "1")
+  message = substitute(message, "{maximum}", "@max_date")
+  edd_day = ask("@message")
 end
 
 ```
@@ -459,6 +466,7 @@ card SaveEDDAndContinue, then: ContinueEDDBranch do
   edd_date_full_str = datevalue(edd_date_full, "%Y-%m-%d")
   log("EDD Saved as @edd_date_full_str")
   update_contact(edd: "@edd_date_full_str")
+  write_result("edd", edd_date_full_str)
 end
 
 card ContinueEDDBranch when status == "im_pregnant", then: PregnantFeeling do
@@ -476,113 +484,10 @@ end
 
 ```
 
-## Question 4 - Other Children
-
-This flow is used by both the `I'm pregnant` and `Partner pregnant` options, but branch to different questions after this question is answered.
-
-```stack
-card OtherChildren do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnancy_qa_04"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  message = page.body.body.text.value
-  list_items = map(message.list_items, & &1.value)
-
-  children =
-    list("Other children",
-      Children0: "@list_items[0]",
-      Children1: "@list_items[1]",
-      Children2: "@list_items[2]",
-      Children3: "@list_items[3]",
-      Children4: "@list_items[4]"
-    ) do
-      text("@message.message")
-    end
-end
-
-card Children0 when status == "im_pregnant", then: PregnantFeeling do
-  update_contact(other_children: "0")
-end
-
-card Children1 when status == "im_pregnant", then: PregnantFeeling do
-  update_contact(other_children: "1")
-end
-
-card Children2 when status == "im_pregnant", then: PregnantFeeling do
-  update_contact(other_children: "2")
-end
-
-card Children3 when status == "im_pregnant", then: PregnantFeeling do
-  update_contact(other_children: "3+")
-end
-
-card Children4 when status == "im_pregnant", then: PregnantFeeling do
-  update_contact(other_children: "skip")
-end
-
-card Children0 when status == "partner_pregnant", then: PregnancyContentStart do
-  update_contact(other_children: "0")
-end
-
-card Children1 when status == "partner_pregnant", then: PregnancyContentStart do
-  update_contact(other_children: "1")
-end
-
-card Children2 when status == "partner_pregnant", then: PregnancyContentStart do
-  update_contact(other_children: "2")
-end
-
-card Children3 when status == "partner_pregnant", then: PregnancyContentStart do
-  update_contact(other_children: "3+")
-end
-
-card Children4 when status == "partner_pregnant", then: PregnancyContentStart do
-  update_contact(other_children: "skip")
-end
-
-card Children0 do
-  log("Children0: How did we get here and what do we do now?")
-end
-
-card Children1 do
-  log("Children1: How did we get here and what do we do now?")
-end
-
-card Children2 do
-  log("Children2: How did we get here and what do we do now?")
-end
-
-card Children3 do
-  log("Children3: How did we get here and what do we do now?")
-end
-
-card Children4 do
-  log("Children4: How did we get here and what do we do now?")
-end
-
-```
-
 ## Question 5 - How are you feeling about this pregnancy
 
 ```stack
-card PregnantFeeling do
+card PregnantFeeling, then: PregnantFeelingError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -615,6 +520,19 @@ card PregnantFeeling do
       SaveFeeling: "@list_items[4]"
     ) do
       text("@message.message")
+    end
+end
+
+card PregnantFeelingError, then: PregnantFeelingError do
+  feeling =
+    list("I'm feeling",
+      SaveFeeling: "@list_items[0]",
+      SaveFeeling: "@list_items[1]",
+      SaveFeeling: "@list_items[2]",
+      SaveFeeling: "@list_items[3]",
+      SaveFeeling: "@list_items[4]"
+    ) do
+      text("@list_error_text")
     end
 end
 
@@ -655,8 +573,16 @@ card PregnancyContentStart, then: PregnancyContentBranch do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
+# Text only
+card PregnancyContentBranch when contact.data_preference == "text only",
+  then: PregnancyContentBranchError do
+  buttons(Loading1: "@button_labels[0]") do
+    text("@message.message")
+  end
+end
+
 # Show image
-card PregnancyContentBranch do
+card PregnancyContentBranch, then: PregnancyContentBranchError do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -673,10 +599,9 @@ card PregnancyContentBranch do
   end
 end
 
-# Text only
-card PregnancyContentBranch when @contact.data_preference == "text only" do
+card PregnancyContentBranchError, then: PregnancyContentBranchError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@button_error_text")
   end
 end
 
@@ -709,12 +634,19 @@ card Loading1, then: Loading1Branch do
     )
 
   message = page.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.profile_name")
+  loading_message = substitute(message.message, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
+# Text only
+card Loading1Branch when contact.data_preference == "text only", then: Loading1BranchError do
+  buttons(Loading2: "@button_labels[0]") do
+    text("@loading_message")
+  end
+end
+
 # Show image
-card Loading1Branch do
+card Loading1Branch, then: Loading1BranchError do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -732,10 +664,9 @@ card Loading1Branch do
   end
 end
 
-# Text only
-card Loading1Branch when @contact.data_preference == "text only" do
+card Loading1BranchError, then: Loading1BranchError do
   buttons(Loading2: "@button_labels[0]") do
-    text("@loading_message")
+    text("@button_error_text")
   end
 end
 
@@ -771,8 +702,15 @@ card Loading2, then: Loading2Branch do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
+# Text only
+card Loading2Branch when contact.data_preference == "text only", then: Loading2BranchError do
+  buttons(TopicsStart: "@button_labels[0]") do
+    text("@message.message")
+  end
+end
+
 # Show image
-card Loading2Branch do
+card Loading2Branch, then: Loading2BranchError do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -790,10 +728,9 @@ card Loading2Branch do
   end
 end
 
-# Text only
-card Loading2Branch when @contact.data_preference == "text only" do
+card Loading2BranchError, then: Loading2BranchError do
   buttons(TopicsStart: "@button_labels[0]") do
-    text("@message.message")
+    text("@button_error_text")
   end
 end
 
@@ -872,7 +809,7 @@ end
 ### 7. Display the list
 
 ```stack
-card TopicsStart do
+card TopicsStart, then: TopicsStartError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -909,7 +846,19 @@ card TopicsStart do
   end
 end
 
-card ArticleTopic do
+card TopicsStartError, then: TopicsStartError do
+  list("Choose a Topic",
+    ArticleTopic: "item 1",
+    ArticleTopic: "item 2",
+    ArticleTopic: "item 3",
+    ArticleTopic: "item 4",
+    ArticleFeedbackNo: "Show me other topics"
+  ) do
+    text("@list_error_text")
+  end
+end
+
+card ArticleTopic, then: ArticleTopicError do
   buttons(
     ProfileProgress50: "Complete Profile",
     ArticleFeedback: "Rate this article",
@@ -919,12 +868,22 @@ card ArticleTopic do
   end
 end
 
+card ArticleTopicError, then: ArticleTopicError do
+  buttons(
+    ProfileProgress50: "Complete Profile",
+    ArticleFeedback: "Rate this article",
+    TopicsStart: "Choose another topic"
+  ) do
+    text("@button_error_text")
+  end
+end
+
 ```
 
 ## Article feedback
 
 ```stack
-card ArticleFeedback do
+card ArticleFeedback, then: ArticleFeedbackError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -956,6 +915,15 @@ card ArticleFeedback do
   end
 end
 
+card ArticleFeedbackError, then: ArticleFeedbackError do
+  buttons(
+    ArticleFeedbackYes: "@button_labels[0]",
+    ArticleFeedbackNo: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
 card ArticleFeedbackYes when contact.opted_in == "" or contact.opted_in == "no",
   then: CompleteProfile do
   # TODO: Run the Opt-In reminder journey (to be developed)
@@ -966,7 +934,7 @@ card ArticleFeedbackYes, then: CompleteProfile do
   # TODO: Save article feedback
 end
 
-card ArticleFeedbackNo do
+card ArticleFeedbackNo, then: ArticleFeedbackNoError do
   # TODO: Save article feedback
   search =
     get(
@@ -1000,12 +968,22 @@ card ArticleFeedbackNo do
   end
 end
 
+card ArticleFeedbackNoError, then: ArticleFeedbackNoError do
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    ProfileProgress50: "@button_labels[1]",
+    ProfileProgress50: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
 ```
 
 ## Profile Progress 50%
 
 ```stack
-card ProfileProgress50 do
+card ProfileProgress50, then: ProfileProgress50Error do
   write_result("profile_completion", "50%")
 
   search =
@@ -1040,14 +1018,26 @@ card ProfileProgress50 do
   end
 end
 
+card ProfileProgress50Error, then: ProfileProgress50Error do
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
 ```
 
 ## Complete Profile
 
 ```stack
 card CompleteProfile, then: ProfileProgress75 do
-  # TODO: Kick off Basic Profile Questions
-  log("TODO: Kick off Basic Profile Questions")
+  # Kick off Basic Profile Questions
+  log("Running Basic Profile Questions")
+  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  update_contact(checkpoint: "pregnancy_basic_info")
 end
 
 ```
@@ -1077,7 +1067,7 @@ end
 ## Profile Progess 75%
 
 ```stack
-card ProfileProgress75 do
+card ProfileProgress75, then: ProfileProgress75Error do
   write_result("profile_completion", "75%")
 
   search =
@@ -1108,10 +1098,18 @@ card ProfileProgress75 do
   end
 end
 
+card ProfileProgress75Error, then: ProfileProgress75Error do
+  buttons(ContinueProfileCompletion: "@button_labels[0]") do
+    text("@button_error_text")
+  end
+end
+
 card ContinueProfileCompletion, then: ProfileProgress100 do
-  # TODO: Kick off Personal Profile Questions
+  update_contact(checkpoint: "pregnancy_personal_info")
+  log("Personal Profile Questions")
+  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+  update_contact(checkpoint: "pregnancy_daily_life_info")
   # TODO: Kick off LOC Assessment
-  log("TODO: Kick off Personal Profile Questions")
   log("TODO: Kick off LOC Assessment")
 end
 
@@ -1120,7 +1118,7 @@ end
 ## Profile Progress 100%
 
 ```stack
-card ProfileProgress100 do
+card ProfileProgress100, then: ProfileProgress100Error do
   write_result("profile_completion", "100%")
 
   search =
@@ -1152,6 +1150,16 @@ card ProfileProgress100 do
     TopicsForYou: "@button_labels[2]"
   ) do
     text("@message.message")
+  end
+end
+
+card ProfileProgress100Error, then: ProfileProgress100Error do
+  buttons(
+    ExploreHealthGuide: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    TopicsForYou: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -2100,7 +2108,7 @@ end
 
 card DisplayLoadingComponent02Error, then: DisplayLoadingComponent02Error do
   buttons(CuriousContentIntro: "@button_labels[0]") do
-    text("@message.message")
+    text("@button_error_text")
   end
 end
 
