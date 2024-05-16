@@ -170,8 +170,6 @@ end
 
 ```stack
 card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
-  text("ProfileProgress100Generic")
-
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
