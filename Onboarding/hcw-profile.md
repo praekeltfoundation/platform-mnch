@@ -8,12 +8,13 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 
 * `occupational_role`, the type of nurse that they are e.g. `Enrolled Nurse`, `Enrolled Nursing Auxillary`, `Registered Nurse`, `Advanced Practice Nurse`, `Public Health Nurse`, `Midwife`, `Psyciatric Nurse`, `Other`
 * `facility_type`, the type of facility they work in, e.g. `District Hospital`, `Regional Hospital`, `Academic Hospital`, `Clinic`, `Comminity Health Clinic`, `Satellite Clinic`, `Other`
+* `professional_support`, whether the user receives professional support or not
 * `checkpoint`, where in the flow the user stopped
 
 ## Flow results
 
 * `workplace_support`,  Whether the nurse receives workplace support. Options: `Yes, always`, `Sometimes`, `No, never`
-  `profile_completion`, How much of the profile they have completed e.g. 0%, 50%, 100%
+* `profile_completion`, How much of the profile they have completed e.g. 0%, 50%, 100%
 
 ## Connections to other stacks
 
@@ -348,6 +349,7 @@ card ProfessionalSupportResponse, then: ProfileProgress30 do
   professional_support = lower("@professional_support")
   log("Updating professional_support to @professional_support")
   update_contact(professional_support: "@professional_support")
+  write_result("workplace_support", "@professional_support")
 end
 
 ```

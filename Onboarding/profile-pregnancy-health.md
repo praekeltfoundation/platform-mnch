@@ -539,6 +539,7 @@ end
 card SaveFeeling, then: PregnancyContentStart do
   log("Writing @feeling to pregnancy_sentiment")
   write_result("pregnancy_sentiment", feeling)
+  update_contact(pregnancy_sentiment: "@feeling")
 end
 
 ```
@@ -1165,6 +1166,105 @@ end
 
 ```
 
+## Sentiment Other First
+
+```stack
+card SentimentOtherFirst, then: DisplaySentimentOtherFirst do
+  # TODO to schedule the reengagement message
+
+  write_result("guided_tour_started", "yes")
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_sentiment_other_first"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  content_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  message = content_data.body.body.text.value
+  button_labels = map(message.buttons, & &1.value.title)
+end
+
+# Text only
+card DisplaySentimentOtherFirst when contact.data_preference == "text only",
+  then: DisplaySentimentOtherFirstError do
+  buttons(Placeholder: "@button_labels[0]") do
+    text("@message.message")
+  end
+end
+
+# Display with image
+card DisplaySentimentOtherFirst, then: DisplaySentimentOtherFirstError do
+  image_id = content_data.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
+
+  image("@image_data.body.meta.download_url")
+
+  buttons(Placeholder: "@button_labels[0]") do
+    text("@message.message")
+  end
+end
+
+card DisplaySentimentOtherFirstError, then: DisplaySentimentOtherFirstError do
+  buttons(Placeholder: "@button_labels[0]") do
+    text("@button_error_text")
+  end
+end
+
+card Placeholder do
+  text("We are here")
+end
+
+```
+
+## Sentiment Other Second
+
+## Sentiment Other Third
+
+## Sentiment Scared Worried First
+
+## Sentiment Scared Worried Second
+
+## Sentiment Scared Worried Third
+
+## Sentiment Excited Happy First
+
+## Sentiment Excited Happy Second
+
+## Sentiment Excited Happy Third
+
+## Facts Factoid 1 Trimester 1
+
+## Facts Factoid 1 Trimester 2
+
+## Facts Factoid 1 Trimester 3
+
+## Facts Factoid 2 Trimester 1
+
+## Facts Factoid 2 Trimester 2
+
+## Facts Factoid 2 Trimester 3
+
 ## My partner is pregnant
 
 This flow first starts off with the same EDD calculator as the `I'm pregnant` option, then branches to a different series of questions.
@@ -1764,10 +1864,6 @@ end
 
 ```stack
 card Curious, then: DisplayCurious do
-  write_result("pregnancy_status", status)
-  write_result("profile_completion", "0%")
-  update_contact(pregnancy_status: "@status")
-
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -1832,10 +1928,6 @@ end
 
 ```stack
 card Curious02, then: DisplayCurious02 do
-  write_result("pregnancy_status", status)
-  write_result("profile_completion", "0%")
-  update_contact(pregnancy_status: "@status")
-
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -1913,10 +2005,6 @@ end
 
 ```stack
 card Curious03, then: DisplayCurious03 do
-  write_result("pregnancy_status", status)
-  write_result("profile_completion", "0%")
-  update_contact(pregnancy_status: "@status")
-
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -1968,23 +2056,23 @@ card DisplayCurious03Error, then: DisplayCurious03Error do
 end
 
 card Topic_1, then: LoadingComponent01 do
-  update_contact(other_children: "0")
+  update_contact(topic: "topic 1")
 end
 
 card Topic_2, then: LoadingComponent01 do
-  update_contact(other_children: "1")
+  update_contact(topic: "topic 2")
 end
 
 card Topic_3, then: LoadingComponent01 do
-  update_contact(other_children: "2")
+  update_contact(topic: "topic 3")
 end
 
 card Topic_4, then: LoadingComponent01 do
-  update_contact(other_children: "3+")
+  update_contact(topic: "topic 4")
 end
 
 card OtherTopic, then: CuriousContentFeedback do
-  update_contact(other_children: "3+")
+  update_contact(topic: "other")
 end
 
 ```
