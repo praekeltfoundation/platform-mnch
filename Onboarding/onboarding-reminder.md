@@ -20,7 +20,7 @@ card Reminder do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_reminder"]
+        ["slug", "mnch_onboarding_reminder_1"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
