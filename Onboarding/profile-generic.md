@@ -176,7 +176,7 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "profile_progress_100_generic"]
+        ["slug", "mnch_onboarding_profile_progress_100_generic"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -251,7 +251,7 @@ card ProfileProgress75Generic, then: DisplayProfileProgress75Generic do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "profile_progress_75_generic"]
+        ["slug", "mnch_onboarding_profile_progress_75_generic"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -326,7 +326,7 @@ card ProfileProgress10Generic, then: DisplayProfileProgress10Generic do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "profile_progress_10_generic"]
+        ["slug", "mnch_onboarding_profile_progress_10_generic"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
