@@ -28,15 +28,9 @@ In this flow we allow the user to select one or multiple Domains, and then prior
 * Goes to Profile HCW if they select `info_for_health_professionals`
 * Goes to Generic Profile if they select anything else or nothing
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
+## Auth
 
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+The token for ContentRepo is stored in a global dictionary.
 
 ## Setup
 
@@ -65,7 +59,7 @@ card NameError, then: Name do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   name_error_text = page.body.body.text.value.message
@@ -76,7 +70,7 @@ card NameError, then: Name do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -87,7 +81,7 @@ card NameError, then: Name do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -105,9 +99,9 @@ card Name, then: NameValidation do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_name"]
+        ["slug", "mnch_onboarding_name_call"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -118,7 +112,7 @@ card Name, then: NameValidation do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -132,7 +126,7 @@ card NameValidation when lower("@name") == "skip" do
       query: [
         ["slug", "mnch_onboarding_name_skip"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -143,7 +137,7 @@ card NameValidation when lower("@name") == "skip" do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -181,7 +175,7 @@ card Domains1, then: Domains1Branch do
       query: [
         ["slug", "mnch_onboarding_domains_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -192,7 +186,7 @@ card Domains1, then: Domains1Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -215,7 +209,7 @@ card Domains1Branch, then: Domains1Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -245,7 +239,7 @@ card Domains2, then: Domains2Branch do
       query: [
         ["slug", "mnch_onboarding_domains_02"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -256,7 +250,7 @@ card Domains2, then: Domains2Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -277,7 +271,7 @@ card Domains2Branch, then: Domains2Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -311,7 +305,7 @@ card Domains3, then: Domains3Branch do
       query: [
         ["slug", "mnch_onboarding_domains_03"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -322,7 +316,7 @@ card Domains3, then: Domains3Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -344,7 +338,7 @@ card Domains3Branch, then: Domains3Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -378,7 +372,7 @@ card Domains4, then: Domains4Branch do
       query: [
         ["slug", "mnch_onboarding_domains_04"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -389,7 +383,7 @@ card Domains4, then: Domains4Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -411,7 +405,7 @@ card Domains4Branch, then: Domains4Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -445,7 +439,7 @@ card Domains5, then: Domains5Branch do
       query: [
         ["slug", "mnch_onboarding_domains_05"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -456,7 +450,7 @@ card Domains5, then: Domains5Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -478,7 +472,7 @@ card Domains5Branch, then: Domains5Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -512,7 +506,7 @@ card Domains6, then: Domains6Branch do
       query: [
         ["slug", "mnch_onboarding_domains_06"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -523,7 +517,7 @@ card Domains6, then: Domains6Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -545,7 +539,7 @@ card Domains6Branch, then: Domains6Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -579,7 +573,7 @@ card Domains7, then: Domains7Branch do
       query: [
         ["slug", "mnch_onboarding_domains_07"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -590,7 +584,7 @@ card Domains7, then: Domains7Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -612,7 +606,7 @@ card Domains7Branch, then: Domains7Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -650,13 +644,32 @@ end
 
 card GoToNext when contact.info_for_health_professionals do
   log("Navigating to Health Professional Profile")
-  text("TODO: info_for_health_professionals")
+  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
 end
 
 card GoToNext do
   # For all other options, go to the generic profile onboarding
   log("Navigating to generic profile")
-  text("TODO: generic profile onboarding")
+  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
 end
 
 ```
+
+## Content dependancies
+
+Content is stored in the content repo, and referenced in the stack by slug. This means that we require the following slugs to be present in the contentrepo, and we're making the following assumptions:
+
+* `mnch_onboarding_name`, a whatsapp message asking the user for their name
+* `mnch_onboarding_name_skip`, a whatsapp message with 2 buttons
+* `mnch_onboarding_domains_01`, a whatsapp message with 1 buttons
+* `mnch_onboarding_domains_02`, a whatsapp message with 2 buttons
+* `mnch_onboarding_domains_03`, a whatsapp message with 2 buttons
+* `mnch_onboarding_domains_04`, a whatsapp message with 2 buttons
+* `mnch_onboarding_domains_05`, a whatsapp message with 2 buttons
+* `mnch_onboarding_domains_06`, a whatsapp message with 2 buttons
+* `mnch_onboarding_domains_07`, a whatsapp message with 2 buttons
+
+## Error messages
+
+* `mnch_onboarding_name_error`, for when the user types an invalid name
+* `mnch_onboarding_error_handling_button`, for when a user sends in a message when we're expecting them to press one of the buttons

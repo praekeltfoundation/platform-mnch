@@ -25,15 +25,9 @@ These questions are reused in each of the profile sections. The Gender question 
 * Generic Profile
 * HCW Profile
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
+## Auth
 
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+The token for ContentRepo is stored in a global dictionary.
 
 ## Setup
 
@@ -50,7 +44,7 @@ card FetchError, then: YearOfBirth do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -62,7 +56,7 @@ card FetchError, then: YearOfBirth do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -73,7 +67,7 @@ card FetchError, then: YearOfBirth do
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -84,7 +78,7 @@ card FetchError, then: YearOfBirth do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   list_error_text = page.body.body.text.value.message
@@ -95,7 +89,7 @@ card FetchError, then: YearOfBirth do
       query: [
         ["slug", "mnch_onboarding_unrecognised_year"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -106,7 +100,7 @@ card FetchError, then: YearOfBirth do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   unrecognised_year = page.body.body.text.value.message
@@ -129,7 +123,7 @@ card YearOfBirth, then: ValidateYearOfBirth do
       query: [
         ["slug", "mnch_onboarding_q_age"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -140,7 +134,7 @@ card YearOfBirth, then: ValidateYearOfBirth do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -195,7 +189,7 @@ card Province, then: ProvinceError do
       query: [
         ["slug", "mnch_onboarding_q_province"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -206,7 +200,7 @@ card Province, then: ProvinceError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -229,7 +223,7 @@ card ProvinceSelected when "@province" == "Why do you ask?", then: ProvinceError
       query: [
         ["slug", "mnch_onboarding_q_province_why"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -240,7 +234,7 @@ card ProvinceSelected when "@province" == "Why do you ask?", then: ProvinceError
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -280,7 +274,7 @@ card AreaType, then: AreaTypeError do
       query: [
         ["slug", "mnch_onboarding_q_area_type"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -291,7 +285,7 @@ card AreaType, then: AreaTypeError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -337,7 +331,7 @@ card Gender, then: GenderError do
       query: [
         ["slug", "mnch_onboarding_q_gender"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -348,7 +342,7 @@ card Gender, then: GenderError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value

@@ -2,27 +2,54 @@
 
 A reminder message that gets sent 23 hours after a user hasn't accepted the Privacy Policy.
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
+## Auth
 
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+The token for ContentRepo is stored in a global dictionary.
 
-<!-- { section: "3e991636-f6d9-436c-a5dd-2fe3296a9359", x: 0, y: 0} -->
+## Setup
+
+Here we do any setup and fetching of values before we start the flow.
 
 ```stack
-card Reminder do
+card FetchError, then: Reminder do
+  # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_reminder"]
+        ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  button_error_text = page.body.body.text.value.message
+end
+
+```
+
+<!-- { section: "3e991636-f6d9-436c-a5dd-2fe3296a9359", x: 0, y: 0} -->
+
+```stack
+card Reminder, then: ReminderError do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_reminder_1"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -33,7 +60,7 @@ card Reminder do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -48,8 +75,19 @@ card Reminder do
   end
 end
 
+card ReminderError, then: ReminderError do
+  buttons(
+    PrivacyPolicy: "@button_labels[0]",
+    RemindTomorrow: "@button_labels[1]",
+    RemindNo: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
 card PrivacyPolicy do
-  # Go to the Onboarding Pt 1 stack
+  # Go to the Intro & Welcome
+  log("Starting intro & welcome stack")
   run_stack("5e59aafb-fc30-41f9-b268-6268173b2aff")
 end
 
@@ -60,7 +98,7 @@ card RemindNo do
       query: [
         ["slug", "mnch_onboarding_reminder_no"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -71,7 +109,7 @@ card RemindNo do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -85,7 +123,7 @@ card RemindTomorrow do
       query: [
         ["slug", "mnch_onboarding_reminder_tomorrow"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -96,7 +134,7 @@ card RemindTomorrow do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value

@@ -6,22 +6,20 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 
 ## Contact fields
 
+None.
+
 ## Flow results
+
+None.
 
 ## Connections to other stacks
 
 * If the user consents, it takes them to the HCW Profile flow to complete their profile.
 * The user can click on Main Menu to take them to the non-personalised menu
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
+## Auth
 
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
+The token for ContentRepo is stored in a global dictionary.
 
 ## Setup
 
@@ -38,7 +36,7 @@ card FetchError, then: HCWNudge do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -50,7 +48,7 @@ card FetchError, then: HCWNudge do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -61,7 +59,7 @@ card FetchError, then: HCWNudge do
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -72,7 +70,7 @@ card FetchError, then: HCWNudge do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   list_error_text = page.body.body.text.value.message
@@ -90,7 +88,7 @@ card HCWNudge, then: HCWNudgeError do
       query: [
         ["slug", "mnch_onboarding_nudge_complete_profile"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -101,7 +99,7 @@ card HCWNudge, then: HCWNudgeError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
