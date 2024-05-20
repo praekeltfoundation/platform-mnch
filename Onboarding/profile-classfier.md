@@ -105,7 +105,7 @@ card Name, then: NameValidation do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_name"]
+        ["slug", "mnch_onboarding_name_call"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
