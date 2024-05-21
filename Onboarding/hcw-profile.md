@@ -1,3 +1,10 @@
+<!-- { section: "d032bc4c-282f-422e-bff6-1d83897b82a5", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "hcw")
+
+```
+
 # Onboarding: Profile HCW
 
 This is the onboarding flow for Health Care Workers.
@@ -217,10 +224,15 @@ card OccupationalRole, then: OccupationalRoleError do
     end
 end
 
+card OccupationalRoleError when has_phrase(lower("@role"), "skip") do
+  log("Skipping Occupational role")
+  then(FacilityType)
+end
+
 card OccupationalRoleError, then: OccupationalRoleError do
   role =
     list("Role", OccupationalRoleResponse, map(list_items, &[&1, &1])) do
-      text("@message.message")
+      text("@list_error_text")
     end
 end
 
@@ -280,10 +292,15 @@ card FacilityType, then: FacilityTypeError do
     end
 end
 
+card FacilityTypeError when has_phrase(lower("@facility_type"), "skip") do
+  log("Skipping facility type")
+  then(ProfessionalSupport)
+end
+
 card FacilityTypeError, then: FacilityTypeError do
   facility_type =
     list("Facility", FacilityTypeResponse, map(list_items, &[&1, &1])) do
-      text("@message.message")
+      text("@list_error_text")
     end
 end
 
@@ -333,10 +350,15 @@ card ProfessionalSupport, then: ProfessionalSupportError do
     end
 end
 
+card ProfessionalSupportError when has_phrase(lower("@professional_support"), "skip") do
+  log("Skipping professional support")
+  then(ProfileProgress30)
+end
+
 card ProfessionalSupportError, then: ProfessionalSupportError do
   professional_support =
     buttons(ProfessionalSupportResponse, map(button_labels, &[&1, &1])) do
-      text("@message.message")
+      text("@button_error_text")
     end
 end
 
@@ -539,7 +561,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
   end
 end
 
-card ProfileProgress50Error do
+card ProfileProgress50Error, then: ProfileProgress50Error do
   buttons(ProfileProgress50Continue: "@button_labels[0]") do
     text("@button_error_text")
   end
@@ -615,7 +637,7 @@ card ProfileProgress75Branch, then: ProfileProgress75Error do
   end
 end
 
-card ProfileProgress75Error do
+card ProfileProgress75Error, then: ProfileProgress75Error do
   buttons(
     ProfileProgress75Continue: "@button_labels[0]",
     RemindMeLater: "@button_labels[1]"
@@ -671,7 +693,7 @@ card ProfileProgress100, then: ProfileProgress100Error do
   end
 end
 
-card ProfileProgress100Error do
+card ProfileProgress100Error, then: ProfileProgress100Error do
   buttons(
     ExploreHealthGuide: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
