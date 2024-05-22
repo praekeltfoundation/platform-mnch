@@ -1,3 +1,10 @@
+<!-- { section: "d032bc4c-282f-422e-bff6-1d83897b82a5", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "hcw")
+
+```
+
 # Onboarding: Profile HCW
 
 This is the onboarding flow for Health Care Workers.
@@ -21,15 +28,9 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 * If the user is just curios (so, not a HCW) they will be directed to the Generic Profile
 * During the flow the user will be asked to complete the Basic Profile, Personal Profile, and LOC Assessment
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
+## Auth
 
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
+The token for ContentRepo is stored in a global dictionary.
 
 ## Setup
 
@@ -44,7 +45,7 @@ card FetchError, then: NurseCheck do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -56,7 +57,7 @@ card FetchError, then: NurseCheck do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -67,7 +68,7 @@ card FetchError, then: NurseCheck do
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -78,7 +79,7 @@ card FetchError, then: NurseCheck do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   list_error_text = page.body.body.text.value.message
@@ -127,7 +128,7 @@ card NurseCheck, then: NurseCheckBranch do
       query: [
         ["slug", "mnch_onboarding_nursecheck"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -138,7 +139,7 @@ card NurseCheck, then: NurseCheckBranch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -166,7 +167,7 @@ card NurseCheckBranch, then: NurseCheckError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -200,7 +201,7 @@ card OccupationalRole, then: OccupationalRoleError do
       query: [
         ["slug", "mnch_onboarding_occupational_role"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -211,7 +212,7 @@ card OccupationalRole, then: OccupationalRoleError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -223,10 +224,15 @@ card OccupationalRole, then: OccupationalRoleError do
     end
 end
 
+card OccupationalRoleError when has_phrase(lower("@role"), "skip") do
+  log("Skipping Occupational role")
+  then(FacilityType)
+end
+
 card OccupationalRoleError, then: OccupationalRoleError do
   role =
     list("Role", OccupationalRoleResponse, map(list_items, &[&1, &1])) do
-      text("@message.message")
+      text("@list_error_text")
     end
 end
 
@@ -246,8 +252,9 @@ end
 
 ```stack
 card Curious do
-  # TODO: Kick off Generic Onboarding
-  text("TODO")
+  # Kick off Generic Onboarding
+  log("Navigating to generic profile")
+  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
 end
 
 ```
@@ -262,7 +269,7 @@ card FacilityType, then: FacilityTypeError do
       query: [
         ["slug", "mnch_onboarding_facility_type"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -273,7 +280,7 @@ card FacilityType, then: FacilityTypeError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -285,10 +292,15 @@ card FacilityType, then: FacilityTypeError do
     end
 end
 
+card FacilityTypeError when has_phrase(lower("@facility_type"), "skip") do
+  log("Skipping facility type")
+  then(ProfessionalSupport)
+end
+
 card FacilityTypeError, then: FacilityTypeError do
   facility_type =
     list("Facility", FacilityTypeResponse, map(list_items, &[&1, &1])) do
-      text("@message.message")
+      text("@list_error_text")
     end
 end
 
@@ -300,7 +312,7 @@ end
 card FacilityTypeResponse, then: ProfessionalSupport do
   facility_type = lower("@facility_type")
   log("Updating facility_type to @facility_type")
-  update_contact(facility_type: "@rofacility_typele")
+  update_contact(facility_type: "@facility_type")
 end
 
 ```
@@ -315,7 +327,7 @@ card ProfessionalSupport, then: ProfessionalSupportError do
       query: [
         ["slug", "mnch_onboarding_professional_support"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -326,7 +338,7 @@ card ProfessionalSupport, then: ProfessionalSupportError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -338,10 +350,15 @@ card ProfessionalSupport, then: ProfessionalSupportError do
     end
 end
 
+card ProfessionalSupportError when has_phrase(lower("@professional_support"), "skip") do
+  log("Skipping professional support")
+  then(ProfileProgress30)
+end
+
 card ProfessionalSupportError, then: ProfessionalSupportError do
   professional_support =
     buttons(ProfessionalSupportResponse, map(button_labels, &[&1, &1])) do
-      text("@message.message")
+      text("@button_error_text")
     end
 end
 
@@ -364,7 +381,7 @@ card ProfileProgress30, then: ProfileProgress30Error do
       query: [
         ["slug", "mnch_onboarding_profile_progress_30_hcw"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -375,7 +392,7 @@ card ProfileProgress30, then: ProfileProgress30Error do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -413,7 +430,7 @@ card ProfileProgress30Why, then: ProfileProgress30WhyBranch do
       query: [
         ["slug", "mnch_onboarding_why_personal_info"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -424,7 +441,7 @@ card ProfileProgress30Why, then: ProfileProgress30WhyBranch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -448,7 +465,7 @@ card ProfileProgress30WhyBranch, then: ProfileProgress30WhyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -477,7 +494,7 @@ card RemindMeLater do
       query: [
         ["slug", "mnch_onboarding_remind_me_later"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -488,13 +505,15 @@ card RemindMeLater do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
 
-  # TODO: kick off nudge to complete profile
+  # kick off nudge to complete profile
+  log("Scheduling nudge to complete profile")
+  schedule_stack("fef6044e-789c-4989-86e3-62ee4bb063a1", in: 60 * 60 * 23)
 
   buttons(ViewPopularTopics: "@button_labels[0]") do
     text("@message.message")
@@ -517,7 +536,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
       query: [
         ["slug", "mnch_onboarding_profile_progress_50_hcw"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -528,7 +547,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -542,7 +561,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
   end
 end
 
-card ProfileProgress50Error do
+card ProfileProgress50Error, then: ProfileProgress50Error do
   buttons(ProfileProgress50Continue: "@button_labels[0]") do
     text("@button_error_text")
   end
@@ -565,7 +584,7 @@ card ProfileProgress75, then: ProfileProgress75Branch do
       query: [
         ["slug", "mnch_onboarding_profile_progress_75_hcw"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -576,7 +595,7 @@ card ProfileProgress75, then: ProfileProgress75Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -605,7 +624,7 @@ card ProfileProgress75Branch, then: ProfileProgress75Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -618,7 +637,7 @@ card ProfileProgress75Branch, then: ProfileProgress75Error do
   end
 end
 
-card ProfileProgress75Error do
+card ProfileProgress75Error, then: ProfileProgress75Error do
   buttons(
     ProfileProgress75Continue: "@button_labels[0]",
     RemindMeLater: "@button_labels[1]"
@@ -645,7 +664,7 @@ card ProfileProgress100, then: ProfileProgress100Error do
       query: [
         ["slug", "mnch_onboarding_profile_progress_100_hcw"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -656,7 +675,7 @@ card ProfileProgress100, then: ProfileProgress100Error do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -674,7 +693,7 @@ card ProfileProgress100, then: ProfileProgress100Error do
   end
 end
 
-card ProfileProgress100Error do
+card ProfileProgress100Error, then: ProfileProgress100Error do
   buttons(
     ExploreHealthGuide: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
