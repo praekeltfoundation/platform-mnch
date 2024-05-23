@@ -16,6 +16,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 * `gender`, This stack sets the gender field for the user. If the user selects `im_pregnant` as their status below it defaults to `female`, otherwise it lets them set it to `male`, `female` or `other`.
 * `edd`, Expected Due Date, gets set after we have the EDD month and day provided by the user.
 * `other_children`, How many other children this user has.
+* `pregnancy_sentiment`, How they are feeling about their pregnancy. This result applies only to users that have selected `im_pregnant` as their above status.
 * `checkpoint`, the checkpoint for where we are in onboarding. One of `basic_pregnancy_profile`, `pregnant_mom_profile`, `pregnancy_basic_info`, `pregnancy_personal_info`, `pregnancy_daily_life_info`
 
 ## Flow results
