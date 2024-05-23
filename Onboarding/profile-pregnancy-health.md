@@ -306,7 +306,7 @@ card ThisMonthPlusEight, "@datevalue(this_month_plus_eight, \"%B\")", then: Preg
   edd_date_year = year(this_month_plus_eight)
 end
 
-card EDDMonthUnknown, "I don't know" do
+card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -329,12 +329,46 @@ card EDDMonthUnknown, "I don't know" do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+end
+
+# Text only
+card DisplayEDDMonthUnknown when contact.data_preference == "text only",
+  then: EDDMonthUnknownError do
+  buttons(
+    PregnantEDDMonth: "@button_labels[0]",
+    EDDMonthUnknownBranch: "@button_labels[1]"
+  ) do
+    text("@message.message")
+  end
+end
+
+# Show image
+card DisplayEDDMonthUnknown, then: EDDMonthUnknownError do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
 
   buttons(
     PregnantEDDMonth: "@button_labels[0]",
     EDDMonthUnknownBranch: "@button_labels[1]"
   ) do
-    text("@page.body.body.text.value.message")
+    image("@image_data.body.meta.download_url")
+    text("@message.message")
+  end
+end
+
+card EDDMonthUnknownError, then: EDDMonthUnknownError do
+  buttons(
+    PregnantEDDMonth: "@button_labels[0]",
+    EDDMonthUnknownBranch: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -418,7 +452,7 @@ end
 ## EDD Confirmation
 
 ```stack
-card EDDConfirmation, then: SaveEDDAndContinue do
+card EDDConfirmation, then: PregnantEDDConfirmationError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -454,6 +488,15 @@ card EDDConfirmation, then: SaveEDDAndContinue do
     PregnantEDDMonth: "@button_labels[1]"
   ) do
     text("@question")
+  end
+end
+
+card PregnantEDDConfirmationError, then: PregnantEDDConfirmationError do
+  buttons(
+    SavePartnerEDD: "@button_labels[0]",
+    PregnantEDDMonth: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -527,6 +570,7 @@ end
 card SaveFeeling, then: CalculateWeekOfPregnancy do
   log("Writing @feeling to pregnancy_sentiment")
   write_result("pregnancy_sentiment", feeling)
+  update_contact(pregnancy_sentiment: "@feeling")
 end
 
 ```
@@ -644,13 +688,13 @@ card GetTrimester, then: LoadingGoTo do
   log("3rd trimester")
 end
 
-card LoadingGoTo when has_any_phrase("@status", ["partner_pregnant", "curious"]),
-  then: LoadingFactoid do
-  log("Partner or Curious")
+card LoadingGoTo when status = "im_pregnant",
+  then: GoToSentiment do
+  log("I'm pregnant")
 end
 
-card LoadingGoTo, then: GoToSentiment do
-  log("I'm pregnant")
+card LoadingGoTo, then: LoadingFactoid do
+  log("Partner or Curious")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 1,
@@ -2296,7 +2340,7 @@ card PartnerEDDMonth, then: PartnerEDDMonthError do
     ThisMonthPlusSix,
     ThisMonthPlusSeven,
     ThisMonthPlusEight,
-    EDDMonthUnknown
+    PartnerEDDMonthUnknown
   ]) do
     text("@page.body.body.text.value.message")
   end
@@ -2313,7 +2357,7 @@ card PartnerEDDMonthError, then: PartnerEDDMonthError do
     ThisMonthPlusSix,
     ThisMonthPlusSeven,
     ThisMonthPlusEight,
-    EDDMonthUnknown
+    PartnerEDDMonthUnknown
   ]) do
     text("@list_error_text")
   end
@@ -2364,7 +2408,7 @@ card ThisMonthPlusEight, "@datevalue(this_month_plus_eight, \"%B\")", then: Part
   edd_date_year = year(this_month_plus_eight)
 end
 
-card PartnerEDDMonthUnknown, "I don't know" do
+card PartnerEDDMonthUnknown, "I don't know", then: DisplayPartnerEDDMonthUnknown do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -2387,27 +2431,48 @@ card PartnerEDDMonthUnknown, "I don't know" do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+end
+
+# Text only
+card DisplayPartnerEDDMonthUnknown when contact.data_preference == "text only",
+  then: PartnerEDDMonthUnknownError do
+  buttons(
+    PartnerEDDMonth: "@button_labels[0]",
+    EDDMonthUnknownBranch: "@button_labels[1]"
+  ) do
+    text("@message.message")
+  end
+end
+
+# Show image
+card DisplayPartnerEDDMonthUnknown, then: PartnerEDDMonthUnknownError do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
 
   buttons(
     PartnerEDDMonth: "@button_labels[0]",
     EDDMonthUnknownBranch: "@button_labels[1]"
   ) do
-    text("@page.body.body.text.value.message")
+    image("@image_data.body.meta.download_url")
+    text("@message.message")
   end
 end
 
-# card EDDMonthUnknownBranch when status == "im_pregnant" do
-#   # TODO: Go to Profile Progress 50
-#   log("EDD month unknown, navigating to profile progess 50%")
-# end
-
-# card EDDMonthUnknownBranch when status == "partner_pregnant", then: PartnerPregnantGender do
-#   log("EDD month unknown, navigating to PartnerPregnantGender")
-# end
-
-# card EDDMonthUnknownBranch do
-#   log("EDDMonthUnknownBranch: How did we get here and what do we do now?")
-# end
+card PartnerEDDMonthUnknownError, then: PartnerEDDMonthUnknownError do
+  buttons(
+    PartnerEDDMonth: "@button_labels[0]",
+    EDDMonthUnknownBranch: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
+  end
+end
 
 ```
 
@@ -2474,7 +2539,7 @@ end
 ## Partner EDD Confirmation
 
 ```stack
-card PartnerEDDConfirmation, then: SavePartnerEDD do
+card PartnerEDDConfirmation, then: PartnerEDDConfirmationError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -2510,6 +2575,15 @@ card PartnerEDDConfirmation, then: SavePartnerEDD do
     PartnerEDDMonth: "@button_labels[1]"
   ) do
     text("@question")
+  end
+end
+
+card PartnerEDDConfirmationError, then: PartnerEDDConfirmationError do
+  buttons(
+    SavePartnerEDD: "@button_labels[0]",
+    PartnerEDDMonth: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
   end
 end
 
@@ -2690,7 +2764,7 @@ card Topic4, then: ArticleTopic01Secondary do
   update_contact(topic: "@selected_topic")
 end
 
-card Other, then: ContentFeedback do
+card Other, then: ContentFeedbackNo do
   update_contact(topic: "@selected_topic")
 end
 
@@ -2868,8 +2942,8 @@ card DisplayContentFeedbackNoError, then: DisplayContentFeedbackNoError do
   end
 end
 
-card SecondaryOnboarding do
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+card SecondaryOnboarding, then: ProfileProgress75 do
+  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
 end
 
 ```
@@ -3168,11 +3242,11 @@ end
 card DisplayCurious03, then: DisplayCurious03Error do
   selected_topic =
     list("Select option",
-      Topic_1: "@menu_items[0]",
-      Topic_2: "@menu_items[1]",
-      Topic_3: "@menu_items[2]",
-      Topic_4: "@menu_items[3]",
-      OtherTopic: "@menu_items[4]"
+      FirstTrimester: "@menu_items[0]",
+      SecondTrimester: "@menu_items[1]",
+      ThirdTrimester: "@menu_items[2]",
+      GeneralInfo: "@menu_items[3]",
+      SkipQuestion: "@menu_items[4]"
     ) do
       text("@message.message")
     end
@@ -3181,34 +3255,34 @@ end
 card DisplayCurious03Error, then: DisplayCurious03Error do
   selected_topic =
     list("Select option",
-      Topic_1: "@menu_items[0]",
-      Topic_2: "@menu_items[1]",
-      Topic_3: "@menu_items[2]",
-      Topic_4: "@menu_items[3]",
-      OtherTopic: "@menu_items[4]"
+      FirstTrimester: "@menu_items[0]",
+      SecondTrimester: "@menu_items[1]",
+      ThirdTrimester: "@menu_items[2]",
+      GeneralInfo: "@menu_items[3]",
+      SkipQuestion: "@menu_items[4]"
     ) do
       text("@message.message")
     end
 end
 
-card Topic_1, then: LoadingComponent01 do
-  update_contact(topic: "topic 1")
+card FirstTrimester, then: LoadingComponent01 do
+  write_result("pregnancy_stage_interest", "First trimester")
 end
 
-card Topic_2, then: LoadingComponent01 do
-  update_contact(topic: "topic 2")
+card SecondTrimester, then: LoadingComponent01 do
+  write_result("pregnancy_stage_interest", "Second trimester")
 end
 
-card Topic_3, then: LoadingComponent01 do
-  update_contact(topic: "topic 3")
+card ThirdTrimester, then: LoadingComponent01 do
+  write_result("pregnancy_stage_interest", "Third trimester")
 end
 
-card Topic_4, then: LoadingComponent01 do
-  update_contact(topic: "topic 4")
+card GeneralInfo, then: LoadingComponent01 do
+  write_result("pregnancy_stage_interest", "General pregnancy info")
 end
 
-card OtherTopic, then: CuriousContentFeedback do
-  update_contact(topic: "other")
+card SkipQuestion, then: CuriousContentFeedback do
+  write_result("pregnancy_stage_interest", "Skip this question")
 end
 
 ```
@@ -3242,9 +3316,10 @@ card LoadingComponent01, then: DisplayLoadingComponent01 do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
+# TODO display facts 
 # Text only
 card DisplayLoadingComponent01 when contact.data_preference == "text only" do
-  buttons(CalculateWeekOfPregnancy: "@button_labels[0]") do
+  buttons(LoadingComponentGoTo: "@button_labels[0]") do
     text("@loading_message")
   end
 end
@@ -3261,14 +3336,96 @@ card DisplayLoadingComponent01 do
       ]
     )
 
-  buttons(CalculateWeekOfPregnancy: "@button_labels[0]") do
+  buttons(LoadingComponentGoTo: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
     text("@loading_message")
   end
 end
 
 card DisplayLoadingComponent01Error, then: DisplayLoadingComponent01Error do
-  buttons(CalculateWeekOfPregnancy: "@button_labels[0]") do
+  buttons(LoadingComponentGoTo: "@button_labels[0]") do
+    text("@button_error_text")
+  end
+end
+
+card LoadingComponentGoTo when selected_topic = "first_trimester", then: FactsFactoid1Trimester1 do
+  log("First trimester topic")
+end
+
+card LoadingComponentGoTo when selected_topic = "second_trimester", then: FactsFactoid1Trimester2 do
+  log(" trimester topic")
+end
+
+card LoadingComponentGoTo when selected_topic = "third_trimester", then: FactsFactoid1Trimester3 do
+  log(" trimester topic")
+end
+
+card LoadingComponentGoTo when selected_topic = "general_info", then: LoadingComponent02 do
+  log("General pregnancy topic")
+end
+
+card LoadingComponentGoTo, then: CuriousContentIntro do
+  log("Skip topic")
+end
+
+```
+
+```stack
+card LoadingComponent02, then: DisplayLoadingComponent02 do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_loading_component_02"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  content_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  message = content_data.body.body.text.value
+  button_labels = map(message.buttons, & &1.value.title)
+end
+
+# TODO Content
+
+# Text only
+card DisplayLoadingComponent02 when contact.data_preference == "text only",
+  then: DisplayLoadingComponent02Error do
+  buttons(CuriousContentIntro: "@button_labels[0]") do
+    text("@message.message")
+  end
+end
+
+# Display with image
+card DisplayLoadingComponent02, then: DisplayLoadingComponent02Error do
+  image_id = content_data.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
+
+  buttons(CuriousContentIntro: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
+    text("@message.message")
+  end
+end
+
+card DisplayLoadingComponent02Error, then: DisplayLoadingComponent02Error do
+  buttons(CuriousContentIntro: "@button_labels[0]") do
     text("@button_error_text")
   end
 end
@@ -3516,7 +3673,7 @@ card DisplayCuriousContentFeedbackError, then: DisplayCuriousContentFeedbackErro
   end
 end
 
-card BaseProfile do
+card BaseProfile, then: ProfileProgress75 do
   run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
 end
 
