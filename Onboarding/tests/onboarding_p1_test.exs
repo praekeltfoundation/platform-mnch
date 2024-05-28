@@ -9,7 +9,8 @@ defmodule BrowsableFaqsTest do
 
   def setup_fake_contentrepo(auth_token) do
     # Start the handler.
-    {:ok, wh_pid} = start_supervised({ContentRepoWebhookHandler, {auth_token}})
+    # {:ok, wh_pid} = start_supervised({ContentRepoWebhookHandler, {auth_token}})
+    wh_pid = start_link_supervised!({ContentRepoWebhookHandler, {auth_token}})
     # Add some content.
     error_pg = %ContentPage{
       slug: "error", title: "error",  parent_slug: "test",
@@ -51,7 +52,7 @@ defmodule BrowsableFaqsTest do
     ContentRepoWebhookHandler.adapter(wh_pid)
   end
 
-  test "browsable_faqs high level example" do
+  test "onboarding p1 high level example" do
     auth_token = "CRauthTOKEN123"
 
     flow_start =
