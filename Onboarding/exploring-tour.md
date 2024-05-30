@@ -159,9 +159,8 @@ card DisplayTourCard02, then: DisplayTourCard02Error do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(FetchTourCard03: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
@@ -220,9 +219,8 @@ card DisplayTourCard03, then: DisplayTourCard03Error do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(FetchTourCard04: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
@@ -281,9 +279,8 @@ card DisplayTourCard04, then: DisplayTourCard04Error do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(FetchTourCard05: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
@@ -344,9 +341,8 @@ card DisplayTourCard05, then: DisplayTourCard05Error do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(FetchGuidedTourMenu: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
