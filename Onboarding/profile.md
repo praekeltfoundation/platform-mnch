@@ -1978,7 +1978,8 @@ card YourInterests, then: YourInterestsError do
 
   message = page.body.body.text.value
   list_items = map(message.list_items, & &1.value)
-  topics = []
+  selected_topics = []
+  unselected_topics = []
 
   pregnancy_health = "Pregnancy health"
   love_life = "Love & life"
@@ -1987,52 +1988,109 @@ card YourInterests, then: YourInterestsError do
   safe_sex = "Safe sex"
   info_for_nurses = "Info for nurses"
 
-  topics =
-    if contact.pregnancy_information do
-      append(topics, "@pregnancy_health")
+  selected_topics =
+    if contact.pregnancy_information == true do
+      append(selected_topics, "@pregnancy_health")
     else
-      topics
+      selected_topics
     end
 
-  topics =
-    if contact.love_and_relationships do
-      append(topics, "@love_life")
+  selected_topics =
+    if contact.love_and_relationships == true do
+      append(selected_topics, "@love_life")
     else
-      topics
+      selected_topics
     end
 
-  topics =
-    if contact.baby_and_child do
-      append(topics, "@baby_child")
+  selected_topics =
+    if contact.baby_and_child == true do
+      append(selected_topics, "@baby_child")
     else
-      topics
+      selected_topics
     end
 
-  topics =
-    if contact.well_being do
-      append(topics, "@general_health")
+  selected_topics =
+    if contact.well_being == true do
+      append(selected_topics, "@general_health")
     else
-      topics
+      selected_topics
     end
 
-  topics =
-    if contact.family_planning do
-      append(topics, "@safe_sex")
+  selected_topics =
+    if contact.family_planning == true do
+      append(selected_topics, "@safe_sex")
     else
-      topics
+      selected_topics
     end
 
-  topics =
-    if contact.info_for_health_professionals do
-      append(topics, "@info_for_nurses")
+  selected_topics =
+    if contact.info_for_health_professionals == true do
+      append(selected_topics, "@info_for_nurses")
     else
-      topics
+      selected_topics
     end
 
-  message_topics = reduce(topics, "", &(&2 + "\n" + &1))
+  # unselected topics
+
+  guard = contact.pregnancy_information == nil or contact.pregnancy_information == false
+
+  unselected_topics =
+    if guard == true do
+      append(unselected_topics, "@pregnancy_health")
+    else
+      unselected_topics
+    end
+
+  guard = contact.love_and_relationships == nil or contact.love_and_relationships == false
+
+  unselected_topics =
+    if guard == true do
+      append(unselected_topics, "@love_life")
+    else
+      unselected_topics
+    end
+
+  guard = contact.baby_and_child == nil or contact.baby_and_child == false
+
+  unselected_topics =
+    if guard == true do
+      append(unselected_topics, "@baby_child")
+    else
+      unselected_topics
+    end
+
+  guard = contact.well_being == nil or contact.well_being == false
+
+  unselected_topics =
+    if guard == true do
+      append(unselected_topics, "@general_health")
+    else
+      unselected_topics
+    end
+
+  guard = contact.family_planning == nil or contact.family_planning == false
+
+  unselected_topics =
+    if guard == true do
+      append(unselected_topics, "@safe_sex")
+    else
+      unselected_topics
+    end
+
+  guard =
+    contact.info_for_health_professionals == nil or contact.info_for_health_professionals == false
+
+  unselected_topics =
+    if guard == true do
+      append(unselected_topics, "@info_for_nurses")
+    else
+      unselected_topics
+    end
+
+  message_topics = reduce(selected_topics, "", &concatenate(&2, &1, "@unichar(10)"))
   message_text = substitute("@message.message", "{topics}", "@message_topics")
 
-  list_items = append(topics, list_items)
+  list_items = append(unselected_topics, list_items)
 
   interest =
     list("Add or remove", YourInterestsResponse, map(list_items, &[&1, &1])) do
@@ -2057,7 +2115,7 @@ card YourInterestsResponse when has_phrase(lower("@interest"), "remove a topic")
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_remve_topic"]
+        ["slug", "mnch_onboarding_remove_topic"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -2075,7 +2133,7 @@ card YourInterestsResponse when has_phrase(lower("@interest"), "remove a topic")
 
   message = page.body.body.text.value
   list_items = map(message.list_items, & &1.value)
-  list_items = append(topics, list_items)
+  list_items = append(selected_topics, list_items)
 
   interest =
     list("Select", YourInterestRemoveResponse, map(list_items, &[&1, &1])) do
@@ -2233,7 +2291,7 @@ card AddProfileComplete, then: AddProfileCompleteError do
       query: [
         ["slug", "mnch_onboarding_add_profile_complete"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2244,7 +2302,7 @@ card AddProfileComplete, then: AddProfileCompleteError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -2302,9 +2360,9 @@ card AddProfileIncomplete, then: AddProfileIncompleteError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_add_profile_complete"]
+        ["slug", "mnch_onboarding_add_profile_incomplete"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2315,7 +2373,7 @@ card AddProfileIncomplete, then: AddProfileIncompleteError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
