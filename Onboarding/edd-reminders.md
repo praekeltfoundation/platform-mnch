@@ -62,6 +62,28 @@ card FetchError, then: EDDReminder do
     )
 
   list_error_text = page.body.body.text.value.message
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_unrecognised_number"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  unrecognised_number_text = page.body.body.text.value.message
 end
 
 ```
@@ -91,6 +113,7 @@ card EDDReminder, then: DisplayEDDReminder do
     )
 
   message = content_data.body.body.text.value
+  loading_message = substitute(message.message, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -102,7 +125,7 @@ card DisplayEDDReminder when contact.data_preference == "text only",
     EDDMonth: "@button_labels[1]",
     EDDRUnknown: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
@@ -124,7 +147,7 @@ card DisplayEDDReminder, then: DisplayEDDReminderError do
     EDDRUnknown: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
@@ -362,7 +385,7 @@ end
 # EDD Day
 
 ```stack
-card EDDDay, then: DisplayEDDDay do
+card EDDDay, then: ValidateEDDDay do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -374,42 +397,61 @@ card EDDDay, then: DisplayEDDDay do
 
   page_id = search.body.results[0].id
 
-  content_data =
+  page =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      query: [["whatsapp", "true"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  long_months = [1, 3, 5, 7, 8, 10, 12]
+  short_months = [4, 6, 9, 11]
+  #  February  
+  max_date = 29
+  max_date = if has_member(long_months, edd_date_month), do: 31, else: max_date
+  max_date = if has_member(short_months, edd_date_month), do: 30, else: max_date
+  log("max day @max_date, edd date month @edd_date_month")
+  edd_day = ask("@page.body.body.text.value.message")
 end
 
-card DisplayEDDDay, then: ValidateEDDDay do
-  edd_day = ask("@message.message")
+card ValidateEDDDay when not has_pattern("@edd_day", "^\d+$"),
+  then: EDDDayNumberError do
+  log("Non-integer edd day number")
 end
 
-card ValidateEDDDay when edd_day < 1 or edd_day > 31, then: EDDDayError do
-  # TODO display error message
-  text("invalid day")
+card ValidateEDDDay when edd_day < 1, then: EDDDayNumberError do
+  log("Edd day number lower than first day of month")
 end
 
-card ValidateEDDDay when not isnumber(edd_day) and has_any_phrase(lower("@edd_day"), "skip"),
-  then: EDDDayError do
-  # TODO display error message
-  text("invalid day is a string")
+card ValidateEDDDay when edd_day > max_date,
+  then: EDDDayNumberError do
+  log("Edd day number higher than max date")
 end
 
-card ValidateEDDDay, then: EDDConfirm do
-  log("valid day")
+card ValidateEDDDay, then: SaveEDDAndContinue do
+  log("Default validate EDD Day")
 end
 
-card EDDDayError, then: ValidateEDDDay do
-  # TODO display error message and re ask user to re enter day
-  text("invalid day here")
-  edd_day = ask("Re enter day in digit")
+card EDDDayNumberError, then: ValidateEDDDay do
+  message = substitute(unrecognised_number_text, "{minimum}", "1")
+  message = substitute(message, "{maximum}", "@max_date")
+  edd_day = ask("@message")
+end
+
+```
+
+## Save EDD
+
+```stack
+card SaveEDDAndContinue, then: EDDConfirm do
+  edd_date_full = date(edd_date_year, edd_date_month, edd_day)
+
+  edd_date_full_str = datevalue(edd_date_full, "%Y/%m/%d")
+  log("EDD Saved as @edd_date_full_str")
+  update_contact(edd: "@edd_date_full_str")
+  write_result("edd", edd_date_full_str)
 end
 
 ```
@@ -439,12 +481,13 @@ card EDDConfirm, then: DisplayEDDConfirm do
     )
 
   message = content_data.body.body.text.value
+  loading_message = substitute(message.message, "[edd]", "@edd_date_full_str")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 card DisplayEDDConfirm, then: DisplayEDDConfirmError do
   buttons(MainMenu: "@button_labels[0]") do
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
@@ -507,12 +550,11 @@ card DisplayEDDUnknown, then: DisplayEDDUnknownError do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(
     EDDMonth: "@button_labels[0]",
     EDDLater: "@button_labels[1]"
   ) do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
