@@ -16,6 +16,10 @@ columns: []
 | contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 
 ```stack
+card Checkpoint, then: FetchError do
+  update_contact(checkpoint: "generic_basic_info")
+end
+
 card FetchError, then: ProfileProgressGeneric do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
@@ -47,17 +51,22 @@ end
 ## Get User Profile Progress
 
 ```stack
-card ProfileProgressGeneric when contact.profile_progress = "10%",
+card ProfileProgressGeneric when is_nil_or_empty(contact.profile_completion),
+  then: ProfileProgress10Generic do
+  log("Profile progress is empty")
+end
+
+card ProfileProgressGeneric when contact.profile_completion == "10%",
   then: ProfileProgress10Generic do
   log("Profile progress is 10%")
 end
 
-card ProfileProgressGeneric when contact.profile_progress = "30%",
+card ProfileProgressGeneric when contact.profile_completion == "30%",
   then: ProfileProgress30Generic do
   log("Profile progress is 30%")
 end
 
-card ProfileProgressGeneric when contact.profile_progress = "75%",
+card ProfileProgressGeneric when contact.profile_completion == "75%",
   then: ProfileProgress75Generic do
   log("Profile progress is 75%")
 end
@@ -74,6 +83,9 @@ end
 
 ```stack
 card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
+  write_result("profile_completion", "30%")
+  update_contact(profile_completion: "30%")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -170,6 +182,9 @@ end
 
 ```stack
 card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
+  write_result("profile_completion", "100%")
+  update_contact(profile_completion: "100%")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -218,13 +233,12 @@ card DisplayProfileProgress100Generic, then: DisplayProfileProgress100GenericErr
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(
     HealthGuide: "@button_labels[0]",
     BrowsableContent: "@button_labels[1]",
     MainMenu: "@button_labels[2]"
   ) do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
@@ -245,6 +259,9 @@ end
 
 ```stack
 card ProfileProgress75Generic, then: DisplayProfileProgress75Generic do
+  write_result("profile_completion", "75%")
+  update_contact(profile_completion: "75%")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -320,6 +337,9 @@ end
 
 ```stack
 card ProfileProgress10Generic, then: DisplayProfileProgress10Generic do
+  write_result("profile_completion", "10%")
+  update_contact(profile_completion: "10%")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
