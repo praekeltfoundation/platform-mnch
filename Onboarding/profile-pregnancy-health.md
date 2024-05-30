@@ -16,7 +16,6 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 * `gender`, This stack sets the gender field for the user. If the user selects `im_pregnant` as their status below it defaults to `female`, otherwise it lets them set it to `male`, `female` or `other`.
 * `edd`, Expected Due Date, gets set after we have the EDD month and day provided by the user.
 * `other_children`, How many other children this user has.
-* `pregnancy_sentiment`, How they are feeling about their pregnancy. This result applies only to users that have selected `im_pregnant` as their above status.
 * `checkpoint`, the checkpoint for where we are in onboarding. One of `basic_pregnancy_profile`, `pregnant_mom_profile`, `pregnancy_basic_info`, `pregnancy_personal_info`, `pregnancy_daily_life_info`
 
 ## Flow results
@@ -2605,7 +2604,7 @@ end
 ## Partner Loading 01 Secondary
 
 ```stack
-card Loading01Secondary, then: DisplayLoading01Secondary do
+card Loading01Secondary, then: Loading01SecondaryGoTo do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -2629,6 +2628,15 @@ card Loading01Secondary, then: DisplayLoading01Secondary do
   message = content_data.body.body.text.value
   loading_message = substitute(message.message, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.value.title)
+end
+
+card Loading01SecondaryGoTo when is_nil_or_empty(edd_date_full),
+  then: DisplayLoading01SecondaryNoEDD do
+  log("No partner EDD")
+end
+
+card Loading01SecondaryGoTo, then: DisplayLoading01Secondary do
+  log("Has partner EDD")
 end
 
 # Text only
@@ -2659,6 +2667,100 @@ end
 
 card DisplayLoading01SecondaryError, then: DisplayLoading01SecondaryError do
   buttons(CalculateWeekOfPregnancy: "@button_labels[0]") do
+    text("@button_error_text")
+  end
+end
+
+# Text only
+card DisplayLoading01SecondaryNoEDD when contact.data_preference == "text only",
+  then: DisplayLoading01SecondaryNoEDDError do
+  buttons(Loading02Secondary: "@button_labels[0]") do
+    text("@loading_message")
+  end
+end
+
+# Display with image
+card DisplayLoading01SecondaryNoEDD, then: DisplayLoading01SecondaryNoEDDError do
+  image_id = content_data.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
+
+  buttons(Loading02Secondary: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
+    text("@loading_message")
+  end
+end
+
+card DisplayLoading01SecondaryNoEDDError, then: DisplayLoading01SecondaryNoEDDError do
+  buttons(Loading02Secondary: "@button_labels[0]") do
+    text("@button_error_text")
+  end
+end
+
+```
+
+## Partner Loading 02 Secondary
+
+```stack
+card Loading02Secondary, then: DisplayLoading02Secondary do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_loading_02_secondary"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  content_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  message = content_data.body.body.text.value
+  button_labels = map(message.buttons, & &1.value.title)
+end
+
+# Text only
+card DisplayLoading02Secondary when contact.data_preference == "text only",
+  then: DisplayLoading02SecondaryError do
+  buttons(ContentIntro: "@button_labels[0]") do
+    text("@message.message")
+  end
+end
+
+# Display with image
+card DisplayLoading02Secondary, then: DisplayLoading02SecondaryError do
+  image_id = content_data.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
+
+  buttons(ContentIntro: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
+    text("@message.message")
+  end
+end
+
+card DisplayLoading02SecondaryError, then: DisplayLoading02SecondaryError do
+  buttons(ContentIntro: "@button_labels[0]") do
     text("@button_error_text")
   end
 end
@@ -2943,8 +3045,8 @@ card DisplayContentFeedbackNoError, then: DisplayContentFeedbackNoError do
   end
 end
 
-card SecondaryOnboarding, then: ProfileProgress75 do
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+card SecondaryOnboarding, then: ProfileProgress50 do
+  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
 end
 
 ```
@@ -3484,7 +3586,6 @@ card DisplayCuriousContentIntro, then: DisplayCuriousContentIntroError do
       ]
     )
 
-  text("@image_data")
   image("@image_data.body.meta.download_url")
 
   selected_topic =
