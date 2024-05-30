@@ -8,14 +8,19 @@ More in-depth documentation for each of the flows is contained in each of the ma
 - Configuration, and configurable values that apply to the stack, that should be set after import
 
 The stacks are as follows:
-- Onboarding Part 1. This is the welcome flow, where the user can read and accept the privacy policy, select their language, set their intent, and their relation to the child/ren.
-- Onboarding Part 2. If the user is pregnant, then they go through this flow. It captures their estimated due date.
-- Onboarding Part 3. This captures information about the user, namely their sentiment, location, relationship status, year of birth, education level, socioeconomic status, and social support.
-- Onboarding Part 4. If the user has any children under their care, we collect the details for all those children in this flow. For each child we collect the child's name and date of birth.
-- Reminders Schedule Message 1. This schedules the first reminder message to be sent.
-- Reminders Send Message 1. This is the callback that gets triggered for when it's time to send the first reminder message. It sends the message.
-- Stage Based Messaging Schedule Pregnancy. This gets called to schedule all the messaging for the mother's pregnancy, relative to the estimated due date captured.
-- Stage Based Messaging Send Pregnancy Message. This gets called when it's time to send a pregnancy message. It figures out which message should be sent by looking at the current date, and the estimated due date on the contact profile. It then compares this to what is present in the content repo, and selects the correct message to send to the user.
+- Intro & Welcome: This is the welcome flow, where the user can read and accept the privacy policy, select their language, set their intent, and select their data preferences.
+- Exploring Tour: This gives users a basic introduction to the service and allows them to navigate to the Help Desk, or to create a profile (which navigates to the Profile Classifier below).
+- Profile Classifier: In this flow the user can select which domains they are interested in. Domains are prioritised so that users who select multiple domains are navigated to the most important succeeding flow, e.g. a user who selects both an interest in pregnancy information and HCW information will be directed to the pregnancy onboarding.
+- Profile Pregnancy Health: If the user selects pregnancy information from the Profile Classifier they'll go through this flow. In this flow they will select that they either are pregnant, have a partner who is pregnant or are simply curious. In each case they will be asked relevant questions to that classification (e.g. a curious user won't be asked an EDD), and relevant information will be surfaced based on either the EDD or the trimester. Basic and Personal Profile questions are asked during this flow as well as the LOC assessment.
+- Profile Generic: This is the Profile creation flow for any users that are interested in information other than Pregnancy or HCW information.
+- HCW Profile: This is the Profile creation flow for Health care workers.
+- Basic Questions: A flow asking basic questions like age, gender, province.
+- Personal Profile Questions: A flow asking users more personal questions like Relationship status, Education, Socio-economic, and how many children they have.
+- Intro & Welcome Reminder: A reminder for potential users to opt in to the Privacy Policy.
+- Exploring Tour Reminder: A reminder for curious users to complete their profile.
+- EDD Reminder: A reminder for users to fill in their EDD so that we can provide tailored information.
+- Opt In Reminder: A reminder for users to opt in to push messages.
+- HCW Reminder: A reminder for HCW's to continue completing their profile.
 
 
 ## Contributing

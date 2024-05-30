@@ -1,3 +1,10 @@
+<!-- { section: "32c8bc6b-7ac9-47b6-b461-fa225e05e2ca", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "t_profile")
+
+```
+
 # Onboarding: Profile
 
 This is the user profile where a user can change answers to questions and domains.
@@ -36,16 +43,6 @@ This stack runs other stacks if there is information that needs capturing.
 * `Generic Profile`
 * `HCW Profile`
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
-
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
-
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
@@ -59,7 +56,7 @@ card FetchError, then: YourProfile do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -71,7 +68,7 @@ card FetchError, then: YourProfile do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -82,7 +79,7 @@ card FetchError, then: YourProfile do
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -93,7 +90,7 @@ card FetchError, then: YourProfile do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   list_error_text = page.body.body.text.value.message
@@ -104,7 +101,7 @@ card FetchError, then: YourProfile do
       query: [
         ["slug", "mnch_onboarding_name_error"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -115,7 +112,7 @@ card FetchError, then: YourProfile do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   name_error_text = page.body.body.text.value.message
@@ -126,7 +123,7 @@ card FetchError, then: YourProfile do
       query: [
         ["slug", "mnch_onboarding_unrecognised_year"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -137,7 +134,7 @@ card FetchError, then: YourProfile do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   unrecognised_year = page.body.body.text.value.message
@@ -158,7 +155,7 @@ card YourProfile, then: YourProfileError do
       query: [
         ["slug", "mnch_onboarding_your_profile"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -169,7 +166,7 @@ card YourProfile, then: YourProfileError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -216,7 +213,7 @@ card BasicInfo, then: BasicInfoError do
       query: [
         ["slug", "mnch_onboarding_basic_info"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -227,10 +224,57 @@ card BasicInfo, then: BasicInfoError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
+  display_message = message.message
+
+  name =
+    if len("@contact.name") > 0 do
+      "@contact.name"
+    else
+      "Please provide"
+    end
+
+  display_message = substitute(display_message, "{username}", "@name")
+
+  year_of_birth =
+    if len("@contact.year_of_birth") > 0 do
+      "@contact.year_of_birth"
+    else
+      "Please provide"
+    end
+
+  display_message = substitute(display_message, "{year_of_birth}", "@year_of_birth")
+
+  gender =
+    if len("@contact.gender") > 0 do
+      proper("@contact.gender")
+    else
+      "Please choose"
+    end
+
+  display_message = substitute(display_message, "{gender}", "@gender")
+
+  province =
+    if len("@contact.province") > 0 do
+      proper("@contact.province")
+    else
+      "Please choose"
+    end
+
+  display_message = substitute(display_message, "{province}", "@province")
+
+  area_type =
+    if len("@contact.area_type") > 0 do
+      proper("@contact.area_type")
+    else
+      "Please choose"
+    end
+
+  display_message = substitute(display_message, "{area_type}", "@area_type")
+  display_message = substitute(display_message, "{language}", "@contact.language")
   list_items = map(message.list_items, & &1.value)
 
   option =
@@ -243,7 +287,7 @@ card BasicInfo, then: BasicInfoError do
       LanguageOptions: "@list_items[5]",
       BackToProfile: "@list_items[6]"
     ) do
-      text("@message.message")
+      text("@display_message")
     end
 end
 
@@ -274,7 +318,7 @@ card Name, then: NameValidation do
       query: [
         ["slug", "mnch_onboarding_name"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -285,7 +329,7 @@ card Name, then: NameValidation do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -312,7 +356,7 @@ card YearOfBirth, then: ValidateYearOfBirth do
       query: [
         ["slug", "mnch_onboarding_q_age"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -323,7 +367,7 @@ card YearOfBirth, then: ValidateYearOfBirth do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -372,7 +416,7 @@ card Gender, then: GenderError do
       query: [
         ["slug", "mnch_onboarding_q_gender"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -383,7 +427,7 @@ card Gender, then: GenderError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -428,7 +472,7 @@ card Province, then: ProvinceError do
       query: [
         ["slug", "mnch_onboarding_q_province"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -439,7 +483,7 @@ card Province, then: ProvinceError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -462,7 +506,7 @@ card ProvinceSelected when "@province" == "Why do you ask?", then: ProvinceError
       query: [
         ["slug", "mnch_onboarding_q_province_why"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -473,7 +517,7 @@ card ProvinceSelected when "@province" == "Why do you ask?", then: ProvinceError
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -509,7 +553,7 @@ card AreaType, then: AreaTypeError do
       query: [
         ["slug", "mnch_onboarding_q_area_type"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -520,7 +564,7 @@ card AreaType, then: AreaTypeError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -558,7 +602,7 @@ card LanguageOptions, then: LanguageOptionsError do
       query: [
         ["slug", "mnch_onboarding_languages"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -569,7 +613,7 @@ card LanguageOptions, then: LanguageOptionsError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -645,7 +689,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
       query: [
         ["slug", "mnch_onboarding_language_updated"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -656,7 +700,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -699,7 +743,7 @@ card PersonalInfo, then: PersonalInfoError do
       query: [
         ["slug", "mnch_onboarding_personal_info"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -710,10 +754,38 @@ card PersonalInfo, then: PersonalInfoError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
+  display_message = message.message
+
+  education =
+    if len("@contact.education") > 0 do
+      proper("@contact.education")
+    else
+      "Please select"
+    end
+
+  display_message = substitute(display_message, "{education}", "@education")
+
+  relationship_status =
+    if len("@contact.relationship_status") > 0 do
+      proper("@contact.relationship_status")
+    else
+      "Please choose"
+    end
+
+  display_message = substitute(display_message, "{relationship_status}", "@relationship_status")
+
+  finances =
+    if len("@contact.socio_economic") > 0 do
+      proper("@contact.socio_economic")
+    else
+      "Please select"
+    end
+
+  display_message = substitute(display_message, "{finances}", "@finances")
   list_items = map(message.list_items, & &1.value)
 
   option =
@@ -723,7 +795,7 @@ card PersonalInfo, then: PersonalInfoError do
       Finances: "@list_items[2]",
       BackToProfile: "@list_items[3]"
     ) do
-      text("@message.message")
+      text("@display_message")
     end
 end
 
@@ -751,7 +823,7 @@ card Education, then: EducationError do
       query: [
         ["slug", "mnch_onboarding_q_education"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -762,7 +834,7 @@ card Education, then: EducationError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -807,7 +879,7 @@ card Relationship, then: RelationshipError do
       query: [
         ["slug", "mnch_onboarding_q_relationshipstatus"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -818,7 +890,7 @@ card Relationship, then: RelationshipError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -859,7 +931,7 @@ card Finances, then: FinancesError do
       query: [
         ["slug", "mnch_onboarding_q_socioeconomic"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -870,7 +942,7 @@ card Finances, then: FinancesError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -911,7 +983,7 @@ card PregnancyInfo when contact.pregnancy_status == "curious", then: PregnancyIn
       query: [
         ["slug", "mnch_onboarding_pregnancy_info_curious"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -922,10 +994,74 @@ card PregnancyInfo when contact.pregnancy_status == "curious", then: PregnancyIn
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
+  display_message = message.message
+
+  role = "Just curious"
+  display_message = substitute(display_message, "{role}", "@role")
+
+  # We don't store the trimester so calculate it
+  edd = contact.edd
+  edd_date_month = month(edd)
+
+  exp_year = if month(now()) > edd_date_month, do: year(now()) + 1, else: year(now())
+  exp_date = date(exp_year, edd_date_month, 1)
+  week_of_conception = datetime_add(exp_date, -40, "W")
+
+  current_date = now()
+  current_year = year(current_date)
+  current_month = month(current_date)
+  current_day = day(current_date)
+
+  given_date = week_of_conception
+  given_year = year(given_date)
+  given_month = month(given_date)
+  given_day = day(given_date)
+
+  year_diff = (current_year - given_year) * 365.25
+  month_diff = (current_month - given_month) * 30.4
+  day_diff = current_day - given_day
+
+  pregnancy_in_weeks = (month_diff + year_diff + day_diff) / 7
+  pregnancy_in_weeks = split("@pregnancy_in_weeks", ".")[0]
+
+  trimester = 0
+
+  trimester =
+    if pregnancy_in_weeks <= 12 do
+      1
+    else
+      trimester
+    end
+
+  trimester =
+    if pregnancy_in_weeks > 12 and pregnancy_in_weeks < 27 do
+      2
+    else
+      trimester
+    end
+
+  trimester =
+    if pregnancy_in_weeks >= 27 do
+      3
+    else
+      trimester
+    end
+
+  display_message = substitute(display_message, "{trimester}", "@trimester")
+
+  number_of_children =
+    if len("@contact.other_children") > 0 do
+      "@contact.other_children"
+    else
+      "Please share"
+    end
+
+  display_message = substitute(display_message, "{number_of_children}", "@number_of_children")
+
   list_items = map(message.list_items, & &1.value)
 
   option =
@@ -935,7 +1071,7 @@ card PregnancyInfo when contact.pregnancy_status == "curious", then: PregnancyIn
       Children: "@list_items[2]",
       BackToProfile: "@list_items[3]"
     ) do
-      text("@message.message")
+      text("@display_message")
     end
 end
 
@@ -946,7 +1082,7 @@ card PregnancyInfo, then: PregnancyInfoError do
       query: [
         ["slug", "mnch_onboarding_pregnancy_info_moms_partners"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -957,10 +1093,48 @@ card PregnancyInfo, then: PregnancyInfoError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
+  display_message = message.message
+
+  role =
+    if "@contact.pregnancy_status" == "im_pregnant" do
+      "Pregnant"
+    else
+      "Partner is pregnant"
+    end
+
+  display_message = substitute(display_message, "{role}", "@role")
+
+  edd =
+    if len("@contact.edd") > 0 do
+      "@contact.edd"
+    else
+      "Please select"
+    end
+
+  display_message = substitute(display_message, "{edd}", "@edd")
+
+  number_of_children =
+    if len("@contact.other_children") > 0 do
+      "@contact.other_children"
+    else
+      "Please share"
+    end
+
+  display_message = substitute(display_message, "{number_of_children}", "@number_of_children")
+
+  pregnancy_sentiment =
+    if len("@contact.pregnancy_sentiment") > 0 do
+      proper("@contact.pregnancy_sentiment")
+    else
+      "Please share"
+    end
+
+  display_message = substitute(display_message, "{feeling}", "@pregnancy_sentiment")
+
   list_items = map(message.list_items, & &1.value)
 
   option =
@@ -971,7 +1145,7 @@ card PregnancyInfo, then: PregnancyInfoError do
       Feeling: "@list_items[3]",
       BackToProfile: "@list_items[4]"
     ) do
-      text("@message.message")
+      text("@display_message")
     end
 end
 
@@ -1012,7 +1186,7 @@ card MyRole, then: MyRoleError do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1023,7 +1197,7 @@ card MyRole, then: MyRoleError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1078,7 +1252,7 @@ card PregnantEDDMonth, then: EDDMonthError do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_02"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1089,7 +1263,7 @@ card PregnantEDDMonth, then: EDDMonthError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   edd_month = ""
@@ -1189,7 +1363,7 @@ card EDDMonthUnknown, "I don't know" do
       query: [
         ["slug", "mnch_onboarding_edd_unknown"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1198,7 +1372,7 @@ card EDDMonthUnknown, "I don't know" do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1225,7 +1399,7 @@ card PregnantEDDDay, then: ValidateEDDDay do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_03"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1234,7 +1408,7 @@ card PregnantEDDDay, then: ValidateEDDDay do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1281,7 +1455,7 @@ card EDDConfirmation, then: SaveEDDAndContinue do
         ["slug", "mnch_onboarding_confirm_edd"],
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1290,7 +1464,7 @@ card EDDConfirmation, then: SaveEDDAndContinue do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1331,7 +1505,7 @@ card Children, then: ChildrenError do
       query: [
         ["slug", "mnch_onboarding_children"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1342,7 +1516,7 @@ card Children, then: ChildrenError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1368,7 +1542,7 @@ card ChildrenResponse when has_phrase(lower("@children"), "why") do
       query: [
         ["slug", "mnch_onboarding_children_why"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1379,7 +1553,7 @@ card ChildrenResponse when has_phrase(lower("@children"), "why") do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1409,7 +1583,7 @@ card Feeling, then: FeelingError do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_05"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1420,40 +1594,28 @@ card Feeling, then: FeelingError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
   list_items = map(message.list_items, & &1.value)
 
   feeling =
-    list("I'm feeling",
-      SaveFeeling: "@list_items[0]",
-      SaveFeeling: "@list_items[1]",
-      SaveFeeling: "@list_items[2]",
-      SaveFeeling: "@list_items[3]",
-      SaveFeeling: "@list_items[4]"
-    ) do
+    list("I'm feeling", SaveFeeling, map(list_items, &[&1, &1])) do
       text("@message.message")
     end
 end
 
 card FeelingError, then: FeelingError do
   feeling =
-    list("I'm feeling",
-      SaveFeeling: "@list_items[0]",
-      SaveFeeling: "@list_items[1]",
-      SaveFeeling: "@list_items[2]",
-      SaveFeeling: "@list_items[3]",
-      SaveFeeling: "@list_items[4]"
-    ) do
+    list("I'm feeling", SaveFeeling, map(list_items, &[&1, &1])) do
       text("@list_error_text")
     end
 end
 
 card SaveFeeling, then: PregnancyInfo do
   log("Writing @feeling to pregnancy_sentiment")
-  write_result("pregnancy_sentiment", feeling)
+  update_contact(pregnancy_sentiment: "@feeling")
 end
 
 ```
@@ -1468,7 +1630,7 @@ card Trimester, then: TrimesterError do
       query: [
         ["slug", "mnch_onboarding_curious_03"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1479,7 +1641,7 @@ card Trimester, then: TrimesterError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -1520,7 +1682,7 @@ card EmploymentInfo, then: EmploymentInfoError do
       query: [
         ["slug", "mnch_onboarding_employment_info"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1531,10 +1693,39 @@ card EmploymentInfo, then: EmploymentInfoError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
+  display_message = message.message
+
+  occupational_role =
+    if len("@contact.occupational_role") > 0 do
+      proper("@contact.occupational_role")
+    else
+      "Please share"
+    end
+
+  substitute(display_message, "{occupational_role}", "@occupational_role")
+
+  facility_type =
+    if len("@contact.facility_type") > 0 do
+      proper("@contact.facility_type")
+    else
+      "Please share"
+    end
+
+  substitute(display_message, "{facility_type}", "@facility_type")
+
+  professional_support =
+    if len("@contact.professional_support") > 0 do
+      proper("@contact.professional_support")
+    else
+      "Please share"
+    end
+
+  substitute(display_message, "{professional_support}", "@professional_support")
+
   list_items = map(message.list_items, & &1.value)
 
   option =
@@ -1544,7 +1735,7 @@ card EmploymentInfo, then: EmploymentInfoError do
       ProfessionalSupport: "@list_items[2]",
       BackToProfile: "@list_items[3]"
     ) do
-      text("@message.message")
+      text("@display_message")
     end
 end
 
@@ -1572,7 +1763,7 @@ card OccupationalRole, then: OccupationalRoleError do
       query: [
         ["slug", "mnch_onboarding_occupational_role"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1583,7 +1774,7 @@ card OccupationalRole, then: OccupationalRoleError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1624,7 +1815,7 @@ card FacilityType, then: FacilityTypeError do
       query: [
         ["slug", "mnch_onboarding_facility_type"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1635,7 +1826,7 @@ card FacilityType, then: FacilityTypeError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1677,7 +1868,7 @@ card ProfessionalSupport, then: ProfessionalSupportError do
       query: [
         ["slug", "mnch_onboarding_professional_support"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1688,7 +1879,7 @@ card ProfessionalSupport, then: ProfessionalSupportError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1725,7 +1916,7 @@ card DailyLife, then: DailyLifeError do
       query: [
         ["slug", "mnch_onboarding_daily_life"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1736,7 +1927,7 @@ card DailyLife, then: DailyLifeError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1771,7 +1962,7 @@ card YourInterests, then: YourInterestsError do
       query: [
         ["slug", "mnch_onboarding_your_interests"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1782,7 +1973,7 @@ card YourInterests, then: YourInterestsError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1868,7 +2059,7 @@ card YourInterestsResponse when has_phrase(lower("@interest"), "remove a topic")
       query: [
         ["slug", "mnch_onboarding_remve_topic"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1879,7 +2070,7 @@ card YourInterestsResponse when has_phrase(lower("@interest"), "remove a topic")
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -2057,13 +2248,15 @@ card AddProfileComplete, then: AddProfileCompleteError do
     )
 
   message = page.body.body.text.value
+  display_message = message.message
+  display_message = substitute(display_message, "{domain}", "@interest")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(
     BrowseTopic: "@button_labels[0]",
     BackToProfile: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@display_message")
   end
 end
 
@@ -2126,6 +2319,8 @@ card AddProfileIncomplete, then: AddProfileIncompleteError do
     )
 
   message = page.body.body.text.value
+  display_message = message.message
+  display_message = substitute(display_message, "{domain}", "@interest")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(
@@ -2133,7 +2328,7 @@ card AddProfileIncomplete, then: AddProfileIncompleteError do
     BrowseTopic: "@button_labels[1]",
     BackToProfile: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@display_message")
   end
 end
 

@@ -2,7 +2,7 @@
 
 ```stack
 trigger(on: "MESSAGE RECEIVED")
-when has_any_phrase(event.message.text.body, ["onboard"])
+when has_any_phrase(event.message.text.body, ["hi", "0", "menu"])
 
 ```
 
@@ -29,19 +29,14 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 
 ## Connections to other stacks
 
-* Onboarding Part 1.1 is scheduled if they don't agree to the privacy policy
-* Goes to "Onboarding Part 2" to collect the mother's details, if they select "Expecting" as their intent
-* Goes to "Onboarding Part 4" to collect the baby's details, if they select "Newborn baby" or "My children" as their intent
+* Onboarding Part 1.1 is scheduled if they don't agree to the privacy privacy_policy_accepted
+* Goes to the Explore journey if the select that want to explore the service
+* Goes to the Profile Classifier if they select they want to make a Profile
+* Goes to the Help desk if they select they want to go to the help desk
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
+## Auth
 
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+The token for ContentRepo is stored in a global dictionary.
 
 ## Setup
 
@@ -58,9 +53,9 @@ card FetchError, then: GoToPrivacyPolicy do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "error"]
+        ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -72,7 +67,7 @@ card FetchError, then: GoToPrivacyPolicy do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -122,7 +117,7 @@ card WelcomeMessage, then: WelcomeMessageError do
       query: [
         ["slug", "mnch_onboarding_welcome"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -133,7 +128,7 @@ card WelcomeMessage, then: WelcomeMessageError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -175,7 +170,7 @@ card LanguageOptions, then: LanguageOptionsError do
       query: [
         ["slug", "mnch_onboarding_languages"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -186,7 +181,7 @@ card LanguageOptions, then: LanguageOptionsError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -269,7 +264,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
       query: [
         ["slug", "mnch_onboarding_language_updated"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -280,7 +275,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -318,7 +313,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
       query: [
         ["slug", "mnch_onboarding_pp_document"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -329,18 +324,20 @@ card PrivacyPolicy, then: PrivacyPolicyError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
 
-  # document =
-  #  get(
-  #    "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
-  #    headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-  #  )
+  log("@message.document")
 
-  # document_url = document.body.meta.download_url
+  document =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  document_url = document.body.meta.download_url
 
   button_labels = map(message.buttons, & &1.value.title)
 
@@ -350,7 +347,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
     ReadSummary: "@button_labels[2]"
   ) do
     # TODO: When we finally have the document, upload it and make this work
-    # document("@document_url")
+    document("@document_url", filename: "Privacy Policy")
     text("@message.message")
   end
 end
@@ -383,7 +380,7 @@ card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
       query: [
         ["slug", "mnch_onboarding_pp_not_accepted"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -394,7 +391,7 @@ card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -430,7 +427,7 @@ card ReadSummary, then: ReadSummaryError do
       query: [
         ["slug", "mnch_onboarding_pp_summary"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -441,7 +438,7 @@ card ReadSummary, then: ReadSummaryError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -449,7 +446,7 @@ card ReadSummary, then: ReadSummaryError do
   # document =
   #   get(
   #     "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
-  #     headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+  #     headers: [["Authorization", "Token @global.config.contentrepo_token"]]
   #   )
 
   # document_url = document.body.meta.download_url
@@ -483,7 +480,7 @@ card OptIn, then: OptInError do
       query: [
         ["slug", "mnch_onboarding_opt_in"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -494,7 +491,7 @@ card OptIn, then: OptInError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -543,7 +540,7 @@ card UserIntent, then: UserIntentError do
       query: [
         ["slug", "mnch_onboarding_intent"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -554,7 +551,7 @@ card UserIntent, then: UserIntentError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -613,7 +610,7 @@ card DataPreferences, then: DataPreferencesError do
       query: [
         ["slug", "mnch_onboarding_data_preferences"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -624,7 +621,7 @@ card DataPreferences, then: DataPreferencesError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -669,7 +666,7 @@ card DataPreferencesSelected, then: DataPreferencesSelectedError do
       query: [
         ["slug", "mnch_onboarding_data_preferences_yes"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -680,7 +677,7 @@ card DataPreferencesSelected, then: DataPreferencesSelectedError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -706,9 +703,9 @@ card SelectNextJourney when intent == "create_profile" do
 end
 
 card SelectNextJourney when intent == "explore" do
-  # TODO: Go to Explore journey
+  # Go to Explore journey
   log("Navigating to Explore")
-  text("TODO: Explore")
+  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
   write_result("intro_completed", "yes")
 end
 
@@ -733,7 +730,7 @@ card TODO do
         ["whatsapp", "true"],
         ["slug", "todo"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -744,7 +741,7 @@ card TODO do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   text("@page.body.body.text.value.message")
@@ -769,4 +766,4 @@ Content is stored in the content repo, and referenced in the stack by slug. This
 
 ## Error messages
 
-* `button-error`, for when a user sends in a message when we're expecting them to press one of the buttons
+* `mnch_onboarding_error_handling_button`, for when a user sends in a message when we're expecting them to press one of the buttons
