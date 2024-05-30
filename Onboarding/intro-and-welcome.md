@@ -329,13 +329,15 @@ card PrivacyPolicy, then: PrivacyPolicyError do
 
   message = page.body.body.text.value
 
-  # document =
-  #  get(
-  #    "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
-  #    headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-  #  )
+  log("@message.document")
 
-  # document_url = document.body.meta.download_url
+  document =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  document_url = document.body.meta.download_url
 
   button_labels = map(message.buttons, & &1.value.title)
 
@@ -345,7 +347,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
     ReadSummary: "@button_labels[2]"
   ) do
     # TODO: When we finally have the document, upload it and make this work
-    # document("@document_url")
+    document("@document_url", filename: "Privacy Policy")
     text("@message.message")
   end
 end
