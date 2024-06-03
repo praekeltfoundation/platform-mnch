@@ -113,7 +113,6 @@ card NonPersonalisedMenu, then: DisplayNonPersonalisedMenu do
   profile_completion =
     if is_nil_or_empty(contact.profile_completion), do: "0%", else: contact.profile_completion
 
-  text("@profile_completion")
   loading_message = substitute(message.message, "{0%}", profile_completion)
   menu_items = map(message.list_items, & &1.value)
 end
