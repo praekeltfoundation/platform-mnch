@@ -109,7 +109,6 @@ card PersonalisedMenu, then: DisplayPersonalisedMenu do
     )
 
   message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{0%}", "@contact.profile_completion")
   menu_items = map(message.list_items, & &1.value)
 end
 
@@ -125,7 +124,7 @@ card DisplayPersonalisedMenu, then: DisplayPersonalisedMenuError do
       TakeATour: "@menu_items[6]",
       About: "@menu_items[7]"
     ) do
-      text("@loading_message")
+      text("@message.message")
     end
 end
 
@@ -217,7 +216,7 @@ card DisplayHealthGuideGeneric, then: DisplayHealthGuideGenericError do
       Generic1: "@menu_items[4]",
       Generic2: "@menu_items[5]",
       Generic2: "@menu_items[6]",
-      MainMenu: "@menu_items[7]"
+      PersonalisedMenu: "@menu_items[7]"
     ) do
       text("@message.message")
     end
@@ -278,10 +277,6 @@ card DomainShowcase do
   log("DomainShowcase")
 end
 
-card MainMenu do
-  log("MainMenu")
-end
-
 ```
 
 ## View topics for you
@@ -321,7 +316,7 @@ card DisplayLibraryTopics, then: DisplayLibraryTopicsError do
       WellBeing: "@menu_items[3]",
       FamilyPlanning: "@menu_items[4]",
       HealthProfessional: "@menu_items[5]",
-      MainMenu: "@menu_items[6]"
+      PersonalisedMenu: "@menu_items[6]"
     ) do
       text("@message.message")
     end
@@ -409,7 +404,7 @@ card DisplayManageUpdates, then: DisplayManageUpdatesError do
       LoveRelationship: "@menu_items[3]",
       FamilyPlanning: "@menu_items[4]",
       HealthWorkers: "@menu_items[5]",
-      MainMenu: "@menu_items[6]"
+      PersonalisedMenu: "@menu_items[6]"
     ) do
       text("@message.message")
     end
@@ -511,19 +506,16 @@ end
 
 card AllData, then: DataPreferencesConfirmation do
   log("@preference")
-  data_preference = "all"
   update_contact(data_preference: "all")
 end
 
 card TextAndImages, then: DataPreferencesConfirmation do
   log("@preference")
-  data_preference = "text and images"
   update_contact(data_preference: "text and images")
 end
 
 card TextOnly, then: DataPreferencesConfirmation do
   log("@preference")
-  data_preference = "text only"
   update_contact(data_preference: "text only")
 end
 
@@ -559,7 +551,7 @@ card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
     substitute(
       message.message,
       "{Text only/ Text & images/ Text, images, audio & video}",
-      "@data_preference"
+      "@contact.data_preference"
     )
 
   button_labels = map(message.buttons, & &1.value.title)
@@ -663,7 +655,7 @@ end
 
 ```
 
-## TODO
+## TODO: Article Topics
 
 ```stack
 card ArticleTopic01Secondary do
