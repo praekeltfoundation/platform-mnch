@@ -2072,7 +2072,7 @@ card FactoidTrimester1GoToNext when status = "curious", then: CuriousContentIntr
   log("Go to curious content intro")
 end
 
-card FactoidTrimester1GoToNext, then: Topic1 do
+card FactoidTrimester1GoToNext, then: TopicsStart do
   log("Go to im pregnant content intro")
 end
 
@@ -2146,7 +2146,7 @@ card FactoidTrimester2GoToNext when status = "curious", then: CuriousContentIntr
   log("Go to curious content intro")
 end
 
-card FactoidTrimester2GoToNext, then: Topic1 do
+card FactoidTrimester2GoToNext, then: TopicsStart do
   log("Go to im pregnant content intro")
 end
 
@@ -2220,7 +2220,7 @@ card FactoidTrimester3GoToNext when status = "curious", then: CuriousContentIntr
   log("Go to curious content intro")
 end
 
-card FactoidTrimester3GoToNext, then: Topic1 do
+card FactoidTrimester3GoToNext, then: TopicsStart do
   log("Go to im pregnant content intro")
 end
 
