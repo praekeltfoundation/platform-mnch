@@ -109,7 +109,12 @@ card NonPersonalisedMenu, then: DisplayNonPersonalisedMenu do
     )
 
   message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{0%}", "@contact.profile_completion")
+
+  profile_completion =
+    if is_nil_or_empty(contact.profile_completion), do: "0%", else: contact.profile_completion
+
+  text("@profile_completion")
+  loading_message = substitute(message.message, "{0%}", profile_completion)
   menu_items = map(message.list_items, & &1.value)
 end
 
@@ -121,7 +126,7 @@ card DisplayNonPersonalisedMenu, then: DisplayNonPersonalisedMenuError do
       HelpCentre: "@menu_items[2]",
       Profile: "@menu_items[3]",
       ManageUpdate: "@menu_items[4]",
-      ManageData: "@menu_items[5]",
+      ManageUserData: "@menu_items[5]",
       TakeATour: "@menu_items[6]",
       About: "@menu_items[7]"
     ) do
@@ -137,7 +142,7 @@ card DisplayNonPersonalisedMenuError, then: DisplayNonPersonalisedMenuError do
       HelpCentre: "@menu_items[2]",
       Profile: "@menu_items[3]",
       ManageUpdate: "@menu_items[4]",
-      ManageData: "@menu_items[5]",
+      ManageUserData: "@menu_items[5]",
       TakeATour: "@menu_items[6]",
       About: "@menu_items[7]"
     ) do
@@ -145,7 +150,7 @@ card DisplayNonPersonalisedMenuError, then: DisplayNonPersonalisedMenuError do
     end
 end
 
-card HealthGuide when is_nil_or_empty(profile_completion), then: PromptZero do
+card HealthGuide when is_nil_or_empty(contact.profile_completion), then: PromptZero do
   update_contact(topic: "@selected_topic")
 end
 
@@ -169,7 +174,7 @@ card ManageUpdate, then: ManageUpdates do
   update_contact(topic: "@selected_topic")
 end
 
-card ManageData, then: ManageData do
+card ManageUserData, then: DataSettings do
   update_contact(topic: "@selected_topic")
 end
 
@@ -214,7 +219,7 @@ end
 card DisplayPromptZero, then: DisplayPromptZeroError do
   buttons(
     DomainShowcase: "@button_labels[0]",
-    MainMenu: "@button_labels[1]"
+    NonPersonalisedMenu: "@button_labels[1]"
   ) do
     text("@message.message")
   end
@@ -223,7 +228,7 @@ end
 card DisplayPromptZeroError, then: DisplayPromptZeroError do
   buttons(
     DomainShowcase: "@button_labels[0]",
-    MainMenu: "@button_labels[1]"
+    NonPersonalisedMenu: "@button_labels[1]"
   ) do
     text("@button_error_text")
   end
@@ -234,10 +239,6 @@ end
 ```stack
 card DomainShowcase do
   log("DomainShowcase")
-end
-
-card MainMenu do
-  log("MainMenu")
 end
 
 ```
@@ -274,7 +275,7 @@ end
 card DisplayPromptPartial, then: DisplayPromptPartialError do
   buttons(
     CheckPoint: "@button_labels[0]",
-    MainMenu: "@button_labels[1]"
+    NonPersonalisedMenu: "@button_labels[1]"
   ) do
     text("@loading_message")
   end
@@ -283,7 +284,7 @@ end
 card DisplayPromptPartialError, then: DisplayPromptPartialError do
   buttons(
     CheckPoint: "@button_labels[0]",
-    MainMenu: "@button_labels[1]"
+    NonPersonalisedMenu: "@button_labels[1]"
   ) do
     text("@button_error_text")
   end
@@ -337,7 +338,7 @@ card DisplayLibraryTopics, then: DisplayLibraryTopicsError do
       WellBeing: "@menu_items[3]",
       FamilyPlanning: "@menu_items[4]",
       HealthProfessional: "@menu_items[5]",
-      MainMenu: "@menu_items[6]"
+      NonPersonalisedMenu: "@menu_items[6]"
     ) do
       text("@message.message")
     end
@@ -352,7 +353,7 @@ card DisplayLibraryTopicsError, then: DisplayLibraryTopicsError do
       WellBeing: "@menu_items[3]",
       FamilyPlanning: "@menu_items[4]",
       HealthProfessional: "@menu_items[5]",
-      MainMenu: "@menu_items[6]"
+      NonPersonalisedMenu: "@menu_items[6]"
     ) do
       text("@list_error_text")
     end
@@ -379,10 +380,6 @@ card FamilyPlanning, then: ArticleTopic01Secondary do
 end
 
 card HealthProfessional, then: ArticleTopic01Secondary do
-  update_contact(topic: "@selected_topic")
-end
-
-card MainMenu, then: ArticleTopic01Secondary do
   update_contact(topic: "@selected_topic")
 end
 
@@ -425,7 +422,7 @@ card DisplayManageUpdates, then: DisplayManageUpdatesError do
       LoveRelationship: "@menu_items[3]",
       FamilyPlanning: "@menu_items[4]",
       HealthWorkers: "@menu_items[5]",
-      MainMenu: "@menu_items[6]"
+      NonPersonalisedMenu: "@menu_items[6]"
     ) do
       text("@message.message")
     end
@@ -440,7 +437,7 @@ card DisplayManageUpdatesError, then: DisplayManageUpdatesError do
       LoveRelationship: "@menu_items[3]",
       FamilyPlanning: "@menu_items[4]",
       HealthWorkers: "@menu_items[5]",
-      MainMenu: "@menu_items[6]"
+      NonPersonalisedMenu: "@menu_items[6]"
     ) do
       text("@list_error_text")
     end
@@ -467,10 +464,6 @@ card FamilyPlanning, then: ArticleTopic01Secondary do
 end
 
 card HealthWorkers, then: ArticleTopic01Secondary do
-  update_contact(topic: "@selected_topic")
-end
-
-card MainMenu, then: ArticleTopic01Secondary do
   update_contact(topic: "@selected_topic")
 end
 
@@ -527,19 +520,16 @@ end
 
 card AllData, then: DataPreferencesConfirmation do
   log("@preference")
-  data_preference = "all"
   update_contact(data_preference: "all")
 end
 
 card TextAndImages, then: DataPreferencesConfirmation do
   log("@preference")
-  data_preference = "text and images"
   update_contact(data_preference: "text and images")
 end
 
 card TextOnly, then: DataPreferencesConfirmation do
   log("@preference")
-  data_preference = "text only"
   update_contact(data_preference: "text only")
 end
 
@@ -575,7 +565,7 @@ card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
     substitute(
       message.message,
       "{Text only/ Text & images/ Text, images, audio & video}",
-      "@data_preference"
+      "@contact.data_preference"
     )
 
   button_labels = map(message.buttons, & &1.value.title)
@@ -666,18 +656,20 @@ card DisplayAboutPrivacy, then: DisplayAboutPrivacyError do
 
   document("@doc_data.body.meta.download_url")
 
-  buttons(MainMenu: "@button_labels[0]") do
+  buttons(NonPersonalisedMenu: "@button_labels[0]") do
     text("@message.message")
   end
 end
 
 card DisplayAboutPrivacyError, then: DisplayAboutPrivacyError do
-  buttons(MainMenu: "@button_labels[0]") do
+  buttons(NonPersonalisedMenu: "@button_labels[0]") do
     text("@button_error_text")
   end
 end
 
 ```
+
+## TODO: Article Topics
 
 ```stack
 card ArticleTopic01Secondary do
