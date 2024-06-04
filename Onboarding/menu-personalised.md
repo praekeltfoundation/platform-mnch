@@ -1,3 +1,10 @@
+<!-- { section: "6ccb73e1-e909-4a46-b571-16e4bcb28565", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "pm")
+
+```
+
 <!--
  dictionary: "config"
 version: "0.1.0"
@@ -480,7 +487,6 @@ card DataSettings, then: DisplayDataSettings do
     )
 
   message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -490,7 +496,7 @@ card DisplayDataSettings, then: DisplayDataSettingsError do
     TextAndImages: "@button_labels[1]",
     TextOnly: "@button_labels[2]"
   ) do
-    text("@loading_message")
+    text("@message.message")
   end
 end
 
