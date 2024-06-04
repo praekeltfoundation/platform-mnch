@@ -1,3 +1,10 @@
+<!-- { section: "6ccb73e1-e909-4a46-b571-16e4bcb28565", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "npm")
+
+```
+
 <!--
  dictionary: "config"
 version: "0.1.0"
@@ -235,6 +242,8 @@ end
 
 ```
 
+## TODO: Domain Show Case
+
 ```stack
 card DomainShowcase do
   log("DomainShowcase")
@@ -267,7 +276,10 @@ card PromptPartial, then: DisplayPromptPartial do
     )
 
   message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
+
+  name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
+
+  loading_message = substitute(message.message, "{username / there}", "@name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
