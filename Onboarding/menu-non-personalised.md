@@ -505,7 +505,6 @@ card DataSettings, then: DisplayDataSettings do
     )
 
   message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -515,7 +514,7 @@ card DisplayDataSettings, then: DisplayDataSettingsError do
     TextAndImages: "@button_labels[1]",
     TextOnly: "@button_labels[2]"
   ) do
-    text("@loading_message")
+    text("@message.message")
   end
 end
 
