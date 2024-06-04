@@ -63,28 +63,6 @@ card FetchError, then: NonPersonalisedMenu do
     )
 
   list_error_text = page.body.body.text.value.message
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_unrecognised_number"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  unrecognised_number_text = page.body.body.text.value.message
 end
 
 ```
