@@ -5,56 +5,81 @@ ExUnit.start()
 defmodule BrowsableFaqsTest do
   use FlowTester.Case
 
-  defp flow_path(flow_name), do: Path.join([__DIR__, "flows", flow_name <> ".json"])
+  alias ContentRepoWebhookHandler, as: FakeCR
+
+  defp flow_path(flow_name), do: Path.join([__DIR__, "json", flow_name <> ".json"])
 
   def setup_fake_contentrepo(auth_token) do
     # Start the handler.
-    # {:ok, wh_pid} = start_supervised({ContentRepoWebhookHandler, {auth_token}})
-    wh_pid = start_link_supervised!({ContentRepoWebhookHandler, {auth_token}})
+    wh_pid = start_link_supervised!({FakeCR, %FakeCR.Config{auth_token: auth_token}})
     # Add some content.
     error_pg_button = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button", title: "error",  parent_slug: "test",
+      slug: "mnch_onboarding_error_handling_button", title: "error",  parent: "test",
       wa_messages: [%WAMsg{message: "This is the error."}]
     }
     error_pg_list = %ContentPage{
-      slug: "mnch_onboarding_error_handling_list_message", title: "error",  parent_slug: "test",
+      slug: "mnch_onboarding_error_handling_list_message", title: "error",  parent: "test",
       wa_messages: [%WAMsg{message: "This is the error."}]
     }
     error_pg_year = %ContentPage{
-      slug: "mnch_onboarding_unrecognised_year", title: "error",  parent_slug: "test",
-      wa_messages: [%WAMsg{message: "Error, What year were you born in?"}]
+      slug: "mnch_onboarding_unrecognised_year", title: "error",  parent: "test",
+      wa_messages: [%WAMsg{message: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a specific year, like 2008 or 1998."}]
     }
     mnch_onboarding_q_age = %ContentPage{
-      slug: "mnch_onboarding_q_age", title: "Q_age", parent_slug: "test",
+      slug: "mnch_onboarding_q_age", title: "Q_age", parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "What year were you born in?"
+          message: "If there are any questions you don’t want to answer right now, reply `Skip`\n\n👤 *What year were you born in?*"
         }
       ]
     }
-    mnch_onboarding_q_province_why = %ContentPage{
-      slug: "mnch_onboarding_q_province_why", title: "Q_province", parent_slug: "test",
+    mnch_onboarding_q_province = %ContentPage{
+      slug: "mnch_onboarding_q_province", title: "Q_province", parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "👤 Which province do you call home?"
+          message: "👤 *Which province do you call home?*",
+          list_items: [
+            %ListItem{value: "{province_name_01}"},
+            %ListItem{value: "{province_name_02}"},
+            %ListItem{value: "{province_name_03}"},
+            %ListItem{value: "{province_name_04}"},
+            %ListItem{value: "{province_name_05}"},
+            %ListItem{value: "{province_name_06}"},
+            %ListItem{value: "{province_name_07}"},
+            %ListItem{value: "Why do you ask?"},
+          ]
         }
       ]
     }
-    assert :ok = ContentRepoWebhookHandler.add_pages(wh_pid, [
+    mnch_onboarding_q_area_type = %ContentPage{
+      slug: "mnch_onboarding_q_area_type", title: "Q_area_type", parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "👤 *Do you live in a big town or city, or in the countryside or a small village?*",
+          buttons: [
+            %NextBtn{title: "Big town/City"},
+            %NextBtn{title: "Countryside/Village"},
+          ]
+        }
+      ]
+    }
+    assert :ok = FakeCR.add_pages(wh_pid, [
       %Index{slug: "pages", title: "Pages"},
       %Index{slug: "test", title: "test"},
       error_pg_button,
       error_pg_list,
       error_pg_year,
       mnch_onboarding_q_age,
-      mnch_onboarding_q_province_why,
+      mnch_onboarding_q_province,
+      mnch_onboarding_q_area_type,
     ])
     # Return the adapter.
-    ContentRepoWebhookHandler.adapter(wh_pid)
+    FakeCR.adapter(wh_pid)
   end
 
-  test "onboarding p1 high level example" do
-    auth_token = "f8d2e55d693bf360531a04335007698ad5da21a6"
+  test "Onboarding p2 Basic Profile Questions" do
+    # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
+    auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
 
     flow_start =
       flow_path("onboarding_p2")
@@ -73,16 +98,17 @@ defmodule BrowsableFaqsTest do
       type: "MobilePrimitives.OpenResponse",
     })
     |> receive_messages([%{
-      text: "If there are any questions you don’t want to answer right now, reply `Skip`\n\n👤 *What year were you born in?*" ,
+      text: "If there are any questions you don’t want to answer right now, reply `Skip`\n\n👤 *What year were you born in?*",
     }])
     |> waiting_for_input(true)
+
     |> FlowTester.run_until_next_input!("NotAYear")
     |> block_matches(%{
       name: "year_of_birth",
       type: "MobilePrimitives.OpenResponse",
     })
     |> receive_messages([%{
-      text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a specific year, like 2008 or 1998." ,
+      text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a specific year, like 2008 or 1998.",
     }])
     |> waiting_for_input(true)
     |> FlowTester.run_until_next_input!("1999")
@@ -105,6 +131,7 @@ defmodule BrowsableFaqsTest do
       ],
     }])
     |> waiting_for_input(true)
+
     |> FlowTester.run_until_next_input!("{province_name_06}")
     |> block_matches(%{
       name: "area_type",
@@ -114,25 +141,42 @@ defmodule BrowsableFaqsTest do
       text: "👤 *Do you live in a big town or city, or in the countryside or a small village?*",
       list_header: nil,
       list_items: [
-        ["Big town/City", "Big town/City"],
-        ["Countryside/Village", "Countryside/Village"]
+        ["@button_labels[0]", "Big town/City"],
+        ["@button_labels[1]", "Countryside/Village"]
       ],
     }])
     |> waiting_for_input(true)
-    |> FlowTester.run_until_next_input!("urban")
+
+    # |> FlowTester.run_until_next_input!(button_label: "Big town/City")
+    # |> block_matches(%{
+    #   name: "gender",
+    #   type: "MobilePrimitives.SelectOneResponse",
+    # })
+
+    |> FlowTester.next_step!(button_label: "Big town/City")
     |> block_matches(%{
-      name: "gender",
-      type: "MobilePrimitives.SelectOneResponse",
+      name: "urban_contact_update_area_type",
+      type: "Core.SetContactProperty",
     })
-    # |> receive_messages([%{
-    #   text: "👤 *Do you live in a big town or city, or in the countryside or a small village?*",
-    #   list_header: nil,
-    #   list_items: [
-    #     ["Big town/City", "Big town/City"],
-    #     ["Countryside/Village", "Countryside/Village"]
-    #   ],
-    # }])
-    # |> FlowTester.run_until_end!("1")
+
+    |> FlowTester.next_step!()
+    |> block_matches(%{
+      name: "gender_case",
+      type: "Core.Case",
+    })
+
+    |> FlowTester.next_step!()
+    |> block_matches(%{
+      name: "gender_case_condition_0_log",
+      type: "Core.Log",
+    })
+
+    |> FlowTester.next_step!()
+    |> block_matches(%{
+      name: "gender_case_condition_0_log",
+      type: "Core.Log",
+    })
+
     # |> flow_ends()
   end
 end
