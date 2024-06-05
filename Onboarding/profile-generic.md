@@ -16,7 +16,11 @@ columns: []
 | contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 
 ```stack
-card FetchError, then: ProfileProgressGeneric do
+card Checkpoint, then: FetchError do
+  update_contact(checkpoint: "generic_basic_info")
+end
+
+card FetchError, then: ProfileProgress30Generic do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
@@ -44,36 +48,15 @@ end
 
 ```
 
-## Get User Profile Progress
-
-```stack
-card ProfileProgressGeneric when contact.profile_progress = "10%",
-  then: ProfileProgress10Generic do
-  log("Profile progress is 10%")
-end
-
-card ProfileProgressGeneric when contact.profile_progress = "30%",
-  then: ProfileProgress30Generic do
-  log("Profile progress is 30%")
-end
-
-card ProfileProgressGeneric when contact.profile_progress = "75%",
-  then: ProfileProgress75Generic do
-  log("Profile progress is 75%")
-end
-
-card ProfileProgressGeneric, then: ProfileProgress100Generic do
-  log("Profile progress is 100%")
-end
-
-```
-
 ## Profile Progress 30 Generic
 
 <!-- { section: "37ea7b8b-35d8-4111-a77d-46aa852604b4", x: 0, y: 0} -->
 
 ```stack
 card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
+  write_result("profile_completion", "30%")
+  update_contact(profile_completion: "30%")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -149,7 +132,7 @@ end
 card DisplayWhyPersonalInfo1, then: DisplayWhyPersonalInfo1Error do
   buttons(
     PersonalProfileQuestions: "@button_labels[0]",
-    LowProfileCompletion: "@button_labels[1]"
+    ReminderLater: "@button_labels[1]"
   ) do
     text("@message.message")
   end
@@ -158,8 +141,50 @@ end
 card DisplayWhyPersonalInfo1Error, then: DisplayWhyPersonalInfo1Error do
   buttons(
     PersonalProfileQuestions: "@button_labels[0]",
-    LowProfileCompletion: "@button_labels[1]"
+    ReminderLater: "@button_labels[1]"
   ) do
+    text("@button_error_text")
+  end
+end
+
+```
+
+## Reminder Later
+
+```stack
+card ReminderLater, then: DisplayReminderLater do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_reminder_later"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  content_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  message = content_data.body.body.text.value
+  button_labels = map(message.buttons, & &1.value.title)
+end
+
+card DisplayReminderLater, then: DisplayReminderLaterError do
+  buttons(ViewTopics: "@button_labels[0]") do
+    text("@message.message")
+  end
+end
+
+card DisplayReminderLaterError, then: DisplayReminderLaterError do
+  buttons(ViewTopics: "@button_labels[0]") do
     text("@button_error_text")
   end
 end
@@ -170,6 +195,9 @@ end
 
 ```stack
 card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
+  write_result("profile_completion", "100%")
+  update_contact(profile_completion: "100%")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -191,6 +219,9 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
     )
 
   message = content_data.body.body.text.value
+  name = if is_nil_or_empty(contact.name), do: "None", else: contact.name
+
+  loading_message = substitute(message.message, "{UserName, “None”}", "@name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -202,7 +233,7 @@ card DisplayProfileProgress100Generic when contact.data_preference == "text only
     BrowsableContent: "@button_labels[1]",
     MainMenu: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
@@ -218,14 +249,13 @@ card DisplayProfileProgress100Generic, then: DisplayProfileProgress100GenericErr
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(
     HealthGuide: "@button_labels[0]",
     BrowsableContent: "@button_labels[1]",
     MainMenu: "@button_labels[2]"
   ) do
-    text("@message.message")
+    image("@image_data.body.meta.download_url")
+    text("@loading_message")
   end
 end
 
@@ -241,152 +271,61 @@ end
 
 ```
 
-## Profile Progress 75 Generic
+## Personal Profile Questions
 
 ```stack
-card ProfileProgress75Generic, then: DisplayProfileProgress75Generic do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_75_generic"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  content_data =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
-end
-
-# Text only
-card DisplayProfileProgress75Generic when contact.data_preference == "text only",
-  then: DisplayProfileProgress75GenericError do
-  buttons(
-    HealthGuide: "@button_labels[0]",
-    BrowsableContent: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
-  ) do
-    text("@message.message")
-  end
-end
-
-# Display with image
-card DisplayProfileProgress75Generic, then: DisplayProfileProgress75GenericError do
-  image_id = content_data.body.body.text.value.image
-
-  image_data =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
-      headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
-      ]
-    )
-
-  image("@image_data.body.meta.download_url")
-
-  buttons(
-    HealthGuide: "@button_labels[0]",
-    BrowsableContent: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
-  ) do
-    text("@message.message")
-  end
-end
-
-card DisplayProfileProgress75GenericError, then: DisplayProfileProgress75GenericError do
-  buttons(
-    HealthGuide: "@button_labels[0]",
-    BrowsableContent: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
-  ) do
-    text("@button_error_text")
-  end
+card PersonalProfileQuestions, then: LOCAssessment do
+  text("Personal profile questions goes here")
+  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
 end
 
 ```
 
-## Profile Progress 10 Generic
+## LOC Assessment
 
 ```stack
-card ProfileProgress10Generic, then: DisplayProfileProgress10Generic do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_10_generic"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  content_data =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
-    )
-
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+card LOCAssessment, then: OptInReminder do
+  text("LOC Assessment content goes here")
+  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
-# Text only
-card DisplayProfileProgress10Generic when contact.data_preference == "text only",
-  then: DisplayProfileProgress10GenericError do
-  buttons(
-    HealthGuide: "@button_labels[0]",
-    BrowsableContent: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
-  ) do
-    text("@message.message")
-  end
+```
+
+## Opt-in Reminder
+
+If user not opted in
+
+```stack
+card OptInReminder
+     when contact.opted_in == false or
+            contact.opted_in == "false" or
+            is_nil_or_empty(contact.opted_in),
+     then: ProfileProgress100Generic do
+  run_stack("537e4867-eb26-482d-96eb-d4783828c622")
 end
 
-# Display with image
-card DisplayProfileProgress10Generic, then: DisplayProfileProgress10GenericError do
-  image_id = content_data.body.body.text.value.image
-
-  image_data =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
-      headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
-      ]
-    )
-
-  image("@image_data.body.meta.download_url")
-
-  buttons(
-    HealthGuide: "@button_labels[0]",
-    BrowsableContent: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
-  ) do
-    text("@message.message")
-  end
+card OptInReminder, then: ProfileProgress100Generic do
+  log("User Opted in")
 end
 
-card DisplayProfileProgress10GenericError, then: DisplayProfileProgress10GenericError do
-  buttons(
-    HealthGuide: "@button_labels[0]",
-    BrowsableContent: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
-  ) do
-    text("@button_error_text")
-  end
+```
+
+## View Topics For You
+
+```stack
+card ViewTopics do
+  text("View topics content goes here")
+  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+end
+
+```
+
+## Main Menu
+
+```stack
+card MainMenu do
+  log("Go to main menu")
+  run_stack("e823ad1d-e2d7-4d5c-b928-786b601f0f29")
 end
 
 ```
@@ -394,11 +333,6 @@ end
 ## TODO These are the Placeholders
 
 ```stack
-card MainMenu do
-  text("Main menu goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
-end
-
 card HealthGuide do
   text("Health guide goes here")
   run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
@@ -406,16 +340,6 @@ end
 
 card BrowsableContent do
   text("Browsable content goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
-end
-
-card PersonalProfileQuestions do
-  text("Personal profile questions goes here")
-  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
-end
-
-card LowProfileCompletion do
-  text("low profile completion goes here")
   run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
