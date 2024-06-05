@@ -1,3 +1,10 @@
+<!-- { section: "d032bc4c-282f-422e-bff6-1d83897b82a5", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "optin")
+
+```
+
 <!--
  dictionary: "config"
 version: "0.1.0"
@@ -90,12 +97,11 @@ card DisplayOptInReminder, then: DisplayOptInReminderError do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(
     OptInYes: "@button_labels[0]",
     OptInNo: "@button_labels[1]"
   ) do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
@@ -115,7 +121,7 @@ end
 
 ```stack
 card OptInNo, then: OptInNoError do
-  update_contact(opted_in: "no")
+  update_contact(opted_in: "false")
 
   search =
     get(
@@ -153,6 +159,7 @@ end
 
 card MainMenu do
   # TODO add main menu id, this is just a placeholder id
+  text("Main menu goes here")
   run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
@@ -162,7 +169,7 @@ end
 
 ```stack
 card OptInYes, then: OptInYesError do
-  update_contact(opted_in: "yes")
+  update_contact(opted_in: "true")
 
   search =
     get(
@@ -185,10 +192,11 @@ card OptInYes, then: OptInYesError do
     )
 
   message = page.body.body.text.value
+  loading_message = substitute(message.message, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(MainMenu: "@button_labels[0]") do
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
