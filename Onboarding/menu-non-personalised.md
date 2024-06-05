@@ -96,9 +96,9 @@ card NonPersonalisedMenu, then: DisplayNonPersonalisedMenu do
   message = content_data.body.body.text.value
 
   profile_completion =
-    if is_nil_or_empty(contact.profile_completion), do: "0%", else: contact.profile_completion
+    if is_nil_or_empty(contact.profile_completion), do: "{0%}", else: contact.profile_completion
 
-  loading_message = substitute(message.message, "{0%}", profile_completion)
+  loading_message = substitute(message.message, "{profile_completion}", profile_completion)
   menu_items = map(message.list_items, & &1.value)
 end
 
@@ -225,6 +225,7 @@ end
 ```stack
 card DomainShowcase do
   log("DomainShowcase")
+  text("DomainShowcase goes here")
 end
 
 ```
@@ -257,7 +258,7 @@ card PromptPartial, then: DisplayPromptPartial do
 
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
 
-  loading_message = substitute(message.message, "{username / there}", "@name")
+  loading_message = substitute(message.message, "{username}", "@name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -286,6 +287,7 @@ end
 ```stack
 card CheckPoint do
   log("Check Point")
+  text("Check Point goes here")
 end
 
 ```
@@ -507,17 +509,17 @@ card DisplayDataSettingsError, then: DisplayDataSettingsError do
 end
 
 card AllData, then: DataPreferencesConfirmation do
-  log("@preference")
+  log("All")
   update_contact(data_preference: "all")
 end
 
 card TextAndImages, then: DataPreferencesConfirmation do
-  log("@preference")
+  log("text and images")
   update_contact(data_preference: "text and images")
 end
 
 card TextOnly, then: DataPreferencesConfirmation do
-  log("@preference")
+  log("text only")
   update_contact(data_preference: "text only")
 end
 
@@ -552,7 +554,7 @@ card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
   loading_message =
     substitute(
       message.message,
-      "{Text only/ Text & images/ Text, images, audio & video}",
+      "{data_preference}",
       "@contact.data_preference"
     )
 
