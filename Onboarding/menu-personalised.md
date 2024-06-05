@@ -217,7 +217,7 @@ card DisplayHealthGuideGenericError, then: DisplayHealthGuideGenericError do
       Generic1: "@menu_items[4]",
       Generic2: "@menu_items[5]",
       Generic3: "@menu_items[6]",
-      MainMenu: "@menu_items[7]"
+      PersonalisedMenu: "@menu_items[7]"
     ) do
       text("@list_error_text")
     end
@@ -251,15 +251,14 @@ card Generic3, then: ArticleTopic01Secondary do
   update_contact(topic: "@selected_topic")
 end
 
-card MainMenu, then: ArticleTopic01Secondary do
-  update_contact(topic: "@selected_topic")
-end
-
 ```
+
+## TODO
 
 ```stack
 card DomainShowcase do
   log("DomainShowcase")
+  text("DomainShowcase goes here")
 end
 
 ```
@@ -316,7 +315,7 @@ card DisplayLibraryTopicsError, then: DisplayLibraryTopicsError do
       WellBeing: "@menu_items[3]",
       FamilyPlanning: "@menu_items[4]",
       HealthProfessional: "@menu_items[5]",
-      MainMenu: "@menu_items[6]"
+      PersonalisedMenu: "@menu_items[6]"
     ) do
       text("@list_error_text")
     end
@@ -343,10 +342,6 @@ card FamilyPlanning, then: ArticleTopic01Secondary do
 end
 
 card HealthProfessional, then: ArticleTopic01Secondary do
-  update_contact(topic: "@selected_topic")
-end
-
-card MainMenu, then: ArticleTopic01Secondary do
   update_contact(topic: "@selected_topic")
 end
 
@@ -404,7 +399,7 @@ card DisplayManageUpdatesError, then: DisplayManageUpdatesError do
       LoveRelationship: "@menu_items[3]",
       FamilyPlanning: "@menu_items[4]",
       HealthWorkers: "@menu_items[5]",
-      MainMenu: "@menu_items[6]"
+      PersonalisedMenu: "@menu_items[6]"
     ) do
       text("@list_error_text")
     end
@@ -431,10 +426,6 @@ card FamilyPlanning, then: ArticleTopic01Secondary do
 end
 
 card HealthWorkers, then: ArticleTopic01Secondary do
-  update_contact(topic: "@selected_topic")
-end
-
-card MainMenu, then: ArticleTopic01Secondary do
   update_contact(topic: "@selected_topic")
 end
 
@@ -534,7 +525,7 @@ card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
   loading_message =
     substitute(
       message.message,
-      "{Text only/ Text & images/ Text, images, audio & video}",
+      "{data_preference}",
       "@contact.data_preference"
     )
 
@@ -626,13 +617,13 @@ card DisplayAboutPrivacy, then: DisplayAboutPrivacyError do
 
   document("@doc_data.body.meta.download_url")
 
-  buttons(MainMenu: "@button_labels[0]") do
+  buttons(PersonalisedMenu: "@button_labels[0]") do
     text("@message.message")
   end
 end
 
 card DisplayAboutPrivacyError, then: DisplayAboutPrivacyError do
-  buttons(MainMenu: "@button_labels[0]") do
+  buttons(PersonalisedMenu: "@button_labels[0]") do
     text("@button_error_text")
   end
 end
@@ -644,6 +635,7 @@ end
 ```stack
 card ArticleTopic01Secondary do
   log("Placeholder")
+  text("Article topics")
 end
 
 ```
