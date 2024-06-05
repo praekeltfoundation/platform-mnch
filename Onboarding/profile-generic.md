@@ -275,7 +275,7 @@ end
 
 ```stack
 card PersonalProfileQuestions, then: LOCAssessment do
-  text("Personal profile questions goes here")
+  log("Personal profile questions goes here")
   run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
 end
 
@@ -285,7 +285,7 @@ end
 
 ```stack
 card LOCAssessment, then: OptInReminder do
-  text("LOC Assessment content goes here")
+  log("LOC Assessment content goes here")
   run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
@@ -314,7 +314,7 @@ end
 
 ```stack
 card ViewTopics do
-  text("View topics content goes here")
+  log("View topics content goes here")
   run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
@@ -334,12 +334,12 @@ end
 
 ```stack
 card HealthGuide do
-  text("Health guide goes here")
+  log("Health guide goes here")
   run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
 card BrowsableContent do
-  text("Browsable content goes here")
+  log("Browsable content goes here")
   run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
