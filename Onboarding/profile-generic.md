@@ -17,10 +17,11 @@ columns: []
 
 ```stack
 card Checkpoint, then: FetchError do
+  update_contact(profile_type: "generic")
   update_contact(checkpoint: "generic_basic_info")
 end
 
-card FetchError, then: ProfileProgress30Generic do
+card FetchError, then: BasicQuestions do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
@@ -44,6 +45,16 @@ card FetchError, then: ProfileProgress30Generic do
     )
 
   button_error_text = page.body.body.text.value.message
+end
+
+```
+
+## Basic Profile Questions
+
+```stack
+card BasicQuestions, then: ProfileProgress30Generic do
+  log("Basic questions")
+  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
 end
 
 ```
@@ -275,18 +286,18 @@ end
 
 ```stack
 card PersonalProfileQuestions, then: LOCAssessment do
-  log("Personal profile questions goes here")
+  log("Personal profile questions")
   run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
 end
 
 ```
 
-## LOC Assessment
+## TODO: LOC Assessment
 
 ```stack
 card LOCAssessment, then: OptInReminder do
   log("LOC Assessment content goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  # run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
 ```
@@ -315,7 +326,7 @@ end
 ```stack
 card ViewTopics do
   log("View topics content goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  # run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
 ```
