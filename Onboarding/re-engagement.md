@@ -5,13 +5,6 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 
 ```
 
-```stack
-# card Setup, then: FetchError do
-#   update_contact(reengagement_message: "1st message")
-# end
-
-```
-
 <!-- { section: "9a4ecd16-1072-4929-8f8f-5f1c63cdd452", x: 0, y: 0} -->
 
 ```stack
@@ -47,23 +40,19 @@ end
 
 ```stack
 card DropOffRedirect when contact.reengagement_message == "1st message", then: DropOff2ndReminder do
-  text("To send 2nd message")
   log("To send 2nd message")
   schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 23 * 60 * 60)
 end
 
 card DropOffRedirect when contact.reengagement_message == "2nd message", then: DropOff3rdReminder do
-  text("To send 3rd message")
   log("To send 3rd message")
 end
 
 card DropOffRedirect when contact.reengagement_message == "remind me", then: ReminderRequest do
-  text("Remind me tomorrow message")
   log("Remind me tomorrow message")
 end
 
 card DropOffRedirect, then: DropOff1stReminder do
-  text("To send 1st message")
   log("To send 1st message")
   schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 22 * 60 * 60)
 end
