@@ -5,6 +5,13 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 
 ```
 
+```stack
+# card Setup, then: FetchError do
+#   update_contact(reengagement_message: "1st message")
+# end
+
+```
+
 <!-- { section: "9a4ecd16-1072-4929-8f8f-5f1c63cdd452", x: 0, y: 0} -->
 
 ```stack
@@ -408,17 +415,6 @@ end
 card LOCAssessment do
   log("Loc Assessment")
   # run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
-end
-
-```
-
-## Schedule for 1 after later
-
-Need to set this at the start od onboarding
-
-```stack
-card Schedule1hLater do
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 60 * 60)
 end
 
 ```
