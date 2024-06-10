@@ -148,20 +148,25 @@ card ValidateYearOfBirth
   log("Skipping Age")
 end
 
-card ValidateYearOfBirth when year_of_birth > year(now()), then: ValidateYearOfBirth do
-  year_of_birth = ask("@unrecognised_year")
+card ValidateYearOfBirth when year_of_birth > year(now()), then: YearOfBirthError do
+  log("Yaer is greater than this year")
 end
 
-card ValidateYearOfBirth when isnumber(year_of_birth) != true, then: ValidateYearOfBirth do
-  year_of_birth = ask("@unrecognised_year")
+card ValidateYearOfBirth when isnumber(year_of_birth) != true, then: YearOfBirthError do
+  log("Is not a number")
 end
 
-card ValidateYearOfBirth when len("@year_of_birth") != 4, then: ValidateYearOfBirth do
-  year_of_birth = ask("@unrecognised_year")
+card ValidateYearOfBirth when len("@year_of_birth") != 4, then: YearOfBirthError do
+  log("Year is less then 4 digits")
 end
 
-card ValidateYearOfBirth when year_of_birth < min_yob, then: ValidateYearOfBirth do
-  year_of_birth = ask("@unrecognised_year")
+card ValidateYearOfBirth when year_of_birth < min_yob, then: YearOfBirthError do
+  log("Year is less then minimum year")
+end
+
+card ValidateYearOfBirth when isstring(year_of_birth), then: YearOfBirthError do
+  log("Is a string")
+  log("Invalid input for Year of Birth")
 end
 
 card ValidateYearOfBirth when isnumber(year_of_birth), then: Province do
@@ -169,11 +174,13 @@ card ValidateYearOfBirth when isnumber(year_of_birth), then: Province do
   log("Valid YoB. Navigating to Province.")
 end
 
-card ValidateYearOfBirth, then: YearOfBirthError do
-  log("Invalid input for Year of Birth")
+card ValidateYearOfBirth, then: Province do
+  update_contact(year_of_birth: "@year_of_birth")
+  log("Valid YoB. Navigating to Province.")
 end
 
-card YearOfBirthError, then: YearOfBirthError do
+card YearOfBirthError, then: ValidateYearOfBirth do
+  log("YearOfBirthError")
   year_of_birth = ask("@unrecognised_year")
 end
 
