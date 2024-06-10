@@ -5,13 +5,6 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 
 ```
 
-```stack
-# card Setup, then: FetchError do
-#   update_contact(reengagement_message: "1st message")
-# end
-
-```
-
 <!-- { section: "9a4ecd16-1072-4929-8f8f-5f1c63cdd452", x: 0, y: 0} -->
 
 ```stack
