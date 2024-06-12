@@ -41,6 +41,8 @@ end
 ```stack
 card DropOffRedirect when contact.reengagement_message == "1st message", then: DropOff2ndReminder do
   log("To send 2nd message")
+  # cancel any scheduled stacks for this journey
+  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
   schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 23 * 60 * 60)
 end
 
@@ -54,6 +56,8 @@ end
 
 card DropOffRedirect, then: DropOff1stReminder do
   log("To send 1st message")
+  # cancel any scheduled stacks for this journey
+  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
   schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 22 * 60 * 60)
 end
 
@@ -314,33 +318,30 @@ end
 
 ## Go To Where User Dropped Off
 
+### TODO This is a place holder
+
 ```stack
 card SaveReengagement, then: DropOff1stReminder do
   write_result("reengaged_point", contact.reengagement_message)
 end
 
 card DropOffGoTo when contact.checkpoint == "generic_basic_info", then: BasicProfile do
-  write_result("reengagement_point", "30%")
   log("Go to BasicProfile")
 end
 
 card DropOffGoTo when contact.checkpoint == "generic_personal_info", then: PersonalProfile do
-  write_result("profile_completion", "30%")
   log("Go to PersonalProfile")
 end
 
 card DropOffGoTo when contact.checkpoint == "generic_daily_life_info", then: LOCAssessment do
-  write_result("profile_completion", "30%")
   log("Go to LOCAssessment")
 end
 
 card DropOffGoTo when contact.checkpoint == "pregnant_nurse_profile", then: NurseQuestions do
-  write_result("profile_completion", "30%")
   log("Go to NurseQuestions")
 end
 
 card DropOffGoTo, then: PregnancyQuestions do
-  write_result("profile_completion", "30%")
   log("Go to PregnancyQuestions")
 end
 
@@ -353,6 +354,8 @@ Will resend a reminder after 23 hours
 ```stack
 card RemindMe do
   update_contact(reengagement_message: "remind me")
+  # cancel any scheduled stacks for this journey
+  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
   schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 23 * 60 * 60)
 end
 
