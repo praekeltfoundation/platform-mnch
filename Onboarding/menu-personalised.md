@@ -99,7 +99,7 @@ end
 
 card DisplayPersonalisedMenu, then: DisplayPersonalisedMenuError do
   selected_topic =
-    list("Select option",
+    list("Menu",
       HealthGuide: "@menu_items[0]",
       ViewTopics: "@menu_items[1]",
       HelpCentre: "@menu_items[2]",
@@ -115,7 +115,7 @@ end
 
 card DisplayPersonalisedMenuError, then: DisplayPersonalisedMenuError do
   selected_topic =
-    list("Select option",
+    list("Menu",
       HealthGuide: "@menu_items[0]",
       ViewTopics: "@menu_items[1]",
       HelpCentre: "@menu_items[2]",
@@ -137,7 +137,7 @@ card ViewTopics, then: LibraryTopics do
   update_contact(topic: "@selected_topic")
 end
 
-card HelpCentre, then: HelpCentre do
+card HelpCentre, then: GoToHelpCentre do
   update_contact(topic: "@selected_topic")
 end
 
@@ -193,7 +193,7 @@ end
 
 card DisplayHealthGuideGeneric, then: DisplayHealthGuideGenericError do
   selected_topic =
-    list("Select option",
+    list("Choose",
       CheckUp: "@menu_items[0]",
       TakeQuiz: "@menu_items[1]",
       Challenge: "@menu_items[2]",
@@ -209,7 +209,7 @@ end
 
 card DisplayHealthGuideGenericError, then: DisplayHealthGuideGenericError do
   selected_topic =
-    list("Select option",
+    list("Choose",
       CheckUp: "@menu_items[0]",
       TakeQuiz: "@menu_items[1]",
       Challenge: "@menu_items[2]",
@@ -293,7 +293,7 @@ end
 
 card DisplayLibraryTopics, then: DisplayLibraryTopicsError do
   selected_topic =
-    list("Select option",
+    list("Choose",
       LoveRelationship: "@menu_items[0]",
       PregnancyInfo: "@menu_items[1]",
       BabyChildHealth: "@menu_items[2]",
@@ -308,7 +308,7 @@ end
 
 card DisplayLibraryTopicsError, then: DisplayLibraryTopicsError do
   selected_topic =
-    list("Select option",
+    list("Choose",
       LoveRelationship: "@menu_items[0]",
       PregnancyInfo: "@menu_items[1]",
       BabyChildHealth: "@menu_items[2]",
@@ -377,7 +377,7 @@ end
 
 card DisplayManageUpdates, then: DisplayManageUpdatesError do
   selected_topic =
-    list("Select option",
+    list("Choose",
       PregnancyInfo: "@menu_items[0]",
       BabyChildHealth: "@menu_items[1]",
       WellBeing: "@menu_items[2]",
@@ -392,7 +392,7 @@ end
 
 card DisplayManageUpdatesError, then: DisplayManageUpdatesError do
   selected_topic =
-    list("Select option",
+    list("Choose",
       PregnancyInfo: "@menu_items[0]",
       BabyChildHealth: "@menu_items[1]",
       WellBeing: "@menu_items[2]",
@@ -549,7 +549,7 @@ end
 ## Help Centre
 
 ```stack
-card HelpCentre do
+card GoToHelpCentre, then: PersonalisedMenu do
   log("Help Centre")
   run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
 end
@@ -615,9 +615,8 @@ card DisplayAboutPrivacy, then: DisplayAboutPrivacyError do
       ]
     )
 
-  document("@doc_data.body.meta.download_url")
-
   buttons(PersonalisedMenu: "@button_labels[0]") do
+    document("@doc_data.body.meta.download_url")
     text("@message.message")
   end
 end

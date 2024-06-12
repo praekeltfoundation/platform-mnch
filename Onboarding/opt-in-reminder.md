@@ -120,7 +120,7 @@ end
 # Opt In No
 
 ```stack
-card OptInNo, then: OptInNoError do
+card OptInNo do
   update_contact(opted_in: "false")
 
   search =
@@ -144,23 +144,7 @@ card OptInNo, then: OptInNoError do
     )
 
   message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
-
-  buttons(MainMenu: "@button_labels[0]") do
-    text("@message.message")
-  end
-end
-
-card OptInNoError, then: OptInNoError do
-  buttons(MainMenu: "@button_labels[0]") do
-    text("@button_error_text")
-  end
-end
-
-card MainMenu do
-  # TODO add main menu id, this is just a placeholder id
-  text("Main menu goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  text("@message.message")
 end
 
 ```
@@ -168,7 +152,7 @@ end
 # Opt In Yes
 
 ```stack
-card OptInYes, then: OptInYesError do
+card OptInYes do
   update_contact(opted_in: "true")
 
   search =
@@ -193,17 +177,7 @@ card OptInYes, then: OptInYesError do
 
   message = page.body.body.text.value
   loading_message = substitute(message.message, "{@username}", "@contact.name")
-  button_labels = map(message.buttons, & &1.value.title)
-
-  buttons(MainMenu: "@button_labels[0]") do
-    text("@loading_message")
-  end
-end
-
-card OptInYesError, then: OptInYesError do
-  buttons(MainMenu: "@button_labels[0]") do
-    text("@button_error_text")
-  end
+  text("@loading_message")
 end
 
 ```

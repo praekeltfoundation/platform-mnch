@@ -375,6 +375,9 @@ end
 
 ```stack
 card ProfileProgress30, then: ProfileProgress30Error do
+  write_result("profile_completion", "30%")
+  update_contact(checkpoint: "hcw_profile_30")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -397,9 +400,6 @@ card ProfileProgress30, then: ProfileProgress30Error do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
-
-  write_result("profile_completion", "30%")
-  update_contact(checkpoint: "hcw_profile_30")
 
   buttons(
     ProfileProgress30Continue: "@button_labels[0]",
@@ -530,6 +530,9 @@ end
 
 ```stack
 card ProfileProgress50, then: ProfileProgress50Error do
+  write_result("profile_completion", "50%")
+  update_contact(checkpoint: "hcw_profile_50")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -553,9 +556,6 @@ card ProfileProgress50, then: ProfileProgress50Error do
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
 
-  write_result("profile_completion", "50%")
-  update_contact(checkpoint: "hcw_profile_50")
-
   buttons(ProfileProgress50Continue: "@button_labels[0]") do
     text("@message.message")
   end
@@ -578,6 +578,9 @@ end
 
 ```stack
 card ProfileProgress75, then: ProfileProgress75Branch do
+  write_result("profile_completion", "75%")
+  update_contact(checkpoint: "hcw_profile_75")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -600,9 +603,6 @@ card ProfileProgress75, then: ProfileProgress75Branch do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
-
-  write_result("profile_completion", "75%")
-  update_contact(checkpoint: "hcw_profile_75")
 end
 
 # Text only
@@ -658,6 +658,10 @@ end
 
 ```stack
 card ProfileProgress100, then: ProfileProgress100Error do
+  write_result("profile_completion", "100%")
+  update_contact(checkpoint: "hcw_profile_100")
+  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -680,9 +684,6 @@ card ProfileProgress100, then: ProfileProgress100Error do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
-
-  write_result("profile_completion", "100%")
-  update_contact(checkpoint: "hcw_profile_100")
 
   buttons(
     ExploreHealthGuide: "@button_labels[0]",

@@ -43,11 +43,7 @@ columns: []
 Here we do any setup and fetching of values before we start the flow.
 
 ```stack
-card Checkpoint, then: FetchError do
-  update_contact(checkpoint: "basic_pregnancy_profile")
-end
-
-card FetchError, then: Question1 do
+card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
 
   search =
@@ -116,6 +112,103 @@ card FetchError, then: Question1 do
     )
 
   unrecognised_number_text = page.body.body.text.value.message
+end
+
+```
+
+## Check Points
+
+Here we check the checkpoints and forward the user to the correct point depending on where they left off.
+
+```stack
+card Checkpoint
+     when contact.checkpoint == "pregnant_mom_profile" and
+            is_nil_or_empty(contact.profile_completion),
+     then: PregnantEDDMonth do
+  log("Go to PregnantEDDMonth")
+end
+
+card Checkpoint
+     when contact.checkpoint == "pregnant_mom_profile" and contact.profile_completion == "25%",
+     then: ProfileProgress50 do
+  # TODO used placeholder
+  log("Go to ProfileProgress25")
+end
+
+card Checkpoint
+     when contact.checkpoint == "pregnant_mom_profile" and contact.profile_completion == "50%",
+     then: ProfileProgress50 do
+  log("Go to ProfileProgress50")
+end
+
+card Checkpoint
+     when contact.checkpoint == "pregnant_mom_profile" and contact.profile_completion == "75%",
+     then: ProfileProgress75 do
+  log("Go to ProfileProgress75")
+end
+
+card Checkpoint
+     when contact.checkpoint == "partner_of_pregnant_mom_profile" and
+            contact.profile_completion == "0%",
+     then: PartnerPregnant do
+  log("Go to PregnantEDDMonth")
+end
+
+# TODO partner profile progress
+card Checkpoint
+     when contact.checkpoint == "partner_of_pregnant_mom_profile" and
+            contact.profile_completion == "25%",
+     then: ProfileProgress50 do
+  # TODO used placeholder
+  log("Go to ProfileProgress25")
+end
+
+card Checkpoint
+     when contact.checkpoint == "partner_of_pregnant_mom_profile" and
+            contact.profile_completion == "50%",
+     then: ProfileProgress50 do
+  log("Go to ProfileProgress50")
+end
+
+card Checkpoint
+     when contact.checkpoint == "partner_of_pregnant_mom_profile" and
+            contact.profile_completion == "75%",
+     then: ProfileProgress75 do
+  log("Go to ProfileProgress75")
+end
+
+card Checkpoint
+     when contact.checkpoint == "curious_pregnancy_profile" and
+            is_nil_or_empty(contact.profile_completion),
+     then: PregnantEDDMonth do
+  log("Go to PregnantEDDMonth")
+end
+
+card Checkpoint
+     when contact.checkpoint == "curious_pregnancy_profile" and
+            contact.profile_completion == "25%",
+     then: ProfileProgress50 do
+  # TODO used placeholder
+  log("Go to ProfileProgress25")
+end
+
+card Checkpoint
+     when contact.checkpoint == "curious_pregnancy_profile" and
+            contact.profile_completion == "50%",
+     then: ProfileProgress50 do
+  log("Go to ProfileProgress50")
+end
+
+card Checkpoint
+     when contact.checkpoint == "curious_pregnancy_profile" and
+            contact.profile_completion == "75%",
+     then: ProfileProgress75 do
+  log("Go to ProfileProgress75")
+end
+
+card Checkpoint, then: Question1 do
+  log("Go to Question1")
+  update_contact(checkpoint: "basic_pregnancy_profile")
 end
 
 ```
@@ -644,8 +737,8 @@ end
 ```stack
 card CalculateWeekOfPregnancy, then: GetTrimester do
   exp_year = if month(now()) > edd_date_month, do: year(now()) + 1, else: year(now())
-  exp_date = date(exp_year, edd_date_month, 1)
-  week_of_conception = datetime_add(exp_date, -40, "W")
+  # exp_date = date(exp_year, edd_date_month, 1)
+  week_of_conception = datetime_add("@edd_date_full_str", -40, "W")
 
   current_date = now()
   current_year = year(current_date)
@@ -678,7 +771,7 @@ card GetTrimester when pregnancy_in_weeks <= 12, then: LoadingGoTo do
   log("1st trimester")
 end
 
-card GetTrimester when pregnancy_in_weeks > 12 and pregnancy_in_weeks <= 27, then: LoadingGoTo do
+card GetTrimester when pregnancy_in_weeks > 13 and pregnancy_in_weeks <= 27, then: LoadingGoTo do
   trimester = 2
   log("2nd trimester")
 end
@@ -1215,6 +1308,7 @@ end
 ```stack
 card ProfileProgress100, then: ProfileProgress100Error do
   write_result("profile_completion", "100%")
+  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
 
   search =
     get(
@@ -2235,6 +2329,7 @@ card PartnerPregnant, then: PartnerEDDMonth do
   write_result("pregnancy_status", status)
   write_result("profile_completion", "0%")
   update_contact(pregnancy_status: "@status")
+  update_contact(checkpoint: "partner_of_pregnant_mom_profile")
 end
 
 card PartnerPregnantGender, then: PartnerPregnantGenderError do
@@ -2824,8 +2919,6 @@ card DisplayContentIntro, then: DisplayContentIntroError do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   selected_topic =
     list("Select option",
       Topic1: "@menu_items[0]",
@@ -2834,6 +2927,7 @@ card DisplayContentIntro, then: DisplayContentIntroError do
       Topic4: "@menu_items[3]",
       Other: "@menu_items[4]"
     ) do
+      image("@image_data.body.meta.download_url")
       text("@message.message")
     end
 end
@@ -3177,6 +3271,8 @@ end
 
 ```stack
 card Curious, then: DisplayCurious do
+  update_contact(checkpoint: "curious_pregnancy_profile")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",

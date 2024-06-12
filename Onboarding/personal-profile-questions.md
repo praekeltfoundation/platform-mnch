@@ -31,6 +31,13 @@ The token for ContentRepo is stored in a global dictionary.
 
 Here we do any setup and fetching of values before we start the flow.
 
+```stack
+card Checkpoint, then: FetchError do
+  update_contact(checkpoint: "generic_personal_info")
+end
+
+```
+
 <!-- { section: "1d2d2295-8c33-45f3-b64c-8bdc9c5acd6e", x: 0, y: 0} -->
 
 ```stack
