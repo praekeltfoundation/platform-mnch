@@ -18,6 +18,7 @@ columns: []
 ```stack
 card FetchError, then: NonPersonalisedMenu do
   # Fetch and store the error message, so that we don't need to do it for every error card
+  log("Non Personalised Menu")
 
   search =
     get(
@@ -96,7 +97,7 @@ card NonPersonalisedMenu, then: DisplayNonPersonalisedMenu do
   message = content_data.body.body.text.value
 
   profile_completion =
-    if is_nil_or_empty(contact.profile_completion), do: "{0%}", else: contact.profile_completion
+    if is_nil_or_empty(contact.profile_completion), do: "0%", else: contact.profile_completion
 
   loading_message = substitute(message.message, "{profile_completion}", profile_completion)
   menu_items = map(message.list_items, & &1.value)
@@ -104,7 +105,7 @@ end
 
 card DisplayNonPersonalisedMenu, then: DisplayNonPersonalisedMenuError do
   selected_topic =
-    list("Select option",
+    list("Menu",
       HealthGuide: "@menu_items[0]",
       ViewTopics: "@menu_items[1]",
       HelpCentre: "@menu_items[2]",
@@ -120,7 +121,7 @@ end
 
 card DisplayNonPersonalisedMenuError, then: DisplayNonPersonalisedMenuError do
   selected_topic =
-    list("Select option",
+    list("Menu",
       HealthGuide: "@menu_items[0]",
       ViewTopics: "@menu_items[1]",
       HelpCentre: "@menu_items[2]",
@@ -146,7 +147,7 @@ card ViewTopics, then: LibraryTopics do
   update_contact(topic: "@selected_topic")
 end
 
-card HelpCentre, then: GoToTakeATour do
+card HelpCentre, then: GoToHelpCentre do
   update_contact(topic: "@selected_topic")
 end
 
@@ -285,9 +286,67 @@ end
 ## Check Point
 
 ```stack
-card CheckPoint do
-  log("Check Point")
-  text("Check Point goes here")
+card CheckPoint
+     when has_any_phrase(contact.checkpoint, [
+            "pregnant_mom_profile",
+            "partner_of_pregnant_mom_profile",
+            "curious_pregnancy_profile"
+          ]),
+     then: ProfilePregnancyHealth do
+  log("Check Point go to ProfilePregnancyHealth")
+end
+
+card CheckPoint when contact.checkpoint == "generic_basic_info", then: GenericProfile do
+  log("Check Point go to GenericProfile")
+end
+
+card CheckPoint when contact.checkpoint == "hcw_profile", then: HCWProfile do
+  log("Check Point go to HCWProfile")
+end
+
+card CheckPoint when contact.checkpoint == "basic_pregnancy_profile", then: PregnantNurseProfile do
+  log("Check Point go to PregnantNurseProfile")
+end
+
+card CheckPoint, then: ProfilePregnancyHealth do
+  log("Check Point default to ProfilePregnancyHealth")
+end
+
+```
+
+## Profile Pregnancy Health
+
+```stack
+card ProfilePregnancyHealth do
+  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+end
+
+```
+
+## Generic Profile
+
+```stack
+card GenericProfile do
+  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+end
+
+```
+
+## HCW Profile
+
+```stack
+card HCWProfile do
+  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+end
+
+```
+
+## Pregnant Nurse Profile
+
+```stack
+card PregnantNurseProfile do
+  text("PregnantNurseProfile")
+  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
 end
 
 ```
@@ -322,7 +381,7 @@ end
 
 card DisplayLibraryTopics, then: DisplayLibraryTopicsError do
   selected_topic =
-    list("Select option",
+    list("Choose",
       LoveRelationship: "@menu_items[0]",
       PregnancyInfo: "@menu_items[1]",
       BabyChildHealth: "@menu_items[2]",
@@ -337,7 +396,7 @@ end
 
 card DisplayLibraryTopicsError, then: DisplayLibraryTopicsError do
   selected_topic =
-    list("Select option",
+    list("Choose",
       LoveRelationship: "@menu_items[0]",
       PregnancyInfo: "@menu_items[1]",
       BabyChildHealth: "@menu_items[2]",
@@ -406,7 +465,7 @@ end
 
 card DisplayManageUpdates, then: DisplayManageUpdatesError do
   selected_topic =
-    list("Select option",
+    list("Manage",
       PregnancyInfo: "@menu_items[0]",
       BabyChildHealth: "@menu_items[1]",
       WellBeing: "@menu_items[2]",
@@ -421,7 +480,7 @@ end
 
 card DisplayManageUpdatesError, then: DisplayManageUpdatesError do
   selected_topic =
-    list("Select option",
+    list("Manage",
       PregnancyInfo: "@menu_items[0]",
       BabyChildHealth: "@menu_items[1]",
       WellBeing: "@menu_items[2]",
@@ -578,8 +637,9 @@ end
 ## Help Centre
 
 ```stack
-card HelpCentre do
+card GoToHelpCentre, then: NonPersonalisedMenu do
   log("Help Centre")
+  text("Help Centre placeholder")
   run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
 end
 
@@ -644,9 +704,8 @@ card DisplayAboutPrivacy, then: DisplayAboutPrivacyError do
       ]
     )
 
-  document("@doc_data.body.meta.download_url")
-
   buttons(NonPersonalisedMenu: "@button_labels[0]") do
+    document("@doc_data.body.meta.download_url")
     text("@message.message")
   end
 end

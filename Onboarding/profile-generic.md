@@ -21,7 +21,7 @@ card Checkpoint, then: FetchError do
   update_contact(checkpoint: "generic_basic_info")
 end
 
-card FetchError, then: BasicQuestions do
+card FetchError, then: CheckPointRedirect do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
@@ -45,6 +45,24 @@ card FetchError, then: BasicQuestions do
     )
 
   button_error_text = page.body.body.text.value.message
+end
+
+```
+
+## Redirect Check Point
+
+```stack
+card CheckPointRedirect when contact.profile_completion == "30%", then: ProfileProgress30Generic do
+  log("ProfileProgress30")
+end
+
+# TODO percentage fix used ProfileProgress100Generic as a placeholder
+card CheckPointRedirect when contact.profile_completion == "50%", then: ProfileProgress100Generic do
+  log("ProfileProgress50")
+end
+
+card CheckPointRedirect, then: BasicQuestions do
+  log("Default to BasicQuestions")
 end
 
 ```
@@ -208,6 +226,7 @@ end
 card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
+  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
 
   search =
     get(

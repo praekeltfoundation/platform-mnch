@@ -48,7 +48,7 @@ card NameError, then: Name do
       query: [
         ["slug", "mnch_onboarding_name_error"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id

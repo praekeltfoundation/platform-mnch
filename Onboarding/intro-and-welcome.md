@@ -1,8 +1,7 @@
-<!-- { section: "607a0693-f24a-4add-b858-3702946bc63b", x: 500, y: 48} -->
+<!-- { section: "fab529b2-584b-46e4-803e-54702ba2a95d", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED")
-when has_any_phrase(event.message.text.body, ["hi", "0", "menu"])
+trigger(on: "MESSAGE RECEIVED") when has_any_exact_phrase(event.message.text.body, ["0", "hi"])
 
 ```
 
@@ -514,6 +513,7 @@ end
 card OptInAccept, then: UserIntent do
   log("OptIn Accepted")
   update_contact(opted_in: "true")
+  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 60 * 60)
 end
 
 card OptInDecideLater, then: UserIntent do

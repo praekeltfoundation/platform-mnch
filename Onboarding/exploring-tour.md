@@ -98,9 +98,8 @@ card DisplayTourCard01, then: DisplayTourCard01Error do
       ]
     )
 
-  image("@image_data.body.meta.download_url")
-
   buttons(FetchTourCard02: "@button_labels[0]") do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
