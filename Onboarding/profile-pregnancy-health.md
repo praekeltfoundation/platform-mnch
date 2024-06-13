@@ -602,7 +602,7 @@ card SaveEDDAndContinue, then: ContinueEDDBranch do
   edd_date_full_str = datevalue(edd_date_full, "%Y-%m-%d")
   log("EDD Saved as @edd_date_full_str")
   update_contact(edd: "@edd_date_full_str")
-  write_result("edd", edd_date_full_str)
+  write_result("edd", "@edd_date_full_str")
 end
 
 card ContinueEDDBranch when status == "im_pregnant", then: PregnantFeeling do
@@ -2326,7 +2326,7 @@ This flow first starts off with the same EDD calculator as the `I'm pregnant` op
 
 ```stack
 card PartnerPregnant, then: PartnerEDDMonth do
-  write_result("pregnancy_status", status)
+  write_result("pregnancy_status", "@status")
   write_result("profile_completion", "0%")
   update_contact(pregnancy_status: "@status")
   update_contact(checkpoint: "partner_of_pregnant_mom_profile")
@@ -2691,7 +2691,7 @@ card SavePartnerEDD, then: PartnerPregnantGender do
   edd_date_full_str = datevalue(edd_date_full, "%Y-%m-%d")
   log("EDD Saved as @edd_date_full_str")
   update_contact(edd: "@edd_date_full_str")
-  write_result("edd", edd_date_full_str)
+  write_result("edd", "@edd_date_full_str")
 end
 
 ```
