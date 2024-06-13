@@ -1,3 +1,10 @@
+<!-- { section: "fab529b2-584b-46e4-803e-54702ba2a95d", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_any_exact_phrase(event.message.text.body, ["0", "hi"])
+
+```
+
 # Onboarding: Pt 1 - Welcome
 
 This is the first flow that users interact with during onboarding.
