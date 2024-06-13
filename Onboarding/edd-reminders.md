@@ -451,7 +451,7 @@ card SaveEDDAndContinue, then: EDDConfirm do
   edd_date_full_str = datevalue(edd_date_full, "%Y/%m/%d")
   log("EDD Saved as @edd_date_full_str")
   update_contact(edd: "@edd_date_full_str")
-  write_result("edd", edd_date_full_str)
+  write_result("edd", "@edd_date_full_str")
 end
 
 ```
