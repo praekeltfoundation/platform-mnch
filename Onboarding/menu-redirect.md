@@ -1,8 +1,7 @@
-<!-- { section: "eb52f5e9-02f8-415a-a3b2-4547fce463af", x: 500, y: 48} -->
+<!-- { section: "fab529b2-584b-46e4-803e-54702ba2a95d", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED")
-when has_any_exact_phrase(event.message.text.body, ["0", "Menu", "Hi"])
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "menu")
 
 ```
 
