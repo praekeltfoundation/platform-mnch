@@ -322,7 +322,7 @@ end
 
 ```stack
 card SaveReengagement, then: DropOff1stReminder do
-  write_result("reengaged_point", contact.reengagement_message)
+  write_result("reengaged_point", "@contact.reengagement_message")
 end
 
 card DropOffGoTo when contact.checkpoint == "generic_basic_info", then: BasicProfile do
