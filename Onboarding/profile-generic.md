@@ -56,9 +56,8 @@ card CheckPointRedirect when contact.profile_completion == "30%", then: ProfileP
   log("ProfileProgress30")
 end
 
-# TODO percentage fix used ProfileProgress100Generic as a placeholder
-card CheckPointRedirect when contact.profile_completion == "50%", then: ProfileProgress100Generic do
-  log("ProfileProgress50")
+card CheckPointRedirect when contact.profile_completion == "100%", then: ProfileProgress100Generic do
+  log("ProfileProgress100")
 end
 
 card CheckPointRedirect, then: BasicQuestions do
