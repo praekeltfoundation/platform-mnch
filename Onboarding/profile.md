@@ -48,7 +48,7 @@ This stack runs other stacks if there is information that needs capturing.
 Here we do any setup and fetching of values before we start the flow.
 
 ```stack
-card FetchError, then: YourProfile do
+card FetchError, then: YourProfileRedirect do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
@@ -145,6 +145,32 @@ end
 
 ```
 
+## Your Profile Redirect
+
+```stack
+card YourProfileRedirect
+     when contact.pregnancy_information == true and
+            contact.info_for_health_professionals == true,
+     then: YourProfile do
+  log("Pregnancy and Employment info")
+end
+
+card YourProfileRedirect when contact.pregnancy_information == true,
+  then: ProfilePregnancyInfo do
+  log("Pregnancy info")
+end
+
+card YourProfileRedirect when contact.info_for_health_professionals == true,
+  then: ProfileEmploymentInfo do
+  log("Employment info")
+end
+
+card YourProfileRedirect, then: DefaultProfile do
+  log("Default profile")
+end
+
+```
+
 ## Your Profile
 
 ```stack
@@ -196,6 +222,172 @@ card YourProfileError, then: YourProfileError do
       DailyLife: "@list_items[4]",
       YourInterests: "@list_items[5]",
       MainMenu: "@list_items[6]"
+    ) do
+      text("@list_error_text")
+    end
+end
+
+```
+
+## Your Profile With Pregnancy Information
+
+```stack
+card ProfilePregnancyInfo, then: ProfilePregnancyInfoError do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_your_profile_pregnancy"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  message = page.body.body.text.value
+  list_items = map(message.list_items, & &1.value)
+
+  option =
+    list("Choose",
+      BasicInfo: "@list_items[0]",
+      PersonalInfo: "@list_items[1]",
+      PregnancyInfo: "@list_items[2]",
+      DailyLife: "@list_items[3]",
+      YourInterests: "@list_items[4]",
+      MainMenu: "@list_items[5]"
+    ) do
+      text("@message.message")
+    end
+end
+
+card ProfilePregnancyInfoError, then: ProfilePregnancyInfoError do
+  option =
+    list("Choose",
+      BasicInfo: "@list_items[0]",
+      PersonalInfo: "@list_items[1]",
+      PregnancyInfo: "@list_items[2]",
+      DailyLife: "@list_items[3]",
+      YourInterests: "@list_items[4]",
+      MainMenu: "@list_items[5]"
+    ) do
+      text("@list_error_text")
+    end
+end
+
+```
+
+## Your Profile With Employment Information
+
+```stack
+card ProfileEmploymentInfo, then: ProfileEmploymentInfoError do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_your_profile_hcw"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  message = page.body.body.text.value
+  list_items = map(message.list_items, & &1.value)
+
+  option =
+    list("Choose",
+      BasicInfo: "@list_items[0]",
+      PersonalInfo: "@list_items[1]",
+      EmploymentInfo: "@list_items[2]",
+      DailyLife: "@list_items[3]",
+      YourInterests: "@list_items[4]",
+      MainMenu: "@list_items[5]"
+    ) do
+      text("@message.message")
+    end
+end
+
+card ProfileEmploymentInfoError, then: ProfileEmploymentInfoError do
+  option =
+    list("Choose",
+      BasicInfo: "@list_items[0]",
+      PersonalInfo: "@list_items[1]",
+      EmploymentInfo: "@list_items[2]",
+      DailyLife: "@list_items[3]",
+      YourInterests: "@list_items[4]",
+      MainMenu: "@list_items[5]"
+    ) do
+      text("@list_error_text")
+    end
+end
+
+```
+
+## Default Profile
+
+```stack
+card DefaultProfile, then: DefaultProfileError do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_your_profile_generic"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  message = page.body.body.text.value
+  list_items = map(message.list_items, & &1.value)
+
+  option =
+    list("Choose",
+      BasicInfo: "@list_items[0]",
+      PersonalInfo: "@list_items[1]",
+      DailyLife: "@list_items[2]",
+      YourInterests: "@list_items[3]",
+      MainMenu: "@list_items[4]"
+    ) do
+      text("@message.message")
+    end
+end
+
+card DefaultProfileError, then: DefaultProfileError do
+  option =
+    list("Choose",
+      BasicInfo: "@list_items[0]",
+      PersonalInfo: "@list_items[1]",
+      DailyLife: "@list_items[2]",
+      YourInterests: "@list_items[3]",
+      MainMenu: "@list_items[4]"
     ) do
       text("@list_error_text")
     end
