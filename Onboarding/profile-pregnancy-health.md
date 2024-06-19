@@ -21,7 +21,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Flow results
 
 * `pregnancy_status`, One of `im_pregnant`, `partner_pregnant` or `curious`
-* `profile_completion`, How much of the profile they have completed e.g. 0%, 50%, 100%
+* `profile_completion`, How much of the profile they have completed e.g. 0%, 25%, 50%, 100%
 * `pregnancy_sentiment`, How they are feeling about their pregnancy. This result applies only to users that have selected `im_pregnant` as their above status.
 
 ## Connections to other stacks
@@ -130,8 +130,7 @@ end
 
 card Checkpoint
      when contact.checkpoint == "pregnant_mom_profile" and contact.profile_completion == "25%",
-     then: ProfileProgress50 do
-  # TODO used placeholder
+     then: ProfileProgress25 do
   log("Go to ProfileProgress25")
 end
 
@@ -142,24 +141,22 @@ card Checkpoint
 end
 
 card Checkpoint
-     when contact.checkpoint == "pregnant_mom_profile" and contact.profile_completion == "75%",
-     then: ProfileProgress75 do
-  log("Go to ProfileProgress75")
+     when contact.checkpoint == "pregnant_mom_profile" and contact.profile_completion == "100%",
+     then: ProfileProgress100 do
+  log("Go to ProfileProgress100")
 end
 
 card Checkpoint
      when contact.checkpoint == "partner_of_pregnant_mom_profile" and
             contact.profile_completion == "0%",
      then: PartnerPregnant do
-  log("Go to PregnantEDDMonth")
+  log("Go to PartnerPregnant")
 end
 
-# TODO partner profile progress
 card Checkpoint
      when contact.checkpoint == "partner_of_pregnant_mom_profile" and
             contact.profile_completion == "25%",
-     then: ProfileProgress50 do
-  # TODO used placeholder
+     then: ProfileProgress25Secondary do
   log("Go to ProfileProgress25")
 end
 
@@ -172,9 +169,9 @@ end
 
 card Checkpoint
      when contact.checkpoint == "partner_of_pregnant_mom_profile" and
-            contact.profile_completion == "75%",
-     then: ProfileProgress75 do
-  log("Go to ProfileProgress75")
+            contact.profile_completion == "100%",
+     then: ProfileProgress100 do
+  log("Go to ProfileProgress100")
 end
 
 card Checkpoint
@@ -187,7 +184,7 @@ end
 card Checkpoint
      when contact.checkpoint == "curious_pregnancy_profile" and
             contact.profile_completion == "25%",
-     then: ProfileProgress50 do
+     then: ProfileProgress25Secondary2 do
   # TODO used placeholder
   log("Go to ProfileProgress25")
 end
@@ -201,9 +198,9 @@ end
 
 card Checkpoint
      when contact.checkpoint == "curious_pregnancy_profile" and
-            contact.profile_completion == "75%",
-     then: ProfileProgress75 do
-  log("Go to ProfileProgress75")
+            contact.profile_completion == "100%",
+     then: ProfileProgress100 do
+  log("Go to ProfileProgress100")
 end
 
 card Checkpoint, then: Question1 do
@@ -1149,8 +1146,8 @@ card ArticleFeedbackNo, then: ArticleFeedbackNoError do
 
   buttons(
     CompleteProfile: "@button_labels[0]",
-    ProfileProgress50: "@button_labels[1]",
-    ProfileProgress50: "@button_labels[2]"
+    ProfileProgress25: "@button_labels[1]",
+    ProfileProgress25: "@button_labels[2]"
   ) do
     text("@message.message")
   end
@@ -1159,8 +1156,8 @@ end
 card ArticleFeedbackNoError, then: ArticleFeedbackNoError do
   buttons(
     CompleteProfile: "@button_labels[0]",
-    ProfileProgress50: "@button_labels[1]",
-    ProfileProgress50: "@button_labels[2]"
+    ProfileProgress25: "@button_labels[1]",
+    ProfileProgress25: "@button_labels[2]"
   ) do
     text("@button_error_text")
   end
@@ -1168,17 +1165,93 @@ end
 
 ```
 
-## Profile Progress 50%
+## Profile Progress 25%
 
 ```stack
-card ProfileProgress50, then: ProfileProgress50Error do
-  write_result("profile_completion", "50%")
+card ProfileProgress25, then: DisplayProfileProgress25 do
+  write_result("profile_completion", "25%")
 
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_profile_progress_50"]
+        ["slug", "mnch_onboarding_profile_progress_25"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ],
+      query: [["whatsapp", "true"]]
+    )
+
+  message = page.body.body.text.value
+  button_labels = map(message.buttons, & &1.value.title)
+end
+
+# Text only
+card DisplayProfileProgress25 when contact.data_preference == "text only",
+  then: ProfileProgress25Error do
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    text("@message.message")
+  end
+end
+
+# Show image
+card DisplayProfileProgress25, then: ProfileProgress25Error do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
+
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    image("@image_data.body.meta.download_url")
+    text("@message.message")
+  end
+end
+
+card ProfileProgress25Error, then: ProfileProgress25Error do
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
+```
+
+## Profile Progress 25% Secondary
+
+```stack
+card ProfileProgress25Secondary, then: DisplayProfileProgress25Secondary do
+  write_result("profile_completion", "25%")
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_profile_progress_25_secondary"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -1206,7 +1279,117 @@ card ProfileProgress50, then: ProfileProgress50Error do
   end
 end
 
-card ProfileProgress50Error, then: ProfileProgress50Error do
+# Text only
+card DisplayProfileProgress25Secondary when contact.data_preference == "text only",
+  then: ProfileProgress25SecondaryError do
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    text("@message.message")
+  end
+end
+
+# Show image
+card DisplayProfileProgress25Secondary, then: ProfileProgress25SecondaryError do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
+
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    image("@image_data.body.meta.download_url")
+    text("@message.message")
+  end
+end
+
+card ProfileProgress25SecondaryError, then: ProfileProgress25SecondaryError do
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
+```
+
+## Profile Progress 25% Secondary 2
+
+```stack
+card ProfileProgress25Secondary2, then: DisplayProfileProgress25Secondary2 do
+  write_result("profile_completion", "25%")
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_profile_progress_25_secondary_"]
+      ],
+      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ],
+      query: [["whatsapp", "true"]]
+    )
+
+  message = page.body.body.text.value
+  button_labels = map(message.buttons, & &1.value.title)
+end
+
+# Text only
+card DisplayProfileProgress25Secondary2 when contact.data_preference == "text only",
+  then: ProfileProgress25Secondary2Error do
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    text("@message.message")
+  end
+end
+
+# Show image
+card DisplayProfileProgress25Secondary2, then: ProfileProgress25Secondary2Error do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
+
+  buttons(
+    CompleteProfile: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    ExploreHealthGuide: "@button_labels[2]"
+  ) do
+    image("@image_data.body.meta.download_url")
+    text("@message.message")
+  end
+end
+
+card ProfileProgress25Secondary2Error, then: ProfileProgress25Secondary2Error do
   buttons(
     CompleteProfile: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
@@ -1221,7 +1404,7 @@ end
 ## Complete Profile
 
 ```stack
-card CompleteProfile, then: ProfileProgress75 do
+card CompleteProfile, then: ProfileProgress50 do
   # Kick off Basic Profile Questions
   log("Running Basic Profile Questions")
   run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
@@ -1252,17 +1435,17 @@ end
 
 ```
 
-## Profile Progess 75%
+## Profile Progess 50%
 
 ```stack
-card ProfileProgress75, then: ProfileProgress75Error do
-  write_result("profile_completion", "75%")
+card ProfileProgress50, then: ProfileProgress50Error do
+  write_result("profile_completion", "50%")
 
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_profile_progress_75"]
+        ["slug", "mnch_onboarding_profile_progress_50"]
       ],
       headers: [["Authorization", "Token @config.items.contentrepo_token"]]
     )
@@ -1286,7 +1469,7 @@ card ProfileProgress75, then: ProfileProgress75Error do
   end
 end
 
-card ProfileProgress75Error, then: ProfileProgress75Error do
+card ProfileProgress50Error, then: ProfileProgress50Error do
   buttons(ContinueProfileCompletion: "@button_labels[0]") do
     text("@button_error_text")
   end
@@ -1306,7 +1489,7 @@ end
 ## Profile Progress 100%
 
 ```stack
-card ProfileProgress100, then: ProfileProgress100Error do
+card ProfileProgress100, then: DisplayProfileProgress100 do
   write_result("profile_completion", "100%")
   cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
 
@@ -1332,12 +1515,38 @@ card ProfileProgress100, then: ProfileProgress100Error do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+end
+
+# Text only
+card DisplayProfileProgress100 when contact.data_preference == "text only",
+  then: ProfileProgress100Error do
+  buttons(
+    ExploreHealthGuide: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    TopicsForYou: "@button_labels[2]"
+  ) do
+    text("@message.message")
+  end
+end
+
+# Display with image
+card DisplayProfileProgress100, then: ProfileProgress100Error do
+  image_id = content_data.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @config.items.contentrepo_token"]
+      ]
+    )
 
   buttons(
     ExploreHealthGuide: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
     TopicsForYou: "@button_labels[2]"
   ) do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
@@ -3122,8 +3331,8 @@ end
 card DisplayContentFeedbackNo, then: DisplayContentFeedbackNoError do
   buttons(
     SecondaryOnboarding: "@button_labels[0]",
-    ProfileProgress50: "@button_labels[1]",
-    ProfileProgress50: "@button_labels[2]"
+    ProfileProgress25Secondary: "@button_labels[1]",
+    ProfileProgress25Secondary: "@button_labels[2]"
   ) do
     text("@message.message")
   end
@@ -3132,8 +3341,8 @@ end
 card DisplayContentFeedbackNoError, then: DisplayContentFeedbackNoError do
   buttons(
     SecondaryOnboarding: "@button_labels[0]",
-    ProfileProgress50: "@button_labels[1]",
-    ProfileProgress50: "@button_labels[2]"
+    ProfileProgress25Secondary: "@button_labels[1]",
+    ProfileProgress25Secondary: "@button_labels[2]"
   ) do
     text("@button_error_text")
   end
@@ -3195,7 +3404,7 @@ card DisplayReminderOptInError, then: DisplayReminderOptInError do
   end
 end
 
-card ReminderOptIn, then: ProfileProgress50 do
+card ReminderOptIn, then: ProfileProgress25Secondary do
   log("Already opted in")
 end
 
@@ -3204,7 +3413,7 @@ end
 ## Partner Reminder Opt In Yes
 
 ```stack
-card ReminderOptInYes, then: ProfileProgress50 do
+card ReminderOptInYes, then: ProfileProgress25Secondary do
   update_contact(opted_in: "true")
 
   search =
@@ -3237,7 +3446,7 @@ end
 ## Partner Reminder Opt In No
 
 ```stack
-card ReminderOptInNo, then: ProfileProgress50 do
+card ReminderOptInNo, then: ProfileProgress25Secondary do
   update_contact(opted_in: "false")
 
   search =
@@ -3854,8 +4063,8 @@ end
 card DisplayCuriousContentFeedback, then: DisplayCuriousContentFeedbackError do
   buttons(
     BaseProfile: "@button_labels[0]",
-    ProfileProgress50: "@button_labels[1]",
-    ProfileProgress50: "@button_labels[2]"
+    ProfileProgress25Secondary2: "@button_labels[1]",
+    ProfileProgress25Secondary2: "@button_labels[2]"
   ) do
     text("@message.message")
   end
@@ -3864,14 +4073,14 @@ end
 card DisplayCuriousContentFeedbackError, then: DisplayCuriousContentFeedbackError do
   buttons(
     BaseProfile: "@button_labels[0]",
-    ProfileProgress50: "@button_labels[1]",
-    ProfileProgress50: "@button_labels[2]"
+    ProfileProgress25Secondary2: "@button_labels[1]",
+    ProfileProgress25Secondary2: "@button_labels[2]"
   ) do
     text("@button_error_text")
   end
 end
 
-card BaseProfile, then: ProfileProgress75 do
+card BaseProfile, then: ProfileProgress50 do
   run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
 end
 
@@ -3884,12 +4093,12 @@ card CuriousReminderOptIn
      when @contact.opted_in == false or
             @contact.opted_in == "false" or
             is_nil_or_empty(@contact.opted_in),
-     then: ProfileProgress50 do
+     then: ProfileProgress25Secondary2 do
   log("haven't opted in")
   run_stack("537e4867-eb26-482d-96eb-d4783828c622")
 end
 
-card CuriousReminderOptIn, then: ProfileProgress50 do
+card CuriousReminderOptIn, then: ProfileProgress25Secondary2 do
   log("Already opted in")
 end
 
