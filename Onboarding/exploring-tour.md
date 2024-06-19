@@ -404,7 +404,7 @@ card DisplayGuidedTourMenuError, then: DisplayGuidedTourMenuError do
 end
 
 card CreateProfiles do
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
 end
 
 card SpeakToAgent do
