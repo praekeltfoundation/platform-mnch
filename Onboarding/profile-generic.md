@@ -11,9 +11,9 @@ version: "0.1.0"
 columns: [] 
 -->
 
-| Key               | Value                            |
-| ----------------- |----------------------------------|
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+| Key               | Value                                    |
+| ----------------- | ---------------------------------------- |
+| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
 
 ```stack
 card Checkpoint, then: FetchError do
@@ -310,12 +310,12 @@ end
 
 ```
 
-## TODO: LOC Assessment
+## Placeholder Form
 
 ```stack
 card LOCAssessment, then: OptInReminder do
-  log("LOC Assessment content goes here")
-  # run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  log("Placeholder Form")
+  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
 end
 
 ```

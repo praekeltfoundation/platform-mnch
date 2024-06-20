@@ -647,9 +647,8 @@ card ProfileProgress75Error, then: ProfileProgress75Error do
 end
 
 card ProfileProgress75Continue, then: ProfileProgress100 do
-  # TODO: Ask the LOC Assessment
-  # run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
-  text("TODO: Ask the LOC Assessment")
+  log("Placeholder Form")
+  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
 end
 
 ```
