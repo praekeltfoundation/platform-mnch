@@ -2370,6 +2370,8 @@ end
 
 # When edd, sentiment and all the LOC questions have been answered 
 # we assume that all the pregnancy info has been filled
+# TODO: We need to save the answers of the Form to contact fields so that we can look them up here. This is Onboarding specific, 
+# so we should only modify the onboarding Form. Suggestion for the contact fields is to use the tag + answer number e.g. "placeholder_form_1"
 card YourInterestsResponse
      when "@interest" == "@pregnancy_health" and
             has_text("@contact.edd") and

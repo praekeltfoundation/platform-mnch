@@ -1435,6 +1435,15 @@ end
 
 ```
 
+## Main Menu
+
+```stack
+card MainMenu do
+  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+end
+
+```
+
 ## Profile Progess 50%
 
 ```stack
@@ -1480,8 +1489,8 @@ card ContinueProfileCompletion, then: ProfileProgress100 do
   log("Personal Profile Questions")
   run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
   update_contact(checkpoint: "pregnancy_daily_life_info")
-  # TODO: Kick off LOC Assessment
-  log("TODO: Kick off LOC Assessment")
+  log("Placeholder Form")
+  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
 end
 
 ```
@@ -1523,7 +1532,7 @@ card DisplayProfileProgress100 when contact.data_preference == "text only",
   buttons(
     ExploreHealthGuide: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
-    TopicsForYou: "@button_labels[2]"
+    MainMenu: "@button_labels[2]"
   ) do
     text("@message.message")
   end
@@ -1544,7 +1553,7 @@ card DisplayProfileProgress100, then: ProfileProgress100Error do
   buttons(
     ExploreHealthGuide: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
-    TopicsForYou: "@button_labels[2]"
+    MainMenu: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
     text("@message.message")
@@ -1555,7 +1564,7 @@ card ProfileProgress100Error, then: ProfileProgress100Error do
   buttons(
     ExploreHealthGuide: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
-    TopicsForYou: "@button_labels[2]"
+    MainMenu: "@button_labels[2]"
   ) do
     text("@button_error_text")
   end
