@@ -11,9 +11,9 @@ version: "0.1.0"
 columns: [] 
 -->
 
-| Key               | Value                            |
-| ----------------- |----------------------------------|
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+| Key               | Value                                    |
+| ----------------- | ---------------------------------------- |
+| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
 
 ```stack
 card Checkpoint, then: FetchError do
