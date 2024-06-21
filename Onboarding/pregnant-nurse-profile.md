@@ -37,9 +37,8 @@ end
 ## Check Point
 
 ```stack
-card Checkpoint
-     when contact.profile_completion == "40%" or has_beginning(contact.checkpoint, "hcw_profile_"),
-     then: PregnantNurse40 do
+card Checkpoint when contact.profile_completion == "40%",
+  then: PregnantNurse40 do
   log("Go to PregnantNurse40")
 end
 

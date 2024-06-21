@@ -310,12 +310,12 @@ end
 
 ```
 
-## TODO: LOC Assessment
+## Placeholder Form
 
 ```stack
 card LOCAssessment, then: OptInReminder do
-  log("LOC Assessment content goes here")
-  # run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  log("Placeholder Form")
+  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
 end
 
 ```
@@ -354,7 +354,7 @@ end
 ```stack
 card MainMenu do
   log("Go to main menu")
-  run_stack("e823ad1d-e2d7-4d5c-b928-786b601f0f29")
+  run_stack("21b892d6-685c-458e-adae-304ece46022a")
 end
 
 ```

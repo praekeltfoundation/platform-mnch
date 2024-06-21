@@ -404,6 +404,7 @@ card DisplayGuidedTourMenuError, then: DisplayGuidedTourMenuError do
 end
 
 card CreateProfiles do
+  # Profile Classifier
   run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
 end
 

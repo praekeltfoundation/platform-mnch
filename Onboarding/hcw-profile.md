@@ -96,8 +96,8 @@ card Checkpoint when contact.checkpoint == "hcw_profile_0" do
   then(NurseCheck)
 end
 
-card Checkpoint when contact.checkpoint == "hcw_profile_30" do
-  then(ProfileProgress30)
+card Checkpoint when contact.checkpoint == "hcw_profile_25" do
+  then(ProfileProgress25)
 end
 
 card Checkpoint when contact.checkpoint == "hcw_profile_50" do
@@ -146,6 +146,7 @@ card NurseCheck, then: NurseCheckBranch do
   button_labels = map(message.buttons, & &1.value.title)
 
   write_result("profile_completion", "0%")
+  update_contact(profile_completion: "0%")
   update_contact(checkpoint: "hcw_profile_0")
 end
 
@@ -352,7 +353,7 @@ end
 
 card ProfessionalSupportError when has_phrase(lower("@professional_support"), "skip") do
   log("Skipping professional support")
-  then(ProfileProgress30)
+  then(PregnancyInfo)
 end
 
 card ProfessionalSupportError, then: ProfessionalSupportError do
@@ -362,7 +363,7 @@ card ProfessionalSupportError, then: ProfessionalSupportError do
     end
 end
 
-card ProfessionalSupportResponse, then: ProfileProgress30 do
+card ProfessionalSupportResponse, then: PregnancyInfo do
   professional_support = lower("@professional_support")
   log("Updating professional_support to @professional_support")
   update_contact(professional_support: "@professional_support")
@@ -371,18 +372,32 @@ end
 
 ```
 
-## ProfileProgress30
+Add markdown here
 
 ```stack
-card ProfileProgress30, then: ProfileProgress30Error do
-  write_result("profile_completion", "30%")
-  update_contact(checkpoint: "hcw_profile_30")
+card PregnancyInfo when contact.pregnancy_information == true do
+  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+end
+
+card PregnancyInfo, then: ProfileProgress25 do
+  log("Pregnancy info NOT added")
+end
+
+```
+
+## ProfileProgress25
+
+```stack
+card ProfileProgress25, then: ProfileProgress25Error do
+  write_result("profile_completion", "25%")
+  update_contact(profile_completion: "25%")
+  update_contact(checkpoint: "hcw_profile_25")
 
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_profile_progress_30_hcw"]
+        ["slug", "mnch_onboarding_profile_progress_25_hcw"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -402,28 +417,28 @@ card ProfileProgress30, then: ProfileProgress30Error do
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(
-    ProfileProgress30Continue: "@button_labels[0]",
-    ProfileProgress30Why: "@button_labels[1]"
+    ProfileProgress25Continue: "@button_labels[0]",
+    ProfileProgress25Why: "@button_labels[1]"
   ) do
     text("@message.message")
   end
 end
 
-card ProfileProgress30Error, then: ProfileProgress30Error do
+card ProfileProgress25Error, then: ProfileProgress25Error do
   buttons(
-    ProfileProgress30Continue: "@button_labels[0]",
-    ProfileProgress30Why: "@button_labels[1]"
+    ProfileProgress25Continue: "@button_labels[0]",
+    ProfileProgress25Why: "@button_labels[1]"
   ) do
     text("@button_error_text")
   end
 end
 
-card ProfileProgress30Continue, then: ProfileProgress50 do
+card ProfileProgress25Continue, then: ProfileProgress50 do
   # Ask the Basic Profile Questions
   run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
 end
 
-card ProfileProgress30Why, then: ProfileProgress30WhyBranch do
+card ProfileProgress25Why, then: ProfileProgress25WhyBranch do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -448,17 +463,17 @@ card ProfileProgress30Why, then: ProfileProgress30WhyBranch do
   button_labels = map(message.buttons, & &1.value.title)
 end
 
-card ProfileProgress30WhyBranch when contact.data_preference == "text only",
-  then: ProfileProgress30WhyError do
+card ProfileProgress25WhyBranch when contact.data_preference == "text only",
+  then: ProfileProgress25WhyError do
   buttons(
-    ProfileProgress30Continue: "@button_labels[0]",
+    ProfileProgress25Continue: "@button_labels[0]",
     RemindMeLater: "@button_labels[1]"
   ) do
     text("@message.message")
   end
 end
 
-card ProfileProgress30WhyBranch, then: ProfileProgress30WhyError do
+card ProfileProgress25WhyBranch, then: ProfileProgress25WhyError do
   image_id = page.body.body.text.value.image
 
   image_data =
@@ -470,7 +485,7 @@ card ProfileProgress30WhyBranch, then: ProfileProgress30WhyError do
     )
 
   buttons(
-    ProfileProgress30Continue: "@button_labels[0]",
+    ProfileProgress25Continue: "@button_labels[0]",
     RemindMeLater: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
@@ -478,9 +493,9 @@ card ProfileProgress30WhyBranch, then: ProfileProgress30WhyError do
   end
 end
 
-card ProfileProgress30WhyError, then: ProfileProgress30WhyError do
+card ProfileProgress25WhyError, then: ProfileProgress25WhyError do
   buttons(
-    ProfileProgress30Continue: "@button_labels[0]",
+    ProfileProgress25Continue: "@button_labels[0]",
     RemindMeLater: "@button_labels[1]"
   ) do
     text("@button_error_text")
@@ -531,6 +546,7 @@ end
 ```stack
 card ProfileProgress50, then: ProfileProgress50Error do
   write_result("profile_completion", "50%")
+  update_contact(profile_completion: "50%")
   update_contact(checkpoint: "hcw_profile_50")
 
   search =
@@ -579,6 +595,7 @@ end
 ```stack
 card ProfileProgress75, then: ProfileProgress75Branch do
   write_result("profile_completion", "75%")
+  update_contact(profile_completion: "75%")
   update_contact(checkpoint: "hcw_profile_75")
 
   search =
@@ -647,9 +664,8 @@ card ProfileProgress75Error, then: ProfileProgress75Error do
 end
 
 card ProfileProgress75Continue, then: ProfileProgress100 do
-  # TODO: Ask the LOC Assessment
-  # run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
-  text("TODO: Ask the LOC Assessment")
+  log("Placeholder Form")
+  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
 end
 
 ```
@@ -659,6 +675,7 @@ end
 ```stack
 card ProfileProgress100, then: ProfileProgress100Error do
   write_result("profile_completion", "100%")
+  update_contact(profile_completion: "100%")
   update_contact(checkpoint: "hcw_profile_100")
   cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
 
