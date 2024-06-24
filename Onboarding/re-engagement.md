@@ -352,11 +352,42 @@ end
 Will resend a reminder after 23 hours
 
 ```stack
-card RemindMe do
+card RemindMe, then: ReminderMeMessage do
   update_contact(reengagement_message: "remind me")
   # cancel any scheduled stacks for this journey
   cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
   schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 23 * 60 * 60)
+end
+
+```
+
+## Remind Me Tomorrow Message
+
+```stack
+card ReminderMeMessage do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_response_remind_me"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  message = page.body.body.text.value
+
+  text("@message.message")
 end
 
 ```
