@@ -354,7 +354,7 @@ end
 ```stack
 card MainMenu do
   log("Go to main menu")
-  run_stack("e823ad1d-e2d7-4d5c-b928-786b601f0f29")
+  run_stack("21b892d6-685c-458e-adae-304ece46022a")
 end
 
 ```
