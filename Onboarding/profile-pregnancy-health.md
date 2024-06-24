@@ -28,16 +28,6 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 
 * The Profile Classifier stack directs users to this stack if they select the Pregnancy Health option
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
-
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
-
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
@@ -52,7 +42,7 @@ card FetchError, then: Checkpoint do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -64,7 +54,7 @@ card FetchError, then: Checkpoint do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -75,7 +65,7 @@ card FetchError, then: Checkpoint do
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -86,7 +76,7 @@ card FetchError, then: Checkpoint do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   list_error_text = page.body.body.text.value.message
@@ -97,7 +87,7 @@ card FetchError, then: Checkpoint do
       query: [
         ["slug", "mnch_onboarding_unrecognised_number"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -108,7 +98,7 @@ card FetchError, then: Checkpoint do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   unrecognised_number_text = page.body.body.text.value.message
@@ -226,7 +216,7 @@ card Question1, then: Question1Error do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -237,7 +227,7 @@ card Question1, then: Question1Error do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -292,7 +282,7 @@ card PregnantEDDMonth, then: EDDMonthError do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_02"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @cglobal.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -303,7 +293,7 @@ card PregnantEDDMonth, then: EDDMonthError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   edd_month = ""
@@ -403,7 +393,7 @@ card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
       query: [
         ["slug", "mnch_onboarding_edd_unknown"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -412,7 +402,7 @@ card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -440,7 +430,7 @@ card DisplayEDDMonthUnknown, then: EDDMonthUnknownError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -489,7 +479,7 @@ card PregnantEDDDay, then: ValidateEDDDay do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_03"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -498,7 +488,7 @@ card PregnantEDDDay, then: ValidateEDDDay do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -550,7 +540,7 @@ card EDDConfirmation, then: PregnantEDDConfirmationError do
         ["slug", "mnch_onboarding_confirm_edd"],
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -559,7 +549,7 @@ card EDDConfirmation, then: PregnantEDDConfirmationError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -627,7 +617,7 @@ card PregnantFeeling, then: PregnantFeelingError do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_05"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -638,7 +628,7 @@ card PregnantFeeling, then: PregnantFeelingError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -677,7 +667,7 @@ card PregnancyContentStart, then: PregnancyContentBranch do
       query: [
         ["slug", "mnch_onboarding_pregnancy_content_00"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -688,7 +678,7 @@ card PregnancyContentStart, then: PregnancyContentBranch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -711,7 +701,7 @@ card PregnancyContentBranch, then: PregnancyContentBranchError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -848,7 +838,7 @@ card Loading1, then: Loading1Branch do
       query: [
         ["slug", "mnch_onboarding_loading_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -859,7 +849,7 @@ card Loading1, then: Loading1Branch do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -882,7 +872,7 @@ card Loading1Branch, then: Loading1BranchError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -940,7 +930,7 @@ page =
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 ```
 
@@ -957,7 +947,7 @@ page =
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 ```
 
@@ -1001,7 +991,7 @@ card TopicsStart, then: TopicsStartError do
       query: [
         ["slug", "mnch_onboarding_topics_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1012,7 +1002,7 @@ card TopicsStart, then: TopicsStartError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -1045,7 +1035,7 @@ end
 
 card ArticleTopic, then: ArticleTopicError do
   buttons(
-    ProfileProgress50: "Complete Profile",
+    HealthProfessionals: "Complete Profile",
     ArticleFeedback: "Rate this article",
     TopicsStart: "Choose another topic"
   ) do
@@ -1055,7 +1045,7 @@ end
 
 card ArticleTopicError, then: ArticleTopicError do
   buttons(
-    ProfileProgress50: "Complete Profile",
+    HealthProfessionals: "Complete Profile",
     ArticleFeedback: "Rate this article",
     TopicsStart: "Choose another topic"
   ) do
@@ -1075,7 +1065,7 @@ card ArticleFeedback, then: ArticleFeedbackError do
       query: [
         ["slug", "mnch_onboarding_content_feedback"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1084,7 +1074,7 @@ card ArticleFeedback, then: ArticleFeedbackError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1127,7 +1117,7 @@ card ArticleFeedbackNo, then: ArticleFeedbackNoError do
       query: [
         ["slug", "mnch_onboarding_content_feedback_no"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1136,7 +1126,7 @@ card ArticleFeedbackNo, then: ArticleFeedbackNoError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1146,8 +1136,8 @@ card ArticleFeedbackNo, then: ArticleFeedbackNoError do
 
   buttons(
     CompleteProfile: "@button_labels[0]",
-    ProfileProgress25: "@button_labels[1]",
-    ProfileProgress25: "@button_labels[2]"
+    MomReminderOptIn: "@button_labels[1]",
+    MomReminderOptIn: "@button_labels[2]"
   ) do
     text("@message.message")
   end
@@ -1156,11 +1146,43 @@ end
 card ArticleFeedbackNoError, then: ArticleFeedbackNoError do
   buttons(
     CompleteProfile: "@button_labels[0]",
-    ProfileProgress25: "@button_labels[1]",
-    ProfileProgress25: "@button_labels[2]"
+    MomReminderOptIn: "@button_labels[1]",
+    MomReminderOptIn: "@button_labels[2]"
   ) do
     text("@button_error_text")
   end
+end
+
+```
+
+## Pregnant Mom Opt-In
+
+```stack
+card MomReminderOptIn
+     when @contact.opted_in == false or
+            @contact.opted_in == "false" or
+            is_nil_or_empty(@contact.opted_in),
+     then: HealthProfessionals do
+  log("haven't opted in")
+  run_stack("537e4867-eb26-482d-96eb-d4783828c622")
+end
+
+card MomReminderOptIn, then: HealthProfessionals do
+  log("Already opted in")
+end
+
+```
+
+## Pregnant Mom Who Is Health Professional
+
+```stack
+card HealthProfessionals when contact.info_for_health_professionals == true do
+  log("Go to Pregnant nurse")
+  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+end
+
+card HealthProfessionals, then: ProfileProgress25 do
+  log("Info for Health Professionals not added")
 end
 
 ```
@@ -1170,6 +1192,7 @@ end
 ```stack
 card ProfileProgress25, then: DisplayProfileProgress25 do
   write_result("profile_completion", "25%")
+  update_contact(profile_completion: "25%")
 
   search =
     get(
@@ -1177,7 +1200,7 @@ card ProfileProgress25, then: DisplayProfileProgress25 do
       query: [
         ["slug", "mnch_onboarding_profile_progress_25"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1186,7 +1209,7 @@ card ProfileProgress25, then: DisplayProfileProgress25 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1215,7 +1238,7 @@ card DisplayProfileProgress25, then: ProfileProgress25Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1241,11 +1264,12 @@ end
 
 ```
 
-## Profile Progress 25% Secondary
+## Partner Profile Progress 25% Secondary
 
 ```stack
 card ProfileProgress25Secondary, then: DisplayProfileProgress25Secondary do
   write_result("profile_completion", "25%")
+  update_contact(profile_completion: "25%")
 
   search =
     get(
@@ -1253,7 +1277,7 @@ card ProfileProgress25Secondary, then: DisplayProfileProgress25Secondary do
       query: [
         ["slug", "mnch_onboarding_profile_progress_25_secondary"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1262,21 +1286,13 @@ card ProfileProgress25Secondary, then: DisplayProfileProgress25Secondary do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
-
-  buttons(
-    CompleteProfile: "@button_labels[0]",
-    TopicsForYou: "@button_labels[1]",
-    ExploreHealthGuide: "@button_labels[2]"
-  ) do
-    text("@message.message")
-  end
 end
 
 # Text only
@@ -1299,7 +1315,7 @@ card DisplayProfileProgress25Secondary, then: ProfileProgress25SecondaryError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1325,11 +1341,12 @@ end
 
 ```
 
-## Profile Progress 25% Secondary 2
+## Curious Profile Progress 25% Secondary 2
 
 ```stack
 card ProfileProgress25Secondary2, then: DisplayProfileProgress25Secondary2 do
   write_result("profile_completion", "25%")
+  update_contact(profile_completion: "25%")
 
   search =
     get(
@@ -1337,7 +1354,7 @@ card ProfileProgress25Secondary2, then: DisplayProfileProgress25Secondary2 do
       query: [
         ["slug", "mnch_onboarding_profile_progress_25_secondary_"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1346,7 +1363,7 @@ card ProfileProgress25Secondary2, then: DisplayProfileProgress25Secondary2 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1375,7 +1392,7 @@ card DisplayProfileProgress25Secondary2, then: ProfileProgress25Secondary2Error 
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1449,6 +1466,7 @@ end
 ```stack
 card ProfileProgress50, then: ProfileProgress50Error do
   write_result("profile_completion", "50%")
+  update_contact(profile_completion: "50%")
 
   search =
     get(
@@ -1456,7 +1474,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
       query: [
         ["slug", "mnch_onboarding_profile_progress_50"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1465,7 +1483,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1500,6 +1518,7 @@ end
 ```stack
 card ProfileProgress100, then: DisplayProfileProgress100 do
   write_result("profile_completion", "100%")
+  update_contact(profile_completion: "100%")
   cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
 
   search =
@@ -1508,7 +1527,7 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
       query: [
         ["slug", "mnch_onboarding_profile_progress_100"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1517,7 +1536,7 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -1546,7 +1565,7 @@ card DisplayProfileProgress100, then: ProfileProgress100Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1582,7 +1601,7 @@ card SentimentOtherFirst, then: DisplaySentimentOtherFirst do
       query: [
         ["slug", "mnch_sentiment_other_first"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1593,7 +1612,7 @@ card SentimentOtherFirst, then: DisplaySentimentOtherFirst do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -1616,7 +1635,7 @@ card DisplaySentimentOtherFirst, then: DisplaySentimentOtherFirstError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1644,7 +1663,7 @@ card SentimentOtherSecond, then: DisplaySentimentOtherSecond do
       query: [
         ["slug", "mnch_sentiment_other_second"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1655,7 +1674,7 @@ card SentimentOtherSecond, then: DisplaySentimentOtherSecond do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -1678,7 +1697,7 @@ card DisplaySentimentOtherSecond, then: DisplaySentimentOtherSecondError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1706,7 +1725,7 @@ card SentimentOtherThird, then: DisplaySentimentOtherThird do
       query: [
         ["slug", "mnch_sentiment_other_third"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1717,7 +1736,7 @@ card SentimentOtherThird, then: DisplaySentimentOtherThird do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -1740,7 +1759,7 @@ card DisplaySentimentOtherThird, then: DisplaySentimentOtherThirdError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1768,7 +1787,7 @@ card SentimentScaredWorriedFirst, then: DisplaySentimentScaredWorriedFirst do
       query: [
         ["slug", "mnch_sentiment_scared_worried_first"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1779,7 +1798,7 @@ card SentimentScaredWorriedFirst, then: DisplaySentimentScaredWorriedFirst do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -1802,7 +1821,7 @@ card DisplaySentimentScaredWorriedFirst, then: DisplaySentimentScaredWorriedFirs
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1830,7 +1849,7 @@ card SentimentScaredWorriedSecond, then: DisplaySentimentScaredWorriedSecond do
       query: [
         ["slug", "mnch_sentiment_scared_worried_second"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1841,7 +1860,7 @@ card SentimentScaredWorriedSecond, then: DisplaySentimentScaredWorriedSecond do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -1864,7 +1883,7 @@ card DisplaySentimentScaredWorriedSecond, then: DisplaySentimentScaredWorriedSec
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1892,7 +1911,7 @@ card SentimentScaredWorriedThird, then: DisplaySentimentScaredWorriedThird do
       query: [
         ["slug", "mnch_sentiment_scared_worried_third"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1903,7 +1922,7 @@ card SentimentScaredWorriedThird, then: DisplaySentimentScaredWorriedThird do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -1926,7 +1945,7 @@ card DisplaySentimentScaredWorriedThird, then: DisplaySentimentScaredWorriedThir
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -1954,7 +1973,7 @@ card SentimentExcitedHappyFirst, then: DisplaySentimentExcitedHappyFirst do
       query: [
         ["slug", "mnch_sentiment_excited_happy_first"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1965,7 +1984,7 @@ card SentimentExcitedHappyFirst, then: DisplaySentimentExcitedHappyFirst do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -1988,7 +2007,7 @@ card DisplaySentimentExcitedHappyFirst, then: DisplaySentimentExcitedHappyFirstE
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2016,7 +2035,7 @@ card SentimentExcitedHappySecond, then: DisplaySentimentExcitedHappySecond do
       query: [
         ["slug", "mnch_sentiment_excited_happy_second"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2027,7 +2046,7 @@ card SentimentExcitedHappySecond, then: DisplaySentimentExcitedHappySecond do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2050,7 +2069,7 @@ card DisplaySentimentExcitedHappySecond, then: DisplaySentimentExcitedHappySecon
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2078,7 +2097,7 @@ card SentimentExcitedHappyThird, then: DisplaySentimentExcitedHappyThird do
       query: [
         ["slug", "mnch_sentiment_excited_happy_third"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2089,7 +2108,7 @@ card SentimentExcitedHappyThird, then: DisplaySentimentExcitedHappyThird do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2112,7 +2131,7 @@ card DisplaySentimentExcitedHappyThird, then: DisplaySentimentExcitedHappyThirdE
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2140,7 +2159,7 @@ card FactsFactoid1Trimester1, then: DisplayFactsFactoid1Trimester1 do
       query: [
         ["slug", "mnch_facts_factoid_1_trimester_1"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2151,7 +2170,7 @@ card FactsFactoid1Trimester1, then: DisplayFactsFactoid1Trimester1 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2174,7 +2193,7 @@ card DisplayFactsFactoid1Trimester1, then: DisplayFactsFactoid1Trimester1Error d
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2202,7 +2221,7 @@ card FactsFactoid1Trimester2, then: DisplayFactsFactoid1Trimester2 do
       query: [
         ["slug", "mnch_facts_factoid_1_trimester_2"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2213,7 +2232,7 @@ card FactsFactoid1Trimester2, then: DisplayFactsFactoid1Trimester2 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2236,7 +2255,7 @@ card DisplayFactsFactoid1Trimester2, then: DisplayFactsFactoid1Trimester2Error d
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2264,7 +2283,7 @@ card FactsFactoid1Trimester3, then: DisplayFactsFactoid1Trimester3 do
       query: [
         ["slug", "mnch_facts_factoid_1_trimester_3"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2275,7 +2294,7 @@ card FactsFactoid1Trimester3, then: DisplayFactsFactoid1Trimester3 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2298,7 +2317,7 @@ card DisplayFactsFactoid1Trimester3, then: DisplayFactsFactoid1Trimester3Error d
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2326,7 +2345,7 @@ card FactsFactoid2Trimester1, then: DisplayFactsFactoid2Trimester1 do
       query: [
         ["slug", "mnch_facts_factoid_2_trimester_1"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2337,7 +2356,7 @@ card FactsFactoid2Trimester1, then: DisplayFactsFactoid2Trimester1 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2360,7 +2379,7 @@ card DisplayFactsFactoid2Trimester1, then: DisplayFactsFactoid2Trimester1Error d
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2400,7 +2419,7 @@ card FactsFactoid2Trimester2, then: DisplayFactsFactoid2Trimester2 do
       query: [
         ["slug", "mnch_facts_factoid_2_trimester_2"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2411,7 +2430,7 @@ card FactsFactoid2Trimester2, then: DisplayFactsFactoid2Trimester2 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2434,7 +2453,7 @@ card DisplayFactsFactoid2Trimester2, then: DisplayFactsFactoid2Trimester2Error d
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2474,7 +2493,7 @@ card FactsFactoid2Trimester3, then: DisplayFactsFactoid2Trimester3 do
       query: [
         ["slug", "mnch_facts_factoid_2_trimester_3"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2485,7 +2504,7 @@ card FactsFactoid2Trimester3, then: DisplayFactsFactoid2Trimester3 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2508,7 +2527,7 @@ card DisplayFactsFactoid2Trimester3, then: DisplayFactsFactoid2Trimester3Error d
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2546,6 +2565,7 @@ This flow first starts off with the same EDD calculator as the `I'm pregnant` op
 card PartnerPregnant, then: PartnerEDDMonth do
   write_result("pregnancy_status", "@status")
   write_result("profile_completion", "0%")
+  update_contact(profile_completion: "0%")
   update_contact(pregnancy_status: "@status")
   update_contact(checkpoint: "partner_of_pregnant_mom_profile")
 end
@@ -2557,7 +2577,7 @@ card PartnerPregnantGender, then: PartnerPregnantGenderError do
       query: [
         ["slug", "mnch_onboarding_secondary_04"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2568,7 +2588,7 @@ card PartnerPregnantGender, then: PartnerPregnantGenderError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = page.body.body.text.value
@@ -2617,7 +2637,7 @@ card PartnerEDDMonth, then: PartnerEDDMonthError do
       query: [
         ["slug", "mnch_onboarding_secondary_02"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2628,7 +2648,7 @@ card PartnerEDDMonth, then: PartnerEDDMonthError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   edd_month = ""
@@ -2728,7 +2748,7 @@ card PartnerEDDMonthUnknown, "I don't know", then: DisplayPartnerEDDMonthUnknown
       query: [
         ["slug", "mnch_onboarding_edd_unknown_secondary"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2737,7 +2757,7 @@ card PartnerEDDMonthUnknown, "I don't know", then: DisplayPartnerEDDMonthUnknown
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -2765,7 +2785,7 @@ card DisplayPartnerEDDMonthUnknown, then: PartnerEDDMonthUnknownError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -2799,7 +2819,7 @@ card PartnerEDDDay, then: PartnerValidateEDDDay do
       query: [
         ["slug", "mnch_onboarding_secondary_03"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2808,7 +2828,7 @@ card PartnerEDDDay, then: PartnerValidateEDDDay do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -2860,7 +2880,7 @@ card PartnerEDDConfirmation, then: PartnerEDDConfirmationError do
         ["slug", "mnch_onboarding_confirm_edd"],
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2869,7 +2889,7 @@ card PartnerEDDConfirmation, then: PartnerEDDConfirmationError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -2924,7 +2944,7 @@ card Loading01Secondary, then: Loading01SecondaryGoTo do
       query: [
         ["slug", "mnch_onboarding_loading_01_secondary"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -2935,7 +2955,7 @@ card Loading01Secondary, then: Loading01SecondaryGoTo do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -2968,7 +2988,7 @@ card DisplayLoading01Secondary, then: DisplayLoading01SecondaryError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -3000,7 +3020,7 @@ card DisplayLoading01SecondaryNoEDD, then: DisplayLoading01SecondaryNoEDDError d
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -3028,7 +3048,7 @@ card Loading02Secondary, then: DisplayLoading02Secondary do
       query: [
         ["slug", "mnch_onboarding_loading_02_secondary"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3039,7 +3059,7 @@ card Loading02Secondary, then: DisplayLoading02Secondary do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3062,7 +3082,7 @@ card DisplayLoading02Secondary, then: DisplayLoading02SecondaryError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -3090,7 +3110,7 @@ card ContentIntro, then: DisplayContentIntro do
       query: [
         ["slug", "mnch_onboarding_content_intro"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3101,7 +3121,7 @@ card ContentIntro, then: DisplayContentIntro do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3133,7 +3153,7 @@ card DisplayContentIntro, then: DisplayContentIntroError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -3195,7 +3215,7 @@ card ArticleTopic01Secondary, then: DisplayArticleTopic01Secondary do
       query: [
         ["slug", "mnch_onboarding_article_topic_01_secondary"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3206,7 +3226,7 @@ card ArticleTopic01Secondary, then: DisplayArticleTopic01Secondary do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3219,7 +3239,7 @@ end
 card DisplayArticleTopic01Secondary when contact.data_preference == "text only",
   then: DisplayArticleTopic01SecondaryError do
   buttons(
-    ProfileProgress50: "@button_labels[0]",
+    HealthProfessionalsSecondary: "@button_labels[0]",
     ContentFeedback: "@button_labels[1]",
     ContentIntro: "@button_labels[2]"
   ) do
@@ -3235,12 +3255,12 @@ card DisplayArticleTopic01Secondary, then: DisplayArticleTopic01SecondaryError d
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
   buttons(
-    ProfileProgress50: "@button_labels[0]",
+    HealthProfessionalsSecondary: "@button_labels[0]",
     ContentFeedback: "@button_labels[1]",
     ContentIntro: "@button_labels[2]"
   ) do
@@ -3251,7 +3271,7 @@ end
 
 card DisplayArticleTopic01SecondaryError, then: DisplayArticleTopic01SecondaryError do
   buttons(
-    ProfileProgress50: "@button_labels[0]",
+    HealthProfessionalsSecondary: "@button_labels[0]",
     ContentFeedback: "@button_labels[1]",
     ContentIntro: "@button_labels[2]"
   ) do
@@ -3271,7 +3291,7 @@ card ContentFeedback, then: DisplayContentFeedback do
       query: [
         ["slug", "mnch_onboarding_content_feedback"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3282,7 +3302,7 @@ card ContentFeedback, then: DisplayContentFeedback do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3319,7 +3339,7 @@ card ContentFeedbackNo, then: DisplayContentFeedbackNo do
       query: [
         ["slug", "mnch_onboarding_curious_content_feedback"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3330,7 +3350,7 @@ card ContentFeedbackNo, then: DisplayContentFeedbackNo do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3377,7 +3397,7 @@ card ReminderOptIn
       query: [
         ["slug", "mnch_onboarding_reminder_opt_in"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3388,7 +3408,7 @@ card ReminderOptIn
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3413,7 +3433,7 @@ card DisplayReminderOptInError, then: DisplayReminderOptInError do
   end
 end
 
-card ReminderOptIn, then: ProfileProgress25Secondary do
+card ReminderOptIn, then: HealthProfessionalsSecondary do
   log("Already opted in")
 end
 
@@ -3422,7 +3442,7 @@ end
 ## Partner Reminder Opt In Yes
 
 ```stack
-card ReminderOptInYes, then: ProfileProgress25Secondary do
+card ReminderOptInYes, then: HealthProfessionalsSecondary do
   update_contact(opted_in: "true")
 
   search =
@@ -3431,7 +3451,7 @@ card ReminderOptInYes, then: ProfileProgress25Secondary do
       query: [
         ["slug", "mnch_onboarding_reminder_opt_in_yes"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3442,7 +3462,7 @@ card ReminderOptInYes, then: ProfileProgress25Secondary do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3455,7 +3475,7 @@ end
 ## Partner Reminder Opt In No
 
 ```stack
-card ReminderOptInNo, then: ProfileProgress25Secondary do
+card ReminderOptInNo, then: HealthProfessionalsSecondary do
   update_contact(opted_in: "false")
 
   search =
@@ -3464,7 +3484,7 @@ card ReminderOptInNo, then: ProfileProgress25Secondary do
       query: [
         ["slug", "mnch_onboarding_reminder_opt_in_no"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3475,12 +3495,26 @@ card ReminderOptInNo, then: ProfileProgress25Secondary do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
 
   text("@message.message")
+end
+
+```
+
+## Health Professional Information
+
+```stack
+card HealthProfessionalsSecondary when contact.info_for_health_professionals == true do
+  log("Go to Pregnant nurse")
+  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+end
+
+card HealthProfessionalsSecondary, then: ProfileProgress25Secondary do
+  log("Info for Health Professionals not added")
 end
 
 ```
@@ -3497,7 +3531,7 @@ card Curious, then: DisplayCurious do
       query: [
         ["slug", "mnch_onboarding_curious_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3508,7 +3542,7 @@ card Curious, then: DisplayCurious do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3561,7 +3595,7 @@ card Curious02, then: DisplayCurious02 do
       query: [
         ["slug", "mnch_onboarding_curious_02"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3572,7 +3606,7 @@ card Curious02, then: DisplayCurious02 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3638,7 +3672,7 @@ card Curious03, then: DisplayCurious03 do
       query: [
         ["slug", "mnch_onboarding_curious_03"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3649,7 +3683,7 @@ card Curious03, then: DisplayCurious03 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3714,7 +3748,7 @@ card LoadingComponent01, then: DisplayLoadingComponent01 do
       query: [
         ["slug", "mnch_onboarding_loading_component_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3725,7 +3759,7 @@ card LoadingComponent01, then: DisplayLoadingComponent01 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3749,7 +3783,7 @@ card DisplayLoadingComponent01 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -3795,7 +3829,7 @@ card LoadingComponent02, then: DisplayLoadingComponent02 do
       query: [
         ["slug", "mnch_onboarding_loading_component_02"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3806,7 +3840,7 @@ card LoadingComponent02, then: DisplayLoadingComponent02 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3831,7 +3865,7 @@ card DisplayLoadingComponent02, then: DisplayLoadingComponent02Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -3859,7 +3893,7 @@ card CuriousContentIntro, then: DisplayCuriousContentIntro do
       query: [
         ["slug", "mnch_onboarding_curious_content_intro"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3870,11 +3904,11 @@ card CuriousContentIntro, then: DisplayCuriousContentIntro do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
-  menu_items = map(message.list_items, &[&1.value, &1.value])
+  menu_items = map(message.list_items, & &1.value)
 end
 
 # #TODO Content
@@ -3896,21 +3930,33 @@ card DisplayCuriousContentIntro, then: DisplayCuriousContentIntroError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
   image("@image_data.body.meta.download_url")
 
   selected_topic =
-    list("Choose a topic", ArticleTopic01, menu_items) do
+    list("Choose a topic",
+      ArticleTopic01: "@menu_items[0]",
+      ArticleTopic01: "@menu_items[1]",
+      ArticleTopic01: "@menu_items[2]",
+      ArticleTopic01: "@menu_items[3]",
+      CuriousContentFeedback: "@menu_items[4]"
+    ) do
       text("@message.message")
     end
 end
 
 card DisplayCuriousContentIntroError, then: DisplayCuriousContentIntroError do
   selected_topic =
-    list("Choose a topic", ArticleTopic01, menu_items) do
+    list("Choose a topic",
+      ArticleTopic01: "@menu_items[0]",
+      ArticleTopic01: "@menu_items[1]",
+      ArticleTopic01: "@menu_items[2]",
+      ArticleTopic01: "@menu_items[3]",
+      CuriousContentFeedback: "@menu_items[4]"
+    ) do
       text("@list_error_text")
     end
 end
@@ -3927,7 +3973,7 @@ card ArticleTopic01, then: DisplayArticleTopic01 do
       query: [
         ["slug", "mnch_onboarding_article_topic_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -3938,7 +3984,7 @@ card ArticleTopic01, then: DisplayArticleTopic01 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -3951,7 +3997,7 @@ end
 card DisplayArticleTopic01 when contact.data_preference == "text only",
   then: DisplayArticleTopic01Error do
   buttons(
-    ProfileProgress50: "@button_labels[0]",
+    HealthProfessionalsSecondary2: "@button_labels[0]",
     CuriousContent05: "@button_labels[1]",
     CuriousContentIntro: "@button_labels[2]"
   ) do
@@ -3967,12 +4013,12 @@ card DisplayArticleTopic01, then: DisplayArticleTopic01Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
   buttons(
-    ProfileProgress50: "@button_labels[0]",
+    HealthProfessionalsSecondary2: "@button_labels[0]",
     CuriousContent05: "@button_labels[1]",
     CuriousContentIntro: "@button_labels[2]"
   ) do
@@ -3983,7 +4029,7 @@ end
 
 card DisplayArticleTopic01Error, then: DisplayArticleTopic01Error do
   buttons(
-    ProfileProgress50: "@button_labels[0]",
+    HealthProfessionalsSecondary2: "@button_labels[0]",
     CuriousContent05: "@button_labels[1]",
     CuriousContentIntro: "@button_labels[2]"
   ) do
@@ -4003,7 +4049,7 @@ card CuriousContent05, then: DisplayCuriousContent05 do
       query: [
         ["slug", "mnch_onboarding_curious_content_05"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -4014,7 +4060,7 @@ card CuriousContent05, then: DisplayCuriousContent05 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -4051,7 +4097,7 @@ card CuriousContentFeedback, then: DisplayCuriousContentFeedback do
       query: [
         ["slug", "mnch_onboarding_curious_content_feedback"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -4062,7 +4108,7 @@ card CuriousContentFeedback, then: DisplayCuriousContentFeedback do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -4102,13 +4148,27 @@ card CuriousReminderOptIn
      when @contact.opted_in == false or
             @contact.opted_in == "false" or
             is_nil_or_empty(@contact.opted_in),
-     then: ProfileProgress25Secondary2 do
+     then: HealthProfessionalsSecondary2 do
   log("haven't opted in")
   run_stack("537e4867-eb26-482d-96eb-d4783828c622")
 end
 
-card CuriousReminderOptIn, then: ProfileProgress25Secondary2 do
+card CuriousReminderOptIn, then: HealthProfessionalsSecondary2 do
   log("Already opted in")
+end
+
+```
+
+## Health Professional Secondary 2
+
+```stack
+card HealthProfessionalsSecondary2 when contact.info_for_health_professionals == true do
+  log("Go to Pregnant nurse")
+  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+end
+
+card HealthProfessionalsSecondary2, then: ProfileProgress25Secondary2 do
+  log("Info for Health Professionals not added")
 end
 
 ```

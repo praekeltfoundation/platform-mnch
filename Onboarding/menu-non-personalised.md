@@ -5,16 +5,6 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "n
 
 ```
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
-
-| Key               | Value                          |
-| ----------------- |--------------------------------|
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
-
 ```stack
 card FetchError, then: NonPersonalisedMenu do
   # Fetch and store the error message, so that we don't need to do it for every error card
@@ -26,7 +16,7 @@ card FetchError, then: NonPersonalisedMenu do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -38,7 +28,7 @@ card FetchError, then: NonPersonalisedMenu do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -49,7 +39,7 @@ card FetchError, then: NonPersonalisedMenu do
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -60,7 +50,7 @@ card FetchError, then: NonPersonalisedMenu do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   list_error_text = page.body.body.text.value.message
@@ -80,7 +70,7 @@ card NonPersonalisedMenu, then: DisplayNonPersonalisedMenu do
       query: [
         ["slug", "mnch_onboarding_non_personalised_menu"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -91,7 +81,7 @@ card NonPersonalisedMenu, then: DisplayNonPersonalisedMenu do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -183,7 +173,7 @@ card PromptZero, then: DisplayPromptZero do
       query: [
         ["slug", "mnch_onboarding_personalisation_prompt_zero"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -194,7 +184,7 @@ card PromptZero, then: DisplayPromptZero do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -241,7 +231,7 @@ card PromptPartial, then: DisplayPromptPartial do
       query: [
         ["slug", "mnch_onboarding_personalisation_prompt_partial"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -252,7 +242,7 @@ card PromptPartial, then: DisplayPromptPartial do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -361,7 +351,7 @@ card LibraryTopics, then: DisplayLibraryTopics do
       query: [
         ["slug", "mnch_onboarding_library"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -372,7 +362,7 @@ card LibraryTopics, then: DisplayLibraryTopics do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -445,7 +435,7 @@ card ManageUpdates, then: DisplayManageUpdates do
       query: [
         ["slug", "mnch_onboarding_manage_updates"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -456,7 +446,7 @@ card ManageUpdates, then: DisplayManageUpdates do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -529,7 +519,7 @@ card DataSettings, then: DisplayDataSettings do
       query: [
         ["slug", "mnch_onboarding_data_settings"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -540,7 +530,7 @@ card DataSettings, then: DisplayDataSettings do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -594,7 +584,7 @@ card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
       query: [
         ["slug", "mnch_onboarding_data_preferences_confirmation"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -605,7 +595,7 @@ card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -675,7 +665,7 @@ card AboutPrivacy, then: DisplayAboutPrivacy do
       query: [
         ["slug", "mnch_onboarding_about_privacy"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -686,7 +676,7 @@ card AboutPrivacy, then: DisplayAboutPrivacy do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -700,7 +690,7 @@ card DisplayAboutPrivacy, then: DisplayAboutPrivacyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@doc_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 

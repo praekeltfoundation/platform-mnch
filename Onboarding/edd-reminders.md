@@ -5,16 +5,6 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 
 ```
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
-
-| Key               | Value                                   |
-| ----------------- |-----------------------------------------|
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
-
 ```stack
 card FetchError, then: EDDReminder do
   # Fetch and store the error message, so that we don't need to do it for every error card
@@ -24,7 +14,7 @@ card FetchError, then: EDDReminder do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @cglobal.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -36,7 +26,7 @@ card FetchError, then: EDDReminder do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -47,7 +37,7 @@ card FetchError, then: EDDReminder do
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -58,7 +48,7 @@ card FetchError, then: EDDReminder do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   list_error_text = page.body.body.text.value.message
@@ -69,7 +59,7 @@ card FetchError, then: EDDReminder do
       query: [
         ["slug", "mnch_onboarding_unrecognised_number"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -80,7 +70,7 @@ card FetchError, then: EDDReminder do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   unrecognised_number_text = page.body.body.text.value.message
@@ -98,7 +88,7 @@ card EDDReminder, then: DisplayEDDReminder do
       query: [
         ["slug", "mnch_onboarding_edd_reminder"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -109,7 +99,7 @@ card EDDReminder, then: DisplayEDDReminder do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -137,7 +127,7 @@ card DisplayEDDReminder, then: DisplayEDDReminderError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -173,7 +163,7 @@ card EDDGotIt, then: DisplayEDDGotIt do
       query: [
         ["slug", "mnch_onboarding_edd_got_it"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -184,7 +174,7 @@ card EDDGotIt, then: DisplayEDDGotIt do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -215,7 +205,7 @@ card EDDMonth, then: EDDMonthError do
       query: [
         ["slug", "mnch_onboarding_edd_month"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -226,7 +216,7 @@ card EDDMonth, then: EDDMonthError do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   edd_month = ""
@@ -264,7 +254,7 @@ card EDDMonthError, then: EDDMonthError do
       query: [
         ["slug", "edd-month-error"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -273,7 +263,7 @@ card EDDMonthError, then: EDDMonthError do
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -346,7 +336,7 @@ card EDDMonthUnknown, "I don't know", then: EDDMonthUnknownError do
       query: [
         ["slug", "mnch_onboarding_edd_unknown"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -355,7 +345,7 @@ card EDDMonthUnknown, "I don't know", then: EDDMonthUnknownError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -392,7 +382,7 @@ card EDDDay, then: ValidateEDDDay do
       query: [
         ["slug", "mnch_onboarding_edd_day"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -401,7 +391,7 @@ card EDDDay, then: ValidateEDDDay do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ],
       query: [["whatsapp", "true"]]
     )
@@ -466,7 +456,7 @@ card EDDConfirm, then: DisplayEDDConfirm do
       query: [
         ["slug", "mnch_onboarding_edd_confirmed"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -477,7 +467,7 @@ card EDDConfirm, then: DisplayEDDConfirm do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -509,7 +499,7 @@ card EDDRUnknown, then: DisplayEDDUnknown do
       query: [
         ["slug", "mnch_onboarding_edd_unknown"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -520,7 +510,7 @@ card EDDRUnknown, then: DisplayEDDUnknown do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -546,7 +536,7 @@ card DisplayEDDUnknown, then: DisplayEDDUnknownError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -580,7 +570,7 @@ card EDDLater, then: DisplayEDDLater do
       query: [
         ["slug", "mnch_onboarding_edd_do_it_later"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -591,7 +581,7 @@ card EDDLater, then: DisplayEDDLater do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
