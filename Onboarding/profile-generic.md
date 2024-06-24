@@ -16,11 +16,6 @@ columns: []
 | contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
 
 ```stack
-card Checkpoint, then: FetchError do
-  update_contact(profile_type: "generic")
-  update_contact(checkpoint: "generic_basic_info")
-end
-
 card FetchError, then: CheckPointRedirect do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
@@ -69,9 +64,17 @@ end
 ## Basic Profile Questions
 
 ```stack
-card BasicQuestions, then: ProfileProgress30Generic do
+card BasicQuestions, then: Checkpoint do
   log("Basic questions")
   run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+end
+
+```
+
+```stack
+card Checkpoint, then: ProfileProgress30Generic do
+  update_contact(profile_type: "generic")
+  update_contact(checkpoint: "generic_basic_info")
 end
 
 ```
@@ -354,7 +357,7 @@ end
 ```stack
 card MainMenu do
   log("Go to main menu")
-  run_stack("e823ad1d-e2d7-4d5c-b928-786b601f0f29")
+  run_stack("21b892d6-685c-458e-adae-304ece46022a")
 end
 
 ```
