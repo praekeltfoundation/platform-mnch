@@ -174,7 +174,7 @@ card NurseCheckBranch, then: NurseCheckError do
 
   buttons(
     OccupationalRole: "@button_labels[0]",
-    Curious: "@button_labels[1]"
+    JustCurious: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
     text("@message.message")
@@ -184,7 +184,7 @@ end
 card NurseCheckError, then: NurseCheckError do
   buttons(
     OccupationalRole: "@button_labels[0]",
-    Curious: "@button_labels[1]"
+    JustCurious: "@button_labels[1]"
   ) do
     text("@button_error_text")
   end
@@ -245,6 +245,46 @@ card OccupationalRoleResponse, then: FacilityType do
   role = lower("@role")
   log("Updating occupational_role to @role")
   update_contact(occupational_role: "@role")
+end
+
+```
+
+## Just Curious
+
+```stack
+card JustCurious, then: JustCuriousError do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_curioushcw"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  message = page.body.body.text.value
+  button_labels = map(message.buttons, & &1.value.title)
+
+  buttons(Curious: "@button_labels[0]") do
+    text("@message.message")
+  end
+end
+
+card JustCuriousError, then: JustCuriousError do
+  buttons(Curious: "@button_labels[0]") do
+    text("@button_error_text")
+  end
 end
 
 ```
@@ -372,10 +412,11 @@ end
 
 ```
 
-Add markdown here
+## Pregnancy Information
 
 ```stack
 card PregnancyInfo when contact.pregnancy_information == true do
+  log("Pregnancy info added")
   run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
 end
 
@@ -435,6 +476,7 @@ end
 
 card ProfileProgress25Continue, then: ProfileProgress50 do
   # Ask the Basic Profile Questions
+  log("Ask the Basic Profile Questions")
   run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
 end
 
@@ -585,6 +627,7 @@ end
 
 card ProfileProgress50Continue, then: ProfileProgress75 do
   # Ask the Personal Profile Questions
+  log("Ask the Personal Profile Questions")
   run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
 end
 
@@ -673,7 +716,7 @@ end
 ## ProfileProgress100
 
 ```stack
-card ProfileProgress100, then: ProfileProgress100Error do
+card ProfileProgress100, then: ProfileProgress100Branch do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
   update_contact(checkpoint: "hcw_profile_100")
@@ -701,12 +744,38 @@ card ProfileProgress100, then: ProfileProgress100Error do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+end
+
+# Text only
+card ProfileProgress100Branch when contact.data_preference == "text only",
+  then: ProfileProgress100Error do
+  buttons(
+    ExploreHealthGuide: "@button_labels[0]",
+    TopicsForYou: "@button_labels[1]",
+    MainMenu: "@button_labels[2]"
+  ) do
+    text("@message.message")
+  end
+end
+
+# Show image
+card ProfileProgress100Branch, then: ProfileProgress100Error do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @global.config.contentrepo_token"]
+      ]
+    )
 
   buttons(
     ExploreHealthGuide: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
     MainMenu: "@button_labels[2]"
   ) do
+    image("@image_data.body.meta.download_url")
     text("@message.message")
   end
 end
@@ -730,7 +799,8 @@ card TopicsForYou do
 end
 
 card MainMenu do
-  text("TODO: Go to non-personalised menu")
+  log("Go to main menu")
+  run_stack("21b892d6-685c-458e-adae-304ece46022a")
 end
 
 ```
