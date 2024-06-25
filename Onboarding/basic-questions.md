@@ -33,13 +33,6 @@ The token for ContentRepo is stored in a global dictionary.
 
 Here we do any setup and fetching of values before we start the flow.
 
-```stack
-card Checkpoint, then: FetchError do
-  update_contact(checkpoint: "pregnancy_basic_info")
-end
-
-```
-
 <!-- { section: "82f2c129-5b43-4c31-9431-8d68181b7345", x: 0, y: 0} -->
 
 ```stack
