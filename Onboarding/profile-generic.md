@@ -5,22 +5,15 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "g
 
 ```
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
-
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  |
-
 ```stack
 card Checkpoint, then: FetchError do
   update_contact(profile_type: "generic")
   update_contact(checkpoint: "generic_basic_info")
 end
 
+```
+
+```stack
 card FetchError, then: CheckPointRedirect do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
@@ -29,7 +22,7 @@ card FetchError, then: CheckPointRedirect do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -41,7 +34,7 @@ card FetchError, then: CheckPointRedirect do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -91,7 +84,7 @@ card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
       query: [
         ["slug", "mnch_onboarding_profile_progress_30_generic"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -102,7 +95,7 @@ card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -139,7 +132,7 @@ card WhyPersonalInfo1, then: DisplayWhyPersonalInfo1 do
       query: [
         ["slug", "mnch_onboarding_why_personal_info_1"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -150,7 +143,7 @@ card WhyPersonalInfo1, then: DisplayWhyPersonalInfo1 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -187,7 +180,7 @@ card ReminderLater, then: DisplayReminderLater do
       query: [
         ["slug", "mnch_onboarding_reminder_later"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -198,7 +191,7 @@ card ReminderLater, then: DisplayReminderLater do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -233,7 +226,7 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
       query: [
         ["slug", "mnch_onboarding_profile_progress_100_generic"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -244,7 +237,7 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -274,7 +267,7 @@ card DisplayProfileProgress100Generic, then: DisplayProfileProgress100GenericErr
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 

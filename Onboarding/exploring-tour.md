@@ -3,16 +3,6 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 
 ```
 
-<!--
- dictionary: "config"
-version: "0.1.0"
-columns: [] 
--->
-
-| Key               | Value                                    |
-| ----------------- | ---------------------------------------- |
-| contentrepo_token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|
-
 ## Fetch button and list error messages
 
 ```stack
@@ -24,7 +14,7 @@ card FetchError, then: FetchTourCard01 do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
@@ -36,7 +26,7 @@ card FetchError, then: FetchTourCard01 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   button_error_text = page.body.body.text.value.message
@@ -60,7 +50,7 @@ card FetchTourCard01, then: DisplayTourCard01 do
       query: [
         ["slug", "mnch_onboarding_tour_card_01"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -71,7 +61,7 @@ card FetchTourCard01, then: DisplayTourCard01 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -94,7 +84,7 @@ card DisplayTourCard01, then: DisplayTourCard01Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -122,7 +112,7 @@ card FetchTourCard02, then: DisplayTourCard02 do
       query: [
         ["slug", "mnch_onboarding_tour_card_02"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -133,7 +123,7 @@ card FetchTourCard02, then: DisplayTourCard02 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -154,7 +144,7 @@ card DisplayTourCard02, then: DisplayTourCard02Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -182,7 +172,7 @@ card FetchTourCard03, then: DisplayTourCard03 do
       query: [
         ["slug", "mnch_onboarding_tour_card_03"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -193,7 +183,7 @@ card FetchTourCard03, then: DisplayTourCard03 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -214,7 +204,7 @@ card DisplayTourCard03, then: DisplayTourCard03Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -242,7 +232,7 @@ card FetchTourCard04, then: DisplayTourCard04 do
       query: [
         ["slug", "mnch_onboarding_tour_card_04"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -253,7 +243,7 @@ card FetchTourCard04, then: DisplayTourCard04 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -274,7 +264,7 @@ card DisplayTourCard04, then: DisplayTourCard04Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -304,7 +294,7 @@ card FetchTourCard05, then: DisplayTourCard05 do
       query: [
         ["slug", "mnch_onboarding_tour_card_05"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -315,7 +305,7 @@ card FetchTourCard05, then: DisplayTourCard05 do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
@@ -336,7 +326,7 @@ card DisplayTourCard05, then: DisplayTourCard05Error do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
       headers: [
-        ["Authorization", "Token @config.items.contentrepo_token"]
+        ["Authorization", "Token @global.config.contentrepo_token"]
       ]
     )
 
@@ -366,7 +356,7 @@ card FetchGuidedTourMenu, then: DisplayGuidedTourMenu do
       query: [
         ["slug", "mnch_onboarding_guided_tour_menu"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -377,7 +367,7 @@ card FetchGuidedTourMenu, then: DisplayGuidedTourMenu do
       query: [
         ["whatsapp", "true"]
       ],
-      headers: [["Authorization", "Token @config.items.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   message = content_data.body.body.text.value
