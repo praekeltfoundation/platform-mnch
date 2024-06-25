@@ -14,7 +14,7 @@ card FetchError, then: EDDReminder do
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
-      headers: [["Authorization", "Token @cglobal.config.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
