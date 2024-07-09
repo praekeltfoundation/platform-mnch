@@ -85,13 +85,13 @@ end
 ```stack
 card GoToPrivacyPolicy
      when contact.privacy_policy_accepted == "yes" and
-            (contact.opted_in == "" or contact.opted_in == "no"),
+            contact.opted_in == false,
      then: OptIn do
   log("Privacy Policy accepted and not opted in, go to Opt In")
 end
 
 card GoToPrivacyPolicy
-     when contact.privacy_policy_accepted == "yes" and contact.opted_in == "yes",
+     when contact.privacy_policy_accepted == "yes" and contact.opted_in == true,
      then: UserIntent do
   log("Privacy Policy accepted and opted in, go to User Intent")
 end
@@ -534,6 +534,8 @@ Values saved into the `intent` contact field:
 
 ```stack
 card UserIntent, then: UserIntentError do
+  update_contact(checkpoint: "intro_welcome")
+
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -578,10 +580,12 @@ card UserIntentError, then: UserIntentError do
 end
 
 card CreateProfile, then: DataPreferences do
+  log("Set intent to create profile")
   update_contact(intent: "create profile")
 end
 
 card Explore, then: DataPreferences do
+  log("Set intent to explore")
   update_contact(intent: "explore")
 end
 
@@ -695,18 +699,18 @@ card DataPreferencesSelectedError, then: DataPreferencesSelectedError do
   end
 end
 
-card SelectNextJourney when intent == "create_profile" do
+card SelectNextJourney when contact.intent == "create profile" do
   # Go to Profile Classifier journey
   log("Navigating to Profile Classifier")
-  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
   write_result("intro_completed", "yes")
+  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
 end
 
-card SelectNextJourney when intent == "explore" do
+card SelectNextJourney when contact.intent == "explore" do
   # Go to Explore journey
   log("Navigating to Explore")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
   write_result("intro_completed", "yes")
+  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
 end
 
 card SelectNextJourney do

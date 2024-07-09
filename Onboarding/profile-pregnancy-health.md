@@ -3911,7 +3911,13 @@ end
 card DisplayCuriousContentIntro when contact.data_preference == "text only",
   then: DisplayCuriousContentIntroError do
   selected_topic =
-    list("Choose a topic", ArticleTopic01, menu_items) do
+    list("Choose a topic",
+      ArticleTopic01: "@menu_items[0]",
+      ArticleTopic01: "@menu_items[1]",
+      ArticleTopic01: "@menu_items[2]",
+      ArticleTopic01: "@menu_items[3]",
+      CuriousContentFeedback: "@menu_items[4]"
+    ) do
       text("@message.message")
     end
 end

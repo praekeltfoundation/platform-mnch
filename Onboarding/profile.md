@@ -978,6 +978,16 @@ card PersonalInfo, then: PersonalInfoError do
     end
 
   display_message = substitute(display_message, "{finances}", "@finances")
+
+  no_of_children =
+    if len("@contact.other_children") > 0 do
+      proper("@contact.other_children")
+    else
+      "Please share"
+    end
+
+  display_message = substitute(display_message, "{no_of_children}", "@no_of_children")
+
   list_items = map(message.list_items, & &1.value)
 
   option =
@@ -985,7 +995,8 @@ card PersonalInfo, then: PersonalInfoError do
       Education: "@list_items[0]",
       Relationship: "@list_items[1]",
       Finances: "@list_items[2]",
-      BackToProfile: "@list_items[3]"
+      NoOfChildren: "@list_items[3]",
+      BackToProfile: "@list_items[4]"
     ) do
       text("@display_message")
     end
@@ -997,10 +1008,89 @@ card PersonalInfoError, then: PersonalInfoError do
       Education: "@list_items[0]",
       Relationship: "@list_items[1]",
       Finances: "@list_items[2]",
-      BackToProfile: "@list_items[3]"
+      NoOfChildren: "@list_items[3]",
+      BackToProfile: "@list_items[4]"
     ) do
       text("@list_error_text")
     end
+end
+
+```
+
+## Personal Information No. of Children
+
+```stack
+card NoOfChildren, then: NoOfChildrenError do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_children"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  message = page.body.body.text.value
+  list_items = map(message.list_items, & &1.value)
+
+  children =
+    list("Children", NoOfChildrenResponse, map(list_items, &[&1, &1])) do
+      text("@message.message")
+    end
+end
+
+card NoOfChildrenError, then: NoOfChildrenError do
+  children =
+    list("Children", NoOfChildrenResponse, map(list_items, &[&1, &1])) do
+      text("@list_error_text")
+    end
+end
+
+card NoOfChildrenResponse when has_phrase(lower("@children"), "why") do
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_children_why"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  message = page.body.body.text.value
+  list_items = map(message.list_items, & &1.value)
+
+  children =
+    list("Children", NoOfChildrenResponse, map(list_items, &[&1, &1])) do
+      text("@message.message")
+    end
+end
+
+card NoOfChildrenResponse, then: PersonalInfo do
+  children = lower("@children")
+  log("Updating other_children to @children")
+  update_contact(other_children: "@children")
 end
 
 ```
@@ -2370,6 +2460,8 @@ end
 
 # When edd, sentiment and all the LOC questions have been answered 
 # we assume that all the pregnancy info has been filled
+# TODO: We need to save the answers of the Form to contact fields so that we can look them up here. This is Onboarding specific, 
+# so we should only modify the onboarding Form. Suggestion for the contact fields is to use the tag + answer number e.g. "placeholder_form_1"
 card YourInterestsResponse
      when "@interest" == "@pregnancy_health" and
             has_text("@contact.edd") and
