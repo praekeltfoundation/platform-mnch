@@ -84,19 +84,19 @@ end
 
 ```stack
 card GoToPrivacyPolicy
-     when contact.privacy_policy_accepted == "yes" and
+     when contact.privacy_policy_accepted == true and
             contact.opted_in == false,
      then: OptIn do
   log("Privacy Policy accepted and not opted in, go to Opt In")
 end
 
 card GoToPrivacyPolicy
-     when contact.privacy_policy_accepted == "yes" and contact.opted_in == true,
+     when contact.privacy_policy_accepted == true and contact.opted_in == true,
      then: UserIntent do
   log("Privacy Policy accepted and opted in, go to User Intent")
 end
 
-card GoToPrivacyPolicy when contact.privacy_policy_accepted == "no", then: PrivacyPolicy do
+card GoToPrivacyPolicy when contact.privacy_policy_accepted == false, then: PrivacyPolicy do
   log("Privacy Policy not accepted, go to Privacy Policy")
 end
 
@@ -362,7 +362,7 @@ card PrivacyPolicyError, then: PrivacyPolicyError do
 end
 
 card AcceptPrivacyPolicy, then: OptIn do
-  update_contact(privacy_policy_accepted: "yes")
+  update_contact(privacy_policy_accepted: "true")
 end
 
 ```
@@ -371,7 +371,7 @@ end
 
 ```stack
 card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
-  update_contact(privacy_policy_accepted: "no")
+  update_contact(privacy_policy_accepted: "false")
 
   search =
     get(

@@ -18,12 +18,12 @@ card ClearData do
   update_contact(topic: "")
   update_contact(profile_type: "")
   update_contact(checkpoint: "")
-  update_contact(privacy_policy_accepted: "")
+  update_contact(privacy_policy_accepted: "false")
   update_contact(profile_completion: "")
   update_contact(opted_in: "false")
   update_contact(onboarding_part_1: "")
   update_contact(onboarding_part_2: "")
-  update_contact(language: "ENG")
+  update_contact(language: "eng")
   update_contact(occupational_role: "")
   update_contact(facility_type: "")
   update_contact(professional_support: "")
@@ -47,6 +47,7 @@ card ClearData do
   update_contact(pages_seen: "")
   update_contact(pregnancy_sentiment: "")
   update_contact(data_preference: "")
+  update_contact(reengagement_message: "")
 
   # Cancel all scheduled stacks
   cancel_scheduled_stacks("b93ddac0-5a3d-42a1-af01-5bbc865ef389")
@@ -54,7 +55,7 @@ card ClearData do
   cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
   cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
 
-  text("Profile reseted")
+  text("Profile successfully reseted")
 end
 
 ```
