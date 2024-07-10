@@ -382,7 +382,7 @@ end
 
 card GenderError, then: GenderError do
   buttons(Male: "@button_labels[0]", Female: "@button_labels[1]", Other: "@button_labels[2]") do
-    text("@button_error_message")
+    text("@button_error_text")
   end
 end
 

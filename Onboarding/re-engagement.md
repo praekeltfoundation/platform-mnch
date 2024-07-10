@@ -325,8 +325,8 @@ card SaveReengagement, then: DropOff1stReminder do
   write_result("reengaged_point", "@contact.reengagement_message")
 end
 
-card DropOffGoTo when contact.checkpoint == "generic_basic_info", then: BasicProfile do
-  log("Go to BasicProfile")
+card DropOffGoTo when contact.checkpoint == "generic_basic_info", then: ProfileGeneric do
+  log("Go to ProfileGeneric")
 end
 
 card DropOffGoTo when contact.checkpoint == "generic_personal_info", then: PersonalProfile do
@@ -339,6 +339,20 @@ end
 
 card DropOffGoTo when contact.checkpoint == "pregnant_nurse_profile", then: NurseQuestions do
   log("Go to NurseQuestions")
+end
+
+card DropOffGoTo when contact.checkpoint == "tour", then: ExploringTour do
+  log("Go to Exploring Tour")
+end
+
+card DropOffGoTo when contact.checkpoint == "profile_classifier", then: ProfileClassifier do
+  log("Go to Profile Classifier")
+end
+
+card DropOffGoTo
+     when contact.checkpoint == "intro_welcome" or is_nil_or_empty(contact.checkpoint),
+     then: IntroAndWelcome do
+  log("Go to Intro and Welcome")
 end
 
 card DropOffGoTo, then: PregnancyQuestions do
@@ -412,12 +426,12 @@ end
 
 ```
 
-## Basic Profile
+## Profile Generic
 
 ```stack
-card BasicProfile do
-  log("Basic Profile")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+card ProfileGeneric do
+  log("Profile Generic")
+  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
 end
 
 ```
@@ -428,6 +442,36 @@ end
 card PersonalProfile do
   log("Personal Profile")
   run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+end
+
+```
+
+## Exploring Tour
+
+```stack
+card ExploringTour do
+  log("Exploring Tour")
+  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+end
+
+```
+
+## Profile Classifier
+
+```stack
+card ProfileClassifier do
+  log("Profile Classifier")
+  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
+end
+
+```
+
+## Intro and Welcome
+
+```stack
+card IntroAndWelcome do
+  log("Intro and Welcome")
+  run_stack("5e59aafb-fc30-41f9-b268-6268173b2aff")
 end
 
 ```

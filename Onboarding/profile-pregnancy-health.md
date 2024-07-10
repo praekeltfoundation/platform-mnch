@@ -282,7 +282,7 @@ card PregnantEDDMonth, then: EDDMonthError do
       query: [
         ["slug", "mnch_onboarding_pregnancy_qa_02"]
       ],
-      headers: [["Authorization", "Token @cglobal.config.contentrepo_token"]]
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
@@ -1099,14 +1099,8 @@ card ArticleFeedbackError, then: ArticleFeedbackError do
   end
 end
 
-card ArticleFeedbackYes when contact.opted_in == "" or contact.opted_in == "no",
-  then: CompleteProfile do
-  # TODO: Run the Opt-In reminder journey (to be developed)
-  # TODO: Save article feedback
-end
-
-card ArticleFeedbackYes, then: CompleteProfile do
-  # TODO: Save article feedback
+card ArticleFeedbackYes, then: MomReminderOptIn do
+  log("Go to opt-in check")
 end
 
 card ArticleFeedbackNo, then: ArticleFeedbackNoError do
@@ -1159,9 +1153,9 @@ end
 
 ```stack
 card MomReminderOptIn
-     when @contact.opted_in == false or
-            @contact.opted_in == "false" or
-            is_nil_or_empty(@contact.opted_in),
+     when contact.opted_in == false or
+            contact.opted_in == "false" or
+            is_nil_or_empty(contact.opted_in),
      then: HealthProfessionals do
   log("haven't opted in")
   run_stack("537e4867-eb26-482d-96eb-d4783828c622")
@@ -1424,8 +1418,8 @@ end
 card CompleteProfile, then: ProfileProgress50 do
   # Kick off Basic Profile Questions
   log("Running Basic Profile Questions")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
   update_contact(checkpoint: "pregnancy_basic_info")
+  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
 end
 
 ```
@@ -1559,7 +1553,7 @@ end
 
 # Display with image
 card DisplayProfileProgress100, then: ProfileProgress100Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = page.body.body.text.value.image
 
   image_data =
     get(
@@ -3387,9 +3381,9 @@ end
 
 ```stack
 card ReminderOptIn
-     when @contact.opted_in == false or
-            @contact.opted_in == "false" or
-            is_nil_or_empty(@contact.opted_in),
+     when contact.opted_in == false or
+            contact.opted_in == "false" or
+            is_nil_or_empty(contact.opted_in),
      then: DisplayReminderOptIn do
   search =
     get(
@@ -3917,7 +3911,13 @@ end
 card DisplayCuriousContentIntro when contact.data_preference == "text only",
   then: DisplayCuriousContentIntroError do
   selected_topic =
-    list("Choose a topic", ArticleTopic01, menu_items) do
+    list("Choose a topic",
+      ArticleTopic01: "@menu_items[0]",
+      ArticleTopic01: "@menu_items[1]",
+      ArticleTopic01: "@menu_items[2]",
+      ArticleTopic01: "@menu_items[3]",
+      CuriousContentFeedback: "@menu_items[4]"
+    ) do
       text("@message.message")
     end
 end
@@ -4145,9 +4145,9 @@ end
 
 ```stack
 card CuriousReminderOptIn
-     when @contact.opted_in == false or
-            @contact.opted_in == "false" or
-            is_nil_or_empty(@contact.opted_in),
+     when contact.opted_in == false or
+            contact.opted_in == "false" or
+            is_nil_or_empty(contact.opted_in),
      then: HealthProfessionalsSecondary2 do
   log("haven't opted in")
   run_stack("537e4867-eb26-482d-96eb-d4783828c622")
