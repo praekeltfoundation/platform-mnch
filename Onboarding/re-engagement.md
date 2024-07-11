@@ -325,16 +325,18 @@ card SaveReengagement, then: DropOff1stReminder do
   write_result("reengaged_point", "@contact.reengagement_message")
 end
 
-card DropOffGoTo when contact.checkpoint == "generic_basic_info", then: ProfileGeneric do
+card DropOffGoTo
+     when has_any_phrase(contact.checkpoint, [
+            "generic_basic_info",
+            "generic_personal_info",
+            "generic_daily_life_info"
+          ]),
+     then: ProfileGeneric do
   log("Go to ProfileGeneric")
 end
 
-card DropOffGoTo when contact.checkpoint == "generic_personal_info", then: PersonalProfile do
+card DropOffGoTo when contact.checkpoint == "hcw_personal_info", then: HCWProfile do
   log("Go to PersonalProfile")
-end
-
-card DropOffGoTo when contact.checkpoint == "generic_daily_life_info", then: LOCAssessment do
-  log("Go to LOCAssessment")
 end
 
 card DropOffGoTo when contact.checkpoint == "pregnant_nurse_profile", then: NurseQuestions do
@@ -436,12 +438,12 @@ end
 
 ```
 
-## Personal Profile
+## HCW Profile
 
 ```stack
-card PersonalProfile do
+card HCWProfile do
   log("Personal Profile")
-  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
 end
 
 ```

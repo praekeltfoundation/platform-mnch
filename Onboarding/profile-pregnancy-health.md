@@ -113,7 +113,7 @@ Here we check the checkpoints and forward the user to the correct point dependin
 ```stack
 card Checkpoint
      when contact.checkpoint == "pregnant_mom_profile" and
-            is_nil_or_empty(contact.profile_completion),
+            contact.profile_completion == "0%",
      then: PregnantEDDMonth do
   log("Go to PregnantEDDMonth")
 end
@@ -193,6 +193,18 @@ card Checkpoint
   log("Go to ProfileProgress100")
 end
 
+card Checkpoint
+     when contact.checkpoint == "pregnancy_personal_info",
+     then: ContinueProfileCompletion do
+  log("Go to Personal Profile Question")
+end
+
+card Checkpoint
+     when contact.checkpoint == "pregnancy_daily_life_info",
+     then: PregnancyDailyLifeInfo do
+  log("Go to Pregnancy Daily Life Info")
+end
+
 card Checkpoint, then: Question1 do
   log("Go to Question1")
   update_contact(checkpoint: "basic_pregnancy_profile")
@@ -258,6 +270,7 @@ card ImPregnant, then: PregnantEDDMonth do
   update_contact(gender: "female")
   update_contact(pregnancy_status: "@status")
   update_contact(checkpoint: "pregnant_mom_profile")
+  update_contact(profile_completion: "0%")
   write_result("pregnancy_status", status)
   write_result("profile_completion", "0%")
 end
@@ -592,12 +605,13 @@ card SaveEDDAndContinue, then: ContinueEDDBranch do
   write_result("edd", "@edd_date_full_str")
 end
 
-card ContinueEDDBranch when status == "im_pregnant", then: PregnantFeeling do
+card ContinueEDDBranch when contact.pregnancy_status == "im_pregnant", then: PregnantFeeling do
   # TODO: Confirm (SxD to confirm with DS and MERL) whether it's ok for us to skip the Other Children question in this flow as its part of the Personal Questions
   log("User is pregnant. Navigating to Feelings question.")
 end
 
-card ContinueEDDBranch when status == "partner_pregnant", then: PartnerPregnantGender do
+card ContinueEDDBranch when contact.pregnancy_status == "partner_pregnant",
+  then: PartnerPregnantGender do
   log("User's partner is pregnant. Navigating to gender identification question.")
 end
 
@@ -1154,7 +1168,6 @@ end
 ```stack
 card MomReminderOptIn
      when contact.opted_in == false or
-            contact.opted_in == "false" or
             is_nil_or_empty(contact.opted_in),
      then: HealthProfessionals do
   log("haven't opted in")
@@ -1496,10 +1509,13 @@ card ProfileProgress50Error, then: ProfileProgress50Error do
   end
 end
 
-card ContinueProfileCompletion, then: ProfileProgress100 do
+card ContinueProfileCompletion, then: PregnancyDailyLifeInfo do
   update_contact(checkpoint: "pregnancy_personal_info")
   log("Personal Profile Questions")
   run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+end
+
+card PregnancyDailyLifeInfo, then: ProfileProgress100 do
   update_contact(checkpoint: "pregnancy_daily_life_info")
   log("Placeholder Form")
   run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
@@ -3382,7 +3398,6 @@ end
 ```stack
 card ReminderOptIn
      when contact.opted_in == false or
-            contact.opted_in == "false" or
             is_nil_or_empty(contact.opted_in),
      then: DisplayReminderOptIn do
   search =
@@ -4146,7 +4161,6 @@ end
 ```stack
 card CuriousReminderOptIn
      when contact.opted_in == false or
-            contact.opted_in == "false" or
             is_nil_or_empty(contact.opted_in),
      then: HealthProfessionalsSecondary2 do
   log("haven't opted in")
