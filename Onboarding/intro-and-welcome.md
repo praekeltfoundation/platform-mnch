@@ -96,10 +96,6 @@ card GoToPrivacyPolicy
   log("Privacy Policy accepted and opted in, go to User Intent")
 end
 
-card GoToPrivacyPolicy when contact.privacy_policy_accepted == false, then: PrivacyPolicy do
-  log("Privacy Policy not accepted, go to Privacy Policy")
-end
-
 card GoToPrivacyPolicy, then: WelcomeMessage do
   log("Privacy Policy not accepted or declined, go to Welcome Message")
 end

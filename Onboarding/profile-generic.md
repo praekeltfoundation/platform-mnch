@@ -6,14 +6,6 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "g
 ```
 
 ```stack
-card Checkpoint, then: FetchError do
-  update_contact(profile_type: "generic")
-  update_contact(checkpoint: "generic_basic_info")
-end
-
-```
-
-```stack
 card FetchError, then: CheckPointRedirect do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
@@ -45,12 +37,19 @@ end
 ## Redirect Check Point
 
 ```stack
-card CheckPointRedirect when contact.profile_completion == "30%", then: ProfileProgress30Generic do
+card CheckPointRedirect
+     when contact.profile_completion == "30%" and contact.checkpoint == "generic_basic_info",
+     then: ProfileProgress30Generic do
   log("ProfileProgress30")
 end
 
 card CheckPointRedirect when contact.profile_completion == "100%", then: ProfileProgress100Generic do
   log("ProfileProgress100")
+end
+
+card CheckPointRedirect when contact.checkpoint == "generic_personal_info",
+  then: PersonalProfileQuestions do
+  log("PersonalProfileQuestions")
 end
 
 card CheckPointRedirect, then: BasicQuestions do
@@ -64,6 +63,8 @@ end
 ```stack
 card BasicQuestions, then: ProfileProgress30Generic do
   log("Basic questions")
+  update_contact(profile_type: "generic")
+  update_contact(checkpoint: "generic_basic_info")
   run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
 end
 
@@ -298,6 +299,7 @@ end
 ```stack
 card PersonalProfileQuestions, then: LOCAssessment do
   log("Personal profile questions")
+  update_contact(checkpoint: "generic_personal_info")
   run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
 end
 

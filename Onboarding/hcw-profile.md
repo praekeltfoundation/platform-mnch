@@ -112,6 +112,10 @@ card Checkpoint when contact.checkpoint == "hcw_profile_100" do
   then(ProfileProgress100)
 end
 
+card Checkpoint when contact.checkpoint == "hcw_personal_info" do
+  then(ProfileProgress50Continue)
+end
+
 card Checkpoint do
   then(NurseCheck)
 end
@@ -628,6 +632,7 @@ end
 card ProfileProgress50Continue, then: ProfileProgress75 do
   # Ask the Personal Profile Questions
   log("Ask the Personal Profile Questions")
+  update_contact(checkpoint: "hcw_personal_info")
   run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
 end
 
