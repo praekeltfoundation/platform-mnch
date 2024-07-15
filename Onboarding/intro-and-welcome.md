@@ -16,7 +16,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Contact fields
 
 * `language` , this stack allows the user to select their language.
-* `privacy_policy_accepted` , this stack sets the privacy policy to `yes` if they accept it or `no` if they don't.
+* `privacy_policy_accepted`, this stack sets the privacy policy to `yes` if they accept it or `no` if they don't. The default value for this is blank in the case that they have neither accepted nor declined (i.e. they are a first time user).
 * `opted_in`, this stack sets the opt in value to `yes` or `no`
 * `intent`, set according to user choice, to one of: `create profile`, `get health advice` or `explore`
 * `data_preference`, this stack allows the user to select their data preference and stores one of `all`, `text and images`, `text only`
@@ -84,16 +84,20 @@ end
 
 ```stack
 card GoToPrivacyPolicy
-     when contact.privacy_policy_accepted == true and
+     when contact.privacy_policy_accepted == "yes" and
             contact.opted_in == false,
      then: OptIn do
   log("Privacy Policy accepted and not opted in, go to Opt In")
 end
 
 card GoToPrivacyPolicy
-     when contact.privacy_policy_accepted == true and contact.opted_in == true,
+     when contact.privacy_policy_accepted == "yes" and contact.opted_in == true,
      then: UserIntent do
   log("Privacy Policy accepted and opted in, go to User Intent")
+end
+
+card GoToPrivacyPolicy when contact.privacy_policy_accepted == "no", then: PrivacyPolicy do
+  log("Privacy Policy not accepted, go to Privacy Policy")
 end
 
 card GoToPrivacyPolicy, then: WelcomeMessage do
@@ -358,7 +362,7 @@ card PrivacyPolicyError, then: PrivacyPolicyError do
 end
 
 card AcceptPrivacyPolicy, then: OptIn do
-  update_contact(privacy_policy_accepted: "true")
+  update_contact(privacy_policy_accepted: "yes")
 end
 
 ```
@@ -367,7 +371,7 @@ end
 
 ```stack
 card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
-  update_contact(privacy_policy_accepted: "false")
+  update_contact(privacy_policy_accepted: "no")
 
   search =
     get(
