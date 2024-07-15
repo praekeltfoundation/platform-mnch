@@ -76,7 +76,7 @@ end
 
 ## Branching
 
-* If they are entering this journey and the privacy policy has not been accepted, we redirect to the privacy policy, otherwise we start from the beginning (this will happen in the case of the reminder stack starting this stack).
+* If they are entering this journey and the privacy policy has not been accepted or declined, we redirect to the privacy policy, otherwise we start from the beginning (this will happen in the case of the reminder stack starting this stack).
 
 * If the privacy policy is accepted, but they  haven't opted in, got to Opt In
 
