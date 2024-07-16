@@ -18,7 +18,7 @@ card ClearData do
   update_contact(topic: "")
   update_contact(profile_type: "")
   update_contact(checkpoint: "")
-  update_contact(privacy_policy_accepted: "false")
+  update_contact(privacy_policy_accepted: "")
   update_contact(profile_completion: "")
   update_contact(opted_in: "false")
   update_contact(onboarding_part_1: "")
