@@ -5,7 +5,7 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "p
 
 ```
 
-# Onboarding: Pt 2 - Profile Pregnancy Health
+# Onboarding: Profile Pregnancy Health
 
 This is the main onboarding flow that users interact with during onboarding. They are directed here to complete their profile for pregnancy health if they are pregnant, have a partner who is pregnant, or are curious about the content.
 
@@ -191,6 +191,10 @@ card Checkpoint
             contact.profile_completion == "100%",
      then: ProfileProgress100 do
   log("Go to ProfileProgress100")
+end
+
+card Checkpoint when contact.checkpoint == "pregnancy_basic_info", then: CompleteProfile do
+  log("Go to Basic Profile Questions")
 end
 
 card Checkpoint
@@ -586,7 +590,7 @@ end
 
 card PregnantEDDConfirmationError, then: PregnantEDDConfirmationError do
   buttons(
-    SavePartnerEDD: "@button_labels[0]",
+    SaveEDDAndContinue: "@button_labels[0]",
     PregnantEDDMonth: "@button_labels[1]"
   ) do
     text("@button_error_text")
@@ -606,7 +610,6 @@ card SaveEDDAndContinue, then: ContinueEDDBranch do
 end
 
 card ContinueEDDBranch when contact.pregnancy_status == "im_pregnant", then: PregnantFeeling do
-  # TODO: Confirm (SxD to confirm with DS and MERL) whether it's ok for us to skip the Other Children question in this flow as its part of the Personal Questions
   log("User is pregnant. Navigating to Feelings question.")
 end
 
@@ -738,8 +741,8 @@ end
 ```stack
 card CalculateWeekOfPregnancy, then: GetTrimester do
   exp_year = if month(now()) > edd_date_month, do: year(now()) + 1, else: year(now())
-  # exp_date = date(exp_year, edd_date_month, 1)
-  week_of_conception = datetime_add("@edd_date_full_str", -40, "W")
+  exp_date = date(exp_year, edd_date_month, 1)
+  week_of_conception = datetime_add(exp_date, -40, "W")
 
   current_date = now()
   current_year = year(current_date)
