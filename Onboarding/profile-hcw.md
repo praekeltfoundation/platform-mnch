@@ -37,7 +37,7 @@ The token for ContentRepo is stored in a global dictionary.
 Here we do any setup and fetching of values before we start the flow.
 
 ```stack
-card FetchError, then: NurseCheck do
+card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(

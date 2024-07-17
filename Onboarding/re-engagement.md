@@ -335,7 +335,7 @@ card DropOffGoTo
   log("Go to ProfileGeneric")
 end
 
-card DropOffGoTo when contact.checkpoint == "hcw_personal_info", then: HCWProfile do
+card DropOffGoTo when has_beginning(contact.checkpoint, "hcw"), then: HCWProfile do
   log("Go to PersonalProfile")
 end
 
