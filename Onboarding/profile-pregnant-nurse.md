@@ -38,7 +38,8 @@ end
 
 ```stack
 card Checkpoint
-     when contact.checkpoint == "pregnant_nurse_profile_40",
+     when contact.checkpoint == "pregnant_nurse_profile_40" or
+            has_beginning(contact.checkpoint, "hcw_profile_"),
      then: PregnantNurse40 do
   log("Go to PregnantNurse40")
 end
