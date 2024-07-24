@@ -318,8 +318,6 @@ end
 
 ## Go To Where User Dropped Off
 
-### TODO This is a place holder
-
 ```stack
 card SaveReengagement, then: DropOff1stReminder do
   write_result("reengaged_point", "@contact.reengagement_message")
@@ -339,8 +337,9 @@ card DropOffGoTo when has_beginning(contact.checkpoint, "hcw"), then: HCWProfile
   log("Go to PersonalProfile")
 end
 
-card DropOffGoTo when contact.checkpoint == "pregnant_nurse_profile", then: NurseQuestions do
-  log("Go to NurseQuestions")
+card DropOffGoTo when has_beginning(contact.checkpoint, "pregnant_nurse"),
+  then: PregnantNurseQuestions do
+  log("Go to PregnantNurseQuestions")
 end
 
 card DropOffGoTo when contact.checkpoint == "tour", then: ExploringTour do
@@ -418,12 +417,12 @@ end
 
 ```
 
-## Nurse Questions
+## Pregnant Nurse Questions
 
 ```stack
-card NurseQuestions do
-  log("Nurse Questions")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+card PregnantNurseQuestions do
+  log("Pregnant Nurse Questions")
+  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
 end
 
 ```

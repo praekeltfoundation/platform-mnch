@@ -37,22 +37,24 @@ end
 ## Check Point
 
 ```stack
-card Checkpoint when contact.profile_completion == "40%",
-  then: PregnantNurse40 do
+card Checkpoint
+     when contact.checkpoint == "pregnant_nurse_profile_40" or
+            has_beginning(contact.checkpoint, "hcw_profile_"),
+     then: PregnantNurse40 do
   log("Go to PregnantNurse40")
 end
 
-card Checkpoint when contact.profile_completion == "60%",
+card Checkpoint when contact.checkpoint == "pregnant_nurse_profile_60",
   then: PregnantNurse60 do
   log("Go to PregnantNurse60")
 end
 
-card Checkpoint when contact.profile_completion == "80%",
+card Checkpoint when contact.checkpoint == "pregnant_nurse_profile_80",
   then: PregnantNurse80 do
   log("Go to PregnantNurse80")
 end
 
-card Checkpoint when contact.profile_completion == "100%",
+card Checkpoint when contact.checkpoint == "pregnant_nurse_profile_100",
   then: PregnantNurse100 do
   log("Go to PregnantNurse100")
 end
@@ -317,7 +319,7 @@ end
 card DisplayWhyPersonalInfo when contact.data_preference == "text only",
   then: WhyPersonalInfoError do
   buttons(
-    PregnantNurse80: "@button_labels[0]",
+    PersonalProfileQuestions: "@button_labels[0]",
     RemindLater: "@button_labels[1]"
   ) do
     text("@message.message")
@@ -337,7 +339,7 @@ card DisplayWhyPersonalInfo, then: WhyPersonalInfoError do
     )
 
   buttons(
-    PregnantNurse80: "@button_labels[0]",
+    PersonalProfileQuestions: "@button_labels[0]",
     RemindLater: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
@@ -347,7 +349,7 @@ end
 
 card WhyPersonalInfoError, then: WhyPersonalInfoError do
   buttons(
-    PregnantNurse80: "@button_labels[0]",
+    PersonalProfileQuestions: "@button_labels[0]",
     RemindLater: "@button_labels[1]"
   ) do
     text("@button_error_text")
