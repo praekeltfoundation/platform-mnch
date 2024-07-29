@@ -42,8 +42,8 @@ end
 card DropOffRedirect when contact.reengagement_message == "1st message", then: DropOff2ndReminder do
   log("To send 2nd message")
   # cancel any scheduled stacks for this journey
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 23 * 60 * 60)
+  cancel_scheduled_stacks("78cca41f-d27d-4669-ae16-a785744047a1")
+  schedule_stack("78cca41f-d27d-4669-ae16-a785744047a1", in: 23 * 60 * 60)
 end
 
 card DropOffRedirect when contact.reengagement_message == "2nd message", then: DropOff3rdReminder do
@@ -57,8 +57,8 @@ end
 card DropOffRedirect, then: DropOff1stReminder do
   log("To send 1st message")
   # cancel any scheduled stacks for this journey
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 22 * 60 * 60)
+  cancel_scheduled_stacks("78cca41f-d27d-4669-ae16-a785744047a1")
+  schedule_stack("78cca41f-d27d-4669-ae16-a785744047a1", in: 22 * 60 * 60)
 end
 
 ```
@@ -370,8 +370,8 @@ Will resend a reminder after 23 hours
 card RemindMe, then: ReminderMeMessage do
   update_contact(reengagement_message: "remind me")
   # cancel any scheduled stacks for this journey
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 23 * 60 * 60)
+  cancel_scheduled_stacks("78cca41f-d27d-4669-ae16-a785744047a1")
+  schedule_stack("78cca41f-d27d-4669-ae16-a785744047a1", in: 23 * 60 * 60)
 end
 
 ```
@@ -412,7 +412,7 @@ end
 ```stack
 card PregnancyQuestions do
   log("Pregnancy Questions")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 ```
@@ -422,7 +422,7 @@ end
 ```stack
 card PregnantNurseQuestions do
   log("Pregnant Nurse Questions")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("8e71f3ab-9d34-491e-930a-2b1435a9afed")
 end
 
 ```
@@ -432,7 +432,7 @@ end
 ```stack
 card ProfileGeneric do
   log("Profile Generic")
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("a7eae888-77a0-4e68-ac47-ceb03676bef1")
 end
 
 ```
@@ -442,7 +442,7 @@ end
 ```stack
 card HCWProfile do
   log("Personal Profile")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("c4c8d015-2255-4aeb-94be-eb0b7a2174e0")
 end
 
 ```
@@ -452,7 +452,7 @@ end
 ```stack
 card ExploringTour do
   log("Exploring Tour")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+  run_stack("160ac3f4-ab18-4610-bbab-c003f79e1197")
 end
 
 ```
@@ -462,7 +462,7 @@ end
 ```stack
 card ProfileClassifier do
   log("Profile Classifier")
-  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
+  run_stack("e1f6a4d6-f245-4203-aed5-6577bbd4d96a")
 end
 
 ```
@@ -472,7 +472,7 @@ end
 ```stack
 card IntroAndWelcome do
   log("Intro and Welcome")
-  run_stack("5e59aafb-fc30-41f9-b268-6268173b2aff")
+  run_stack("47111691-cb8d-4cf0-8ecc-ed6792108157")
 end
 
 ```
@@ -482,7 +482,7 @@ end
 ```stack
 card LOCAssessment do
   log("Placeholder Form")
-  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
+  run_stack("b283e7c1-0a79-45ab-976c-5566d9ba06cd")
 end
 
 ```

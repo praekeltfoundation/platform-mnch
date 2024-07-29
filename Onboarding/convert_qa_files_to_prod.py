@@ -1,7 +1,7 @@
 from uuid import UUID
 from dataclasses import dataclass
 
-from utils import get_sorted_filenames_with_extension, get_stacks_uuids
+from utils import get_sorted_filenames_with_extension, get_stacks_uuids, get_urls
 
 QA_DIR = "./QA/"
 PROD_DIR = "./Prod/"
@@ -33,12 +33,12 @@ class Config:
 
 
 class StackEnvironmentConverter:
-    def __init__(self, path, config) -> None:
+    def __init__(self, path, config, qa_url, prod_url) -> None:
         self.qa_path = f"{config.qa_dir}{path}"
         self.qa_str = self.get_qa_file_as_str()
         self.prod_str = self.qa_str
         self.prod_path = f"{config.prod_dir}{path}"
-        self.qa_to_prod(config.stack_uuids)
+        self.qa_to_prod(config.stack_uuids, qa_url, prod_url)
 
     def get_qa_file_as_str(self):
         with open(f"{self.qa_path}", "r") as file:
@@ -51,10 +51,16 @@ class StackEnvironmentConverter:
             self.prod_str = self.prod_str.replace(
                 str(stack["qa_uuid"]), str(stack["prod_uuid"])
             )
+    
+    def replace_urls(self, qa_url, prod_url):
+        self.prod_str = self.prod_str.replace(
+            str(qa_url), str(prod_url)
+        )
 
-    def qa_to_prod(self, stack_uuids):
+    def qa_to_prod(self, stack_uuids, qa_url, prod_url):
         self.prod_str = self.prod_str.replace('["qa", "true"]', '["qa", "false"]')
         self.replace_uuids(stack_uuids)
+        self.replace_urls(qa_url, prod_url)
 
     def export_prod(self):
         with open(self.prod_path, "w") as file:
@@ -65,9 +71,10 @@ class StackEnvironmentConverter:
 if __name__ == "__main__":
     all_filenames = get_sorted_filenames_with_extension("qa")
     stack_uuids = get_stacks_uuids()
+    qa_url, prod_url = get_urls()
     config = Config(stack_uuids, QA_DIR, PROD_DIR)
     for qa_file in all_filenames:
-        StackEnvironmentConverter(path=qa_file, config=config).export_prod()
+        StackEnvironmentConverter(path=qa_file, config=config, qa_url=qa_url, prod_url=prod_url).export_prod()
     stack_not_in_prod = get_stacks_with_no_prod_uuid(stack_uuids)
 
     if not stack_not_in_prod:

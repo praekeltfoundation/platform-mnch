@@ -551,7 +551,7 @@ end
 ```stack
 card YourProfile do
   log("Your Progile")
-  run_stack("1f551cbc-db57-41d3-b5ee-dc6c77b3030b")
+  run_stack("f085a8b1-5e73-408d-bcc2-9487d0512085")
 end
 
 ```
@@ -561,7 +561,7 @@ end
 ```stack
 card GoToTakeATour do
   log("Take a tour")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+  run_stack("160ac3f4-ab18-4610-bbab-c003f79e1197")
 end
 
 ```

@@ -16,6 +16,10 @@ def get_stacks_uuids(stacks_config=None):
         stacks_config = load_config()
     return stacks_config["stack_uuids"]
 
+def get_urls(stacks_config=None):
+    if not stacks_config:
+        stacks_config = load_config()
+    return stacks_config["qa_url"], stacks_config["prod_url"]
 
 def get_sorted_filenames_with_extension(env: str):
     match env.lower():

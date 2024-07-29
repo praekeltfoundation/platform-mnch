@@ -31,7 +31,7 @@ end
 
 ```stack
 card NudgeCompleteProfile, then: NudgeCompleteProfileError do
-  cancel_scheduled_stacks("1fb80591-565b-4e5f-a18d-e02420a12058")
+  cancel_scheduled_stacks("d7cc2c04-5931-4910-9f1e-0cebbb80d1f8")
 
   search =
     get(
@@ -77,7 +77,7 @@ end
 
 ```stack
 card Continue do
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("8e71f3ab-9d34-491e-930a-2b1435a9afed")
 end
 
 ```
@@ -86,7 +86,7 @@ end
 
 ```stack
 card MainMenu do
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 ```

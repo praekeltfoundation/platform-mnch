@@ -88,7 +88,7 @@ end
 card PrivacyPolicy do
   # Go to the Intro & Welcome
   log("Starting intro & welcome stack")
-  run_stack("5e59aafb-fc30-41f9-b268-6268173b2aff")
+  run_stack("47111691-cb8d-4cf0-8ecc-ed6792108157")
 end
 
 card RemindNo do
@@ -140,8 +140,8 @@ card RemindTomorrow do
   message = page.body.body.text.value
   text("@message.message")
   # Cancel any previous scheduled instance of this stack
-  cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
-  schedule_stack("ce992f8b-49d8-4876-8bfd-a62b6482206d", in: 60 * 60 * 23)
+  cancel_scheduled_stacks("d28a1658-18af-4552-a985-905cf040d50e")
+  schedule_stack("d28a1658-18af-4552-a985-905cf040d50e", in: 60 * 60 * 23)
 end
 
 ```

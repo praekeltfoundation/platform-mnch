@@ -65,7 +65,7 @@ card BasicQuestions, then: ProfileProgress30Generic do
   log("Basic questions")
   update_contact(profile_type: "generic")
   update_contact(checkpoint: "generic_basic_info")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("fe7139a4-60c5-4ced-ad82-daa43f483c37")
 end
 
 ```
@@ -219,7 +219,7 @@ end
 card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
+  cancel_scheduled_stacks("78cca41f-d27d-4669-ae16-a785744047a1")
 
   search =
     get(
@@ -300,7 +300,7 @@ end
 card PersonalProfileQuestions, then: LOCAssessment do
   log("Personal profile questions")
   update_contact(checkpoint: "generic_personal_info")
-  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+  run_stack("67e29cda-52a9-4eb4-9fc0-224c44585c8c")
 end
 
 ```
@@ -310,7 +310,7 @@ end
 ```stack
 card LOCAssessment, then: OptInReminder do
   log("Placeholder Form")
-  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
+  run_stack("b283e7c1-0a79-45ab-976c-5566d9ba06cd")
 end
 
 ```
@@ -325,7 +325,7 @@ card OptInReminder
             contact.opted_in == "false" or
             is_nil_or_empty(contact.opted_in),
      then: ProfileProgress100Generic do
-  run_stack("537e4867-eb26-482d-96eb-d4783828c622")
+  run_stack("3ef42a80-1039-4193-9ad3-4ff56b80de2e")
 end
 
 card OptInReminder, then: ProfileProgress100Generic do
@@ -339,7 +339,7 @@ end
 ```stack
 card ViewTopics do
   log("View topics content goes here")
-  # run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  # run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 ```
@@ -349,7 +349,7 @@ end
 ```stack
 card MainMenu do
   log("Go to main menu")
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 ```
@@ -359,12 +359,12 @@ end
 ```stack
 card HealthGuide do
   log("Health guide goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 card BrowsableContent do
   log("Browsable content goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 ```

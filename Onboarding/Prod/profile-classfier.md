@@ -639,18 +639,18 @@ This determines which journey to kick off next based on prioritising the domains
 ```stack
 card GoToNext when contact.pregnancy_information do
   log("Navigating to Pregnancy Profile")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 card GoToNext when contact.info_for_health_professionals do
   log("Navigating to Health Professional Profile")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("c4c8d015-2255-4aeb-94be-eb0b7a2174e0")
 end
 
 card GoToNext do
   # For all other options, go to the generic profile onboarding
   log("Navigating to generic profile")
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("a7eae888-77a0-4e68-ac47-ceb03676bef1")
 end
 
 ```

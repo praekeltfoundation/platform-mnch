@@ -4,7 +4,6 @@
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "nurse")
 
 ```
-
 # Onboarding: Profile Pregnant Nurse
 
 This is the onboarding flow specifically for pregnant nurses, indicating that they need to receive both content for pregnant women, and for HCW's.
@@ -27,12 +26,11 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 * Basic Profile Questions
 * Personal Profile Questions 
 * Nurse Profile Questions
-* Menu Redirect
+* Menu Redirecthttps://www.youtube.com/watch?v=qdfkP5PkBbo
 
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
-
 ```stack
 card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
@@ -193,7 +191,7 @@ end
 ```stack
 card CompleteProfile, then: PregnantNurse40 do
   log("Running Nurse Profile Questions")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("c4c8d015-2255-4aeb-94be-eb0b7a2174e0")
 end
 
 ```
@@ -247,7 +245,7 @@ end
 ```stack
 card BasicProfileQuestions, then: PregnantNurse60 do
   log("Running Basic Profile Questions")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("fe7139a4-60c5-4ced-ad82-daa43f483c37")
 end
 
 ```
@@ -308,7 +306,7 @@ end
 card PersonalProfileQuestions, then: PregnantNurse80 do
   write_result("questioning_info_gathering", "no")
   log("Go to Personal Questions")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("fe7139a4-60c5-4ced-ad82-daa43f483c37")
 end
 
 ```
@@ -390,7 +388,7 @@ end
 
 ```stack
 card RemindLater, then: RemindLaterError do
-  schedule_stack("1fb80591-565b-4e5f-a18d-e02420a12058", in: 23 * 60 * 60)
+  schedule_stack("d7cc2c04-5931-4910-9f1e-0cebbb80d1f8", in: 23 * 60 * 60)
 
   search =
     get(
@@ -595,7 +593,7 @@ end
 ```stack
 card MainMenu do
   log("Go to Main Menu")
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 ```

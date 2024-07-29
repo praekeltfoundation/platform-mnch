@@ -76,7 +76,7 @@ card ReminderError, then: ReminderError do
 end
 
 card CreateProfiles do
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 card RemindLater, then: RemindLaterError do
@@ -123,7 +123,7 @@ end
 
 card MainMenu do
   # TODO this is a placeholder
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 ```

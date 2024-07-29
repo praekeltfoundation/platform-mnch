@@ -52,8 +52,8 @@ card ClearData do
   # Cancel all scheduled stacks
   cancel_scheduled_stacks("b93ddac0-5a3d-42a1-af01-5bbc865ef389")
   cancel_scheduled_stacks("e323943a-b48e-495d-b0e2-e9349c58f854")
-  cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
+  cancel_scheduled_stacks("d28a1658-18af-4552-a985-905cf040d50e")
+  cancel_scheduled_stacks("78cca41f-d27d-4669-ae16-a785744047a1")
 
   text("Profile successfully reseted")
 end

@@ -395,7 +395,7 @@ end
 
 card CreateProfiles do
   # Profile Classifier
-  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
+  run_stack("e1f6a4d6-f245-4203-aed5-6577bbd4d96a")
 end
 
 card SpeakToAgent do

@@ -127,7 +127,7 @@ end
 card CompleteProfile do
   # Go to HCWProfile to complete
   log("Go to HCWProfile to complete")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("c4c8d015-2255-4aeb-94be-eb0b7a2174e0")
 end
 
 card MainMenu do

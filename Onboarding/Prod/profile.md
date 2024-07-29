@@ -2686,32 +2686,32 @@ end
 
 card CompleteProfile when "@interest" == "@pregnancy_health" do
   # Run Pregnancy Profile 
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 card CompleteProfile when "@interest" == "@love_life" do
   # Run Generic Profile
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("a7eae888-77a0-4e68-ac47-ceb03676bef1")
 end
 
 card CompleteProfile when "@interest" == "@baby_child" do
   # Run Generic Profile
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("a7eae888-77a0-4e68-ac47-ceb03676bef1")
 end
 
 card CompleteProfile when "@interest" == "@general_health" do
   # Run Generic Profile
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("a7eae888-77a0-4e68-ac47-ceb03676bef1")
 end
 
 card CompleteProfile when "@interest" == "@safe_sex" do
   # Run Generic Profile
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("a7eae888-77a0-4e68-ac47-ceb03676bef1")
 end
 
 card CompleteProfile when "@interest" == "@info_for_nurses" do
   # Run HCW Profile
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("c4c8d015-2255-4aeb-94be-eb0b7a2174e0")
 end
 
 card CompleteProfile do
@@ -2725,7 +2725,7 @@ end
 ```stack
 card MainMenu do
   log("Go to menu")
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 ```

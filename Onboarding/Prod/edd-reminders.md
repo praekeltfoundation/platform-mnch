@@ -612,11 +612,13 @@ end
 
 ```stack
 card MainMenu do
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  text("Main menu goes here")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 card HealthGuide do
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  text("Health guide goes here")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 ```

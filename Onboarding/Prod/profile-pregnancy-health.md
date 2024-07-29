@@ -1174,7 +1174,7 @@ card MomReminderOptIn
             is_nil_or_empty(contact.opted_in),
      then: HealthProfessionals do
   log("haven't opted in")
-  run_stack("537e4867-eb26-482d-96eb-d4783828c622")
+  run_stack("3ef42a80-1039-4193-9ad3-4ff56b80de2e")
 end
 
 card MomReminderOptIn, then: HealthProfessionals do
@@ -1188,7 +1188,7 @@ end
 ```stack
 card HealthProfessionals when contact.info_for_health_professionals == true do
   log("Go to Pregnant nurse")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("8e71f3ab-9d34-491e-930a-2b1435a9afed")
 end
 
 card HealthProfessionals, then: ProfileProgress25 do
@@ -1435,7 +1435,7 @@ card CompleteProfile, then: ProfileProgress50 do
   # Kick off Basic Profile Questions
   log("Running Basic Profile Questions")
   update_contact(checkpoint: "pregnancy_basic_info")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("fe7139a4-60c5-4ced-ad82-daa43f483c37")
 end
 
 ```
@@ -1466,7 +1466,7 @@ end
 
 ```stack
 card MainMenu do
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 ```
@@ -1515,13 +1515,13 @@ end
 card ContinueProfileCompletion, then: PregnancyDailyLifeInfo do
   update_contact(checkpoint: "pregnancy_personal_info")
   log("Personal Profile Questions")
-  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+  run_stack("67e29cda-52a9-4eb4-9fc0-224c44585c8c")
 end
 
 card PregnancyDailyLifeInfo, then: ProfileProgress100 do
   update_contact(checkpoint: "pregnancy_daily_life_info")
   log("Placeholder Form")
-  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
+  run_stack("b283e7c1-0a79-45ab-976c-5566d9ba06cd")
 end
 
 ```
@@ -1532,7 +1532,7 @@ end
 card ProfileProgress100, then: DisplayProfileProgress100 do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
+  cancel_scheduled_stacks("78cca41f-d27d-4669-ae16-a785744047a1")
 
   search =
     get(
@@ -3391,7 +3391,7 @@ card DisplayContentFeedbackNoError, then: DisplayContentFeedbackNoError do
 end
 
 card SecondaryOnboarding, then: ProfileProgress50 do
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("fe7139a4-60c5-4ced-ad82-daa43f483c37")
 end
 
 ```
@@ -3522,7 +3522,7 @@ end
 ```stack
 card HealthProfessionalsSecondary when contact.info_for_health_professionals == true do
   log("Go to Pregnant nurse")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("8e71f3ab-9d34-491e-930a-2b1435a9afed")
 end
 
 card HealthProfessionalsSecondary, then: ProfileProgress25Secondary do
@@ -4154,7 +4154,7 @@ card DisplayCuriousContentFeedbackError, then: DisplayCuriousContentFeedbackErro
 end
 
 card BaseProfile, then: ProfileProgress50 do
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("fe7139a4-60c5-4ced-ad82-daa43f483c37")
 end
 
 ```
@@ -4167,7 +4167,7 @@ card CuriousReminderOptIn
             is_nil_or_empty(contact.opted_in),
      then: HealthProfessionalsSecondary2 do
   log("haven't opted in")
-  run_stack("537e4867-eb26-482d-96eb-d4783828c622")
+  run_stack("3ef42a80-1039-4193-9ad3-4ff56b80de2e")
 end
 
 card CuriousReminderOptIn, then: HealthProfessionalsSecondary2 do
@@ -4181,7 +4181,7 @@ end
 ```stack
 card HealthProfessionalsSecondary2 when contact.info_for_health_professionals == true do
   log("Go to Pregnant nurse")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("8e71f3ab-9d34-491e-930a-2b1435a9afed")
 end
 
 card HealthProfessionalsSecondary2, then: ProfileProgress25Secondary2 do

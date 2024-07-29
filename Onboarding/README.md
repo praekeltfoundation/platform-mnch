@@ -98,8 +98,8 @@ regex = '''[a-zA-Z0-9]{40}'''
 1. Run `yamllint .` to ensure the YAML file is correctly formatted.
 1. Run `pytest` to ensure that all files have been successfully created and the stacks files line up correctly with the `stacks_config.yaml` file.
 1. Create a PR for review.
-1. Copy the Prod file/s to the Prod enviroment.
 1. Create any new Custom Fields that are required.
+1. Copy the Prod file/s to the Prod enviroment.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

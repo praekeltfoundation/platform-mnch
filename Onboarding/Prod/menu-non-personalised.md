@@ -308,7 +308,7 @@ end
 
 ```stack
 card ProfilePregnancyHealth do
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
 end
 
 ```
@@ -317,7 +317,7 @@ end
 
 ```stack
 card GenericProfile do
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("a7eae888-77a0-4e68-ac47-ceb03676bef1")
 end
 
 ```
@@ -326,7 +326,7 @@ end
 
 ```stack
 card HCWProfile do
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("c4c8d015-2255-4aeb-94be-eb0b7a2174e0")
 end
 
 ```
@@ -336,7 +336,7 @@ end
 ```stack
 card PregnantNurseProfile do
   text("PregnantNurseProfile")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("8e71f3ab-9d34-491e-930a-2b1435a9afed")
 end
 
 ```
@@ -640,7 +640,7 @@ end
 ```stack
 card YourProfile do
   log("Your Progile")
-  run_stack("1f551cbc-db57-41d3-b5ee-dc6c77b3030b")
+  run_stack("f085a8b1-5e73-408d-bcc2-9487d0512085")
 end
 
 ```
@@ -650,7 +650,7 @@ end
 ```stack
 card GoToTakeATour do
   log("Take a tour")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+  run_stack("160ac3f4-ab18-4610-bbab-c003f79e1197")
 end
 
 ```

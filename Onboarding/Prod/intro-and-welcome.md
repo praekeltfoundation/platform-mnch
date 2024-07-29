@@ -404,8 +404,8 @@ end
 
 card SeePrivacyPolicy, then: PrivacyPolicy do
   # Cancel any previous scheduled instance of this stack
-  cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
-  schedule_stack("ce992f8b-49d8-4876-8bfd-a62b6482206d", in: 60 * 60 * 23)
+  cancel_scheduled_stacks("d28a1658-18af-4552-a985-905cf040d50e")
+  schedule_stack("d28a1658-18af-4552-a985-905cf040d50e", in: 60 * 60 * 23)
 end
 
 card DeclinePrivacyPolicyError, then: DeclinePrivacyPolicyError do
@@ -503,7 +503,7 @@ end
 card OptInAccept, then: UserIntent do
   log("OptIn Accepted")
   update_contact(opted_in: "true")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 60 * 60)
+  schedule_stack("78cca41f-d27d-4669-ae16-a785744047a1", in: 60 * 60)
 end
 
 card OptInDecideLater, then: UserIntent do
@@ -693,14 +693,14 @@ card SelectNextJourney when contact.intent == "create profile" do
   # Go to Profile Classifier journey
   log("Navigating to Profile Classifier")
   write_result("intro_completed", "yes")
-  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
+  run_stack("e1f6a4d6-f245-4203-aed5-6577bbd4d96a")
 end
 
 card SelectNextJourney when contact.intent == "explore" do
   # Go to Explore journey
   log("Navigating to Explore")
   write_result("intro_completed", "yes")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+  run_stack("160ac3f4-ab18-4610-bbab-c003f79e1197")
 end
 
 card SelectNextJourney do

@@ -299,7 +299,7 @@ end
 card Curious do
   # Kick off Generic Onboarding
   log("Navigating to generic profile")
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("a7eae888-77a0-4e68-ac47-ceb03676bef1")
 end
 
 ```
@@ -421,7 +421,7 @@ end
 ```stack
 card PregnancyInfo when contact.pregnancy_information == true do
   log("Pregnancy info added")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("8e71f3ab-9d34-491e-930a-2b1435a9afed")
 end
 
 card PregnancyInfo, then: ProfileProgress25 do
@@ -481,7 +481,7 @@ end
 card ProfileProgress25Continue, then: ProfileProgress50 do
   # Ask the Basic Profile Questions
   log("Ask the Basic Profile Questions")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("fe7139a4-60c5-4ced-ad82-daa43f483c37")
 end
 
 card ProfileProgress25Why, then: ProfileProgress25WhyBranch do
@@ -574,7 +574,7 @@ card RemindMeLater do
 
   # kick off nudge to complete profile
   log("Scheduling nudge to complete profile")
-  schedule_stack("fef6044e-789c-4989-86e3-62ee4bb063a1", in: 60 * 60 * 23)
+  schedule_stack("97e8ba1c-5638-4515-bd5d-ca6aca01e7f8", in: 60 * 60 * 23)
 
   buttons(ViewPopularTopics: "@button_labels[0]") do
     text("@message.message")
@@ -633,7 +633,7 @@ card ProfileProgress50Continue, then: ProfileProgress75 do
   # Ask the Personal Profile Questions
   log("Ask the Personal Profile Questions")
   update_contact(checkpoint: "hcw_personal_info")
-  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+  run_stack("67e29cda-52a9-4eb4-9fc0-224c44585c8c")
 end
 
 ```
@@ -713,7 +713,7 @@ end
 
 card ProfileProgress75Continue, then: ProfileProgress100 do
   log("Placeholder Form")
-  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
+  run_stack("b283e7c1-0a79-45ab-976c-5566d9ba06cd")
 end
 
 ```
@@ -725,7 +725,7 @@ card ProfileProgress100, then: ProfileProgress100Branch do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
   update_contact(checkpoint: "hcw_profile_100")
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
+  cancel_scheduled_stacks("78cca41f-d27d-4669-ae16-a785744047a1")
 
   search =
     get(
@@ -805,7 +805,7 @@ end
 
 card MainMenu do
   log("Go to main menu")
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 ```
