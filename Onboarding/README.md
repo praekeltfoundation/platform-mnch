@@ -84,5 +84,22 @@ regex = '''[a-zA-Z0-9]{40}'''
 ```
 5. Make sure your pre-commit file is executable (`chmod 755 pre-commit`)
 
+## Deploying to Production
+1. `poetry install`
+1. Download the latest version of the Journeys from the QA environment. See `Opening Journey as Markdown` above for more info on how to do this. 
+1. Make a new Journey on the Production environment for each Journey that you want to deploy. DO NOT MODIFY THE JOURNEY YET.
+1. Add the Journey with the QA and Prod UUID to `stacks_config.yaml` e.g.
+    ```yaml
+      - name: Onboarding
+        prod_uuid: 1d791269-d1a1-49f8-8947-dab61f3e3cb9
+        qa_uuid: 7dad867e-b140-4d38-a3b4-c4ad98525d4d
+    ``` 
+1. Run `python3 convert_qa_files_to_prod.py` to create all the necessary Prod files and update any new changes to existing Prod files.
+1. Run `yamllint .` to ensure the YAML file is correctly formatted.
+1. Run `pytest` to ensure that all files have been successfully created and the stacks files line up correctly with the `stacks_config.yaml` file.
+1. Create a PR for review.
+1. Create any new Custom Fields that are required.
+1. Copy the Prod file/s to the Prod enviroment.
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

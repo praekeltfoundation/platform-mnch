@@ -50,7 +50,7 @@ card FetchError, then: GoToPrivacyPolicy do
 
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
@@ -62,7 +62,7 @@ card FetchError, then: GoToPrivacyPolicy do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -112,7 +112,7 @@ end
 card WelcomeMessage, then: WelcomeMessageError do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_welcome"]
       ],
@@ -123,7 +123,7 @@ card WelcomeMessage, then: WelcomeMessageError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -165,7 +165,7 @@ Each language goes to its own stack, but is all set to English for now, since th
 card LanguageOptions, then: LanguageOptionsError do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_languages"]
       ],
@@ -176,7 +176,7 @@ card LanguageOptions, then: LanguageOptionsError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -259,7 +259,7 @@ Occurances of `{language selection}` in the message are replaced with the user-s
 card LanguageConfirmation, then: LanguageConfirmationError do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_language_updated"]
       ],
@@ -270,7 +270,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -308,7 +308,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
 
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_pp_document"]
       ],
@@ -319,7 +319,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -332,7 +332,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
 
   document =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
@@ -375,7 +375,7 @@ card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
 
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_pp_not_accepted"]
       ],
@@ -386,7 +386,7 @@ card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -404,8 +404,8 @@ end
 
 card SeePrivacyPolicy, then: PrivacyPolicy do
   # Cancel any previous scheduled instance of this stack
-  cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
-  schedule_stack("ce992f8b-49d8-4876-8bfd-a62b6482206d", in: 60 * 60 * 23)
+  cancel_scheduled_stacks("d28a1658-18af-4552-a985-905cf040d50e")
+  schedule_stack("d28a1658-18af-4552-a985-905cf040d50e", in: 60 * 60 * 23)
 end
 
 card DeclinePrivacyPolicyError, then: DeclinePrivacyPolicyError do
@@ -422,7 +422,7 @@ end
 card ReadSummary, then: ReadSummaryError do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_pp_summary"]
       ],
@@ -433,7 +433,7 @@ card ReadSummary, then: ReadSummaryError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -442,19 +442,9 @@ card ReadSummary, then: ReadSummaryError do
 
   message = page.body.body.text.value
 
-  # document =
-  #   get(
-  #     "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
-  #     headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-  #   )
-
-  # document_url = document.body.meta.download_url
-
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(AcceptPrivacyPolicy: "@button_labels[0]", DeclinePrivacyPolicy: "@button_labels[1]") do
-    # TODO: When we finally have the document, upload it and make this work
-    # document("@document_url")
     text("@message.message")
   end
 end
@@ -475,7 +465,7 @@ Opt in for push messages
 card OptIn, then: OptInError do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_opt_in"]
       ],
@@ -486,7 +476,7 @@ card OptIn, then: OptInError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -513,7 +503,7 @@ end
 card OptInAccept, then: UserIntent do
   log("OptIn Accepted")
   update_contact(opted_in: "true")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 60 * 60)
+  schedule_stack("78cca41f-d27d-4669-ae16-a785744047a1", in: 60 * 60)
 end
 
 card OptInDecideLater, then: UserIntent do
@@ -538,7 +528,7 @@ card UserIntent, then: UserIntentError do
 
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_intent"]
       ],
@@ -549,7 +539,7 @@ card UserIntent, then: UserIntentError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -610,7 +600,7 @@ Values saved into data_preference contact field:
 card DataPreferences, then: DataPreferencesError do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_data_preferences"]
       ],
@@ -621,7 +611,7 @@ card DataPreferences, then: DataPreferencesError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -666,7 +656,7 @@ end
 card DataPreferencesSelected, then: DataPreferencesSelectedError do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_data_preferences_yes"]
       ],
@@ -677,7 +667,7 @@ card DataPreferencesSelected, then: DataPreferencesSelectedError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -703,14 +693,14 @@ card SelectNextJourney when contact.intent == "create profile" do
   # Go to Profile Classifier journey
   log("Navigating to Profile Classifier")
   write_result("intro_completed", "yes")
-  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
+  run_stack("e1f6a4d6-f245-4203-aed5-6577bbd4d96a")
 end
 
 card SelectNextJourney when contact.intent == "explore" do
   # Go to Explore journey
   log("Navigating to Explore")
   write_result("intro_completed", "yes")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+  run_stack("160ac3f4-ab18-4610-bbab-c003f79e1197")
 end
 
 card SelectNextJourney do
@@ -729,7 +719,7 @@ Temporary TODO card to route to when we haven't created the destination yet
 card TODO do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["whatsapp", "true"],
         ["slug", "todo"]
@@ -741,7 +731,7 @@ card TODO do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],

@@ -32,7 +32,7 @@ card FetchError, then: HCWNudge do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_error_handling_button"]
       ],
@@ -44,7 +44,7 @@ card FetchError, then: HCWNudge do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -55,7 +55,7 @@ card FetchError, then: HCWNudge do
 
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
@@ -66,7 +66,7 @@ card FetchError, then: HCWNudge do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -84,7 +84,7 @@ end
 card HCWNudge, then: HCWNudgeError do
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "mnch_onboarding_nudge_complete_profile"]
       ],
@@ -95,7 +95,7 @@ card HCWNudge, then: HCWNudgeError do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
         ["whatsapp", "true"]
       ],
@@ -127,11 +127,11 @@ end
 card CompleteProfile do
   # Go to HCWProfile to complete
   log("Go to HCWProfile to complete")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("c4c8d015-2255-4aeb-94be-eb0b7a2174e0")
 end
 
 card MainMenu do
-  text("TODO: Go to non-personalised menu")
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 ```

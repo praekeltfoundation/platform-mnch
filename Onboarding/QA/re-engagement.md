@@ -203,7 +203,7 @@ end
 card DisplayDropOff3rdReminder when contact.data_preference == "text only",
   then: DropOff3rdReminderError do
   buttons(
-    SaveReengagement: "@button_labels[0]",
+    DropOffGoTo: "@button_labels[0]",
     RemindMe: "@button_labels[1]"
   ) do
     text("@loading_message")
@@ -223,7 +223,7 @@ card DisplayDropOff3rdReminder, then: DropOff3rdReminderError do
     )
 
   buttons(
-    SaveReengagement: "@button_labels[0]",
+    DropOffGoTo: "@button_labels[0]",
     RemindMe: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
@@ -233,7 +233,7 @@ end
 
 card DropOff3rdReminderError, then: DropOff3rdReminderError do
   buttons(
-    SaveReengagement: "@button_labels[0]",
+    DropOffGoTo: "@button_labels[0]",
     RemindMe: "@button_labels[1]"
   ) do
     text("@button_error_text")

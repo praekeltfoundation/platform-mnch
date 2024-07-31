@@ -250,7 +250,7 @@ end
 card EDDMonthError, then: EDDMonthError do
   search =
     get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
         ["slug", "edd-month-error"]
       ],
@@ -261,7 +261,7 @@ card EDDMonthError, then: EDDMonthError do
 
   page =
     get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
