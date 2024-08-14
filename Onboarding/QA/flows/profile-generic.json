@@ -1,0 +1,4846 @@
+{
+    "name": "Onboarding: Profile Generic",
+    "description": "Default description",
+    "uuid": "51701b44-bcca-486e-9c99-bf3545a8ba2d",
+    "resources": [
+      {
+        "values": [
+          {
+            "value": "User Opted in",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "a550a899-dc58-4874-a678-d3a74190825c"
+      },
+      {
+        "values": [
+          {
+            "value": "Browsable content goes here",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "2e4170b9-210b-4625-af41-26334dac7b06"
+      },
+      {
+        "values": [
+          {
+            "value": "Health guide goes here",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "e20d73d9-e9be-4a37-97c7-7ce281f66aab"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_error_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "974546a3-e7e7-4f87-9507-8edc474ecc58"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "d86d9a47-58c2-4ec3-857d-754b211abd5d"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "8f016776-c97c-49b2-a1bd-2ba97b731711"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[2]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "8e9b08fb-5cb2-4526-9518-37742fad838e"
+      },
+      {
+        "values": [
+          {
+            "value": "@image_data.body.meta.download_url",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "IMAGE",
+            "mime_type": "application/octet-stream",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          },
+          {
+            "value": "@loading_message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "50292436-c708-4298-98f6-2aaef870d06e"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "c16d331d-bdce-4dec-a956-cd12ef1ad26e"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "59778246-98fa-4394-8736-691564fcb2f3"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[2]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "a506e181-fc8f-4b9b-a62b-bb0c2fc6da25"
+      },
+      {
+        "values": [
+          {
+            "value": "@loading_message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "a18cf0fa-f96f-44e3-b08a-a38de28e9e2d"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "a57621d1-1eb2-49dc-ae71-ebd6377719db"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "1f3cf8c5-289c-421b-8496-3554904c19b3"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[2]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "7620868c-3043-4249-8133-131b662a1736"
+      },
+      {
+        "values": [
+          {
+            "value": "View topics content goes here",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "77995700-b18d-4a8b-b165-8451b2478215"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_error_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "1c320cdc-0cf0-4bee-ba30-7d808b82cf42"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "b32671f6-5553-4228-a57f-ef7136bb5600"
+      },
+      {
+        "values": [
+          {
+            "value": "@message.message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "39617af3-ed84-4a82-8f41-421a9373384f"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "a4592368-f6b7-466a-beec-9a009ebf7702"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_error_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "e6c86294-2997-4a06-8d9f-de80b6507699"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "73a0ab4f-324f-443b-b9d8-31575662aba4"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "6fa1b1ca-3178-4823-94f5-0a0c792ab62f"
+      },
+      {
+        "values": [
+          {
+            "value": "@message.message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "df8a99f1-4ff2-406d-a4c3-c8520958c2b9"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "f66448c1-817c-49a5-ad59-b8c0bfef2332"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "4a66505c-94a6-43cf-9437-5871aff4bd79"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_error_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "0aaae6d9-d4c2-4eb2-a968-1c81fe7149ba"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "bc8e239b-d01e-4340-a015-9a8e600e8e3c"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "056873a3-aa4e-473b-b450-4dcc94a0b32f"
+      },
+      {
+        "values": [
+          {
+            "value": "@message.message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "d34d5d34-ab39-46e1-8433-ac73f908ff44"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "73f73b99-54f0-4adb-b570-98d80c66e28a"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "9f1589ec-0bae-43ab-a71e-600ba67de099"
+      },
+      {
+        "values": [
+          {
+            "value": "Basic questions",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "a7ac005f-8f40-4c87-8f3a-efa6445772dc"
+      },
+      {
+        "values": [
+          {
+            "value": "Personal profile questions",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "15829b59-4c98-411d-acae-de3b538f859a"
+      },
+      {
+        "values": [
+          {
+            "value": "Default to BasicQuestions",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "d4eeafcd-3d9d-4acc-bdcc-cbac1e66c204"
+      },
+      {
+        "values": [
+          {
+            "value": "PersonalProfileQuestions",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "ef7637a7-c37f-4354-b2b7-31a6458224b6"
+      },
+      {
+        "values": [
+          {
+            "value": "ProfileProgress100",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "9852f287-f6d8-498e-a3f0-66a657f3be31"
+      },
+      {
+        "values": [
+          {
+            "value": "ProfileProgress30",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "60738b88-ac7e-44b1-9ca9-9a75a602d634"
+      },
+      {
+        "values": [
+          {
+            "value": "Placeholder Form",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "2efe8893-36fd-4e8c-b127-278ba0ffd4cf"
+      },
+      {
+        "values": [
+          {
+            "value": "Go to main menu",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+          }
+        ],
+        "uuid": "91cfdeea-8f36-4e1d-8280-ea779b286724"
+      }
+    ],
+    "flows": [
+      {
+        "label": null,
+        "name": "stack",
+        "blocks": [
+          {
+            "label": null,
+            "name": "opt_in_reminder_case",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "9949751f-b29e-5454-b2be-b57ed363f75a",
+            "ui_metadata": {},
+            "exits": [
+              {
+                "default": false,
+                "name": "Exit for opt_in_reminder_case_condition_0",
+                "config": {},
+                "test": "or(or(contact.opted_in == false, contact.opted_in == \"false\"), is_nil_or_empty(contact.opted_in))",
+                "uuid": "03f737ff-5970-4394-a12a-19c46d0a3243",
+                "destination_block": "dd851577-205b-510f-98a9-7b2fb07fc34e",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Exit for opt_in_reminder_case_condition_1",
+                "config": {},
+                "test": null,
+                "uuid": "3980f75e-1fec-4bdb-8116-4721a78c4fed",
+                "destination_block": "00cabe91-fa60-5ac3-9fce-b975fb178bbc",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {}
+          },
+          {
+            "label": null,
+            "name": "opt_in_reminder_case_condition_1_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "a550a899-dc58-4874-a678-d3a74190825c"
+            },
+            "tags": [],
+            "uuid": "00cabe91-fa60-5ac3-9fce-b975fb178bbc",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"ProfileProgress100Generic\"",
+                "config": {},
+                "test": "",
+                "uuid": "1a5f0015-857d-4a31-bf37-7433077c0964",
+                "destination_block": "4461f0f9-a57d-5e38-b0d8-87c99d915747",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 276
+                        },
+                        "name": "OptInReminder",
+                        "uuid": "d83bd171-81cd-5c17-acbd-42279c238718"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 277
+                        },
+                        "type": "log"
+                      },
+                      "index": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "opt_in_reminder_case_condition_0_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "537e4867-eb26-482d-96eb-d4783828c622"
+            },
+            "tags": [],
+            "uuid": "dd851577-205b-510f-98a9-7b2fb07fc34e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"ProfileProgress100Generic\"",
+                "config": {},
+                "test": "",
+                "uuid": "b830dae4-00d7-4257-920b-bf26d320fd4c",
+                "destination_block": "4461f0f9-a57d-5e38-b0d8-87c99d915747",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": "contact.opted_in == false or contact.opted_in == \"false\" or is_nil_or_empty(contact.opted_in)",
+                        "meta": {
+                          "column": 1,
+                          "line": 268
+                        },
+                        "name": "OptInReminder",
+                        "uuid": "9949751f-b29e-5454-b2be-b57ed363f75a"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 273
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "browsable_content_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "2e4170b9-210b-4625-af41-26334dac7b06"
+            },
+            "tags": [],
+            "uuid": "b6608def-499b-5c8f-b07e-d766207f006e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "browsable_content_log",
+                "config": {},
+                "test": "",
+                "uuid": "be5ecd1f-175f-4fa9-86aa-a73123f873c3",
+                "destination_block": "24138425-0021-57d2-91a4-85323312f70e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 295
+                        },
+                        "name": "BrowsableContent",
+                        "uuid": "c5e76c73-4988-58cf-b72e-b561817efeed"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 296
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "browsable_content_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+            },
+            "tags": [],
+            "uuid": "24138425-0021-57d2-91a4-85323312f70e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "browsable_content_run_stack",
+                "config": {},
+                "test": "",
+                "uuid": "ff3e1dc4-f47f-477f-983f-783b3ac1ed69",
+                "destination_block": null,
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 295
+                        },
+                        "name": "BrowsableContent",
+                        "uuid": "c5e76c73-4988-58cf-b72e-b561817efeed"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 297
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "health_guide_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "e20d73d9-e9be-4a37-97c7-7ce281f66aab"
+            },
+            "tags": [],
+            "uuid": "a8568d8d-ede5-51ef-b82e-f34b6f07ff21",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "health_guide_log",
+                "config": {},
+                "test": "",
+                "uuid": "83783818-d951-4d3f-be36-bee14002fa92",
+                "destination_block": "179db1ba-0068-506f-b8fb-dc3a95182028",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 290
+                        },
+                        "name": "HealthGuide",
+                        "uuid": "c69c5585-f65c-5ca6-9340-077c67780b55"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 291
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "health_guide_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+            },
+            "tags": [],
+            "uuid": "179db1ba-0068-506f-b8fb-dc3a95182028",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "health_guide_run_stack",
+                "config": {},
+                "test": "",
+                "uuid": "adeb9e0e-a9a9-4dcb-a731-92c55c614bdb",
+                "destination_block": null,
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 290
+                        },
+                        "name": "HealthGuide",
+                        "uuid": "c69c5585-f65c-5ca6-9340-077c67780b55"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 292
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_profile_progress100_generic_error",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "974546a3-e7e7-4f87-9507-8edc474ecc58",
+              "choices": [
+                {
+                  "name": "health_guide",
+                  "prompt": "d86d9a47-58c2-4ec3-857d-754b211abd5d",
+                  "test": "block.response = \"@@button_labels[0]\""
+                },
+                {
+                  "name": "browsable_content",
+                  "prompt": "8f016776-c97c-49b2-a1bd-2ba97b731711",
+                  "test": "block.response = \"@@button_labels[1]\""
+                },
+                {
+                  "name": "main_menu",
+                  "prompt": "8e9b08fb-5cb2-4526-9518-37742fad838e",
+                  "test": "block.response = \"@@button_labels[2]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "44939a67-af7a-5c48-b338-8224528ead61",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "health_guide",
+                "config": {},
+                "test": "block.value = \"health_guide\"",
+                "uuid": "246cbca4-c22c-4ef6-a241-005868fd1ef5",
+                "destination_block": "a8568d8d-ede5-51ef-b82e-f34b6f07ff21",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "browsable_content",
+                "config": {},
+                "test": "block.value = \"browsable_content\"",
+                "uuid": "777f1bb0-5de9-49fa-8383-a5334c94d261",
+                "destination_block": "b6608def-499b-5c8f-b07e-d766207f006e",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "main_menu",
+                "config": {},
+                "test": "block.value = \"main_menu\"",
+                "uuid": "9dad94ec-8dba-49b3-a99e-fb50ba67e388",
+                "destination_block": "d295f461-5a3c-5ba7-8996-f04bb2c6cf7c",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayProfileProgress100GenericError\"",
+                "config": {},
+                "test": "",
+                "uuid": "e0d82c76-842d-45d8-8506-766357ea13a6",
+                "destination_block": "44939a67-af7a-5c48-b338-8224528ead61",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 247
+                        },
+                        "name": "DisplayProfileProgress100GenericError",
+                        "uuid": "4996665e-f1b3-5d95-9372-34031edce35d"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 248
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_profile_progress100_generic_case",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "fbe43ff9-48dc-5481-ac12-5c3b338f0226",
+            "ui_metadata": {},
+            "exits": [
+              {
+                "default": false,
+                "name": "Exit for display_profile_progress100_generic_case_condition_0",
+                "config": {},
+                "test": "contact.data_preference == \"text only\"",
+                "uuid": "a4c81bef-586f-473a-82c7-d8de4dfb356d",
+                "destination_block": "41cf9925-d5bf-56c9-9736-185849886ef9",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Exit for display_profile_progress100_generic_case_condition_1",
+                "config": {},
+                "test": null,
+                "uuid": "a3cd93f1-e97a-44a4-8418-3908073b18d4",
+                "destination_block": "e398e61e-8357-571a-be8b-7345064911ea",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {}
+          },
+          {
+            "label": null,
+            "name": "image_id",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "e398e61e-8357-571a-be8b-7345064911ea",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data.body.body.text.value.image",
+                "config": {},
+                "test": "",
+                "uuid": "703e5aa0-0051-4ab9-9c92-4205a808f820",
+                "destination_block": "527a8e67-fed7-505d-9599-9d58baa2aace",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 226
+                        },
+                        "name": "DisplayProfileProgress100Generic",
+                        "uuid": "5002f4f9-db30-5340-98cf-55780f67c42a"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 227
+                        },
+                        "type": "expression"
+                      },
+                      "index": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "image_data",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "527a8e67-fed7-505d-9599-9d58baa2aace",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "image_data",
+                "config": {},
+                "test": "",
+                "uuid": "35693d01-4702-4c81-8f0e-e2a9ff20108c",
+                "destination_block": "4a1008b2-1c16-5350-a5f2-eeb3f865d716",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 226
+                        },
+                        "name": "DisplayProfileProgress100Generic",
+                        "uuid": "5002f4f9-db30-5340-98cf-55780f67c42a"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 229
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_profile_progress100_generic_case_condition_1",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "50292436-c708-4298-98f6-2aaef870d06e",
+              "choices": [
+                {
+                  "name": "health_guide",
+                  "prompt": "c16d331d-bdce-4dec-a956-cd12ef1ad26e",
+                  "test": "block.response = \"@@button_labels[0]\""
+                },
+                {
+                  "name": "browsable_content",
+                  "prompt": "59778246-98fa-4394-8736-691564fcb2f3",
+                  "test": "block.response = \"@@button_labels[1]\""
+                },
+                {
+                  "name": "main_menu",
+                  "prompt": "a506e181-fc8f-4b9b-a62b-bb0c2fc6da25",
+                  "test": "block.response = \"@@button_labels[2]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "4a1008b2-1c16-5350-a5f2-eeb3f865d716",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "health_guide",
+                "config": {},
+                "test": "block.value = \"health_guide\"",
+                "uuid": "8ead9aef-5a68-4904-84bb-387eeea70e1e",
+                "destination_block": "a8568d8d-ede5-51ef-b82e-f34b6f07ff21",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "browsable_content",
+                "config": {},
+                "test": "block.value = \"browsable_content\"",
+                "uuid": "b586362b-9ac5-4428-94aa-63439661b627",
+                "destination_block": "b6608def-499b-5c8f-b07e-d766207f006e",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "main_menu",
+                "config": {},
+                "test": "block.value = \"main_menu\"",
+                "uuid": "42213604-0251-483b-9443-2fe4eed0649e",
+                "destination_block": "d295f461-5a3c-5ba7-8996-f04bb2c6cf7c",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayProfileProgress100GenericError\"",
+                "config": {},
+                "test": "",
+                "uuid": "9e3e25cc-8ae4-4836-8ecc-2a8023aace41",
+                "destination_block": "44939a67-af7a-5c48-b338-8224528ead61",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 226
+                        },
+                        "name": "DisplayProfileProgress100Generic",
+                        "uuid": "5002f4f9-db30-5340-98cf-55780f67c42a"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 237
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_profile_progress100_generic_case_condition_0",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "a18cf0fa-f96f-44e3-b08a-a38de28e9e2d",
+              "choices": [
+                {
+                  "name": "health_guide",
+                  "prompt": "a57621d1-1eb2-49dc-ae71-ebd6377719db",
+                  "test": "block.response = \"@@button_labels[0]\""
+                },
+                {
+                  "name": "browsable_content",
+                  "prompt": "1f3cf8c5-289c-421b-8496-3554904c19b3",
+                  "test": "block.response = \"@@button_labels[1]\""
+                },
+                {
+                  "name": "main_menu",
+                  "prompt": "7620868c-3043-4249-8133-131b662a1736",
+                  "test": "block.response = \"@@button_labels[2]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "41cf9925-d5bf-56c9-9736-185849886ef9",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "health_guide",
+                "config": {},
+                "test": "block.value = \"health_guide\"",
+                "uuid": "ce3a50a1-d5ae-400b-88f8-d78dcd6adffb",
+                "destination_block": "a8568d8d-ede5-51ef-b82e-f34b6f07ff21",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "browsable_content",
+                "config": {},
+                "test": "block.value = \"browsable_content\"",
+                "uuid": "063bf6d3-bb36-4bf1-966d-0075c1c02132",
+                "destination_block": "b6608def-499b-5c8f-b07e-d766207f006e",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "main_menu",
+                "config": {},
+                "test": "block.value = \"main_menu\"",
+                "uuid": "7d6292f3-c93f-429b-986d-d015d507d39d",
+                "destination_block": "d295f461-5a3c-5ba7-8996-f04bb2c6cf7c",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayProfileProgress100GenericError\"",
+                "config": {},
+                "test": "",
+                "uuid": "e3e21166-900a-4ee9-bf30-f2a4ac0a65e1",
+                "destination_block": "44939a67-af7a-5c48-b338-8224528ead61",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": "contact.data_preference == \"text only\"",
+                        "meta": {
+                          "column": 1,
+                          "line": 214
+                        },
+                        "name": "DisplayProfileProgress100Generic",
+                        "uuid": "fbe43ff9-48dc-5481-ac12-5c3b338f0226"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 216
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "view_topics_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "77995700-b18d-4a8b-b165-8451b2478215"
+            },
+            "tags": [],
+            "uuid": "06a91f1f-d05b-5bd9-884a-5ea829fea8a2",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "view_topics_log",
+                "config": {},
+                "test": "",
+                "uuid": "56f6ff65-b6b9-4751-ac52-1aad4be61d17",
+                "destination_block": null,
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 280
+                        },
+                        "name": "ViewTopics",
+                        "uuid": "a8a8f1e1-7035-52c9-b3a0-2eb2f611a6a4"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 281
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_reminder_later_error",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "1c320cdc-0cf0-4bee-ba30-7d808b82cf42",
+              "choices": [
+                {
+                  "name": "view_topics",
+                  "prompt": "b32671f6-5553-4228-a57f-ef7136bb5600",
+                  "test": "block.response = \"@@button_labels[0]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "4f914b18-6d1d-5ec4-8fc0-35a556c20913",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "view_topics",
+                "config": {},
+                "test": "block.value = \"view_topics\"",
+                "uuid": "fda99cbf-7208-4a5e-a896-078a78dc8876",
+                "destination_block": "06a91f1f-d05b-5bd9-884a-5ea829fea8a2",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayReminderLaterError\"",
+                "config": {},
+                "test": "",
+                "uuid": "d7040f54-9172-4f67-9eec-589b647b2224",
+                "destination_block": "4f914b18-6d1d-5ec4-8fc0-35a556c20913",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 175
+                        },
+                        "name": "DisplayReminderLaterError",
+                        "uuid": "9db6077f-d59b-5560-bc8a-169f12310089"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 176
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_reminder_later",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "39617af3-ed84-4a82-8f41-421a9373384f",
+              "choices": [
+                {
+                  "name": "view_topics",
+                  "prompt": "a4592368-f6b7-466a-beec-9a009ebf7702",
+                  "test": "block.response = \"@@button_labels[0]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "3c9c360e-5853-570d-b46d-6a5744a59dbd",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "view_topics",
+                "config": {},
+                "test": "block.value = \"view_topics\"",
+                "uuid": "f9c19179-3fa7-4e92-bb18-b035d759b242",
+                "destination_block": "06a91f1f-d05b-5bd9-884a-5ea829fea8a2",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayReminderLaterError\"",
+                "config": {},
+                "test": "",
+                "uuid": "126d488d-bf48-49c2-a60f-b02cf39c0497",
+                "destination_block": "4f914b18-6d1d-5ec4-8fc0-35a556c20913",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 169
+                        },
+                        "name": "DisplayReminderLater",
+                        "uuid": "9dbf78b8-5568-5a90-a639-2d7e49b90677"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 170
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "search",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "slug",
+                  "mnch_onboarding_reminder_later"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "ea5f131b-1cb5-5d9b-a78c-df4d28aeb123",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search",
+                "config": {},
+                "test": "",
+                "uuid": "5b3a937f-b0fc-4e97-beec-962f97551d68",
+                "destination_block": "4f353f7a-79f3-5bb4-9b13-330a39a9c119",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 144
+                        },
+                        "name": "ReminderLater",
+                        "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 145
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "page_id",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "4f353f7a-79f3-5bb4-9b13-330a39a9c119",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search.body.results[0].id",
+                "config": {},
+                "test": "",
+                "uuid": "a5f50e34-37d9-424e-843c-ebc67a5ca5ac",
+                "destination_block": "f9997738-00e6-5ed0-a9e1-41d3699001cf",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 144
+                        },
+                        "name": "ReminderLater",
+                        "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 154
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "content_data",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "whatsapp",
+                  "true"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "f9997738-00e6-5ed0-a9e1-41d3699001cf",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data",
+                "config": {},
+                "test": "",
+                "uuid": "ff388b09-5687-42d8-847a-78502b754de6",
+                "destination_block": "83d49642-f84a-5d5f-a773-9f4a4b581f8e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 144
+                        },
+                        "name": "ReminderLater",
+                        "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 156
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "83d49642-f84a-5d5f-a773-9f4a4b581f8e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data.body.body.text.value",
+                "config": {},
+                "test": "",
+                "uuid": "af3e7034-901e-4453-b3b4-7879c735b245",
+                "destination_block": "6f8b4aad-9fb2-54aa-a453-2a47cc2caffd",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 144
+                        },
+                        "name": "ReminderLater",
+                        "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 165
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "button_labels",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "6f8b4aad-9fb2-54aa-a453-2a47cc2caffd",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "map(message.buttons, & &1.value.title)",
+                "config": {},
+                "test": "",
+                "uuid": "ab31c45e-4658-4328-a97b-78039c0f07b7",
+                "destination_block": "3c9c360e-5853-570d-b46d-6a5744a59dbd",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 144
+                        },
+                        "name": "ReminderLater",
+                        "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 166
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_why_personal_info1_error",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "e6c86294-2997-4a06-8d9f-de80b6507699",
+              "choices": [
+                {
+                  "name": "personal_profile_questions",
+                  "prompt": "73a0ab4f-324f-443b-b9d8-31575662aba4",
+                  "test": "block.response = \"@@button_labels[0]\""
+                },
+                {
+                  "name": "reminder_later",
+                  "prompt": "6fa1b1ca-3178-4823-94f5-0a0c792ab62f",
+                  "test": "block.response = \"@@button_labels[1]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "d12bdc0c-7467-51fe-b25b-6fe0529267d1",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "personal_profile_questions",
+                "config": {},
+                "test": "block.value = \"personal_profile_questions\"",
+                "uuid": "bfe407a3-d933-4558-b09b-4f8625b9cec0",
+                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "reminder_later",
+                "config": {},
+                "test": "block.value = \"reminder_later\"",
+                "uuid": "f3c53332-d733-49a0-91c0-7b6059c9652d",
+                "destination_block": "ea5f131b-1cb5-5d9b-a78c-df4d28aeb123",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayWhyPersonalInfo1Error\"",
+                "config": {},
+                "test": "",
+                "uuid": "9b2a7b9c-3447-43b4-b13a-113c2a29a5cb",
+                "destination_block": "d12bdc0c-7467-51fe-b25b-6fe0529267d1",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 135
+                        },
+                        "name": "DisplayWhyPersonalInfo1Error",
+                        "uuid": "4c65d723-a9ac-55c7-a485-01f2c0e01fec"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 136
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_why_personal_info1",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "df8a99f1-4ff2-406d-a4c3-c8520958c2b9",
+              "choices": [
+                {
+                  "name": "personal_profile_questions",
+                  "prompt": "f66448c1-817c-49a5-ad59-b8c0bfef2332",
+                  "test": "block.response = \"@@button_labels[0]\""
+                },
+                {
+                  "name": "reminder_later",
+                  "prompt": "4a66505c-94a6-43cf-9437-5871aff4bd79",
+                  "test": "block.response = \"@@button_labels[1]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "5174e434-48bd-5de7-acf4-4d7dcd187346",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "personal_profile_questions",
+                "config": {},
+                "test": "block.value = \"personal_profile_questions\"",
+                "uuid": "8e960ae3-4f47-4cca-a337-063e69d1c304",
+                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "reminder_later",
+                "config": {},
+                "test": "block.value = \"reminder_later\"",
+                "uuid": "bb39a517-7957-48de-bcd1-427977d68903",
+                "destination_block": "ea5f131b-1cb5-5d9b-a78c-df4d28aeb123",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayWhyPersonalInfo1Error\"",
+                "config": {},
+                "test": "",
+                "uuid": "8eb90d6b-b494-4982-be9d-5dd9ee99569b",
+                "destination_block": "d12bdc0c-7467-51fe-b25b-6fe0529267d1",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 126
+                        },
+                        "name": "DisplayWhyPersonalInfo1",
+                        "uuid": "faae118b-a65f-59d4-93a7-fbc80ac73c5a"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 127
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "search",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "slug",
+                  "mnch_onboarding_why_personal_info_1"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search",
+                "config": {},
+                "test": "",
+                "uuid": "fd895b9b-7b3d-48bf-a6db-793da9230b97",
+                "destination_block": "048dc483-6718-58c2-80cd-f3b8dad18b28",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 101
+                        },
+                        "name": "WhyPersonalInfo1",
+                        "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 102
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "page_id",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "048dc483-6718-58c2-80cd-f3b8dad18b28",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search.body.results[0].id",
+                "config": {},
+                "test": "",
+                "uuid": "9a85adf4-9413-4a14-99f8-e50654282636",
+                "destination_block": "2a522ca2-f2d4-59e7-a6b8-915a381bc63b",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 101
+                        },
+                        "name": "WhyPersonalInfo1",
+                        "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 111
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "content_data",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "whatsapp",
+                  "true"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "2a522ca2-f2d4-59e7-a6b8-915a381bc63b",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data",
+                "config": {},
+                "test": "",
+                "uuid": "df40cd8a-8bd9-4758-9d04-41461a4bb11c",
+                "destination_block": "be19b57c-8ca7-50aa-9937-733ca1d2881e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 101
+                        },
+                        "name": "WhyPersonalInfo1",
+                        "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 113
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "be19b57c-8ca7-50aa-9937-733ca1d2881e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data.body.body.text.value",
+                "config": {},
+                "test": "",
+                "uuid": "956c2ab1-663b-4689-a4a8-5336e802b355",
+                "destination_block": "2e674072-3688-56dd-8f91-c1d4a89c3e0e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 101
+                        },
+                        "name": "WhyPersonalInfo1",
+                        "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 122
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "button_labels",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "2e674072-3688-56dd-8f91-c1d4a89c3e0e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "map(message.buttons, & &1.value.title)",
+                "config": {},
+                "test": "",
+                "uuid": "34bd439e-a76a-471e-a340-b0bcfbd2a30a",
+                "destination_block": "5174e434-48bd-5de7-acf4-4d7dcd187346",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 101
+                        },
+                        "name": "WhyPersonalInfo1",
+                        "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 123
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_profile_progress30_generic_error",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "0aaae6d9-d4c2-4eb2-a968-1c81fe7149ba",
+              "choices": [
+                {
+                  "name": "personal_profile_questions",
+                  "prompt": "bc8e239b-d01e-4340-a015-9a8e600e8e3c",
+                  "test": "block.response = \"@@button_labels[0]\""
+                },
+                {
+                  "name": "why_personal_info1",
+                  "prompt": "056873a3-aa4e-473b-b450-4dcc94a0b32f",
+                  "test": "block.response = \"@@button_labels[1]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "1b5ea463-9232-5c6c-b10a-82d9b05e8464",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "personal_profile_questions",
+                "config": {},
+                "test": "block.value = \"personal_profile_questions\"",
+                "uuid": "49907319-8417-4513-b871-bac5798da0c1",
+                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "why_personal_info1",
+                "config": {},
+                "test": "block.value = \"why_personal_info1\"",
+                "uuid": "7325606a-7b05-4f69-ba94-3bec85fa53b1",
+                "destination_block": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayProfileProgress30GenericError\"",
+                "config": {},
+                "test": "",
+                "uuid": "565a5e97-d4de-47a9-bd63-0f5d47e13532",
+                "destination_block": "1b5ea463-9232-5c6c-b10a-82d9b05e8464",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 92
+                        },
+                        "name": "DisplayProfileProgress30GenericError",
+                        "uuid": "7d41724c-7754-5f81-af86-1f64871076e2"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 93
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "display_profile_progress30_generic",
+            "type": "MobilePrimitives.SelectOneResponse",
+            "config": {
+              "prompt": "d34d5d34-ab39-46e1-8433-ac73f908ff44",
+              "choices": [
+                {
+                  "name": "personal_profile_questions",
+                  "prompt": "73f73b99-54f0-4adb-b570-98d80c66e28a",
+                  "test": "block.response = \"@@button_labels[0]\""
+                },
+                {
+                  "name": "why_personal_info1",
+                  "prompt": "9f1589ec-0bae-43ab-a71e-600ba67de099",
+                  "test": "block.response = \"@@button_labels[1]\""
+                }
+              ]
+            },
+            "tags": [],
+            "uuid": "68582499-2885-5a00-be82-f970ab263766",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": null,
+                "name": "personal_profile_questions",
+                "config": {},
+                "test": "block.value = \"personal_profile_questions\"",
+                "uuid": "1e14547d-aba3-4442-b047-32e18fa58033",
+                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": null,
+                "name": "why_personal_info1",
+                "config": {},
+                "test": "block.value = \"why_personal_info1\"",
+                "uuid": "658ddfac-84a8-4ae1-a384-9463d47e0462",
+                "destination_block": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Default exit to \"DisplayProfileProgress30GenericError\"",
+                "config": {},
+                "test": "",
+                "uuid": "5d0d2c73-0a4e-4e0a-82c6-b08062380c42",
+                "destination_block": "1b5ea463-9232-5c6c-b10a-82d9b05e8464",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "buttons_metadata": {},
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 83
+                        },
+                        "name": "DisplayProfileProgress30Generic",
+                        "uuid": "3e80025b-bc52-56cc-bcfa-050b3ca1d79b"
+                      },
+                      "card_item": {
+                        "button_block": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 84
+                        },
+                        "type": "button_block"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "a7ac005f-8f40-4c87-8f3a-efa6445772dc"
+            },
+            "tags": [],
+            "uuid": "e2b21ca2-85c9-5603-8e65-46189a932a8e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "basic_questions_log",
+                "config": {},
+                "test": "",
+                "uuid": "fa4323f7-bb71-4dd1-9aa9-ad5b52b9e90e",
+                "destination_block": "04153ff5-b01a-5e42-9234-167528f4ff4c",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 48
+                        },
+                        "name": "BasicQuestions",
+                        "uuid": "880e88d5-88a8-5653-a26f-8b4bcbc22113"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 49
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_contact_update_profile_type",
+            "type": "Core.SetContactProperty",
+            "config": {
+              "set_contact_property": {
+                "property_key": "profile_type",
+                "property_value": "generic"
+              }
+            },
+            "tags": [],
+            "uuid": "04153ff5-b01a-5e42-9234-167528f4ff4c",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "basic_questions_contact_update_profile_type",
+                "config": {},
+                "test": "",
+                "uuid": "331579ed-e14a-4ee5-bf60-539dae2a25f8",
+                "destination_block": "87a3b658-2d32-5f8a-a61b-096e2d33c9d0",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 48
+                        },
+                        "name": "BasicQuestions",
+                        "uuid": "880e88d5-88a8-5653-a26f-8b4bcbc22113"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 50
+                        },
+                        "type": "update_contact",
+                        "update_contact": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_contact_update_checkpoint",
+            "type": "Core.SetContactProperty",
+            "config": {
+              "set_contact_property": {
+                "property_key": "checkpoint",
+                "property_value": "generic_basic_info"
+              }
+            },
+            "tags": [],
+            "uuid": "87a3b658-2d32-5f8a-a61b-096e2d33c9d0",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "basic_questions_contact_update_checkpoint",
+                "config": {},
+                "test": "",
+                "uuid": "01fa5d12-cf77-4c0c-8710-255674bd823b",
+                "destination_block": "fea47b66-a909-58cc-bdda-b9491a8d060c",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 48
+                        },
+                        "name": "BasicQuestions",
+                        "uuid": "880e88d5-88a8-5653-a26f-8b4bcbc22113"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 51
+                        },
+                        "type": "update_contact",
+                        "update_contact": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "26e0c9e4-6547-4e3f-b9f4-e37c11962b6d"
+            },
+            "tags": [],
+            "uuid": "fea47b66-a909-58cc-bdda-b9491a8d060c",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"ProfileProgress30Generic\"",
+                "config": {},
+                "test": "",
+                "uuid": "8b64f5ef-f0b4-4caf-bb95-c6cf74457e4a",
+                "destination_block": "d6a6bacc-b77a-5d5f-a0b8-6928b890d0c9",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 48
+                        },
+                        "name": "BasicQuestions",
+                        "uuid": "880e88d5-88a8-5653-a26f-8b4bcbc22113"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 52
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_profile_questions_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "15829b59-4c98-411d-acae-de3b538f859a"
+            },
+            "tags": [],
+            "uuid": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "personal_profile_questions_log",
+                "config": {},
+                "test": "",
+                "uuid": "3c93aca7-8476-47f7-908c-a8a4c0188c32",
+                "destination_block": "7189cac7-b475-5c86-8144-38878cd09eb8",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 257
+                        },
+                        "name": "PersonalProfileQuestions",
+                        "uuid": "01d20bee-14c6-5997-81e8-4e793e9dc002"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 258
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_profile_questions_contact_update_checkpoint",
+            "type": "Core.SetContactProperty",
+            "config": {
+              "set_contact_property": {
+                "property_key": "checkpoint",
+                "property_value": "generic_personal_info"
+              }
+            },
+            "tags": [],
+            "uuid": "7189cac7-b475-5c86-8144-38878cd09eb8",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "personal_profile_questions_contact_update_checkpoint",
+                "config": {},
+                "test": "",
+                "uuid": "5e47b9f2-af58-4a4f-bb30-734247ab1154",
+                "destination_block": "feb88be0-596d-5675-a788-0dafb0691935",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 257
+                        },
+                        "name": "PersonalProfileQuestions",
+                        "uuid": "01d20bee-14c6-5997-81e8-4e793e9dc002"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 259
+                        },
+                        "type": "update_contact",
+                        "update_contact": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_profile_questions_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "61a880e4-cf7b-47c5-a047-60802aaa7975"
+            },
+            "tags": [],
+            "uuid": "feb88be0-596d-5675-a788-0dafb0691935",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"LOCAssessment\"",
+                "config": {},
+                "test": "",
+                "uuid": "feb0bebc-d345-4fc6-937a-51e541715095",
+                "destination_block": "b44b38fa-8f20-5988-8353-6ee7b9cd5ff1",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 257
+                        },
+                        "name": "PersonalProfileQuestions",
+                        "uuid": "01d20bee-14c6-5997-81e8-4e793e9dc002"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 260
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "profile_completion",
+            "type": "Core.Output",
+            "config": {
+              "value": "\"100%\""
+            },
+            "tags": [],
+            "uuid": "4461f0f9-a57d-5e38-b0d8-87c99d915747",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "profile_completion",
+                "config": {},
+                "test": "",
+                "uuid": "6b2106f6-0910-4b5d-b72f-de86261488b5",
+                "destination_block": "32c3d338-6c59-5aa8-8ee6-fb33f8ffa62e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 182
+                        },
+                        "type": "write_result",
+                        "write_result": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "profile_progress100_generic_contact_update_profile_completion",
+            "type": "Core.SetContactProperty",
+            "config": {
+              "set_contact_property": {
+                "property_key": "profile_completion",
+                "property_value": "100%"
+              }
+            },
+            "tags": [],
+            "uuid": "32c3d338-6c59-5aa8-8ee6-fb33f8ffa62e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "profile_progress100_generic_contact_update_profile_completion",
+                "config": {},
+                "test": "",
+                "uuid": "4f1f10be-467f-4140-aff6-4b2e3a3cd3f1",
+                "destination_block": "fd868217-1b33-56fe-b565-8de083efe1ef",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 183
+                        },
+                        "type": "update_contact",
+                        "update_contact": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "profile_progress100_generic_schedule_stack",
+            "type": "Io.Turn.ScheduleFlow",
+            "config": {
+              "flow_id": "b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d"
+            },
+            "tags": [],
+            "uuid": "fd868217-1b33-56fe-b565-8de083efe1ef",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "profile_progress100_generic_schedule_stack",
+                "config": {},
+                "test": "",
+                "uuid": "43e52647-13a1-418d-ac70-1538fda3b169",
+                "destination_block": "23c0b400-9012-55ec-8e8d-2e213df2b667",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 184
+                        },
+                        "schedule_stack": {},
+                        "type": "schedule_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "search",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "slug",
+                  "mnch_onboarding_profile_progress_100_generic"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "23c0b400-9012-55ec-8e8d-2e213df2b667",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search",
+                "config": {},
+                "test": "",
+                "uuid": "23e96481-671d-4021-a577-9ae0e2c4729f",
+                "destination_block": "a71a14e3-5156-551b-a372-ced57211e6e4",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 186
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "page_id",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "a71a14e3-5156-551b-a372-ced57211e6e4",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search.body.results[0].id",
+                "config": {},
+                "test": "",
+                "uuid": "485743d4-bd5a-4465-ba8c-e86d1061b21d",
+                "destination_block": "b1e8ef52-d410-58be-84f2-13228c492b70",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 195
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "content_data",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "whatsapp",
+                  "true"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "b1e8ef52-d410-58be-84f2-13228c492b70",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data",
+                "config": {},
+                "test": "",
+                "uuid": "3d52ac74-ea30-4715-94d9-79cd309eadee",
+                "destination_block": "2595bfc7-1798-5705-9003-80dba128dd82",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 197
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "2595bfc7-1798-5705-9003-80dba128dd82",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data.body.body.text.value",
+                "config": {},
+                "test": "",
+                "uuid": "2840ade6-673f-482f-a4b1-a2b081b9717e",
+                "destination_block": "476c522a-c462-5ebe-becf-205446c24bfb",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 206
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "name",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "476c522a-c462-5ebe-becf-205446c24bfb",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "if(is_nil_or_empty(contact.name), \"None\", contact.name)",
+                "config": {},
+                "test": "",
+                "uuid": "4a1e36c5-8ef6-4d3c-8d93-feed277670c3",
+                "destination_block": "ed625dd7-4b3a-5cb1-ad46-7a775382205e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 207
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "loading_message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "ed625dd7-4b3a-5cb1-ad46-7a775382205e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "substitute(message.message, \"{UserName, “None”}\", \"@name\")",
+                "config": {},
+                "test": "",
+                "uuid": "cec652d1-32ec-4e99-807e-9653969da408",
+                "destination_block": "1345a71f-6eca-5734-b2ce-e8ca7705bc4d",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 209
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "button_labels",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "1345a71f-6eca-5734-b2ce-e8ca7705bc4d",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "map(message.buttons, & &1.value.title)",
+                "config": {},
+                "test": "",
+                "uuid": "ad40cf61-158f-4c05-bd7b-51dd8166b680",
+                "destination_block": "fbe43ff9-48dc-5481-ac12-5c3b338f0226",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 181
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 210
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "profile_completion",
+            "type": "Core.Output",
+            "config": {
+              "value": "\"30%\""
+            },
+            "tags": [],
+            "uuid": "d6a6bacc-b77a-5d5f-a0b8-6928b890d0c9",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "profile_completion",
+                "config": {},
+                "test": "",
+                "uuid": "baf200a5-2024-40db-9dd1-8de34cddbba8",
+                "destination_block": "ba94d7ec-6c40-5a2a-ad30-588ff2831a5c",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 56
+                        },
+                        "type": "write_result",
+                        "write_result": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "profile_progress30_generic_contact_update_profile_completion",
+            "type": "Core.SetContactProperty",
+            "config": {
+              "set_contact_property": {
+                "property_key": "profile_completion",
+                "property_value": "30%"
+              }
+            },
+            "tags": [],
+            "uuid": "ba94d7ec-6c40-5a2a-ad30-588ff2831a5c",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "profile_progress30_generic_contact_update_profile_completion",
+                "config": {},
+                "test": "",
+                "uuid": "d7cbc63a-473a-405e-8d06-6c14dfc7ba9c",
+                "destination_block": "89e42ef4-8346-5771-bb5d-b6f9840ef9c1",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 57
+                        },
+                        "type": "update_contact",
+                        "update_contact": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "search",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "slug",
+                  "mnch_onboarding_profile_progress_30_generic"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "89e42ef4-8346-5771-bb5d-b6f9840ef9c1",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search",
+                "config": {},
+                "test": "",
+                "uuid": "e4d3a8aa-7856-4db6-8d64-b57b48fb4fad",
+                "destination_block": "42c04994-0aee-569d-aa4a-fe1b9043bc2e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 59
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "page_id",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "42c04994-0aee-569d-aa4a-fe1b9043bc2e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search.body.results[0].id",
+                "config": {},
+                "test": "",
+                "uuid": "b5856a15-61dc-4a1b-8e52-f72f4c36573a",
+                "destination_block": "dce094cc-3702-5814-8b28-d78f3178ca15",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 68
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "content_data",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "whatsapp",
+                  "true"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "dce094cc-3702-5814-8b28-d78f3178ca15",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data",
+                "config": {},
+                "test": "",
+                "uuid": "32620632-0f3d-4a59-a217-cff8db0aa33d",
+                "destination_block": "09d126cd-1b7d-5a88-89bf-b828e74de3ec",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 70
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "09d126cd-1b7d-5a88-89bf-b828e74de3ec",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data.body.body.text.value",
+                "config": {},
+                "test": "",
+                "uuid": "05f13c74-a887-4433-89d4-64b8b4ed61d6",
+                "destination_block": "39aad5c4-4151-57f3-b5a2-8d0c987090f1",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 79
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "button_labels",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "39aad5c4-4151-57f3-b5a2-8d0c987090f1",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "map(message.buttons, & &1.value.title)",
+                "config": {},
+                "test": "",
+                "uuid": "472ab047-0fd9-4218-b4bb-41d584ca8da2",
+                "destination_block": "68582499-2885-5a00-be82-f970ab263766",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 80
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "check_point_redirect_case",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "1cf9ebe7-134f-5b33-942d-f9bfe46063f9",
+            "ui_metadata": {},
+            "exits": [
+              {
+                "default": false,
+                "name": "Exit for check_point_redirect_case_condition_0",
+                "config": {},
+                "test": "and(contact.profile_completion == \"30%\", contact.checkpoint == \"generic_basic_info\")",
+                "uuid": "b53a2c16-bad5-40d6-9562-8d7319851924",
+                "destination_block": "d436b5a1-8d84-572d-9020-52ec6b44f6af",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": false,
+                "name": "Exit for check_point_redirect_case_condition_1",
+                "config": {},
+                "test": "contact.profile_completion == \"100%\"",
+                "uuid": "50498286-4021-44cd-9610-92bda727945a",
+                "destination_block": "892707df-2359-5bae-8625-2e48967f29c2",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": false,
+                "name": "Exit for check_point_redirect_case_condition_2",
+                "config": {},
+                "test": "contact.checkpoint == \"generic_personal_info\"",
+                "uuid": "95e59809-4c07-40a7-b1f4-44e6ff562bf4",
+                "destination_block": "e616d211-01d4-5f07-ba39-84be6af786db",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              },
+              {
+                "default": true,
+                "name": "Exit for check_point_redirect_case_condition_3",
+                "config": {},
+                "test": null,
+                "uuid": "6f66e50e-6cfc-4bfc-8c38-02d6aaa90acc",
+                "destination_block": "c81052fb-0be5-57f2-b93b-ab7ce60234ad",
+                "semantic_label": null,
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {}
+          },
+          {
+            "label": null,
+            "name": "check_point_redirect_case_condition_3_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "d4eeafcd-3d9d-4acc-bdcc-cbac1e66c204"
+            },
+            "tags": [],
+            "uuid": "c81052fb-0be5-57f2-b93b-ab7ce60234ad",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"BasicQuestions\"",
+                "config": {},
+                "test": "",
+                "uuid": "cf7d23ca-7da9-4901-b1c7-0bff28f996ba",
+                "destination_block": "e2b21ca2-85c9-5603-8e65-46189a932a8e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 44
+                        },
+                        "name": "CheckPointRedirect",
+                        "uuid": "17bb21e3-3e03-5cf3-860e-29812b6ea8c8"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 45
+                        },
+                        "type": "log"
+                      },
+                      "index": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "check_point_redirect_case_condition_2_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "ef7637a7-c37f-4354-b2b7-31a6458224b6"
+            },
+            "tags": [],
+            "uuid": "e616d211-01d4-5f07-ba39-84be6af786db",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"PersonalProfileQuestions\"",
+                "config": {},
+                "test": "",
+                "uuid": "f2651e8e-347e-4816-aee0-013aa5333635",
+                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": "contact.checkpoint == \"generic_personal_info\"",
+                        "meta": {
+                          "column": 1,
+                          "line": 39
+                        },
+                        "name": "CheckPointRedirect",
+                        "uuid": "ddec9885-e30b-54d6-8da1-b3f5b3571413"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 41
+                        },
+                        "type": "log"
+                      },
+                      "index": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "check_point_redirect_case_condition_1_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "9852f287-f6d8-498e-a3f0-66a657f3be31"
+            },
+            "tags": [],
+            "uuid": "892707df-2359-5bae-8625-2e48967f29c2",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"ProfileProgress100Generic\"",
+                "config": {},
+                "test": "",
+                "uuid": "7c81b1d2-cc88-428b-8ebd-21f1df535912",
+                "destination_block": "4461f0f9-a57d-5e38-b0d8-87c99d915747",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": "contact.profile_completion == \"100%\"",
+                        "meta": {
+                          "column": 1,
+                          "line": 35
+                        },
+                        "name": "CheckPointRedirect",
+                        "uuid": "ec8c2c1f-c984-5d1d-9325-44c5d03ae06d"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 36
+                        },
+                        "type": "log"
+                      },
+                      "index": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "check_point_redirect_case_condition_0_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "60738b88-ac7e-44b1-9ca9-9a75a602d634"
+            },
+            "tags": [],
+            "uuid": "d436b5a1-8d84-572d-9020-52ec6b44f6af",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"ProfileProgress30Generic\"",
+                "config": {},
+                "test": "",
+                "uuid": "6ad07b6b-9f26-4443-a086-ba2e16acc75c",
+                "destination_block": "d6a6bacc-b77a-5d5f-a0b8-6928b890d0c9",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": "contact.profile_completion == \"30%\" and contact.checkpoint == \"generic_basic_info\"",
+                        "meta": {
+                          "column": 1,
+                          "line": 29
+                        },
+                        "name": "CheckPointRedirect",
+                        "uuid": "1cf9ebe7-134f-5b33-942d-f9bfe46063f9"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 32
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "loc_assessment_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "2efe8893-36fd-4e8c-b127-278ba0ffd4cf"
+            },
+            "tags": [],
+            "uuid": "b44b38fa-8f20-5988-8353-6ee7b9cd5ff1",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "loc_assessment_log",
+                "config": {},
+                "test": "",
+                "uuid": "03793f9f-d993-4460-9c91-a16ff7536a87",
+                "destination_block": "63a0428d-da4d-5428-846c-c2b25e577dae",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 263
+                        },
+                        "name": "LOCAssessment",
+                        "uuid": "0cd3f66a-587f-5eeb-b2ad-ca401c49ef21"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 264
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "loc_assessment_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "690a9ffd-db6d-42df-ad8f-a1e5b469a099"
+            },
+            "tags": [],
+            "uuid": "63a0428d-da4d-5428-846c-c2b25e577dae",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"OptInReminder\"",
+                "config": {},
+                "test": "",
+                "uuid": "efa2e1b8-2309-4474-ad45-497930b6c936",
+                "destination_block": "9949751f-b29e-5454-b2be-b57ed363f75a",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 263
+                        },
+                        "name": "LOCAssessment",
+                        "uuid": "0cd3f66a-587f-5eeb-b2ad-ca401c49ef21"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 265
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "search",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "slug",
+                  "mnch_onboarding_error_handling_button"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search",
+                "config": {},
+                "test": "",
+                "uuid": "54ea1d41-4963-46cc-ad76-720ece07882b",
+                "destination_block": "e912c29c-549e-5a43-82f3-c61730ff74d2",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 3
+                        },
+                        "name": "FetchError",
+                        "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 5
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "page_id",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "e912c29c-549e-5a43-82f3-c61730ff74d2",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "search.body.results[0].id",
+                "config": {},
+                "test": "",
+                "uuid": "7696fbfc-9c16-4412-848a-9fc160eb06e2",
+                "destination_block": "869fc622-5c05-57b0-801f-c65125482a11",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 3
+                        },
+                        "name": "FetchError",
+                        "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 15
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "page",
+            "type": "Io.Turn.Webhook",
+            "config": {
+              "timeout": 5000,
+              "mode": "sync",
+              "body": null,
+              "query": [
+                [
+                  "whatsapp",
+                  "true"
+                ]
+              ],
+              "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+              "headers": [
+                [
+                  "Authorization",
+                  "Token @global.config.contentrepo_token"
+                ]
+              ],
+              "method": "GET",
+              "cache_ttl": 60000
+            },
+            "tags": [],
+            "uuid": "869fc622-5c05-57b0-801f-c65125482a11",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "page",
+                "config": {},
+                "test": "",
+                "uuid": "421ad464-4356-4903-8b86-40b739705afd",
+                "destination_block": "ef95e080-1070-5291-aeed-ee5b54983e2d",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 3
+                        },
+                        "name": "FetchError",
+                        "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 17
+                        },
+                        "type": "webhook",
+                        "webhook": {}
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "button_error_text",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "ef95e080-1070-5291-aeed-ee5b54983e2d",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "page.body.body.text.value.message",
+                "config": {},
+                "test": "",
+                "uuid": "213eed39-7c73-4d0e-9ae4-8307f80d2cb5",
+                "destination_block": "1cf9ebe7-134f-5b33-942d-f9bfe46063f9",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 3
+                        },
+                        "name": "FetchError",
+                        "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 26
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "main_menu_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "91cfdeea-8f36-4e1d-8280-ea779b286724"
+            },
+            "tags": [],
+            "uuid": "d295f461-5a3c-5ba7-8996-f04bb2c6cf7c",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "main_menu_log",
+                "config": {},
+                "test": "",
+                "uuid": "aaa03c24-5fa6-4c0e-b0ef-e41095373124",
+                "destination_block": "0029a37a-74ac-5a54-92e2-b6088cf2b751",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 285
+                        },
+                        "name": "MainMenu",
+                        "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 286
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "main_menu_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "21b892d6-685c-458e-adae-304ece46022a"
+            },
+            "tags": [],
+            "uuid": "0029a37a-74ac-5a54-92e2-b6088cf2b751",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "main_menu_run_stack",
+                "config": {},
+                "test": "",
+                "uuid": "d950edba-21bb-489a-b67f-100b01bd19de",
+                "destination_block": null,
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 285
+                        },
+                        "name": "MainMenu",
+                        "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 287
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "last_modified": "2024-07-15T13:47:10.576578Z",
+        "uuid": "5fa2bb94-7624-47d1-9662-14c78e63ec80",
+        "languages": [
+          {
+            "id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d",
+            "label": "English",
+            "variant": null,
+            "iso_639_3": "eng",
+            "bcp_47": null
+          }
+        ],
+        "first_block_id": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
+        "interaction_timeout": 300,
+        "vendor_metadata": {},
+        "supported_modes": [
+          "RICH_MESSAGING"
+        ],
+        "exit_block_id": ""
+      }
+    ],
+    "vendor_metadata": {},
+    "specification_version": "1.0.0-rc3"
+  }
