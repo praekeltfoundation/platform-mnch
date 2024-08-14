@@ -1,69 +1,69 @@
 ---
 base_url: "https://whatsapp.turn.io"
-workspace_uuid: ""
+workspace_uuid: "2c329412-1dda-4365-bcc1-d0e9283a9513"
 qa_url: https://content-repo-api-qa.prk-k8s.prd-p6t.org
 prod_url: https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org
 stack_uuids:
-  - name: "Onboarding: Intro & Welcome"
+  - name: "intro-and-welcome" # "Onboarding: Intro & Welcome"
     prod_uuid: 47111691-cb8d-4cf0-8ecc-ed6792108157
     qa_uuid: 5e59aafb-fc30-41f9-b268-6268173b2aff
-  - name: "Onboarding: Intro & Welcome Reminders"
+  - name: "intro-and-welcome-reminders" # "Onboarding: Intro & Welcome Reminders"
     prod_uuid: d28a1658-18af-4552-a985-905cf040d50e
     qa_uuid: ce992f8b-49d8-4876-8bfd-a62b6482206d
-  - name: "Onboarding: Profile Classifier"
+  - name: "profile-classifier" # "Onboarding: Profile Classifier"
     prod_uuid: e1f6a4d6-f245-4203-aed5-6577bbd4d96a
     qa_uuid: bd590c1e-7a06-49ed-b3a1-623cf94e8644
-  - name: "Onboarding: Exploring Tour"
+  - name: "exploring-tour" # "Onboarding: Exploring Tour"
     prod_uuid: 160ac3f4-ab18-4610-bbab-c003f79e1197
     qa_uuid: 4288d6a9-23c9-4fc6-95b7-c675a6254ea5
-  - name: "Onboarding: Exploring Tour Reminders"
+  - name: "exploring-tour-reminders" # "Onboarding: Exploring Tour Reminders"
     prod_uuid: c68d4257-74e1-45da-8d49-951b012ec65e
     qa_uuid: c7d4635f-5099-4c27-94c2-1dffe237f841
-  - name: "Onboarding: Profile Pregnancy Health"
+  - name: "profile-prenancy-health" # "Onboarding: Profile Pregnancy Health"
     prod_uuid: 2063ff09-4405-4cf2-9a57-12ffa00c99da
     qa_uuid: d5f5cfef-1961-4459-a9fe-205a1cabfdfb
-  - name: "Onboarding: Profile Generic"
+  - name: "profile-generic" # "Onboarding: Profile Generic"
     prod_uuid: a7eae888-77a0-4e68-ac47-ceb03676bef1
     qa_uuid: 51701b44-bcca-486e-9c99-bf3545a8ba2d
-  - name: "Onboarding: Profile HCW"
+  - name: "profile-hcw" # "Onboarding: Profile HCW"
     prod_uuid: c4c8d015-2255-4aeb-94be-eb0b7a2174e0
     qa_uuid: 38cca9df-21a1-4edc-9c13-5724904ca3c3
-  - name: "Onboarding: HCW Reminder"
+  - name: "profile-hcw-nudge" # "Onboarding: HCW Reminder"
     prod_uuid: 97e8ba1c-5638-4515-bd5d-ca6aca01e7f8
     qa_uuid: fef6044e-789c-4989-86e3-62ee4bb063a1
-  - name: "Onboarding: Profile Pregnant Nurse"
+  - name: "profile-pregnant-nurse" # "Onboarding: Profile Pregnant Nurse"
     prod_uuid: 8e71f3ab-9d34-491e-930a-2b1435a9afed
     qa_uuid: 406cd221-3e6d-41cb-bc1e-cec65d412fb8
-  - name: "Onboarding: Profile Pregnant Nurse Reminder"
+  - name: "profile-pregnant-nurse-reminder" # "Onboarding: Profile Pregnant Nurse Reminder"
     prod_uuid: d7cc2c04-5931-4910-9f1e-0cebbb80d1f8
     qa_uuid: 1fb80591-565b-4e5f-a18d-e02420a12058
-  - name: "Onboarding: Opt In Reminder"
+  - name: "opt-in-reminder" # "Onboarding: Opt In Reminder"
     prod_uuid: 3ef42a80-1039-4193-9ad3-4ff56b80de2e
     qa_uuid: 537e4867-eb26-482d-96eb-d4783828c622
-  - name: "Onboarding: Re Engagement"
+  - name: "re-engagement" # "Onboarding: Re Engagement"
     prod_uuid: 78cca41f-d27d-4669-ae16-a785744047a1
     qa_uuid: b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d
-  - name: "Onboarding: EDD Reminders"
+  - name: "edd-reminders" # "Onboarding: EDD Reminders"
     prod_uuid: 80cb5e3d-3dd4-4c69-af0a-2c03a03eb5c8
     qa_uuid: 15c9127a-2e90-4b99-a41b-25e2a39d453f
-  - name: "Onboarding: Personalised Menu"
+  - name: "menu-personalised" # "Onboarding: Personalised Menu"
     prod_uuid: 31bfb947-74a5-4b3b-8dec-def4b7732fd5
     qa_uuid: e823ad1d-e2d7-4d5c-b928-786b601f0f29
-  - name: "Onboarding: Non Personalised Menu"
+  - name: "menu-non-personalised" # "Onboarding: Non Personalised Menu"
     prod_uuid: d02746ff-a3e2-4153-99ff-cd01a941a00d
     qa_uuid: c73d7bc1-4b07-44f0-9949-38d2b88f4707
-  - name: "Onboarding: Your Profile"
+  - name: "profile" # "Onboarding: Your Profile"
     prod_uuid: f085a8b1-5e73-408d-bcc2-9487d0512085
     qa_uuid: 1f551cbc-db57-41d3-b5ee-dc6c77b3030b
-  - name: "Onboarding: Basic Profile Questions"
+  - name: "basic-questions" # "Onboarding: Basic Profile Questions"
     prod_uuid: fe7139a4-60c5-4ced-ad82-daa43f483c37
     qa_uuid: 26e0c9e4-6547-4e3f-b9f4-e37c11962b6d
-  - name: "Onboarding: Personal Profile Questions"
+  - name: "personal-profile-questions" # "Onboarding: Personal Profile Questions"
     prod_uuid: 67e29cda-52a9-4eb4-9fc0-224c44585c8c
     qa_uuid: 61a880e4-cf7b-47c5-a047-60802aaa7975
-  - name: "Onboarding: Menu Redirect"
+  - name: "menu-redirect" # "Onboarding: Menu Redirect"
     prod_uuid: 75eada25-7a3e-4df8-a19c-39ace798427d
     qa_uuid: 21b892d6-685c-458e-adae-304ece46022a
-  - name: Placeholder Form
+  - name: "dma-form" # DMA Form
     prod_uuid: b283e7c1-0a79-45ab-976c-5566d9ba06cd
     qa_uuid: 690a9ffd-db6d-42df-ad8f-a1e5b469a099

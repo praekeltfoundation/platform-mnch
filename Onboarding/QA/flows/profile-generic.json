@@ -12,537 +12,10 @@
             ],
             "content_type": "TEXT",
             "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
           }
         ],
-        "uuid": "a550a899-dc58-4874-a678-d3a74190825c"
-      },
-      {
-        "values": [
-          {
-            "value": "Browsable content goes here",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "2e4170b9-210b-4625-af41-26334dac7b06"
-      },
-      {
-        "values": [
-          {
-            "value": "Health guide goes here",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "e20d73d9-e9be-4a37-97c7-7ce281f66aab"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_error_text",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "974546a3-e7e7-4f87-9507-8edc474ecc58"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "d86d9a47-58c2-4ec3-857d-754b211abd5d"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[1]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "8f016776-c97c-49b2-a1bd-2ba97b731711"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[2]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "8e9b08fb-5cb2-4526-9518-37742fad838e"
-      },
-      {
-        "values": [
-          {
-            "value": "@image_data.body.meta.download_url",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "IMAGE",
-            "mime_type": "application/octet-stream",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          },
-          {
-            "value": "@loading_message",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "50292436-c708-4298-98f6-2aaef870d06e"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "c16d331d-bdce-4dec-a956-cd12ef1ad26e"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[1]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "59778246-98fa-4394-8736-691564fcb2f3"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[2]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "a506e181-fc8f-4b9b-a62b-bb0c2fc6da25"
-      },
-      {
-        "values": [
-          {
-            "value": "@loading_message",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "a18cf0fa-f96f-44e3-b08a-a38de28e9e2d"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "a57621d1-1eb2-49dc-ae71-ebd6377719db"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[1]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "1f3cf8c5-289c-421b-8496-3554904c19b3"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[2]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "7620868c-3043-4249-8133-131b662a1736"
-      },
-      {
-        "values": [
-          {
-            "value": "View topics content goes here",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "77995700-b18d-4a8b-b165-8451b2478215"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_error_text",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "1c320cdc-0cf0-4bee-ba30-7d808b82cf42"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "b32671f6-5553-4228-a57f-ef7136bb5600"
-      },
-      {
-        "values": [
-          {
-            "value": "@message.message",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "39617af3-ed84-4a82-8f41-421a9373384f"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "a4592368-f6b7-466a-beec-9a009ebf7702"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_error_text",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "e6c86294-2997-4a06-8d9f-de80b6507699"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "73a0ab4f-324f-443b-b9d8-31575662aba4"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[1]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "6fa1b1ca-3178-4823-94f5-0a0c792ab62f"
-      },
-      {
-        "values": [
-          {
-            "value": "@message.message",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "df8a99f1-4ff2-406d-a4c3-c8520958c2b9"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "f66448c1-817c-49a5-ad59-b8c0bfef2332"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[1]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "4a66505c-94a6-43cf-9437-5871aff4bd79"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_error_text",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "0aaae6d9-d4c2-4eb2-a968-1c81fe7149ba"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "bc8e239b-d01e-4340-a015-9a8e600e8e3c"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[1]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "056873a3-aa4e-473b-b450-4dcc94a0b32f"
-      },
-      {
-        "values": [
-          {
-            "value": "@message.message",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "d34d5d34-ab39-46e1-8433-ac73f908ff44"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[0]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "73f73b99-54f0-4adb-b570-98d80c66e28a"
-      },
-      {
-        "values": [
-          {
-            "value": "@button_labels[1]",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "9f1589ec-0bae-43ab-a71e-600ba67de099"
-      },
-      {
-        "values": [
-          {
-            "value": "Basic questions",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "a7ac005f-8f40-4c87-8f3a-efa6445772dc"
-      },
-      {
-        "values": [
-          {
-            "value": "Personal profile questions",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "15829b59-4c98-411d-acae-de3b538f859a"
-      },
-      {
-        "values": [
-          {
-            "value": "Default to BasicQuestions",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "d4eeafcd-3d9d-4acc-bdcc-cbac1e66c204"
-      },
-      {
-        "values": [
-          {
-            "value": "PersonalProfileQuestions",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "ef7637a7-c37f-4354-b2b7-31a6458224b6"
-      },
-      {
-        "values": [
-          {
-            "value": "ProfileProgress100",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "9852f287-f6d8-498e-a3f0-66a657f3be31"
-      },
-      {
-        "values": [
-          {
-            "value": "ProfileProgress30",
-            "modes": [
-              "RICH_MESSAGING"
-            ],
-            "content_type": "TEXT",
-            "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
-          }
-        ],
-        "uuid": "60738b88-ac7e-44b1-9ca9-9a75a602d634"
+        "uuid": "b0d1802c-d993-4703-b4e6-9369e033e977"
       },
       {
         "values": [
@@ -553,10 +26,10 @@
             ],
             "content_type": "TEXT",
             "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
           }
         ],
-        "uuid": "2efe8893-36fd-4e8c-b127-278ba0ffd4cf"
+        "uuid": "5972d22a-681b-4b37-be7f-990d8c94b843"
       },
       {
         "values": [
@@ -567,10 +40,537 @@
             ],
             "content_type": "TEXT",
             "mime_type": "text/plain",
-            "language_id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d"
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
           }
         ],
-        "uuid": "91cfdeea-8f36-4e1d-8280-ea779b286724"
+        "uuid": "df02529e-2df7-4061-a5fc-0b9b8f2705e7"
+      },
+      {
+        "values": [
+          {
+            "value": "Browsable content goes here",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "e9de6b6b-9d52-446e-88bb-c24ca9f2f1af"
+      },
+      {
+        "values": [
+          {
+            "value": "Health guide goes here",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "8354ea45-5de4-4dc0-b19f-071d936130f6"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_error_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "3a8d25b8-17ab-4e51-9941-2f4bd940a61d"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "bfca72bc-e75d-4f97-b569-4a6390c1bacc"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "55d00cee-70d0-4c3e-a3c7-bf942caa7811"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[2]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "4eb79211-c8e6-4548-951d-268994fbcb70"
+      },
+      {
+        "values": [
+          {
+            "value": "@image_data.body.meta.download_url",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "IMAGE",
+            "mime_type": "application/octet-stream",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          },
+          {
+            "value": "@loading_message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "2f26580f-fb19-4c89-8661-34ab108aa50c"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "78d7f388-026b-49f7-b6d0-99f4e32633d3"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "ba60c4f5-cb16-4ef0-b58f-89edf80aea71"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[2]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "56640a8c-332d-4c94-ba77-adc49664087e"
+      },
+      {
+        "values": [
+          {
+            "value": "@loading_message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "f98071e3-a121-49ae-9ca5-6ae42ce0ca62"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "6d4ef9cf-9dab-4044-97f4-13918ced3206"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "706d8896-1e4e-42eb-853f-1ef989b1c94f"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[2]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "54a1e5ca-b877-4690-a924-53bae36c9877"
+      },
+      {
+        "values": [
+          {
+            "value": "View topics content goes here",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "c0d6a661-7af6-4697-b90e-2ee23bcf3ab6"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_error_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "79ad8172-1ec5-4698-86dd-d101f7490869"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "9abb9606-9c90-411e-80cf-0960291c9d0c"
+      },
+      {
+        "values": [
+          {
+            "value": "@message.message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "0bad72be-e499-4c97-81c8-069960defd58"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "ddf82f3f-1f14-4082-bb79-de01c853491d"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_error_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "71459d8e-a5b9-4b71-bcc5-ee1a196e1684"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "0528ded9-48c6-49ae-95a1-c94dd40e6a77"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "473ac0d7-1e81-46fb-b9ab-a507a17d677a"
+      },
+      {
+        "values": [
+          {
+            "value": "@message.message",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "10576476-5634-460a-b3e5-07a749ef77c9"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "755ccf16-a0fe-4baa-a188-deddccef9302"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "1c221131-6346-4eed-8e61-f19d11770415"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_error_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "d3e1c131-18ca-42c8-ab7e-9b7b9cf19350"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "93ccf0ce-1adb-4c6b-bde0-5be8cd0cb940"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "8b5eb275-d4ee-41d7-8ab0-8c27cdd3aa3d"
+      },
+      {
+        "values": [
+          {
+            "value": "@message_text",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "4fd3e221-ac19-4fd8-9779-b67ea4540ba9"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[0]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "21aaafdb-8a05-4ee4-987e-ce34c0a6cc4d"
+      },
+      {
+        "values": [
+          {
+            "value": "@button_labels[1]",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "1e263b58-2a64-4925-a5c2-fcdea0ab273e"
+      },
+      {
+        "values": [
+          {
+            "value": "Basic questions",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "a5e65cdb-ca69-4e61-b1a0-42898a028cd4"
+      },
+      {
+        "values": [
+          {
+            "value": "Personal profile questions",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "45139e46-fb8a-4109-ac2b-0b4cb558ce37"
+      },
+      {
+        "values": [
+          {
+            "value": "Default to BasicQuestions",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "85724518-37be-4229-aa22-4954d2e02aad"
+      },
+      {
+        "values": [
+          {
+            "value": "PersonalProfileQuestions",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "c4f5d305-9734-4c5c-9887-d826f857f43f"
+      },
+      {
+        "values": [
+          {
+            "value": "ProfileProgress100",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "55b36418-39fa-400d-b539-0bcc2b70681f"
+      },
+      {
+        "values": [
+          {
+            "value": "ProfileProgress30",
+            "modes": [
+              "RICH_MESSAGING"
+            ],
+            "content_type": "TEXT",
+            "mime_type": "text/plain",
+            "language_id": "5ca59aa0-40be-4100-86d9-a4852eae7081"
+          }
+        ],
+        "uuid": "bf008ffd-a65c-48c8-82f5-20be30d4d90e"
       }
     ],
     "flows": [
@@ -592,8 +592,8 @@
                 "name": "Exit for opt_in_reminder_case_condition_0",
                 "config": {},
                 "test": "or(or(contact.opted_in == false, contact.opted_in == \"false\"), is_nil_or_empty(contact.opted_in))",
-                "uuid": "03f737ff-5970-4394-a12a-19c46d0a3243",
-                "destination_block": "dd851577-205b-510f-98a9-7b2fb07fc34e",
+                "uuid": "db77c94e-6ca7-4155-ad9f-a1d9f5ad551b",
+                "destination_block": "b8d812b5-30fe-556d-a2be-f6b51527c386",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -602,8 +602,8 @@
                 "name": "Exit for opt_in_reminder_case_condition_1",
                 "config": {},
                 "test": null,
-                "uuid": "3980f75e-1fec-4bdb-8116-4721a78c4fed",
-                "destination_block": "00cabe91-fa60-5ac3-9fce-b975fb178bbc",
+                "uuid": "26950a2c-180f-44af-8945-f24934ab8071",
+                "destination_block": "b2e9f35a-0104-5fb1-bab1-7076aea4b295",
                 "semantic_label": null,
                 "vendor_metadata": {}
               }
@@ -616,10 +616,10 @@
             "name": "opt_in_reminder_case_condition_1_log",
             "type": "Core.Log",
             "config": {
-              "message": "a550a899-dc58-4874-a678-d3a74190825c"
+              "message": "b0d1802c-d993-4703-b4e6-9369e033e977"
             },
             "tags": [],
-            "uuid": "00cabe91-fa60-5ac3-9fce-b975fb178bbc",
+            "uuid": "b2e9f35a-0104-5fb1-bab1-7076aea4b295",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -632,8 +632,8 @@
                 "name": "Default exit to \"ProfileProgress100Generic\"",
                 "config": {},
                 "test": "",
-                "uuid": "1a5f0015-857d-4a31-bf37-7433077c0964",
-                "destination_block": "4461f0f9-a57d-5e38-b0d8-87c99d915747",
+                "uuid": "eca9e22d-b793-4f53-b425-a28e4e9d34fe",
+                "destination_block": "bb480e12-d583-5a59-a02a-a52f5a11e26d",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -648,7 +648,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 276
+                          "line": 355
                         },
                         "name": "OptInReminder",
                         "uuid": "d83bd171-81cd-5c17-acbd-42279c238718"
@@ -657,7 +657,7 @@
                         "log": {},
                         "meta": {
                           "column": 3,
-                          "line": 277
+                          "line": 356
                         },
                         "type": "log"
                       },
@@ -676,7 +676,7 @@
               "flow_id": "537e4867-eb26-482d-96eb-d4783828c622"
             },
             "tags": [],
-            "uuid": "dd851577-205b-510f-98a9-7b2fb07fc34e",
+            "uuid": "b8d812b5-30fe-556d-a2be-f6b51527c386",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -689,8 +689,8 @@
                 "name": "Default exit to \"ProfileProgress100Generic\"",
                 "config": {},
                 "test": "",
-                "uuid": "b830dae4-00d7-4257-920b-bf26d320fd4c",
-                "destination_block": "4461f0f9-a57d-5e38-b0d8-87c99d915747",
+                "uuid": "b715cd39-1baf-45be-96df-9fb116e9ea7c",
+                "destination_block": "bb480e12-d583-5a59-a02a-a52f5a11e26d",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -705,7 +705,7 @@
                         "condition": "contact.opted_in == false or contact.opted_in == \"false\" or is_nil_or_empty(contact.opted_in)",
                         "meta": {
                           "column": 1,
-                          "line": 268
+                          "line": 347
                         },
                         "name": "OptInReminder",
                         "uuid": "9949751f-b29e-5454-b2be-b57ed363f75a"
@@ -713,7 +713,235 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 273
+                          "line": 352
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "loc_assessment_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "5972d22a-681b-4b37-be7f-990d8c94b843"
+            },
+            "tags": [],
+            "uuid": "8fcf7008-91f6-581b-9b62-b16218a60a55",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "loc_assessment_log",
+                "config": {},
+                "test": "",
+                "uuid": "0475b7c2-a323-46a8-b43b-eff5938cbc7a",
+                "destination_block": "3c755c34-c706-5303-8851-167db534053e",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 342
+                        },
+                        "name": "LOCAssessment",
+                        "uuid": "0cd3f66a-587f-5eeb-b2ad-ca401c49ef21"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 343
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "loc_assessment_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "690a9ffd-db6d-42df-ad8f-a1e5b469a099"
+            },
+            "tags": [],
+            "uuid": "3c755c34-c706-5303-8851-167db534053e",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "Default exit to \"OptInReminder\"",
+                "config": {},
+                "test": "",
+                "uuid": "fe8b059f-1273-40af-8607-137e88fb49f4",
+                "destination_block": "9949751f-b29e-5454-b2be-b57ed363f75a",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 342
+                        },
+                        "name": "LOCAssessment",
+                        "uuid": "0cd3f66a-587f-5eeb-b2ad-ca401c49ef21"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 344
+                        },
+                        "run_stack": {},
+                        "type": "run_stack"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "main_menu_log",
+            "type": "Core.Log",
+            "config": {
+              "message": "df02529e-2df7-4061-a5fc-0b9b8f2705e7"
+            },
+            "tags": [],
+            "uuid": "c9ae711c-69fd-5b43-bf19-30c0a15b24ff",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "main_menu_log",
+                "config": {},
+                "test": "",
+                "uuid": "d69a2156-8cf7-4e8b-9369-c8574383834e",
+                "destination_block": "f95cfd60-2230-5e0f-b8e0-a1d5d8fba04d",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 364
+                        },
+                        "name": "MainMenu",
+                        "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
+                      },
+                      "card_item": {
+                        "log": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 365
+                        },
+                        "type": "log"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "main_menu_run_stack",
+            "type": "Core.RunFlow",
+            "config": {
+              "flow_id": "21b892d6-685c-458e-adae-304ece46022a"
+            },
+            "tags": [],
+            "uuid": "f95cfd60-2230-5e0f-b8e0-a1d5d8fba04d",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "main_menu_run_stack",
+                "config": {},
+                "test": "",
+                "uuid": "6225406f-929f-42cc-a942-85d98cf40685",
+                "destination_block": null,
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 364
+                        },
+                        "name": "MainMenu",
+                        "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
+                      },
+                      "card_item": {
+                        "meta": {
+                          "column": 3,
+                          "line": 366
                         },
                         "run_stack": {},
                         "type": "run_stack"
@@ -730,10 +958,10 @@
             "name": "browsable_content_log",
             "type": "Core.Log",
             "config": {
-              "message": "2e4170b9-210b-4625-af41-26334dac7b06"
+              "message": "e9de6b6b-9d52-446e-88bb-c24ca9f2f1af"
             },
             "tags": [],
-            "uuid": "b6608def-499b-5c8f-b07e-d766207f006e",
+            "uuid": "9bb1c53c-98fa-5117-9beb-c48a34ed8651",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -746,8 +974,8 @@
                 "name": "browsable_content_log",
                 "config": {},
                 "test": "",
-                "uuid": "be5ecd1f-175f-4fa9-86aa-a73123f873c3",
-                "destination_block": "24138425-0021-57d2-91a4-85323312f70e",
+                "uuid": "3eeb9273-3d30-43d9-bea8-407d3099cdd0",
+                "destination_block": "f465b520-604d-5403-8b4d-6674873eb298",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -762,7 +990,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 295
+                          "line": 374
                         },
                         "name": "BrowsableContent",
                         "uuid": "c5e76c73-4988-58cf-b72e-b561817efeed"
@@ -771,7 +999,7 @@
                         "log": {},
                         "meta": {
                           "column": 3,
-                          "line": 296
+                          "line": 375
                         },
                         "type": "log"
                       },
@@ -790,7 +1018,7 @@
               "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
             },
             "tags": [],
-            "uuid": "24138425-0021-57d2-91a4-85323312f70e",
+            "uuid": "f465b520-604d-5403-8b4d-6674873eb298",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -803,7 +1031,7 @@
                 "name": "browsable_content_run_stack",
                 "config": {},
                 "test": "",
-                "uuid": "ff3e1dc4-f47f-477f-983f-783b3ac1ed69",
+                "uuid": "8a9c5949-a0db-4017-856c-d0fffd0fc448",
                 "destination_block": null,
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -819,7 +1047,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 295
+                          "line": 374
                         },
                         "name": "BrowsableContent",
                         "uuid": "c5e76c73-4988-58cf-b72e-b561817efeed"
@@ -827,7 +1055,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 297
+                          "line": 376
                         },
                         "run_stack": {},
                         "type": "run_stack"
@@ -844,10 +1072,10 @@
             "name": "health_guide_log",
             "type": "Core.Log",
             "config": {
-              "message": "e20d73d9-e9be-4a37-97c7-7ce281f66aab"
+              "message": "8354ea45-5de4-4dc0-b19f-071d936130f6"
             },
             "tags": [],
-            "uuid": "a8568d8d-ede5-51ef-b82e-f34b6f07ff21",
+            "uuid": "9c0674d6-2927-5f3f-a648-26ecad0f0a25",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -860,8 +1088,8 @@
                 "name": "health_guide_log",
                 "config": {},
                 "test": "",
-                "uuid": "83783818-d951-4d3f-be36-bee14002fa92",
-                "destination_block": "179db1ba-0068-506f-b8fb-dc3a95182028",
+                "uuid": "3d0364ff-64c9-49f2-a276-fbb8dc207cbe",
+                "destination_block": "449afef0-5c82-5d40-91e1-a9eb5df3dc22",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -876,7 +1104,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 290
+                          "line": 369
                         },
                         "name": "HealthGuide",
                         "uuid": "c69c5585-f65c-5ca6-9340-077c67780b55"
@@ -885,7 +1113,7 @@
                         "log": {},
                         "meta": {
                           "column": 3,
-                          "line": 291
+                          "line": 370
                         },
                         "type": "log"
                       },
@@ -904,7 +1132,7 @@
               "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
             },
             "tags": [],
-            "uuid": "179db1ba-0068-506f-b8fb-dc3a95182028",
+            "uuid": "449afef0-5c82-5d40-91e1-a9eb5df3dc22",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -917,7 +1145,7 @@
                 "name": "health_guide_run_stack",
                 "config": {},
                 "test": "",
-                "uuid": "adeb9e0e-a9a9-4dcb-a731-92c55c614bdb",
+                "uuid": "8956da81-7d48-4f4e-8011-ba894a42ac80",
                 "destination_block": null,
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -933,7 +1161,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 290
+                          "line": 369
                         },
                         "name": "HealthGuide",
                         "uuid": "c69c5585-f65c-5ca6-9340-077c67780b55"
@@ -941,7 +1169,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 292
+                          "line": 371
                         },
                         "run_stack": {},
                         "type": "run_stack"
@@ -958,27 +1186,27 @@
             "name": "display_profile_progress100_generic_error",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "974546a3-e7e7-4f87-9507-8edc474ecc58",
+              "prompt": "3a8d25b8-17ab-4e51-9941-2f4bd940a61d",
               "choices": [
                 {
                   "name": "health_guide",
-                  "prompt": "d86d9a47-58c2-4ec3-857d-754b211abd5d",
+                  "prompt": "bfca72bc-e75d-4f97-b569-4a6390c1bacc",
                   "test": "block.response = \"@@button_labels[0]\""
                 },
                 {
                   "name": "browsable_content",
-                  "prompt": "8f016776-c97c-49b2-a1bd-2ba97b731711",
+                  "prompt": "55d00cee-70d0-4c3e-a3c7-bf942caa7811",
                   "test": "block.response = \"@@button_labels[1]\""
                 },
                 {
                   "name": "main_menu",
-                  "prompt": "8e9b08fb-5cb2-4526-9518-37742fad838e",
+                  "prompt": "4eb79211-c8e6-4548-951d-268994fbcb70",
                   "test": "block.response = \"@@button_labels[2]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "44939a67-af7a-5c48-b338-8224528ead61",
+            "uuid": "7b9b6ef2-197b-5ad5-8dfc-3b5ca949997b",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -991,8 +1219,8 @@
                 "name": "health_guide",
                 "config": {},
                 "test": "block.value = \"health_guide\"",
-                "uuid": "246cbca4-c22c-4ef6-a241-005868fd1ef5",
-                "destination_block": "a8568d8d-ede5-51ef-b82e-f34b6f07ff21",
+                "uuid": "ab62b102-234a-494f-8eba-4f3fe88b348c",
+                "destination_block": "9c0674d6-2927-5f3f-a648-26ecad0f0a25",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1001,8 +1229,8 @@
                 "name": "browsable_content",
                 "config": {},
                 "test": "block.value = \"browsable_content\"",
-                "uuid": "777f1bb0-5de9-49fa-8383-a5334c94d261",
-                "destination_block": "b6608def-499b-5c8f-b07e-d766207f006e",
+                "uuid": "8f1f3ad5-7f08-4d46-8f3b-2c2c175effc7",
+                "destination_block": "9bb1c53c-98fa-5117-9beb-c48a34ed8651",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1011,8 +1239,8 @@
                 "name": "main_menu",
                 "config": {},
                 "test": "block.value = \"main_menu\"",
-                "uuid": "9dad94ec-8dba-49b3-a99e-fb50ba67e388",
-                "destination_block": "d295f461-5a3c-5ba7-8996-f04bb2c6cf7c",
+                "uuid": "4e2b5c6d-ad88-440b-80d3-281c09ae003a",
+                "destination_block": "c9ae711c-69fd-5b43-bf19-30c0a15b24ff",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1021,8 +1249,8 @@
                 "name": "Default exit to \"DisplayProfileProgress100GenericError\"",
                 "config": {},
                 "test": "",
-                "uuid": "e0d82c76-842d-45d8-8506-766357ea13a6",
-                "destination_block": "44939a67-af7a-5c48-b338-8224528ead61",
+                "uuid": "a1a2d973-7f8a-450d-9a3d-0975ebd4dc61",
+                "destination_block": "7b9b6ef2-197b-5ad5-8dfc-3b5ca949997b",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1038,7 +1266,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 247
+                          "line": 326
                         },
                         "name": "DisplayProfileProgress100GenericError",
                         "uuid": "4996665e-f1b3-5d95-9372-34031edce35d"
@@ -1047,7 +1275,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 248
+                          "line": 327
                         },
                         "type": "button_block"
                       },
@@ -1072,8 +1300,8 @@
                 "name": "Exit for display_profile_progress100_generic_case_condition_0",
                 "config": {},
                 "test": "contact.data_preference == \"text only\"",
-                "uuid": "a4c81bef-586f-473a-82c7-d8de4dfb356d",
-                "destination_block": "41cf9925-d5bf-56c9-9736-185849886ef9",
+                "uuid": "6ab3ef95-5815-446c-b506-4d10b3aede0f",
+                "destination_block": "37bf6e22-2e03-5740-b0a1-4b9e7e63c4dd",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1082,8 +1310,8 @@
                 "name": "Exit for display_profile_progress100_generic_case_condition_1",
                 "config": {},
                 "test": null,
-                "uuid": "a3cd93f1-e97a-44a4-8418-3908073b18d4",
-                "destination_block": "e398e61e-8357-571a-be8b-7345064911ea",
+                "uuid": "9342b325-f620-4359-9c85-633bd5c3a8a9",
+                "destination_block": "2897e7fb-d5a6-56d0-ab02-5f23a78d328f",
                 "semantic_label": null,
                 "vendor_metadata": {}
               }
@@ -1097,7 +1325,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "e398e61e-8357-571a-be8b-7345064911ea",
+            "uuid": "2897e7fb-d5a6-56d0-ab02-5f23a78d328f",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1110,8 +1338,8 @@
                 "name": "content_data.body.body.text.value.image",
                 "config": {},
                 "test": "",
-                "uuid": "703e5aa0-0051-4ab9-9c92-4205a808f820",
-                "destination_block": "527a8e67-fed7-505d-9599-9d58baa2aace",
+                "uuid": "226b5039-4518-45de-bbe5-262f4bb4712c",
+                "destination_block": "49e70338-fb36-5561-a6d8-734d8b32da70",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1126,7 +1354,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 226
+                          "line": 305
                         },
                         "name": "DisplayProfileProgress100Generic",
                         "uuid": "5002f4f9-db30-5340-98cf-55780f67c42a"
@@ -1135,7 +1363,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 227
+                          "line": 306
                         },
                         "type": "expression"
                       },
@@ -1166,7 +1394,7 @@
               "cache_ttl": 60000
             },
             "tags": [],
-            "uuid": "527a8e67-fed7-505d-9599-9d58baa2aace",
+            "uuid": "49e70338-fb36-5561-a6d8-734d8b32da70",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1179,8 +1407,8 @@
                 "name": "image_data",
                 "config": {},
                 "test": "",
-                "uuid": "35693d01-4702-4c81-8f0e-e2a9ff20108c",
-                "destination_block": "4a1008b2-1c16-5350-a5f2-eeb3f865d716",
+                "uuid": "d506e6df-917c-47c2-86f9-d9359b235598",
+                "destination_block": "b590c7d5-13f7-5da5-9460-830088ef4133",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1195,7 +1423,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 226
+                          "line": 305
                         },
                         "name": "DisplayProfileProgress100Generic",
                         "uuid": "5002f4f9-db30-5340-98cf-55780f67c42a"
@@ -1203,7 +1431,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 229
+                          "line": 308
                         },
                         "type": "webhook",
                         "webhook": {}
@@ -1220,27 +1448,27 @@
             "name": "display_profile_progress100_generic_case_condition_1",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "50292436-c708-4298-98f6-2aaef870d06e",
+              "prompt": "2f26580f-fb19-4c89-8661-34ab108aa50c",
               "choices": [
                 {
                   "name": "health_guide",
-                  "prompt": "c16d331d-bdce-4dec-a956-cd12ef1ad26e",
+                  "prompt": "78d7f388-026b-49f7-b6d0-99f4e32633d3",
                   "test": "block.response = \"@@button_labels[0]\""
                 },
                 {
                   "name": "browsable_content",
-                  "prompt": "59778246-98fa-4394-8736-691564fcb2f3",
+                  "prompt": "ba60c4f5-cb16-4ef0-b58f-89edf80aea71",
                   "test": "block.response = \"@@button_labels[1]\""
                 },
                 {
                   "name": "main_menu",
-                  "prompt": "a506e181-fc8f-4b9b-a62b-bb0c2fc6da25",
+                  "prompt": "56640a8c-332d-4c94-ba77-adc49664087e",
                   "test": "block.response = \"@@button_labels[2]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "4a1008b2-1c16-5350-a5f2-eeb3f865d716",
+            "uuid": "b590c7d5-13f7-5da5-9460-830088ef4133",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1253,8 +1481,8 @@
                 "name": "health_guide",
                 "config": {},
                 "test": "block.value = \"health_guide\"",
-                "uuid": "8ead9aef-5a68-4904-84bb-387eeea70e1e",
-                "destination_block": "a8568d8d-ede5-51ef-b82e-f34b6f07ff21",
+                "uuid": "9d93c6e0-f8b5-4e8b-8504-b8aa1032067d",
+                "destination_block": "9c0674d6-2927-5f3f-a648-26ecad0f0a25",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1263,8 +1491,8 @@
                 "name": "browsable_content",
                 "config": {},
                 "test": "block.value = \"browsable_content\"",
-                "uuid": "b586362b-9ac5-4428-94aa-63439661b627",
-                "destination_block": "b6608def-499b-5c8f-b07e-d766207f006e",
+                "uuid": "b4e5d0da-3971-42c3-abc5-b828b7ee6340",
+                "destination_block": "9bb1c53c-98fa-5117-9beb-c48a34ed8651",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1273,8 +1501,8 @@
                 "name": "main_menu",
                 "config": {},
                 "test": "block.value = \"main_menu\"",
-                "uuid": "42213604-0251-483b-9443-2fe4eed0649e",
-                "destination_block": "d295f461-5a3c-5ba7-8996-f04bb2c6cf7c",
+                "uuid": "9018a588-eb30-461a-897a-a699a8841a68",
+                "destination_block": "c9ae711c-69fd-5b43-bf19-30c0a15b24ff",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1283,8 +1511,8 @@
                 "name": "Default exit to \"DisplayProfileProgress100GenericError\"",
                 "config": {},
                 "test": "",
-                "uuid": "9e3e25cc-8ae4-4836-8ecc-2a8023aace41",
-                "destination_block": "44939a67-af7a-5c48-b338-8224528ead61",
+                "uuid": "0ea26dfa-42ec-4589-b43b-79a354e7139b",
+                "destination_block": "7b9b6ef2-197b-5ad5-8dfc-3b5ca949997b",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1300,7 +1528,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 226
+                          "line": 305
                         },
                         "name": "DisplayProfileProgress100Generic",
                         "uuid": "5002f4f9-db30-5340-98cf-55780f67c42a"
@@ -1309,7 +1537,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 237
+                          "line": 316
                         },
                         "type": "button_block"
                       },
@@ -1325,27 +1553,27 @@
             "name": "display_profile_progress100_generic_case_condition_0",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "a18cf0fa-f96f-44e3-b08a-a38de28e9e2d",
+              "prompt": "f98071e3-a121-49ae-9ca5-6ae42ce0ca62",
               "choices": [
                 {
                   "name": "health_guide",
-                  "prompt": "a57621d1-1eb2-49dc-ae71-ebd6377719db",
+                  "prompt": "6d4ef9cf-9dab-4044-97f4-13918ced3206",
                   "test": "block.response = \"@@button_labels[0]\""
                 },
                 {
                   "name": "browsable_content",
-                  "prompt": "1f3cf8c5-289c-421b-8496-3554904c19b3",
+                  "prompt": "706d8896-1e4e-42eb-853f-1ef989b1c94f",
                   "test": "block.response = \"@@button_labels[1]\""
                 },
                 {
                   "name": "main_menu",
-                  "prompt": "7620868c-3043-4249-8133-131b662a1736",
+                  "prompt": "54a1e5ca-b877-4690-a924-53bae36c9877",
                   "test": "block.response = \"@@button_labels[2]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "41cf9925-d5bf-56c9-9736-185849886ef9",
+            "uuid": "37bf6e22-2e03-5740-b0a1-4b9e7e63c4dd",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1358,8 +1586,8 @@
                 "name": "health_guide",
                 "config": {},
                 "test": "block.value = \"health_guide\"",
-                "uuid": "ce3a50a1-d5ae-400b-88f8-d78dcd6adffb",
-                "destination_block": "a8568d8d-ede5-51ef-b82e-f34b6f07ff21",
+                "uuid": "b6f7d5bf-6907-4de1-9a56-2c9e0c074a4c",
+                "destination_block": "9c0674d6-2927-5f3f-a648-26ecad0f0a25",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1368,8 +1596,8 @@
                 "name": "browsable_content",
                 "config": {},
                 "test": "block.value = \"browsable_content\"",
-                "uuid": "063bf6d3-bb36-4bf1-966d-0075c1c02132",
-                "destination_block": "b6608def-499b-5c8f-b07e-d766207f006e",
+                "uuid": "b0a6b23c-52af-4adc-bdb4-9be9fe275c57",
+                "destination_block": "9bb1c53c-98fa-5117-9beb-c48a34ed8651",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1378,8 +1606,8 @@
                 "name": "main_menu",
                 "config": {},
                 "test": "block.value = \"main_menu\"",
-                "uuid": "7d6292f3-c93f-429b-986d-d015d507d39d",
-                "destination_block": "d295f461-5a3c-5ba7-8996-f04bb2c6cf7c",
+                "uuid": "16176ec5-355e-402b-b0d8-2c4cebf297b8",
+                "destination_block": "c9ae711c-69fd-5b43-bf19-30c0a15b24ff",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1388,8 +1616,8 @@
                 "name": "Default exit to \"DisplayProfileProgress100GenericError\"",
                 "config": {},
                 "test": "",
-                "uuid": "e3e21166-900a-4ee9-bf30-f2a4ac0a65e1",
-                "destination_block": "44939a67-af7a-5c48-b338-8224528ead61",
+                "uuid": "b934a4fd-778e-4b81-b446-da60c430ca13",
+                "destination_block": "7b9b6ef2-197b-5ad5-8dfc-3b5ca949997b",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1405,7 +1633,7 @@
                         "condition": "contact.data_preference == \"text only\"",
                         "meta": {
                           "column": 1,
-                          "line": 214
+                          "line": 293
                         },
                         "name": "DisplayProfileProgress100Generic",
                         "uuid": "fbe43ff9-48dc-5481-ac12-5c3b338f0226"
@@ -1414,7 +1642,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 216
+                          "line": 295
                         },
                         "type": "button_block"
                       },
@@ -1430,10 +1658,10 @@
             "name": "view_topics_log",
             "type": "Core.Log",
             "config": {
-              "message": "77995700-b18d-4a8b-b165-8451b2478215"
+              "message": "c0d6a661-7af6-4697-b90e-2ee23bcf3ab6"
             },
             "tags": [],
-            "uuid": "06a91f1f-d05b-5bd9-884a-5ea829fea8a2",
+            "uuid": "39e45760-2039-516e-aefb-d30be0417d3f",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1446,7 +1674,7 @@
                 "name": "view_topics_log",
                 "config": {},
                 "test": "",
-                "uuid": "56f6ff65-b6b9-4751-ac52-1aad4be61d17",
+                "uuid": "2deb1381-79d7-4693-8bea-40b1fb1644d7",
                 "destination_block": null,
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -1462,7 +1690,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 280
+                          "line": 359
                         },
                         "name": "ViewTopics",
                         "uuid": "a8a8f1e1-7035-52c9-b3a0-2eb2f611a6a4"
@@ -1471,7 +1699,7 @@
                         "log": {},
                         "meta": {
                           "column": 3,
-                          "line": 281
+                          "line": 360
                         },
                         "type": "log"
                       },
@@ -1487,17 +1715,17 @@
             "name": "display_reminder_later_error",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "1c320cdc-0cf0-4bee-ba30-7d808b82cf42",
+              "prompt": "79ad8172-1ec5-4698-86dd-d101f7490869",
               "choices": [
                 {
                   "name": "view_topics",
-                  "prompt": "b32671f6-5553-4228-a57f-ef7136bb5600",
+                  "prompt": "9abb9606-9c90-411e-80cf-0960291c9d0c",
                   "test": "block.response = \"@@button_labels[0]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "4f914b18-6d1d-5ec4-8fc0-35a556c20913",
+            "uuid": "4f5b7ecc-93a8-5d90-ad31-be3c0b88b0eb",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1510,8 +1738,8 @@
                 "name": "view_topics",
                 "config": {},
                 "test": "block.value = \"view_topics\"",
-                "uuid": "fda99cbf-7208-4a5e-a896-078a78dc8876",
-                "destination_block": "06a91f1f-d05b-5bd9-884a-5ea829fea8a2",
+                "uuid": "90aedc1d-b7df-4339-a31a-cd532182140c",
+                "destination_block": "39e45760-2039-516e-aefb-d30be0417d3f",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1520,8 +1748,8 @@
                 "name": "Default exit to \"DisplayReminderLaterError\"",
                 "config": {},
                 "test": "",
-                "uuid": "d7040f54-9172-4f67-9eec-589b647b2224",
-                "destination_block": "4f914b18-6d1d-5ec4-8fc0-35a556c20913",
+                "uuid": "4ce5b3a9-807c-4fd3-b7b2-68bdd66e5d21",
+                "destination_block": "4f5b7ecc-93a8-5d90-ad31-be3c0b88b0eb",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1537,7 +1765,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 175
+                          "line": 199
                         },
                         "name": "DisplayReminderLaterError",
                         "uuid": "9db6077f-d59b-5560-bc8a-169f12310089"
@@ -1546,7 +1774,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 176
+                          "line": 200
                         },
                         "type": "button_block"
                       },
@@ -1562,17 +1790,17 @@
             "name": "display_reminder_later",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "39617af3-ed84-4a82-8f41-421a9373384f",
+              "prompt": "0bad72be-e499-4c97-81c8-069960defd58",
               "choices": [
                 {
                   "name": "view_topics",
-                  "prompt": "a4592368-f6b7-466a-beec-9a009ebf7702",
+                  "prompt": "ddf82f3f-1f14-4082-bb79-de01c853491d",
                   "test": "block.response = \"@@button_labels[0]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "3c9c360e-5853-570d-b46d-6a5744a59dbd",
+            "uuid": "675ccd87-bd21-5404-85be-63d8a0d9ee69",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1585,8 +1813,8 @@
                 "name": "view_topics",
                 "config": {},
                 "test": "block.value = \"view_topics\"",
-                "uuid": "f9c19179-3fa7-4e92-bb18-b035d759b242",
-                "destination_block": "06a91f1f-d05b-5bd9-884a-5ea829fea8a2",
+                "uuid": "785120e0-bc9b-4d32-906e-c0f10232b59b",
+                "destination_block": "39e45760-2039-516e-aefb-d30be0417d3f",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1595,8 +1823,8 @@
                 "name": "Default exit to \"DisplayReminderLaterError\"",
                 "config": {},
                 "test": "",
-                "uuid": "126d488d-bf48-49c2-a60f-b02cf39c0497",
-                "destination_block": "4f914b18-6d1d-5ec4-8fc0-35a556c20913",
+                "uuid": "550d589a-2394-464e-94eb-ac476c84acf1",
+                "destination_block": "4f5b7ecc-93a8-5d90-ad31-be3c0b88b0eb",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1612,7 +1840,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 169
+                          "line": 193
                         },
                         "name": "DisplayReminderLater",
                         "uuid": "9dbf78b8-5568-5a90-a639-2d7e49b90677"
@@ -1621,7 +1849,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 170
+                          "line": 194
                         },
                         "type": "button_block"
                       },
@@ -1657,7 +1885,7 @@
               "cache_ttl": 60000
             },
             "tags": [],
-            "uuid": "ea5f131b-1cb5-5d9b-a78c-df4d28aeb123",
+            "uuid": "b0d004ad-57b5-5fc8-8743-21aa67499919",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1670,8 +1898,8 @@
                 "name": "search",
                 "config": {},
                 "test": "",
-                "uuid": "5b3a937f-b0fc-4e97-beec-962f97551d68",
-                "destination_block": "4f353f7a-79f3-5bb4-9b13-330a39a9c119",
+                "uuid": "9d57d736-0823-492e-8714-dfd78670dd18",
+                "destination_block": "d480cd93-f43e-54ed-9e12-8f345833abd0",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1686,7 +1914,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 144
+                          "line": 168
                         },
                         "name": "ReminderLater",
                         "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
@@ -1694,7 +1922,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 145
+                          "line": 169
                         },
                         "type": "webhook",
                         "webhook": {}
@@ -1712,7 +1940,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "4f353f7a-79f3-5bb4-9b13-330a39a9c119",
+            "uuid": "d480cd93-f43e-54ed-9e12-8f345833abd0",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1725,8 +1953,8 @@
                 "name": "search.body.results[0].id",
                 "config": {},
                 "test": "",
-                "uuid": "a5f50e34-37d9-424e-843c-ebc67a5ca5ac",
-                "destination_block": "f9997738-00e6-5ed0-a9e1-41d3699001cf",
+                "uuid": "d25185cc-600b-4ce8-bc56-b8b1bedd2d04",
+                "destination_block": "3e238b2c-b40e-57ac-be7b-5b9bb3263762",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1741,7 +1969,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 144
+                          "line": 168
                         },
                         "name": "ReminderLater",
                         "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
@@ -1750,7 +1978,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 154
+                          "line": 178
                         },
                         "type": "expression"
                       },
@@ -1786,7 +2014,7 @@
               "cache_ttl": 60000
             },
             "tags": [],
-            "uuid": "f9997738-00e6-5ed0-a9e1-41d3699001cf",
+            "uuid": "3e238b2c-b40e-57ac-be7b-5b9bb3263762",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1799,8 +2027,8 @@
                 "name": "content_data",
                 "config": {},
                 "test": "",
-                "uuid": "ff388b09-5687-42d8-847a-78502b754de6",
-                "destination_block": "83d49642-f84a-5d5f-a773-9f4a4b581f8e",
+                "uuid": "6de33b1d-1ccc-425b-bcb0-c27db911bbf2",
+                "destination_block": "6affdbde-cdf8-5678-a9b5-700bb5bde047",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1815,7 +2043,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 144
+                          "line": 168
                         },
                         "name": "ReminderLater",
                         "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
@@ -1823,7 +2051,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 156
+                          "line": 180
                         },
                         "type": "webhook",
                         "webhook": {}
@@ -1841,7 +2069,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "83d49642-f84a-5d5f-a773-9f4a4b581f8e",
+            "uuid": "6affdbde-cdf8-5678-a9b5-700bb5bde047",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1854,8 +2082,8 @@
                 "name": "content_data.body.body.text.value",
                 "config": {},
                 "test": "",
-                "uuid": "af3e7034-901e-4453-b3b4-7879c735b245",
-                "destination_block": "6f8b4aad-9fb2-54aa-a453-2a47cc2caffd",
+                "uuid": "44ca9a40-4d77-4029-a13b-1cb75c352481",
+                "destination_block": "2452ac32-27a8-5cc7-9242-ad5ff1a081a8",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1870,7 +2098,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 144
+                          "line": 168
                         },
                         "name": "ReminderLater",
                         "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
@@ -1879,7 +2107,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 165
+                          "line": 189
                         },
                         "type": "expression"
                       },
@@ -1896,7 +2124,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "6f8b4aad-9fb2-54aa-a453-2a47cc2caffd",
+            "uuid": "2452ac32-27a8-5cc7-9242-ad5ff1a081a8",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1909,8 +2137,8 @@
                 "name": "map(message.buttons, & &1.value.title)",
                 "config": {},
                 "test": "",
-                "uuid": "ab31c45e-4658-4328-a97b-78039c0f07b7",
-                "destination_block": "3c9c360e-5853-570d-b46d-6a5744a59dbd",
+                "uuid": "4fee3e44-7f94-464e-82ec-811c93acdf46",
+                "destination_block": "675ccd87-bd21-5404-85be-63d8a0d9ee69",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -1925,7 +2153,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 144
+                          "line": 168
                         },
                         "name": "ReminderLater",
                         "uuid": "dac1680d-61a5-53de-9558-d4e1537224df"
@@ -1934,7 +2162,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 166
+                          "line": 190
                         },
                         "type": "expression"
                       },
@@ -1950,22 +2178,22 @@
             "name": "display_why_personal_info1_error",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "e6c86294-2997-4a06-8d9f-de80b6507699",
+              "prompt": "71459d8e-a5b9-4b71-bcc5-ee1a196e1684",
               "choices": [
                 {
                   "name": "personal_profile_questions",
-                  "prompt": "73a0ab4f-324f-443b-b9d8-31575662aba4",
+                  "prompt": "0528ded9-48c6-49ae-95a1-c94dd40e6a77",
                   "test": "block.response = \"@@button_labels[0]\""
                 },
                 {
                   "name": "reminder_later",
-                  "prompt": "6fa1b1ca-3178-4823-94f5-0a0c792ab62f",
+                  "prompt": "473ac0d7-1e81-46fb-b9ab-a507a17d677a",
                   "test": "block.response = \"@@button_labels[1]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "d12bdc0c-7467-51fe-b25b-6fe0529267d1",
+            "uuid": "d332309d-d744-59ae-9373-bb181fced73f",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -1978,8 +2206,8 @@
                 "name": "personal_profile_questions",
                 "config": {},
                 "test": "block.value = \"personal_profile_questions\"",
-                "uuid": "bfe407a3-d933-4558-b09b-4f8625b9cec0",
-                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "uuid": "6d15b135-7548-4f5d-9a50-b49afcaacac3",
+                "destination_block": "80bbe903-99ab-516a-a523-5a7996e38785",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1988,8 +2216,8 @@
                 "name": "reminder_later",
                 "config": {},
                 "test": "block.value = \"reminder_later\"",
-                "uuid": "f3c53332-d733-49a0-91c0-7b6059c9652d",
-                "destination_block": "ea5f131b-1cb5-5d9b-a78c-df4d28aeb123",
+                "uuid": "a87b8833-3005-4408-b909-ce96540eab52",
+                "destination_block": "b0d004ad-57b5-5fc8-8743-21aa67499919",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -1998,8 +2226,8 @@
                 "name": "Default exit to \"DisplayWhyPersonalInfo1Error\"",
                 "config": {},
                 "test": "",
-                "uuid": "9b2a7b9c-3447-43b4-b13a-113c2a29a5cb",
-                "destination_block": "d12bdc0c-7467-51fe-b25b-6fe0529267d1",
+                "uuid": "fd28cadc-a807-444a-9cc8-d23fc1f1a8a3",
+                "destination_block": "d332309d-d744-59ae-9373-bb181fced73f",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2015,7 +2243,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 135
+                          "line": 159
                         },
                         "name": "DisplayWhyPersonalInfo1Error",
                         "uuid": "4c65d723-a9ac-55c7-a485-01f2c0e01fec"
@@ -2024,7 +2252,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 136
+                          "line": 160
                         },
                         "type": "button_block"
                       },
@@ -2040,22 +2268,22 @@
             "name": "display_why_personal_info1",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "df8a99f1-4ff2-406d-a4c3-c8520958c2b9",
+              "prompt": "10576476-5634-460a-b3e5-07a749ef77c9",
               "choices": [
                 {
                   "name": "personal_profile_questions",
-                  "prompt": "f66448c1-817c-49a5-ad59-b8c0bfef2332",
+                  "prompt": "755ccf16-a0fe-4baa-a188-deddccef9302",
                   "test": "block.response = \"@@button_labels[0]\""
                 },
                 {
                   "name": "reminder_later",
-                  "prompt": "4a66505c-94a6-43cf-9437-5871aff4bd79",
+                  "prompt": "1c221131-6346-4eed-8e61-f19d11770415",
                   "test": "block.response = \"@@button_labels[1]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "5174e434-48bd-5de7-acf4-4d7dcd187346",
+            "uuid": "ea461d5c-a9e9-52e5-92c4-b0212ac15ade",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2068,8 +2296,8 @@
                 "name": "personal_profile_questions",
                 "config": {},
                 "test": "block.value = \"personal_profile_questions\"",
-                "uuid": "8e960ae3-4f47-4cca-a337-063e69d1c304",
-                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "uuid": "2d1c2b76-be6c-429f-b60e-0fbba2d39e86",
+                "destination_block": "80bbe903-99ab-516a-a523-5a7996e38785",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -2078,8 +2306,8 @@
                 "name": "reminder_later",
                 "config": {},
                 "test": "block.value = \"reminder_later\"",
-                "uuid": "bb39a517-7957-48de-bcd1-427977d68903",
-                "destination_block": "ea5f131b-1cb5-5d9b-a78c-df4d28aeb123",
+                "uuid": "63b5ed7f-6259-4b10-99eb-2ce1ddec9548",
+                "destination_block": "b0d004ad-57b5-5fc8-8743-21aa67499919",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -2088,8 +2316,8 @@
                 "name": "Default exit to \"DisplayWhyPersonalInfo1Error\"",
                 "config": {},
                 "test": "",
-                "uuid": "8eb90d6b-b494-4982-be9d-5dd9ee99569b",
-                "destination_block": "d12bdc0c-7467-51fe-b25b-6fe0529267d1",
+                "uuid": "a59ef136-d348-4a73-8f91-358e318edfd9",
+                "destination_block": "d332309d-d744-59ae-9373-bb181fced73f",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2105,7 +2333,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 126
+                          "line": 150
                         },
                         "name": "DisplayWhyPersonalInfo1",
                         "uuid": "faae118b-a65f-59d4-93a7-fbc80ac73c5a"
@@ -2114,7 +2342,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 127
+                          "line": 151
                         },
                         "type": "button_block"
                       },
@@ -2150,7 +2378,7 @@
               "cache_ttl": 60000
             },
             "tags": [],
-            "uuid": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+            "uuid": "600ed968-f947-5383-8340-2827db8c5bb0",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2163,8 +2391,8 @@
                 "name": "search",
                 "config": {},
                 "test": "",
-                "uuid": "fd895b9b-7b3d-48bf-a6db-793da9230b97",
-                "destination_block": "048dc483-6718-58c2-80cd-f3b8dad18b28",
+                "uuid": "62b570f1-cef5-403f-a96f-0f057004f2a2",
+                "destination_block": "0c25f629-9be8-56fd-b73f-c6c0ddae22da",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2179,7 +2407,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 101
+                          "line": 125
                         },
                         "name": "WhyPersonalInfo1",
                         "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
@@ -2187,7 +2415,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 102
+                          "line": 126
                         },
                         "type": "webhook",
                         "webhook": {}
@@ -2205,7 +2433,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "048dc483-6718-58c2-80cd-f3b8dad18b28",
+            "uuid": "0c25f629-9be8-56fd-b73f-c6c0ddae22da",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2218,8 +2446,8 @@
                 "name": "search.body.results[0].id",
                 "config": {},
                 "test": "",
-                "uuid": "9a85adf4-9413-4a14-99f8-e50654282636",
-                "destination_block": "2a522ca2-f2d4-59e7-a6b8-915a381bc63b",
+                "uuid": "018cb551-d55f-4792-9ed9-8e15d81ef0e6",
+                "destination_block": "6d2056aa-2ece-51e6-82e5-42bc4f65911a",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2234,7 +2462,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 101
+                          "line": 125
                         },
                         "name": "WhyPersonalInfo1",
                         "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
@@ -2243,7 +2471,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 111
+                          "line": 135
                         },
                         "type": "expression"
                       },
@@ -2279,7 +2507,7 @@
               "cache_ttl": 60000
             },
             "tags": [],
-            "uuid": "2a522ca2-f2d4-59e7-a6b8-915a381bc63b",
+            "uuid": "6d2056aa-2ece-51e6-82e5-42bc4f65911a",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2292,8 +2520,8 @@
                 "name": "content_data",
                 "config": {},
                 "test": "",
-                "uuid": "df40cd8a-8bd9-4758-9d04-41461a4bb11c",
-                "destination_block": "be19b57c-8ca7-50aa-9937-733ca1d2881e",
+                "uuid": "b22ff696-9924-4229-ae2d-16cb97a7befa",
+                "destination_block": "5658f995-fe26-5fd5-9803-204fc481a456",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2308,7 +2536,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 101
+                          "line": 125
                         },
                         "name": "WhyPersonalInfo1",
                         "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
@@ -2316,7 +2544,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 113
+                          "line": 137
                         },
                         "type": "webhook",
                         "webhook": {}
@@ -2334,7 +2562,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "be19b57c-8ca7-50aa-9937-733ca1d2881e",
+            "uuid": "5658f995-fe26-5fd5-9803-204fc481a456",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2347,8 +2575,8 @@
                 "name": "content_data.body.body.text.value",
                 "config": {},
                 "test": "",
-                "uuid": "956c2ab1-663b-4689-a4a8-5336e802b355",
-                "destination_block": "2e674072-3688-56dd-8f91-c1d4a89c3e0e",
+                "uuid": "f6066a45-1639-468b-b622-d7ba1d33aa9b",
+                "destination_block": "e8313370-debc-5f1a-9cdb-6fae76a1bcb5",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2363,7 +2591,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 101
+                          "line": 125
                         },
                         "name": "WhyPersonalInfo1",
                         "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
@@ -2372,7 +2600,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 122
+                          "line": 146
                         },
                         "type": "expression"
                       },
@@ -2389,7 +2617,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "2e674072-3688-56dd-8f91-c1d4a89c3e0e",
+            "uuid": "e8313370-debc-5f1a-9cdb-6fae76a1bcb5",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2402,8 +2630,8 @@
                 "name": "map(message.buttons, & &1.value.title)",
                 "config": {},
                 "test": "",
-                "uuid": "34bd439e-a76a-471e-a340-b0bcfbd2a30a",
-                "destination_block": "5174e434-48bd-5de7-acf4-4d7dcd187346",
+                "uuid": "af5d12e2-5e37-4dff-ad8c-36ce01a87d8b",
+                "destination_block": "ea461d5c-a9e9-52e5-92c4-b0212ac15ade",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2418,7 +2646,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 101
+                          "line": 125
                         },
                         "name": "WhyPersonalInfo1",
                         "uuid": "ea75d88f-1685-58f0-9b73-655796188b4a"
@@ -2427,7 +2655,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 123
+                          "line": 147
                         },
                         "type": "expression"
                       },
@@ -2443,22 +2671,22 @@
             "name": "display_profile_progress30_generic_error",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "0aaae6d9-d4c2-4eb2-a968-1c81fe7149ba",
+              "prompt": "d3e1c131-18ca-42c8-ab7e-9b7b9cf19350",
               "choices": [
                 {
                   "name": "personal_profile_questions",
-                  "prompt": "bc8e239b-d01e-4340-a015-9a8e600e8e3c",
+                  "prompt": "93ccf0ce-1adb-4c6b-bde0-5be8cd0cb940",
                   "test": "block.response = \"@@button_labels[0]\""
                 },
                 {
                   "name": "why_personal_info1",
-                  "prompt": "056873a3-aa4e-473b-b450-4dcc94a0b32f",
+                  "prompt": "8b5eb275-d4ee-41d7-8ab0-8c27cdd3aa3d",
                   "test": "block.response = \"@@button_labels[1]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "1b5ea463-9232-5c6c-b10a-82d9b05e8464",
+            "uuid": "481240fc-ea12-55ff-aec1-25d6d0d9239a",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2471,8 +2699,8 @@
                 "name": "personal_profile_questions",
                 "config": {},
                 "test": "block.value = \"personal_profile_questions\"",
-                "uuid": "49907319-8417-4513-b871-bac5798da0c1",
-                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "uuid": "03cdaef1-c2d3-4dd5-80d0-ea8be2d25c46",
+                "destination_block": "80bbe903-99ab-516a-a523-5a7996e38785",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -2481,8 +2709,8 @@
                 "name": "why_personal_info1",
                 "config": {},
                 "test": "block.value = \"why_personal_info1\"",
-                "uuid": "7325606a-7b05-4f69-ba94-3bec85fa53b1",
-                "destination_block": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+                "uuid": "d54da8a9-690d-4f2c-8eff-aa27e6774f60",
+                "destination_block": "600ed968-f947-5383-8340-2827db8c5bb0",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -2491,8 +2719,8 @@
                 "name": "Default exit to \"DisplayProfileProgress30GenericError\"",
                 "config": {},
                 "test": "",
-                "uuid": "565a5e97-d4de-47a9-bd63-0f5d47e13532",
-                "destination_block": "1b5ea463-9232-5c6c-b10a-82d9b05e8464",
+                "uuid": "8023b77a-1981-4378-9416-10d6dd556f56",
+                "destination_block": "481240fc-ea12-55ff-aec1-25d6d0d9239a",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2508,7 +2736,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 92
+                          "line": 116
                         },
                         "name": "DisplayProfileProgress30GenericError",
                         "uuid": "7d41724c-7754-5f81-af86-1f64871076e2"
@@ -2517,7 +2745,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 93
+                          "line": 117
                         },
                         "type": "button_block"
                       },
@@ -2533,22 +2761,22 @@
             "name": "display_profile_progress30_generic",
             "type": "MobilePrimitives.SelectOneResponse",
             "config": {
-              "prompt": "d34d5d34-ab39-46e1-8433-ac73f908ff44",
+              "prompt": "4fd3e221-ac19-4fd8-9779-b67ea4540ba9",
               "choices": [
                 {
                   "name": "personal_profile_questions",
-                  "prompt": "73f73b99-54f0-4adb-b570-98d80c66e28a",
+                  "prompt": "21aaafdb-8a05-4ee4-987e-ce34c0a6cc4d",
                   "test": "block.response = \"@@button_labels[0]\""
                 },
                 {
                   "name": "why_personal_info1",
-                  "prompt": "9f1589ec-0bae-43ab-a71e-600ba67de099",
+                  "prompt": "1e263b58-2a64-4925-a5c2-fcdea0ab273e",
                   "test": "block.response = \"@@button_labels[1]\""
                 }
               ]
             },
             "tags": [],
-            "uuid": "68582499-2885-5a00-be82-f970ab263766",
+            "uuid": "e088c34b-5535-5ee8-b316-6a4eed0fdfd3",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2561,8 +2789,8 @@
                 "name": "personal_profile_questions",
                 "config": {},
                 "test": "block.value = \"personal_profile_questions\"",
-                "uuid": "1e14547d-aba3-4442-b047-32e18fa58033",
-                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "uuid": "7cd04617-3d58-4de2-9e85-223fb1e257c3",
+                "destination_block": "80bbe903-99ab-516a-a523-5a7996e38785",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -2571,8 +2799,8 @@
                 "name": "why_personal_info1",
                 "config": {},
                 "test": "block.value = \"why_personal_info1\"",
-                "uuid": "658ddfac-84a8-4ae1-a384-9463d47e0462",
-                "destination_block": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+                "uuid": "08f16827-659c-4702-86cd-7dff6f262ee8",
+                "destination_block": "600ed968-f947-5383-8340-2827db8c5bb0",
                 "semantic_label": null,
                 "vendor_metadata": {}
               },
@@ -2581,8 +2809,8 @@
                 "name": "Default exit to \"DisplayProfileProgress30GenericError\"",
                 "config": {},
                 "test": "",
-                "uuid": "5d0d2c73-0a4e-4e0a-82c6-b08062380c42",
-                "destination_block": "1b5ea463-9232-5c6c-b10a-82d9b05e8464",
+                "uuid": "6dfcc3de-6a58-44eb-8b74-2b8b09e86270",
+                "destination_block": "481240fc-ea12-55ff-aec1-25d6d0d9239a",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2598,7 +2826,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 83
+                          "line": 107
                         },
                         "name": "DisplayProfileProgress30Generic",
                         "uuid": "3e80025b-bc52-56cc-bcfa-050b3ca1d79b"
@@ -2607,7 +2835,7 @@
                         "button_block": {},
                         "meta": {
                           "column": 3,
-                          "line": 84
+                          "line": 108
                         },
                         "type": "button_block"
                       },
@@ -2623,7 +2851,7 @@
             "name": "basic_questions_log",
             "type": "Core.Log",
             "config": {
-              "message": "a7ac005f-8f40-4c87-8f3a-efa6445772dc"
+              "message": "a5e65cdb-ca69-4e61-b1a0-42898a028cd4"
             },
             "tags": [],
             "uuid": "e2b21ca2-85c9-5603-8e65-46189a932a8e",
@@ -2639,7 +2867,7 @@
                 "name": "basic_questions_log",
                 "config": {},
                 "test": "",
-                "uuid": "fa4323f7-bb71-4dd1-9aa9-ad5b52b9e90e",
+                "uuid": "5e4e5dfa-29fa-4d39-a169-90373801988a",
                 "destination_block": "04153ff5-b01a-5e42-9234-167528f4ff4c",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -2699,7 +2927,7 @@
                 "name": "basic_questions_contact_update_profile_type",
                 "config": {},
                 "test": "",
-                "uuid": "331579ed-e14a-4ee5-bf60-539dae2a25f8",
+                "uuid": "fb2750a9-1569-4723-9a09-e993f8241459",
                 "destination_block": "87a3b658-2d32-5f8a-a61b-096e2d33c9d0",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -2759,7 +2987,7 @@
                 "name": "basic_questions_contact_update_checkpoint",
                 "config": {},
                 "test": "",
-                "uuid": "01fa5d12-cf77-4c0c-8710-255674bd823b",
+                "uuid": "ab80fa8b-18c7-4fde-9a46-4c466075b8db",
                 "destination_block": "fea47b66-a909-58cc-bdda-b9491a8d060c",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -2816,7 +3044,7 @@
                 "name": "Default exit to \"ProfileProgress30Generic\"",
                 "config": {},
                 "test": "",
-                "uuid": "8b64f5ef-f0b4-4caf-bb95-c6cf74457e4a",
+                "uuid": "80e46dcd-4629-43fd-bef5-b8bb4718a68e",
                 "destination_block": "d6a6bacc-b77a-5d5f-a0b8-6928b890d0c9",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -2857,10 +3085,10 @@
             "name": "personal_profile_questions_log",
             "type": "Core.Log",
             "config": {
-              "message": "15829b59-4c98-411d-acae-de3b538f859a"
+              "message": "45139e46-fb8a-4109-ac2b-0b4cb558ce37"
             },
             "tags": [],
-            "uuid": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+            "uuid": "80bbe903-99ab-516a-a523-5a7996e38785",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2873,8 +3101,8 @@
                 "name": "personal_profile_questions_log",
                 "config": {},
                 "test": "",
-                "uuid": "3c93aca7-8476-47f7-908c-a8a4c0188c32",
-                "destination_block": "7189cac7-b475-5c86-8144-38878cd09eb8",
+                "uuid": "596469dd-ce02-4c8e-83b6-9384b52e8131",
+                "destination_block": "5b616e24-792b-5f48-ae9b-58e116e4e2c8",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2889,7 +3117,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 257
+                          "line": 336
                         },
                         "name": "PersonalProfileQuestions",
                         "uuid": "01d20bee-14c6-5997-81e8-4e793e9dc002"
@@ -2898,7 +3126,7 @@
                         "log": {},
                         "meta": {
                           "column": 3,
-                          "line": 258
+                          "line": 337
                         },
                         "type": "log"
                       },
@@ -2920,7 +3148,7 @@
               }
             },
             "tags": [],
-            "uuid": "7189cac7-b475-5c86-8144-38878cd09eb8",
+            "uuid": "5b616e24-792b-5f48-ae9b-58e116e4e2c8",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2933,8 +3161,8 @@
                 "name": "personal_profile_questions_contact_update_checkpoint",
                 "config": {},
                 "test": "",
-                "uuid": "5e47b9f2-af58-4a4f-bb30-734247ab1154",
-                "destination_block": "feb88be0-596d-5675-a788-0dafb0691935",
+                "uuid": "d2e28dd4-9c18-4633-a703-6e0da1cf8d0d",
+                "destination_block": "f9c62a0d-611c-5b72-b37f-9418eb59759b",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -2949,7 +3177,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 257
+                          "line": 336
                         },
                         "name": "PersonalProfileQuestions",
                         "uuid": "01d20bee-14c6-5997-81e8-4e793e9dc002"
@@ -2957,7 +3185,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 259
+                          "line": 338
                         },
                         "type": "update_contact",
                         "update_contact": {}
@@ -2977,7 +3205,7 @@
               "flow_id": "61a880e4-cf7b-47c5-a047-60802aaa7975"
             },
             "tags": [],
-            "uuid": "feb88be0-596d-5675-a788-0dafb0691935",
+            "uuid": "f9c62a0d-611c-5b72-b37f-9418eb59759b",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -2990,8 +3218,8 @@
                 "name": "Default exit to \"LOCAssessment\"",
                 "config": {},
                 "test": "",
-                "uuid": "feb0bebc-d345-4fc6-937a-51e541715095",
-                "destination_block": "b44b38fa-8f20-5988-8353-6ee7b9cd5ff1",
+                "uuid": "aa4efabd-4abb-42ef-951e-6e614f9e0d63",
+                "destination_block": "8fcf7008-91f6-581b-9b62-b16218a60a55",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3006,7 +3234,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 257
+                          "line": 336
                         },
                         "name": "PersonalProfileQuestions",
                         "uuid": "01d20bee-14c6-5997-81e8-4e793e9dc002"
@@ -3014,7 +3242,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 260
+                          "line": 339
                         },
                         "run_stack": {},
                         "type": "run_stack"
@@ -3034,7 +3262,7 @@
               "value": "\"100%\""
             },
             "tags": [],
-            "uuid": "4461f0f9-a57d-5e38-b0d8-87c99d915747",
+            "uuid": "bb480e12-d583-5a59-a02a-a52f5a11e26d",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3047,8 +3275,8 @@
                 "name": "profile_completion",
                 "config": {},
                 "test": "",
-                "uuid": "6b2106f6-0910-4b5d-b72f-de86261488b5",
-                "destination_block": "32c3d338-6c59-5aa8-8ee6-fb33f8ffa62e",
+                "uuid": "e97be661-ebca-4eaa-8a97-c39afc998f9b",
+                "destination_block": "2a49ac52-532f-5b25-bb05-a220b4fe445f",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3063,7 +3291,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3071,7 +3299,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 182
+                          "line": 206
                         },
                         "type": "write_result",
                         "write_result": {}
@@ -3094,7 +3322,7 @@
               }
             },
             "tags": [],
-            "uuid": "32c3d338-6c59-5aa8-8ee6-fb33f8ffa62e",
+            "uuid": "2a49ac52-532f-5b25-bb05-a220b4fe445f",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3107,8 +3335,8 @@
                 "name": "profile_progress100_generic_contact_update_profile_completion",
                 "config": {},
                 "test": "",
-                "uuid": "4f1f10be-467f-4140-aff6-4b2e3a3cd3f1",
-                "destination_block": "fd868217-1b33-56fe-b565-8de083efe1ef",
+                "uuid": "28a788cf-0e7d-478d-be18-2514356a8079",
+                "destination_block": "057bae5d-5221-5b78-a7ef-24f6f8cec142",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3123,7 +3351,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3131,7 +3359,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 183
+                          "line": 207
                         },
                         "type": "update_contact",
                         "update_contact": {}
@@ -3151,7 +3379,7 @@
               "flow_id": "b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d"
             },
             "tags": [],
-            "uuid": "fd868217-1b33-56fe-b565-8de083efe1ef",
+            "uuid": "057bae5d-5221-5b78-a7ef-24f6f8cec142",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3164,8 +3392,8 @@
                 "name": "profile_progress100_generic_schedule_stack",
                 "config": {},
                 "test": "",
-                "uuid": "43e52647-13a1-418d-ac70-1538fda3b169",
-                "destination_block": "23c0b400-9012-55ec-8e8d-2e213df2b667",
+                "uuid": "5c9475ba-ce55-4000-a4e9-661fbb575487",
+                "destination_block": "bb39ca07-ae6d-53d1-92eb-0b2bbd8884d5",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3180,7 +3408,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3188,7 +3416,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 184
+                          "line": 208
                         },
                         "schedule_stack": {},
                         "type": "schedule_stack"
@@ -3225,7 +3453,7 @@
               "cache_ttl": 60000
             },
             "tags": [],
-            "uuid": "23c0b400-9012-55ec-8e8d-2e213df2b667",
+            "uuid": "bb39ca07-ae6d-53d1-92eb-0b2bbd8884d5",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3238,8 +3466,8 @@
                 "name": "search",
                 "config": {},
                 "test": "",
-                "uuid": "23e96481-671d-4021-a577-9ae0e2c4729f",
-                "destination_block": "a71a14e3-5156-551b-a372-ced57211e6e4",
+                "uuid": "69fa7aeb-351d-4e27-ba74-df41c4fabce4",
+                "destination_block": "bae234d0-1617-55b0-8038-5160eb5864ed",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3254,7 +3482,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3262,7 +3490,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 186
+                          "line": 210
                         },
                         "type": "webhook",
                         "webhook": {}
@@ -3280,7 +3508,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "a71a14e3-5156-551b-a372-ced57211e6e4",
+            "uuid": "bae234d0-1617-55b0-8038-5160eb5864ed",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3293,8 +3521,8 @@
                 "name": "search.body.results[0].id",
                 "config": {},
                 "test": "",
-                "uuid": "485743d4-bd5a-4465-ba8c-e86d1061b21d",
-                "destination_block": "b1e8ef52-d410-58be-84f2-13228c492b70",
+                "uuid": "91a0d86f-6c0c-43a9-8bc7-754bfb51891c",
+                "destination_block": "33b4aa1c-d049-5e1f-9820-30b85da77144",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3309,7 +3537,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3318,7 +3546,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 195
+                          "line": 219
                         },
                         "type": "expression"
                       },
@@ -3354,7 +3582,7 @@
               "cache_ttl": 60000
             },
             "tags": [],
-            "uuid": "b1e8ef52-d410-58be-84f2-13228c492b70",
+            "uuid": "33b4aa1c-d049-5e1f-9820-30b85da77144",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3367,8 +3595,8 @@
                 "name": "content_data",
                 "config": {},
                 "test": "",
-                "uuid": "3d52ac74-ea30-4715-94d9-79cd309eadee",
-                "destination_block": "2595bfc7-1798-5705-9003-80dba128dd82",
+                "uuid": "850250b5-931b-4d53-8c0d-309ccb658777",
+                "destination_block": "739ae588-bf36-5219-8cc6-0f4c4251d536",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3383,7 +3611,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3391,7 +3619,7 @@
                       "card_item": {
                         "meta": {
                           "column": 3,
-                          "line": 197
+                          "line": 221
                         },
                         "type": "webhook",
                         "webhook": {}
@@ -3409,7 +3637,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "2595bfc7-1798-5705-9003-80dba128dd82",
+            "uuid": "739ae588-bf36-5219-8cc6-0f4c4251d536",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3422,8 +3650,8 @@
                 "name": "content_data.body.body.text.value",
                 "config": {},
                 "test": "",
-                "uuid": "2840ade6-673f-482f-a4b1-a2b081b9717e",
-                "destination_block": "476c522a-c462-5ebe-becf-205446c24bfb",
+                "uuid": "04c9be36-176d-4b7b-9302-6513c5b18ccb",
+                "destination_block": "23bf1ff8-bff8-5180-999d-3554a0863ff8",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3438,7 +3666,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3447,7 +3675,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 206
+                          "line": 230
                         },
                         "type": "expression"
                       },
@@ -3464,7 +3692,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "476c522a-c462-5ebe-becf-205446c24bfb",
+            "uuid": "23bf1ff8-bff8-5180-999d-3554a0863ff8",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3477,8 +3705,8 @@
                 "name": "if(is_nil_or_empty(contact.name), \"None\", contact.name)",
                 "config": {},
                 "test": "",
-                "uuid": "4a1e36c5-8ef6-4d3c-8d93-feed277670c3",
-                "destination_block": "ed625dd7-4b3a-5cb1-ad46-7a775382205e",
+                "uuid": "7e09a8a6-70d9-4b50-a111-8a74f8d7900a",
+                "destination_block": "b8066fca-6006-5db0-bcb1-f6ea08070747",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3493,7 +3721,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3502,7 +3730,612 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 207
+                          "line": 231
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_answers",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "b8066fca-6006-5db0-bcb1-f6ea08070747",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "[contact.gender, contact.year_of_birth, contact.province, contact.area_type]",
+                "config": {},
+                "test": "",
+                "uuid": "eddd5cf9-69a9-4114-b801-f19bc5bcc873",
+                "destination_block": "c1023695-d255-545e-8af3-f00594b117e2",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "literal": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 233
+                        },
+                        "type": "literal"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_answers_count",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "c1023695-d255-545e-8af3-f00594b117e2",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "count(basic_questions_answers)",
+                "config": {},
+                "test": "",
+                "uuid": "e6048be5-cfa5-4190-82aa-ea908e029171",
+                "destination_block": "7160dc6c-802b-5c6f-acee-31ad5d862960",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 240
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_list",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "7160dc6c-802b-5c6f-acee-31ad5d862960",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "filter(basic_questions_answers,\n&(&1 != \"\"))",
+                "config": {},
+                "test": "",
+                "uuid": "d69579f3-b4d4-478d-a9ee-b77c72b88857",
+                "destination_block": "54a1458e-3736-5d82-8d0e-4cfe5d100fd1",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 242
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_count",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "54a1458e-3736-5d82-8d0e-4cfe5d100fd1",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "count(basic_questions_list)",
+                "config": {},
+                "test": "",
+                "uuid": "6069d84a-2aac-478f-b408-d6721451a82e",
+                "destination_block": "3aef0bc7-c80c-538b-b1ce-9266f38e60a1",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 248
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "basic_questions_value",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "3aef0bc7-c80c-538b-b1ce-9266f38e60a1",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "if(basic_questions_answers_count == basic_questions_count, \"✅\", \"@basic_questions_count/@basic_questions_answers_count\")",
+                "config": {},
+                "test": "",
+                "uuid": "323776c4-46c4-4d3c-bed4-f84f00841786",
+                "destination_block": "22cc8d63-2613-5cc3-a3b4-79c570f78d59",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 250
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_questions_answers",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "22cc8d63-2613-5cc3-a3b4-79c570f78d59",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "[contact.relationship_status, contact.education, contact.socio_economic, contact.other_children]",
+                "config": {},
+                "test": "",
+                "uuid": "fbacc6dd-484e-4575-a0de-d0cf5c0d19c4",
+                "destination_block": "8e2ff029-ec98-5279-ace3-02332a6b0c98",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "literal": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 256
+                        },
+                        "type": "literal"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_questions_answers_count",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "8e2ff029-ec98-5279-ace3-02332a6b0c98",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "count(personal_questions_answers)",
+                "config": {},
+                "test": "",
+                "uuid": "d759648a-03da-4f06-a502-170dd9ebbe45",
+                "destination_block": "2cecf339-10a9-5e7c-908a-0093e4d4a80f",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 263
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_questions_list",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "2cecf339-10a9-5e7c-908a-0093e4d4a80f",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "filter(personal_questions_answers,\n&(&1 != \"\"))",
+                "config": {},
+                "test": "",
+                "uuid": "927d0fc7-b0eb-4fc6-a9a0-ca9bba47d4bb",
+                "destination_block": "c52c97c2-6ee7-5339-be52-6aacd3e9dce3",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 265
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_questions_count",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "c52c97c2-6ee7-5339-be52-6aacd3e9dce3",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "count(personal_questions_list)",
+                "config": {},
+                "test": "",
+                "uuid": "6e8cd0c9-c375-40c8-9adc-ebd02b21d841",
+                "destination_block": "3fac64f0-626c-5c41-a11f-09038be3e311",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 271
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_questions_value",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "3fac64f0-626c-5c41-a11f-09038be3e311",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "if(personal_questions_answers_count == personal_questions_count, \"✅\", \"@personal_questions_count/@personal_questions_answers_count\")",
+                "config": {},
+                "test": "",
+                "uuid": "6dafb4de-0577-4633-9b53-8d8eccac86e1",
+                "destination_block": "f296fd32-8877-59d9-b480-0cd491b6364a",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 273
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "opted_in",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "f296fd32-8877-59d9-b480-0cd491b6364a",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "if(or(contact.opted_in == false, is_nil_or_empty(contact.opted_in)), \"❌\", \"✅\")",
+                "config": {},
+                "test": "",
+                "uuid": "41797248-53bc-4ab9-bdb4-a52a09314657",
+                "destination_block": "0614bd2a-f655-59eb-a290-6c1d1ef7fadd",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 279
                         },
                         "type": "expression"
                       },
@@ -3519,7 +4352,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "ed625dd7-4b3a-5cb1-ad46-7a775382205e",
+            "uuid": "0614bd2a-f655-59eb-a290-6c1d1ef7fadd",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3529,11 +4362,11 @@
             "exits": [
               {
                 "default": true,
-                "name": "substitute(message.message, \"{UserName, “None”}\", \"@name\")",
+                "name": "substitute(message.message, \"{name}\", \"@name\")",
                 "config": {},
                 "test": "",
-                "uuid": "cec652d1-32ec-4e99-807e-9653969da408",
-                "destination_block": "1345a71f-6eca-5734-b2ce-e8ca7705bc4d",
+                "uuid": "d4674c6b-0ab2-4170-9a2d-22613cc9a6c4",
+                "destination_block": "645629e9-318a-589d-a2f8-49861a794bce",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -3548,7 +4381,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3557,7 +4390,172 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 209
+                          "line": 282
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "loading_message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "645629e9-318a-589d-a2f8-49861a794bce",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "substitute(loading_message, \"{basic_info_count}\", \"@basic_questions_value\")",
+                "config": {},
+                "test": "",
+                "uuid": "08c1cf7a-db50-4917-a390-e86eb43eae2b",
+                "destination_block": "79cc7fd3-d430-5727-abc5-eb500944ab3b",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 283
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "loading_message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "79cc7fd3-d430-5727-abc5-eb500944ab3b",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "substitute(loading_message, \"{personal_info_count}\", \"@personal_questions_value\")",
+                "config": {},
+                "test": "",
+                "uuid": "76e9e973-ae06-4852-a80f-369da5df9504",
+                "destination_block": "dcff2959-11a0-5e02-a276-f33edc5bfb53",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 285
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "loading_message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "dcff2959-11a0-5e02-a276-f33edc5bfb53",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "substitute(loading_message, \"{get_important_messages}\", \"@opted_in\")",
+                "config": {},
+                "test": "",
+                "uuid": "dbcf44ca-21f8-404d-84b2-1618ca5ddfb2",
+                "destination_block": "62590bed-f1c5-5511-bd7e-a406a77fecf2",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 205
+                        },
+                        "name": "ProfileProgress100Generic",
+                        "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 288
                         },
                         "type": "expression"
                       },
@@ -3574,7 +4572,7 @@
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "1345a71f-6eca-5734-b2ce-e8ca7705bc4d",
+            "uuid": "62590bed-f1c5-5511-bd7e-a406a77fecf2",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -3587,7 +4585,7 @@
                 "name": "map(message.buttons, & &1.value.title)",
                 "config": {},
                 "test": "",
-                "uuid": "ad40cf61-158f-4c05-bd7b-51dd8166b680",
+                "uuid": "77a69a89-b74b-4cfc-b22c-dc7fd398383d",
                 "destination_block": "fbe43ff9-48dc-5481-ac12-5c3b338f0226",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -3603,7 +4601,7 @@
                         "condition": null,
                         "meta": {
                           "column": 1,
-                          "line": 181
+                          "line": 205
                         },
                         "name": "ProfileProgress100Generic",
                         "uuid": "9a89d421-5b08-5626-bbc8-91edd015193c"
@@ -3612,7 +4610,7 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 210
+                          "line": 289
                         },
                         "type": "expression"
                       },
@@ -3644,7 +4642,7 @@
                 "name": "profile_completion",
                 "config": {},
                 "test": "",
-                "uuid": "baf200a5-2024-40db-9dd1-8de34cddbba8",
+                "uuid": "cd654849-19e9-4f3d-ab7d-33e27e54ff87",
                 "destination_block": "ba94d7ec-6c40-5a2a-ad30-588ff2831a5c",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -3704,7 +4702,7 @@
                 "name": "profile_progress30_generic_contact_update_profile_completion",
                 "config": {},
                 "test": "",
-                "uuid": "d7cbc63a-473a-405e-8d06-6c14dfc7ba9c",
+                "uuid": "2e1dac71-d7cf-40f5-9b89-7be46d6a9014",
                 "destination_block": "89e42ef4-8346-5771-bb5d-b6f9840ef9c1",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -3778,7 +4776,7 @@
                 "name": "search",
                 "config": {},
                 "test": "",
-                "uuid": "e4d3a8aa-7856-4db6-8d64-b57b48fb4fad",
+                "uuid": "3e42c741-7d7f-4129-96de-8c283d46fe58",
                 "destination_block": "42c04994-0aee-569d-aa4a-fe1b9043bc2e",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -3833,7 +4831,7 @@
                 "name": "search.body.results[0].id",
                 "config": {},
                 "test": "",
-                "uuid": "b5856a15-61dc-4a1b-8e52-f72f4c36573a",
+                "uuid": "e191da7c-4762-460b-90fc-0adcc75caebc",
                 "destination_block": "dce094cc-3702-5814-8b28-d78f3178ca15",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -3907,7 +4905,7 @@
                 "name": "content_data",
                 "config": {},
                 "test": "",
-                "uuid": "32620632-0f3d-4a59-a217-cff8db0aa33d",
+                "uuid": "69642edd-e1e9-44fb-ad9c-10bd4924ee01",
                 "destination_block": "09d126cd-1b7d-5a88-89bf-b828e74de3ec",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -3945,7 +4943,7 @@
           },
           {
             "label": null,
-            "name": "message",
+            "name": "basic_questions_list",
             "type": "Core.Case",
             "config": {},
             "tags": [],
@@ -3959,11 +4957,11 @@
             "exits": [
               {
                 "default": true,
-                "name": "content_data.body.body.text.value",
+                "name": "filter([contact.gender, contact.year_of_birth, contact.province, contact.area_type],\n&(&1 != \"\"))",
                 "config": {},
                 "test": "",
-                "uuid": "05f13c74-a887-4433-89d4-64b8b4ed61d6",
-                "destination_block": "39aad5c4-4151-57f3-b5a2-8d0c987090f1",
+                "uuid": "e91274a0-4ff1-42cb-b4f1-aabd54946616",
+                "destination_block": "1c7d42a3-533c-55a2-84b7-7c9298b10f51",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -4000,11 +4998,11 @@
           },
           {
             "label": null,
-            "name": "button_labels",
+            "name": "basic_questions_count",
             "type": "Core.Case",
             "config": {},
             "tags": [],
-            "uuid": "39aad5c4-4151-57f3-b5a2-8d0c987090f1",
+            "uuid": "1c7d42a3-533c-55a2-84b7-7c9298b10f51",
             "ui_metadata": {
               "canvas_coordinates": {
                 "x": 0,
@@ -4014,11 +5012,11 @@
             "exits": [
               {
                 "default": true,
-                "name": "map(message.buttons, & &1.value.title)",
+                "name": "count(basic_questions_list)",
                 "config": {},
                 "test": "",
-                "uuid": "472ab047-0fd9-4218-b4bb-41d584ca8da2",
-                "destination_block": "68582499-2885-5a00-be82-f970ab263766",
+                "uuid": "34c4efab-20c9-4a74-86c2-5d6fe9b2c624",
+                "destination_block": "36f8f244-75f1-553f-87bc-b89c3a3f24be",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -4042,7 +5040,392 @@
                         "expression": {},
                         "meta": {
                           "column": 3,
-                          "line": 80
+                          "line": 85
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_questions_list",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "36f8f244-75f1-553f-87bc-b89c3a3f24be",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "filter([contact.relationship_status, contact.education, contact.socio_economic, contact.other_children],\n&(&1 != \"\"))",
+                "config": {},
+                "test": "",
+                "uuid": "4b68f877-4c92-42b9-9d4c-607384ee9093",
+                "destination_block": "9efd0650-9b72-5a4c-8d02-d56c091b7636",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 87
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "personal_questions_count",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "9efd0650-9b72-5a4c-8d02-d56c091b7636",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "count(personal_questions_list)",
+                "config": {},
+                "test": "",
+                "uuid": "c1a050c8-c5b7-45e4-91e9-71006fe18a79",
+                "destination_block": "1944d276-1fd9-5639-a0e3-a7a886ac5614",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 98
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "message",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "1944d276-1fd9-5639-a0e3-a7a886ac5614",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "content_data.body.body.text.value",
+                "config": {},
+                "test": "",
+                "uuid": "71889be6-a118-4b62-a467-b8111d9c3897",
+                "destination_block": "bc397978-c3c1-5755-aab3-7e61b0ca7c71",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 100
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "message_text",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "bc397978-c3c1-5755-aab3-7e61b0ca7c71",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "substitute(message.message, \"{basic_info_count}\", \"@basic_questions_count\")",
+                "config": {},
+                "test": "",
+                "uuid": "9cf1ba2a-f120-4378-9dfd-c65060eaf503",
+                "destination_block": "ac78174c-5f28-5c65-b970-8d119040e9a1",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 101
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "message_text",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "ac78174c-5f28-5c65-b970-8d119040e9a1",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "substitute(message_text, \"{personal_info_count}\", \"@personal_questions_count\")",
+                "config": {},
+                "test": "",
+                "uuid": "23d9e47d-779b-4cd4-a1ff-b1057c764ae2",
+                "destination_block": "eadede73-f7b7-5892-b525-2564a2cc7a89",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 102
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "message_text",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "eadede73-f7b7-5892-b525-2564a2cc7a89",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "substitute(message_text, \"{daily_life_count}\", \"0\")",
+                "config": {},
+                "test": "",
+                "uuid": "4c5e8e90-42a4-45e9-8978-1f61f5d5455a",
+                "destination_block": "0c070fc0-1585-5fea-bf3b-7fae0304565a",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 103
+                        },
+                        "type": "expression"
+                      },
+                      "index": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "label": null,
+            "name": "button_labels",
+            "type": "Core.Case",
+            "config": {},
+            "tags": [],
+            "uuid": "0c070fc0-1585-5fea-bf3b-7fae0304565a",
+            "ui_metadata": {
+              "canvas_coordinates": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "exits": [
+              {
+                "default": true,
+                "name": "map(message.buttons, & &1.value.title)",
+                "config": {},
+                "test": "",
+                "uuid": "c523eead-48b5-43eb-84c2-6c9c234f17fe",
+                "destination_block": "e088c34b-5535-5ee8-b316-6a4eed0fdfd3",
+                "semantic_label": "",
+                "vendor_metadata": {}
+              }
+            ],
+            "semantic_label": null,
+            "vendor_metadata": {
+              "io": {
+                "turn": {
+                  "stacks_dsl": {
+                    "0.1.0": {
+                      "card": {
+                        "condition": null,
+                        "meta": {
+                          "column": 1,
+                          "line": 55
+                        },
+                        "name": "ProfileProgress30Generic",
+                        "uuid": "44261fd7-0d73-577d-bc91-e8606e63bad1"
+                      },
+                      "card_item": {
+                        "expression": {},
+                        "meta": {
+                          "column": 3,
+                          "line": 104
                         },
                         "type": "expression"
                       },
@@ -4067,7 +5450,7 @@
                 "name": "Exit for check_point_redirect_case_condition_0",
                 "config": {},
                 "test": "and(contact.profile_completion == \"30%\", contact.checkpoint == \"generic_basic_info\")",
-                "uuid": "b53a2c16-bad5-40d6-9562-8d7319851924",
+                "uuid": "ef16eff9-54e7-4178-8fb9-25905a964e33",
                 "destination_block": "d436b5a1-8d84-572d-9020-52ec6b44f6af",
                 "semantic_label": null,
                 "vendor_metadata": {}
@@ -4077,7 +5460,7 @@
                 "name": "Exit for check_point_redirect_case_condition_1",
                 "config": {},
                 "test": "contact.profile_completion == \"100%\"",
-                "uuid": "50498286-4021-44cd-9610-92bda727945a",
+                "uuid": "4ddfa6be-4442-4610-a5de-e19b26ceff10",
                 "destination_block": "892707df-2359-5bae-8625-2e48967f29c2",
                 "semantic_label": null,
                 "vendor_metadata": {}
@@ -4087,7 +5470,7 @@
                 "name": "Exit for check_point_redirect_case_condition_2",
                 "config": {},
                 "test": "contact.checkpoint == \"generic_personal_info\"",
-                "uuid": "95e59809-4c07-40a7-b1f4-44e6ff562bf4",
+                "uuid": "2fb321d6-0a25-4619-85c7-414ae35eb595",
                 "destination_block": "e616d211-01d4-5f07-ba39-84be6af786db",
                 "semantic_label": null,
                 "vendor_metadata": {}
@@ -4097,7 +5480,7 @@
                 "name": "Exit for check_point_redirect_case_condition_3",
                 "config": {},
                 "test": null,
-                "uuid": "6f66e50e-6cfc-4bfc-8c38-02d6aaa90acc",
+                "uuid": "59f243ab-1132-48cd-b32a-af96248f01a5",
                 "destination_block": "c81052fb-0be5-57f2-b93b-ab7ce60234ad",
                 "semantic_label": null,
                 "vendor_metadata": {}
@@ -4111,7 +5494,7 @@
             "name": "check_point_redirect_case_condition_3_log",
             "type": "Core.Log",
             "config": {
-              "message": "d4eeafcd-3d9d-4acc-bdcc-cbac1e66c204"
+              "message": "85724518-37be-4229-aa22-4954d2e02aad"
             },
             "tags": [],
             "uuid": "c81052fb-0be5-57f2-b93b-ab7ce60234ad",
@@ -4127,7 +5510,7 @@
                 "name": "Default exit to \"BasicQuestions\"",
                 "config": {},
                 "test": "",
-                "uuid": "cf7d23ca-7da9-4901-b1c7-0bff28f996ba",
+                "uuid": "27f63b75-a050-4670-9b7a-ec34876a3395",
                 "destination_block": "e2b21ca2-85c9-5603-8e65-46189a932a8e",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -4168,7 +5551,7 @@
             "name": "check_point_redirect_case_condition_2_log",
             "type": "Core.Log",
             "config": {
-              "message": "ef7637a7-c37f-4354-b2b7-31a6458224b6"
+              "message": "c4f5d305-9734-4c5c-9887-d826f857f43f"
             },
             "tags": [],
             "uuid": "e616d211-01d4-5f07-ba39-84be6af786db",
@@ -4184,8 +5567,8 @@
                 "name": "Default exit to \"PersonalProfileQuestions\"",
                 "config": {},
                 "test": "",
-                "uuid": "f2651e8e-347e-4816-aee0-013aa5333635",
-                "destination_block": "dc2d7fa4-aa73-5f7a-846c-dca251c0e2a8",
+                "uuid": "097252ff-75f2-4552-b09e-b00f331a912b",
+                "destination_block": "80bbe903-99ab-516a-a523-5a7996e38785",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -4225,7 +5608,7 @@
             "name": "check_point_redirect_case_condition_1_log",
             "type": "Core.Log",
             "config": {
-              "message": "9852f287-f6d8-498e-a3f0-66a657f3be31"
+              "message": "55b36418-39fa-400d-b539-0bcc2b70681f"
             },
             "tags": [],
             "uuid": "892707df-2359-5bae-8625-2e48967f29c2",
@@ -4241,8 +5624,8 @@
                 "name": "Default exit to \"ProfileProgress100Generic\"",
                 "config": {},
                 "test": "",
-                "uuid": "7c81b1d2-cc88-428b-8ebd-21f1df535912",
-                "destination_block": "4461f0f9-a57d-5e38-b0d8-87c99d915747",
+                "uuid": "f136860c-81b6-4614-83dc-a0bb245a4a1a",
+                "destination_block": "bb480e12-d583-5a59-a02a-a52f5a11e26d",
                 "semantic_label": "",
                 "vendor_metadata": {}
               }
@@ -4282,7 +5665,7 @@
             "name": "check_point_redirect_case_condition_0_log",
             "type": "Core.Log",
             "config": {
-              "message": "60738b88-ac7e-44b1-9ca9-9a75a602d634"
+              "message": "bf008ffd-a65c-48c8-82f5-20be30d4d90e"
             },
             "tags": [],
             "uuid": "d436b5a1-8d84-572d-9020-52ec6b44f6af",
@@ -4298,7 +5681,7 @@
                 "name": "Default exit to \"ProfileProgress30Generic\"",
                 "config": {},
                 "test": "",
-                "uuid": "6ad07b6b-9f26-4443-a086-ba2e16acc75c",
+                "uuid": "7a8f8baf-8f7d-469d-a5bb-67a6067f0b1f",
                 "destination_block": "d6a6bacc-b77a-5d5f-a0b8-6928b890d0c9",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -4326,120 +5709,6 @@
                           "line": 32
                         },
                         "type": "log"
-                      },
-                      "index": 0
-                    }
-                  }
-                }
-              }
-            }
-          },
-          {
-            "label": null,
-            "name": "loc_assessment_log",
-            "type": "Core.Log",
-            "config": {
-              "message": "2efe8893-36fd-4e8c-b127-278ba0ffd4cf"
-            },
-            "tags": [],
-            "uuid": "b44b38fa-8f20-5988-8353-6ee7b9cd5ff1",
-            "ui_metadata": {
-              "canvas_coordinates": {
-                "x": 0,
-                "y": 0
-              }
-            },
-            "exits": [
-              {
-                "default": true,
-                "name": "loc_assessment_log",
-                "config": {},
-                "test": "",
-                "uuid": "03793f9f-d993-4460-9c91-a16ff7536a87",
-                "destination_block": "63a0428d-da4d-5428-846c-c2b25e577dae",
-                "semantic_label": "",
-                "vendor_metadata": {}
-              }
-            ],
-            "semantic_label": null,
-            "vendor_metadata": {
-              "io": {
-                "turn": {
-                  "stacks_dsl": {
-                    "0.1.0": {
-                      "card": {
-                        "condition": null,
-                        "meta": {
-                          "column": 1,
-                          "line": 263
-                        },
-                        "name": "LOCAssessment",
-                        "uuid": "0cd3f66a-587f-5eeb-b2ad-ca401c49ef21"
-                      },
-                      "card_item": {
-                        "log": {},
-                        "meta": {
-                          "column": 3,
-                          "line": 264
-                        },
-                        "type": "log"
-                      },
-                      "index": 0
-                    }
-                  }
-                }
-              }
-            }
-          },
-          {
-            "label": null,
-            "name": "loc_assessment_run_stack",
-            "type": "Core.RunFlow",
-            "config": {
-              "flow_id": "690a9ffd-db6d-42df-ad8f-a1e5b469a099"
-            },
-            "tags": [],
-            "uuid": "63a0428d-da4d-5428-846c-c2b25e577dae",
-            "ui_metadata": {
-              "canvas_coordinates": {
-                "x": 0,
-                "y": 0
-              }
-            },
-            "exits": [
-              {
-                "default": true,
-                "name": "Default exit to \"OptInReminder\"",
-                "config": {},
-                "test": "",
-                "uuid": "efa2e1b8-2309-4474-ad45-497930b6c936",
-                "destination_block": "9949751f-b29e-5454-b2be-b57ed363f75a",
-                "semantic_label": "",
-                "vendor_metadata": {}
-              }
-            ],
-            "semantic_label": null,
-            "vendor_metadata": {
-              "io": {
-                "turn": {
-                  "stacks_dsl": {
-                    "0.1.0": {
-                      "card": {
-                        "condition": null,
-                        "meta": {
-                          "column": 1,
-                          "line": 263
-                        },
-                        "name": "LOCAssessment",
-                        "uuid": "0cd3f66a-587f-5eeb-b2ad-ca401c49ef21"
-                      },
-                      "card_item": {
-                        "meta": {
-                          "column": 3,
-                          "line": 265
-                        },
-                        "run_stack": {},
-                        "type": "run_stack"
                       },
                       "index": 0
                     }
@@ -4486,7 +5755,7 @@
                 "name": "search",
                 "config": {},
                 "test": "",
-                "uuid": "54ea1d41-4963-46cc-ad76-720ece07882b",
+                "uuid": "fcbe3622-5614-46f4-924a-b410efbf50bc",
                 "destination_block": "e912c29c-549e-5a43-82f3-c61730ff74d2",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -4541,7 +5810,7 @@
                 "name": "search.body.results[0].id",
                 "config": {},
                 "test": "",
-                "uuid": "7696fbfc-9c16-4412-848a-9fc160eb06e2",
+                "uuid": "9adc9564-5088-44ce-893b-ee00f7c2db34",
                 "destination_block": "869fc622-5c05-57b0-801f-c65125482a11",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -4615,7 +5884,7 @@
                 "name": "page",
                 "config": {},
                 "test": "",
-                "uuid": "421ad464-4356-4903-8b86-40b739705afd",
+                "uuid": "b3342191-214b-40f7-8b48-0dff2803493c",
                 "destination_block": "ef95e080-1070-5291-aeed-ee5b54983e2d",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -4670,7 +5939,7 @@
                 "name": "page.body.body.text.value.message",
                 "config": {},
                 "test": "",
-                "uuid": "213eed39-7c73-4d0e-9ae4-8307f80d2cb5",
+                "uuid": "aa0baa49-acd0-46b3-883f-bc8bba9b79c1",
                 "destination_block": "1cf9ebe7-134f-5b33-942d-f9bfe46063f9",
                 "semantic_label": "",
                 "vendor_metadata": {}
@@ -4705,135 +5974,21 @@
                 }
               }
             }
-          },
-          {
-            "label": null,
-            "name": "main_menu_log",
-            "type": "Core.Log",
-            "config": {
-              "message": "91cfdeea-8f36-4e1d-8280-ea779b286724"
-            },
-            "tags": [],
-            "uuid": "d295f461-5a3c-5ba7-8996-f04bb2c6cf7c",
-            "ui_metadata": {
-              "canvas_coordinates": {
-                "x": 0,
-                "y": 0
-              }
-            },
-            "exits": [
-              {
-                "default": true,
-                "name": "main_menu_log",
-                "config": {},
-                "test": "",
-                "uuid": "aaa03c24-5fa6-4c0e-b0ef-e41095373124",
-                "destination_block": "0029a37a-74ac-5a54-92e2-b6088cf2b751",
-                "semantic_label": "",
-                "vendor_metadata": {}
-              }
-            ],
-            "semantic_label": null,
-            "vendor_metadata": {
-              "io": {
-                "turn": {
-                  "stacks_dsl": {
-                    "0.1.0": {
-                      "card": {
-                        "condition": null,
-                        "meta": {
-                          "column": 1,
-                          "line": 285
-                        },
-                        "name": "MainMenu",
-                        "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
-                      },
-                      "card_item": {
-                        "log": {},
-                        "meta": {
-                          "column": 3,
-                          "line": 286
-                        },
-                        "type": "log"
-                      },
-                      "index": 0
-                    }
-                  }
-                }
-              }
-            }
-          },
-          {
-            "label": null,
-            "name": "main_menu_run_stack",
-            "type": "Core.RunFlow",
-            "config": {
-              "flow_id": "21b892d6-685c-458e-adae-304ece46022a"
-            },
-            "tags": [],
-            "uuid": "0029a37a-74ac-5a54-92e2-b6088cf2b751",
-            "ui_metadata": {
-              "canvas_coordinates": {
-                "x": 0,
-                "y": 0
-              }
-            },
-            "exits": [
-              {
-                "default": true,
-                "name": "main_menu_run_stack",
-                "config": {},
-                "test": "",
-                "uuid": "d950edba-21bb-489a-b67f-100b01bd19de",
-                "destination_block": null,
-                "semantic_label": "",
-                "vendor_metadata": {}
-              }
-            ],
-            "semantic_label": null,
-            "vendor_metadata": {
-              "io": {
-                "turn": {
-                  "stacks_dsl": {
-                    "0.1.0": {
-                      "card": {
-                        "condition": null,
-                        "meta": {
-                          "column": 1,
-                          "line": 285
-                        },
-                        "name": "MainMenu",
-                        "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
-                      },
-                      "card_item": {
-                        "meta": {
-                          "column": 3,
-                          "line": 287
-                        },
-                        "run_stack": {},
-                        "type": "run_stack"
-                      },
-                      "index": 0
-                    }
-                  }
-                }
-              }
-            }
           }
         ],
-        "last_modified": "2024-07-15T13:47:10.576578Z",
-        "uuid": "5fa2bb94-7624-47d1-9662-14c78e63ec80",
+        "last_modified": "2024-08-14T13:43:22.091638Z",
+        "uuid": "ee89be11-91f4-5bd6-95ee-0029636c3722",
         "languages": [
           {
-            "id": "dfeafcad-f91a-4d49-8612-e5d6ff70894d",
+            "id": "5ca59aa0-40be-4100-86d9-a4852eae7081",
             "label": "English",
             "variant": null,
-            "iso_639_3": "eng",
-            "bcp_47": null
+            "bcp_47": null,
+            "iso_639_3": "eng"
           }
         ],
-        "first_block_id": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
         "interaction_timeout": 300,
+        "first_block_id": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
         "vendor_metadata": {},
         "supported_modes": [
           "RICH_MESSAGING"

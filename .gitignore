@@ -122,3 +122,5 @@ GitHub.sublime-settings
 .DS_Store
 
 /flow_tester
+
+.cookie
