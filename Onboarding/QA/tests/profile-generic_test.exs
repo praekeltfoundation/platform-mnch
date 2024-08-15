@@ -61,7 +61,7 @@ defmodule ProfileGenericTest do
       })
     end
 
-    test "30% complete -> why" do
+    test "30% complete -> why -> let's go" do
       setup_flow()
       |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
       |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
@@ -82,6 +82,40 @@ defmodule ProfileGenericTest do
       |> receive_message(%{
         text: "ℹ️ Our team of experts has put together" <> _,
         buttons: button_labels(["Yes, let's go", "Not right now"])
+      })
+      |> FlowTester.send(button_label: "Yes, let's go")
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\n\nYour profile is 100% complete" <> _,
+        buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
+      })
+    end
+
+    test "30% complete -> why -> not right now" do
+      setup_flow()
+      |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
+      |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
+      |> FlowTester.set_contact_properties(%{}) # Daily Life
+      |> FlowTester.start()
+      |> fn step ->
+        [msg] = step.messages
+        assert String.contains?(msg.text, "Basic information 3/4")
+        assert String.contains?(msg.text, "Personal information 0/4")
+        assert String.contains?(msg.text, "Daily life 0/5")
+        step
+      end.()
+      |> receive_message(%{
+        text: "Your profile is already 30% complete" <> _,
+        buttons: button_labels(["Continue", "Why?"])
+      })
+      |> FlowTester.send(button_label: "Why?")
+      |> receive_message(%{
+        text: "ℹ️ Our team of experts has put together" <> _,
+        buttons: button_labels(["Yes, let's go", "Not right now"])
+      })
+      |> FlowTester.send(button_label: "Not right now")
+      |> receive_message(%{
+        text: "*All good. I’ll check in with you about this another time.* 🗓️" <> _,
+        buttons: button_labels(["See popular topics"])
       })
     end
 

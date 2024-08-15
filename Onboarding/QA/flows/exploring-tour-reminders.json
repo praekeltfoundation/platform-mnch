@@ -1,0 +1,1619 @@
+{
+  "name": "Onboarding: Exploring Tour Reminders",
+  "description": "Default description",
+  "uuid": "c7d4635f-5099-4c27-94c2-1dffe237f841",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "@button_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "ed7a0682-4dde-4979-b39d-586a462a1211"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "0aff0098-f463-4853-8170-27f01a604ecc"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "d139b07c-0fc0-4126-b332-cbedcd13834e"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[2]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "56650a96-9a70-4310-8112-b26c41ae30b9"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "525f71de-6980-4fa0-83ee-6bc04231b16f"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "b15e6a64-26ea-4429-b6a0-65a1271ae95c"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "71d875a7-551d-4e96-b615-fea278b1eca8"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[2]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "2ab14269-9ddd-45a8-9c92-90fe8fbcb5d3"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "583dc87f-6973-4872-b7a0-9ad95c5d57f1"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "a7be3187-f720-40e9-b43a-f0e80d6b2c7d"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "f8e20f11-f480-41d1-bb1a-109273714f00"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "ce0e9ccb-aefd-4098-8a4c-da9494a8515d"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "ff71fde4-2884-4e6a-8eed-ff5c74ffa55e"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "6314839a-748d-4638-a93e-15f9cb45b68e"
+        }
+      ],
+      "uuid": "f17cf876-55c8-47ae-9837-db9b00792b31"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "create_profiles_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+          },
+          "tags": [],
+          "uuid": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "create_profiles_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "a6ee28eb-f624-4e65-89a5-9bb9667fa358",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 70
+                      },
+                      "name": "CreateProfiles",
+                      "uuid": "1ab9b205-2af5-5214-97da-b611406e45c9"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 71
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "reminder_error",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "ed7a0682-4dde-4979-b39d-586a462a1211",
+            "choices": [
+              {
+                "name": "create_profiles",
+                "prompt": "0aff0098-f463-4853-8170-27f01a604ecc",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "remind_later",
+                "prompt": "d139b07c-0fc0-4126-b332-cbedcd13834e",
+                "test": "block.response = \"@@button_labels[1]\""
+              },
+              {
+                "name": "main_menu",
+                "prompt": "56650a96-9a70-4310-8112-b26c41ae30b9",
+                "test": "block.response = \"@@button_labels[2]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "db97b91d-7ff0-5562-b0d6-77e460abc051",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "create_profiles",
+              "config": {},
+              "test": "block.value = \"create_profiles\"",
+              "uuid": "b2bca4b8-7991-49fa-9451-799bf7c0e652",
+              "destination_block": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "remind_later",
+              "config": {},
+              "test": "block.value = \"remind_later\"",
+              "uuid": "84de246e-beb1-465e-8d01-c8f000640a38",
+              "destination_block": "a066dd6c-1439-5c6d-ab77-497e5ec0d97d",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "main_menu",
+              "config": {},
+              "test": "block.value = \"main_menu\"",
+              "uuid": "a9773f8e-2f8c-4756-b033-219f343530f2",
+              "destination_block": "af93028e-4d41-569e-9d8f-1aa5c6b9c813",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"ReminderError\"",
+              "config": {},
+              "test": "",
+              "uuid": "06f7c94d-71ef-4720-b372-73f15c5a006e",
+              "destination_block": "db97b91d-7ff0-5562-b0d6-77e460abc051",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 60
+                      },
+                      "name": "ReminderError",
+                      "uuid": "793f5278-40fe-5582-bc7a-af8926b35e12"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 61
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_reminder_secondary"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "517fb154-b90c-5069-a6c0-431f34f86eb9",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "f181ec2b-bca2-40a2-9624-159366aea388",
+              "destination_block": "a42c23e0-1a43-5297-9062-37b1f145395b",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 28
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "a42c23e0-1a43-5297-9062-37b1f145395b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "90919f75-ea9b-4490-a863-9854802297cb",
+              "destination_block": "de8382af-7921-5ac7-b1d4-a206121da8f3",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 37
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "de8382af-7921-5ac7-b1d4-a206121da8f3",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "4393ca88-1a5a-4ae7-b8c5-e893641846e6",
+              "destination_block": "354e7b3a-cd91-5d53-a8d8-12add557e674",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 39
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "354e7b3a-cd91-5d53-a8d8-12add557e674",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "4ec6eaa5-2b67-4963-ae6e-5f45f2dcf9c6",
+              "destination_block": "079f92f6-e492-5b09-8fb9-fa7f310cf7d8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 48
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_labels",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "079f92f6-e492-5b09-8fb9-fa7f310cf7d8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.buttons, & &1.value.title)",
+              "config": {},
+              "test": "",
+              "uuid": "fb458edb-a4e1-49da-9c99-f9f3fae85fb1",
+              "destination_block": "512d4992-a27f-5421-80f2-d66942240deb",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 49
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "reminder",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "525f71de-6980-4fa0-83ee-6bc04231b16f",
+            "choices": [
+              {
+                "name": "create_profiles",
+                "prompt": "b15e6a64-26ea-4429-b6a0-65a1271ae95c",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "remind_later",
+                "prompt": "71d875a7-551d-4e96-b615-fea278b1eca8",
+                "test": "block.response = \"@@button_labels[1]\""
+              },
+              {
+                "name": "main_menu",
+                "prompt": "2ab14269-9ddd-45a8-9c92-90fe8fbcb5d3",
+                "test": "block.response = \"@@button_labels[2]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "512d4992-a27f-5421-80f2-d66942240deb",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "create_profiles",
+              "config": {},
+              "test": "block.value = \"create_profiles\"",
+              "uuid": "5caba43c-cf81-43f2-ac57-16f8e131ebbd",
+              "destination_block": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "remind_later",
+              "config": {},
+              "test": "block.value = \"remind_later\"",
+              "uuid": "c0f56465-cfd3-4e73-8d2c-0093a068e588",
+              "destination_block": "a066dd6c-1439-5c6d-ab77-497e5ec0d97d",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "main_menu",
+              "config": {},
+              "test": "block.value = \"main_menu\"",
+              "uuid": "792f7824-b477-4b93-beae-3f5c36cc9eb2",
+              "destination_block": "af93028e-4d41-569e-9d8f-1aa5c6b9c813",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"ReminderError\"",
+              "config": {},
+              "test": "",
+              "uuid": "f0318861-5a3a-4933-8b32-623fe7c9e035",
+              "destination_block": "db97b91d-7ff0-5562-b0d6-77e460abc051",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 51
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "remind_later_error",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "583dc87f-6973-4872-b7a0-9ad95c5d57f1",
+            "choices": [
+              {
+                "name": "create_profiles",
+                "prompt": "a7be3187-f720-40e9-b43a-f0e80d6b2c7d",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "remind_later",
+                "prompt": "f8e20f11-f480-41d1-bb1a-109273714f00",
+                "test": "block.response = \"@@button_labels[1]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "6277cbf4-2d34-5791-bc86-9691a47fb9dd",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "create_profiles",
+              "config": {},
+              "test": "block.value = \"create_profiles\"",
+              "uuid": "885052be-d45a-4cfa-997c-60df2361b1d3",
+              "destination_block": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "remind_later",
+              "config": {},
+              "test": "block.value = \"remind_later\"",
+              "uuid": "2bf2e0dd-07ec-4704-97ef-274d94ae3cad",
+              "destination_block": "a066dd6c-1439-5c6d-ab77-497e5ec0d97d",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"RemindLaterError\"",
+              "config": {},
+              "test": "",
+              "uuid": "3dfb2194-2be0-4726-ab32-09877bfd8704",
+              "destination_block": "6277cbf4-2d34-5791-bc86-9691a47fb9dd",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 107
+                      },
+                      "name": "RemindLaterError",
+                      "uuid": "1521d593-f9e6-557f-8927-0e7e47792c31"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 108
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_reminder_later_2"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "a066dd6c-1439-5c6d-ab77-497e5ec0d97d",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "f85ff343-076b-448f-994a-6ccd4437c990",
+              "destination_block": "1c7d42a3-533c-55a2-84b7-7c9298b10f51",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 74
+                      },
+                      "name": "RemindLater",
+                      "uuid": "ddfbbdcb-a578-5ec1-ba7a-94df088263bd"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 76
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "1c7d42a3-533c-55a2-84b7-7c9298b10f51",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "be7bd57f-188d-43bf-89a3-1fcde96130a6",
+              "destination_block": "3135a2fb-6f34-53bd-8ba2-8d424144ca5c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 74
+                      },
+                      "name": "RemindLater",
+                      "uuid": "ddfbbdcb-a578-5ec1-ba7a-94df088263bd"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 85
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "3135a2fb-6f34-53bd-8ba2-8d424144ca5c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "221fee49-302f-4e2c-a7fa-38432fbe2c90",
+              "destination_block": "4e978c93-3b26-5039-9553-a7d683cde046",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 74
+                      },
+                      "name": "RemindLater",
+                      "uuid": "ddfbbdcb-a578-5ec1-ba7a-94df088263bd"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 87
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "4e978c93-3b26-5039-9553-a7d683cde046",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "abbaa7ea-053f-4a6b-8d6e-4d2eaefe657b",
+              "destination_block": "ea4dcdd0-8624-5347-a401-ab23af65e019",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 74
+                      },
+                      "name": "RemindLater",
+                      "uuid": "ddfbbdcb-a578-5ec1-ba7a-94df088263bd"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 96
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_labels",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "ea4dcdd0-8624-5347-a401-ab23af65e019",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.buttons, & &1.value.title)",
+              "config": {},
+              "test": "",
+              "uuid": "ee2dae1c-f748-4c37-975f-01c16242e7b3",
+              "destination_block": "cd16275b-dd6f-5cb6-ae0e-131820acffaa",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 74
+                      },
+                      "name": "RemindLater",
+                      "uuid": "ddfbbdcb-a578-5ec1-ba7a-94df088263bd"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 97
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "remind_later",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "ce0e9ccb-aefd-4098-8a4c-da9494a8515d",
+            "choices": [
+              {
+                "name": "create_profiles",
+                "prompt": "ff71fde4-2884-4e6a-8eed-ff5c74ffa55e",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "remind_later",
+                "prompt": "f17cf876-55c8-47ae-9837-db9b00792b31",
+                "test": "block.response = \"@@button_labels[1]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "cd16275b-dd6f-5cb6-ae0e-131820acffaa",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "create_profiles",
+              "config": {},
+              "test": "block.value = \"create_profiles\"",
+              "uuid": "b316bd6f-2455-46a3-b217-a7b524ef1b47",
+              "destination_block": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "remind_later",
+              "config": {},
+              "test": "block.value = \"remind_later\"",
+              "uuid": "0e0fa6c7-92b9-4963-8e02-343b84cb79c9",
+              "destination_block": "a066dd6c-1439-5c6d-ab77-497e5ec0d97d",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"RemindLaterError\"",
+              "config": {},
+              "test": "",
+              "uuid": "4953332f-6ed2-4373-bb71-3c81569ce042",
+              "destination_block": "6277cbf4-2d34-5791-bc86-9691a47fb9dd",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 74
+                      },
+                      "name": "RemindLater",
+                      "uuid": "ddfbbdcb-a578-5ec1-ba7a-94df088263bd"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 99
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "main_menu_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+          },
+          "tags": [],
+          "uuid": "af93028e-4d41-569e-9d8f-1aa5c6b9c813",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "main_menu_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "30e7ee80-f4d0-40b4-90a5-3fc635a269f2",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 116
+                      },
+                      "name": "MainMenu",
+                      "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 118
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_error_handling_button"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "a5c3b2fc-3900-4e75-bc40-a8d82043b246",
+              "destination_block": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 3
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "4b483866-a769-40a7-b404-ac2a9ad71b02",
+              "destination_block": "272ca113-9656-5e12-85ac-fe046ed163a8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 13
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "272ca113-9656-5e12-85ac-fe046ed163a8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "8ba13d93-fbbc-465a-b61b-fb803fabea4e",
+              "destination_block": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 15
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_error_text",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "12c01f46-55f9-47a7-bf2d-59b52194935f",
+              "destination_block": "517fb154-b90c-5069-a6c0-431f34f86eb9",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 24
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "last_modified": "2024-07-17T10:28:16.305748Z",
+      "uuid": "5d00bf07-b75f-4053-b464-125b7b2bab82",
+      "languages": [
+        {
+          "id": "6314839a-748d-4638-a93e-15f9cb45b68e",
+          "label": "English",
+          "variant": null,
+          "bcp_47": null,
+          "iso_639_3": "eng"
+        }
+      ],
+      "interaction_timeout": 300,
+      "first_block_id": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}

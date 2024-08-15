@@ -99,7 +99,31 @@ card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
+  basic_questions_list =
+    filter(
+      [contact.gender, contact.year_of_birth, contact.province, contact.area_type],
+      &(&1 != "")
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  personal_questions_list =
+    filter(
+      [
+        contact.relationship_status,
+        contact.education,
+        contact.socio_economic,
+        contact.other_children
+      ],
+      &(&1 != "")
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
   message = content_data.body.body.text.value
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_count")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_count")
+  message_text = substitute(message_text, "{daily_life_count}", "0")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -108,7 +132,7 @@ card DisplayProfileProgress30Generic, then: DisplayProfileProgress30GenericError
     PersonalProfileQuestions: "@button_labels[0]",
     WhyPersonalInfo1: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -179,7 +203,7 @@ card ReminderLater, then: DisplayReminderLater do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_reminder_later"]
+        ["slug", "mnch_onboarding_remind_later"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -244,7 +268,62 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
   message = content_data.body.body.text.value
   name = if is_nil_or_empty(contact.name), do: "None", else: contact.name
 
-  loading_message = substitute(message.message, "{UserName, “None”}", "@name")
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(&1 != "")
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value =
+    if(basic_questions_answers_count == basic_questions_count,
+      do: "✅",
+      else: "@basic_questions_count/@basic_questions_answers_count"
+    )
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(&1 != "")
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value =
+    if(personal_questions_answers_count == personal_questions_count,
+      do: "✅",
+      else: "@personal_questions_count/@personal_questions_answers_count"
+    )
+
+  opted_in =
+    if(contact.opted_in == false or is_nil_or_empty(contact.opted_in), do: "❌", else: "✅")
+
+  loading_message = substitute(message.message, "{name}", "@name")
+  loading_message = substitute(loading_message, "{basic_info_count}", "@basic_questions_value")
+
+  loading_message =
+    substitute(loading_message, "{personal_info_count}", "@personal_questions_value")
+
+  loading_message = substitute(loading_message, "{get_important_messages}", "@opted_in")
   button_labels = map(message.buttons, & &1.value.title)
 end
 

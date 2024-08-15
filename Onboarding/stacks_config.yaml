@@ -19,7 +19,7 @@ stack_uuids:
   - name: "exploring-tour-reminders" # "Onboarding: Exploring Tour Reminders"
     prod_uuid: c68d4257-74e1-45da-8d49-951b012ec65e
     qa_uuid: c7d4635f-5099-4c27-94c2-1dffe237f841
-  - name: "profile-prenancy-health" # "Onboarding: Profile Pregnancy Health"
+  - name: "profile-pregnancy-health" # "Onboarding: Profile Pregnancy Health"
     prod_uuid: 2063ff09-4405-4cf2-9a57-12ffa00c99da
     qa_uuid: d5f5cfef-1961-4459-a9fe-205a1cabfdfb
   - name: "profile-generic" # "Onboarding: Profile Generic"
