@@ -1,7 +1,3 @@
-deps = [{:flow_tester, path: Path.join([__DIR__, "..", "..", "..", "flow_tester"]), env: :dev}]
-Mix.install(deps, config_path: :flow_tester, lockfile: :flow_tester)
-ExUnit.start()
-
 defmodule ProfileGenericTest do
   use FlowTester.Case
 
@@ -9,11 +5,86 @@ defmodule ProfileGenericTest do
 
   defp flow_path(flow_name), do: Path.join([__DIR__, "..","flows", flow_name <> ".json"])
 
+  def setup_fake_cms(auth_token) do
+    # Start the handler.
+    wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
+
+    # Add some content.
+    error_pg = %ContentPage{
+      slug: "mnch_onboarding_error_handling_button",
+      title: "error",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
+        }
+      ]
+    }
+
+    progress_30_generic = %ContentPage{
+      slug: "mnch_onboarding_profile_progress_30_generic",
+      title: "Profile_progress_30_generic",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "Your profile is already 30% complete!\n\n🟩🟩🟩⬜⬜⬜⬜⬜ \n\n👤 Basic information {basic_info_count}/4\n➡️ Personal information {personal_info_count}/4\n⬜ Daily life {daily_life_count}/5\n\n👇🏽 Let’s move on to personal information.",
+          buttons: [
+            %Btn.Next{title: "Continue"},
+            %Btn.Next{title: "Why?"}
+          ]
+        }
+      ]
+    }
+
+    progress_100_generic = %ContentPage{
+      slug: "mnch_onboarding_profile_progress_100_generic",
+      title: "Profile_progress_100_generic",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete! 🎉 🌟\r\n\r\nYou can always edit it or provide more info. \r\n\r\n*Name:* {name}\r\n*Basic info:* {basic_info_count}\r\n*Personal info:* {personal_info_count}\r\n*Get important messages:* {get_important_messages}\r\n\r\n👇🏾 What do you want to do next?",
+          buttons: [
+            %Btn.Next{title: "Explore health guide"},
+            %Btn.Next{title: "View topics for you"},
+            %Btn.Next{title: "Go to main menu"}
+          ]
+        }
+      ]
+    }
+
+    why_personal_info_1 = %ContentPage{
+      slug: "mnch_onboarding_why_personal_info_1",
+      title: "Why_personal_info_1",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "ℹ️ Our team of experts has put together loads of health information for you. To quickly get a selection of the info that is valuable to you, share more information about yourself.\n\nReady to share?",
+          buttons: [
+            %Btn.Next{title: "Yes, let's go"},
+            %Btn.Next{title: "Not right now"}
+          ]
+        }
+      ]
+    }
+
+    assert :ok =
+             FakeCMS.add_pages(wh_pid, [
+               %Index{slug: "test", title: "test"},
+               error_pg,
+               progress_30_generic,
+               progress_100_generic,
+               why_personal_info_1
+             ])
+
+    # Return the adapter.
+    FakeCMS.wh_adapter(wh_pid)
+  end
+
   defp real_or_fake_cms(step, base_url, _auth_token, :real),
     do: WH.allow_http(step, base_url)
 
-  #defp real_or_fake_cms(step, base_url, auth_token, :fake),
-  #  do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
+  defp real_or_fake_cms(step, base_url, auth_token, :fake),
+    do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
   defp setup_flow() do
     # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
@@ -85,7 +156,7 @@ defmodule ProfileGenericTest do
       })
       |> FlowTester.send(button_label: "Yes, let's go")
       |> receive_message(%{
-        text: "🟩🟩🟩🟩🟩🟩🟩🟩\n\nYour profile is 100% complete" <> _,
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
         buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
       })
     end
@@ -140,7 +211,7 @@ defmodule ProfileGenericTest do
         step
       end.()
       |> receive_message(%{
-        text: "🟩🟩🟩🟩🟩🟩🟩🟩\n\nYour profile is 100% complete" <> _,
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
         buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
       })
     end

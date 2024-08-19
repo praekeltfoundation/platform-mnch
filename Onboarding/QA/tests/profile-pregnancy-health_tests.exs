@@ -88,6 +88,7 @@ defmodule ProfileGenericTest do
       |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
       |> FlowTester.set_contact_properties(%{}) # Daily Life
       |> FlowTester.set_contact_properties(%{"gender" => "", "name" => "Lily"})
+      |> FlowTester.set_contact_properties(%{"opted_in" => "true"})
       |> FlowTester.start()
       |> receive_message(%{
         text: "I've got a *lot* of information on pregnancy" <> _,
@@ -164,6 +165,20 @@ defmodule ProfileGenericTest do
       |> receive_message(%{
         text: "🟩🟩🟩🟩⬜⬜⬜⬜ \r\n\r\nYour profile is already 50% complete" <> _,
         buttons: button_labels(["Continue"])
+      })
+      |> FlowTester.send(button_label: "Continue")
+      |> contact_matches(%{"profile_completion" => "100%"})
+      |> fn step ->
+        [msg] = step.messages
+        assert String.contains?(msg.text, "*Profile name:* Lily")
+        assert String.contains?(msg.text, "*Baby due date:* #{full_edd}")
+        assert String.contains?(msg.text, "*Profile questions:* 6/11")
+        assert String.contains?(msg.text, "*Get important messages:* ✅")
+        step
+      end.()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
+        buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
       })
     end
   end
