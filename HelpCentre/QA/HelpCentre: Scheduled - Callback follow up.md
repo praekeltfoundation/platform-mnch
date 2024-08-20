@@ -4,6 +4,29 @@ This flow is a re-engagement reminder, used when a user has requested a callback
 
 It asks the user if they still want a callback, and provides an option to goto the main menu
 
+## Contact fields
+
+* `nav_bypass`, This is a mechanism to bypass the main menu and send the user straight to a sub section
+
+## Flow results
+
+* `counsellor_alt_num_follow_up`, Get set to the relevant value, depending on what the user clicks on
+
+## Connections to other stacks
+
+* This is a scheduled stack, which gets scheduled from within `HelpCentre: Agent Wrap-up`
+* If the user clicks main menu, we send them to `HelpCentre: Intro to HelpCentre`
+* If the user clicks either yes or no, we send them back to `HelpCentre: Agent Wrap-up`
+
+## Global variables
+
+* `contentrepo_qa_token` used to auth api calls
+
+## Content dependencies
+
+* `mnch_onboarding_error_handling_button`
+* `plat_help_call_back_follow_up`
+
 ```stack
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "cbfu")
 

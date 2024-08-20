@@ -4,6 +4,36 @@ This flow follows is meant to be run manually by the helpcentre agent, directly 
 
 If run it cancels the scheduled flow 'Scheduled Query Rating', as we'll ask those questions in this flow.
 
+## Contact fields
+
+* `nav_bypass`, This is a mechanism to bypass the main menu and send the user straight to a sub section
+
+## Flow results
+
+* `emergency_help`, Get set to `yes` once the user enters the Emergency Help menu
+
+## Connections to other stacks
+
+* `HelpCentre: Intro to HelpCentre`
+* `HC: Scheduled - Callback follow up`
+
+## Global variables
+
+* `contentrepo_qa_token` used to auth api calls
+
+## Content dependencies
+
+* `mnch_onboarding_error_handling_button`
+* `plat_help_query_successful`
+* `plat_help_agent_helpful_response`
+* `plat_help_agent_unsuccessful_response`
+* `plat_help_call_back_response`
+* `plat_help_call_back_confirmation`
+* `plat_help_agent_call_back_number_confirmation`
+* `plat_help_agent_call_back_number_update`
+* `plat_help_agent_contact_number_save`
+* `plat_help_bot_to_agent_handover_waiting_room`
+
 # Init and FetchError messages
 
 ```stack

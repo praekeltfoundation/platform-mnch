@@ -2,6 +2,29 @@
 
 This flow follows up with the user, whether they received the callback they requested, and whether the agent was able to help them
 
+## Contact fields
+
+* `nav_bypass`, This is a mechanism to bypass the main menu and send the user straight to a sub section
+
+## Flow results
+
+* `callback_completed`, Get set to `yes` or `no` depending on the user's answers
+
+## Connections to other stacks
+
+* `HelpCentre: Intro to HelpCentre` The user gets sent there if they click `main menu` or `see topics`
+
+## Global variables
+
+* `contentrepo_qa_token` auth for API calls to CMS
+
+## Content dependencies
+
+* `mnch_onboarding_error_handling_button`
+* `plat_help_call_back_confirmation_scheduled`
+* `plat_help_call_back_confirmation_yes`
+* `plat_help_call_back_confirmation_no`
+
 # Init
 
 ```stack

@@ -59,6 +59,37 @@ end
 
 All these code blocks go to HANDOVER_STARTS_1
 
+<!-- { section: "5de01d7d-ceb1-43c3-82d3-2ff46b5d5e11", x: -864, y: -1224} -->
+
+# Notes
+
+Please expand this note to view the full notes on this flow, or you can scroll through by hovering over it
+
+## Contact fields
+
+* `route_to_operator_origin`, this field keeps track of where the user came from, before being handed over to the agent
+
+## Flow results
+
+* `route_to_operator`, Get set to `yes` before the user gets sent to the operator
+
+## Connections to other stacks
+
+* `HelpCentre: Scheduled - Query rating` we schedule this before doing the handover, to re-engage if the operator fails to run the wrap up flow after the call
+
+## Global variables
+
+* `contentrepo_qa_token` used to authenticate the API calls pulling content from CMS
+
+## Content dependencies
+
+The following 4 pieces of content is needed, to show the user a message before handover, depending on where they came from
+
+* `plat_help_route_to_operator_emergency`,
+* `plat_help_route_to_operator_search_myhealth`,
+* `plat_help_route_to_operator_tech_support`,
+* `plat_help_route_to_operator_emergency`,
+
 <!-- { section: "318089d3-89e1-4d72-97e5-a2b1b14a32f5", x: 792, y: -1056} -->
 
 ```stack

@@ -10,14 +10,52 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 
 * `returning_help_centre_user`, This field gets set to `true` once the user visits the HelpCentre.
 * `nav_bypass`, This is a mechanism to bypass the main menu and send the user straight to a sub section
+* `aaq_metadata` This is used to keep track of the metadata from the latest AAQ call
+* `route_to_operator_origin` used to save of the route the user followed before being routed to the operator
+* `route_to_operator_search_text` used to save the last search term the user entered, before being routed to operator
 
 ## Flow results
 
 * `emergency_help`, Get set to `yes` once the user enters the Emergency Help menu
+* `emergency_numbers_requested` set to `yes` if the user requested emergency numbers
+* `question_general` used to keep track of general questions asked
+* `question_urgent` used to keep track of urgent questions asked
+* `aaq_faq_list_helpful` used to keep track of wether aaq list (page) was helpful
+* `aaq_faq_helpful` used to keep track of wether specific aaq FAQ was helpful
 
 ## Connections to other stacks
 
-* There is a scheduled reminder stack, still WIP
+* There is a scheduled reminder stack ("Topics no response followup") that has not been implemented yet
+* At the end of this flow, the users get handed over to the "Intro to human agent" flow
+
+## Global variables
+
+* `contentrepo_qa_token` used to auth api calls to CMS
+* `working_hours_start_day`the day of the week the helpdesk opens (note days of the week starts at Sunday being 1, and Saturday being 7)
+* `working_hours_end_day` the day of the week the helpdesk closes
+* `working_hours_start_hour` The hour that the helpdesk opens
+* `working_hours_end_hour`The hour that the helpdesk closes
+* `mc_ndoh_hub_token` used to authenticate calls to AAQ via MomConnect NDOH hub
+* `turn_qa_token` used to authenticate calls to the Turn instance
+
+## Content dependencies
+
+* `mnch_onboarding_error_handling_button`
+* `plat_help_welcome_help_centre_first`
+* `plat_help_welcome_help_centre_returning`
+* `plat_help_medical_emergency`
+* `plat_help_emergency_contact_numbers`
+* `plat_help_search_myhealth_prompt`
+* `plat_help_technical_issue_prompt`
+* `plat_help_invalid_media_catch_all`
+* `plat_help_general_catch_all`
+* `plat_help_medical_emergency_secondary`
+* `plat_help_faqs_topics_list`
+* `plat_help_faq_topic_content`
+* `plat_help_acknowledgement_positive_`
+* `plat_help_acknowledgement_negative_`
+* `plat_help_help_desk_entry_offline`
+* `plat_help_acknowledgement_negative_`
 
 ```stack
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "i2h")
@@ -67,19 +105,21 @@ card InitHelpdesk, then: SetWorkingHours do
   current_day = weekday(current_date)
   current_hour = hour(current_date)
   log("Current hour = @current_hour")
-  # opening_day = global.settings.working_hours_start_day
-  # closing_day = global.settings.working_hours_end_day
+  opening_day = global.settings.working_hours_start_day
+  closing_day = global.settings.working_hours_end_day
 end
 
 # Weekdays starts on Sunday(1) and ends on Saturday(7)
-card SetWorkingHours when has_member([1, 7], current_day), then: CheckWorkingHours do
-  log("Day @current_day is on a weekend")
+card SetWorkingHours when current_day < opening_day or current_day > closing_day,
+  then: CheckWorkingHours do
+  log("Helpdesk is closed on this day")
+  helpdesk_open = false
   opening_hour = 00
   closing_hour = 00
 end
 
 card SetWorkingHours, then: CheckWorkingHours do
-  log("Day @current_day is a week day")
+  log("Helpdesk is open on this day.  Setting up opening hours")
   opening_hour = global.settings.working_hours_start_hour
   closing_hour = global.settings.working_hours_end_hour
   log("Opening hour is @opening_hour, closing hour is @closing_hour")
@@ -88,13 +128,13 @@ end
 card CheckWorkingHours when current_hour >= opening_hour and current_hour < closing_hour,
   then: CheckForNavBypass do
   helpdesk_open = true
-  log("Helpdesk open")
+  log("Helpdesk open at this time")
 end
 
 card CheckWorkingHours when current_hour < opening_hour or current_hour >= closing_hour,
   then: CheckForNavBypass do
   helpdesk_open = false
-  log("Helpdesk closed")
+  log("Helpdesk closed at this time")
 end
 
 card CheckWorkingHours do

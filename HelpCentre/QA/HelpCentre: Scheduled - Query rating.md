@@ -4,6 +4,23 @@ This flow follows up with the user, whether their query was successfully resolve
 
 It only runs if the helpdesk agent does not run the 'Agent Wrap up' flow manually after the call
 
+## Contact fields
+
+* `returning_help_centre_user`, This field gets set to `true` once the user visits the HelpCentre.
+* `nav_bypass`, This is a mechanism to bypass the main menu and send the user straight to a sub section
+
+## Flow results
+
+* `emergency_help`, Get set to `yes` once the user enters the Emergency Help menu
+
+## Connections to other stacks
+
+* There is a scheduled reminder stack, still WIP
+
+## Global variables
+
+## Content dependencies
+
 ```stack
 card FetchError, then: ScheduledQueryRating do
   # Fetch and store the error message, so that we don't need to do it for every error card

@@ -2,6 +2,23 @@
 
 This is a very basic flow, that sends a greeting message to the user, including the name of the help centre agent that is assigned to their query
 
+## Contact fields
+
+## Flow results
+
+## Connections to other stacks
+
+* This stack is manually run by the operator
+
+## Global variables
+
+* `turn_qa_token` used to authenticate calls to the Turn API.  In this case, to query and label a specific message
+* `contentrepo_qa_token` used to auth calls to CMS API
+
+## Content dependencies
+
+* `plat_help_agent_greeting`
+
 <!-- { section: "94da26e4-fe2e-42e6-b986-bdc0536cd585", x: 500, y: 48} -->
 
 ```stack
