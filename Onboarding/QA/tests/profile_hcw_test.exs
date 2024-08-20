@@ -204,7 +204,7 @@ defmodule ProfileHCWTest do
   end
 
   describe "profile hcw" do
-    test "25% complete" do
+    test "100% complete" do
       setup_flow()
       |> FlowTester.set_contact_properties(%{"year_of_birth" => "", "province" => "", "area_type" => "", "gender" => ""}) # Basic Information
       |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information

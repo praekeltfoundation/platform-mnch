@@ -4,33 +4,7 @@
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "nurse")
 
 ```
-# Onboarding: Profile Pregnant Nurse
 
-This is the onboarding flow specifically for pregnant nurses, indicating that they need to receive both content for pregnant women, and for HCW's.
-
-All content for this flow is stored in the ContentRepo. This stack uses the ContentRepo API to fetch the content, referencing it by the slug. A list of these slugs can be found at the end of this stack.
-
-## Contact fields
-
-* `profile_type`, writes the value `pregnant_nurse`
-* `profile_completion`, how complete the profile is. One of `20%`, `40%`, `60%`, `80%`, `100%`
-* `checkpoint`, the checkpoint for where we are in this flow. One of `pregnant_nurse_profile_20`, `pregnant_nurse_profile_40`, `pregnant_nurse_profile_60`, `pregnant_nurse_profile_80`, `pregnant_nurse_profile_100`
-
-## Flow results
-
-* `profile_completion`, How much of the profile they have completed e.g. 0%, 25%, 50%, 100%
-* `questioning_info_gathering`, Whether they questioned why we need certain information. One of `yes` or `no`.
-
-## Connections to other stacks
-
-* Basic Profile Questions
-* Personal Profile Questions 
-* Nurse Profile Questions
-* Menu Redirect
-
-## Setup
-
-Here we do any setup and fetching of values before we start the flow.
 ```stack
 card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
@@ -226,11 +200,93 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
 
   message = content_data.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(&1 != "")
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(&1 != "")
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  pregnancy_questions_answers = [
+    contact.pregnancy_status,
+    contact.edd,
+    contact.pregnancy_sentiment
+  ]
+
+  pregnancy_questions_answers_count = count(pregnancy_questions_answers)
+
+  pregnancy_questions_list =
+    filter(
+      pregnancy_questions_answers,
+      &has_text(&1)
+    )
+
+  pregnancy_questions_count = count(pregnancy_questions_list)
+
+  pregnancy_questions_value = "@pregnancy_questions_count/@pregnancy_questions_answers_count"
+
+  employment_questions_answers = [
+    contact.occupational_role,
+    contact.facility_type,
+    contact.professional_support
+  ]
+
+  employment_questions_answers_count = count(employment_questions_answers)
+
+  employment_questions_list =
+    filter(
+      employment_questions_answers,
+      &(&1 != "")
+    )
+
+  employment_questions_count = count(employment_questions_list)
+
+  employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
+
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+
+  message_text =
+    substitute(message_text, "{employment_info_count}", "@employment_questions_value")
 end
 
 card DisplayPregnantNurse40, then: PregnantNurse40Error do
   buttons(BasicProfileQuestions: "@button_labels[0]") do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -281,11 +337,93 @@ card PregnantNurse60, then: PregnantNurse60Error do
   message = content_data.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
 
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(&1 != "")
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(&1 != "")
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  pregnancy_questions_answers = [
+    contact.pregnancy_status,
+    contact.edd,
+    contact.pregnancy_sentiment
+  ]
+
+  pregnancy_questions_answers_count = count(pregnancy_questions_answers)
+
+  pregnancy_questions_list =
+    filter(
+      pregnancy_questions_answers,
+      &has_text(&1)
+    )
+
+  pregnancy_questions_count = count(pregnancy_questions_list)
+
+  pregnancy_questions_value = "@pregnancy_questions_count/@pregnancy_questions_answers_count"
+
+  employment_questions_answers = [
+    contact.occupational_role,
+    contact.facility_type,
+    contact.professional_support
+  ]
+
+  employment_questions_answers_count = count(employment_questions_answers)
+
+  employment_questions_list =
+    filter(
+      employment_questions_answers,
+      &(&1 != "")
+    )
+
+  employment_questions_count = count(employment_questions_list)
+
+  employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
+
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+
+  message_text =
+    substitute(message_text, "{employment_info_count}", "@employment_questions_value")
+
   buttons(
     PersonalProfileQuestions: "@button_labels[0]",
     WhyPersonalInfo: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -306,7 +444,7 @@ end
 card PersonalProfileQuestions, then: PregnantNurse80 do
   write_result("questioning_info_gathering", "no")
   log("Go to Personal Questions")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
 end
 
 ```
@@ -456,6 +594,88 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
 
   message = content_data.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(&1 != "")
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(&1 != "")
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  pregnancy_questions_answers = [
+    contact.pregnancy_status,
+    contact.edd,
+    contact.pregnancy_sentiment
+  ]
+
+  pregnancy_questions_answers_count = count(pregnancy_questions_answers)
+
+  pregnancy_questions_list =
+    filter(
+      pregnancy_questions_answers,
+      &has_text(&1)
+    )
+
+  pregnancy_questions_count = count(pregnancy_questions_list)
+
+  pregnancy_questions_value = "@pregnancy_questions_count/@pregnancy_questions_answers_count"
+
+  employment_questions_answers = [
+    contact.occupational_role,
+    contact.facility_type,
+    contact.professional_support
+  ]
+
+  employment_questions_answers_count = count(employment_questions_answers)
+
+  employment_questions_list =
+    filter(
+      employment_questions_answers,
+      &(&1 != "")
+    )
+
+  employment_questions_count = count(employment_questions_list)
+
+  employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
+
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+
+  message_text =
+    substitute(message_text, "{employment_info_count}", "@employment_questions_value")
 end
 
 # Text only
@@ -465,7 +685,7 @@ card DisplayPregnantNurse80 when contact.data_preference == "text only",
     LOCAssessment: "@button_labels[0]",
     RemindLater: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -486,7 +706,7 @@ card DisplayPregnantNurse80, then: PregnantNurse80Error do
     RemindLater: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -505,8 +725,8 @@ end
 
 ```stack
 card LOCAssessment, then: PregnantNurse100 do
-  ## TODO
-  text("LOC Assessment")
+  log("DMA Form")
+  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
 end
 
 ```
@@ -540,6 +760,88 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
 
   message = content_data.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(&1 != "")
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(&1 != "")
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  pregnancy_questions_answers = [
+    contact.pregnancy_status,
+    contact.edd,
+    contact.pregnancy_sentiment
+  ]
+
+  pregnancy_questions_answers_count = count(pregnancy_questions_answers)
+
+  pregnancy_questions_list =
+    filter(
+      pregnancy_questions_answers,
+      &has_text(&1)
+    )
+
+  pregnancy_questions_count = count(pregnancy_questions_list)
+
+  pregnancy_questions_value = "@pregnancy_questions_count/@pregnancy_questions_answers_count"
+
+  employment_questions_answers = [
+    contact.occupational_role,
+    contact.facility_type,
+    contact.professional_support
+  ]
+
+  employment_questions_answers_count = count(employment_questions_answers)
+
+  employment_questions_list =
+    filter(
+      employment_questions_answers,
+      &(&1 != "")
+    )
+
+  employment_questions_count = count(employment_questions_list)
+
+  employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
+
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+
+  message_text =
+    substitute(message_text, "{employment_info_count}", "@employment_questions_value")
 end
 
 # Text only
@@ -550,7 +852,7 @@ card DisplayPregnantNurse100 when contact.data_preference == "text only",
     TopicsForYou: "@button_labels[1]",
     MainMenu: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -572,7 +874,7 @@ card DisplayPregnantNurse100, then: PregnantNurse100Error do
     MainMenu: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message_text")
   end
 end
 
