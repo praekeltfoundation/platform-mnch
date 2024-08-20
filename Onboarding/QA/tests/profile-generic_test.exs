@@ -67,13 +67,28 @@ defmodule ProfileGenericTest do
       ]
     }
 
+    remind_later = %ContentPage{
+      slug: "mnch_onboarding_remind_later",
+      title: "Remind_later",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*All good. I’ll check in with you about this another time.* 🗓️\r\n\r\nFor now, I recommend having a look at some of the most popular topics on {MyHealth}.\r\n\r\n👇🏽 What do you want to do now?",
+          buttons: [
+            %Btn.Next{title: "See popular topics"}
+          ]
+        }
+      ]
+    }
+
     assert :ok =
              FakeCMS.add_pages(wh_pid, [
                %Index{slug: "test", title: "test"},
                error_pg,
                progress_30_generic,
                progress_100_generic,
-               why_personal_info_1
+               why_personal_info_1,
+               remind_later
              ])
 
     # Return the adapter.
@@ -238,7 +253,7 @@ defmodule ProfileGenericTest do
         step
       end.()
       |> receive_message(%{
-        text: "🟩🟩🟩🟩🟩🟩🟩🟩\n\nYour profile is 100% complete" <> _,
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
         buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
       })
     end
