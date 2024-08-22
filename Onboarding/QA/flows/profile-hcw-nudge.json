@@ -1366,12 +1366,12 @@
           "id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7",
           "label": "English",
           "variant": null,
-          "bcp_47": null,
-          "iso_639_3": "eng"
+          "iso_639_3": "eng",
+          "bcp_47": null
         }
       ],
-      "interaction_timeout": 300,
       "first_block_id": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+      "interaction_timeout": 300,
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"

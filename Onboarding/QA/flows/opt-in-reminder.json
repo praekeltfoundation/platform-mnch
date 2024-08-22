@@ -1983,12 +1983,12 @@
           "id": "35f3f30b-8f4a-4d3e-b3e6-d2e6619a7489",
           "label": "English",
           "variant": null,
-          "bcp_47": null,
-          "iso_639_3": "eng"
+          "iso_639_3": "eng",
+          "bcp_47": null
         }
       ],
-      "interaction_timeout": 300,
       "first_block_id": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
+      "interaction_timeout": 300,
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"

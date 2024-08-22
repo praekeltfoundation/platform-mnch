@@ -10084,12 +10084,12 @@
           "id": "afb5776b-2f69-4ab4-a50f-ef5ac8c1b8c7",
           "label": "English",
           "variant": null,
-          "bcp_47": null,
-          "iso_639_3": "eng"
+          "iso_639_3": "eng",
+          "bcp_47": null
         }
       ],
-      "interaction_timeout": 300,
       "first_block_id": "41d507ee-6324-5463-a333-c0db9c5264dc",
+      "interaction_timeout": 300,
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"

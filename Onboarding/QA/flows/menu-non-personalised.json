@@ -9623,12 +9623,12 @@
           "id": "69e2ce66-f330-44a1-9d8c-3bc591f38929",
           "label": "English",
           "variant": null,
-          "bcp_47": null,
-          "iso_639_3": "eng"
+          "iso_639_3": "eng",
+          "bcp_47": null
         }
       ],
-      "interaction_timeout": 300,
       "first_block_id": "41d507ee-6324-5463-a333-c0db9c5264dc",
+      "interaction_timeout": 300,
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"

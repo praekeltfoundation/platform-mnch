@@ -1023,12 +1023,12 @@
           "id": "cba79b3c-1a34-46cd-8f0a-308af3a50104",
           "label": "English",
           "variant": null,
-          "bcp_47": null,
-          "iso_639_3": "eng"
+          "iso_639_3": "eng",
+          "bcp_47": null
         }
       ],
-      "interaction_timeout": 300,
       "first_block_id": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+      "interaction_timeout": 300,
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"

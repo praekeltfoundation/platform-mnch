@@ -1,5 +1,5 @@
 {
-  "name": "Onboarding: Profile Classifier",
+  "name": "Default name",
   "description": "Default description",
   "uuid": "bd590c1e-7a06-49ed-b3a1-623cf94e8644",
   "resources": [
@@ -12,10 +12,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "d64f227f-eec0-4ff7-af9b-5c841071d4ec"
+      "uuid": "52a6e218-4f43-459b-92c0-cf9761d48951"
     },
     {
       "values": [
@@ -26,10 +26,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "161d81fc-1eba-48e8-896a-75c46b1b6898"
+      "uuid": "d03c3e3b-a7a5-4adc-ac70-3642325190fa"
     },
     {
       "values": [
@@ -40,10 +40,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "a152ad12-9d53-44b6-8596-e2948fc7ba3f"
+      "uuid": "654ac8f6-16a6-4def-9944-cf2e677bf8eb"
     },
     {
       "values": [
@@ -54,10 +54,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "05ea702e-e1a2-4508-a6ee-da171afd1efd"
+      "uuid": "78815881-e596-43c0-b4db-99faba79fee1"
     },
     {
       "values": [
@@ -68,10 +68,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "b28cb2d7-b5cd-447b-91b2-ac5f012597dc"
+      "uuid": "cc3a87df-817d-48cc-9b68-f9de4d4cd639"
     },
     {
       "values": [
@@ -82,10 +82,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "9e5682d6-270c-4234-876b-bac39a90f2dd"
+      "uuid": "58a452d2-813b-48dc-87ad-6e7b7a0005a9"
     },
     {
       "values": [
@@ -96,7 +96,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         },
         {
           "value": "@message.message",
@@ -105,10 +105,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "2fcbadaf-43ae-451d-9de2-215de33da0f8"
+      "uuid": "28f1cf79-7aa5-4ac8-b9ea-9984d3acbcf3"
     },
     {
       "values": [
@@ -119,10 +119,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "43f424aa-03d0-4588-ba4c-605dd1d9ca4a"
+      "uuid": "7ae5568d-567c-4660-8c6c-5aeb20b6ebca"
     },
     {
       "values": [
@@ -133,10 +133,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "acf78900-7ed7-4ab2-963a-5304f873fd63"
+      "uuid": "c7916938-a10c-43f3-adcc-24f22520537d"
     },
     {
       "values": [
@@ -147,10 +147,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "f25ade0d-e91d-46f0-86be-d6995d2a9f3b"
+      "uuid": "e3d0aafd-a42b-4b6c-b46c-caac9ad0e20c"
     },
     {
       "values": [
@@ -161,10 +161,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "094e8f51-a30a-42f7-ae3d-8b17152b713a"
+      "uuid": "eeaa6d59-c503-441c-8128-214ef4ee17b5"
     },
     {
       "values": [
@@ -175,10 +175,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "234afd45-7c8a-4c8d-bb27-61d5cef2a41c"
+      "uuid": "74106ddb-4929-462a-b031-a586bf88432a"
     },
     {
       "values": [
@@ -189,10 +189,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "bcef43e5-4cbb-473e-8011-7443ebff6c52"
+      "uuid": "6d45aace-f66d-4665-8ae6-00cccc726c78"
     },
     {
       "values": [
@@ -203,10 +203,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "d71fe079-4820-442e-af39-2d666e0be8d0"
+      "uuid": "99559cab-bf9c-4626-8a5a-3588962139a8"
     },
     {
       "values": [
@@ -217,10 +217,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "004bad99-4b15-47bc-977e-c2cbcddd3023"
+      "uuid": "91b37921-2b37-4023-9706-3af9b80aab3a"
     },
     {
       "values": [
@@ -231,7 +231,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         },
         {
           "value": "@message.message",
@@ -240,10 +240,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "9b48e735-78a3-4c91-ae07-28d1439aba84"
+      "uuid": "1dd3c173-8ae0-4974-a5a7-188031e61b59"
     },
     {
       "values": [
@@ -254,10 +254,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "0e3cd36d-f3a4-4f09-bdda-93e5ca3831ab"
+      "uuid": "80dea49d-7398-4a8d-8939-b227ca7561c4"
     },
     {
       "values": [
@@ -268,10 +268,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "98cd6eaf-2f1f-4dff-b655-bcfcda83a9ed"
+      "uuid": "38057ce3-de47-4397-baa5-eb63a39ca5b4"
     },
     {
       "values": [
@@ -282,10 +282,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "84e69e33-06ef-45ec-8a0b-fb5921ff8723"
+      "uuid": "92f6340c-343c-4dfc-899a-3dbc5ef946a1"
     },
     {
       "values": [
@@ -296,10 +296,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "bf9c4fc1-d89c-4d04-b6a3-3862f57da40a"
+      "uuid": "456ca269-494e-4bef-836b-a5e4fa65db37"
     },
     {
       "values": [
@@ -310,10 +310,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "078c1c23-1414-4ca4-b4b5-c18b1431388a"
+      "uuid": "9b1a7eb6-67f7-437b-bdf6-1d2a62189b80"
     },
     {
       "values": [
@@ -324,10 +324,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "487af98b-e747-4839-a1b6-d3b033d217d6"
+      "uuid": "946c344d-5d9e-4a87-9031-17b2d2e5925b"
     },
     {
       "values": [
@@ -338,10 +338,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "dce57c50-fd81-43f8-a82d-6dfde1cba997"
+      "uuid": "a3f88624-d071-4182-aec5-3be7003d8b5f"
     },
     {
       "values": [
@@ -352,10 +352,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "05ec3a66-9328-45fb-a137-496265df4f9a"
+      "uuid": "6724e943-7947-4b73-9b7e-2df430003972"
     },
     {
       "values": [
@@ -366,7 +366,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         },
         {
           "value": "@message.message",
@@ -375,10 +375,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "2cbdbfef-ef67-4215-acb3-ab4a4f71c908"
+      "uuid": "6f39a313-8317-4ed4-b2d2-4430042315d0"
     },
     {
       "values": [
@@ -389,10 +389,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "303ff7c9-c523-4e35-a60f-302d5fb9f465"
+      "uuid": "82f045f8-6b55-41ca-8add-645a0cb4229f"
     },
     {
       "values": [
@@ -403,10 +403,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "fc01fccd-efdc-4e15-8572-bda6b527fea7"
+      "uuid": "bceff09c-a985-42a8-ada9-2b81aacb8576"
     },
     {
       "values": [
@@ -417,10 +417,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "58f49ef2-b3d7-488f-bfdb-b5f9081bb9d8"
+      "uuid": "fd0fed7d-4860-4b00-a16f-5a385bc0f90f"
     },
     {
       "values": [
@@ -431,10 +431,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "249a38e9-7b55-4572-b567-ba30324fcc29"
+      "uuid": "84d36ec2-c309-4324-9b37-11d0e9f756ae"
     },
     {
       "values": [
@@ -445,10 +445,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "74888925-b5f0-41b5-8833-81b5c46cb5ae"
+      "uuid": "6d9640a8-f209-4c45-b73d-46d9296db30d"
     },
     {
       "values": [
@@ -459,10 +459,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "445e4021-62ea-44a2-8fe9-df6d8b6ad7f0"
+      "uuid": "cfc0d11a-b57a-42e2-9819-270bafdf7e9e"
     },
     {
       "values": [
@@ -473,10 +473,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "76ff76a7-4d99-4af4-a08f-6fae644696e0"
+      "uuid": "d9766c15-d0c1-4509-bf91-bc33ef94a518"
     },
     {
       "values": [
@@ -487,10 +487,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "fdc9bcb0-cfc2-46b1-a024-f7111892d680"
+      "uuid": "863779bf-da84-465b-b6b0-8aaf001fc640"
     },
     {
       "values": [
@@ -501,7 +501,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         },
         {
           "value": "@message.message",
@@ -510,10 +510,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "6bccf3a8-60fb-4904-b4b5-949b40d7fc0e"
+      "uuid": "cf55b1d1-7a6e-434f-877f-12faad28a816"
     },
     {
       "values": [
@@ -524,10 +524,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "9cf75458-97c6-4bad-b418-129011b46877"
+      "uuid": "840197b0-33d9-4d12-9c39-17e236a0748f"
     },
     {
       "values": [
@@ -538,10 +538,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "4445c399-5165-480e-bc69-2eb2bdc72899"
+      "uuid": "55ed5e8f-8165-4810-9589-3c11bfb89365"
     },
     {
       "values": [
@@ -552,10 +552,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "aedd8d11-cc6a-4db0-bc3e-b6b1cccac7d7"
+      "uuid": "20cc1266-5a5d-4606-b419-cea84d4c3909"
     },
     {
       "values": [
@@ -566,10 +566,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "840b77bd-1b5b-45f9-91dd-638daf0f69b9"
+      "uuid": "40c77e1e-870a-4902-a59c-ad0940a42de0"
     },
     {
       "values": [
@@ -580,10 +580,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "0f0b8851-d468-4a09-a032-c4b21d346b42"
+      "uuid": "ab157564-14c2-448d-97d7-538486085a89"
     },
     {
       "values": [
@@ -594,10 +594,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "14de3f09-cfc9-4877-96b2-0d9fe34a8241"
+      "uuid": "a08bc38e-e57d-48bb-9b52-38acee29fbb8"
     },
     {
       "values": [
@@ -608,10 +608,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "44d6a3c8-a2b9-458c-af6c-5ed3d6a94b06"
+      "uuid": "a29a1842-64e0-4107-8231-43fdc6b454bf"
     },
     {
       "values": [
@@ -622,10 +622,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "ff75e0d0-40b3-48a1-a76d-1a53bebb01a7"
+      "uuid": "8bbb7a5d-f58b-465c-8e44-38df669a4a68"
     },
     {
       "values": [
@@ -636,7 +636,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         },
         {
           "value": "@message.message",
@@ -645,10 +645,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "d1c39efc-203c-4ff1-a17d-38072a55631b"
+      "uuid": "2eee77b0-82e2-42fe-984c-3e4f2cebc67d"
     },
     {
       "values": [
@@ -659,10 +659,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "b29a82eb-d84d-4712-980c-72442f33527b"
+      "uuid": "aba86bfe-83ec-430c-9199-d05b55c8feac"
     },
     {
       "values": [
@@ -673,10 +673,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "0e6acf4b-bf2e-4086-a1c1-8cb66457ec22"
+      "uuid": "342df162-0aeb-4735-8506-ebb205f85790"
     },
     {
       "values": [
@@ -687,10 +687,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "0ff1afc2-4c70-40a0-bb05-c74812aed699"
+      "uuid": "eaaa9126-67a9-4d43-bb72-a4c89eb41099"
     },
     {
       "values": [
@@ -701,10 +701,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "56093f5a-564b-4540-8db4-d4662ca89555"
+      "uuid": "e5122aa3-b986-4373-ad90-088f2a3a37b6"
     },
     {
       "values": [
@@ -715,10 +715,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "5ca694f0-159b-4150-9f5e-070d2b05ecfc"
+      "uuid": "d900a781-6edb-4105-9651-218d5e0840bd"
     },
     {
       "values": [
@@ -729,10 +729,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "e517a3fa-a2d3-4ea0-996e-e4d584f3339c"
+      "uuid": "b2b49501-cc8a-469b-b6f1-58691b992d91"
     },
     {
       "values": [
@@ -743,10 +743,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "013331cb-b368-4dd7-8e66-940fa70a0c8e"
+      "uuid": "e450dfb0-2782-4d7a-bd68-c6905338bcf0"
     },
     {
       "values": [
@@ -757,10 +757,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "0dbaa464-a2ab-472f-a4fb-822db9121017"
+      "uuid": "0f88e5d2-06ef-4084-a42a-ab21a74ef00c"
     },
     {
       "values": [
@@ -771,7 +771,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         },
         {
           "value": "@message.message",
@@ -780,10 +780,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "c2acf683-1c83-4b45-85ed-8b0dd410b624"
+      "uuid": "c8b41cc8-5141-4944-98ed-5ed77175c4e3"
     },
     {
       "values": [
@@ -794,10 +794,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "3cd7f2b2-2972-442a-bd67-ba1d03964fe9"
+      "uuid": "260ea725-3ae5-4fdf-8822-f941d3254c5f"
     },
     {
       "values": [
@@ -808,10 +808,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "59451b7f-b0d2-4340-8ee4-b6704ec6a2c4"
+      "uuid": "1eb35e3f-6914-4d6d-852a-0f4f9f028ca6"
     },
     {
       "values": [
@@ -822,10 +822,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "cf614d5e-cf21-42c1-9b54-5f92ab4387d7"
+      "uuid": "de200ae6-8810-49a2-9fad-10c971f3c58c"
     },
     {
       "values": [
@@ -836,10 +836,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "c5bde227-7fdf-4e5d-abfe-526d72240e93"
+      "uuid": "aa7fb3ee-50cd-458f-aa1a-554bd0f1b52a"
     },
     {
       "values": [
@@ -850,10 +850,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "ad3519b4-0f53-41b2-9cb6-29704d3dc354"
+      "uuid": "3c24f517-310f-4dfa-a332-4fa8beeb94cb"
     },
     {
       "values": [
@@ -864,10 +864,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "7b238d12-08b1-4753-9f2b-42fca77c519b"
+      "uuid": "50b492ad-b56e-45b7-b8dd-dbee1339530f"
     },
     {
       "values": [
@@ -878,10 +878,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "15f421a0-14ed-4103-befe-42b929e634ba"
+      "uuid": "3b44fe65-5a4b-4695-86ee-10dad98dfe1e"
     },
     {
       "values": [
@@ -892,7 +892,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         },
         {
           "value": "@message_text",
@@ -901,10 +901,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "65c5adcd-c73d-4cfd-8241-16a1815f7942"
+      "uuid": "a49d4257-8776-4a7c-86e6-c6d97e88d4ac"
     },
     {
       "values": [
@@ -915,10 +915,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "2907ce0f-d207-436b-99e7-558f02e10c37"
+      "uuid": "5c7b8e1a-fd7e-48a3-b37a-e98edadda428"
     },
     {
       "values": [
@@ -929,10 +929,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "2dc07d26-537c-4acf-8e47-c8f0078a3afe"
+      "uuid": "b5cb54c2-546b-4c9a-8d28-4aefbb7540e9"
     },
     {
       "values": [
@@ -943,10 +943,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "0ac72624-eff6-4a50-abdf-7abd54be6a38"
+      "uuid": "e9912092-eefd-4607-b0b5-40961b1853c6"
     },
     {
       "values": [
@@ -957,10 +957,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "de3b7c4a-4d6d-4e80-aba5-c5d77e543d6b"
+      "uuid": "e078dd7e-46b6-4409-89cc-21eefebfa9c1"
     },
     {
       "values": [
@@ -971,10 +971,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "36328a49-16ea-4dde-a56c-06bc83d33e6b"
+      "uuid": "e9b68853-6e56-4854-a94a-60884c0db06c"
     },
     {
       "values": [
@@ -985,10 +985,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "57b26686-f226-421b-ae92-4c476694a06a"
+      "uuid": "eb40cf50-680e-44d1-b5ec-ef5389ce01eb"
     },
     {
       "values": [
@@ -999,10 +999,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "a5fb6fd3-8387-4436-9130-e0b600bd2c8f"
+      "uuid": "82edb84e-6334-4993-b7b6-605d9ba2d271"
     },
     {
       "values": [
@@ -1013,10 +1013,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "58e7c9b1-569b-4b20-b339-e4f376a5d450"
+      "uuid": "f34d690b-6a24-484e-83f8-8d613332680c"
     },
     {
       "values": [
@@ -1027,10 +1027,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f"
+          "language_id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8"
         }
       ],
-      "uuid": "07f8120b-2397-4c1e-b90f-c571c1f6a015"
+      "uuid": "11cd1f72-4ecf-4ed3-804e-6f22d529c741"
     }
   ],
   "flows": [
@@ -1052,7 +1052,7 @@
               "name": "Exit for go_to_next_case_condition_0",
               "config": {},
               "test": "contact.pregnancy_information",
-              "uuid": "d571a311-840f-4175-a2b6-73c9cdcde297",
+              "uuid": "86b2dbae-84a3-4ec5-9f2d-5c109682bbc8",
               "destination_block": "dc717f03-ffe7-599f-9c55-29a442f88f73",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1062,7 +1062,7 @@
               "name": "Exit for go_to_next_case_condition_1",
               "config": {},
               "test": "contact.info_for_health_professionals",
-              "uuid": "a0a4f365-783a-49e1-8048-7be079daaf8a",
+              "uuid": "7cf60880-4955-4a90-a63c-048125264178",
               "destination_block": "bc042614-b0b9-5a46-b0ce-52b3e716248f",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1072,7 +1072,7 @@
               "name": "Exit for go_to_next_case_condition_2",
               "config": {},
               "test": null,
-              "uuid": "a46e7606-2564-4ff8-b9e9-1c01d1409252",
+              "uuid": "35484f00-2dbd-4d27-bdd1-cfe806b659a7",
               "destination_block": "b5c1a59d-7864-5fcf-bcf4-6e61aacd2f66",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1086,7 +1086,7 @@
           "name": "go_to_next_case_condition_2_log",
           "type": "Core.Log",
           "config": {
-            "message": "d64f227f-eec0-4ff7-af9b-5c841071d4ec"
+            "message": "52a6e218-4f43-459b-92c0-cf9761d48951"
           },
           "tags": [],
           "uuid": "b5c1a59d-7864-5fcf-bcf4-6e61aacd2f66",
@@ -1102,7 +1102,7 @@
               "name": "go_to_next_case_condition_2_log",
               "config": {},
               "test": "",
-              "uuid": "249a2e77-04ab-4966-a487-185e8ee42f7a",
+              "uuid": "c1f94d0d-12d7-4cdf-814c-5904c1e00808",
               "destination_block": "1dd3ee66-476a-5890-8073-bdab8a87248f",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1159,7 +1159,7 @@
               "name": "go_to_next_case_condition_2_run_stack",
               "config": {},
               "test": "",
-              "uuid": "7c69daef-7b78-42db-859c-5488bd72c057",
+              "uuid": "1d7b18fb-ea03-4012-987b-e81fdc33fedc",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1200,7 +1200,7 @@
           "name": "go_to_next_case_condition_1_log",
           "type": "Core.Log",
           "config": {
-            "message": "161d81fc-1eba-48e8-896a-75c46b1b6898"
+            "message": "d03c3e3b-a7a5-4adc-ac70-3642325190fa"
           },
           "tags": [],
           "uuid": "bc042614-b0b9-5a46-b0ce-52b3e716248f",
@@ -1216,7 +1216,7 @@
               "name": "go_to_next_case_condition_1_log",
               "config": {},
               "test": "",
-              "uuid": "f09051e9-b78d-4e37-b392-7adc458119a5",
+              "uuid": "b62e90e2-e642-4fda-a5a5-406266c1fb4b",
               "destination_block": "155fc64c-5945-5738-9bff-de181c319d0e",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1273,7 +1273,7 @@
               "name": "go_to_next_case_condition_1_run_stack",
               "config": {},
               "test": "",
-              "uuid": "fc95c71c-33ed-4b99-8a08-4fdeebc2eeb5",
+              "uuid": "a8932860-a738-4f10-a426-20a884634b02",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1314,7 +1314,7 @@
           "name": "go_to_next_case_condition_0_log",
           "type": "Core.Log",
           "config": {
-            "message": "a152ad12-9d53-44b6-8596-e2948fc7ba3f"
+            "message": "654ac8f6-16a6-4def-9944-cf2e677bf8eb"
           },
           "tags": [],
           "uuid": "dc717f03-ffe7-599f-9c55-29a442f88f73",
@@ -1330,7 +1330,7 @@
               "name": "go_to_next_case_condition_0_log",
               "config": {},
               "test": "",
-              "uuid": "2a70ea58-bf29-4a5c-8031-205fe1d4a97b",
+              "uuid": "c184ed6c-159c-4145-ba5a-3e1b53fcbd1c",
               "destination_block": "304d5f27-a539-5c76-9aa8-093b8a0aeece",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1387,7 +1387,7 @@
               "name": "go_to_next_case_condition_0_run_stack",
               "config": {},
               "test": "",
-              "uuid": "2108917d-c7a2-46fe-a149-ab203f484b1a",
+              "uuid": "5860f598-c594-46f4-8861-e1a08e895165",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1447,7 +1447,7 @@
               "name": "Default exit to \"GoToNext\"",
               "config": {},
               "test": "",
-              "uuid": "cededf45-78c6-45b7-98c4-83da6e8df88a",
+              "uuid": "c6bbdee5-5970-4f82-8123-764a59c9faeb",
               "destination_block": "c0d842f9-417a-551f-a7ea-32fc26b55879",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1488,16 +1488,16 @@
           "name": "domains7_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "05ea702e-e1a2-4508-a6ee-da171afd1efd",
+            "prompt": "78815881-e596-43c0-b4db-99faba79fee1",
             "choices": [
               {
                 "name": "add_domain7",
-                "prompt": "b28cb2d7-b5cd-447b-91b2-ac5f012597dc",
+                "prompt": "cc3a87df-817d-48cc-9b68-f9de4d4cd639",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "go_to_next",
-                "prompt": "9e5682d6-270c-4234-876b-bac39a90f2dd",
+                "prompt": "58a452d2-813b-48dc-87ad-6e7b7a0005a9",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -1516,7 +1516,7 @@
               "name": "add_domain7",
               "config": {},
               "test": "block.value = \"add_domain7\"",
-              "uuid": "b58b64ff-1d4d-4174-86e0-134f0794215a",
+              "uuid": "e23bc78b-9196-4fcb-8548-b1abbf675f2f",
               "destination_block": "3edf4f22-c5f1-54a8-ade7-a5d83a8cdd3c",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1526,7 +1526,7 @@
               "name": "go_to_next",
               "config": {},
               "test": "block.value = \"go_to_next\"",
-              "uuid": "9fe408c6-3c33-45bc-8c1c-2e1e94d1e38f",
+              "uuid": "7af7cad1-deae-4dd8-ab92-3bbabd53883a",
               "destination_block": "c0d842f9-417a-551f-a7ea-32fc26b55879",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1536,7 +1536,7 @@
               "name": "domains7_error",
               "config": {},
               "test": "",
-              "uuid": "b1171c27-a32a-46f6-8460-95b4d3e49024",
+              "uuid": "39bff8fc-87f0-47cd-9657-c67d7119b171",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1587,7 +1587,7 @@
               "name": "Exit for domains7_branch_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "cb505c74-95f0-4c98-b9cc-7721bf7e7e35",
+              "uuid": "b73ba4cb-d336-4209-a56a-3ab1b118764d",
               "destination_block": "0e3d8f40-7aeb-541c-9315-23937cfcd254",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1597,7 +1597,7 @@
               "name": "Exit for domains7_branch_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "c0f527ac-8406-4e19-a031-58151341ecc9",
+              "uuid": "2337a8b2-51ac-4c6b-9376-adf6d3716e10",
               "destination_block": "30ea39f4-e197-5050-a2bf-f4c86c9ac957",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1625,7 +1625,7 @@
               "name": "page.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "6c8a9c8d-985c-48ba-b1ff-272107b95c22",
+              "uuid": "06571a94-0cee-46bf-86c7-212a117bb068",
               "destination_block": "ed0bcf09-6766-5f2d-82d8-90fd09a223b1",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1694,7 +1694,7 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "8effd498-763d-4d24-989a-7fd44d467fa6",
+              "uuid": "f4eefbd6-85d0-4c8b-9b97-1b4361468aa1",
               "destination_block": "ae8d0bfd-90e5-5b0f-bda0-c5be4ac854e5",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1735,16 +1735,16 @@
           "name": "domains7_branch_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "2fcbadaf-43ae-451d-9de2-215de33da0f8",
+            "prompt": "28f1cf79-7aa5-4ac8-b9ea-9984d3acbcf3",
             "choices": [
               {
                 "name": "add_domain7",
-                "prompt": "43f424aa-03d0-4588-ba4c-605dd1d9ca4a",
+                "prompt": "7ae5568d-567c-4660-8c6c-5aeb20b6ebca",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "go_to_next",
-                "prompt": "acf78900-7ed7-4ab2-963a-5304f873fd63",
+                "prompt": "c7916938-a10c-43f3-adcc-24f22520537d",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -1763,7 +1763,7 @@
               "name": "add_domain7",
               "config": {},
               "test": "block.value = \"add_domain7\"",
-              "uuid": "c42113b5-589d-49ba-ba89-ddc0c47ead33",
+              "uuid": "54c2df8b-6d86-4a0c-8a7f-26befe155f29",
               "destination_block": "3edf4f22-c5f1-54a8-ade7-a5d83a8cdd3c",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1773,7 +1773,7 @@
               "name": "go_to_next",
               "config": {},
               "test": "block.value = \"go_to_next\"",
-              "uuid": "034966ea-3774-47bf-91b6-a2ca68adfe77",
+              "uuid": "a3124623-2e04-4856-8373-2a1bc5f3d250",
               "destination_block": "c0d842f9-417a-551f-a7ea-32fc26b55879",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1783,7 +1783,7 @@
               "name": "Default exit to \"Domains7Error\"",
               "config": {},
               "test": "",
-              "uuid": "d114df84-dd5f-483a-8e65-dec501c7a2a5",
+              "uuid": "f55e6db0-1e10-4c02-a5bb-1acaa09bf816",
               "destination_block": "9c8acd07-00d9-50d6-b191-518a73bf2f31",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1825,16 +1825,16 @@
           "name": "domains7_branch_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "f25ade0d-e91d-46f0-86be-d6995d2a9f3b",
+            "prompt": "e3d0aafd-a42b-4b6c-b46c-caac9ad0e20c",
             "choices": [
               {
                 "name": "add_domain7",
-                "prompt": "094e8f51-a30a-42f7-ae3d-8b17152b713a",
+                "prompt": "eeaa6d59-c503-441c-8128-214ef4ee17b5",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "go_to_next",
-                "prompt": "234afd45-7c8a-4c8d-bb27-61d5cef2a41c",
+                "prompt": "74106ddb-4929-462a-b031-a586bf88432a",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -1853,7 +1853,7 @@
               "name": "add_domain7",
               "config": {},
               "test": "block.value = \"add_domain7\"",
-              "uuid": "ff75c473-788d-4a80-a1cb-37923699e7ea",
+              "uuid": "31e539cb-7c22-4641-91b2-0c5a36461e8e",
               "destination_block": "3edf4f22-c5f1-54a8-ade7-a5d83a8cdd3c",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1863,7 +1863,7 @@
               "name": "go_to_next",
               "config": {},
               "test": "block.value = \"go_to_next\"",
-              "uuid": "30ceaa6d-1834-4033-b4a1-12add36899bc",
+              "uuid": "ef0d9665-e9ba-4f7e-947e-14fce2998e41",
               "destination_block": "c0d842f9-417a-551f-a7ea-32fc26b55879",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -1873,7 +1873,7 @@
               "name": "Default exit to \"Domains7Error\"",
               "config": {},
               "test": "",
-              "uuid": "6512cdcc-40ff-4c07-84cf-504b244a810f",
+              "uuid": "b1ead934-d851-4a69-8aa9-5d976bb35805",
               "destination_block": "9c8acd07-00d9-50d6-b191-518a73bf2f31",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1948,7 +1948,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "ac9e4dfa-6719-4fb7-8169-34cfd2f006f9",
+              "uuid": "52ff5893-5510-4f90-9cee-48fd35e122d4",
               "destination_block": "0fbcde9d-fcfc-58eb-97eb-28b4cf4d2298",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2003,7 +2003,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "1ec011d2-ca1e-442a-b4b6-0030c2c90886",
+              "uuid": "4b651775-5ef5-4f7b-a96a-e9f565283177",
               "destination_block": "82f74932-f138-5977-a486-77f8ee97e070",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2077,7 +2077,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "7b6ca941-d68e-4033-a55d-73940d9fb417",
+              "uuid": "5565e691-8c45-4f85-9945-61c0715db1bd",
               "destination_block": "c74960f6-0f26-543a-a991-e569a542c89e",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2132,7 +2132,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "55e6d041-1a0d-4ff9-bb5f-e85359dbcd5f",
+              "uuid": "0d1d536b-59b7-406b-a2e3-00110eb6b015",
               "destination_block": "0591327d-58cd-52e9-ace9-a6794225fd38",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2187,7 +2187,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "4d46b4ca-9224-492a-82bd-58216b784f08",
+              "uuid": "c9aafb00-559f-47e2-a276-93636d925cad",
               "destination_block": "5ae81f33-6556-5088-bdb5-344acff67137",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2247,7 +2247,7 @@
               "name": "Default exit to \"Domains7\"",
               "config": {},
               "test": "",
-              "uuid": "2c7fdfd9-f0cf-4678-9e22-15ad261e4e0d",
+              "uuid": "a800c3bc-cb94-448f-9d15-5c7c2bbccc66",
               "destination_block": "703aab6b-90e8-5ee9-864a-0f8fafc6f209",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2288,16 +2288,16 @@
           "name": "domains6_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "bcef43e5-4cbb-473e-8011-7443ebff6c52",
+            "prompt": "6d45aace-f66d-4665-8ae6-00cccc726c78",
             "choices": [
               {
                 "name": "add_domain6",
-                "prompt": "d71fe079-4820-442e-af39-2d666e0be8d0",
+                "prompt": "99559cab-bf9c-4626-8a5a-3588962139a8",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains7",
-                "prompt": "004bad99-4b15-47bc-977e-c2cbcddd3023",
+                "prompt": "91b37921-2b37-4023-9706-3af9b80aab3a",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -2316,7 +2316,7 @@
               "name": "add_domain6",
               "config": {},
               "test": "block.value = \"add_domain6\"",
-              "uuid": "46dafd8b-96c7-436c-94a5-4e7f8e34dfbb",
+              "uuid": "17c3f657-291c-4c8f-86a8-cba62672a171",
               "destination_block": "6aeb38e8-b0f9-52c0-b062-99406a25cc40",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -2326,7 +2326,7 @@
               "name": "domains7",
               "config": {},
               "test": "block.value = \"domains7\"",
-              "uuid": "49493c40-3d36-4e79-9ae2-c197f9b30fa7",
+              "uuid": "4cc6bedc-ddf9-4634-8fa4-0f2b34edc45a",
               "destination_block": "703aab6b-90e8-5ee9-864a-0f8fafc6f209",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -2336,7 +2336,7 @@
               "name": "domains6_error",
               "config": {},
               "test": "",
-              "uuid": "d0aa2986-fd7d-46e8-9ab5-00af8be7c22a",
+              "uuid": "80e8a8a5-1ac1-494e-80dd-abb3dd4e606e",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2387,7 +2387,7 @@
               "name": "Exit for domains6_branch_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "ddf252e3-16e5-4903-b98f-968e649bd2fb",
+              "uuid": "c434350c-59dc-465c-90b0-ed0cb21fd5ba",
               "destination_block": "478301b2-2b63-5ac6-93ae-c3296a52e057",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -2397,7 +2397,7 @@
               "name": "Exit for domains6_branch_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "29e216a4-9595-4447-9ef7-b670cdf87aab",
+              "uuid": "fe2bd29a-f0db-42ee-91f3-767c5d699a09",
               "destination_block": "12ec3c45-fe69-545c-ae36-02f12e27e855",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -2425,7 +2425,7 @@
               "name": "page.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "9f08fb59-ce8f-4542-aa79-4bde2c686b25",
+              "uuid": "1bd03517-79b2-47f0-bdb0-a85ca18a6601",
               "destination_block": "85bf3688-14fa-57bd-b5eb-d4b3df711458",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2494,7 +2494,7 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "6ff63656-4bb0-4f18-b332-6fe76afcef4a",
+              "uuid": "354e7d48-65bd-41e2-acc9-b21463992d27",
               "destination_block": "4c860c38-d197-590a-a699-363d7986f7a2",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2535,16 +2535,16 @@
           "name": "domains6_branch_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "9b48e735-78a3-4c91-ae07-28d1439aba84",
+            "prompt": "1dd3c173-8ae0-4974-a5a7-188031e61b59",
             "choices": [
               {
                 "name": "add_domain6",
-                "prompt": "0e3cd36d-f3a4-4f09-bdda-93e5ca3831ab",
+                "prompt": "80dea49d-7398-4a8d-8939-b227ca7561c4",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains7",
-                "prompt": "98cd6eaf-2f1f-4dff-b655-bcfcda83a9ed",
+                "prompt": "38057ce3-de47-4397-baa5-eb63a39ca5b4",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -2563,7 +2563,7 @@
               "name": "add_domain6",
               "config": {},
               "test": "block.value = \"add_domain6\"",
-              "uuid": "ba8bc2b3-515f-45bd-a44b-b50dfe577820",
+              "uuid": "1ff1c942-3265-465e-abd3-0e90fb659f74",
               "destination_block": "6aeb38e8-b0f9-52c0-b062-99406a25cc40",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -2573,7 +2573,7 @@
               "name": "domains7",
               "config": {},
               "test": "block.value = \"domains7\"",
-              "uuid": "efa81c50-b7f0-40a1-9f2b-722f0654f0e2",
+              "uuid": "19489aa2-45ec-4967-8ec2-ebb99723a394",
               "destination_block": "703aab6b-90e8-5ee9-864a-0f8fafc6f209",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -2583,7 +2583,7 @@
               "name": "Default exit to \"Domains6Error\"",
               "config": {},
               "test": "",
-              "uuid": "d4099ce8-7423-4bcb-aa02-58727b879742",
+              "uuid": "6be2d4e1-3b2e-462a-994c-1d28fc04cb46",
               "destination_block": "282e1a98-8ef4-5b1d-9980-6ab86c3b80f2",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2625,16 +2625,16 @@
           "name": "domains6_branch_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "84e69e33-06ef-45ec-8a0b-fb5921ff8723",
+            "prompt": "92f6340c-343c-4dfc-899a-3dbc5ef946a1",
             "choices": [
               {
                 "name": "add_domain6",
-                "prompt": "bf9c4fc1-d89c-4d04-b6a3-3862f57da40a",
+                "prompt": "456ca269-494e-4bef-836b-a5e4fa65db37",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains7",
-                "prompt": "078c1c23-1414-4ca4-b4b5-c18b1431388a",
+                "prompt": "9b1a7eb6-67f7-437b-bdf6-1d2a62189b80",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -2653,7 +2653,7 @@
               "name": "add_domain6",
               "config": {},
               "test": "block.value = \"add_domain6\"",
-              "uuid": "62fc2b51-fb1d-4b02-950f-aa1da349d282",
+              "uuid": "500542dd-479f-462e-b840-6d5edca0a7b0",
               "destination_block": "6aeb38e8-b0f9-52c0-b062-99406a25cc40",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -2663,7 +2663,7 @@
               "name": "domains7",
               "config": {},
               "test": "block.value = \"domains7\"",
-              "uuid": "2bec0d4a-e387-4e2b-bd24-d1cb6587581b",
+              "uuid": "a6540e33-b608-45ec-92b9-eb521facbbe1",
               "destination_block": "703aab6b-90e8-5ee9-864a-0f8fafc6f209",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -2673,7 +2673,7 @@
               "name": "Default exit to \"Domains6Error\"",
               "config": {},
               "test": "",
-              "uuid": "6d61ea34-59f6-4b82-b9ae-410c3e589cd3",
+              "uuid": "2632e48f-31e7-41ae-9f0b-72991730a9a1",
               "destination_block": "282e1a98-8ef4-5b1d-9980-6ab86c3b80f2",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2748,7 +2748,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "e0c68b08-dcf7-4188-9002-7637f80598c4",
+              "uuid": "97e4d408-3216-4c62-b16f-a923159d88fe",
               "destination_block": "1f96e9e2-63c7-5143-be23-ea5112986a87",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2803,7 +2803,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "9e63f92b-ee95-4cb0-add5-f320ccde9be2",
+              "uuid": "d308f9a8-61f8-4dfa-b33d-39a3124881b5",
               "destination_block": "98680256-76ff-5bfd-a0fd-a746866ae55d",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2877,7 +2877,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "7cb298ae-2978-4c98-962a-475fe7989fdb",
+              "uuid": "ebd5843f-3f9e-4e00-8ba0-fca7e94cdbea",
               "destination_block": "de0a6572-3326-5a8f-92c4-88e3137b4f6b",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2932,7 +2932,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "472f7afd-f858-4e1c-a4c5-ad000ea1585d",
+              "uuid": "196e5c28-98f9-4fac-b2ee-a816b6178f73",
               "destination_block": "6db197a1-b65d-512d-a1df-98cda90bab6e",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2987,7 +2987,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "779e7af7-015f-4956-ade3-4d445671fe72",
+              "uuid": "4bc89364-e432-4415-9cac-f7ef2b6ab092",
               "destination_block": "f77802ed-8b66-59a1-a918-6c548df3089a",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3047,7 +3047,7 @@
               "name": "Default exit to \"Domains6\"",
               "config": {},
               "test": "",
-              "uuid": "9e583da7-3bfb-45d1-b6f4-9031b8cb089b",
+              "uuid": "9e06f090-59e3-4f12-bf4c-aa68d10cc81d",
               "destination_block": "442b5165-206d-52c3-8c34-f29c04e5a995",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3088,16 +3088,16 @@
           "name": "domains5_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "487af98b-e747-4839-a1b6-d3b033d217d6",
+            "prompt": "946c344d-5d9e-4a87-9031-17b2d2e5925b",
             "choices": [
               {
                 "name": "add_domain5",
-                "prompt": "dce57c50-fd81-43f8-a82d-6dfde1cba997",
+                "prompt": "a3f88624-d071-4182-aec5-3be7003d8b5f",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains6",
-                "prompt": "05ec3a66-9328-45fb-a137-496265df4f9a",
+                "prompt": "6724e943-7947-4b73-9b7e-2df430003972",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -3116,7 +3116,7 @@
               "name": "add_domain5",
               "config": {},
               "test": "block.value = \"add_domain5\"",
-              "uuid": "30f39e65-f1ca-4bfb-b53e-d72da36aab4b",
+              "uuid": "78bb5dc2-dd6b-4ec4-af65-f4f218a2d0ac",
               "destination_block": "b866df7d-e00e-5e27-9df6-6fe195e9cc07",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3126,7 +3126,7 @@
               "name": "domains6",
               "config": {},
               "test": "block.value = \"domains6\"",
-              "uuid": "0b911d7c-9e5b-4665-ab4b-3d0791acf2e7",
+              "uuid": "abf8be1b-2b65-4021-92c2-a7b3d2bffc6c",
               "destination_block": "442b5165-206d-52c3-8c34-f29c04e5a995",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3136,7 +3136,7 @@
               "name": "domains5_error",
               "config": {},
               "test": "",
-              "uuid": "674d5b15-9d96-447f-8cd7-69d06c0cc4e7",
+              "uuid": "e741bb6e-cceb-480c-9286-2f7169cf8e39",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3187,7 +3187,7 @@
               "name": "Exit for domains5_branch_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "c3e8a503-0545-43ca-b4d6-82e5d4a2f17e",
+              "uuid": "592e0b15-cd74-4c81-9f78-056cfcfaf9b3",
               "destination_block": "36d0c75f-49e5-5d0b-bef4-8c5f4705d85e",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3197,7 +3197,7 @@
               "name": "Exit for domains5_branch_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "5e1712b7-ae7b-439d-baf3-ff3a87299dbb",
+              "uuid": "2032e4a2-7bf2-47c3-87bc-6d04095aaeb4",
               "destination_block": "073e9c15-ed8c-5acc-89e9-19821f6567b4",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3225,7 +3225,7 @@
               "name": "page.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "006df2b8-b523-4ada-82fa-656717bbcbfd",
+              "uuid": "68966cfd-3b1d-47da-b9be-401cec077f2b",
               "destination_block": "85b25fa5-a7eb-5f46-8463-351d3096f36f",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3294,7 +3294,7 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "791b1f98-ea37-4d9d-9471-df3219c378f4",
+              "uuid": "04138416-bf09-4c19-acc8-011c252a5b8c",
               "destination_block": "84d02607-7d17-56a2-960b-595dbf26f663",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3335,16 +3335,16 @@
           "name": "domains5_branch_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "2cbdbfef-ef67-4215-acb3-ab4a4f71c908",
+            "prompt": "6f39a313-8317-4ed4-b2d2-4430042315d0",
             "choices": [
               {
                 "name": "add_domain5",
-                "prompt": "303ff7c9-c523-4e35-a60f-302d5fb9f465",
+                "prompt": "82f045f8-6b55-41ca-8add-645a0cb4229f",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains6",
-                "prompt": "fc01fccd-efdc-4e15-8572-bda6b527fea7",
+                "prompt": "bceff09c-a985-42a8-ada9-2b81aacb8576",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -3363,7 +3363,7 @@
               "name": "add_domain5",
               "config": {},
               "test": "block.value = \"add_domain5\"",
-              "uuid": "d4394b3e-b826-4fb8-a060-e9f2eca37f8f",
+              "uuid": "6184d501-7edf-431a-927c-65a83d563e2c",
               "destination_block": "b866df7d-e00e-5e27-9df6-6fe195e9cc07",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3373,7 +3373,7 @@
               "name": "domains6",
               "config": {},
               "test": "block.value = \"domains6\"",
-              "uuid": "ece6d8e7-d9b1-46d0-a72e-999586c78bf0",
+              "uuid": "baec4fa6-9a8c-4b89-b52f-56065ea483b4",
               "destination_block": "442b5165-206d-52c3-8c34-f29c04e5a995",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3383,7 +3383,7 @@
               "name": "Default exit to \"Domains5Error\"",
               "config": {},
               "test": "",
-              "uuid": "cfa551a7-a271-4210-a0be-9e2e3103b45b",
+              "uuid": "3c5b9b42-dd28-4623-a2fd-0262f733e623",
               "destination_block": "a7cf5060-3908-58c3-ae8a-39c9515d9ae5",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3425,16 +3425,16 @@
           "name": "domains5_branch_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "58f49ef2-b3d7-488f-bfdb-b5f9081bb9d8",
+            "prompt": "fd0fed7d-4860-4b00-a16f-5a385bc0f90f",
             "choices": [
               {
                 "name": "add_domain5",
-                "prompt": "249a38e9-7b55-4572-b567-ba30324fcc29",
+                "prompt": "84d36ec2-c309-4324-9b37-11d0e9f756ae",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains6",
-                "prompt": "74888925-b5f0-41b5-8833-81b5c46cb5ae",
+                "prompt": "6d9640a8-f209-4c45-b73d-46d9296db30d",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -3453,7 +3453,7 @@
               "name": "add_domain5",
               "config": {},
               "test": "block.value = \"add_domain5\"",
-              "uuid": "e7133b90-a318-4ede-a81c-9adaf88c5a77",
+              "uuid": "e9b18cd6-9dbb-46f5-abb4-f5484e40eb63",
               "destination_block": "b866df7d-e00e-5e27-9df6-6fe195e9cc07",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3463,7 +3463,7 @@
               "name": "domains6",
               "config": {},
               "test": "block.value = \"domains6\"",
-              "uuid": "be47272b-b19e-4633-9667-50aa5fa138a3",
+              "uuid": "91b65b43-4f87-42f1-a325-0478f922e8f7",
               "destination_block": "442b5165-206d-52c3-8c34-f29c04e5a995",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3473,7 +3473,7 @@
               "name": "Default exit to \"Domains5Error\"",
               "config": {},
               "test": "",
-              "uuid": "6bbfd088-6957-4691-a266-aa1475b43d4c",
+              "uuid": "4d8211b3-5ba2-4f12-b825-880f4f4ac98a",
               "destination_block": "a7cf5060-3908-58c3-ae8a-39c9515d9ae5",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3548,7 +3548,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "395f2c84-146b-4114-acf1-d147d967cf8e",
+              "uuid": "ab0e67c1-a0c1-4be8-b5ec-a0f27dc55eb6",
               "destination_block": "8b7777de-9989-5d92-8b50-b6eb4fc7e9c0",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3603,7 +3603,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "5e7306db-a70a-458c-a266-eb7694d21684",
+              "uuid": "a82226c7-bef8-4a7c-b79e-2e663519f4fd",
               "destination_block": "e4eb8860-af7f-58c7-bcb1-3f627cb92bc8",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3677,7 +3677,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "dc7eb742-2e2e-4ef1-b8cb-808c4623fa7b",
+              "uuid": "722d516d-bc17-4896-8748-a6dcb4825866",
               "destination_block": "dc2b456f-1859-50ba-92e9-01c541de5613",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3732,7 +3732,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "9c32b506-15f3-4b98-8fc9-3f82b0a48acc",
+              "uuid": "bc456cbb-f1ed-4965-9b35-3f66b9edc0a2",
               "destination_block": "d4649eb0-4e4d-560e-8569-291e481fc608",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3787,7 +3787,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "06dea641-5ea3-4eaf-8131-5aa26b1a4874",
+              "uuid": "616aca5b-bdb5-4471-bd7d-b7bef5ddb218",
               "destination_block": "050e64e0-d15f-556f-a647-3285f6ff6030",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3847,7 +3847,7 @@
               "name": "Default exit to \"Domains5\"",
               "config": {},
               "test": "",
-              "uuid": "8be27165-cea3-4315-adcc-7382a9297a71",
+              "uuid": "7ed1e7f5-2a08-41c5-bc1f-c2e25801131d",
               "destination_block": "5765703d-ddc3-5876-8d42-5070e1e2d29e",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3888,16 +3888,16 @@
           "name": "domains4_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "445e4021-62ea-44a2-8fe9-df6d8b6ad7f0",
+            "prompt": "cfc0d11a-b57a-42e2-9819-270bafdf7e9e",
             "choices": [
               {
                 "name": "add_domain4",
-                "prompt": "76ff76a7-4d99-4af4-a08f-6fae644696e0",
+                "prompt": "d9766c15-d0c1-4509-bf91-bc33ef94a518",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains5",
-                "prompt": "fdc9bcb0-cfc2-46b1-a024-f7111892d680",
+                "prompt": "863779bf-da84-465b-b6b0-8aaf001fc640",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -3916,7 +3916,7 @@
               "name": "add_domain4",
               "config": {},
               "test": "block.value = \"add_domain4\"",
-              "uuid": "5a5cb8fe-43eb-47f4-8e05-ffd3327f2079",
+              "uuid": "83ca3369-e9bd-40ad-8e1e-529ac6e4af08",
               "destination_block": "3bf0a049-1686-5815-8454-6b88f8e0964f",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3926,7 +3926,7 @@
               "name": "domains5",
               "config": {},
               "test": "block.value = \"domains5\"",
-              "uuid": "b2fca90b-d71f-48a9-aa63-0c7090d976ea",
+              "uuid": "53bc421a-966a-4204-be27-e4151a76cd6f",
               "destination_block": "5765703d-ddc3-5876-8d42-5070e1e2d29e",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3936,7 +3936,7 @@
               "name": "domains4_error",
               "config": {},
               "test": "",
-              "uuid": "08156794-15f4-4360-a372-d6e613e5ed25",
+              "uuid": "4468a0cc-c8e0-4dd2-b32f-054f32b2e157",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3987,7 +3987,7 @@
               "name": "Exit for domains4_branch_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "8906c83c-edeb-4c2a-ab35-ac111dbc1a6f",
+              "uuid": "5129bf6c-80d7-4630-96ae-09bf32b0ae3f",
               "destination_block": "90455464-f76e-5a2a-82ac-7033161e5c39",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -3997,7 +3997,7 @@
               "name": "Exit for domains4_branch_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "bcaaf913-b58c-40ed-817f-3c56db238780",
+              "uuid": "16ac0d4e-abd3-4af8-b389-7c13107712b6",
               "destination_block": "9bd71c14-23a5-5d74-b935-06ea26146a84",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4025,7 +4025,7 @@
               "name": "page.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "8e9a8b3e-a2a5-466c-85f3-689e49cfd0b7",
+              "uuid": "747e971f-2ef4-412d-ab94-92e1ba6feb10",
               "destination_block": "f1b20787-b89c-5df1-90b5-a26d7c888016",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4094,7 +4094,7 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "96b92600-644f-4266-913e-4ca9ed145449",
+              "uuid": "aecd783d-348f-4c40-a86e-1c661b83f7b4",
               "destination_block": "38c44303-bef7-5a20-af09-30da03f10ff2",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4135,16 +4135,16 @@
           "name": "domains4_branch_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "6bccf3a8-60fb-4904-b4b5-949b40d7fc0e",
+            "prompt": "cf55b1d1-7a6e-434f-877f-12faad28a816",
             "choices": [
               {
                 "name": "add_domain4",
-                "prompt": "9cf75458-97c6-4bad-b418-129011b46877",
+                "prompt": "840197b0-33d9-4d12-9c39-17e236a0748f",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains5",
-                "prompt": "4445c399-5165-480e-bc69-2eb2bdc72899",
+                "prompt": "55ed5e8f-8165-4810-9589-3c11bfb89365",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -4163,7 +4163,7 @@
               "name": "add_domain4",
               "config": {},
               "test": "block.value = \"add_domain4\"",
-              "uuid": "25a5df81-3c3e-4819-af72-d681d69e0444",
+              "uuid": "b3bf4202-2e33-4062-984a-3c8cfb18a266",
               "destination_block": "3bf0a049-1686-5815-8454-6b88f8e0964f",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4173,7 +4173,7 @@
               "name": "domains5",
               "config": {},
               "test": "block.value = \"domains5\"",
-              "uuid": "8a1637b1-ff22-48ff-a1ff-6a85ac74b027",
+              "uuid": "0279d0da-262d-4403-a084-b11f44b7063a",
               "destination_block": "5765703d-ddc3-5876-8d42-5070e1e2d29e",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4183,7 +4183,7 @@
               "name": "Default exit to \"Domains4Error\"",
               "config": {},
               "test": "",
-              "uuid": "f228cb8b-e453-40e6-a7cd-42db99aad64f",
+              "uuid": "90b3e4d6-2178-4796-a60b-202ee89b94c6",
               "destination_block": "d4ba3156-8a9c-5a5e-a2ce-1195dbafd778",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4225,16 +4225,16 @@
           "name": "domains4_branch_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "aedd8d11-cc6a-4db0-bc3e-b6b1cccac7d7",
+            "prompt": "20cc1266-5a5d-4606-b419-cea84d4c3909",
             "choices": [
               {
                 "name": "add_domain4",
-                "prompt": "840b77bd-1b5b-45f9-91dd-638daf0f69b9",
+                "prompt": "40c77e1e-870a-4902-a59c-ad0940a42de0",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains5",
-                "prompt": "0f0b8851-d468-4a09-a032-c4b21d346b42",
+                "prompt": "ab157564-14c2-448d-97d7-538486085a89",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -4253,7 +4253,7 @@
               "name": "add_domain4",
               "config": {},
               "test": "block.value = \"add_domain4\"",
-              "uuid": "05fcd2b2-9149-422d-868f-d7c5ab538738",
+              "uuid": "3e9bdd7e-583f-462f-9d4c-af8e4e449cb8",
               "destination_block": "3bf0a049-1686-5815-8454-6b88f8e0964f",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4263,7 +4263,7 @@
               "name": "domains5",
               "config": {},
               "test": "block.value = \"domains5\"",
-              "uuid": "877de1a4-f08e-4115-a879-858fdbd2c536",
+              "uuid": "d3b28137-6ca9-44db-a970-c82fbcf43f39",
               "destination_block": "5765703d-ddc3-5876-8d42-5070e1e2d29e",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4273,7 +4273,7 @@
               "name": "Default exit to \"Domains4Error\"",
               "config": {},
               "test": "",
-              "uuid": "675aa053-5946-40f4-8280-105eceee38fd",
+              "uuid": "cdbe9b0c-d71c-4496-9589-4c0ad6707305",
               "destination_block": "d4ba3156-8a9c-5a5e-a2ce-1195dbafd778",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4348,7 +4348,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "a44eed60-53db-4d1e-9a45-50edf4b1b1ef",
+              "uuid": "e50fa666-e533-498e-b4f9-c629a654968c",
               "destination_block": "152de0b6-284f-5619-b7a4-c2af42a008b0",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4403,7 +4403,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "95b1ab60-2a32-4db6-9d66-e4b758a3810d",
+              "uuid": "6d83fff9-dd8e-48fb-850f-b25ea543e75b",
               "destination_block": "58b59fbb-48b7-5372-9c39-ef4054d49b74",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4477,7 +4477,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "e5449230-d238-4ba8-aaa6-73991c01df20",
+              "uuid": "e51c4df1-cdbf-41f9-94a2-5d38a589b58b",
               "destination_block": "e20c2754-75a4-55a2-9f15-44f74a2bc171",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4532,7 +4532,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "9c791d79-5e3d-4d76-8cf6-6e4884d8bc19",
+              "uuid": "2d78114a-f643-4168-98a5-1788c5b1da40",
               "destination_block": "f25d5e2b-d41d-5dfd-939c-a92a68524e80",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4587,7 +4587,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "e4e46a8d-7e3b-44be-beec-c0c65626e3df",
+              "uuid": "b08c61b9-f8cd-4ac9-9afa-ae7be3fc6e90",
               "destination_block": "6dd572be-539d-5349-b8aa-c7c9508d3a7e",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4647,7 +4647,7 @@
               "name": "Default exit to \"Domains4\"",
               "config": {},
               "test": "",
-              "uuid": "fb4cf822-9d18-4256-a451-ecd7d3247406",
+              "uuid": "c3666c28-2135-4590-8f08-2cb4cf384f73",
               "destination_block": "d8334007-dc9b-57d7-8f1a-09c63b97ceb2",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4688,16 +4688,16 @@
           "name": "domains3_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "14de3f09-cfc9-4877-96b2-0d9fe34a8241",
+            "prompt": "a08bc38e-e57d-48bb-9b52-38acee29fbb8",
             "choices": [
               {
                 "name": "add_domain3",
-                "prompt": "44d6a3c8-a2b9-458c-af6c-5ed3d6a94b06",
+                "prompt": "a29a1842-64e0-4107-8231-43fdc6b454bf",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains4",
-                "prompt": "ff75e0d0-40b3-48a1-a76d-1a53bebb01a7",
+                "prompt": "8bbb7a5d-f58b-465c-8e44-38df669a4a68",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -4716,7 +4716,7 @@
               "name": "add_domain3",
               "config": {},
               "test": "block.value = \"add_domain3\"",
-              "uuid": "8bd4bd2e-9eb2-42c8-8aca-a563627de17d",
+              "uuid": "13f94ab2-5d62-400e-9cf3-57cd4e717018",
               "destination_block": "69de33e2-8e99-5a59-af60-7a89b3056879",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4726,7 +4726,7 @@
               "name": "domains4",
               "config": {},
               "test": "block.value = \"domains4\"",
-              "uuid": "e381015a-34a5-4b5c-be6b-f9bf3ad59d41",
+              "uuid": "3c7c7465-7689-43a7-a590-4f85f8f904bc",
               "destination_block": "d8334007-dc9b-57d7-8f1a-09c63b97ceb2",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4736,7 +4736,7 @@
               "name": "domains3_error",
               "config": {},
               "test": "",
-              "uuid": "85e23559-9425-4297-bf3c-a6955a31ad0b",
+              "uuid": "3828443e-719a-4ae1-80fb-747a4ed7a55f",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4787,7 +4787,7 @@
               "name": "Exit for domains3_branch_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "762e4306-5701-4875-adf1-87313e100653",
+              "uuid": "d3bf28ec-e1ed-4705-9d06-124487f0836d",
               "destination_block": "1755c371-b954-5285-909f-78431bd62a4f",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4797,7 +4797,7 @@
               "name": "Exit for domains3_branch_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "0fc4b2c1-4bc9-495b-9543-ed22b6169bc5",
+              "uuid": "8385d61d-9599-4a59-ac88-128df0e0d953",
               "destination_block": "b3885a0b-56ae-5bd4-92e1-ddf95c361e19",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4825,7 +4825,7 @@
               "name": "page.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "41437c39-0afa-49e0-93be-50cf2ab52a73",
+              "uuid": "d2356041-14cb-4d38-94ba-66956638e051",
               "destination_block": "857d6d34-9b60-5644-b0b3-282cd8fd1262",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4894,7 +4894,7 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "948c6a65-2034-4566-b2f2-a32b7808063b",
+              "uuid": "054b9a33-d449-4cec-9381-e7bb70281db2",
               "destination_block": "c0d530f1-32ce-595a-ab4e-a9ad964db0d0",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4935,16 +4935,16 @@
           "name": "domains3_branch_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "d1c39efc-203c-4ff1-a17d-38072a55631b",
+            "prompt": "2eee77b0-82e2-42fe-984c-3e4f2cebc67d",
             "choices": [
               {
                 "name": "add_domain3",
-                "prompt": "b29a82eb-d84d-4712-980c-72442f33527b",
+                "prompt": "aba86bfe-83ec-430c-9199-d05b55c8feac",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains4",
-                "prompt": "0e6acf4b-bf2e-4086-a1c1-8cb66457ec22",
+                "prompt": "342df162-0aeb-4735-8506-ebb205f85790",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -4963,7 +4963,7 @@
               "name": "add_domain3",
               "config": {},
               "test": "block.value = \"add_domain3\"",
-              "uuid": "5edb534e-7026-4ed5-9d76-aebaeb6174f2",
+              "uuid": "6e5f26bf-8c35-46a7-bb0a-7f6b0888800f",
               "destination_block": "69de33e2-8e99-5a59-af60-7a89b3056879",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4973,7 +4973,7 @@
               "name": "domains4",
               "config": {},
               "test": "block.value = \"domains4\"",
-              "uuid": "6951b5a4-cdbe-4876-93f2-940f5a5225d2",
+              "uuid": "c7a7300d-87bd-45c7-8087-9e9ce5a6b29b",
               "destination_block": "d8334007-dc9b-57d7-8f1a-09c63b97ceb2",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -4983,7 +4983,7 @@
               "name": "Default exit to \"Domains3Error\"",
               "config": {},
               "test": "",
-              "uuid": "12a97a32-97c8-4474-b28f-b088df22e21e",
+              "uuid": "24578102-c404-410a-9411-e540e0cb24ca",
               "destination_block": "1e1f7ddf-d480-5c3d-919e-8aa3c8e94d18",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5025,16 +5025,16 @@
           "name": "domains3_branch_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "0ff1afc2-4c70-40a0-bb05-c74812aed699",
+            "prompt": "eaaa9126-67a9-4d43-bb72-a4c89eb41099",
             "choices": [
               {
                 "name": "add_domain3",
-                "prompt": "56093f5a-564b-4540-8db4-d4662ca89555",
+                "prompt": "e5122aa3-b986-4373-ad90-088f2a3a37b6",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains4",
-                "prompt": "5ca694f0-159b-4150-9f5e-070d2b05ecfc",
+                "prompt": "d900a781-6edb-4105-9651-218d5e0840bd",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -5053,7 +5053,7 @@
               "name": "add_domain3",
               "config": {},
               "test": "block.value = \"add_domain3\"",
-              "uuid": "a38bf4f1-1366-464b-8e38-82769769c6d6",
+              "uuid": "b5b11b50-6662-4b1f-8efe-797edea41ec6",
               "destination_block": "69de33e2-8e99-5a59-af60-7a89b3056879",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5063,7 +5063,7 @@
               "name": "domains4",
               "config": {},
               "test": "block.value = \"domains4\"",
-              "uuid": "69e06b47-97de-41e7-ae2f-6d9f7438d8a3",
+              "uuid": "26b8c986-2851-4003-8643-9a92e5ae5ce9",
               "destination_block": "d8334007-dc9b-57d7-8f1a-09c63b97ceb2",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5073,7 +5073,7 @@
               "name": "Default exit to \"Domains3Error\"",
               "config": {},
               "test": "",
-              "uuid": "2d229666-d869-4cbc-a714-721f11b18590",
+              "uuid": "f1e1d35a-c255-4249-b693-bbd397c4f5fc",
               "destination_block": "1e1f7ddf-d480-5c3d-919e-8aa3c8e94d18",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5148,7 +5148,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "d8ab4492-4a7b-4ad2-8fcc-5e700b069bf7",
+              "uuid": "ab92af7f-f068-49a2-ae17-3329a4f87305",
               "destination_block": "b29d0a46-2128-5525-ba04-4238bcfac2bb",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5203,7 +5203,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "73953584-9fb4-44d4-a5a5-9a9949e96d65",
+              "uuid": "175be354-6d22-4a50-bd3b-042116a4cfe7",
               "destination_block": "d74af221-3103-5495-a646-b83f0a64aceb",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5277,7 +5277,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "de9f89cd-a12f-40b4-9893-d976a50c0375",
+              "uuid": "464ecc86-5161-4149-be78-0a1e484fd848",
               "destination_block": "5c661d32-26fc-5e69-bc1b-21461e38ff3b",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5332,7 +5332,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "37fb909c-1991-4e62-b97e-a9df2af1bf59",
+              "uuid": "d4c59d6d-555c-46a3-a829-a7e374e58105",
               "destination_block": "3686a8ad-ba14-5150-b741-8efa5cb64099",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5387,7 +5387,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "94c0f852-bf90-4f9c-bfbc-689c6832d261",
+              "uuid": "4e4426d7-cef6-4f8f-a8a0-29973384a51a",
               "destination_block": "7500251e-961f-51d0-a894-743ddb070ee3",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5447,7 +5447,7 @@
               "name": "Default exit to \"Domains3\"",
               "config": {},
               "test": "",
-              "uuid": "9a975b3c-8cb6-402b-880f-c62b4fd058a3",
+              "uuid": "1c3f009c-7669-4423-a673-09efeaa873ec",
               "destination_block": "dcf8a79e-c621-57d5-8260-148558fefdd5",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5488,16 +5488,16 @@
           "name": "domains2_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "e517a3fa-a2d3-4ea0-996e-e4d584f3339c",
+            "prompt": "b2b49501-cc8a-469b-b6f1-58691b992d91",
             "choices": [
               {
                 "name": "add_domain2",
-                "prompt": "013331cb-b368-4dd7-8e66-940fa70a0c8e",
+                "prompt": "e450dfb0-2782-4d7a-bd68-c6905338bcf0",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains3",
-                "prompt": "0dbaa464-a2ab-472f-a4fb-822db9121017",
+                "prompt": "0f88e5d2-06ef-4084-a42a-ab21a74ef00c",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -5516,7 +5516,7 @@
               "name": "add_domain2",
               "config": {},
               "test": "block.value = \"add_domain2\"",
-              "uuid": "e250e57a-071e-43df-a917-a142a08341dd",
+              "uuid": "46c1ab02-30fa-4fb8-b65d-f4e70bb47ed0",
               "destination_block": "72fa86a2-5a57-5a65-8fab-382d7f573efe",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5526,7 +5526,7 @@
               "name": "domains3",
               "config": {},
               "test": "block.value = \"domains3\"",
-              "uuid": "75dfd659-1757-4ad5-b93e-e374d8aa6deb",
+              "uuid": "1c67a34e-d21e-4e21-bf22-63c0a0c51c1d",
               "destination_block": "dcf8a79e-c621-57d5-8260-148558fefdd5",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5536,7 +5536,7 @@
               "name": "domains2_error",
               "config": {},
               "test": "",
-              "uuid": "faacd8e4-77d0-46f5-902a-a5a8a6623b02",
+              "uuid": "84d8b682-ab46-4592-a48f-f20c298af706",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5587,7 +5587,7 @@
               "name": "Exit for domains2_branch_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "ee3fdd8a-5f31-48b5-aa5d-fc58f6277c5c",
+              "uuid": "0678ceae-d032-492b-918d-63923c92e635",
               "destination_block": "8058e608-c4c8-557f-863a-7f690b51062b",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5597,7 +5597,7 @@
               "name": "Exit for domains2_branch_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "4acb6f75-9456-4040-85e9-9c89e4312dbe",
+              "uuid": "06eebd56-ddc5-4c4e-8435-3045cab7b970",
               "destination_block": "476c522a-c462-5ebe-becf-205446c24bfb",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5625,7 +5625,7 @@
               "name": "page.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "e618d8e8-c6d2-40f5-88a9-d123f2fbf58d",
+              "uuid": "368e0175-7913-4c63-875f-5ba7a98f0eec",
               "destination_block": "3ad8b736-a87d-55bf-b76a-35d3a0144b3c",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5694,7 +5694,7 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "59b0a03e-fba6-4331-8e20-e025f65414f8",
+              "uuid": "2f6e6449-3435-45fd-b17e-7a4933117efc",
               "destination_block": "add8c1da-606a-5942-b8c5-b69d20ecb558",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5735,16 +5735,16 @@
           "name": "domains2_branch_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "c2acf683-1c83-4b45-85ed-8b0dd410b624",
+            "prompt": "c8b41cc8-5141-4944-98ed-5ed77175c4e3",
             "choices": [
               {
                 "name": "add_domain2",
-                "prompt": "3cd7f2b2-2972-442a-bd67-ba1d03964fe9",
+                "prompt": "260ea725-3ae5-4fdf-8822-f941d3254c5f",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains3",
-                "prompt": "59451b7f-b0d2-4340-8ee4-b6704ec6a2c4",
+                "prompt": "1eb35e3f-6914-4d6d-852a-0f4f9f028ca6",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -5763,7 +5763,7 @@
               "name": "add_domain2",
               "config": {},
               "test": "block.value = \"add_domain2\"",
-              "uuid": "8f8ece2f-0ae1-4920-89f9-06b408bbe490",
+              "uuid": "3b877b88-8827-4553-970b-f3e275dbd2d2",
               "destination_block": "72fa86a2-5a57-5a65-8fab-382d7f573efe",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5773,7 +5773,7 @@
               "name": "domains3",
               "config": {},
               "test": "block.value = \"domains3\"",
-              "uuid": "647b4399-d0f0-4d2d-b6fd-41953ea71e28",
+              "uuid": "11eb3d54-afb2-4c57-9efe-62207dab6678",
               "destination_block": "dcf8a79e-c621-57d5-8260-148558fefdd5",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5783,7 +5783,7 @@
               "name": "Default exit to \"Domains2Error\"",
               "config": {},
               "test": "",
-              "uuid": "b384d724-e831-4ab8-b8db-41469b388186",
+              "uuid": "bc8a3af5-4cd2-4839-aa08-8ad1f5c8388a",
               "destination_block": "e005acce-6824-5e7a-81de-d7ba2b67cc68",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5825,16 +5825,16 @@
           "name": "domains2_branch_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "cf614d5e-cf21-42c1-9b54-5f92ab4387d7",
+            "prompt": "de200ae6-8810-49a2-9fad-10c971f3c58c",
             "choices": [
               {
                 "name": "add_domain2",
-                "prompt": "c5bde227-7fdf-4e5d-abfe-526d72240e93",
+                "prompt": "aa7fb3ee-50cd-458f-aa1a-554bd0f1b52a",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains3",
-                "prompt": "ad3519b4-0f53-41b2-9cb6-29704d3dc354",
+                "prompt": "3c24f517-310f-4dfa-a332-4fa8beeb94cb",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -5853,7 +5853,7 @@
               "name": "add_domain2",
               "config": {},
               "test": "block.value = \"add_domain2\"",
-              "uuid": "0703d8c4-d49c-4e4e-b3d5-8257d7334ba0",
+              "uuid": "3d4ad95b-e8f2-44d5-ab7b-d24f321bd4b9",
               "destination_block": "72fa86a2-5a57-5a65-8fab-382d7f573efe",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5863,7 +5863,7 @@
               "name": "domains3",
               "config": {},
               "test": "block.value = \"domains3\"",
-              "uuid": "2f6f9800-e88e-4d22-8539-ecb31b12fb9b",
+              "uuid": "32e58376-0642-4a5c-aaec-fe735505257d",
               "destination_block": "dcf8a79e-c621-57d5-8260-148558fefdd5",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -5873,7 +5873,7 @@
               "name": "Default exit to \"Domains2Error\"",
               "config": {},
               "test": "",
-              "uuid": "ca1c48b1-2c9c-4ea1-825d-2432d3a5ed3a",
+              "uuid": "1cbcab7e-3f3a-44d8-943f-a1ef6b201038",
               "destination_block": "e005acce-6824-5e7a-81de-d7ba2b67cc68",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5948,7 +5948,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "ee394efb-64cb-4547-b088-5ab171756b85",
+              "uuid": "131e6ac0-1a48-4828-ac16-a2d652b2ee94",
               "destination_block": "19903e5c-fd0f-5581-a459-0bba41c78227",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6003,7 +6003,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "872c6c3c-fcd4-4d66-baf9-dbec431aced8",
+              "uuid": "1f97fef2-3ef3-48a9-8b00-4d765cb02082",
               "destination_block": "23c0b400-9012-55ec-8e8d-2e213df2b667",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6077,7 +6077,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "99671eb3-e966-4928-902d-ccca0dc9a9fa",
+              "uuid": "75d3e92d-aca0-4fd7-9d21-1c301f64d743",
               "destination_block": "a71a14e3-5156-551b-a372-ced57211e6e4",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6132,7 +6132,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "8a6ebdb5-da7b-4cdb-b7af-8124aa8b48d2",
+              "uuid": "f325e5a3-08fd-4cb4-a7e3-519ab321cbd5",
               "destination_block": "faf1ca88-c7aa-5888-b503-635110651b08",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6187,7 +6187,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "efb55cbd-1591-4b66-9403-7c73b0032979",
+              "uuid": "42660bfd-1622-4c6a-bb58-5fc127b61bd4",
               "destination_block": "b888b124-fcc2-5344-a44c-46a1a8b84ae3",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6228,11 +6228,11 @@
           "name": "domains1_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "7b238d12-08b1-4753-9f2b-42fca77c519b",
+            "prompt": "50b492ad-b56e-45b7-b8dd-dbee1339530f",
             "choices": [
               {
                 "name": "domains2",
-                "prompt": "15f421a0-14ed-4103-befe-42b929e634ba",
+                "prompt": "3b44fe65-5a4b-4695-86ee-10dad98dfe1e",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
@@ -6251,7 +6251,7 @@
               "name": "domains2",
               "config": {},
               "test": "block.value = \"domains2\"",
-              "uuid": "dae4376d-3c60-4e2f-ad3c-de406e1c85c8",
+              "uuid": "0905025e-bc42-4202-b9dc-bfa5cb9fbf44",
               "destination_block": "3b2587c8-e925-5aa4-b92b-002b9a36be8d",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -6261,7 +6261,7 @@
               "name": "domains1_error",
               "config": {},
               "test": "",
-              "uuid": "033e1bbc-c76b-4265-b6b0-a35e5a2a45d5",
+              "uuid": "f3fc6614-964b-4c2c-b166-e8fa786965f5",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6312,7 +6312,7 @@
               "name": "Exit for domains1_branch_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "54bc289f-9861-4fb5-8d1c-85227aaafea3",
+              "uuid": "95d27406-5974-4e5c-9ce0-0e796071b8f0",
               "destination_block": "2bd9efc6-e41a-5a41-bcdf-2b8c7392607d",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -6322,7 +6322,7 @@
               "name": "Exit for domains1_branch_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "46f4e53e-b2e1-401d-8e1c-1fcb1d8c6b76",
+              "uuid": "4f9e7e35-2ab5-402c-aac8-e19e67c90316",
               "destination_block": "97e63c99-b393-5ff8-a20c-226003cf9cd2",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -6350,7 +6350,7 @@
               "name": "page.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "364df6b3-b3cb-4c03-868b-55fc3148ba7f",
+              "uuid": "1ab667cb-3bc2-4535-9daf-f5c95aa791f6",
               "destination_block": "dcf56baf-8eb2-542a-93a9-fc023fee9244",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6419,7 +6419,7 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "5e2c5814-cee3-4a57-950c-1cd7f97bc2c6",
+              "uuid": "015de7e7-09b3-4c57-ae32-d074fe3e6987",
               "destination_block": "5f6b424f-d24a-5488-a548-878f602548f5",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6460,11 +6460,11 @@
           "name": "domains1_branch_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "65c5adcd-c73d-4cfd-8241-16a1815f7942",
+            "prompt": "a49d4257-8776-4a7c-86e6-c6d97e88d4ac",
             "choices": [
               {
                 "name": "domains2",
-                "prompt": "2907ce0f-d207-436b-99e7-558f02e10c37",
+                "prompt": "5c7b8e1a-fd7e-48a3-b37a-e98edadda428",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
@@ -6483,7 +6483,7 @@
               "name": "domains2",
               "config": {},
               "test": "block.value = \"domains2\"",
-              "uuid": "8ec71283-7967-46f1-ab98-a12975c5c8ee",
+              "uuid": "246eafbf-7dee-42c1-a3e4-408b4b1bf2a8",
               "destination_block": "3b2587c8-e925-5aa4-b92b-002b9a36be8d",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -6493,7 +6493,7 @@
               "name": "Default exit to \"Domains1Error\"",
               "config": {},
               "test": "",
-              "uuid": "cb8f2e1e-03e5-4c6d-89e4-9d5f3c97e50e",
+              "uuid": "10e76925-c393-4e5d-8e63-c3e568b72735",
               "destination_block": "04c3f6ca-b0ea-5440-ba62-321f8bb979df",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6535,11 +6535,11 @@
           "name": "domains1_branch_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "2dc07d26-537c-4acf-8e47-c8f0078a3afe",
+            "prompt": "b5cb54c2-546b-4c9a-8d28-4aefbb7540e9",
             "choices": [
               {
                 "name": "domains2",
-                "prompt": "0ac72624-eff6-4a50-abdf-7abd54be6a38",
+                "prompt": "e9912092-eefd-4607-b0b5-40961b1853c6",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
@@ -6558,7 +6558,7 @@
               "name": "domains2",
               "config": {},
               "test": "block.value = \"domains2\"",
-              "uuid": "fce8cc59-873e-4270-8c67-ff546dabc89d",
+              "uuid": "df0a6eae-b3d9-4a91-83a0-232b53d54c9c",
               "destination_block": "3b2587c8-e925-5aa4-b92b-002b9a36be8d",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -6568,7 +6568,7 @@
               "name": "Default exit to \"Domains1Error\"",
               "config": {},
               "test": "",
-              "uuid": "b0580a49-058a-4cb8-8a7b-0e61e90b1427",
+              "uuid": "5b0447f0-cce3-4d1e-b319-716752ca4c8a",
               "destination_block": "04c3f6ca-b0ea-5440-ba62-321f8bb979df",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6643,7 +6643,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "c99b36bf-86dd-49ef-b3f8-b18af5256ffc",
+              "uuid": "37fc3238-768f-433b-918e-6587260a02a5",
               "destination_block": "f616c241-c889-5f91-bf09-95794114fae0",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6698,7 +6698,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "9db700d7-fc7e-4688-956c-bffc6a6c426f",
+              "uuid": "082b5ff6-ef24-4615-a9db-26334930e047",
               "destination_block": "daa37c94-8f97-5aca-b9d2-1cf2984a28c5",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6772,7 +6772,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "7d81fd66-b9a3-491e-8587-e2de9e562f71",
+              "uuid": "0ea6bb53-6e5b-4ae7-815c-a35294994120",
               "destination_block": "189d350a-e30f-51a1-ae83-3210859623a0",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6827,7 +6827,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "1eb3f2a1-d7fa-47cc-a29b-c687fe9ec6e5",
+              "uuid": "55378764-3941-48e3-bfc5-f40f4d4fd26f",
               "destination_block": "e304f43a-cfde-5669-89e4-9771f1930fd8",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6882,7 +6882,7 @@
               "name": "substitute(message.message, \"{@username}\", \"@contact.name\")",
               "config": {},
               "test": "",
-              "uuid": "60efac4d-bfdd-425b-bff5-af45e90dd974",
+              "uuid": "13f95396-8aa0-48d4-9f99-ebc54d316c70",
               "destination_block": "80849b3f-3da4-5365-ad7c-b0f7b4a71a13",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6937,7 +6937,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "2d6fd2c3-c8d5-4333-8dc1-5f8e61c22f7f",
+              "uuid": "9dec6f92-7d10-49c9-9315-09a44d70bbaa",
               "destination_block": "fe6b22e9-5996-5199-81e1-c8eb4e2806d0",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -6987,7 +6987,7 @@
               "name": "Exit for name_validation_case_condition_0",
               "config": {},
               "test": "lower(\"@name\") == \"skip\"",
-              "uuid": "e26d8f58-b6a2-4c1e-a161-55c42ae2cb2e",
+              "uuid": "3de99d5c-0dc7-461c-8012-348a54f04d33",
               "destination_block": "bed479f2-adee-555f-9f9b-09515e3bf789",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -6997,7 +6997,7 @@
               "name": "Exit for name_validation_case_condition_1",
               "config": {},
               "test": "or(has_number(\"@name\") == true, len(\"@name\") > 20)",
-              "uuid": "cc1eca3f-ed38-4ae8-a1e4-feb54cc52afa",
+              "uuid": "fd38b11f-035d-4119-aa2a-efd5ef398ec6",
               "destination_block": "2cbd7a11-c3dc-52b5-bc34-1eae32b836ac",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -7007,7 +7007,7 @@
               "name": "Exit for name_validation_case_condition_2",
               "config": {},
               "test": null,
-              "uuid": "52c11730-58b0-44b6-8c68-1ece901423ee",
+              "uuid": "31d3bdad-0209-4f5f-9ec0-9ea4126bb0db",
               "destination_block": "bd36f181-3866-5bee-9c6e-9b6a64b646f9",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -7021,7 +7021,7 @@
           "name": "name_validation_case_condition_2_log",
           "type": "Core.Log",
           "config": {
-            "message": "de3b7c4a-4d6d-4e80-aba5-c5d77e543d6b"
+            "message": "e078dd7e-46b6-4409-89cc-21eefebfa9c1"
           },
           "tags": [],
           "uuid": "bd36f181-3866-5bee-9c6e-9b6a64b646f9",
@@ -7037,7 +7037,7 @@
               "name": "name_validation_case_condition_2_log",
               "config": {},
               "test": "",
-              "uuid": "c26e0a74-cf31-448d-9358-c1fbf4725d1e",
+              "uuid": "254b174e-a617-49e3-9cf1-b13ce347a04c",
               "destination_block": "95bc6414-6d54-5a7d-8c7f-09f76b2c634b",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7097,7 +7097,7 @@
               "name": "Default exit to \"Domains1\"",
               "config": {},
               "test": "",
-              "uuid": "afadf53b-1de7-48e4-a66a-85ec23ecb068",
+              "uuid": "4b796890-f5aa-41f2-9a3c-bedb73ac520e",
               "destination_block": "10fce9ec-a9f2-5270-83fd-d336177f767d",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7138,7 +7138,7 @@
           "name": "name",
           "type": "MobilePrimitives.OpenResponse",
           "config": {
-            "prompt": "36328a49-16ea-4dde-a56c-06bc83d33e6b",
+            "prompt": "e9b68853-6e56-4854-a94a-60884c0db06c",
             "max_response_characters": null
           },
           "tags": [],
@@ -7155,7 +7155,7 @@
               "name": "Default exit to \"NameValidation\"",
               "config": {},
               "test": "",
-              "uuid": "5f0f5287-737c-4555-8123-9ad91860cb01",
+              "uuid": "43f0d4fb-bc76-4d00-9fff-ccd0cba58336",
               "destination_block": "ff6de7fa-172e-5ea3-bcac-7a1d523eaa90",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7229,7 +7229,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "83872e03-a5fd-4b6f-b6d5-af53db0c6e4f",
+              "uuid": "b25efbcf-44a2-49e4-bf6c-9e1998502912",
               "destination_block": "060d5242-469c-536e-9bd9-e32b1d28b698",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7284,7 +7284,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "cb484855-5998-4517-be34-0d1eb78d6b99",
+              "uuid": "dc3f78b5-db6e-4639-ba7f-50084458f26e",
               "destination_block": "928ed522-0110-5fff-8dfd-f554ca0cd086",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7358,7 +7358,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "43e8a68d-04bf-46bc-9635-5e347a2417d4",
+              "uuid": "cb15ef5f-76df-4740-ab0d-e4137512b79f",
               "destination_block": "1944d276-1fd9-5639-a0e3-a7a886ac5614",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7413,7 +7413,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "ec3cb743-b022-48f0-aef5-0ca35a4fb4d8",
+              "uuid": "6bb118c1-fd13-473c-817e-674a96f4891e",
               "destination_block": "bc397978-c3c1-5755-aab3-7e61b0ca7c71",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7468,7 +7468,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "897683a2-3904-4178-b821-881e181ee0a6",
+              "uuid": "8b8c5d33-ac80-4f8e-853c-a2338b2887b5",
               "destination_block": "a90836b9-57ce-5c9f-89ea-bbefc49ad91f",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7509,16 +7509,16 @@
           "name": "name_validation_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "57b26686-f226-421b-ae92-4c476694a06a",
+            "prompt": "eb40cf50-680e-44d1-b5ec-ef5389ce01eb",
             "choices": [
               {
                 "name": "name",
-                "prompt": "a5fb6fd3-8387-4436-9130-e0b600bd2c8f",
+                "prompt": "82edb84e-6334-4993-b7b6-605d9ba2d271",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "domains1",
-                "prompt": "58e7c9b1-569b-4b20-b339-e4f376a5d450",
+                "prompt": "f34d690b-6a24-484e-83f8-8d613332680c",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
@@ -7537,7 +7537,7 @@
               "name": "name",
               "config": {},
               "test": "block.value = \"name\"",
-              "uuid": "f0493269-b105-44b9-8709-61b1c92f130d",
+              "uuid": "04c351d8-b936-474c-856a-ce85a79b36bb",
               "destination_block": "d32756d5-2820-5aa1-82d4-ad27e5380580",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -7547,7 +7547,7 @@
               "name": "domains1",
               "config": {},
               "test": "block.value = \"domains1\"",
-              "uuid": "1ca68686-39a8-49b1-bff7-c2d9159790f2",
+              "uuid": "f22a1c2c-79dc-4361-8750-b430ecb1d102",
               "destination_block": "10fce9ec-a9f2-5270-83fd-d336177f767d",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -7557,7 +7557,7 @@
               "name": "name_validation_case_condition_0",
               "config": {},
               "test": "",
-              "uuid": "739ece81-9653-4010-9fa4-a5993c597664",
+              "uuid": "7f4dc2c3-2002-4683-b920-56fb35c89f6e",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7632,7 +7632,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "599dfea9-cbcd-4a1c-8fbc-44c81430cba6",
+              "uuid": "07ec1dd8-cdec-4096-ba51-a52343861e4f",
               "destination_block": "71e53c09-ff55-566b-b5d6-84297b45fbe9",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7687,7 +7687,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "3d2fc10b-9e7b-48bb-b022-e2ab42bc3866",
+              "uuid": "4403fbf8-0793-4ebe-8e6a-f42a0cacbc70",
               "destination_block": "94724fdd-63bf-51a6-8017-71dd68eeedb4",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7761,7 +7761,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "91f363ca-e80e-44c9-b69e-58ec0fa0de74",
+              "uuid": "280f5ba1-7a67-4385-bc4e-6cf102c11096",
               "destination_block": "30534f96-e5ae-5665-8fbb-451a6b8d578c",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7816,7 +7816,7 @@
               "name": "page.body.body.text.value.message",
               "config": {},
               "test": "",
-              "uuid": "eb9c7c8e-6f2a-4df5-88a2-2dac8c2760b9",
+              "uuid": "0c3c7a0b-e2c6-4c4b-b46a-f628e59c9bc3",
               "destination_block": "9f3b9933-0f17-5db1-8a88-c74c54ce24b3",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7890,7 +7890,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "7d88e260-5fa1-4254-b050-0ad591751efc",
+              "uuid": "6e4dab99-a9b4-408f-9fd8-84b8e28301f7",
               "destination_block": "33988056-eaa1-5291-8fd2-f2c4fd36b94b",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -7945,7 +7945,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "efcb04ed-758e-45c5-96bf-00780ddeaf2b",
+              "uuid": "d91732c5-0815-4b04-9d2e-941b830dd4c0",
               "destination_block": "b69f91de-ce3e-5256-af53-0234167ba7cc",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8019,7 +8019,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "181b07ed-2da9-4465-beab-3ead4db8b399",
+              "uuid": "5ef7afd7-4fe5-460a-8c14-874412addd54",
               "destination_block": "b6da3d1a-0ef1-5c97-b924-32249055178f",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8074,7 +8074,7 @@
               "name": "page.body.body.text.value.message",
               "config": {},
               "test": "",
-              "uuid": "a5ba51e0-8977-4b06-b8a0-1afe8b2d0a45",
+              "uuid": "bb3b81a3-307c-4809-9fee-d6aba78d0adc",
               "destination_block": "d32756d5-2820-5aa1-82d4-ad27e5380580",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8134,7 +8134,7 @@
               "name": "Default exit to \"NameError\"",
               "config": {},
               "test": "",
-              "uuid": "1c7ba50e-ce4a-4e60-8db2-8b61ac2c352c",
+              "uuid": "042981f9-a547-486a-818a-476b78be2f2e",
               "destination_block": "9c7a19e5-3c8f-55bf-b71b-143eba8d70d1",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8208,7 +8208,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "f56ee175-8698-4557-b06a-6dc40fb71f68",
+              "uuid": "b99515ba-1e2f-450c-a580-a5e0daefc673",
               "destination_block": "b3d4494d-6566-55de-b7b1-3c9e3f9c190a",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8263,7 +8263,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "d3588b0e-9df0-403d-b520-104214869933",
+              "uuid": "8243dac0-eaaf-4ead-a2ad-ad7ea535fad1",
               "destination_block": "1a531e88-6d46-534e-a870-e1b995a25ec7",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8337,7 +8337,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "988ecb6b-4851-4a47-8796-721b19bcc49c",
+              "uuid": "e757fd24-011f-402a-b5e2-0db6dd2e8b23",
               "destination_block": "4a78f8d2-d2ba-5c22-a924-d3ad98055184",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8392,7 +8392,7 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "cfe26f2e-b45a-4a1b-aed0-fb418c3c6ab4",
+              "uuid": "83e46017-f6df-4acf-90cd-2a704a7c7fba",
               "destination_block": "c5d8e7bf-3c03-5301-bdd8-499c2cbcba15",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8433,7 +8433,7 @@
           "name": "name",
           "type": "MobilePrimitives.OpenResponse",
           "config": {
-            "prompt": "07f8120b-2397-4c1e-b90f-c571c1f6a015",
+            "prompt": "11cd1f72-4ecf-4ed3-804e-6f22d529c741",
             "max_response_characters": null
           },
           "tags": [],
@@ -8450,7 +8450,7 @@
               "name": "Default exit to \"NameValidation\"",
               "config": {},
               "test": "",
-              "uuid": "488e7ec9-a909-4705-a832-6959d170e72d",
+              "uuid": "dda9fc24-4bec-4442-a6a2-bc6be3ca41da",
               "destination_block": "ff6de7fa-172e-5ea3-bcac-7a1d523eaa90",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -8487,19 +8487,19 @@
           }
         }
       ],
-      "last_modified": "2024-06-04T08:48:59.336748Z",
-      "uuid": "7f0ec7c6-229a-41ca-8d14-2a3f4fdfe03f",
+      "last_modified": "2024-08-15T10:53:30.972855Z",
+      "uuid": "4e4bb5a3-9289-4e5a-b1a1-720ba7e6abf2",
       "languages": [
         {
-          "id": "4f95c5d7-96a4-4dbf-86ef-00ddf0bff70f",
+          "id": "ef15a2dd-759c-4c94-ac81-3327f9dd44d8",
           "label": "English",
           "variant": null,
-          "bcp_47": null,
-          "iso_639_3": "eng"
+          "iso_639_3": "eng",
+          "bcp_47": null
         }
       ],
-      "interaction_timeout": 300,
       "first_block_id": "4beff24a-56cc-55cc-99d2-0ee33ae71c2c",
+      "interaction_timeout": 300,
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"
