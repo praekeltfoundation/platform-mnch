@@ -26,7 +26,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 * Basic Profile Questions
 * Personal Profile Questions 
 * Nurse Profile Questions
-* Menu Redirecthttps://www.youtube.com/watch?v=qdfkP5PkBbo
+* Menu Redirect
 
 ## Setup
 

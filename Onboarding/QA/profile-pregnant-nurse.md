@@ -4,6 +4,32 @@
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "nurse")
 
 ```
+# Onboarding: Profile Pregnant Nurse
+This is the onboarding flow specifically for pregnant nurses, indicating that they need to receive both content for pregnant women, and for HCW's.
+
+All content for this flow is stored in the ContentRepo. This stack uses the ContentRepo API to fetch the content, referencing it by the slug. A list of these slugs can be found at the end of this stack.
+
+## Contact fields
+
+* `profile_type`, writes the value `pregnant_nurse`
+* `profile_completion`, how complete the profile is. One of `20%`, `40%`, `60%`, `80%`, `100%`
+* `checkpoint`, the checkpoint for where we are in this flow. One of `pregnant_nurse_profile_20`, `pregnant_nurse_profile_40`, `pregnant_nurse_profile_60`, `pregnant_nurse_profile_80`, `pregnant_nurse_profile_100`
+
+## Flow results
+
+* `profile_completion`, How much of the profile they have completed e.g. 0%, 25%, 50%, 100%
+* `questioning_info_gathering`, Whether they questioned why we need certain information. One of `yes` or `no`.
+
+## Connections to other stacks
+
+* Basic Profile Questions
+* Personal Profile Questions 
+* Nurse Profile Questions
+* Menu Redirect
+
+## Setup
+
+Here we do any setup and fetching of values before we start the flow.
 
 ```stack
 card FetchError, then: Checkpoint do
