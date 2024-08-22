@@ -359,7 +359,7 @@ defmodule ProfilePregnancyHealthTest do
       })
       |> FlowTester.send("25")
       |> receive_message(%{
-        text: edd_confirmation_text,
+        text: ^edd_confirmation_text,
         buttons: button_labels(["Yes, that's right", "Pick another date"])
       })
       |> FlowTester.send(button_label: "Yes, that's right")
