@@ -1705,8 +1705,10 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
     basic_questions_answers_count + personal_questions_answers_count +
       pregnancy_questions_answers_count
 
+  edd_string = if is_nil_or_empty("@contact.edd"), do: "Unknown", else: "@contact.edd"
+
   loading_message = substitute(message.message, "{name}", "@name")
-  loading_message = substitute(loading_message, "{edd}", "@contact.edd")
+  loading_message = substitute(loading_message, "{edd}", "@edd_string")
 
   loading_message =
     substitute(loading_message, "{profile_questions}", "@questions_count/@answers_count")
