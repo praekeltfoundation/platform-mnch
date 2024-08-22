@@ -279,6 +279,22 @@ defmodule ProfilePregnancyHealthTest do
     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
   end
 
+  defp init_basic_info(context) do
+    context |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"})
+  end
+
+  defp init_personal_info(context) do
+    context |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""})
+  end
+
+  defp init_daily_life(context) do
+    context |> FlowTester.set_contact_properties(%{"dma_01" => "", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
+  end
+
+  defp init_pregnancy_info(context) do
+    context |> FlowTester.set_contact_properties(%{"pregnancy_status" => "im_pregnant", "edd" => "24/04/2026", "pregnancy_sentiment" => "excited"})
+  end
+
   # This lets us have cleaner button/list assertions.
   def indexed_list(var, labels) do
     Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
@@ -336,10 +352,10 @@ defmodule ProfilePregnancyHealthTest do
       full_edd = Calendar.strftime(this_month_plus_one, "%Y") <> "-" <> "#{edd_month}" <> "-25"
 
       setup_flow()
-      |> FlowTester.set_contact_properties(%{"pregnancy_status" => "", "checkpoint" => "", "profile_completion" => "", "edd" => "", "pregnancy_sentiment" => ""}) # Pregnancy Information
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => ""}) # Basic Information
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{}) # Daily Life
+      |> init_pregnancy_info()
+      |> init_basic_info()
+      |> init_personal_info()
+      |> init_daily_life()
       |> FlowTester.set_contact_properties(%{"gender" => "", "name" => "Lily"})
       |> FlowTester.set_contact_properties(%{"opted_in" => "true"})
       |> FlowTester.start()

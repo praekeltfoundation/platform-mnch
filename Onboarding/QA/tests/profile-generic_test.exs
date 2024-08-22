@@ -112,6 +112,18 @@ defmodule ProfileGenericTest do
     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
   end
 
+  defp init_basic_info(context) do
+    context |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"})
+  end
+
+  defp init_personal_info(context) do
+    context |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""})
+  end
+
+  defp init_daily_life(context) do
+    context |> FlowTester.set_contact_properties(%{"dma_01" => "answer", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
+  end
+
   # This lets us have cleaner button/list assertions.
   def indexed_list(var, labels) do
     Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
@@ -130,9 +142,9 @@ defmodule ProfileGenericTest do
   describe "profile generic" do
     test "30% complete" do
       setup_flow()
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{"dma_01" => "answer", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""}) # Daily Life
+      |> init_basic_info()
+      |> init_personal_info()
+      |> init_daily_life()
       |> FlowTester.start()
       |> fn step ->
         [msg] = step.messages

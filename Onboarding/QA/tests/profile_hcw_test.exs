@@ -188,6 +188,22 @@ defmodule ProfileHCWTest do
     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
   end
 
+  defp init_basic_info(context) do
+    context |> FlowTester.set_contact_properties(%{"year_of_birth" => "", "province" => "", "area_type" => "", "gender" => ""})
+  end
+
+  defp init_personal_info(context) do
+    context |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""})
+  end
+
+  defp init_daily_life(context) do
+    context |> FlowTester.set_contact_properties(%{"dma_01" => "", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
+  end
+
+  defp init_hcw_info(context) do
+    context |> FlowTester.set_contact_properties(%{"occupational_role" => "", "facility_type" => "", "professional_support" => ""})
+  end
+
   # This lets us have cleaner button/list assertions.
   def indexed_list(var, labels) do
     Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
@@ -206,10 +222,10 @@ defmodule ProfileHCWTest do
   describe "profile hcw" do
     test "100% complete" do
       setup_flow()
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "", "province" => "", "area_type" => "", "gender" => ""}) # Basic Information
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{}) # Daily Life
-      |> FlowTester.set_contact_properties(%{"occupational_role" => "", "facility_type" => "", "professional_support" => ""}) # HCW
+      |> init_basic_info()
+      |> init_personal_info()
+      |> init_daily_life()
+      |> init_hcw_info()
       |> FlowTester.start()
       |> contact_matches(%{"profile_completion" => "0%", "checkpoint" => "hcw_profile_0"})
       |> receive_message(%{

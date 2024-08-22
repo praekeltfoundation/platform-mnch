@@ -129,6 +129,26 @@ defmodule ProfilePregnantNurseTest do
     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
   end
 
+  defp init_basic_info(context) do
+    context |> FlowTester.set_contact_properties(%{"year_of_birth" => "", "province" => "", "area_type" => "", "gender" => ""})
+  end
+
+  defp init_personal_info(context) do
+    context |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""})
+  end
+
+  defp init_daily_life(context) do
+    context |> FlowTester.set_contact_properties(%{"dma_01" => "", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
+  end
+
+  defp init_hcw_info(context) do
+    context |> FlowTester.set_contact_properties(%{"occupational_role" => "", "facility_type" => "", "professional_support" => ""})
+  end
+
+  defp init_pregnancy_info(context) do
+    context |> FlowTester.set_contact_properties(%{"pregnancy_status" => "im_pregnant", "edd" => "24/04/2026", "pregnancy_sentiment" => "excited"})
+  end
+
   # This lets us have cleaner button/list assertions.
   def indexed_list(var, labels) do
     Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
@@ -147,11 +167,11 @@ defmodule ProfilePregnantNurseTest do
   describe "profile pregnant nurse" do
     test "100% complete" do
       setup_flow()
-      |> FlowTester.set_contact_properties(%{"pregnancy_status" => "im_pregnant", "edd" => "24/04/2026", "pregnancy_sentiment" => "excited"}) # Pregnancy Information
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "", "province" => "", "area_type" => "", "gender" => ""}) # Basic Information
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{}) # Daily Life
-      |> FlowTester.set_contact_properties(%{"occupational_role" => "", "facility_type" => "", "professional_support" => ""}) # HCW
+      |> init_pregnancy_info()
+      |> init_basic_info()
+      |> init_personal_info()
+      |> init_daily_life()
+      |> init_hcw_info()
       |> FlowTester.start()
       |> contact_matches(%{"profile_completion" => "20%", "checkpoint" => "pregnant_nurse_profile_20"})
       |> receive_message(%{
