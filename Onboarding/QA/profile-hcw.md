@@ -473,7 +473,7 @@ card ProfileProgress25, then: ProfileProgress25Error do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -492,7 +492,7 @@ card ProfileProgress25, then: ProfileProgress25Error do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
@@ -510,16 +510,36 @@ card ProfileProgress25, then: ProfileProgress25Error do
   employment_questions_list =
     filter(
       employment_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   employment_questions_count = count(employment_questions_list)
 
   employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
 
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
-  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
 
   message_text =
     substitute(message_text, "{employment_info_count}", "@employment_questions_value")
@@ -693,7 +713,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -712,7 +732,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
@@ -730,16 +750,36 @@ card ProfileProgress50, then: ProfileProgress50Error do
   employment_questions_list =
     filter(
       employment_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   employment_questions_count = count(employment_questions_list)
 
   employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
 
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
-  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
 
   message_text =
     substitute(message_text, "{employment_info_count}", "@employment_questions_value")
@@ -807,7 +847,7 @@ card ProfileProgress75, then: ProfileProgress75Branch do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -826,7 +866,7 @@ card ProfileProgress75, then: ProfileProgress75Branch do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
@@ -844,16 +884,36 @@ card ProfileProgress75, then: ProfileProgress75Branch do
   employment_questions_list =
     filter(
       employment_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   employment_questions_count = count(employment_questions_list)
 
   employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
 
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
-  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
 
   message_text =
     substitute(message_text, "{employment_info_count}", "@employment_questions_value")
@@ -951,7 +1011,7 @@ card ProfileProgress100, then: ProfileProgress100Branch do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -970,7 +1030,7 @@ card ProfileProgress100, then: ProfileProgress100Branch do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
@@ -988,16 +1048,36 @@ card ProfileProgress100, then: ProfileProgress100Branch do
   employment_questions_list =
     filter(
       employment_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   employment_questions_count = count(employment_questions_list)
 
   employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
 
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
-  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
 
   message_text =
     substitute(message_text, "{employment_info_count}", "@employment_questions_value")

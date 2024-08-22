@@ -99,31 +99,68 @@ card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
   basic_questions_list =
     filter(
-      [contact.gender, contact.year_of_birth, contact.province, contact.area_type],
-      &(&1 != "")
+      basic_questions_answers,
+      &(is_nil_or_empty(&1) == false)
     )
+
+  basic_questions_answers_count = count(basic_questions_answers)
 
   basic_questions_count = count(basic_questions_list)
 
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
   personal_questions_list =
     filter(
-      [
-        contact.relationship_status,
-        contact.education,
-        contact.socio_economic,
-        contact.other_children
-      ],
-      &(&1 != "")
+      personal_questions_answers,
+      &(is_nil_or_empty(&1) == false)
     )
+
+  personal_questions_answers_count = count(personal_questions_answers)
 
   personal_questions_count = count(personal_questions_list)
 
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message = content_data.body.body.text.value
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_count")
-  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_count")
-  message_text = substitute(message_text, "{daily_life_count}", "0")
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -280,7 +317,7 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -303,7 +340,7 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)

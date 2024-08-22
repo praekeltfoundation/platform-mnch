@@ -295,7 +295,7 @@ defmodule ProfilePregnancyHealthTest do
   end
 
   describe "profile pregnancy health" do
-    test "50% complete" do
+    test "100% complete" do
       this_month = DateTime.utc_now()
 
       this_month_plus_one = Date.shift(this_month, month: 1)

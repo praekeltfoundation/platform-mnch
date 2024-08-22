@@ -27,7 +27,7 @@ defmodule ProfileGenericTest do
       parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "Your profile is already 30% complete!\n\n🟩🟩🟩⬜⬜⬜⬜⬜ \n\n👤 Basic information {basic_info_count}/4\n➡️ Personal information {personal_info_count}/4\n⬜ Daily life {daily_life_count}/5\n\n👇🏽 Let’s move on to personal information.",
+          message: "Your profile is already 30% complete!\n\n🟩🟩🟩⬜⬜⬜⬜⬜ \n\n👤 Basic information {basic_info_count}\n➡️ Personal information {personal_info_count}\n⬜ Daily life {daily_life_count}\n\n👇🏽 Let’s move on to personal information.",
           buttons: [
             %Btn.Next{title: "Continue"},
             %Btn.Next{title: "Why?"}
@@ -132,13 +132,13 @@ defmodule ProfileGenericTest do
       setup_flow()
       |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
       |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{}) # Daily Life
+      |> FlowTester.set_contact_properties(%{"dma_01" => "answer", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""}) # Daily Life
       |> FlowTester.start()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "Basic information 3/4")
         assert String.contains?(msg.text, "Personal information 0/4")
-        assert String.contains?(msg.text, "Daily life 0/5")
+        assert String.contains?(msg.text, "Daily life 1/5")
         step
       end.()
       |> receive_message(%{
@@ -151,13 +151,13 @@ defmodule ProfileGenericTest do
       setup_flow()
       |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
       |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{}) # Daily Life
+      |> FlowTester.set_contact_properties(%{"dma_01" => "answer", "dma_02" => "answer2",}) # Daily Life
       |> FlowTester.start()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "Basic information 3/4")
         assert String.contains?(msg.text, "Personal information 0/4")
-        assert String.contains?(msg.text, "Daily life 0/5")
+        assert String.contains?(msg.text, "Daily life 2/5")
         step
       end.()
       |> receive_message(%{

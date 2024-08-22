@@ -275,13 +275,14 @@ defmodule ProfileHCWTest do
         text: "🟩🟩🟩🟩🟩🟩⬜⬜ " <> _,
         buttons: button_labels(["➡️ Complete it!", "Remind me later"])
       })
+      |> FlowTester.set_contact_properties(%{"dma_01" => "answer", "dma_02" => ""}) # Daily Life
       |> FlowTester.send(button_label: "➡️ Complete it!")
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "🏥 Employment information 3/3")
         assert String.contains?(msg.text, "👤 Basic information 3/4")
         assert String.contains?(msg.text, "🗝️ Personal information 4/4")
-        assert String.contains?(msg.text, "☀️ Daily life 0/5")
+        assert String.contains?(msg.text, "☀️ Daily life 1/5")
         step
       end.()
       |> receive_message(%{

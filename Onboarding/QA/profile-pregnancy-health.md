@@ -554,8 +554,7 @@ card EDDConfirmation, then: PregnantEDDConfirmationError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_confirm_edd"],
-        ["whatsapp", "true"]
+        ["slug", "mnch_onboarding_confirm_edd"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -1511,7 +1510,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
   pregnancy_questions_list =
     filter(
       pregnancy_questions_answers,
-      &has_text(&1)
+      &(is_nil_or_empty(&1) == false)
     )
 
   pregnancy_questions_count = count(pregnancy_questions_list)
@@ -1530,7 +1529,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -1549,12 +1548,32 @@ card ProfileProgress50, then: ProfileProgress50Error do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
 
   personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
   progress_message = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
 
@@ -1564,7 +1583,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
   progress_message =
     substitute(progress_message, "{pregnancy_info_count}", "@pregnancy_questions_value")
 
-  progress_message = substitute(progress_message, "{daily_life_count}", "0/5")
+  progress_message = substitute(progress_message, "{daily_life_count}", "@dma_questions_value")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(ContinueProfileCompletion: "@button_labels[0]") do

@@ -213,7 +213,7 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -232,7 +232,7 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
@@ -250,7 +250,7 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
   pregnancy_questions_list =
     filter(
       pregnancy_questions_answers,
-      &has_text(&1)
+      &(is_nil_or_empty(&1) == false)
     )
 
   pregnancy_questions_count = count(pregnancy_questions_list)
@@ -268,17 +268,37 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
   employment_questions_list =
     filter(
       employment_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   employment_questions_count = count(employment_questions_list)
 
   employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
 
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
-  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
 
   message_text =
     substitute(message_text, "{employment_info_count}", "@employment_questions_value")
@@ -349,7 +369,7 @@ card PregnantNurse60, then: PregnantNurse60Error do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -368,7 +388,7 @@ card PregnantNurse60, then: PregnantNurse60Error do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
@@ -386,7 +406,7 @@ card PregnantNurse60, then: PregnantNurse60Error do
   pregnancy_questions_list =
     filter(
       pregnancy_questions_answers,
-      &has_text(&1)
+      &(is_nil_or_empty(&1) == false)
     )
 
   pregnancy_questions_count = count(pregnancy_questions_list)
@@ -404,17 +424,37 @@ card PregnantNurse60, then: PregnantNurse60Error do
   employment_questions_list =
     filter(
       employment_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   employment_questions_count = count(employment_questions_list)
 
   employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
 
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
-  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
 
   message_text =
     substitute(message_text, "{employment_info_count}", "@employment_questions_value")
@@ -607,7 +647,7 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -626,7 +666,7 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
@@ -644,7 +684,7 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
   pregnancy_questions_list =
     filter(
       pregnancy_questions_answers,
-      &has_text(&1)
+      &(is_nil_or_empty(&1) == false)
     )
 
   pregnancy_questions_count = count(pregnancy_questions_list)
@@ -662,17 +702,37 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
   employment_questions_list =
     filter(
       employment_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   employment_questions_count = count(employment_questions_list)
 
   employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
 
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
-  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
 
   message_text =
     substitute(message_text, "{employment_info_count}", "@employment_questions_value")
@@ -773,7 +833,7 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
   basic_questions_list =
     filter(
       basic_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   basic_questions_count = count(basic_questions_list)
@@ -792,7 +852,7 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
   personal_questions_list =
     filter(
       personal_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   personal_questions_count = count(personal_questions_list)
@@ -810,7 +870,7 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
   pregnancy_questions_list =
     filter(
       pregnancy_questions_answers,
-      &has_text(&1)
+      &(is_nil_or_empty(&1) == false)
     )
 
   pregnancy_questions_count = count(pregnancy_questions_list)
@@ -828,17 +888,37 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
   employment_questions_list =
     filter(
       employment_questions_answers,
-      &(&1 != "")
+      &(is_nil_or_empty(&1) == false)
     )
 
   employment_questions_count = count(employment_questions_list)
 
   employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
 
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
-  message_text = substitute(message_text, "{daily_life_count}", "0/5")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
 
   message_text =
     substitute(message_text, "{employment_info_count}", "@employment_questions_value")
