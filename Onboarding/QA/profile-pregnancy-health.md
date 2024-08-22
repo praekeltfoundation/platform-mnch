@@ -1706,7 +1706,7 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
       pregnancy_questions_answers_count
 
   loading_message = substitute(message.message, "{name}", "@name")
-  loading_message = substitute(loading_message, "{edd}", "@edd_date_full_str")
+  loading_message = substitute(loading_message, "{edd}", "@contact.edd")
 
   loading_message =
     substitute(loading_message, "{profile_questions}", "@questions_count/@answers_count")
