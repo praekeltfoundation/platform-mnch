@@ -1,0 +1,2620 @@
+{
+  "name": "HelpCentre: Intro Human Agent Flow",
+  "description": "Default description",
+  "uuid": "8046066f-3cb1-43d6-ace0-850769bd13a3",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "6a04986a-edbc-0e6d-525a-0b19a7237705",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "88f33a57-fb19-41b3-b181-ea4505db369a"
+    },
+    {
+      "values": [
+        {
+          "value": "false",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "2a874443-1434-4cd0-9ad6-7ee8e2b8b754"
+    },
+    {
+      "values": [
+        {
+          "value": "event.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "b3a6bbea-4f3c-48a1-af68-974c6d0ceb5b"
+    },
+    {
+      "values": [
+        {
+          "value": "\"Requested help\"",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "d7bac599-77c0-46c0-9916-5d397b0f3e71"
+    },
+    {
+      "values": [
+        {
+          "value": "b334e46e-73dd-36a1-a366-7a3fa4d691a4",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "e821e68c-983f-42f7-a04b-2a371f37f393"
+    },
+    {
+      "values": [
+        {
+          "value": "true",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "38c93bfd-aa54-43a8-9d21-13c965788392"
+    },
+    {
+      "values": [
+        {
+          "value": "@msg",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "4a66a519-0642-4259-8b38-5836eef17325"
+    },
+    {
+      "values": [
+        {
+          "value": "@substituted_msg",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "dc381f6f-0c2c-430c-ae98-c46cf0b11224"
+    },
+    {
+      "values": [
+        {
+          "value": "@substituted_msg",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "3b4c96a2-1706-473e-9d6d-57bdabfa7d29"
+    },
+    {
+      "values": [
+        {
+          "value": "@msg",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "177ae57d-60c2-43e5-9433-56ecab9eb6a7"
+    },
+    {
+      "values": [
+        {
+          "value": "Cancelling previously scheduled stack `dbf8e71b-d2bb-4c08-829c-925d53752bbf`",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "57d96eba-f0a2-48f0-876e-67b476353d27"
+    },
+    {
+      "values": [
+        {
+          "value": "Scheduled stack `dbf8e71b-d2bb-4c08-829c-925d53752bbf` to run in 2 minutes",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a"
+        }
+      ],
+      "uuid": "9728fb5f-7617-4c80-83c0-e5e6396b2fb3"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "handover_hold_81536c",
+          "type": "Io.Turn.SendContentMessage",
+          "config": {
+            "content": {
+              "uuid": "88f33a57-fb19-41b3-b181-ea4505db369a",
+              "wait_for_input": "2a874443-1434-4cd0-9ad6-7ee8e2b8b754"
+            }
+          },
+          "tags": [],
+          "uuid": "dd44cd5c-f94a-5ee5-8544-761c97958e6c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "handover_hold_81536c",
+              "config": {},
+              "test": "",
+              "uuid": "766d10e1-11d4-4070-b2e5-888b5a6d996d",
+              "destination_block": "f3b42add-dd18-5fd0-bd84-ef8ac738c690",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 33
+                      },
+                      "name": "HANDOVER_HOLD_81536c",
+                      "uuid": "ccf55b89-2536-5a48-8444-981881ede360"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 34
+                      },
+                      "send_content": {},
+                      "type": "send_content"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "handover_hold_81536c_set_message_property",
+          "type": "Io.Turn.SetMessageProperty",
+          "config": {
+            "message": "b3a6bbea-4f3c-48a1-af68-974c6d0ceb5b",
+            "labels": [
+              "d7bac599-77c0-46c0-9916-5d397b0f3e71"
+            ]
+          },
+          "tags": [],
+          "uuid": "f3b42add-dd18-5fd0-bd84-ef8ac738c690",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "handover_hold_81536c_set_message_property",
+              "config": {},
+              "test": "",
+              "uuid": "c4f60b6d-b78e-4466-9f04-ef35d76eb6bf",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 33
+                      },
+                      "name": "HANDOVER_HOLD_81536c",
+                      "uuid": "ccf55b89-2536-5a48-8444-981881ede360"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 35
+                      },
+                      "set_message_property": {},
+                      "type": "set_message_property"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "handover_starts_1",
+          "type": "Io.Turn.SendContentMessage",
+          "config": {
+            "content": {
+              "uuid": "e821e68c-983f-42f7-a04b-2a371f37f393",
+              "wait_for_input": "38c93bfd-aa54-43a8-9d21-13c965788392"
+            }
+          },
+          "tags": [],
+          "uuid": "abb48ac0-fc3e-5234-b39b-8f6f1bbbb0b6",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "handover_starts_1",
+              "config": {},
+              "test": "",
+              "uuid": "5ad119ce-6f91-4ba0-b5dd-e899cba68f6f",
+              "destination_block": "9016111e-d81f-515e-97fd-10ce93816fd2",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 28
+                      },
+                      "name": "HANDOVER_STARTS_1",
+                      "uuid": "0480cb66-52b6-5740-98cd-4c90dea3ee6e"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 29
+                      },
+                      "send_content": {},
+                      "type": "send_content"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "Routing for HANDOVER_STARTS_1",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "9016111e-d81f-515e-97fd-10ce93816fd2",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for HANDOVER_HOLD_81536c",
+              "config": {},
+              "test": "true",
+              "uuid": "023755b6-215e-47ee-907f-839597e874d7",
+              "destination_block": "dd44cd5c-f94a-5ee5-8544-761c97958e6c",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Routing for HANDOVER_STARTS_1",
+              "config": {},
+              "test": "",
+              "uuid": "42d58fb8-92fa-4d1c-8496-e3b96a8263bd",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 28
+                      },
+                      "name": "HANDOVER_STARTS_1",
+                      "uuid": "0480cb66-52b6-5740-98cd-4c90dea3ee6e"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 30
+                      },
+                      "then": {},
+                      "type": "then"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "rto_failed_attempts_contact_update_route_to_operator_origin",
+          "type": "Core.SetContactProperty",
+          "config": {
+            "set_contact_property": {
+              "property_key": "route_to_operator_origin",
+              "property_value": ""
+            }
+          },
+          "tags": [],
+          "uuid": "425493fb-db21-58e5-8e80-b37a6df9a0fe",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "rto_failed_attempts_contact_update_route_to_operator_origin",
+              "config": {},
+              "test": "",
+              "uuid": "29fd3307-688b-40aa-b9dc-bcbbde1b614d",
+              "destination_block": "b826241e-a496-5210-b5f4-732b26dfcbd0",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 127
+                      },
+                      "name": "RTOFailedAttempts",
+                      "uuid": "a1110297-444a-5d73-9888-77860329a084"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 128
+                      },
+                      "type": "update_contact",
+                      "update_contact": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "route_to_operator",
+          "type": "Core.Output",
+          "config": {
+            "value": "\"yes\""
+          },
+          "tags": [],
+          "uuid": "b826241e-a496-5210-b5f4-732b26dfcbd0",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "route_to_operator",
+              "config": {},
+              "test": "",
+              "uuid": "3b8c1c24-2cbb-40ff-9512-aff4cc508020",
+              "destination_block": "3e74f7c2-e583-5eb0-9331-09760c4d3e1d",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 127
+                      },
+                      "name": "RTOFailedAttempts",
+                      "uuid": "a1110297-444a-5d73-9888-77860329a084"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 129
+                      },
+                      "type": "write_result",
+                      "write_result": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "plat_help_route_to_operator_failed_attempts"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "3e74f7c2-e583-5eb0-9331-09760c4d3e1d",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "60b70999-9b27-4a04-8e01-704188cb9acb",
+              "destination_block": "80849b3f-3da4-5365-ad7c-b0f7b4a71a13",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 127
+                      },
+                      "name": "RTOFailedAttempts",
+                      "uuid": "a1110297-444a-5d73-9888-77860329a084"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 131
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "80849b3f-3da4-5365-ad7c-b0f7b4a71a13",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "d82b2979-1698-4919-97d6-30281eb7c5e5",
+              "destination_block": "cf619b06-a11a-5950-b674-0c0ea3f49bed",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 127
+                      },
+                      "name": "RTOFailedAttempts",
+                      "uuid": "a1110297-444a-5d73-9888-77860329a084"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 140
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "cf619b06-a11a-5950-b674-0c0ea3f49bed",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "c076f6a4-70b3-4030-bbb1-f4cadc5dad09",
+              "destination_block": "fd6ee0cd-7f1d-57a8-a6ef-0c1edbb7c51b",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 127
+                      },
+                      "name": "RTOFailedAttempts",
+                      "uuid": "a1110297-444a-5d73-9888-77860329a084"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 142
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "msg",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "fd6ee0cd-7f1d-57a8-a6ef-0c1edbb7c51b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "224de7cb-3c6d-4b8e-ab47-4050204ab972",
+              "destination_block": "73f1d094-f54b-584e-a95a-549e43768e18",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 127
+                      },
+                      "name": "RTOFailedAttempts",
+                      "uuid": "a1110297-444a-5d73-9888-77860329a084"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 151
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "rto_failed_attempts_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "4a66a519-0642-4259-8b38-5836eef17325"
+          },
+          "tags": [],
+          "uuid": "73f1d094-f54b-584e-a95a-549e43768e18",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"HANDOVER_STARTS_1\"",
+              "config": {},
+              "test": "",
+              "uuid": "1f2f6e1e-0e9e-4d85-bc41-0161a5c0809b",
+              "destination_block": "abb48ac0-fc3e-5234-b39b-8f6f1bbbb0b6",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 127
+                      },
+                      "name": "RTOFailedAttempts",
+                      "uuid": "a1110297-444a-5d73-9888-77860329a084"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 152
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "rto_tech_support_contact_update_route_to_operator_origin",
+          "type": "Core.SetContactProperty",
+          "config": {
+            "set_contact_property": {
+              "property_key": "route_to_operator_origin",
+              "property_value": ""
+            }
+          },
+          "tags": [],
+          "uuid": "90a8b5bf-758f-5a74-b288-f8e455143255",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "rto_tech_support_contact_update_route_to_operator_origin",
+              "config": {},
+              "test": "",
+              "uuid": "a86604f8-f986-401a-b46f-4a9dd8ab3c51",
+              "destination_block": "57a470fb-4643-55cc-8a19-3079b4437140",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 97
+                      },
+                      "name": "RTOTechSupport",
+                      "uuid": "7934b74a-b44e-5dd8-91f3-afddea8d6726"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 98
+                      },
+                      "type": "update_contact",
+                      "update_contact": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "route_to_operator",
+          "type": "Core.Output",
+          "config": {
+            "value": "\"yes\""
+          },
+          "tags": [],
+          "uuid": "57a470fb-4643-55cc-8a19-3079b4437140",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "route_to_operator",
+              "config": {},
+              "test": "",
+              "uuid": "ab3ef47e-729b-476a-871e-ca8ec44b430b",
+              "destination_block": "4d20a639-0c2a-587b-b6db-8738acf4b52a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 97
+                      },
+                      "name": "RTOTechSupport",
+                      "uuid": "7934b74a-b44e-5dd8-91f3-afddea8d6726"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 99
+                      },
+                      "type": "write_result",
+                      "write_result": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "plat_help_route_to_operator_tech_support"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "4d20a639-0c2a-587b-b6db-8738acf4b52a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "119a22f8-8cda-4082-aa70-2464f951f5e5",
+              "destination_block": "bd870686-3270-5205-81e3-b5e96394bfb6",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 97
+                      },
+                      "name": "RTOTechSupport",
+                      "uuid": "7934b74a-b44e-5dd8-91f3-afddea8d6726"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 101
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "bd870686-3270-5205-81e3-b5e96394bfb6",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "c911da71-b351-4ce8-b1ad-a8b68c309e86",
+              "destination_block": "43e4524b-a627-528e-a220-957aa305f78a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 97
+                      },
+                      "name": "RTOTechSupport",
+                      "uuid": "7934b74a-b44e-5dd8-91f3-afddea8d6726"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 110
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "43e4524b-a627-528e-a220-957aa305f78a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "829184a5-3cdb-4ebb-a508-4e355a399b8a",
+              "destination_block": "078b6aca-b4d1-50be-9407-72ef6e64dfa1",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 97
+                      },
+                      "name": "RTOTechSupport",
+                      "uuid": "7934b74a-b44e-5dd8-91f3-afddea8d6726"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 112
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "msg",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "078b6aca-b4d1-50be-9407-72ef6e64dfa1",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "b7268db4-79e9-4485-8dd3-2e089ac723d7",
+              "destination_block": "be19b57c-8ca7-50aa-9937-733ca1d2881e",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 97
+                      },
+                      "name": "RTOTechSupport",
+                      "uuid": "7934b74a-b44e-5dd8-91f3-afddea8d6726"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 121
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "substituted_msg",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "be19b57c-8ca7-50aa-9937-733ca1d2881e",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "substitute(msg, \"{xxx}\", \"'@contact.route_to_operator_search_text'\")",
+              "config": {},
+              "test": "",
+              "uuid": "c71b4286-4558-4f01-a250-9e02c4ef842f",
+              "destination_block": "32bcf867-07b4-504c-b843-a9618aa73fdf",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 97
+                      },
+                      "name": "RTOTechSupport",
+                      "uuid": "7934b74a-b44e-5dd8-91f3-afddea8d6726"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 122
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "rto_tech_support_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "dc381f6f-0c2c-430c-ae98-c46cf0b11224"
+          },
+          "tags": [],
+          "uuid": "32bcf867-07b4-504c-b843-a9618aa73fdf",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"HANDOVER_STARTS_1\"",
+              "config": {},
+              "test": "",
+              "uuid": "e2678dc2-04ea-4d2b-b55b-47cf69afe36a",
+              "destination_block": "abb48ac0-fc3e-5234-b39b-8f6f1bbbb0b6",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 97
+                      },
+                      "name": "RTOTechSupport",
+                      "uuid": "7934b74a-b44e-5dd8-91f3-afddea8d6726"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 124
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "rto_search_my_health_contact_update_route_to_operator_origin",
+          "type": "Core.SetContactProperty",
+          "config": {
+            "set_contact_property": {
+              "property_key": "route_to_operator_origin",
+              "property_value": ""
+            }
+          },
+          "tags": [],
+          "uuid": "c88ac7b1-c4d8-512e-b941-84198d02b740",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "rto_search_my_health_contact_update_route_to_operator_origin",
+              "config": {},
+              "test": "",
+              "uuid": "71726613-0410-4460-a092-36d18a947fa9",
+              "destination_block": "8fa294b2-5f1f-58e8-a8e0-9472fc1ad595",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 67
+                      },
+                      "name": "RTOSearchMyHealth",
+                      "uuid": "c113d5c7-9827-5147-b3f9-e5be9d099201"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 68
+                      },
+                      "type": "update_contact",
+                      "update_contact": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "route_to_operator",
+          "type": "Core.Output",
+          "config": {
+            "value": "\"yes\""
+          },
+          "tags": [],
+          "uuid": "8fa294b2-5f1f-58e8-a8e0-9472fc1ad595",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "route_to_operator",
+              "config": {},
+              "test": "",
+              "uuid": "bbf7687a-5981-49e1-b459-916d4d077117",
+              "destination_block": "9ee9de0a-ce64-56fc-b931-e63f15233a91",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 67
+                      },
+                      "name": "RTOSearchMyHealth",
+                      "uuid": "c113d5c7-9827-5147-b3f9-e5be9d099201"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 69
+                      },
+                      "type": "write_result",
+                      "write_result": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "plat_help_route_to_operator_search_myhealth"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "9ee9de0a-ce64-56fc-b931-e63f15233a91",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "05406364-5417-404f-a1df-f4f2f48f1d87",
+              "destination_block": "39aad5c4-4151-57f3-b5a2-8d0c987090f1",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 67
+                      },
+                      "name": "RTOSearchMyHealth",
+                      "uuid": "c113d5c7-9827-5147-b3f9-e5be9d099201"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 71
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "39aad5c4-4151-57f3-b5a2-8d0c987090f1",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "634f9b8d-08ad-4934-91b5-9f0cd01518ea",
+              "destination_block": "6de53724-e8a9-5d47-894e-218af33c01c4",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 67
+                      },
+                      "name": "RTOSearchMyHealth",
+                      "uuid": "c113d5c7-9827-5147-b3f9-e5be9d099201"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 80
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "6de53724-e8a9-5d47-894e-218af33c01c4",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "f33a42a9-f05d-4976-bea3-61251e8a4c21",
+              "destination_block": "22fe5d39-933f-5ecc-86b0-4df9e0fd6c6b",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 67
+                      },
+                      "name": "RTOSearchMyHealth",
+                      "uuid": "c113d5c7-9827-5147-b3f9-e5be9d099201"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 82
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "msg",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "22fe5d39-933f-5ecc-86b0-4df9e0fd6c6b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "8ab894ec-56f4-48f5-877b-a33bcf746d8b",
+              "destination_block": "56c0cee1-c6be-5f61-918b-98fc4802335f",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 67
+                      },
+                      "name": "RTOSearchMyHealth",
+                      "uuid": "c113d5c7-9827-5147-b3f9-e5be9d099201"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 91
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "substituted_msg",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "56c0cee1-c6be-5f61-918b-98fc4802335f",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "substitute(msg, \"{xxx}\", \"'@contact.route_to_operator_search_text'\")",
+              "config": {},
+              "test": "",
+              "uuid": "570860c2-6cd0-426d-80d4-ef5099ccc576",
+              "destination_block": "3bb8155a-48ac-5915-860d-dd1484f1d1a3",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 67
+                      },
+                      "name": "RTOSearchMyHealth",
+                      "uuid": "c113d5c7-9827-5147-b3f9-e5be9d099201"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 92
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "rto_search_my_health_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "3b4c96a2-1706-473e-9d6d-57bdabfa7d29"
+          },
+          "tags": [],
+          "uuid": "3bb8155a-48ac-5915-860d-dd1484f1d1a3",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"HANDOVER_STARTS_1\"",
+              "config": {},
+              "test": "",
+              "uuid": "9656613a-6cc6-416a-89ea-210ab106bb0f",
+              "destination_block": "abb48ac0-fc3e-5234-b39b-8f6f1bbbb0b6",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 67
+                      },
+                      "name": "RTOSearchMyHealth",
+                      "uuid": "c113d5c7-9827-5147-b3f9-e5be9d099201"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 94
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "rto_emergency_contact_update_route_to_operator_origin",
+          "type": "Core.SetContactProperty",
+          "config": {
+            "set_contact_property": {
+              "property_key": "route_to_operator_origin",
+              "property_value": ""
+            }
+          },
+          "tags": [],
+          "uuid": "d58ba631-e27e-5dde-8af2-f0f57a0b1d81",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "rto_emergency_contact_update_route_to_operator_origin",
+              "config": {},
+              "test": "",
+              "uuid": "d0ef0f32-4f26-4cf1-8e72-c181b1ca2e3a",
+              "destination_block": "dd9d9417-8978-5453-85b9-e1b3a1d16367",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 38
+                      },
+                      "name": "RTOEmergency",
+                      "uuid": "ed292110-5371-5dd3-bfca-f4798d8065de"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 39
+                      },
+                      "type": "update_contact",
+                      "update_contact": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "route_to_operator",
+          "type": "Core.Output",
+          "config": {
+            "value": "\"yes\""
+          },
+          "tags": [],
+          "uuid": "dd9d9417-8978-5453-85b9-e1b3a1d16367",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "route_to_operator",
+              "config": {},
+              "test": "",
+              "uuid": "abb0adc1-6834-47b6-8655-d1afe3443644",
+              "destination_block": "b69f91de-ce3e-5256-af53-0234167ba7cc",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 38
+                      },
+                      "name": "RTOEmergency",
+                      "uuid": "ed292110-5371-5dd3-bfca-f4798d8065de"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 40
+                      },
+                      "type": "write_result",
+                      "write_result": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "plat_help_route_to_operator_emergency"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "b69f91de-ce3e-5256-af53-0234167ba7cc",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "e78a8dd9-9c10-4ea6-88a0-58f67177ca54",
+              "destination_block": "b6da3d1a-0ef1-5c97-b924-32249055178f",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 38
+                      },
+                      "name": "RTOEmergency",
+                      "uuid": "ed292110-5371-5dd3-bfca-f4798d8065de"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 42
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "b6da3d1a-0ef1-5c97-b924-32249055178f",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "94d19e17-1aaa-4114-83bc-cce5f1405d0f",
+              "destination_block": "11bbda6d-047a-5dda-9f3c-4b6e3073da11",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 38
+                      },
+                      "name": "RTOEmergency",
+                      "uuid": "ed292110-5371-5dd3-bfca-f4798d8065de"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 51
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "11bbda6d-047a-5dda-9f3c-4b6e3073da11",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "5fc0e85b-659d-4831-8a6c-5ab320764456",
+              "destination_block": "e91b6870-e0fc-540e-98e7-ee6a8687d9a8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 38
+                      },
+                      "name": "RTOEmergency",
+                      "uuid": "ed292110-5371-5dd3-bfca-f4798d8065de"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 53
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "msg",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "e91b6870-e0fc-540e-98e7-ee6a8687d9a8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "11fb089d-05b1-447f-8f6a-3bcae4c98186",
+              "destination_block": "2c4f7e47-ccd8-5e90-a35e-a1cbbd64a7a6",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 38
+                      },
+                      "name": "RTOEmergency",
+                      "uuid": "ed292110-5371-5dd3-bfca-f4798d8065de"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 62
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "rto_emergency_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "177ae57d-60c2-43e5-9433-56ecab9eb6a7"
+          },
+          "tags": [],
+          "uuid": "2c4f7e47-ccd8-5e90-a35e-a1cbbd64a7a6",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"HANDOVER_STARTS_1\"",
+              "config": {},
+              "test": "",
+              "uuid": "0f81c5b8-8d0b-4826-9c60-83369e16e6eb",
+              "destination_block": "abb48ac0-fc3e-5234-b39b-8f6f1bbbb0b6",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 38
+                      },
+                      "name": "RTOEmergency",
+                      "uuid": "ed292110-5371-5dd3-bfca-f4798d8065de"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 64
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "Routing for BranchOrigin",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "16a772fb-71fc-51bb-abde-3ffd0ee55b1f",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for RTOEmergency",
+              "config": {},
+              "test": "has_only_phrase(contact.route_to_operator_origin, \"emergency\")",
+              "uuid": "309f7bf6-21e9-4d6f-b878-ea42b682ac05",
+              "destination_block": "d58ba631-e27e-5dde-8af2-f0f57a0b1d81",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": false,
+              "name": "Exit for RTOSearchMyHealth",
+              "config": {},
+              "test": "has_only_phrase(contact.route_to_operator_origin, \"search_myhealth\")",
+              "uuid": "64f1fe8f-4d15-4be2-a741-f721e60666d4",
+              "destination_block": "c88ac7b1-c4d8-512e-b941-84198d02b740",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": false,
+              "name": "Exit for RTOTechSupport",
+              "config": {},
+              "test": "has_only_phrase(contact.route_to_operator_origin, \"tech_support\")",
+              "uuid": "a5d7875a-0869-4e1d-adec-aede7ea36def",
+              "destination_block": "90a8b5bf-758f-5a74-b288-f8e455143255",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": false,
+              "name": "Exit for RTOFailedAttempts",
+              "config": {},
+              "test": "has_only_phrase(contact.route_to_operator_origin, \"failed_attempts\")",
+              "uuid": "1a027d6f-1eb1-4002-94de-99cf9ac1f1c3",
+              "destination_block": "425493fb-db21-58e5-8e80-b37a6df9a0fe",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": false,
+              "name": "Exit for RESERVED_DEFAULT_CARD",
+              "config": {},
+              "test": "true",
+              "uuid": "0cbdf070-4095-4f8d-a1e3-1c41a553a588",
+              "destination_block": null,
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Routing for BranchOrigin",
+              "config": {},
+              "test": "",
+              "uuid": "ec3448d9-ef1f-40ad-b1df-c22d66ab78e4",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 10
+                      },
+                      "name": "BranchOrigin",
+                      "uuid": "93141a67-40fa-59de-8b24-c00c526fa17e"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 11
+                      },
+                      "then": {},
+                      "type": "then"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "schedule_query_rating_schedule_stack",
+          "type": "Io.Turn.ScheduleFlow",
+          "config": {
+            "flow_id": "dbf8e71b-d2bb-4c08-829c-925d53752bbf"
+          },
+          "tags": [],
+          "uuid": "62291bec-349d-563e-b5f3-f41a6f19fc8d",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "schedule_query_rating_schedule_stack",
+              "config": {},
+              "test": "",
+              "uuid": "e87be39c-4fa1-4fa2-8456-70def1d094ce",
+              "destination_block": "41d507ee-6324-5463-a333-c0db9c5264dc",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "name": "ScheduleQueryRating",
+                      "uuid": "6cee5fa0-2a3d-50ed-a03f-5d651aaada1a"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 4
+                      },
+                      "schedule_stack": {},
+                      "type": "schedule_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "schedule_query_rating_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "57d96eba-f0a2-48f0-876e-67b476353d27"
+          },
+          "tags": [],
+          "uuid": "41d507ee-6324-5463-a333-c0db9c5264dc",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "schedule_query_rating_log",
+              "config": {},
+              "test": "",
+              "uuid": "498fef52-1df4-4f1d-b2da-7263c5a7a1fc",
+              "destination_block": "710263d8-8652-59e2-9c81-5a92378b4cf3",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "name": "ScheduleQueryRating",
+                      "uuid": "6cee5fa0-2a3d-50ed-a03f-5d651aaada1a"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 5
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "schedule_query_rating_schedule_stack",
+          "type": "Io.Turn.ScheduleFlow",
+          "config": {
+            "schedule_in": "900",
+            "flow_id": "dbf8e71b-d2bb-4c08-829c-925d53752bbf"
+          },
+          "tags": [],
+          "uuid": "710263d8-8652-59e2-9c81-5a92378b4cf3",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "schedule_query_rating_schedule_stack",
+              "config": {},
+              "test": "",
+              "uuid": "3dd84ce9-e86a-49cc-95f6-bca7078e57c6",
+              "destination_block": "bad75ea9-418c-5d98-9a6c-054bdcd28e04",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "name": "ScheduleQueryRating",
+                      "uuid": "6cee5fa0-2a3d-50ed-a03f-5d651aaada1a"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 6
+                      },
+                      "schedule_stack": {},
+                      "type": "schedule_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "schedule_query_rating_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "9728fb5f-7617-4c80-83c0-e5e6396b2fb3"
+          },
+          "tags": [],
+          "uuid": "bad75ea9-418c-5d98-9a6c-054bdcd28e04",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"BranchOrigin\"",
+              "config": {},
+              "test": "",
+              "uuid": "b6fcd1f2-414c-4e4d-83e4-3ccee45aded5",
+              "destination_block": "16a772fb-71fc-51bb-abde-3ffd0ee55b1f",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "name": "ScheduleQueryRating",
+                      "uuid": "6cee5fa0-2a3d-50ed-a03f-5d651aaada1a"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 7
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "last_modified": "2024-08-19T05:58:20.275019Z",
+      "uuid": "332b3218-15e2-5a63-98d5-23778ce5a061",
+      "languages": [
+        {
+          "id": "39f7d7b0-1a3a-4929-a6ed-4ff4c94d3e1a",
+          "label": "English",
+          "variant": null,
+          "iso_639_3": "eng",
+          "bcp_47": null
+        }
+      ],
+      "first_block_id": "62291bec-349d-563e-b5f3-f41a6f19fc8d",
+      "interaction_timeout": 300,
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}

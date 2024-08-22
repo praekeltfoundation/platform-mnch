@@ -1,0 +1,797 @@
+{
+  "name": "HelpCentre: Agent Greeting",
+  "description": "Default description",
+  "uuid": "1558176d-4e4e-4625-b9b4-93c77c1bac92",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "@substituted_msg",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b"
+        }
+      ],
+      "uuid": "e1a6c1e0-f0c2-4f76-a9f1-52d1c101cfc5"
+    },
+    {
+      "values": [
+        {
+          "value": "Rerouting this chat as its unassigned",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b"
+        }
+      ],
+      "uuid": "90ff058b-a59d-42bd-82da-48b80ef5aa08"
+    },
+    {
+      "values": [
+        {
+          "value": "Agent assigned to this chat = @chat.assigned_to.name",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b"
+        }
+      ],
+      "uuid": "88643fc9-eff7-4d76-89dd-cf23b9c6fb94"
+    },
+    {
+      "values": [
+        {
+          "value": "No agent assigned to this chat",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b"
+        }
+      ],
+      "uuid": "75e4358c-c2fb-440c-b14b-c4ad5fe73d78"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "plat_help_agent_greeting"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "c350b218-00f2-516c-89ea-a984ad8e2f72",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "cac39416-5402-4494-a153-5d8b07f377f5",
+              "destination_block": "002fc7de-ea1c-5f1e-b630-eb9e9b8e32af",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 30
+                      },
+                      "name": "SendTakeoverStart",
+                      "uuid": "438c0b97-60ae-54d6-873d-c865147ab98d"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 33
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "002fc7de-ea1c-5f1e-b630-eb9e9b8e32af",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "52900225-0b68-4925-bbd6-d5179981e9f1",
+              "destination_block": "8133fdfb-b4be-5fe5-b344-981733a48631",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 30
+                      },
+                      "name": "SendTakeoverStart",
+                      "uuid": "438c0b97-60ae-54d6-873d-c865147ab98d"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 42
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.settings.contentrepo_qa_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "8133fdfb-b4be-5fe5-b344-981733a48631",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "ce3dc2e7-9f4b-4a76-9426-4af70700219e",
+              "destination_block": "2bfb8da8-3095-5ae8-b6be-6f5d2f299066",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 30
+                      },
+                      "name": "SendTakeoverStart",
+                      "uuid": "438c0b97-60ae-54d6-873d-c865147ab98d"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 44
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "greeting_msg",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "2bfb8da8-3095-5ae8-b6be-6f5d2f299066",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "9de23bd4-b88b-4317-9520-2f0fcce558cd",
+              "destination_block": "5950c048-d5d0-5117-b188-2320b644c0e1",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 30
+                      },
+                      "name": "SendTakeoverStart",
+                      "uuid": "438c0b97-60ae-54d6-873d-c865147ab98d"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 53
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "substituted_msg",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "5950c048-d5d0-5117-b188-2320b644c0e1",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "substitute(greeting_msg, \"{operator_name}\", \"@chat.assigned_to.name\")",
+              "config": {},
+              "test": "",
+              "uuid": "6751cfbf-87a5-40ca-b194-af736ac1e935",
+              "destination_block": "12780c7d-5476-5f96-b823-2c94fde2b138",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 30
+                      },
+                      "name": "SendTakeoverStart",
+                      "uuid": "438c0b97-60ae-54d6-873d-c865147ab98d"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 54
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "send_takeover_start_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "e1a6c1e0-f0c2-4f76-a9f1-52d1c101cfc5"
+          },
+          "tags": [],
+          "uuid": "12780c7d-5476-5f96-b823-2c94fde2b138",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "send_takeover_start_text",
+              "config": {},
+              "test": "",
+              "uuid": "17ed1d06-9c43-4ffa-b4a0-ed1bad0a0946",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 30
+                      },
+                      "name": "SendTakeoverStart",
+                      "uuid": "438c0b97-60ae-54d6-873d-c865147ab98d"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 56
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "reroute_unassigned_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "90ff058b-a59d-42bd-82da-48b80ef5aa08"
+          },
+          "tags": [],
+          "uuid": "b1ccb689-7655-5ead-a0a4-5fec18c7b87c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "reroute_unassigned_text",
+              "config": {},
+              "test": "",
+              "uuid": "9d3fa3c6-2b4e-4c65-aa83-de04dbbe3b38",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 59
+                      },
+                      "name": "RerouteUnassigned",
+                      "uuid": "a0a4ad5a-7d7b-5248-b8bf-748dbe419592"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 60
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "check_status_case",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "e8f2f5d3-5d9e-5268-bdb2-d960bea5a0df",
+          "ui_metadata": {},
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for check_status_case_condition_0",
+              "config": {},
+              "test": "is_nil_or_empty(chat.assigned_to)",
+              "uuid": "1a2688d2-df70-43b6-b983-39adde935db3",
+              "destination_block": "65166bda-99ae-5085-9586-5a095b7a84a7",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Exit for check_status_case_condition_1",
+              "config": {},
+              "test": null,
+              "uuid": "ba7c7234-87b3-4ce9-864c-e1cfde961f89",
+              "destination_block": "cea5f4c2-b501-578d-82eb-65f90211bdb6",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {}
+        },
+        {
+          "label": null,
+          "name": "check_status_case_condition_1_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "88643fc9-eff7-4d76-89dd-cf23b9c6fb94"
+          },
+          "tags": [],
+          "uuid": "cea5f4c2-b501-578d-82eb-65f90211bdb6",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"SendTakeoverStart\"",
+              "config": {},
+              "test": "",
+              "uuid": "2e45a94e-8221-4782-b4d0-8a9fb4507ccd",
+              "destination_block": "c350b218-00f2-516c-89ea-a984ad8e2f72",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 26
+                      },
+                      "name": "CheckStatus",
+                      "uuid": "f86fa7a1-92cc-55e3-985c-40fd1cac62c4"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 27
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "check_status_case_condition_0_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "75e4358c-c2fb-440c-b14b-c4ad5fe73d78"
+          },
+          "tags": [],
+          "uuid": "65166bda-99ae-5085-9586-5a095b7a84a7",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"RerouteUnassigned\"",
+              "config": {},
+              "test": "",
+              "uuid": "b20e0817-ea52-4135-8fa6-b4534b94524b",
+              "destination_block": "b1ccb689-7655-5ead-a0a4-5fec18c7b87c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "is_nil_or_empty(chat.assigned_to)",
+                      "meta": {
+                        "column": 1,
+                        "line": 22
+                      },
+                      "name": "CheckStatus",
+                      "uuid": "e8f2f5d3-5d9e-5268-bdb2-d960bea5a0df"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 23
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "get_latest_msg",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [],
+            "url": "https://whatsapp-praekelt-cloud.turn.io/v1/contacts/@contact.whatsapp_id/messages",
+            "headers": [
+              [
+                "Authorization",
+                "Bearer @global.settings.turn_qa_token"
+              ],
+              [
+                "Accept",
+                "application/vnd.v1+json"
+              ],
+              [
+                "Content-Type",
+                "application/json"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "d632dfd9-31d5-5680-b3f2-2800478ffcd6",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "get_latest_msg",
+              "config": {},
+              "test": "",
+              "uuid": "3e872d74-6f56-455f-b232-80829045cc1b",
+              "destination_block": "8a9dea5b-ee5e-5350-a7b5-a9b1a4a1cf9a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "name": "GetLatestMessage",
+                      "uuid": "3773923e-6edb-52ce-a9f3-fb40e2920783"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 4
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "chat",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "8a9dea5b-ee5e-5350-a7b5-a9b1a4a1cf9a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "get_latest_msg.body.chat",
+              "config": {},
+              "test": "",
+              "uuid": "49c8acc1-d0a4-46a3-8150-1588b35d6e13",
+              "destination_block": "e8f2f5d3-5d9e-5268-bdb2-d960bea5a0df",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "name": "GetLatestMessage",
+                      "uuid": "3773923e-6edb-52ce-a9f3-fb40e2920783"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 19
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "last_modified": "2024-08-20T05:33:43.782042Z",
+      "uuid": "d8d5f1ef-3304-41ca-b576-e5382c8ccf0d",
+      "languages": [
+        {
+          "id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b",
+          "label": "English",
+          "variant": null,
+          "iso_639_3": "eng",
+          "bcp_47": null
+        }
+      ],
+      "first_block_id": "d632dfd9-31d5-5680-b3f2-2800478ffcd6",
+      "interaction_timeout": 300,
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}
