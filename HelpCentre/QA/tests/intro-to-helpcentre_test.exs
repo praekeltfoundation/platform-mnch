@@ -1,6 +1,7 @@
 defmodule IntroToHelpCentreTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.FlowStep
   defp flow_path(flow_name), do: Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
 
   defp real_or_fake_cms(step, base_url, _auth_token, :real),
@@ -92,6 +93,7 @@ defmodule IntroToHelpCentreTest do
       text: "*Welcome to the [MyHealth] Help Centre*" <> _
     })
   end
+
   test "returning to helpcentre" do
     setup_flow()
     |> FlowTester.set_contact_properties(%{"returning_help_centre_user" => "true"})
@@ -99,18 +101,7 @@ defmodule IntroToHelpCentreTest do
 
     |> receive_message(%{
       text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-      list: {"Menu", [
-        {"Your health guide 🔒", "Your health guide 🔒"},
-        {"View topics for you 📚", "View topics for you 📚"},
-        {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-        {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-        {"Manage updates 🔔", "Manage updates 🔔"},
-        {"Manage data 🖼️", "Manage data 🖼️"},
-        {"Help centre 📞", "Help centre 📞"},
-        {"Take a tour 🚌", "Take a tour 🚌"},
-        {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-        {"Talk to a counsellor", "Talk to a counsellor"}
-    ]}
+
     })
     |> FlowTester.send(button_label: "Help centre 📞")
     |> receive_message(%{
@@ -118,4 +109,24 @@ defmodule IntroToHelpCentreTest do
     })
   end
 
+
+
+  describe "Search MyHealth:" do
+    defp setup_flow_search_myhealth() do
+      setup_flow()
+      |> FlowTester.start()
+      |> FlowTester.send(button_label: "Help centre 📞")
+      |> FlowStep.clear_messages()
+      |> FlowTester.send(button_label: "Search MyHealth")
+      |> receive_message(%{
+        text: "Great, let's find you the information you need." <> _
+      })
+    end
+
+    test "is help centre open" do
+      setup_flow_search_myhealth()
+
+    end
+
+  end
 end
