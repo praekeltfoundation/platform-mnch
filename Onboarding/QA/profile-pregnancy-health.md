@@ -554,8 +554,7 @@ card EDDConfirmation, then: PregnantEDDConfirmationError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_confirm_edd"],
-        ["whatsapp", "true"]
+        ["slug", "mnch_onboarding_confirm_edd"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -1499,10 +1498,96 @@ card ProfileProgress50, then: ProfileProgress50Error do
     )
 
   message = page.body.body.text.value
+
+  pregnancy_questions_answers = [
+    contact.pregnancy_status,
+    contact.edd,
+    contact.pregnancy_sentiment
+  ]
+
+  pregnancy_questions_answers_count = count(pregnancy_questions_answers)
+
+  pregnancy_questions_list =
+    filter(
+      pregnancy_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  pregnancy_questions_count = count(pregnancy_questions_list)
+
+  pregnancy_questions_value = "@pregnancy_questions_count/@pregnancy_questions_answers_count"
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
+  progress_message = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+
+  progress_message =
+    substitute(progress_message, "{personal_info_count}", "@personal_questions_value")
+
+  progress_message =
+    substitute(progress_message, "{pregnancy_info_count}", "@pregnancy_questions_value")
+
+  progress_message = substitute(progress_message, "{daily_life_count}", "@dma_questions_value")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(ContinueProfileCompletion: "@button_labels[0]") do
-    text("@message.message")
+    text("@progress_message")
   end
 end
 
@@ -1555,6 +1640,80 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
     )
 
   message = page.body.body.text.value
+  name = if is_nil_or_empty(contact.name), do: "None", else: contact.name
+
+  opted_in =
+    if(contact.opted_in == false or is_nil_or_empty(contact.opted_in), do: "❌", else: "✅")
+
+  pregnancy_questions_answers = [
+    contact.pregnancy_status,
+    contact.edd,
+    contact.pregnancy_sentiment
+  ]
+
+  pregnancy_questions_answers_count = count(pregnancy_questions_answers)
+
+  pregnancy_questions_list =
+    filter(
+      pregnancy_questions_answers,
+      &has_text(&1)
+    )
+
+  pregnancy_questions_count = count(pregnancy_questions_list)
+
+  pregnancy_questions_value = "@pregnancy_questions_count/@pregnancy_questions_answers_count"
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(&1 != "")
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(&1 != "")
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  questions_count = basic_questions_count + personal_questions_count + pregnancy_questions_count
+
+  answers_count =
+    basic_questions_answers_count + personal_questions_answers_count +
+      pregnancy_questions_answers_count
+
+  edd_string = if is_nil_or_empty("@contact.edd"), do: "Unknown", else: "@contact.edd"
+
+  loading_message = substitute(message.message, "{name}", "@name")
+  loading_message = substitute(loading_message, "{edd}", "@edd_string")
+
+  loading_message =
+    substitute(loading_message, "{profile_questions}", "@questions_count/@answers_count")
+
+  loading_message = substitute(loading_message, "{get_important_messages}", "@opted_in")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -1566,7 +1725,7 @@ card DisplayProfileProgress100 when contact.data_preference == "text only",
     TopicsForYou: "@button_labels[1]",
     MainMenu: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
@@ -1588,7 +1747,7 @@ card DisplayProfileProgress100, then: ProfileProgress100Error do
     MainMenu: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@loading_message")
   end
 end
 

@@ -1,0 +1,1384 @@
+{
+  "name": "Onboarding: HCW Reminder",
+  "description": "Default description",
+  "uuid": "fef6044e-789c-4989-86e3-62ee4bb063a1",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "Go to HCWProfile to complete",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7"
+        }
+      ],
+      "uuid": "7d8602b1-0005-4aaa-8abb-0e3ac2c8d16e"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7"
+        }
+      ],
+      "uuid": "6132a1aa-0dbd-4827-ac02-3c80cca78e33"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7"
+        }
+      ],
+      "uuid": "be57a780-985b-41ad-9060-e60ee04e0d92"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7"
+        }
+      ],
+      "uuid": "97a8ee52-0bce-4f13-9a9f-620651138d7a"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7"
+        }
+      ],
+      "uuid": "2e2c4311-5bd8-484a-9f03-f7637389cd98"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7"
+        }
+      ],
+      "uuid": "8c60f04b-fa73-4660-974b-8b2523563ca6"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7"
+        }
+      ],
+      "uuid": "aa86640a-7a1d-40ea-87a0-e318c39f8b4a"
+    },
+    {
+      "values": [
+        {
+          "value": "TODO: Go to non-personalised menu",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7"
+        }
+      ],
+      "uuid": "076d5b8a-1a64-4051-afce-b9ae01a5ae58"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "complete_profile_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "7d8602b1-0005-4aaa-8abb-0e3ac2c8d16e"
+          },
+          "tags": [],
+          "uuid": "74d2b169-c529-5191-b400-7d2a022ee7a0",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "complete_profile_log",
+              "config": {},
+              "test": "",
+              "uuid": "ff68d9e0-cdad-4d53-bdc7-568d4b81aa3d",
+              "destination_block": "fcb33909-327b-5353-a2c1-6e5c472c6223",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 92
+                      },
+                      "name": "CompleteProfile",
+                      "uuid": "4e01abbd-26a3-5909-81bd-9ee5b4ec6e94"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 94
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "complete_profile_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "38cca9df-21a1-4edc-9c13-5724904ca3c3"
+          },
+          "tags": [],
+          "uuid": "fcb33909-327b-5353-a2c1-6e5c472c6223",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "complete_profile_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "902fff11-12de-4af1-a79b-6999f9ef802e",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 92
+                      },
+                      "name": "CompleteProfile",
+                      "uuid": "4e01abbd-26a3-5909-81bd-9ee5b4ec6e94"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 95
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "hcw_nudge_error",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "6132a1aa-0dbd-4827-ac02-3c80cca78e33",
+            "choices": [
+              {
+                "name": "complete_profile",
+                "prompt": "be57a780-985b-41ad-9060-e60ee04e0d92",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "main_menu",
+                "prompt": "97a8ee52-0bce-4f13-9a9f-620651138d7a",
+                "test": "block.response = \"@@button_labels[1]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "631ea03f-db22-5aca-b4cb-45f549aee88a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "complete_profile",
+              "config": {},
+              "test": "block.value = \"complete_profile\"",
+              "uuid": "d528efbe-b419-44ae-83ad-79b5b3c06d49",
+              "destination_block": "74d2b169-c529-5191-b400-7d2a022ee7a0",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "main_menu",
+              "config": {},
+              "test": "block.value = \"main_menu\"",
+              "uuid": "d220c158-c9d4-485c-a7fb-0bbf3adadd23",
+              "destination_block": "a526aeab-d7be-510c-af08-84e531a96c99",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"HCWNudgeError\"",
+              "config": {},
+              "test": "",
+              "uuid": "c3f8c862-bf7b-41d1-9676-b2d85d52b592",
+              "destination_block": "631ea03f-db22-5aca-b4cb-45f549aee88a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 83
+                      },
+                      "name": "HCWNudgeError",
+                      "uuid": "0ffb8984-c90d-5f00-975a-6032cf93dcce"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 84
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_nudge_complete_profile"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "0038f5b5-203a-5abb-8a47-a88adcf8ce26",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "6514e4d1-286c-441c-8f3f-277bf783edea",
+              "destination_block": "3dad5a0e-68b8-5c22-95d6-afb3c62a9cb9",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 49
+                      },
+                      "name": "HCWNudge",
+                      "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 50
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "3dad5a0e-68b8-5c22-95d6-afb3c62a9cb9",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "e8bfa227-67e3-4b61-a7e5-a84d1903734d",
+              "destination_block": "978a1b37-d8fb-59b9-b38e-0d0337853a90",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 49
+                      },
+                      "name": "HCWNudge",
+                      "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 59
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "978a1b37-d8fb-59b9-b38e-0d0337853a90",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "750a5aff-89a2-4ed9-893a-715822caeee4",
+              "destination_block": "b16b815c-c5e0-5c6a-86fc-c33b4fe2c79e",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 49
+                      },
+                      "name": "HCWNudge",
+                      "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 61
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "b16b815c-c5e0-5c6a-86fc-c33b4fe2c79e",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "3d2a6b74-b12c-4830-91ac-822bc78e40cc",
+              "destination_block": "21e70f06-b3c0-5103-9709-743b5c3cd9be",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 49
+                      },
+                      "name": "HCWNudge",
+                      "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 70
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_labels",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "21e70f06-b3c0-5103-9709-743b5c3cd9be",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.buttons, & &1.value.title)",
+              "config": {},
+              "test": "",
+              "uuid": "391bb3d4-1d4a-41a6-a1be-1c8aea8e90bd",
+              "destination_block": "19f6ba0e-0a03-5ddc-a37a-bcc2508f924b",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 49
+                      },
+                      "name": "HCWNudge",
+                      "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 71
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "profile_completion",
+          "type": "Core.Output",
+          "config": {
+            "value": "\"0%\""
+          },
+          "tags": [],
+          "uuid": "19f6ba0e-0a03-5ddc-a37a-bcc2508f924b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "profile_completion",
+              "config": {},
+              "test": "",
+              "uuid": "c8bec04a-6828-4ae5-8a99-d5f246638dc0",
+              "destination_block": "7a80ad46-1266-5c90-b141-3f1a4cbca0ab",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 49
+                      },
+                      "name": "HCWNudge",
+                      "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 73
+                      },
+                      "type": "write_result",
+                      "write_result": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "hcw_nudge",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "2e2c4311-5bd8-484a-9f03-f7637389cd98",
+            "choices": [
+              {
+                "name": "complete_profile",
+                "prompt": "8c60f04b-fa73-4660-974b-8b2523563ca6",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "main_menu",
+                "prompt": "aa86640a-7a1d-40ea-87a0-e318c39f8b4a",
+                "test": "block.response = \"@@button_labels[1]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "7a80ad46-1266-5c90-b141-3f1a4cbca0ab",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "complete_profile",
+              "config": {},
+              "test": "block.value = \"complete_profile\"",
+              "uuid": "80b82985-9604-4dcb-89dc-b5f512a29f70",
+              "destination_block": "74d2b169-c529-5191-b400-7d2a022ee7a0",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "main_menu",
+              "config": {},
+              "test": "block.value = \"main_menu\"",
+              "uuid": "f2ea838b-6588-4e62-a2f8-761689790120",
+              "destination_block": "a526aeab-d7be-510c-af08-84e531a96c99",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"HCWNudgeError\"",
+              "config": {},
+              "test": "",
+              "uuid": "e1982047-529c-4328-88d1-ae1546249a74",
+              "destination_block": "631ea03f-db22-5aca-b4cb-45f549aee88a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 49
+                      },
+                      "name": "HCWNudge",
+                      "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 75
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_error_handling_button"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "623c4da0-7c3b-4def-8b3f-05c8a56d3813",
+              "destination_block": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 3
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "10271814-281a-443e-ab9d-e09e931ec3e8",
+              "destination_block": "272ca113-9656-5e12-85ac-fe046ed163a8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 13
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "272ca113-9656-5e12-85ac-fe046ed163a8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "f4e0b2e5-a70a-47eb-8e39-bf2fd9a5ae65",
+              "destination_block": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 15
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_error_text",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "0983440d-d926-48ad-8083-1efa2bdd0139",
+              "destination_block": "8dfaa76d-8eff-54c6-b852-20b19fcb2509",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 24
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_error_handling_list_message"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "8dfaa76d-8eff-54c6-b852-20b19fcb2509",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "9700b8e0-005a-4ed0-9f88-9fc75615364a",
+              "destination_block": "3c894579-86e8-5648-9c68-408ebc9e6ef5",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 26
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "3c894579-86e8-5648-9c68-408ebc9e6ef5",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "32956b4a-6dd7-41c8-8b81-b96e591a4c25",
+              "destination_block": "81f90e8f-b8f0-57f5-ab26-6911c60408f0",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 35
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "81f90e8f-b8f0-57f5-ab26-6911c60408f0",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "0b60b7fe-c46a-4d90-b852-d47da56e01fe",
+              "destination_block": "2a0dae83-be9d-593d-b945-0c9b9be30041",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 37
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "list_error_text",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "2a0dae83-be9d-593d-b945-0c9b9be30041",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "480fabf1-25c0-43cc-8488-87f47901cee6",
+              "destination_block": "0038f5b5-203a-5abb-8a47-a88adcf8ce26",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 46
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "main_menu_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "076d5b8a-1a64-4051-afce-b9ae01a5ae58"
+          },
+          "tags": [],
+          "uuid": "a526aeab-d7be-510c-af08-84e531a96c99",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "main_menu_text",
+              "config": {},
+              "test": "",
+              "uuid": "d81c83ba-1d25-443e-81ed-7022202ab86b",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 98
+                      },
+                      "name": "MainMenu",
+                      "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 99
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "last_modified": "2024-07-17T10:28:51.679549Z",
+      "uuid": "fd7cf7e2-f323-4236-84f4-4973fc124ac3",
+      "languages": [
+        {
+          "id": "efe6aaa9-ade7-42b7-a09e-9f0b3a6217b7",
+          "label": "English",
+          "variant": null,
+          "iso_639_3": "eng",
+          "bcp_47": null
+        }
+      ],
+      "first_block_id": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+      "interaction_timeout": 300,
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}

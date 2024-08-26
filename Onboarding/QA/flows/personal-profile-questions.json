@@ -1,0 +1,4261 @@
+{
+  "name": "Default name",
+  "description": "Default description",
+  "uuid": "61a880e4-cf7b-47c5-a047-60802aaa7975",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "Updating other_children to @children",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "8fd2809d-e337-4355-9fe0-79ad1822aa33"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        },
+        {
+          "value": "Children",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "2c0c6460-7f0f-4df4-945b-7b1bf91c7c78"
+    },
+    {
+      "values": [
+        {
+          "value": "Skipping children",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "29013350-ac26-4bd1-985f-0f41e00fa81c"
+    },
+    {
+      "values": [
+        {
+          "value": "Updating socio economic to @socio_economic",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "5318827d-950a-4f88-8fd6-d29370739595"
+    },
+    {
+      "values": [
+        {
+          "value": "Updating education to @education",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "51bf2cc1-befb-460e-96a4-a237c0c22d17"
+    },
+    {
+      "values": [
+        {
+          "value": "Skipping education",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "a8a0c753-2798-48a1-9360-427550c6b351"
+    },
+    {
+      "values": [
+        {
+          "value": "@list_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        },
+        {
+          "value": "Education",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "e17c30ac-9b6c-43cf-9a69-a7e5b6b6b2ab"
+    },
+    {
+      "values": [
+        {
+          "value": "Skipping relationship status",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "82c7ad06-c102-4c72-ae67-ef72338085a8"
+    },
+    {
+      "values": [
+        {
+          "value": "Updating relationship_status to @relationship_status",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "71c355cd-50b4-406d-ac15-c16059e4a786"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "2494cfff-b73c-418e-ba4b-eccdefec153b"
+    },
+    {
+      "values": [
+        {
+          "value": "Question1Response",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "8530104f-0509-4270-818c-727ba2007ed5"
+    },
+    {
+      "values": [
+        {
+          "value": "Skipping relationship status",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "38c53f86-9cc4-4889-9fc5-6da659e5e5d7"
+    },
+    {
+      "values": [
+        {
+          "value": "@list_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        },
+        {
+          "value": "Children",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "c9a4c029-0a48-4ad1-b867-cfd2451f0c8c"
+    },
+    {
+      "values": [
+        {
+          "value": "Skipping Children",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "3033069a-c136-4991-9dc4-10c859e62670"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        },
+        {
+          "value": "Children",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "57c4a699-9cef-4253-a2b3-3ad844c23ee1"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "0cba7b7d-aa80-4c69-bf51-b43e783a2bea"
+    },
+    {
+      "values": [
+        {
+          "value": "Question3Response",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "ec3982a5-1694-47eb-808e-d6f4352a46eb"
+    },
+    {
+      "values": [
+        {
+          "value": "Skipping socio economic",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "951fbdb9-41e0-4c38-ba7d-7446329cff90"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "42fbb0ca-b8c5-44e0-9c7d-46d06d3f86f6"
+    },
+    {
+      "values": [
+        {
+          "value": "Question3Response",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "c76b42ce-9c4e-4905-996f-6393b7989729"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        },
+        {
+          "value": "Education",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "3d0ff926-0f2b-4336-9095-d1e61bcce773"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "654fb47a-a1f1-49ee-a512-90a1217982e3"
+    },
+    {
+      "values": [
+        {
+          "value": "Question1Response",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a7517458-1fe4-4a42-8f78-bdbf3293101c"
+        }
+      ],
+      "uuid": "4cd10f1a-35bd-4b0c-8519-4f1675666317"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "question4_response_case",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "e445a76f-5856-5664-a0c9-f890c601d77b",
+          "ui_metadata": {},
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for question4_response_case_condition_0",
+              "config": {},
+              "test": "has_phrase(lower(\"@children\"), \"skip\")",
+              "uuid": "a38a254f-f9ff-4db2-b68c-8534b9bba3ec",
+              "destination_block": "e225a9c8-dd1c-5012-91f1-f6a58e475bf1",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": false,
+              "name": "Exit for question4_response_case_condition_1",
+              "config": {},
+              "test": "has_phrase(lower(\"@children\"), \"why\")",
+              "uuid": "e4dda703-7073-4c35-9738-a3f558f4d0a3",
+              "destination_block": "705082a6-cf9e-5a4f-9d29-09cc91d140fa",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Exit for question4_response_case_condition_2",
+              "config": {},
+              "test": null,
+              "uuid": "845e1acd-b8bb-4bd2-8ae0-75212a02c76b",
+              "destination_block": "3fac64f0-626c-5c41-a11f-09038be3e311",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {}
+        },
+        {
+          "label": null,
+          "name": "children",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "3fac64f0-626c-5c41-a11f-09038be3e311",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "lower(\"@children\")",
+              "config": {},
+              "test": "",
+              "uuid": "6e8b77a7-b26c-4623-b38d-8163640e5a4e",
+              "destination_block": "ac098d06-edeb-528c-b169-b956f9f728cc",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 272
+                      },
+                      "name": "Question4Response",
+                      "uuid": "7740b337-545b-514b-acfb-83f683591996"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 273
+                      },
+                      "type": "expression"
+                    },
+                    "index": 2
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question4_response_case_condition_2_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "8fd2809d-e337-4355-9fe0-79ad1822aa33"
+          },
+          "tags": [],
+          "uuid": "ac098d06-edeb-528c-b169-b956f9f728cc",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "question4_response_case_condition_2_log",
+              "config": {},
+              "test": "",
+              "uuid": "d354301d-ae30-4f22-b1b3-b785bdd5532b",
+              "destination_block": "24546521-1ff9-599d-8f34-1498239a280c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 272
+                      },
+                      "name": "Question4Response",
+                      "uuid": "7740b337-545b-514b-acfb-83f683591996"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 274
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question4_response_case_condition_2_contact_update_other_children",
+          "type": "Core.SetContactProperty",
+          "config": {
+            "set_contact_property": {
+              "property_key": "other_children",
+              "property_value": "@children"
+            }
+          },
+          "tags": [],
+          "uuid": "24546521-1ff9-599d-8f34-1498239a280c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "question4_response_case_condition_2_contact_update_other_children",
+              "config": {},
+              "test": "",
+              "uuid": "821e11f7-3746-4df5-9af2-72da008716fa",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 272
+                      },
+                      "name": "Question4Response",
+                      "uuid": "7740b337-545b-514b-acfb-83f683591996"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 275
+                      },
+                      "type": "update_contact",
+                      "update_contact": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_children_why"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "705082a6-cf9e-5a4f-9d29-09cc91d140fa",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "4d37e12e-286d-45bc-b751-0276b240f894",
+              "destination_block": "547c9e37-352a-5690-8705-a541d67a49ce",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@children\"), \"why\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 242
+                      },
+                      "name": "Question4Response",
+                      "uuid": "a9010fff-b393-567e-b283-088156040ec0"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 243
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "547c9e37-352a-5690-8705-a541d67a49ce",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "0b98f5cb-e793-4bdb-8d25-1e545a595aa1",
+              "destination_block": "6c8a6c03-5da4-57a7-8845-0baa8794e01a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@children\"), \"why\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 242
+                      },
+                      "name": "Question4Response",
+                      "uuid": "a9010fff-b393-567e-b283-088156040ec0"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 252
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "6c8a6c03-5da4-57a7-8845-0baa8794e01a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "fc97294e-7f74-4471-8169-2d802fc31827",
+              "destination_block": "8e2ff029-ec98-5279-ace3-02332a6b0c98",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@children\"), \"why\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 242
+                      },
+                      "name": "Question4Response",
+                      "uuid": "a9010fff-b393-567e-b283-088156040ec0"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 254
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "8e2ff029-ec98-5279-ace3-02332a6b0c98",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "231fa886-b404-462f-8c40-48fbe20d8163",
+              "destination_block": "1e8d59b3-1342-5c6d-8c57-f23f1dbbbd5e",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@children\"), \"why\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 242
+                      },
+                      "name": "Question4Response",
+                      "uuid": "a9010fff-b393-567e-b283-088156040ec0"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 263
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "list_items",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "1e8d59b3-1342-5c6d-8c57-f23f1dbbbd5e",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.list_items, & &1.value)",
+              "config": {},
+              "test": "",
+              "uuid": "5b6affae-bb52-4050-b091-f86fd377e399",
+              "destination_block": "0a982d6a-a4af-5c2b-b95a-29996c6bde55",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@children\"), \"why\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 242
+                      },
+                      "name": "Question4Response",
+                      "uuid": "a9010fff-b393-567e-b283-088156040ec0"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 264
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "children",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "2c0c6460-7f0f-4df4-945b-7b1bf91c7c78",
+            "destination_block": "e445a76f-5856-5664-a0c9-f890c601d77b",
+            "choices": [],
+            "choice_expression": "map(list_items, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "0a982d6a-a4af-5c2b-b95a-29996c6bde55",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "children",
+              "config": {},
+              "test": "",
+              "uuid": "ab204beb-daa2-4a27-b7ac-5a6ebcf996b8",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@children\"), \"why\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 242
+                      },
+                      "name": "Question4Response",
+                      "uuid": "a9010fff-b393-567e-b283-088156040ec0"
+                    },
+                    "card_item": {
+                      "dynamic_list": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 266
+                      },
+                      "type": "dynamic_list"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question4_response_case_condition_0_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "29013350-ac26-4bd1-985f-0f41e00fa81c"
+          },
+          "tags": [],
+          "uuid": "e225a9c8-dd1c-5012-91f1-f6a58e475bf1",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "question4_response_case_condition_0_log",
+              "config": {},
+              "test": "",
+              "uuid": "7f5805f2-1a82-4752-bbb7-6dc42cc71d33",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@children\"), \"skip\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 238
+                      },
+                      "name": "Question4Response",
+                      "uuid": "e445a76f-5856-5664-a0c9-f890c601d77b"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 239
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "socio_economic",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "7487f6a1-17cb-5666-a8ad-acc2fa1426c7",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "lower(\"@socio_economic\")",
+              "config": {},
+              "test": "",
+              "uuid": "3159c8be-94b9-46bf-99dd-14a955fbf670",
+              "destination_block": "ad903177-c23a-5a6b-adb4-9fcedc7d9991",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 191
+                      },
+                      "name": "Question3Response",
+                      "uuid": "dcbc398f-b86b-5460-bd07-ac9e3d7586a5"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 192
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question3_response_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "5318827d-950a-4f88-8fd6-d29370739595"
+          },
+          "tags": [],
+          "uuid": "ad903177-c23a-5a6b-adb4-9fcedc7d9991",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "question3_response_log",
+              "config": {},
+              "test": "",
+              "uuid": "de162492-ad39-4b08-8002-eaf3fe2a490a",
+              "destination_block": "02a4e8ff-70b1-5887-bc5b-6d814266e02c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 191
+                      },
+                      "name": "Question3Response",
+                      "uuid": "dcbc398f-b86b-5460-bd07-ac9e3d7586a5"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 193
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question3_response_contact_update_socio_economic",
+          "type": "Core.SetContactProperty",
+          "config": {
+            "set_contact_property": {
+              "property_key": "socio_economic",
+              "property_value": "@socio_economic"
+            }
+          },
+          "tags": [],
+          "uuid": "02a4e8ff-70b1-5887-bc5b-6d814266e02c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question4\"",
+              "config": {},
+              "test": "",
+              "uuid": "e2b3f003-f049-4920-bda7-91af0dac16cb",
+              "destination_block": "61022477-0b7a-538b-b1e0-7a5bdb318d1b",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 191
+                      },
+                      "name": "Question3Response",
+                      "uuid": "dcbc398f-b86b-5460-bd07-ac9e3d7586a5"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 194
+                      },
+                      "type": "update_contact",
+                      "update_contact": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question2_response_case",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "bfe875dd-3bd9-564b-941c-10e3f34d3e10",
+          "ui_metadata": {},
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for question2_response_case_condition_0",
+              "config": {},
+              "test": "has_phrase(lower(\"@education\"), \"skip\")",
+              "uuid": "df926482-09ad-4cdf-8bc9-ba6bd6ac0347",
+              "destination_block": "b78254eb-a6fa-57eb-a911-1bd5734f4c0a",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Exit for question2_response_case_condition_1",
+              "config": {},
+              "test": null,
+              "uuid": "e4dc1323-6824-4f4b-9091-5a9ba433a4a2",
+              "destination_block": "1ac74fcb-56a2-5caf-9db6-355fafadb8ec",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {}
+        },
+        {
+          "label": null,
+          "name": "education",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "1ac74fcb-56a2-5caf-9db6-355fafadb8ec",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "lower(\"@education\")",
+              "config": {},
+              "test": "",
+              "uuid": "7813bb18-e201-46c2-a21b-28198358849a",
+              "destination_block": "15cb0fa1-0fd2-5c4c-8593-67d1fe07b525",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 144
+                      },
+                      "name": "Question2Response",
+                      "uuid": "447ea1ad-1e99-50c8-a8a0-602b282bcff8"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 145
+                      },
+                      "type": "expression"
+                    },
+                    "index": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question2_response_case_condition_1_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "51bf2cc1-befb-460e-96a4-a237c0c22d17"
+          },
+          "tags": [],
+          "uuid": "15cb0fa1-0fd2-5c4c-8593-67d1fe07b525",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "question2_response_case_condition_1_log",
+              "config": {},
+              "test": "",
+              "uuid": "c1bd4c6f-cb0e-4ea5-852f-8c8e3a35cc6e",
+              "destination_block": "38f98e66-6f1f-53ab-bec2-05ad57c4d028",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 144
+                      },
+                      "name": "Question2Response",
+                      "uuid": "447ea1ad-1e99-50c8-a8a0-602b282bcff8"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 146
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question2_response_case_condition_1_contact_update_education",
+          "type": "Core.SetContactProperty",
+          "config": {
+            "set_contact_property": {
+              "property_key": "education",
+              "property_value": "@education"
+            }
+          },
+          "tags": [],
+          "uuid": "38f98e66-6f1f-53ab-bec2-05ad57c4d028",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question3\"",
+              "config": {},
+              "test": "",
+              "uuid": "80205d4a-da14-48e0-beb8-5736095f69fd",
+              "destination_block": "63480639-f963-5890-8879-580c78754367",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 144
+                      },
+                      "name": "Question2Response",
+                      "uuid": "447ea1ad-1e99-50c8-a8a0-602b282bcff8"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 147
+                      },
+                      "type": "update_contact",
+                      "update_contact": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question2_response_case_condition_0_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "a8a0c753-2798-48a1-9360-427550c6b351"
+          },
+          "tags": [],
+          "uuid": "b78254eb-a6fa-57eb-a911-1bd5734f4c0a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question3\"",
+              "config": {},
+              "test": "",
+              "uuid": "f75cdfe7-d4f3-4757-a974-5a34e3abb4aa",
+              "destination_block": "63480639-f963-5890-8879-580c78754367",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@education\"), \"skip\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 140
+                      },
+                      "name": "Question2Response",
+                      "uuid": "bfe875dd-3bd9-564b-941c-10e3f34d3e10"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 141
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question2_error_case",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "89c9a788-9b68-5511-a295-d0bc548d464c",
+          "ui_metadata": {},
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for question2_error_case_condition_0",
+              "config": {},
+              "test": "has_phrase(lower(\"@education\"), \"skip\")",
+              "uuid": "ebfca382-17bf-482c-a0b9-05e939d16d19",
+              "destination_block": "9b864327-1665-5930-9651-c08dd1808070",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Exit for question2_error_case_condition_1",
+              "config": {},
+              "test": null,
+              "uuid": "33eaa4fa-6a83-48d0-9f26-5e1438460a35",
+              "destination_block": "35d16553-4fd4-58c3-b10f-188ad9c6fc27",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {}
+        },
+        {
+          "label": null,
+          "name": "education",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "e17c30ac-9b6c-43cf-9a69-a7e5b6b6b2ab",
+            "destination_block": "bfe875dd-3bd9-564b-941c-10e3f34d3e10",
+            "choices": [],
+            "choice_expression": "map(list_items, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "35d16553-4fd4-58c3-b10f-188ad9c6fc27",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question2Error\"",
+              "config": {},
+              "test": "",
+              "uuid": "1a1e3f6f-2553-468e-b0a9-ce14151bcbad",
+              "destination_block": "89c9a788-9b68-5511-a295-d0bc548d464c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 133
+                      },
+                      "name": "Question2Error",
+                      "uuid": "0cd38e10-87b6-5196-91e3-d87c76f76b21"
+                    },
+                    "card_item": {
+                      "dynamic_list": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 134
+                      },
+                      "type": "dynamic_list"
+                    },
+                    "index": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question2_error_case_condition_0_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "82c7ad06-c102-4c72-ae67-ef72338085a8"
+          },
+          "tags": [],
+          "uuid": "9b864327-1665-5930-9651-c08dd1808070",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question3\"",
+              "config": {},
+              "test": "",
+              "uuid": "5d21b795-dcdc-4941-99ff-7351b0427b2e",
+              "destination_block": "63480639-f963-5890-8879-580c78754367",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@education\"), \"skip\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 129
+                      },
+                      "name": "Question2Error",
+                      "uuid": "89c9a788-9b68-5511-a295-d0bc548d464c"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 130
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "relationship_status",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "fa8dfba9-fc0a-5ec8-9b0e-cf8b4135498e",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "lower(\"@relationship_status\")",
+              "config": {},
+              "test": "",
+              "uuid": "fbfe0d65-ef81-43d4-be3f-9480b6c8d383",
+              "destination_block": "3551a655-c98d-5088-96f0-9973f5dac435",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 93
+                      },
+                      "name": "Question1Response",
+                      "uuid": "a317f3ae-e930-5ade-b4d8-dc752f042f10"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 94
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question1_response_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "71c355cd-50b4-406d-ac15-c16059e4a786"
+          },
+          "tags": [],
+          "uuid": "3551a655-c98d-5088-96f0-9973f5dac435",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "question1_response_log",
+              "config": {},
+              "test": "",
+              "uuid": "f9cdc4a9-83b8-40e0-a54e-beb1298565e4",
+              "destination_block": "dde76b57-904c-5453-a6f3-444c1c709e32",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 93
+                      },
+                      "name": "Question1Response",
+                      "uuid": "a317f3ae-e930-5ade-b4d8-dc752f042f10"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 95
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question1_response_contact_update_relationship_status",
+          "type": "Core.SetContactProperty",
+          "config": {
+            "set_contact_property": {
+              "property_key": "relationship_status",
+              "property_value": "@relationship_status"
+            }
+          },
+          "tags": [],
+          "uuid": "dde76b57-904c-5453-a6f3-444c1c709e32",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question2\"",
+              "config": {},
+              "test": "",
+              "uuid": "474e41c6-66a9-4d6f-9236-93f12f63f7ca",
+              "destination_block": "ecc4fd91-d9ab-5045-8de1-9ff51d41f0fb",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 93
+                      },
+                      "name": "Question1Response",
+                      "uuid": "a317f3ae-e930-5ade-b4d8-dc752f042f10"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 96
+                      },
+                      "type": "update_contact",
+                      "update_contact": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question1_error_case",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "b7bc364d-f2f3-5c55-a359-e02e65de90e8",
+          "ui_metadata": {},
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for question1_error_case_condition_0",
+              "config": {},
+              "test": "has_phrase(lower(\"@relationship_status\"), \"skip\")",
+              "uuid": "4c569648-5f8a-451c-a9cd-55ba35c44b0d",
+              "destination_block": "fe3a8b0a-ed4a-5ed6-ad26-81e8ca98945e",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Exit for question1_error_case_condition_1",
+              "config": {},
+              "test": null,
+              "uuid": "5de11c56-b06d-41d3-a9d8-e8165c109c48",
+              "destination_block": "5864b293-c479-5897-86b9-d76cebdf6903",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {}
+        },
+        {
+          "label": null,
+          "name": "relationship_status",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "2494cfff-b73c-418e-ba4b-eccdefec153b",
+            "destination_block": "fa8dfba9-fc0a-5ec8-9b0e-cf8b4135498e",
+            "choices": [],
+            "choice_expression": "map(button_labels, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "5864b293-c479-5897-86b9-d76cebdf6903",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question1Error\"",
+              "config": {},
+              "test": "",
+              "uuid": "3c8affd7-7286-4698-bb3e-9217335ced6f",
+              "destination_block": "b7bc364d-f2f3-5c55-a359-e02e65de90e8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 86
+                      },
+                      "name": "Question1Error",
+                      "uuid": "2ee1af58-08a9-5533-896f-05b351d1281f"
+                    },
+                    "card_item": {
+                      "dynamic_button": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 87
+                      },
+                      "type": "dynamic_button"
+                    },
+                    "index": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question1_error_case_condition_0_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "38c53f86-9cc4-4889-9fc5-6da659e5e5d7"
+          },
+          "tags": [],
+          "uuid": "fe3a8b0a-ed4a-5ed6-ad26-81e8ca98945e",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question2\"",
+              "config": {},
+              "test": "",
+              "uuid": "0d973cf8-5ec2-4351-be97-2202257f23a3",
+              "destination_block": "ecc4fd91-d9ab-5045-8de1-9ff51d41f0fb",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@relationship_status\"), \"skip\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 82
+                      },
+                      "name": "Question1Error",
+                      "uuid": "b7bc364d-f2f3-5c55-a359-e02e65de90e8"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 83
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_error_handling_button"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "aab449fd-3210-5616-892f-be733693a0dd",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "be300eee-a43d-452f-8ac0-35b0f23229c5",
+              "destination_block": "dd714290-769b-5d1c-96a1-56e2a610d171",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 6
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "dd714290-769b-5d1c-96a1-56e2a610d171",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "99a238b7-e7ea-481f-8e9c-3a115d051c87",
+              "destination_block": "c86ffa21-0724-55bb-a942-b7bd72eb9f69",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 16
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "c86ffa21-0724-55bb-a942-b7bd72eb9f69",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "d572907a-3574-4d61-b2a5-9bfafab21607",
+              "destination_block": "9b5f468c-de1e-54f0-a04b-db1c3551c16c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 18
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_error_text",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "9b5f468c-de1e-54f0-a04b-db1c3551c16c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "9199f985-5baf-427c-bca7-eabc8c72e5cc",
+              "destination_block": "b1858304-5fd8-5a5a-9449-efc746c6956a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 27
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_error_handling_list_message"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "b1858304-5fd8-5a5a-9449-efc746c6956a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "3e4558df-43bc-4367-adc8-e9a2925a39ed",
+              "destination_block": "bcf42d9d-7fc4-5593-9d45-233be416aabd",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 29
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "bcf42d9d-7fc4-5593-9d45-233be416aabd",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "8e4f3783-0dfd-4b33-932e-6de8ee70bd54",
+              "destination_block": "3df8b0fd-9ff2-50f5-a8bd-a82b866c3c37",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 38
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "3df8b0fd-9ff2-50f5-a8bd-a82b866c3c37",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "632f2d83-4ed0-4822-9341-e5cd446db876",
+              "destination_block": "079f92f6-e492-5b09-8fb9-fa7f310cf7d8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 40
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "list_error_text",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "079f92f6-e492-5b09-8fb9-fa7f310cf7d8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "4da0fa0b-d406-4c92-b288-ae05da720771",
+              "destination_block": "11bbda6d-047a-5dda-9f3c-4b6e3073da11",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 49
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question4_error_case",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "91a2b298-8159-5221-9644-385375982443",
+          "ui_metadata": {},
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for question4_error_case_condition_0",
+              "config": {},
+              "test": "has_phrase(lower(\"@children\"), \"skip\")",
+              "uuid": "c972e8cf-5fb8-416a-8b16-2cc94bc3bc48",
+              "destination_block": "fc1757db-44b0-5f80-bd8a-5deb98164f37",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Exit for question4_error_case_condition_1",
+              "config": {},
+              "test": null,
+              "uuid": "92557c5a-a900-45ef-8062-78e39af925d0",
+              "destination_block": "4774f538-c7e9-5a0a-86b5-f1ccc51c41b5",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {}
+        },
+        {
+          "label": null,
+          "name": "children",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "c9a4c029-0a48-4ad1-b867-cfd2451f0c8c",
+            "destination_block": "e445a76f-5856-5664-a0c9-f890c601d77b",
+            "choices": [],
+            "choice_expression": "map(list_items, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "4774f538-c7e9-5a0a-86b5-f1ccc51c41b5",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question4Error\"",
+              "config": {},
+              "test": "",
+              "uuid": "d20e772e-b345-4caf-9752-d9b87d549730",
+              "destination_block": "91a2b298-8159-5221-9644-385375982443",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 231
+                      },
+                      "name": "Question4Error",
+                      "uuid": "f565025f-51d3-54d7-b14b-51e01d8be9a3"
+                    },
+                    "card_item": {
+                      "dynamic_list": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 232
+                      },
+                      "type": "dynamic_list"
+                    },
+                    "index": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question4_error_case_condition_0_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "3033069a-c136-4991-9dc4-10c859e62670"
+          },
+          "tags": [],
+          "uuid": "fc1757db-44b0-5f80-bd8a-5deb98164f37",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "question4_error_case_condition_0_log",
+              "config": {},
+              "test": "",
+              "uuid": "032d696f-7f12-42be-8b3b-91892a00097a",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@children\"), \"skip\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 227
+                      },
+                      "name": "Question4Error",
+                      "uuid": "91a2b298-8159-5221-9644-385375982443"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 228
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_children"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "61022477-0b7a-538b-b1e0-7a5bdb318d1b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "8dc15e2c-7b8f-4810-b104-eccc0e71a3e5",
+              "destination_block": "476c522a-c462-5ebe-becf-205446c24bfb",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 197
+                      },
+                      "name": "Question4",
+                      "uuid": "f11f41a3-9d66-52fc-8238-e7cc2f43ad80"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 198
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "476c522a-c462-5ebe-becf-205446c24bfb",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "a4c287fa-d56f-4780-a4eb-7e888a3a2d9e",
+              "destination_block": "3ad8b736-a87d-55bf-b76a-35d3a0144b3c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 197
+                      },
+                      "name": "Question4",
+                      "uuid": "f11f41a3-9d66-52fc-8238-e7cc2f43ad80"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 207
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "3ad8b736-a87d-55bf-b76a-35d3a0144b3c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "a3b5ac48-acd7-47a9-b883-6d01c3dc2e76",
+              "destination_block": "41630325-0ee5-51fe-b73a-ee90fe95ecb1",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 197
+                      },
+                      "name": "Question4",
+                      "uuid": "f11f41a3-9d66-52fc-8238-e7cc2f43ad80"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 209
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "41630325-0ee5-51fe-b73a-ee90fe95ecb1",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "39a905cf-ba71-49cc-944c-707758f94d5a",
+              "destination_block": "bae234d0-1617-55b0-8038-5160eb5864ed",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 197
+                      },
+                      "name": "Question4",
+                      "uuid": "f11f41a3-9d66-52fc-8238-e7cc2f43ad80"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 218
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "list_items",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "bae234d0-1617-55b0-8038-5160eb5864ed",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.list_items, & &1.value)",
+              "config": {},
+              "test": "",
+              "uuid": "c504839a-d86c-4862-8b7f-2bbf37c9b7a3",
+              "destination_block": "a96cdb94-6b22-5536-8f52-bcac1196c2ff",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 197
+                      },
+                      "name": "Question4",
+                      "uuid": "f11f41a3-9d66-52fc-8238-e7cc2f43ad80"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 219
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "children",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "57c4a699-9cef-4253-a2b3-3ad844c23ee1",
+            "destination_block": "e445a76f-5856-5664-a0c9-f890c601d77b",
+            "choices": [],
+            "choice_expression": "map(list_items, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "a96cdb94-6b22-5536-8f52-bcac1196c2ff",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question4Error\"",
+              "config": {},
+              "test": "",
+              "uuid": "7892fea4-9466-40b5-b758-362800e09305",
+              "destination_block": "91a2b298-8159-5221-9644-385375982443",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 197
+                      },
+                      "name": "Question4",
+                      "uuid": "f11f41a3-9d66-52fc-8238-e7cc2f43ad80"
+                    },
+                    "card_item": {
+                      "dynamic_list": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 221
+                      },
+                      "type": "dynamic_list"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question3_error_case",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "963bfe98-2316-5a26-aba6-5452a3fada95",
+          "ui_metadata": {},
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for question3_error_case_condition_0",
+              "config": {},
+              "test": "has_phrase(lower(\"@socio_economic\"), \"skip\")",
+              "uuid": "a3e3249a-a709-4298-933b-f7232ed6d80b",
+              "destination_block": "0eed7f52-c5ce-5dc0-af6d-68cf235ad731",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Exit for question3_error_case_condition_1",
+              "config": {},
+              "test": null,
+              "uuid": "633ad742-e988-4ec3-be66-aa0c3831f3da",
+              "destination_block": "5f6e0c62-f324-50ee-890c-26048955ff46",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {}
+        },
+        {
+          "label": null,
+          "name": "socio_economic",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "0cba7b7d-aa80-4c69-bf51-b43e783a2bea",
+            "destination_block": "7487f6a1-17cb-5666-a8ad-acc2fa1426c7",
+            "choices": [],
+            "choice_expression": "map(button_labels, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "5f6e0c62-f324-50ee-890c-26048955ff46",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question3Error\"",
+              "config": {},
+              "test": "",
+              "uuid": "7f8676a5-f94e-458c-99ac-c4903f85ab89",
+              "destination_block": "963bfe98-2316-5a26-aba6-5452a3fada95",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 184
+                      },
+                      "name": "Question3Error",
+                      "uuid": "1a4f7bb0-95f1-566b-8697-f5961c387134"
+                    },
+                    "card_item": {
+                      "dynamic_button": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 185
+                      },
+                      "type": "dynamic_button"
+                    },
+                    "index": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "question3_error_case_condition_0_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "951fbdb9-41e0-4c38-ba7d-7446329cff90"
+          },
+          "tags": [],
+          "uuid": "0eed7f52-c5ce-5dc0-af6d-68cf235ad731",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question4\"",
+              "config": {},
+              "test": "",
+              "uuid": "1e835dfd-fd48-4d6e-9600-2e4172561f9a",
+              "destination_block": "61022477-0b7a-538b-b1e0-7a5bdb318d1b",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "has_phrase(lower(\"@socio_economic\"), \"skip\")",
+                      "meta": {
+                        "column": 1,
+                        "line": 180
+                      },
+                      "name": "Question3Error",
+                      "uuid": "963bfe98-2316-5a26-aba6-5452a3fada95"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 181
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_q_socioeconomic"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "63480639-f963-5890-8879-580c78754367",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "38f5f247-a74c-4cc0-9b33-822f12e5446f",
+              "destination_block": "e09422d0-86f1-57ff-8708-a4cb6375b115",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 150
+                      },
+                      "name": "Question3",
+                      "uuid": "eac7d265-49f5-55d1-a450-4555809cde45"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 151
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "e09422d0-86f1-57ff-8708-a4cb6375b115",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "703a5a53-09e6-44e3-989e-37ff54ab1198",
+              "destination_block": "f62bbdb7-5025-53f5-b27d-9cfd59840f6d",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 150
+                      },
+                      "name": "Question3",
+                      "uuid": "eac7d265-49f5-55d1-a450-4555809cde45"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 160
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "f62bbdb7-5025-53f5-b27d-9cfd59840f6d",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "dbc55fb6-3d6a-48a9-992a-10b44bff9fbe",
+              "destination_block": "cd60f5d4-c190-5a7c-91e2-d76174a701f0",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 150
+                      },
+                      "name": "Question3",
+                      "uuid": "eac7d265-49f5-55d1-a450-4555809cde45"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 162
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "cd60f5d4-c190-5a7c-91e2-d76174a701f0",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "f8023140-22ec-42d2-90e9-3d510033621d",
+              "destination_block": "9de56df7-8754-50ae-856b-d624f58908c5",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 150
+                      },
+                      "name": "Question3",
+                      "uuid": "eac7d265-49f5-55d1-a450-4555809cde45"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 171
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_labels",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "9de56df7-8754-50ae-856b-d624f58908c5",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.buttons, & &1.value.title)",
+              "config": {},
+              "test": "",
+              "uuid": "5b3f25f1-2591-4956-aaf0-74475dad63e7",
+              "destination_block": "e53404a3-9072-5d00-99a4-e2b23d15d4e1",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 150
+                      },
+                      "name": "Question3",
+                      "uuid": "eac7d265-49f5-55d1-a450-4555809cde45"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 172
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "socio_economic",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "42fbb0ca-b8c5-44e0-9c7d-46d06d3f86f6",
+            "destination_block": "7487f6a1-17cb-5666-a8ad-acc2fa1426c7",
+            "choices": [],
+            "choice_expression": "map(button_labels, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "e53404a3-9072-5d00-99a4-e2b23d15d4e1",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question3Error\"",
+              "config": {},
+              "test": "",
+              "uuid": "7976c85a-d0d1-48f7-802d-998c4565f872",
+              "destination_block": "963bfe98-2316-5a26-aba6-5452a3fada95",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 150
+                      },
+                      "name": "Question3",
+                      "uuid": "eac7d265-49f5-55d1-a450-4555809cde45"
+                    },
+                    "card_item": {
+                      "dynamic_button": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 174
+                      },
+                      "type": "dynamic_button"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_q_education"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "ecc4fd91-d9ab-5045-8de1-9ff51d41f0fb",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "136d2a43-aeb8-4197-a74f-6829b7033878",
+              "destination_block": "415f6fce-d0ba-5690-a3b6-f058d4159026",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 99
+                      },
+                      "name": "Question2",
+                      "uuid": "6182fde7-4a5f-5ae9-ae8e-4f324a29fc40"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 100
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "415f6fce-d0ba-5690-a3b6-f058d4159026",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "4f56dd6b-73cc-4fe3-a5d4-7048d6b5c7d2",
+              "destination_block": "4a920147-906f-5dc0-b27f-efd8f15bec59",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 99
+                      },
+                      "name": "Question2",
+                      "uuid": "6182fde7-4a5f-5ae9-ae8e-4f324a29fc40"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 109
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "4a920147-906f-5dc0-b27f-efd8f15bec59",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "fa718036-c7f0-4c80-9d7d-aea6dacc4d8e",
+              "destination_block": "9d6822e0-6ead-50ce-a858-51815c33c831",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 99
+                      },
+                      "name": "Question2",
+                      "uuid": "6182fde7-4a5f-5ae9-ae8e-4f324a29fc40"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 111
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "9d6822e0-6ead-50ce-a858-51815c33c831",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "09a72d70-481f-4693-8516-c62b202980f7",
+              "destination_block": "078b6aca-b4d1-50be-9407-72ef6e64dfa1",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 99
+                      },
+                      "name": "Question2",
+                      "uuid": "6182fde7-4a5f-5ae9-ae8e-4f324a29fc40"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 120
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "list_items",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "078b6aca-b4d1-50be-9407-72ef6e64dfa1",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.list_items, & &1.value)",
+              "config": {},
+              "test": "",
+              "uuid": "3d27c878-9918-47c3-b3d9-a040310a2c50",
+              "destination_block": "fd9c772b-abc2-5297-b794-88f4bf8403ec",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 99
+                      },
+                      "name": "Question2",
+                      "uuid": "6182fde7-4a5f-5ae9-ae8e-4f324a29fc40"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 121
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "education",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "3d0ff926-0f2b-4336-9095-d1e61bcce773",
+            "destination_block": "bfe875dd-3bd9-564b-941c-10e3f34d3e10",
+            "choices": [],
+            "choice_expression": "map(list_items, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "fd9c772b-abc2-5297-b794-88f4bf8403ec",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question2Error\"",
+              "config": {},
+              "test": "",
+              "uuid": "546af2cd-55b3-4bab-8d97-1ac216f56ba7",
+              "destination_block": "89c9a788-9b68-5511-a295-d0bc548d464c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 99
+                      },
+                      "name": "Question2",
+                      "uuid": "6182fde7-4a5f-5ae9-ae8e-4f324a29fc40"
+                    },
+                    "card_item": {
+                      "dynamic_list": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 123
+                      },
+                      "type": "dynamic_list"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_q_relationshipstatus"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "11bbda6d-047a-5dda-9f3c-4b6e3073da11",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "a54da1c0-be29-49df-875c-3e24311642b2",
+              "destination_block": "e91b6870-e0fc-540e-98e7-ee6a8687d9a8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 52
+                      },
+                      "name": "Question1",
+                      "uuid": "b92665e4-f64d-53d6-8792-12c19e05d388"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 53
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "e91b6870-e0fc-540e-98e7-ee6a8687d9a8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "67bde5e1-3444-4a64-965c-6659bcff9a97",
+              "destination_block": "9458bde5-4ba7-5cd7-926a-0567ae7174eb",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 52
+                      },
+                      "name": "Question1",
+                      "uuid": "b92665e4-f64d-53d6-8792-12c19e05d388"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 62
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "9458bde5-4ba7-5cd7-926a-0567ae7174eb",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "633d8b1e-470b-4f0b-a357-85f3c17e71d9",
+              "destination_block": "115541cf-977e-545c-aca9-4f92b3e4ef51",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 52
+                      },
+                      "name": "Question1",
+                      "uuid": "b92665e4-f64d-53d6-8792-12c19e05d388"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 64
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "115541cf-977e-545c-aca9-4f92b3e4ef51",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "1a7141fa-995a-405a-b7c2-3efed116d317",
+              "destination_block": "7c6a0e15-f874-5d45-a54f-69ce6bf41028",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 52
+                      },
+                      "name": "Question1",
+                      "uuid": "b92665e4-f64d-53d6-8792-12c19e05d388"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 73
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_labels",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "7c6a0e15-f874-5d45-a54f-69ce6bf41028",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.buttons, & &1.value.title)",
+              "config": {},
+              "test": "",
+              "uuid": "bf1058ec-87e8-4ee0-ab44-4d151e477216",
+              "destination_block": "a8cc5669-9773-54eb-b1b4-e0d8c2346eb9",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 52
+                      },
+                      "name": "Question1",
+                      "uuid": "b92665e4-f64d-53d6-8792-12c19e05d388"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 74
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "relationship_status",
+          "type": "Io.Turn.DynamicSelectOneResponse",
+          "config": {
+            "prompt": "654fb47a-a1f1-49ee-a512-90a1217982e3",
+            "destination_block": "fa8dfba9-fc0a-5ec8-9b0e-cf8b4135498e",
+            "choices": [],
+            "choice_expression": "map(button_labels, &[&1, &1])"
+          },
+          "tags": [],
+          "uuid": "a8cc5669-9773-54eb-b1b4-e0d8c2346eb9",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"Question1Error\"",
+              "config": {},
+              "test": "",
+              "uuid": "c4b7aa72-560f-4d45-85f8-f8154ed27cf6",
+              "destination_block": "b7bc364d-f2f3-5c55-a359-e02e65de90e8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 52
+                      },
+                      "name": "Question1",
+                      "uuid": "b92665e4-f64d-53d6-8792-12c19e05d388"
+                    },
+                    "card_item": {
+                      "dynamic_button": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 76
+                      },
+                      "type": "dynamic_button"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "last_modified": "2024-08-15T10:59:14.221534Z",
+      "uuid": "01ec87ea-d2fa-4a85-a05e-7088375c6d21",
+      "languages": [
+        {
+          "id": "a7517458-1fe4-4a42-8f78-bdbf3293101c",
+          "label": "English",
+          "variant": null,
+          "iso_639_3": "eng",
+          "bcp_47": null
+        }
+      ],
+      "first_block_id": "aab449fd-3210-5616-892f-be733693a0dd",
+      "interaction_timeout": 300,
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}

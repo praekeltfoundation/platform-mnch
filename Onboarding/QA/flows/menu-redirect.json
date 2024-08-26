@@ -1,0 +1,324 @@
+{
+  "name": "Default name",
+  "description": "Default description",
+  "uuid": "21b892d6-685c-458e-adae-304ece46022a",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "Go to non personalised menu",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "d39c2a2d-28eb-4296-b44a-928fb51a751e"
+        }
+      ],
+      "uuid": "495e6b68-6acf-453c-a8f3-089d825c18a6"
+    },
+    {
+      "values": [
+        {
+          "value": "Go to personalised menu",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "d39c2a2d-28eb-4296-b44a-928fb51a751e"
+        }
+      ],
+      "uuid": "56eda6ed-9784-421c-bfc2-637cef4b2edc"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "non_personalised_menu_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "c73d7bc1-4b07-44f0-9949-38d2b88f4707"
+          },
+          "tags": [],
+          "uuid": "aa4a3764-2b6d-5394-940c-44273e4b979a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "non_personalised_menu_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "92a6dc87-22df-495e-822b-ec171a57773f",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 15
+                      },
+                      "name": "NonPersonalisedMenu",
+                      "uuid": "adf94715-ab40-52b1-aa72-56a7568ce3b5"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 16
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "personalised_menu_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "e823ad1d-e2d7-4d5c-b928-786b601f0f29"
+          },
+          "tags": [],
+          "uuid": "54903535-2e7e-5fd0-8128-74f7152790af",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "personalised_menu_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "2cfd2331-197c-448b-8081-e9a4edae22be",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 11
+                      },
+                      "name": "PersonalisedMenu",
+                      "uuid": "23a4d0e7-da5b-54f6-b4c0-a36e110e856c"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 12
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "redirect_to_menu_case",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "29fc6f8c-1014-5976-938a-480e51f80fc6",
+          "ui_metadata": {},
+          "exits": [
+            {
+              "default": false,
+              "name": "Exit for redirect_to_menu_case_condition_0",
+              "config": {},
+              "test": "contact.profile_completion == \"100%\"",
+              "uuid": "c6fec442-3b64-47cc-94b6-7f03d892975d",
+              "destination_block": "53f47793-39d4-5241-9309-a82a22dde970",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Exit for redirect_to_menu_case_condition_1",
+              "config": {},
+              "test": null,
+              "uuid": "71463940-c812-4889-9436-ffeca10c3a9f",
+              "destination_block": "e9b31873-2779-526d-b270-b5882491bf86",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {}
+        },
+        {
+          "label": null,
+          "name": "redirect_to_menu_case_condition_1_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "495e6b68-6acf-453c-a8f3-089d825c18a6"
+          },
+          "tags": [],
+          "uuid": "e9b31873-2779-526d-b270-b5882491bf86",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"NonPersonalisedMenu\"",
+              "config": {},
+              "test": "",
+              "uuid": "c6fad6d5-5170-4555-8da6-b47ce42ca41c",
+              "destination_block": "aa4a3764-2b6d-5394-940c-44273e4b979a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 7
+                      },
+                      "name": "RedirectToMenu",
+                      "uuid": "d357bff1-0a4c-512a-a1b5-5a716fc4dffb"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 8
+                      },
+                      "type": "log"
+                    },
+                    "index": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "redirect_to_menu_case_condition_0_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "56eda6ed-9784-421c-bfc2-637cef4b2edc"
+          },
+          "tags": [],
+          "uuid": "53f47793-39d4-5241-9309-a82a22dde970",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "Default exit to \"PersonalisedMenu\"",
+              "config": {},
+              "test": "",
+              "uuid": "ecda99ec-f468-488d-9800-beb7d7242a28",
+              "destination_block": "54903535-2e7e-5fd0-8128-74f7152790af",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": "contact.profile_completion == \"100%\"",
+                      "meta": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "name": "RedirectToMenu",
+                      "uuid": "29fc6f8c-1014-5976-938a-480e51f80fc6"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 4
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "last_modified": "2024-08-19T12:42:46.526278Z",
+      "uuid": "3bfe6f11-ba9b-4292-9b46-a9fcaa5476ed",
+      "languages": [
+        {
+          "id": "d39c2a2d-28eb-4296-b44a-928fb51a751e",
+          "label": "English",
+          "variant": null,
+          "iso_639_3": "eng",
+          "bcp_47": null
+        }
+      ],
+      "first_block_id": "29fc6f8c-1014-5976-938a-480e51f80fc6",
+      "interaction_timeout": 300,
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}
