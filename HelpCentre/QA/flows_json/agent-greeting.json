@@ -12,10 +12,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b"
+          "language_id": "c8f16db8-7a54-45f8-a102-8eafb4b094ea"
         }
       ],
-      "uuid": "e1a6c1e0-f0c2-4f76-a9f1-52d1c101cfc5"
+      "uuid": "ba6857c4-f443-4410-8c31-779a87cb2ee0"
     },
     {
       "values": [
@@ -26,10 +26,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b"
+          "language_id": "c8f16db8-7a54-45f8-a102-8eafb4b094ea"
         }
       ],
-      "uuid": "90ff058b-a59d-42bd-82da-48b80ef5aa08"
+      "uuid": "d634e73a-b6e6-4c8b-aa2c-c9546f5206af"
     },
     {
       "values": [
@@ -40,10 +40,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b"
+          "language_id": "c8f16db8-7a54-45f8-a102-8eafb4b094ea"
         }
       ],
-      "uuid": "88643fc9-eff7-4d76-89dd-cf23b9c6fb94"
+      "uuid": "4184b057-7c8c-4bc2-b14a-57a86f14671b"
     },
     {
       "values": [
@@ -54,10 +54,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b"
+          "language_id": "c8f16db8-7a54-45f8-a102-8eafb4b094ea"
         }
       ],
-      "uuid": "75e4358c-c2fb-440c-b14b-c4ad5fe73d78"
+      "uuid": "1ac727dc-fc27-459c-b01a-afe387a7fdc4"
     }
   ],
   "flows": [
@@ -103,7 +103,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "cac39416-5402-4494-a153-5d8b07f377f5",
+              "uuid": "73a2dc93-30c1-42a5-8c22-daac57080cfd",
               "destination_block": "002fc7de-ea1c-5f1e-b630-eb9e9b8e32af",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -158,7 +158,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "52900225-0b68-4925-bbd6-d5179981e9f1",
+              "uuid": "54a28e74-bb36-4702-99b7-7c53fe0126b4",
               "destination_block": "8133fdfb-b4be-5fe5-b344-981733a48631",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -232,7 +232,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "ce3dc2e7-9f4b-4a76-9426-4af70700219e",
+              "uuid": "7af26f59-c8cc-45ed-9d29-bccc043c8e38",
               "destination_block": "2bfb8da8-3095-5ae8-b6be-6f5d2f299066",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -287,7 +287,7 @@
               "name": "page.body.body.text.value.message",
               "config": {},
               "test": "",
-              "uuid": "9de23bd4-b88b-4317-9520-2f0fcce558cd",
+              "uuid": "04c84d01-696d-41e7-b527-ca88ee15c071",
               "destination_block": "5950c048-d5d0-5117-b188-2320b644c0e1",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -342,7 +342,7 @@
               "name": "substitute(greeting_msg, \"{operator_name}\", \"@chat.assigned_to.name\")",
               "config": {},
               "test": "",
-              "uuid": "6751cfbf-87a5-40ca-b194-af736ac1e935",
+              "uuid": "3a99bfc2-3241-440a-881f-6978387f0be3",
               "destination_block": "12780c7d-5476-5f96-b823-2c94fde2b138",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -383,7 +383,7 @@
           "name": "send_takeover_start_text",
           "type": "MobilePrimitives.Message",
           "config": {
-            "prompt": "e1a6c1e0-f0c2-4f76-a9f1-52d1c101cfc5"
+            "prompt": "ba6857c4-f443-4410-8c31-779a87cb2ee0"
           },
           "tags": [],
           "uuid": "12780c7d-5476-5f96-b823-2c94fde2b138",
@@ -399,7 +399,7 @@
               "name": "send_takeover_start_text",
               "config": {},
               "test": "",
-              "uuid": "17ed1d06-9c43-4ffa-b4a0-ed1bad0a0946",
+              "uuid": "da7d1807-a737-48fa-a1b3-f7c444eb3092",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -440,7 +440,7 @@
           "name": "reroute_unassigned_text",
           "type": "MobilePrimitives.Message",
           "config": {
-            "prompt": "90ff058b-a59d-42bd-82da-48b80ef5aa08"
+            "prompt": "d634e73a-b6e6-4c8b-aa2c-c9546f5206af"
           },
           "tags": [],
           "uuid": "b1ccb689-7655-5ead-a0a4-5fec18c7b87c",
@@ -456,7 +456,7 @@
               "name": "reroute_unassigned_text",
               "config": {},
               "test": "",
-              "uuid": "9d3fa3c6-2b4e-4c65-aa83-de04dbbe3b38",
+              "uuid": "9dbd1ddf-e40b-4960-b3fd-29b0f9c79fbd",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -506,7 +506,7 @@
               "name": "Exit for check_status_case_condition_0",
               "config": {},
               "test": "is_nil_or_empty(chat.assigned_to)",
-              "uuid": "1a2688d2-df70-43b6-b983-39adde935db3",
+              "uuid": "d35e4667-e75f-479c-9359-084e4de4e025",
               "destination_block": "65166bda-99ae-5085-9586-5a095b7a84a7",
               "semantic_label": null,
               "vendor_metadata": {}
@@ -516,8 +516,8 @@
               "name": "Exit for check_status_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "ba7c7234-87b3-4ce9-864c-e1cfde961f89",
-              "destination_block": "cea5f4c2-b501-578d-82eb-65f90211bdb6",
+              "uuid": "9770fc17-0910-448b-8aa9-cb9a20b3b1df",
+              "destination_block": "7d57a046-3f75-5f0e-877e-33f6347ebe72",
               "semantic_label": null,
               "vendor_metadata": {}
             }
@@ -527,13 +527,13 @@
         },
         {
           "label": null,
-          "name": "check_status_case_condition_1_text",
-          "type": "MobilePrimitives.Message",
+          "name": "check_status_case_condition_1_log",
+          "type": "Core.Log",
           "config": {
-            "prompt": "88643fc9-eff7-4d76-89dd-cf23b9c6fb94"
+            "message": "4184b057-7c8c-4bc2-b14a-57a86f14671b"
           },
           "tags": [],
-          "uuid": "cea5f4c2-b501-578d-82eb-65f90211bdb6",
+          "uuid": "7d57a046-3f75-5f0e-877e-33f6347ebe72",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -546,7 +546,7 @@
               "name": "Default exit to \"SendTakeoverStart\"",
               "config": {},
               "test": "",
-              "uuid": "2e45a94e-8221-4782-b4d0-8a9fb4507ccd",
+              "uuid": "fe99a316-21ec-4b3c-a907-794572936597",
               "destination_block": "c350b218-00f2-516c-89ea-a984ad8e2f72",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -568,12 +568,12 @@
                       "uuid": "f86fa7a1-92cc-55e3-985c-40fd1cac62c4"
                     },
                     "card_item": {
+                      "log": {},
                       "meta": {
                         "column": 3,
                         "line": 27
                       },
-                      "text": {},
-                      "type": "text"
+                      "type": "log"
                     },
                     "index": 1
                   }
@@ -587,7 +587,7 @@
           "name": "check_status_case_condition_0_text",
           "type": "MobilePrimitives.Message",
           "config": {
-            "prompt": "75e4358c-c2fb-440c-b14b-c4ad5fe73d78"
+            "prompt": "1ac727dc-fc27-459c-b01a-afe387a7fdc4"
           },
           "tags": [],
           "uuid": "65166bda-99ae-5085-9586-5a095b7a84a7",
@@ -603,7 +603,7 @@
               "name": "Default exit to \"RerouteUnassigned\"",
               "config": {},
               "test": "",
-              "uuid": "b20e0817-ea52-4135-8fa6-b4534b94524b",
+              "uuid": "49ac2a80-739b-4c9f-9ae6-aa65bdd9fc79",
               "destination_block": "b1ccb689-7655-5ead-a0a4-5fec18c7b87c",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -680,7 +680,7 @@
               "name": "get_latest_msg",
               "config": {},
               "test": "",
-              "uuid": "3e872d74-6f56-455f-b232-80829045cc1b",
+              "uuid": "034faba4-f8a0-4ca3-a380-7bfa2c2ddcdc",
               "destination_block": "8a9dea5b-ee5e-5350-a7b5-a9b1a4a1cf9a",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -735,7 +735,7 @@
               "name": "get_latest_msg.body.chat",
               "config": {},
               "test": "",
-              "uuid": "49c8acc1-d0a4-46a3-8150-1588b35d6e13",
+              "uuid": "4eb48c95-bbce-4291-8a62-62c832e20ea1",
               "destination_block": "e8f2f5d3-5d9e-5268-bdb2-d960bea5a0df",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -772,19 +772,19 @@
           }
         }
       ],
-      "last_modified": "2024-08-20T05:33:43.782042Z",
-      "uuid": "d8d5f1ef-3304-41ca-b576-e5382c8ccf0d",
+      "last_modified": "2024-08-27T08:03:16.159696Z",
+      "uuid": "08ea1b62-426f-4cc6-9c20-27e67e7ff37f",
       "languages": [
         {
-          "id": "f2aa1dfa-08cd-44c0-9cfc-d3d57f39e73b",
+          "id": "c8f16db8-7a54-45f8-a102-8eafb4b094ea",
           "label": "English",
           "variant": null,
-          "iso_639_3": "eng",
-          "bcp_47": null
+          "bcp_47": null,
+          "iso_639_3": "eng"
         }
       ],
-      "first_block_id": "d632dfd9-31d5-5680-b3f2-2800478ffcd6",
       "interaction_timeout": 300,
+      "first_block_id": "d632dfd9-31d5-5680-b3f2-2800478ffcd6",
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"

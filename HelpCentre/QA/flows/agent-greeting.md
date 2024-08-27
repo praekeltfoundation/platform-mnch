@@ -46,6 +46,7 @@ card GetLatestMessage, then: CheckStatus do
     )
 
   chat = get_latest_msg.body.chat
+  text("Chat value is " + chat.assigned_to)
 end
 
 card CheckStatus when is_nil_or_empty(chat.assigned_to), then: RerouteUnassigned do

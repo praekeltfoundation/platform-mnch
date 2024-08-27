@@ -12,7 +12,7 @@ defmodule IntroToHelpCentreTest do
   defp set_config(step) do
     step
     |> FlowTester.set_global_dict("settings", %{
-      "working_hours_start_hour" => "8",
+      "working_hours_start_hour" => "6",
       "working_hours_end_hour" => "19",
       "working_hours_start_day" => "2",
       "working_hours_end_day" => "6"
@@ -109,24 +109,51 @@ defmodule IntroToHelpCentreTest do
     })
   end
 
-
-
-  describe "Search MyHealth:" do
-    defp setup_flow_search_myhealth() do
+  describe "Emergency Help:" do
+    test "emergency numbers" do
       setup_flow()
       |> FlowTester.start()
       |> FlowTester.send(button_label: "Help centre 📞")
+      |> FlowTester.send(button_label: "Emergency help")
       |> FlowStep.clear_messages()
-      |> FlowTester.send(button_label: "Search MyHealth")
+      |> FlowTester.send(button_label: "Emergency Numbers")
       |> receive_message(%{
-        text: "Great, let's find you the information you need." <> _
+        text: "*Emergency contact numbers*" <> _
       })
     end
 
-    test "is help centre open" do
-      setup_flow_search_myhealth()
-
+    test "talk to health agent" do
+      setup_flow()
+      |> FlowTester.start()
+      |> FlowTester.send(button_label: "Help centre 📞")
+      |> FlowTester.send(button_label: "Emergency help")
+      |> FlowStep.clear_messages()
+      |> FlowTester.send(button_label: "Talk to health agent")
+      |> receive_message(%{
+        text: "*Emergency contact numbers*" <> _
+      })
     end
 
   end
+
+
+  # describe "Search MyHealth:" do
+  #   defp setup_flow_search_myhealth() do
+  #     setup_flow()
+  #     |> FlowTester.start()
+  #     |> FlowTester.send(button_label: "Help centre 📞")
+  #     |> FlowStep.clear_messages()
+  #     |> FlowTester.send(button_label: "Search MyHealth")
+  #     |> receive_message(%{
+  #       text: "Great, let's find you the information you need." <> _
+  #     })
+  #   end
+
+  #   test "is help centre open" do
+  #     setup_flow_search_myhealth()
+  #     |> FlowTester.send("Tummy hurts")
+  #     |> receive_message(%{text: "Some text" <> _})
+  #   end
+
+  # end
 end

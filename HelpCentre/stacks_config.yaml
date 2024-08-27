@@ -7,7 +7,7 @@ stack_uuids:
   - name: "intro-to-helpcentre" # HelpCentre: Intro to HelpCentre
     prod_uuid: NOT_UUID
     qa_uuid: 7b50f9f4-b6cf-424b-8893-8fef6d0f489b
-  - name: "intro-human-agent_flow" # HelpCentre: Intro Human Agent Flow
+  - name: "intro-human-agent" # HelpCentre: Intro Human Agent Flow
     prod_uuid: NOT_UUID
     qa_uuid: 8046066f-3cb1-43d6-ace0-850769bd13a3
   - name: "agent-greeting" # HelpCentre: Agent Greeting
