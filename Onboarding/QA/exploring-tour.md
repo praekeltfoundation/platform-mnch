@@ -6,7 +6,7 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 ## Fetch button and list error messages
 
 ```stack
-card FetchError, then: FetchTourCard01 do
+card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
@@ -30,6 +30,16 @@ card FetchError, then: FetchTourCard01 do
     )
 
   button_error_text = page.body.body.text.value.message
+end
+
+```
+
+## Check Point
+
+```stack
+card Checkpoint, then: FetchTourCard01 do
+  log("Go to FetchTourCard01")
+  update_contact(checkpoint: "tour")
 end
 
 ```

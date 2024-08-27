@@ -442,9 +442,19 @@ card ReadSummary, then: ReadSummaryError do
 
   message = page.body.body.text.value
 
+  # document =
+  #   get(
+  #     "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+  #     headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+  #   )
+
+  # document_url = document.body.meta.download_url
+
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(AcceptPrivacyPolicy: "@button_labels[0]", DeclinePrivacyPolicy: "@button_labels[1]") do
+    # TODO: When we finally have the document, upload it and make this work
+    # document("@document_url")
     text("@message.message")
   end
 end

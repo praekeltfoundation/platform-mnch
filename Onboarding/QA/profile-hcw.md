@@ -461,11 +461,94 @@ card ProfileProgress25, then: ProfileProgress25Error do
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
 
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  employment_questions_answers = [
+    contact.occupational_role,
+    contact.facility_type,
+    contact.professional_support
+  ]
+
+  employment_questions_answers_count = count(employment_questions_answers)
+
+  employment_questions_list =
+    filter(
+      employment_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  employment_questions_count = count(employment_questions_list)
+
+  employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
+
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
+
+  message_text =
+    substitute(message_text, "{employment_info_count}", "@employment_questions_value")
+
   buttons(
     ProfileProgress25Continue: "@button_labels[0]",
     ProfileProgress25Why: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -618,8 +701,91 @@ card ProfileProgress50, then: ProfileProgress50Error do
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
 
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  employment_questions_answers = [
+    contact.occupational_role,
+    contact.facility_type,
+    contact.professional_support
+  ]
+
+  employment_questions_answers_count = count(employment_questions_answers)
+
+  employment_questions_list =
+    filter(
+      employment_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  employment_questions_count = count(employment_questions_list)
+
+  employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
+
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
+
+  message_text =
+    substitute(message_text, "{employment_info_count}", "@employment_questions_value")
+
   buttons(ProfileProgress50Continue: "@button_labels[0]") do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -668,6 +834,89 @@ card ProfileProgress75, then: ProfileProgress75Branch do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  employment_questions_answers = [
+    contact.occupational_role,
+    contact.facility_type,
+    contact.professional_support
+  ]
+
+  employment_questions_answers_count = count(employment_questions_answers)
+
+  employment_questions_list =
+    filter(
+      employment_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  employment_questions_count = count(employment_questions_list)
+
+  employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
+
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
+
+  message_text =
+    substitute(message_text, "{employment_info_count}", "@employment_questions_value")
 end
 
 # Text only
@@ -677,7 +926,7 @@ card ProfileProgress75Branch when contact.data_preference == "text only",
     ProfileProgress75Continue: "@button_labels[0]",
     RemindMeLater: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -698,7 +947,7 @@ card ProfileProgress75Branch, then: ProfileProgress75Error do
     RemindMeLater: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -749,6 +998,89 @@ card ProfileProgress100, then: ProfileProgress100Branch do
 
   message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  employment_questions_answers = [
+    contact.occupational_role,
+    contact.facility_type,
+    contact.professional_support
+  ]
+
+  employment_questions_answers_count = count(employment_questions_answers)
+
+  employment_questions_list =
+    filter(
+      employment_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  employment_questions_count = count(employment_questions_list)
+
+  employment_questions_value = "@employment_questions_count/@employment_questions_answers_count"
+
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
+  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
+  message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
+
+  message_text =
+    substitute(message_text, "{employment_info_count}", "@employment_questions_value")
 end
 
 # Text only
@@ -759,7 +1091,7 @@ card ProfileProgress100Branch when contact.data_preference == "text only",
     TopicsForYou: "@button_labels[1]",
     MainMenu: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message_text")
   end
 end
 
@@ -781,7 +1113,7 @@ card ProfileProgress100Branch, then: ProfileProgress100Error do
     MainMenu: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message_text")
   end
 end
 

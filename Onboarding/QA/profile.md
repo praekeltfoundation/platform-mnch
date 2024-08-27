@@ -925,7 +925,7 @@ end
 
 ```
 
-## PersonalInfo
+## Personal Info
 
 ```stack
 card PersonalInfo, then: PersonalInfoError do

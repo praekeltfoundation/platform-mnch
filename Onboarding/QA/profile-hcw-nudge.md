@@ -1,6 +1,6 @@
-# Onboarding: HCW Nudge
+# Onboarding: HCW Reminder
 
-This is a nudge for HCWs to complete their profile.
+This is a reminder for HCWs to complete their profile.
 
 All content for this flow is stored in the ContentRepo. This stack uses the ContentRepo API to fetch the content, referencing it by the slug. A list of these slugs can be found at the end of this stack.
 
@@ -131,7 +131,7 @@ card CompleteProfile do
 end
 
 card MainMenu do
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  text("TODO: Go to non-personalised menu")
 end
 
 ```

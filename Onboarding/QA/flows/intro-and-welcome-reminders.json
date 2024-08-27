@@ -1,0 +1,1829 @@
+{
+  "name": "Onboarding: Intro & Welcome Reminders",
+  "description": "Default description",
+  "uuid": "ce992f8b-49d8-4876-8bfd-a62b6482206d",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "e9bb3713-2198-4f4f-93b2-7593ff3f39a4"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "099b976e-b879-4eb4-b125-537cdee8d50e"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "63cca8a7-5595-47e9-a8eb-98dad5d01b54"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "081535be-dd63-4acc-9277-7f8665391f67"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "61b2c890-e257-40a5-91ce-b3ea66d5d17a"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[2]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "3d38a62e-1581-4f1c-980c-33c41ae75e35"
+    },
+    {
+      "values": [
+        {
+          "value": "Starting intro & welcome stack",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "f142e808-2614-4968-8a88-1bbbf3d589a7"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "30e10faa-dc59-443c-b7fe-09b0fa5311b1"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "593fde16-28db-458c-a517-0c087249a974"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "3ea9ab4a-db2f-491b-9223-06f327f21620"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[2]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "a59390df-4428-488b-8e31-082403254b19"
+        }
+      ],
+      "uuid": "8b00ca56-020f-4eaa-a130-2e8adcbdd988"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_reminder_no"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "03756119-abeb-5f70-a0ad-b31fae907e75",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "253c466a-3015-4012-8008-b5eb3cd816f6",
+              "destination_block": "8ec37f25-5285-51e1-925d-fa2712f14026",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 76
+                      },
+                      "name": "RemindNo",
+                      "uuid": "5d447051-38ab-51b8-8b6b-16825a4c66fc"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 77
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "8ec37f25-5285-51e1-925d-fa2712f14026",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "c0a1176d-d3bb-4c62-b2fd-edfb5f98ab3c",
+              "destination_block": "43baea14-0b9f-5726-8255-f58507c5cd0c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 76
+                      },
+                      "name": "RemindNo",
+                      "uuid": "5d447051-38ab-51b8-8b6b-16825a4c66fc"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 86
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "43baea14-0b9f-5726-8255-f58507c5cd0c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "347742f4-f696-4419-a045-6fc37d77591f",
+              "destination_block": "ea4dcdd0-8624-5347-a401-ab23af65e019",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 76
+                      },
+                      "name": "RemindNo",
+                      "uuid": "5d447051-38ab-51b8-8b6b-16825a4c66fc"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 88
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "ea4dcdd0-8624-5347-a401-ab23af65e019",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "5ebb5467-f551-491e-9fca-1d9e5c98588a",
+              "destination_block": "8b2ce30a-486c-572d-bb70-4ce20bb1a625",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 76
+                      },
+                      "name": "RemindNo",
+                      "uuid": "5d447051-38ab-51b8-8b6b-16825a4c66fc"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 97
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "remind_no_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "e9bb3713-2198-4f4f-93b2-7593ff3f39a4"
+          },
+          "tags": [],
+          "uuid": "8b2ce30a-486c-572d-bb70-4ce20bb1a625",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "remind_no_text",
+              "config": {},
+              "test": "",
+              "uuid": "d12f0fa4-7d02-4102-8772-f71aaaaafa93",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 76
+                      },
+                      "name": "RemindNo",
+                      "uuid": "5d447051-38ab-51b8-8b6b-16825a4c66fc"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 98
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_reminder_tomorrow"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "c95b280d-ae89-40a3-898d-3840a1e5bd18",
+              "destination_block": "048dc483-6718-58c2-80cd-f3b8dad18b28",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 101
+                      },
+                      "name": "RemindTomorrow",
+                      "uuid": "8075fc35-5cf9-55e2-a0f4-ab90a483bcc2"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 102
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "048dc483-6718-58c2-80cd-f3b8dad18b28",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "7c97ab2b-28fe-4202-bd8a-da96033b74ff",
+              "destination_block": "2a522ca2-f2d4-59e7-a6b8-915a381bc63b",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 101
+                      },
+                      "name": "RemindTomorrow",
+                      "uuid": "8075fc35-5cf9-55e2-a0f4-ab90a483bcc2"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 111
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "2a522ca2-f2d4-59e7-a6b8-915a381bc63b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "be172be7-222f-440e-84a8-e370870394d2",
+              "destination_block": "be19b57c-8ca7-50aa-9937-733ca1d2881e",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 101
+                      },
+                      "name": "RemindTomorrow",
+                      "uuid": "8075fc35-5cf9-55e2-a0f4-ab90a483bcc2"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 113
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "be19b57c-8ca7-50aa-9937-733ca1d2881e",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "fd26886d-2224-480c-b979-595ae45fb484",
+              "destination_block": "9a3154af-9281-578d-a0a3-d2dffa4c7420",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 101
+                      },
+                      "name": "RemindTomorrow",
+                      "uuid": "8075fc35-5cf9-55e2-a0f4-ab90a483bcc2"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 122
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "remind_tomorrow_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "099b976e-b879-4eb4-b125-537cdee8d50e"
+          },
+          "tags": [],
+          "uuid": "9a3154af-9281-578d-a0a3-d2dffa4c7420",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "remind_tomorrow_text",
+              "config": {},
+              "test": "",
+              "uuid": "9c8b9819-1dd7-4743-9598-002d019a38d2",
+              "destination_block": "5357536a-985f-59a0-9f5b-dae558569ddd",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 101
+                      },
+                      "name": "RemindTomorrow",
+                      "uuid": "8075fc35-5cf9-55e2-a0f4-ab90a483bcc2"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 123
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "remind_tomorrow_schedule_stack",
+          "type": "Io.Turn.ScheduleFlow",
+          "config": {
+            "flow_id": "ce992f8b-49d8-4876-8bfd-a62b6482206d"
+          },
+          "tags": [],
+          "uuid": "5357536a-985f-59a0-9f5b-dae558569ddd",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "remind_tomorrow_schedule_stack",
+              "config": {},
+              "test": "",
+              "uuid": "879fed9e-e96a-48fd-b2ce-e9a8367a3977",
+              "destination_block": "0128618a-b288-5c65-bee9-039b5cbbb1ef",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 101
+                      },
+                      "name": "RemindTomorrow",
+                      "uuid": "8075fc35-5cf9-55e2-a0f4-ab90a483bcc2"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 125
+                      },
+                      "schedule_stack": {},
+                      "type": "schedule_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "remind_tomorrow_schedule_stack",
+          "type": "Io.Turn.ScheduleFlow",
+          "config": {
+            "schedule_in": "60 * 60 * 23",
+            "flow_id": "ce992f8b-49d8-4876-8bfd-a62b6482206d"
+          },
+          "tags": [],
+          "uuid": "0128618a-b288-5c65-bee9-039b5cbbb1ef",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "remind_tomorrow_schedule_stack",
+              "config": {},
+              "test": "",
+              "uuid": "4c48c587-80b6-49e9-99be-dc5a4a145dc3",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 101
+                      },
+                      "name": "RemindTomorrow",
+                      "uuid": "8075fc35-5cf9-55e2-a0f4-ab90a483bcc2"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 126
+                      },
+                      "schedule_stack": {},
+                      "type": "schedule_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "reminder_error",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "63cca8a7-5595-47e9-a8eb-98dad5d01b54",
+            "choices": [
+              {
+                "name": "privacy_policy",
+                "prompt": "081535be-dd63-4acc-9277-7f8665391f67",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "remind_tomorrow",
+                "prompt": "61b2c890-e257-40a5-91ce-b3ea66d5d17a",
+                "test": "block.response = \"@@button_labels[1]\""
+              },
+              {
+                "name": "remind_no",
+                "prompt": "3d38a62e-1581-4f1c-980c-33c41ae75e35",
+                "test": "block.response = \"@@button_labels[2]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "db97b91d-7ff0-5562-b0d6-77e460abc051",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "privacy_policy",
+              "config": {},
+              "test": "block.value = \"privacy_policy\"",
+              "uuid": "40fa8dd6-064d-4c61-97a9-039af16a0bc8",
+              "destination_block": "23cbcc3f-c1f1-5bfe-bc6e-c479c42f4a04",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "remind_tomorrow",
+              "config": {},
+              "test": "block.value = \"remind_tomorrow\"",
+              "uuid": "cc7b1e8e-2fa7-4de5-bdb0-308007b9605f",
+              "destination_block": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "remind_no",
+              "config": {},
+              "test": "block.value = \"remind_no\"",
+              "uuid": "55de41b0-db3e-4e03-8fd5-08fb342b4024",
+              "destination_block": "03756119-abeb-5f70-a0ad-b31fae907e75",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"ReminderError\"",
+              "config": {},
+              "test": "",
+              "uuid": "f41a50e6-835c-40b3-8dca-aeca7eb8cf2b",
+              "destination_block": "db97b91d-7ff0-5562-b0d6-77e460abc051",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 60
+                      },
+                      "name": "ReminderError",
+                      "uuid": "793f5278-40fe-5582-bc7a-af8926b35e12"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 61
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "privacy_policy_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "f142e808-2614-4968-8a88-1bbbf3d589a7"
+          },
+          "tags": [],
+          "uuid": "23cbcc3f-c1f1-5bfe-bc6e-c479c42f4a04",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "privacy_policy_log",
+              "config": {},
+              "test": "",
+              "uuid": "27f8b8d0-a0be-4ee9-bb57-db7651bef61b",
+              "destination_block": "299409b3-c379-5f48-84db-eb57585ace6c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 70
+                      },
+                      "name": "PrivacyPolicy",
+                      "uuid": "7cc28e7b-a718-571c-9ce5-fa0324c2cb13"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 72
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "privacy_policy_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "5e59aafb-fc30-41f9-b268-6268173b2aff"
+          },
+          "tags": [],
+          "uuid": "299409b3-c379-5f48-84db-eb57585ace6c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "privacy_policy_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "62d97a95-9767-4b3d-9629-a6260f38228a",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 70
+                      },
+                      "name": "PrivacyPolicy",
+                      "uuid": "7cc28e7b-a718-571c-9ce5-fa0324c2cb13"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 73
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_error_handling_button"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "fc55224a-bc86-4337-adfd-41dca3a91429",
+              "destination_block": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 3
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "9f20bc4b-7ab7-46d5-9075-6dc4faf2bdf1",
+              "destination_block": "272ca113-9656-5e12-85ac-fe046ed163a8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 13
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "272ca113-9656-5e12-85ac-fe046ed163a8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "b4b937c5-bf2b-4a5c-b713-0c0d248e1c5d",
+              "destination_block": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 15
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_error_text",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "4633a55c-e74c-4079-a2d5-1cf097079466",
+              "destination_block": "517fb154-b90c-5069-a6c0-431f34f86eb9",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 24
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_reminder_1"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "517fb154-b90c-5069-a6c0-431f34f86eb9",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "a62b1fad-766d-4343-8db9-c9fbcf875c24",
+              "destination_block": "a42c23e0-1a43-5297-9062-37b1f145395b",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 28
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "a42c23e0-1a43-5297-9062-37b1f145395b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "b802c904-ff94-42ed-88a7-baa81a9f72e3",
+              "destination_block": "de8382af-7921-5ac7-b1d4-a206121da8f3",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 37
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "de8382af-7921-5ac7-b1d4-a206121da8f3",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "e80a5959-6739-453d-a8c1-607dd3039f88",
+              "destination_block": "354e7b3a-cd91-5d53-a8d8-12add557e674",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 39
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "354e7b3a-cd91-5d53-a8d8-12add557e674",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "ceb62b91-a75d-4107-8c01-0336b3155c61",
+              "destination_block": "079f92f6-e492-5b09-8fb9-fa7f310cf7d8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 48
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_labels",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "079f92f6-e492-5b09-8fb9-fa7f310cf7d8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.buttons, & &1.value.title)",
+              "config": {},
+              "test": "",
+              "uuid": "89e8bb97-097f-4417-a187-27e94fc9ddd5",
+              "destination_block": "512d4992-a27f-5421-80f2-d66942240deb",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 49
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "reminder",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "30e10faa-dc59-443c-b7fe-09b0fa5311b1",
+            "choices": [
+              {
+                "name": "privacy_policy",
+                "prompt": "593fde16-28db-458c-a517-0c087249a974",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "remind_tomorrow",
+                "prompt": "3ea9ab4a-db2f-491b-9223-06f327f21620",
+                "test": "block.response = \"@@button_labels[1]\""
+              },
+              {
+                "name": "remind_no",
+                "prompt": "8b00ca56-020f-4eaa-a130-2e8adcbdd988",
+                "test": "block.response = \"@@button_labels[2]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "512d4992-a27f-5421-80f2-d66942240deb",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "privacy_policy",
+              "config": {},
+              "test": "block.value = \"privacy_policy\"",
+              "uuid": "53810011-ee1f-4e8e-a30b-3140efd1fea0",
+              "destination_block": "23cbcc3f-c1f1-5bfe-bc6e-c479c42f4a04",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "remind_tomorrow",
+              "config": {},
+              "test": "block.value = \"remind_tomorrow\"",
+              "uuid": "95331379-fb6b-44af-bfd4-6ec38a28ea7a",
+              "destination_block": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "remind_no",
+              "config": {},
+              "test": "block.value = \"remind_no\"",
+              "uuid": "e5b1661f-4ad9-4fe3-8a1b-f701f242c240",
+              "destination_block": "03756119-abeb-5f70-a0ad-b31fae907e75",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"ReminderError\"",
+              "config": {},
+              "test": "",
+              "uuid": "2bc2e35c-1921-4b95-aa61-041467463121",
+              "destination_block": "db97b91d-7ff0-5562-b0d6-77e460abc051",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "Reminder",
+                      "uuid": "8bd8ed91-0d1c-5a18-8d8a-673144ac43fb"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 51
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "last_modified": "2024-07-17T10:29:11.987744Z",
+      "uuid": "ad0c6712-ae35-4292-a84b-dbb3c4861b1a",
+      "languages": [
+        {
+          "id": "a59390df-4428-488b-8e31-082403254b19",
+          "label": "English",
+          "variant": null,
+          "iso_639_3": "eng",
+          "bcp_47": null
+        }
+      ],
+      "first_block_id": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+      "interaction_timeout": 300,
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}
