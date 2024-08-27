@@ -46,7 +46,6 @@ card GetLatestMessage, then: CheckStatus do
     )
 
   chat = get_latest_msg.body.chat
-  text("Chat value is " + chat.assigned_to)
 end
 
 card CheckStatus when is_nil_or_empty(chat.assigned_to), then: RerouteUnassigned do
@@ -54,7 +53,7 @@ card CheckStatus when is_nil_or_empty(chat.assigned_to), then: RerouteUnassigned
 end
 
 card CheckStatus, then: SendTakeoverStart do
-  text("Agent assigned to this chat = @chat.assigned_to.name")
+  log("Agent assigned to this chat = @chat.assigned_to.name")
 end
 
 card SendTakeoverStart do

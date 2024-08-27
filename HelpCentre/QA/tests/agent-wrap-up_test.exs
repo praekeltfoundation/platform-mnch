@@ -16,7 +16,7 @@ defmodule AgentWrapUpTest do
       "working_hours_end_hour" => "19",
       "working_hours_start_day" => "2",
       "working_hours_end_day" => "6"
-      })
+    })
   end
 
   defp setup_flow() do
@@ -49,12 +49,8 @@ defmodule AgentWrapUpTest do
   test "get greeting" do
     setup_flow()
     |> FlowTester.start()
-
     |> receive_message(%{
-      text: "Was your query successfully resolved?",
-
+      text: "Was your query successfully resolved?"
     })
-
   end
-
 end

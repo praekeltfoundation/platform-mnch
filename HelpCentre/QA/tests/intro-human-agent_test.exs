@@ -16,7 +16,7 @@ defmodule IntroHumanAgentTest do
       "working_hours_end_hour" => "19",
       "working_hours_start_day" => "2",
       "working_hours_end_day" => "6"
-      })
+    })
   end
 
   defp setup_flow() do
@@ -49,23 +49,22 @@ defmodule IntroHumanAgentTest do
   test "get greeting" do
     setup_flow()
     |> FlowTester.start()
-
     |> receive_message(%{
       text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-      list: {"Menu", [
-        {"Your health guide 🔒", "Your health guide 🔒"},
-        {"View topics for you 📚", "View topics for you 📚"},
-        {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-        {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-        {"Manage updates 🔔", "Manage updates 🔔"},
-        {"Manage data 🖼️", "Manage data 🖼️"},
-        {"Help centre 📞", "Help centre 📞"},
-        {"Take a tour 🚌", "Take a tour 🚌"},
-        {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-        {"Talk to a counsellor", "Talk to a counsellor"}
-    ]}
+      list:
+        {"Menu",
+         [
+           {"Your health guide 🔒", "Your health guide 🔒"},
+           {"View topics for you 📚", "View topics for you 📚"},
+           {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
+           {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
+           {"Manage updates 🔔", "Manage updates 🔔"},
+           {"Manage data 🖼️", "Manage data 🖼️"},
+           {"Help centre 📞", "Help centre 📞"},
+           {"Take a tour 🚌", "Take a tour 🚌"},
+           {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
+           {"Talk to a counsellor", "Talk to a counsellor"}
+         ]}
     })
-
   end
-
 end

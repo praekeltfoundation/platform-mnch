@@ -16,7 +16,7 @@ defmodule IntroToHelpCentreTest do
       "working_hours_end_hour" => "19",
       "working_hours_start_day" => "2",
       "working_hours_end_day" => "6"
-      })
+    })
   end
 
   defp setup_flow() do
@@ -49,44 +49,45 @@ defmodule IntroToHelpCentreTest do
   test "main menu" do
     setup_flow()
     |> FlowTester.start()
-
     |> receive_message(%{
       text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-      list: {"Menu", [
-        {"Your health guide 🔒", "Your health guide 🔒"},
-        {"View topics for you 📚", "View topics for you 📚"},
-        {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-        {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-        {"Manage updates 🔔", "Manage updates 🔔"},
-        {"Manage data 🖼️", "Manage data 🖼️"},
-        {"Help centre 📞", "Help centre 📞"},
-        {"Take a tour 🚌", "Take a tour 🚌"},
-        {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-        {"Talk to a counsellor", "Talk to a counsellor"}
-    ]}
+      list:
+        {"Menu",
+         [
+           {"Your health guide 🔒", "Your health guide 🔒"},
+           {"View topics for you 📚", "View topics for you 📚"},
+           {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
+           {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
+           {"Manage updates 🔔", "Manage updates 🔔"},
+           {"Manage data 🖼️", "Manage data 🖼️"},
+           {"Help centre 📞", "Help centre 📞"},
+           {"Take a tour 🚌", "Take a tour 🚌"},
+           {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
+           {"Talk to a counsellor", "Talk to a counsellor"}
+         ]}
     })
-
   end
 
   test "new to helpcentre" do
     setup_flow()
     |> FlowTester.set_contact_properties(%{"returning_help_centre_user" => ""})
     |> FlowTester.start()
-
     |> receive_message(%{
       text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-      list: {"Menu", [
-        {"Your health guide 🔒", "Your health guide 🔒"},
-        {"View topics for you 📚", "View topics for you 📚"},
-        {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-        {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-        {"Manage updates 🔔", "Manage updates 🔔"},
-        {"Manage data 🖼️", "Manage data 🖼️"},
-        {"Help centre 📞", "Help centre 📞"},
-        {"Take a tour 🚌", "Take a tour 🚌"},
-        {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-        {"Talk to a counsellor", "Talk to a counsellor"}
-    ]}
+      list:
+        {"Menu",
+         [
+           {"Your health guide 🔒", "Your health guide 🔒"},
+           {"View topics for you 📚", "View topics for you 📚"},
+           {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
+           {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
+           {"Manage updates 🔔", "Manage updates 🔔"},
+           {"Manage data 🖼️", "Manage data 🖼️"},
+           {"Help centre 📞", "Help centre 📞"},
+           {"Take a tour 🚌", "Take a tour 🚌"},
+           {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
+           {"Talk to a counsellor", "Talk to a counsellor"}
+         ]}
     })
     |> FlowTester.send(button_label: "Help centre 📞")
     |> receive_message(%{
@@ -98,10 +99,8 @@ defmodule IntroToHelpCentreTest do
     setup_flow()
     |> FlowTester.set_contact_properties(%{"returning_help_centre_user" => "true"})
     |> FlowTester.start()
-
     |> receive_message(%{
-      text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-
+      text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _
     })
     |> FlowTester.send(button_label: "Help centre 📞")
     |> receive_message(%{
@@ -133,9 +132,7 @@ defmodule IntroToHelpCentreTest do
         text: "*Emergency contact numbers*" <> _
       })
     end
-
   end
-
 
   # describe "Search MyHealth:" do
   #   defp setup_flow_search_myhealth() do

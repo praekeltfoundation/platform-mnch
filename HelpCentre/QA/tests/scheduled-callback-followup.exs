@@ -16,7 +16,7 @@ defmodule ScheduledCallbackfollowupTest do
       "working_hours_end_hour" => "19",
       "working_hours_start_day" => "2",
       "working_hours_end_day" => "6"
-      })
+    })
   end
 
   defp setup_flow() do
@@ -67,5 +67,4 @@ defmodule ScheduledCallbackfollowupTest do
   #   })
 
   # end
-
 end
