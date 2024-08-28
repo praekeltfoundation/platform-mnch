@@ -4,11 +4,36 @@ defmodule ScheduledCallbackConfirmationTest do
   # alias FlowTester.FlowStep
   defp flow_path(flow_name), do: Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
 
+  def setup_fake_cms(auth_token) do
+    # Start the handler.
+    wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
+
+    # Add some content.
+    agent_greeting = %ContentPage{
+      slug: "plat_help_agent_greeting",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You are now chatting with {operator_name}"}
+      ]
+    }
+
+    assert :ok =
+             FakeCMS.add_pages(wh_pid, [
+               %Index{slug: "test", title: "test"},
+               agent_greeting
+             ])
+
+    # Return the adapter.
+    FakeCMS.wh_adapter(wh_pid)
+  end
+
   defp real_or_fake_cms(step, base_url, _auth_token, :real),
     do: WH.allow_http(step, base_url)
 
-  # defp real_or_fake_cms(step, base_url, auth_token, :fake),
-  #   do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
+  defp real_or_fake_cms(step, base_url, auth_token, :fake),
+    do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
+
   defp set_config(step) do
     step
     |> FlowTester.set_global_dict("settings", %{

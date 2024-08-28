@@ -2,13 +2,214 @@ defmodule IntroToHelpCentreTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
   alias FlowTester.FlowStep
+
   defp flow_path(flow_name), do: Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
+
+  def setup_fake_cms(auth_token) do
+    # Start the handler.
+    wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
+
+    # Add some content.
+    agent_greeting = %ContentPage{
+      slug: "mnch_onboarding_error_handling_button",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You1 are now chatting with {operator_name}"}
+      ]
+    }
+
+    help_centre_first = %ContentPage{
+      slug: "plat_help_welcome_help_centre_first",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "*Welcome to the [MyHealth] Help Centre*",
+        buttons: [
+          %Btn.Next{title: "Emergency help"},
+          %Btn.Next{title: "Emergency Numbers"},
+          %Btn.Next{title: "Go to main menu"}
+        ]
+      }
+      ]
+    }
+
+    help_centre_returning = %ContentPage{
+      slug: "plat_help_welcome_help_centre_returning",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "*Welcome back to the Help Centre*",
+        buttons: [
+          %Btn.Next{title: "Emergency help"},
+          %Btn.Next{title: "Emergency Numbers"},
+          %Btn.Next{title: "Go to main menu"}
+        ]
+      }
+      ]
+
+    }
+
+    medical_emergency = %ContentPage{
+      slug: "plat_help_medical_emergency",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "If you're in a health emergency, please contact emergency services",
+        buttons: [
+          %Btn.Next{title: "Emergency Numbers"},
+          %Btn.Next{title: "Search MyHealth"},
+          %Btn.Next{title: "Talk to health agent"}
+        ]}
+      ]
+    }
+
+    emergency_contact_numbers = %ContentPage{
+      slug: "plat_help_emergency_contact_numbers",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*Emergency contact numbers*",
+          buttons: [
+            %Btn.Next{title: "Help centre 📞"},
+            %Btn.Next{title: "Emergency Numbers"},
+            %Btn.Next{title: "Go to main menu"}
+          ]
+    }
+      ]
+    }
+
+    search_myhealth_prompt = %ContentPage{
+      slug: "plat_help_search_myhealth_prompt",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You3 are now chatting with {operator_name}"}
+      ]
+    }
+
+    technical_issue_prompt = %ContentPage{
+      slug: "plat_help_technical_issue_prompt",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You4 are now chatting with {operator_name}"}
+      ]
+    }
+
+    invalid_media_catch_all = %ContentPage{
+      slug: "plat_help_invalid_media_catch_all",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You5 are now chatting with {operator_name}"}
+      ]
+    }
+
+    general_catch_all = %ContentPage{
+      slug: "plat_help_general_catch_all",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You6 are now chatting with {operator_name}"}
+      ]
+    }
+
+    medical_emergency_secondary = %ContentPage{
+      slug: "plat_help_medical_emergency_secondary",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You7 are now chatting with {operator_name}"}
+      ]
+    }
+
+    faqs_topics_list = %ContentPage{
+      slug: "plat_help_faqs_topics_list",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You8 are now chatting with {operator_name}"}
+      ]
+    }
+
+    faqs_topics_list_error = %ContentPage{
+      slug: "plat_help_faqs_topics_list_error",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You9 are now chatting with {operator_name}"}
+      ]
+    }
+
+    faq_topic_content = %ContentPage{
+      slug: "plat_help_faq_topic_content",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You99 are now chatting with {operator_name}"}
+      ]
+    }
+
+    acknowledgement_positive = %ContentPage{
+      slug: "plat_help_acknowledgement_positive_",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You999 are now chatting with {operator_name}"}
+      ]
+    }
+
+    acknowledgement_negative = %ContentPage{
+      slug: "plat_help_acknowledgement_negative_",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You99999 are now chatting with {operator_name}"}
+      ]
+    }
+
+    help_desk_entry_offline = %ContentPage{
+      slug: "plat_help_help_desk_entry_offline",
+      title: "Agent greeting",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "👨You9999999 are now chatting with {operator_name}"}
+      ]
+    }
+
+    assert :ok =
+             FakeCMS.add_pages(wh_pid, [
+               %Index{slug: "test", title: "test"},
+               agent_greeting,
+               help_centre_first,
+               help_centre_returning,
+               medical_emergency,
+               emergency_contact_numbers,
+               search_myhealth_prompt,
+               technical_issue_prompt,
+               invalid_media_catch_all,
+               general_catch_all,
+               medical_emergency_secondary,
+               faqs_topics_list,
+               faqs_topics_list_error,
+               faq_topic_content,
+               acknowledgement_positive,
+               acknowledgement_negative,
+               help_desk_entry_offline
+             ])
+
+    # Return the adapter.
+    FakeCMS.wh_adapter(wh_pid)
+  end
 
   defp real_or_fake_cms(step, base_url, _auth_token, :real),
     do: WH.allow_http(step, base_url)
 
-  # defp real_or_fake_cms(step, base_url, auth_token, :fake),
-  #   do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
+  defp real_or_fake_cms(step, base_url, auth_token, :fake),
+    do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
+
   defp set_config(step) do
     step
     |> FlowTester.set_global_dict("settings", %{
@@ -113,25 +314,30 @@ defmodule IntroToHelpCentreTest do
       setup_flow()
       |> FlowTester.start()
       |> FlowTester.send(button_label: "Help centre 📞")
-      |> FlowTester.send(button_label: "Emergency help")
       |> FlowStep.clear_messages()
+      |> FlowTester.send(button_label: "Emergency help")
+      |> receive_message(%{
+        text: "If you're in a health emergency, please contact emergency services" <> _
+      })
       |> FlowTester.send(button_label: "Emergency Numbers")
       |> receive_message(%{
         text: "*Emergency contact numbers*" <> _
       })
     end
 
-    test "talk to health agent" do
-      setup_flow()
-      |> FlowTester.start()
-      |> FlowTester.send(button_label: "Help centre 📞")
-      |> FlowTester.send(button_label: "Emergency help")
-      |> FlowStep.clear_messages()
-      |> FlowTester.send(button_label: "Talk to health agent")
-      |> receive_message(%{
-        text: "*Emergency contact numbers*" <> _
-      })
-    end
+    # TODO: Implement this when flow_tester supports asserting on the running of a flow
+    # test "talk to health agent" do
+    #   setup_flow()
+    #   |> FlowTester.start()
+    #   |> FlowTester.send(button_label: "Help centre 📞")
+    #   |> FlowTester.send(button_label: "Emergency help")
+    #   |> FlowStep.clear_messages()
+    #   |> FlowTester.send(button_label: "Talk to health agent")
+    #   |> FlowTester
+    #   |> receive_message(%{
+    #     text: "*should be talk to agent*" <> _
+    #   })
+    # end
   end
 
   # describe "Search MyHealth:" do
