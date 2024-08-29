@@ -135,7 +135,7 @@ defmodule IntroToHelpCentreTest do
       title: "FAQs topics list",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "faqs_topics_list"}
+        %WAMsg{message: "🤖 Here are some topics you might find helpful.\n\n{faq_topic_list}\n6. None of these are helpful – speak to [health agent]\n\n👇🏽 Please reply with the number of your selection."}
       ]
     }
 
@@ -488,7 +488,8 @@ defmodule IntroToHelpCentreTest do
       setup_flow_search_myhealth(flow)
       |> FlowTester.send("My tummy hurts")
       |> receive_message(%{
-        text: "faqs_topics_list" <> _
+        text:
+        "🤖 Here are some topics you might find helpful.\n\n1. Baby's first teeth\n2. Vaginal discharge in pregnancy\n3. Baby's growth - Developmental milestones\n4. Toothache in pregnancy\n5. Latching baby to the breast\n6. None of these are helpful – speak to [health agent]\n\n👇🏽 Please reply with the number of your selection."
       })
     end
 
