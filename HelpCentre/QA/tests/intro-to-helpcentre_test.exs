@@ -502,21 +502,15 @@ defmodule IntroToHelpCentreTest do
       })
     end
 
-    # TODO: Ask Jeremy's help here
-    # TODO: Implement a more reliable means of detecting whether a flow was run
-    # once flow_tester supports this (needs input from Turn)
-    # test "talk to health agent", %{flow: flow} do
-    #   FlowTester.start(flow)
-    #   |> FlowTester.send(button_label: "Help centre 📞")
-    #   |> FlowTester.send(button_label: "Emergency help")
-    #   |> FlowStep.clear_messages()
-    #   |> FlowTester.send(button_label: "Talk to health agent")
-    #   |> block_matches(%{
-    #     type: "Core.RunFlow",
-    #     config: %{flow_id: "8046066f-3cb1-43d6-ace0-850769bd13a3"}
-    #   })
-    #   |> flow_finished()
-    # end
+    test "talk to health agent", %{flow: flow} do
+      FlowTester.start(flow)
+      |> FlowTester.send(button_label: "Help centre 📞")
+      |> FlowTester.send(button_label: "Emergency help")
+      |> FlowStep.clear_messages()
+      |> FlowTester.send(button_label: "Talk to health agent")
+      |> FlowTester.handle_child_flow("8046066f-3cb1-43d6-ace0-850769bd13a3")
+      |> flow_finished()
+    end
   end
 
   describe "Search MyHealth:" do

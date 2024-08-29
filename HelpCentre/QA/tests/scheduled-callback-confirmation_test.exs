@@ -70,13 +70,26 @@ defmodule ScheduledCallbackConfirmationTest do
       ]
     }
 
+    agent_helpful_response = %ContentPage{
+      slug: "plat_help_agent_helpful_response",
+      title: "Agent helpful respone",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "Please take care of yourself and if you need more information, reply {help} anytime to get the info you need."
+        }
+      ]
+    }
+
     assert :ok =
              FakeCMS.add_pages(wh_pid, [
                %Index{slug: "test", title: "test"},
                error_pg,
                call_back_confirmation_scheduled,
                call_back_confirmation_yes,
-               call_back_confirmation_no
+               call_back_confirmation_no,
+               agent_helpful_response
              ])
 
     # Return the adapter.
@@ -164,13 +177,12 @@ defmodule ScheduledCallbackConfirmationTest do
         text: "Thats great to hear. Was the [health agent] able to help you?" <> _
       })
       |> FlowTester.send(button_label: "Yes")
-      # TODO: Ask Jeremy's help here
-      # |> block_matches(%{
-      #       type: "Core.RunFlow",
-      #       config: %{flow_id: "2d3f1f0e-6973-41e4-8a18-e565beeb3988"}
-      #     })
-      #     |> flow_finished()
-
+      |> receive_message(%{
+        text:
+          "Please take care of yourself and if you need more information, reply {help} anytime to get the info you need." <>
+            _
+      })
+      |> flow_finished()
     end
 
     test "confirm yes and no" do
@@ -187,7 +199,9 @@ defmodule ScheduledCallbackConfirmationTest do
       })
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
-        text: "Thanks for letting me know. This feedback will be used to improve the [My Health] service." <> _
+        text:
+          "Thanks for letting me know. This feedback will be used to improve the [My Health] service." <>
+            _
       })
     end
 
@@ -201,7 +215,9 @@ defmodule ScheduledCallbackConfirmationTest do
       })
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
-        text: "Thanks for letting me know. This feedback will be used to improve the [My Health] service." <> _
+        text:
+          "Thanks for letting me know. This feedback will be used to improve the [My Health] service." <>
+            _
       })
     end
   end

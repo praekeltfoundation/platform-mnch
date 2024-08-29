@@ -9,14 +9,19 @@ defmodule ScheduledCallbackfollowupTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # Add some content.
-    call_back_confirmation_scheduled = %ContentPage{
-      slug: "plat_help_call_back_confirmation_scheduled",
+    call_back_follow_up = %ContentPage{
+      slug: "plat_help_call_back_follow_up",
       title: "Callback Confirmation Scheduled",
       parent: "test",
       wa_messages: [
         %WAMsg{
           message:
-            "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?"
+            "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+          buttons: [
+            %Btn.Next{title: "Yes please"},
+            %Btn.Next{title: "No thanks"},
+            %Btn.Next{title: "Main menu"}
+          ]
         }
       ]
     }
@@ -24,7 +29,7 @@ defmodule ScheduledCallbackfollowupTest do
     assert :ok =
              FakeCMS.add_pages(wh_pid, [
                %Index{slug: "test", title: "test"},
-               call_back_confirmation_scheduled
+               call_back_follow_up
              ])
 
     # Return the adapter.
@@ -74,25 +79,54 @@ defmodule ScheduledCallbackfollowupTest do
     quote do: unquote(indexed_list("list_items", labels))
   end
 
-  test "callback confirmation" do
-    setup_flow()
-    |> FlowTester.start()
-    |> receive_message(%{
-      text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-      list:
-        {"Menu",
-         [
-           {"Your health guide 🔒", "Your health guide 🔒"},
-           {"View topics for you 📚", "View topics for you 📚"},
-           {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-           {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-           {"Manage updates 🔔", "Manage updates 🔔"},
-           {"Manage data 🖼️", "Manage data 🖼️"},
-           {"Help centre 📞", "Help centre 📞"},
-           {"Take a tour 🚌", "Take a tour 🚌"},
-           {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-           {"Talk to a counsellor", "Talk to a counsellor"}
-         ]}
-    })
+  describe "scheduled callback followup" do
+    test "initial message" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+        buttons: button_labels(["Yes please", "No thanks", "Main menu"])
+      })
+    end
+
+    test "click yes please" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+        buttons: button_labels(["Yes please", "No thanks", "Main menu"])
+      })
+      |> FlowTester.send(button_label: "Yes please")
+      |> FlowTester.handle_child_flow("2d3f1f0e-6973-41e4-8a18-e565beeb3988")
+      |> flow_finished()
+    end
+
+    test "click no thanks" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+        buttons: button_labels(["Yes please", "No thanks", "Main menu"])
+      })
+      |> FlowTester.send(button_label: "No thanks")
+      |> FlowTester.handle_child_flow("2d3f1f0e-6973-41e4-8a18-e565beeb3988")
+      |> flow_finished()
+    end
+
+    test "click main menu" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+        buttons: button_labels(["Yes please", "No thanks", "Main menu"])
+      })
+      |> FlowTester.send(button_label: "Main menu")
+      |> FlowTester.handle_child_flow("7b50f9f4-b6cf-424b-8893-8fef6d0f489b")
+      |> flow_finished()
+    end
   end
 end

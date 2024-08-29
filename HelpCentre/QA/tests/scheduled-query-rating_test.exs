@@ -15,7 +15,8 @@ defmodule ScheduledQueryRatingTest do
       parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" ,
+          message:
+            "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?",
           buttons: [
             %Btn.Next{title: "Yes"},
             %Btn.Next{title: "No"}
@@ -81,59 +82,56 @@ defmodule ScheduledQueryRatingTest do
     test "scheduled query rating" do
       setup_flow()
       |> FlowTester.start()
-
       |> receive_message(%{
-        text: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <> _,
+        text:
+          "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <>
+            _,
         buttons: button_labels(["Yes", "No"])
       })
-
     end
 
     test "initial message" do
       setup_flow()
       |> FlowTester.start()
-
       |> receive_message(%{
-        text: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <> _,
+        text:
+          "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <>
+            _,
         buttons: button_labels(["Yes", "No"])
       })
-
     end
 
     test "clicked yes" do
       setup_flow()
       |> FlowTester.start()
-
       |> receive_message(%{
-        text: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <> _,
+        text:
+          "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <>
+            _,
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
-       # TODO: Ask Jeremy's help here
-      # |> block_matches(%{
-      #       type: "Core.RunFlow",
-      #       config: %{flow_id: "2d3f1f0e-6973-41e4-8a18-e565beeb3988"}
-      #     })
-      #     |> flow_finished()
-
+      |> FlowTester.handle_child_flow("2d3f1f0e-6973-41e4-8a18-e565beeb3988")
+      |> flow_finished()
     end
 
     test "click no" do
       setup_flow()
       |> FlowTester.start()
-
       |> receive_message(%{
-        text: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <> _,
+        text:
+          "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <>
+            _,
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "No")
-       # TODO: Ask Jeremy's help here
-      # |> block_matches(%{
-      #       type: "Core.RunFlow",
-      #       config: %{flow_id: "2d3f1f0e-6973-41e4-8a18-e565beeb3988"}
-      #     })
-      #     |> flow_finished()
 
+      # TODO: Ask Jeremy's help here
+      |> FlowTester.handle_child_flow("2d3f1f0e-6973-41e4-8a18-e565beeb3988", fn step ->
+        IO.puts(inspect(FlowTester.FlowStep.get_vars(step), pretty: true))
+        # Set contact properties here
+        step
+      end)
     end
   end
 end

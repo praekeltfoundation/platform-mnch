@@ -9,19 +9,52 @@ defmodule IntroHumanAgentTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # Add some content.
-    agent_greeting = %ContentPage{
-      slug: "plat_help_agent_greeting",
-      title: "Agent greeting",
+    emergency = %ContentPage{
+      slug: "plat_help_route_to_operator_emergency",
+      title: "Route to operator emergency",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You are now chatting with {operator_name}"}
+        %WAMsg{message: "We will let the helpdesk know that this is an emergency situation"}
+      ]
+    }
+
+    search_myhealth = %ContentPage{
+      slug: "plat_help_route_to_operator_search_myhealth",
+      title: "Route to operator Search MyHealth",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "You searched for {xxx}"}
+      ]
+    }
+
+    tech_support = %ContentPage{
+      slug: "plat_help_route_to_operator_tech_support",
+      title: "Route to operator Tech support",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{message: "You searched for {xxx}"}
+      ]
+    }
+
+    failed_attempts = %ContentPage{
+      slug: "plat_help_route_to_operator_failed_attempts",
+      title: "Route to operator failed attempts",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "It seems that the bot has been unable to assist you so we will be routing you to a human helpdesk operator to try to resolve your issue"
+        }
       ]
     }
 
     assert :ok =
              FakeCMS.add_pages(wh_pid, [
                %Index{slug: "test", title: "test"},
-               agent_greeting
+               emergency,
+               tech_support,
+               failed_attempts,
+               search_myhealth
              ])
 
     # Return the adapter.
@@ -71,25 +104,49 @@ defmodule IntroHumanAgentTest do
     quote do: unquote(indexed_list("list_items", labels))
   end
 
-  test "get greeting" do
-    setup_flow()
-    |> FlowTester.start()
-    |> receive_message(%{
-      text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-      list:
-        {"Menu",
-         [
-           {"Your health guide 🔒", "Your health guide 🔒"},
-           {"View topics for you 📚", "View topics for you 📚"},
-           {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-           {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-           {"Manage updates 🔔", "Manage updates 🔔"},
-           {"Manage data 🖼️", "Manage data 🖼️"},
-           {"Help centre 📞", "Help centre 📞"},
-           {"Take a tour 🚌", "Take a tour 🚌"},
-           {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-           {"Talk to a counsellor", "Talk to a counsellor"}
-         ]}
-    })
+  describe "get pre handover message:" do
+    test "emergency" do
+      setup_flow()
+      |> FlowTester.set_contact_properties(%{"route_to_operator_origin" => "emergency"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "We will let the helpdesk know that this is an emergency situation" <> _
+      })
+    end
+
+    test "search myhealth" do
+      setup_flow()
+      |> FlowTester.set_contact_properties(%{"route_to_operator_origin" => "search_myhealth"})
+      |> FlowTester.set_contact_properties(%{
+        "route_to_operator_search_text" => "mock search myhealth query"
+      })
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "You searched for 'mock search myhealth query'" <> _
+      })
+    end
+
+    test "tech support" do
+      setup_flow()
+      |> FlowTester.set_contact_properties(%{"route_to_operator_origin" => "tech_support"})
+      |> FlowTester.set_contact_properties(%{
+        "route_to_operator_search_text" => "mock tech support query"
+      })
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "You searched for 'mock tech support query'" <> _
+      })
+    end
+
+    test "failed attempts" do
+      setup_flow()
+      |> FlowTester.set_contact_properties(%{"route_to_operator_origin" => "failed_attempts"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "It seems that the bot has been unable to assist you so we will be routing you to a human helpdesk operator to try to resolve your issue" <>
+            _
+      })
+    end
   end
 end

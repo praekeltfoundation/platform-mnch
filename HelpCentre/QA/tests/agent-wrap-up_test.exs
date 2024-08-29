@@ -9,19 +9,104 @@ defmodule AgentWrapUpTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # Add some content.
-    agent_greeting = %ContentPage{
-      slug: "plat_help_agent_greeting",
-      title: "Agent greeting",
+    query_successful = %ContentPage{
+      slug: "plat_help_query_successful",
+      title: "Query successful",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You are now chatting with {operator_name}"}
+        %WAMsg{
+          message: "Was your query successfully resolved?",
+          buttons: [
+            %Btn.Next{title: "Yes"},
+            %Btn.Next{title: "No"}
+          ]
+        }
+      ]
+    }
+
+    agent_helpful_response = %ContentPage{
+      slug: "plat_help_agent_helpful_response",
+      title: "Query successful",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "Please take care of yourself and if you need more information, reply {help} anytime to get the info you need."
+        }
+      ]
+    }
+
+    agent_unsuccessful_response = %ContentPage{
+      slug: "plat_help_agent_unsuccessful_response",
+      title: "Agent unsuccessful response",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾",
+          buttons: [
+            %Btn.Next{title: "Call me back"},
+            %Btn.Next{title: "Search MyHealth"},
+            %Btn.Next{title: "Main menu"}
+          ]
+        }
+      ]
+    }
+
+    call_back_response = %ContentPage{
+      slug: "plat_help_call_back_response",
+      title: "Call back response",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\n\nWhat would you like to do?",
+          buttons: [
+            %Btn.Next{title: "Call me back"},
+            %Btn.Next{title: "Main menu"}
+          ]
+        }
+      ]
+    }
+
+    call_back_confirmation = %ContentPage{
+      slug: "plat_help_call_back_confirmation",
+      title: "Call back confirmation",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "A trained counsellor/nurse will call you back.\n\nThey’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist."
+        }
+      ]
+    }
+
+    call_back_number_confirmation = %ContentPage{
+      slug: "plat_help_agent_call_back_number_confirmation",
+      title: "Call back confirmation",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "Should a counsellor call you on the WhatsApp number you are currently using to chat?",
+          buttons: [
+            %Btn.Next{title: "Use this number"},
+            %Btn.Next{title: "Use different number"},
+            %Btn.Next{title: "Main menu"}
+          ]
+        }
       ]
     }
 
     assert :ok =
              FakeCMS.add_pages(wh_pid, [
                %Index{slug: "test", title: "test"},
-               agent_greeting
+               query_successful,
+               agent_helpful_response,
+               agent_unsuccessful_response,
+               call_back_response,
+               call_back_confirmation,
+               call_back_number_confirmation
              ])
 
     # Return the adapter.
@@ -71,11 +156,78 @@ defmodule AgentWrapUpTest do
     quote do: unquote(indexed_list("list_items", labels))
   end
 
-  test "get greeting" do
-    setup_flow()
-    |> FlowTester.start()
-    |> receive_message(%{
-      text: "Was your query successfully resolved?"
-    })
+  describe "Agent wrap up:" do
+    test "query resolved" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "Was your query successfully resolved?"
+      })
+    end
+
+    test "query resolved yes" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "Was your query successfully resolved?"
+      })
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{
+        text:
+          "Please take care of yourself and if you need more information, reply {help} anytime to get the info you need."
+      })
+    end
+
+    test "query resolved no" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "Was your query successfully resolved?"
+      })
+      |> FlowTester.send(button_label: "No")
+      |> receive_message(%{
+        text:
+          "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾"
+      })
+    end
+
+    test "query unresolved call me back" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "Was your query successfully resolved?"
+      })
+      |> FlowTester.send(button_label: "No")
+      |> receive_message(%{
+        text:
+          "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾"
+      })
+      |> FlowTester.send(button_label: "Call me back")
+      |> receive_message(%{
+        text:
+          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\n\nWhat would you like to do?"
+      })
+    end
+
+    #   test "call_back_number_confirmation" do
+    #     setup_flow()
+    #     |> FlowTester.start()
+    #     |> receive_message(%{
+    #       text:
+    #         "Was your query successfully resolved?"
+    #         })
+    #         |> FlowTester.send(button_label: "No")
+    #         |> receive_message(%{
+    #           text: "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾"})
+    #         |> FlowTester.send(button_label: "Call me back")
+    #         |> receive_message(%{
+    #           text: "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\n\nWhat would you like to do?"
+    #           })
+    #         |> FlowTester.send(button_label: "Call me back")
+    #         |> receive_message(%{
+    #           text: "1Should a counsellor call you on the WhatsApp number you are currently using to chat?"
+    #           })
+
+    #   end
   end
 end
