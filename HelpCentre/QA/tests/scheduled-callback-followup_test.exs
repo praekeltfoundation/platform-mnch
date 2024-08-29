@@ -53,8 +53,8 @@ defmodule ScheduledCallbackfollowupTest do
   end
 
   defp setup_flow() do
-    # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
-    auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
+    # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
+    auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
     flow_path("scheduled-callback-followup")
