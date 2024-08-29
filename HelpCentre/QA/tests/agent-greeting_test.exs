@@ -56,7 +56,6 @@ defmodule AgentGreetingTest do
       }
     }
 
-    # IO.puts(inspect(body))
     %Tesla.Env{env | status: 200, body: body}
   end
 
@@ -115,33 +114,18 @@ defmodule AgentGreetingTest do
 
   setup [:setup_flow]
 
-  @tag :blah
   test "get greeting for assigned agent", %{flow: flow} do
     FlowTester.start(flow)
-    # |> fn step ->
-    #   IO.puts(inspect(Step.get_vars(step), pretty: true))
-    #   step
-    # end.()
     |> receive_message(%{
       text: "👨You are now chatting with Test Operator" <> _
     })
   end
 
-  @tag :blah
   @tag chat_assigned_to: nil
   test "get greeting for no agent assigned", %{flow: flow} do
     FlowTester.start(flow)
-    # |> fn step ->
-    #   IO.puts(inspect(Step.get_vars(step), pretty: true))
-    #   step
-    # end.()
-    # |> receive_messages([%{
-    #   text: "No agent assigned to this chat" <> _,
-    # }, %{
-    #   text: "Rerouting this chat as its unassigned" <> _,
-    # } ])
     |> receive_message(%{
-      text: "No agent assigned to this chat" <> _
+      text: "👨You are now chatting with {a MomConnect operator}" <> _
     })
   end
 end

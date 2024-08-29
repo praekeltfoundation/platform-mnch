@@ -22,7 +22,7 @@ defmodule IntroToHelpCentreTest do
 
     help_centre_first = %ContentPage{
       slug: "plat_help_welcome_help_centre_first",
-      title: "Agent greeting",
+      title: "Welcome Help Centre first",
       parent: "test",
       wa_messages: [
         %WAMsg{
@@ -38,7 +38,7 @@ defmodule IntroToHelpCentreTest do
 
     help_centre_returning = %ContentPage{
       slug: "plat_help_welcome_help_centre_returning",
-      title: "Agent greeting",
+      title: "Welcome Help Centre returning",
       parent: "test",
       wa_messages: [
         %WAMsg{
@@ -54,7 +54,7 @@ defmodule IntroToHelpCentreTest do
 
     medical_emergency = %ContentPage{
       slug: "plat_help_medical_emergency",
-      title: "Agent greeting",
+      title: "Medical emergency",
       parent: "test",
       wa_messages: [
         %WAMsg{
@@ -70,7 +70,7 @@ defmodule IntroToHelpCentreTest do
 
     emergency_contact_numbers = %ContentPage{
       slug: "plat_help_emergency_contact_numbers",
-      title: "Agent greeting",
+      title: "Emergency contact numbers",
       parent: "test",
       wa_messages: [
         %WAMsg{
@@ -86,7 +86,7 @@ defmodule IntroToHelpCentreTest do
 
     search_myhealth_prompt = %ContentPage{
       slug: "plat_help_search_myhealth_prompt",
-      title: "Agent greeting",
+      title: "Search MyHealth prompt",
       parent: "test",
       wa_messages: [
         %WAMsg{message: "Let's find you the information you need.
@@ -96,34 +96,34 @@ defmodule IntroToHelpCentreTest do
 
     technical_issue_prompt = %ContentPage{
       slug: "plat_help_technical_issue_prompt",
-      title: "Agent greeting",
+      title: "Technical issue prompt",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You4 are now chatting with {operator_name}"}
+        %WAMsg{message: "technical_issue_prompt"}
       ]
     }
 
     invalid_media_catch_all = %ContentPage{
       slug: "plat_help_invalid_media_catch_all",
-      title: "Agent greeting",
+      title: "Invalid media catch all",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You5 are now chatting with {operator_name}"}
+        %WAMsg{message: "plat_help_invalid_media_catch_all"}
       ]
     }
 
     general_catch_all = %ContentPage{
       slug: "plat_help_general_catch_all",
-      title: "Agent greeting",
+      title: "General catch all",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You6 are now chatting with {operator_name}"}
+        %WAMsg{message: "plat_help_general_catch_all"}
       ]
     }
 
     medical_emergency_secondary = %ContentPage{
       slug: "plat_help_medical_emergency_secondary",
-      title: "Agent greeting",
+      title: "Medical emergency secondary",
       parent: "test",
       wa_messages: [
         %WAMsg{message: "medical_emergency_secondary"}
@@ -132,16 +132,16 @@ defmodule IntroToHelpCentreTest do
 
     faqs_topics_list = %ContentPage{
       slug: "plat_help_faqs_topics_list",
-      title: "Agent greeting",
+      title: "FAQs topics list",
       parent: "test",
       wa_messages: [
         %WAMsg{message: "faqs_topics_list"}
       ]
     }
 
-    faqs_topics_list_error = %ContentPage{
-      slug: "plat_help_faqs_topics_list_error",
-      title: "Agent greeting",
+    faq_error_message = %ContentPage{
+      slug: "plat_help_faq_error_message",
+      title: "FAQ Error Message",
       parent: "test",
       wa_messages: [
         %WAMsg{message: "faqs_topics_list_error"}
@@ -150,7 +150,7 @@ defmodule IntroToHelpCentreTest do
 
     faq_topic_content = %ContentPage{
       slug: "plat_help_faq_topic_content",
-      title: "Agent greeting",
+      title: "FAQ topic content",
       parent: "test",
       wa_messages: [
         %WAMsg{message: "faq_topic_content"}
@@ -159,7 +159,7 @@ defmodule IntroToHelpCentreTest do
 
     acknowledgement_positive = %ContentPage{
       slug: "plat_help_acknowledgement_positive_",
-      title: "Agent greeting",
+      title: "Acknowledgement positive ",
       parent: "test",
       wa_messages: [
         %WAMsg{message: "acknowledgement_positive"}
@@ -168,7 +168,7 @@ defmodule IntroToHelpCentreTest do
 
     acknowledgement_negative = %ContentPage{
       slug: "plat_help_acknowledgement_negative_",
-      title: "Agent greeting",
+      title: " Acknowledgement negative ",
       parent: "test",
       wa_messages: [
         %WAMsg{message: "acknowledgement_negative"}
@@ -177,7 +177,7 @@ defmodule IntroToHelpCentreTest do
 
     help_desk_entry_offline = %ContentPage{
       slug: "plat_help_help_desk_entry_offline",
-      title: "Agent greeting",
+      title: "Help desk entry offline",
       parent: "test",
       wa_messages: [
         %WAMsg{message: "help_desk_entry_offline"}
@@ -198,7 +198,7 @@ defmodule IntroToHelpCentreTest do
                general_catch_all,
                medical_emergency_secondary,
                faqs_topics_list,
-               faqs_topics_list_error,
+               faq_error_message,
                faq_topic_content,
                acknowledgement_positive,
                acknowledgement_negative,
@@ -228,53 +228,6 @@ defmodule IntroToHelpCentreTest do
       "messages" => [
         %{
           "id" => "someid",
-          "timestamp" => "1724661119",
-          "type" => "text",
-          "text" => %{
-            "body" => "your-text-message-content"
-          },
-          "to" => "27823283744",
-          "from" => "27600143703",
-          "preview_url" => false,
-          "_vnd" => %{
-            "v1" => %{
-              "author" => %{
-                "id" => "db6aae74-7510-4987-8510-149f38a6cbee",
-                "name" => "Fritz Dev",
-                "request_id" => "F-86JmG8CBHnVbMA5wXR",
-                "type" => "SYSTEM"
-              },
-              "labels" => [],
-              "direction" => "outbound",
-              "uuid" => "0d3eed35-343c-5558-0689-a85f34ee174c",
-              "inserted_at" => "2024-08-26T08 =>31 =>59.571822Z",
-              "chat" => %{
-                "owner" => "+27823283744",
-                "state" => "OPEN",
-                "uuid" => "565c3f9e-89a2-4ded-9908-39a509f1c87d",
-                "updated_at" => "2024-08-26T12 =>34 =>39.203179Z",
-                "inserted_at" => "2024-04-17T06 =>35 =>07.299637Z",
-                "unread_count" => 0,
-                "state_reason" => "Re-opened by inbound message.",
-                "assigned_to" => %{
-                  "id" => "e6ef9c32-a6c9-bf2e-005c-484f39198fee",
-                  "name" => "Fritz Brand",
-                  "type" => "OPERATOR"
-                },
-                "contact_uuid" => "38ff540e-659f-4fd8-8d3e-becbcff08737",
-                "permalink" =>
-                  "https =>//whatsapp-praekelt-cloud.turn.io/app/c/565c3f9e-89a2-4ded-9908-39a509f1c87d"
-              },
-              "last_status_timestamp" => "2024-08-26T08 =>32 =>00.000000Z",
-              "card_uuid" => nil,
-              "in_reply_to" => nil,
-              "faq_uuid" => nil,
-              "rendered_content" => nil,
-              "on_fallback_channel" => false,
-              "last_status" => "delivered"
-            }
-          },
-          "recipient_type" => "individual"
         }
       ],
       "chat" => %{
@@ -355,11 +308,8 @@ defmodule IntroToHelpCentreTest do
     %Tesla.Env{env | status: 200, body: body}
   end
 
-  def aaq_check_urgency(env, _ctx) do
-    urgency_score = 0.0
-    # if(is_urgent) do
-    #   urgency_score = 1.0
-    # end
+  def aaq_check_urgency(env, ctx) do
+    urgency_score = Map.get(ctx, :aaq_urgency_score, "0.0")
     body = %{"urgency_score" => urgency_score}
     %Tesla.Env{env | status: 200, body: body}
   end
@@ -524,12 +474,23 @@ defmodule IntroToHelpCentreTest do
       })
     end
 
-    test "test inbound check", %{flow: flow} do
+    @tag aaq_urgency_score: "1.0"
+    test "test inbound check urgent", %{flow: flow} do
+      setup_flow_search_myhealth(flow)
+      |> FlowTester.send("xyz")
+      |> receive_message(%{
+        text: "medical_emergency_secondary" <> _
+      })
+    end
+
+
+    test "test inbound check not urgent", %{flow: flow} do
       setup_flow_search_myhealth(flow)
       |> FlowTester.send("My tummy hurts")
       |> receive_message(%{
         text: "faqs_topics_list" <> _
       })
     end
+
   end
 end

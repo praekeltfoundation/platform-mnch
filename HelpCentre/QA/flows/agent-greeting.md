@@ -29,7 +29,7 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "t
 <!-- { section: "df9a9d5b-c57d-4a9e-8020-1756b7fdec73", x: 0, y: 0} -->
 
 ```stack
-card GetLatestMessage, then: CheckStatus do
+card GetLatestMessage, then: GetPageContent do
   get_latest_msg =
     get(
       "https://whatsapp-praekelt-cloud.turn.io/v1/contacts/@contact.whatsapp_id/messages",
@@ -48,17 +48,7 @@ card GetLatestMessage, then: CheckStatus do
   chat = get_latest_msg.body.chat
 end
 
-card CheckStatus when is_nil_or_empty(chat.assigned_to), then: RerouteUnassigned do
-  text("No agent assigned to this chat")
-end
-
-card CheckStatus, then: SendTakeoverStart do
-  log("Agent assigned to this chat = @chat.assigned_to.name")
-end
-
-card SendTakeoverStart do
-  # text("Going into SendTakeoverStart")
-
+card GetPageContent, then: SendGreeting do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -80,14 +70,18 @@ card SendTakeoverStart do
     )
 
   greeting_msg = page.body.body.text.value.message
-  substituted_msg = substitute(greeting_msg, "{operator_name}", "@chat.assigned_to.name")
+end
+
+card SendGreeting when is_nil_or_empty(chat.assigned_to) do
+  substituted_msg = substitute(greeting_msg, "{operator_name}", "{a MomConnect operator}")
 
   text("@substituted_msg")
 end
 
-card RerouteUnassigned do
-  # TODO: We probably need to set up some sort of notification if this happens, as it shouldn't be reached under normal circumstances
-  log("Rerouting this chat as its unassigned")
+card SendGreeting do
+  log("Agent assigned to this chat = @chat.assigned_to.name")
+  substituted_msg = substitute(greeting_msg, "{operator_name}", "@chat.assigned_to.name")
+  text("@substituted_msg")
 end
 
 ```
