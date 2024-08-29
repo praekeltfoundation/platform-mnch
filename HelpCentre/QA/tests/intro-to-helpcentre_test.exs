@@ -126,7 +126,7 @@ defmodule IntroToHelpCentreTest do
       title: "Agent greeting",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You7 are now chatting with {operator_name}"}
+        %WAMsg{message: "medical_emergency_secondary"}
       ]
     }
 
@@ -135,7 +135,7 @@ defmodule IntroToHelpCentreTest do
       title: "Agent greeting",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You8 are now chatting with {operator_name}"}
+        %WAMsg{message: "faqs_topics_list"}
       ]
     }
 
@@ -144,7 +144,7 @@ defmodule IntroToHelpCentreTest do
       title: "Agent greeting",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You9 are now chatting with {operator_name}"}
+        %WAMsg{message: "faqs_topics_list_error"}
       ]
     }
 
@@ -153,7 +153,7 @@ defmodule IntroToHelpCentreTest do
       title: "Agent greeting",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You99 are now chatting with {operator_name}"}
+        %WAMsg{message: "faq_topic_content"}
       ]
     }
 
@@ -162,7 +162,7 @@ defmodule IntroToHelpCentreTest do
       title: "Agent greeting",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You999 are now chatting with {operator_name}"}
+        %WAMsg{message: "acknowledgement_positive"}
       ]
     }
 
@@ -171,7 +171,7 @@ defmodule IntroToHelpCentreTest do
       title: "Agent greeting",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You99999 are now chatting with {operator_name}"}
+        %WAMsg{message: "acknowledgement_negative"}
       ]
     }
 
@@ -180,7 +180,7 @@ defmodule IntroToHelpCentreTest do
       title: "Agent greeting",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You9999999 are now chatting with {operator_name}"}
+        %WAMsg{message: "help_desk_entry_offline"}
       ]
     }
 
@@ -225,6 +225,58 @@ defmodule IntroToHelpCentreTest do
 
     # IO.puts(inspect(assigned_to))
     body = %{
+      "messages" => [
+        %{
+          "id" => "someid",
+          "timestamp" => "1724661119",
+          "type" => "text",
+          "text" => %{
+            "body" => "your-text-message-content"
+          },
+          "to" => "27823283744",
+          "from" => "27600143703",
+          "preview_url" => false,
+          "_vnd" => %{
+            "v1" => %{
+              "author" => %{
+                "id" => "db6aae74-7510-4987-8510-149f38a6cbee",
+                "name" => "Fritz Dev",
+                "request_id" => "F-86JmG8CBHnVbMA5wXR",
+                "type" => "SYSTEM"
+              },
+              "labels" => [],
+              "direction" => "outbound",
+              "uuid" => "0d3eed35-343c-5558-0689-a85f34ee174c",
+              "inserted_at" => "2024-08-26T08 =>31 =>59.571822Z",
+              "chat" => %{
+                "owner" => "+27823283744",
+                "state" => "OPEN",
+                "uuid" => "565c3f9e-89a2-4ded-9908-39a509f1c87d",
+                "updated_at" => "2024-08-26T12 =>34 =>39.203179Z",
+                "inserted_at" => "2024-04-17T06 =>35 =>07.299637Z",
+                "unread_count" => 0,
+                "state_reason" => "Re-opened by inbound message.",
+                "assigned_to" => %{
+                  "id" => "e6ef9c32-a6c9-bf2e-005c-484f39198fee",
+                  "name" => "Fritz Brand",
+                  "type" => "OPERATOR"
+                },
+                "contact_uuid" => "38ff540e-659f-4fd8-8d3e-becbcff08737",
+                "permalink" =>
+                  "https =>//whatsapp-praekelt-cloud.turn.io/app/c/565c3f9e-89a2-4ded-9908-39a509f1c87d"
+              },
+              "last_status_timestamp" => "2024-08-26T08 =>32 =>00.000000Z",
+              "card_uuid" => nil,
+              "in_reply_to" => nil,
+              "faq_uuid" => nil,
+              "rendered_content" => nil,
+              "on_fallback_channel" => false,
+              "last_status" => "delivered"
+            }
+          },
+          "recipient_type" => "individual"
+        }
+      ],
       "chat" => %{
         "owner" => "+27821234567",
         "state" => "OPEN",
@@ -240,8 +292,12 @@ defmodule IntroToHelpCentreTest do
     %Tesla.Env{env | status: 200, body: body}
   end
 
+  defp turn_add_label(env, _ctx) do
+    %Tesla.Env{env | status: 200}
+  end
+
   defp setup_fake_turn(step, ctx) do
-    gen_pid = start_link_supervised!(Generic)
+    gen_pid = start_link_supervised!(Generic, id: :fake_turn)
 
     Generic.add_handler(
       gen_pid,
@@ -249,7 +305,81 @@ defmodule IntroToHelpCentreTest do
       &turn_contacts_messages(&1, ctx)
     )
 
+    Generic.add_handler(
+      gen_pid,
+      "/v1/messages/someid/labels",
+      &turn_add_label(&1, ctx)
+    )
+
     WH.set_adapter(step, "https://whatsapp-praekelt-cloud.turn.io/", Generic.wh_adapter(gen_pid))
+  end
+
+  defp aaq_inbound_check(env, _ctx) do
+    body = %{
+      "message" =>
+        "*1* - Baby's first teeth\n*2* - Vaginal discharge in pregnancy\n*3* - Baby's growth - Developmental milestones\n*4* - Toothache in pregnancy\n*5* - Latching baby to the breast",
+      "body" => %{
+        "1" => %{
+          "text" =>
+            "*Swollen, tender gums are a sign that baby is teething*\r\n\r\nMost babies 👶🏽 begin to teethe between 4 and 7 months old, but some may start much later. You don't have to worry if your baby’s teeth come in a bit later. By around 3 years old, your child will have all of her baby teeth.  \r\n\r\n*Signs and symptoms of teething*\r\n\r\n- Swollen, tender gums,\r\n- Fussiness and crying,\r\n- A slightly raised temperature, \r\n- Lots of drool, which can cause a rash on the face,\r\n- Rubbing a cheek or pulling at an ear,\r\n- Bringing the hands to the mouth,\r\n- Changes in eating or sleeping patterns,\r\n- Or, if you are breastfeeding, your baby might start biting while nursing.\r\n\r\n*What to do*\r\n- Give baby a solid cold 🧊 teething ring or toy to chew on. \r\n- Rub your baby's gums with your clean finger ☝🏽.\r\n\r\n*Reasons to go to the clinic* 🏥\r\n- If baby's gums are bleeding,\r\n- If you see pus at the gums or a swelling of baby's face,\r\n- If your baby has a fever.",
+          "id" => "12"
+        },
+        "2" => %{
+          "text" =>
+            "*Yes, unusual vaginal discharge can signal a problem*\r\n\r\nVaginal discharge may increase during pregnancy and is normally white, thin or thick without a strong smell. If the discharge is accompanied by itching and has a thick, cottage cheese-like consistency or appearance, it's not normal and needs treatment 🩺. \r\n\r\nLight spotting or bleeding🩸 can be normal. But if you experience heavy bleeding, cramps, or pain – then go straight to the clinic to be checked.\r\n\r\n*What to do*\r\n- Look at the colour of your discharge. It should be clear 💧 or milky white,\r\n- Smell the discharge. It should not have a bad smell 😤, \r\n- Bath regularly and wear clean cotton underwear 🩲.\r\n\r\n*Reasons to go to the clinic* 🏥\r\n- If your discharge is yellowish, greenish or thick and cheesy\r\n- When your vagina has a foul or fishy smell\r\n- If the inside of your vagina burns or itches\r\n- If it burns when you urinate\r\n- When sex is painful",
+          "id" => "35"
+        },
+        "3" => %{
+          "text" =>
+            "*Developmental Milestones*\r\n \r\nMost babies are able to do the same things at about the same age. Some develop more quickly, while others reach some milestones more slowly. \r\n \r\nMonth 1\r\n• Makes eye contact\r\n• Reacts to mom’s voice and smiles\r\n \r\nMonth 2\r\n• Gives social smiles \r\n• Studies faces\r\n• Murmurs and giggles at sounds\r\n• Shows anger\r\n \r\nMonth 3\r\n• Smiles at you\r\n• Lifts arms up, hands wide open and moves legs\r\n \r\nMonth 4\r\n• Pushes up arms when on her tummy\r\n• Grabs objects\r\n• Enjoys playing and cries when disrupted\r\n \r\nMonth 6\r\n• Sits with support\r\n• Holds toy in one hand\r\n• Babbles\r\n• Puts everything in her mouth\r\n• Laughs out loud \r\n• Starts to hold a bottle \r\n• Shows likes and dislikes\r\n \r\nMonth 9\r\n• Responds when called\r\n• Sits without support\r\n• Crawls\r\n• Rolls\r\n• Pulls up to stand\r\n• Understands “yes” and “no”\r\n• Holds a bottle\r\n \r\nMonth 12\r\n• Walks around furniture sideways\r\n• Walks with feet apart & arms up\r\n• Looks for toys when out of sight\r\n• Pincer grasp and release if asked\r\n• Knows her name\r\n• Understands simple commands\r\n• Finger feeds",
+          "id" => "183"
+        },
+        "4" => %{
+          "text" =>
+            "*Yes, pregnancy can cause toothache*\r\n\r\nAches and pains 💢 in the teeth or gums are common in pregnancy. Hormones soften your gums and increase the blood supply, which can lead to inflammation and swollen, bleeding gums (gingivitis).\r\n\r\nA build-up of mucus in the sinuses during nasal congestion or allergies like sinusitis 👃🏽, may cause pressure on the gums resulting in painful teeth.\r\n\r\n*What to do*\r\nPregnancy hormones reduce your body's natural ability to control the build-up of germs (plaque) on your teeth 🦷. Brush teeth *twice daily* to prevent gingivitis – or a serious gum disease called periodontitis.",
+          "id" => "4"
+        },
+        "5" => %{
+          "text" =>
+            "*Latching baby to the breast*\r\n\r\nLatching is the way your baby grips the breast with his mouth.🤱🏽 It's important he latches correctly for successful breastfeeding. A good latch means baby gets enough milk out – without giving you sore or cracked nipples. \r\n\r\nTo latch your baby:\r\n- make sure he is facing you, \r\n- his head should be slightly tilted backwards and not turned to the side\r\n- his mouth should be open wide \r\n- you bring his head towards the breast. \r\n\r\nWhen latched, his lips should be curled outwards, with a good mouthful of your breast. Check that he has most of the dark area around your nipple in his mouth. \r\nIf you see his jaw moving up and down as he feeds, you know he has latched on well.\r\n\r\n*Tap the link below for:*\r\n- A video 📹 of baby latching onto the breast: \r\nhttps://www.youtube.com/watch?v=wjt-Ashodw8",
+          "id" => "153"
+        }
+      },
+      "feedback_secret_key" => "dummy_key",
+      "inbound_secret_key" => "dummy_key=",
+      "inbound_id" => "123",
+      "next_page_url" => "/inbound/123/2?inbound_secret_key=dummy_key"
+    }
+
+    # IO.puts(inspect(body))
+    %Tesla.Env{env | status: 200, body: body}
+  end
+
+  def aaq_check_urgency(env, _ctx) do
+    urgency_score = 0.0
+    # if(is_urgent) do
+    #   urgency_score = 1.0
+    # end
+    body = %{"urgency_score" => urgency_score}
+    %Tesla.Env{env | status: 200, body: body}
+  end
+
+  defp setup_fake_aaq(step, ctx) do
+    gen_pid = start_link_supervised!(Generic, id: :fake_aaq)
+
+    Generic.add_handler(
+      gen_pid,
+      "/api/v1/inbound/check",
+      &aaq_inbound_check(&1, ctx)
+    )
+
+    Generic.add_handler(
+      gen_pid,
+      "/api/v1/check-urgency",
+      &aaq_check_urgency(&1, ctx)
+    )
+
+    WH.set_adapter(step, "https://hub.qa.momconnect.co.za/", Generic.wh_adapter(gen_pid))
   end
 
   defp set_config(step) do
@@ -273,6 +403,7 @@ defmodule IntroToHelpCentreTest do
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> setup_fake_turn(ctx)
+      |> setup_fake_aaq(ctx)
       |> set_config()
 
     %{flow: flow}
@@ -371,18 +502,20 @@ defmodule IntroToHelpCentreTest do
       })
     end
 
-    # TODO: Implement this when flow_tester supports asserting on the running of a flow
-    # test "talk to health agent" do
-    #   setup_flow()
-    #   |> FlowTester.start()
+    # TODO: Ask Jeremy's help here
+    # TODO: Implement a more reliable means of detecting whether a flow was run
+    # once flow_tester supports this (needs input from Turn)
+    # test "talk to health agent", %{flow: flow} do
+    #   FlowTester.start(flow)
     #   |> FlowTester.send(button_label: "Help centre 📞")
     #   |> FlowTester.send(button_label: "Emergency help")
     #   |> FlowStep.clear_messages()
     #   |> FlowTester.send(button_label: "Talk to health agent")
-    #   |> FlowTester
-    #   |> receive_message(%{
-    #     text: "*should be talk to agent*" <> _
+    #   |> block_matches(%{
+    #     type: "Core.RunFlow",
+    #     config: %{flow_id: "8046066f-3cb1-43d6-ace0-850769bd13a3"}
     #   })
+    #   |> flow_finished()
     # end
   end
 
@@ -390,24 +523,19 @@ defmodule IntroToHelpCentreTest do
     defp setup_flow_search_myhealth(flow) do
       FlowTester.start(flow)
       |> FlowTester.send(button_label: "Help centre 📞")
-      |> FlowTester.send(button_label: "Search MyHealth")
-    end
-
-    test "is help centre open", %{flow: flow} do
-      # setup_flow_search_myhealth()
-
-      FlowTester.start(flow)
-      |> FlowTester.send(button_label: "Help centre 📞")
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Search MyHealth")
       |> receive_message(%{
         text: "Let's find you the information you need" <> _
       })
+    end
 
-      # |> FlowTester.send("My tummy hurts")
-      # |> receive_message(%{
-      #   text: "here" <> _
-      # })
+    test "test inbound check", %{flow: flow} do
+      setup_flow_search_myhealth(flow)
+      |> FlowTester.send("My tummy hurts")
+      |> receive_message(%{
+        text: "faqs_topics_list" <> _
+      })
     end
   end
 end

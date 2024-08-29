@@ -9,19 +9,74 @@ defmodule ScheduledCallbackConfirmationTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # Add some content.
-    agent_greeting = %ContentPage{
-      slug: "plat_help_agent_greeting",
-      title: "Agent greeting",
+    error_pg = %ContentPage{
+      slug: "mnch_onboarding_error_handling_button",
+      title: "error",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You are now chatting with {operator_name}"}
+        %WAMsg{
+          message:
+            "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
+        }
+      ]
+    }
+
+    call_back_confirmation_scheduled = %ContentPage{
+      slug: "plat_help_call_back_confirmation_scheduled",
+      title: "Callback Confirmation Scheduled",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+          buttons: [
+            %Btn.Next{title: "Yes"},
+            %Btn.Next{title: "No"}
+          ]
+        }
+      ]
+    }
+
+    call_back_confirmation_yes = %ContentPage{
+      slug: "plat_help_call_back_confirmation_yes",
+      title: "Call back confirmation yes",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "Thats great to hear. Was the [health agent] able to help you?",
+          buttons: [
+            %Btn.Next{title: "Yes"},
+            %Btn.Next{title: "No"},
+            %Btn.Next{title: "Main menu"}
+          ]
+        }
+      ]
+    }
+
+    call_back_confirmation_no = %ContentPage{
+      slug: "plat_help_call_back_confirmation_no",
+      title: "Call back confirmation no",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message:
+            "Thanks for letting me know. This feedback will be used to improve the [My Health] service.\n\nIf you have anything urgent to discuss, go to the nearest health facility and speak to a health worker.\n\nIf you'd like, you can request another call from a [health agent], or have a look at topics that might interest you. \n\n👇🏽 What do you want to do?",
+          buttons: [
+            %Btn.Next{title: "Call me back"},
+            %Btn.Next{title: "See topics"},
+            %Btn.Next{title: "Main menu"}
+          ]
+        }
       ]
     }
 
     assert :ok =
              FakeCMS.add_pages(wh_pid, [
                %Index{slug: "test", title: "test"},
-               agent_greeting
+               error_pg,
+               call_back_confirmation_scheduled,
+               call_back_confirmation_yes,
+               call_back_confirmation_no
              ])
 
     # Return the adapter.
@@ -71,25 +126,83 @@ defmodule ScheduledCallbackConfirmationTest do
     quote do: unquote(indexed_list("list_items", labels))
   end
 
-  # test "get greeting" do
-  #   setup_flow()
-  #   |> FlowTester.start()
+  describe "callback confirmation scheduled" do
+    test "callback confirmation" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+        buttons: button_labels(["Yes", "No"])
+      })
+    end
 
-  #   |> receive_message(%{
-  #     text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-  #     list: {"Menu", [
-  #       {"Your health guide 🔒", "Your health guide 🔒"},
-  #       {"View topics for you 📚", "View topics for you 📚"},
-  #       {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-  #       {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-  #       {"Manage updates 🔔", "Manage updates 🔔"},
-  #       {"Manage data 🖼️", "Manage data 🖼️"},
-  #       {"Help centre 📞", "Help centre 📞"},
-  #       {"Take a tour 🚌", "Take a tour 🚌"},
-  #       {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-  #       {"Talk to a counsellor", "Talk to a counsellor"}
-  #   ]}
-  #   })
+    test "confirm yes" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+        buttons: button_labels(["Yes", "No"])
+      })
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{
+        text: "Thats great to hear. Was the [health agent] able to help you?" <> _
+      })
+    end
 
-  # end
+    test "confirm yes and yes" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+        buttons: button_labels(["Yes", "No"])
+      })
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{
+        text: "Thats great to hear. Was the [health agent] able to help you?" <> _
+      })
+      |> FlowTester.send(button_label: "Yes")
+      # TODO: Ask Jeremy's help here
+      # |> block_matches(%{
+      #       type: "Core.RunFlow",
+      #       config: %{flow_id: "2d3f1f0e-6973-41e4-8a18-e565beeb3988"}
+      #     })
+      #     |> flow_finished()
+
+    end
+
+    test "confirm yes and no" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+        buttons: button_labels(["Yes", "No"])
+      })
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{
+        text: "Thats great to hear. Was the [health agent] able to help you?" <> _
+      })
+      |> FlowTester.send(button_label: "No")
+      |> receive_message(%{
+        text: "Thanks for letting me know. This feedback will be used to improve the [My Health] service." <> _
+      })
+    end
+
+    test "confirm no" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text:
+          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+        buttons: button_labels(["Yes", "No"])
+      })
+      |> FlowTester.send(button_label: "No")
+      |> receive_message(%{
+        text: "Thanks for letting me know. This feedback will be used to improve the [My Health] service." <> _
+      })
+    end
+  end
 end

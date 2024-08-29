@@ -86,7 +86,8 @@ card SendTakeoverStart do
 end
 
 card RerouteUnassigned do
-  text("Rerouting this chat as its unassigned")
+  # TODO: We probably need to set up some sort of notification if this happens, as it shouldn't be reached under normal circumstances
+  log("Rerouting this chat as its unassigned")
 end
 
 ```

@@ -9,19 +9,25 @@ defmodule ScheduledQueryRatingTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # Add some content.
-    agent_greeting = %ContentPage{
-      slug: "plat_help_agent_greeting",
-      title: "Agent greeting",
+    scheduled_query_rating = %ContentPage{
+      slug: "plat_help_scheduled_query_rating",
+      title: "Scheduled Query Rating",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You are now chatting with {operator_name}"}
+        %WAMsg{
+          message: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" ,
+          buttons: [
+            %Btn.Next{title: "Yes"},
+            %Btn.Next{title: "No"}
+          ]
+        }
       ]
     }
 
     assert :ok =
              FakeCMS.add_pages(wh_pid, [
                %Index{slug: "test", title: "test"},
-               agent_greeting
+               scheduled_query_rating
              ])
 
     # Return the adapter.
@@ -71,25 +77,63 @@ defmodule ScheduledQueryRatingTest do
     quote do: unquote(indexed_list("list_items", labels))
   end
 
-  # test "get greeting" do
-  #   setup_flow()
-  #   |> FlowTester.start()
+  describe "scheduled query rating" do
+    test "scheduled query rating" do
+      setup_flow()
+      |> FlowTester.start()
 
-  #   |> receive_message(%{
-  #     text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-  #     list: {"Menu", [
-  #       {"Your health guide 🔒", "Your health guide 🔒"},
-  #       {"View topics for you 📚", "View topics for you 📚"},
-  #       {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-  #       {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-  #       {"Manage updates 🔔", "Manage updates 🔔"},
-  #       {"Manage data 🖼️", "Manage data 🖼️"},
-  #       {"Help centre 📞", "Help centre 📞"},
-  #       {"Take a tour 🚌", "Take a tour 🚌"},
-  #       {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-  #       {"Talk to a counsellor", "Talk to a counsellor"}
-  #   ]}
-  #   })
+      |> receive_message(%{
+        text: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <> _,
+        buttons: button_labels(["Yes", "No"])
+      })
 
-  # end
+    end
+
+    test "initial message" do
+      setup_flow()
+      |> FlowTester.start()
+
+      |> receive_message(%{
+        text: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <> _,
+        buttons: button_labels(["Yes", "No"])
+      })
+
+    end
+
+    test "clicked yes" do
+      setup_flow()
+      |> FlowTester.start()
+
+      |> receive_message(%{
+        text: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <> _,
+        buttons: button_labels(["Yes", "No"])
+      })
+      |> FlowTester.send(button_label: "Yes")
+       # TODO: Ask Jeremy's help here
+      # |> block_matches(%{
+      #       type: "Core.RunFlow",
+      #       config: %{flow_id: "2d3f1f0e-6973-41e4-8a18-e565beeb3988"}
+      #     })
+      #     |> flow_finished()
+
+    end
+
+    test "click no" do
+      setup_flow()
+      |> FlowTester.start()
+
+      |> receive_message(%{
+        text: "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <> _,
+        buttons: button_labels(["Yes", "No"])
+      })
+      |> FlowTester.send(button_label: "No")
+       # TODO: Ask Jeremy's help here
+      # |> block_matches(%{
+      #       type: "Core.RunFlow",
+      #       config: %{flow_id: "2d3f1f0e-6973-41e4-8a18-e565beeb3988"}
+      #     })
+      #     |> flow_finished()
+
+    end
+  end
 end

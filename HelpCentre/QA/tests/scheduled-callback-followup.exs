@@ -9,19 +9,22 @@ defmodule ScheduledCallbackfollowupTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # Add some content.
-    agent_greeting = %ContentPage{
-      slug: "plat_help_agent_greeting",
-      title: "Agent greeting",
+    call_back_confirmation_scheduled = %ContentPage{
+      slug: "plat_help_call_back_confirmation_scheduled",
+      title: "Callback Confirmation Scheduled",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "👨You are now chatting with {operator_name}"}
+        %WAMsg{
+          message:
+            "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?"
+        }
       ]
     }
 
     assert :ok =
              FakeCMS.add_pages(wh_pid, [
                %Index{slug: "test", title: "test"},
-               agent_greeting
+               call_back_confirmation_scheduled
              ])
 
     # Return the adapter.
@@ -71,25 +74,25 @@ defmodule ScheduledCallbackfollowupTest do
     quote do: unquote(indexed_list("list_items", labels))
   end
 
-  # test "get greeting" do
-  #   setup_flow()
-  #   |> FlowTester.start()
-
-  #   |> receive_message(%{
-  #     text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-  #     list: {"Menu", [
-  #       {"Your health guide 🔒", "Your health guide 🔒"},
-  #       {"View topics for you 📚", "View topics for you 📚"},
-  #       {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-  #       {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-  #       {"Manage updates 🔔", "Manage updates 🔔"},
-  #       {"Manage data 🖼️", "Manage data 🖼️"},
-  #       {"Help centre 📞", "Help centre 📞"},
-  #       {"Take a tour 🚌", "Take a tour 🚌"},
-  #       {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-  #       {"Talk to a counsellor", "Talk to a counsellor"}
-  #   ]}
-  #   })
-
-  # end
+  test "callback confirmation" do
+    setup_flow()
+    |> FlowTester.start()
+    |> receive_message(%{
+      text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
+      list:
+        {"Menu",
+         [
+           {"Your health guide 🔒", "Your health guide 🔒"},
+           {"View topics for you 📚", "View topics for you 📚"},
+           {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
+           {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
+           {"Manage updates 🔔", "Manage updates 🔔"},
+           {"Manage data 🖼️", "Manage data 🖼️"},
+           {"Help centre 📞", "Help centre 📞"},
+           {"Take a tour 🚌", "Take a tour 🚌"},
+           {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
+           {"Talk to a counsellor", "Talk to a counsellor"}
+         ]}
+    })
+  end
 end
