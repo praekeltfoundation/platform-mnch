@@ -209,28 +209,33 @@ defmodule AgentWrapUpTest do
       })
     end
 
-      test "call_back_number_confirmation" do
-        setup_flow()
-        |> FlowTester.start()
-        |> receive_message(%{
+    test "call_back_number_confirmation" do
+      setup_flow()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "Was your query successfully resolved?"
+      })
+      |> FlowTester.send(button_label: "No")
+      |> receive_message(%{
+        text:
+          "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾"
+      })
+      |> FlowTester.send(button_label: "Call me back")
+      |> receive_message(%{
+        text:
+          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\n\nWhat would you like to do?"
+      })
+      |> FlowTester.send(button_label: "Call me back")
+      |> receive_messages([
+        %{
           text:
-            "Was your query successfully resolved?"
-            })
-            |> FlowTester.send(button_label: "No")
-            |> receive_message(%{
-              text: "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾"})
-            |> FlowTester.send(button_label: "Call me back")
-            |> receive_message(%{
-              text: "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\n\nWhat would you like to do?"
-              })
-            |> FlowTester.send(button_label: "Call me back")
-            |> receive_messages([%{
-              text: "A trained counsellor/nurse will call you back.\n\nThey’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist."
-              },
-              %{
-                text: "Should a counsellor call you on the WhatsApp number you are currently using to chat?"
-              }])
-
-      end
+            "A trained counsellor/nurse will call you back.\n\nThey’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist."
+        },
+        %{
+          text:
+            "Should a counsellor call you on the WhatsApp number you are currently using to chat?"
+        }
+      ])
+    end
   end
 end

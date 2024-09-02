@@ -136,7 +136,10 @@ defmodule IntroToHelpCentreTest do
       title: "FAQs topics list",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "🤖 Here are some topics you might find helpful.\n\n{faq_topic_list}\n6. None of these are helpful – speak to [health agent]\n\n👇🏽 Please reply with the number of your selection."}
+        %WAMsg{
+          message:
+            "🤖 Here are some topics you might find helpful.\n\n{faq_topic_list}\n6. None of these are helpful – speak to [health agent]\n\n👇🏽 Please reply with the number of your selection."
+        }
       ]
     }
 
@@ -181,7 +184,16 @@ defmodule IntroToHelpCentreTest do
       title: "Help desk entry offline",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "help_desk_entry_offline"}
+        %WAMsg{
+          message: "[Health agents] are available between [9am - 4pm on weekdays].
+
+👇🏽 You are welcome to browse the service by choosing an option below.",
+          buttons: [
+            %Btn.Next{title: "Help Centre menu"},
+            %Btn.Next{title: "Topics for you"},
+            %Btn.Next{title: "Main menu"}
+          ]
+        }
       ]
     }
 
@@ -215,7 +227,6 @@ defmodule IntroToHelpCentreTest do
 
   defp real_or_fake_cms(step, base_url, auth_token, :fake),
     do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
-
 
   defp aaq_inbound_check(env, _ctx) do
     body = %{
@@ -254,7 +265,6 @@ defmodule IntroToHelpCentreTest do
       "next_page_url" => "/inbound/123/2?inbound_secret_key=dummy_key"
     }
 
-    # IO.puts(inspect(body))
     %Tesla.Env{env | status: 200, body: body}
   end
 
@@ -291,6 +301,8 @@ defmodule IntroToHelpCentreTest do
       "working_hours_end_day" => "6"
     })
   end
+
+
 
   defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
@@ -389,7 +401,8 @@ defmodule IntroToHelpCentreTest do
       })
     end
 
-    test "talk to health agent", %{flow: flow} do
+
+    test "talk to health agent while helpdesk during operating hours", %{flow: flow} do
       FlowTester.start(flow)
       |> FlowTester.send(button_label: "Help centre 📞")
       |> FlowTester.send(button_label: "Emergency help")
@@ -398,6 +411,25 @@ defmodule IntroToHelpCentreTest do
       |> FlowTester.handle_child_flow("8046066f-3cb1-43d6-ace0-850769bd13a3")
       |> flow_finished()
     end
+
+    # TODO: Ask Rudi to help with setting up flag for open/closed helpdesk
+#     test "talk to health agent while helpdesk outside of operating hours", %{flow: flow} do
+#       FlowTester.start(flow)
+#       |> FlowTester.send(button_label: "Help centre 📞")
+#       |> FlowTester.send(button_label: "Emergency help")
+#       |> FlowStep.clear_messages()
+#       |> FlowTester.send(button_label: "Talk to health agent")
+#       |> receive_message(%{
+#         text:
+#           "[Health agents] are available between [9am - 4pm on weekdays].
+
+# 👇🏽 You are welcome to browse the service by choosing an option below." <>
+#             _,
+#         buttons: button_labels(["Help Centre menu", "Topics for you", "Main menu"])
+#       })
+
+#       # |> flow_finished()
+#     end
   end
 
   describe "Search MyHealth:" do
@@ -420,15 +452,13 @@ defmodule IntroToHelpCentreTest do
       })
     end
 
-
     test "test inbound check not urgent", %{flow: flow} do
       setup_flow_search_myhealth(flow)
       |> FlowTester.send("My tummy hurts")
       |> receive_message(%{
         text:
-        "🤖 Here are some topics you might find helpful.\n\n1. Baby's first teeth\n2. Vaginal discharge in pregnancy\n3. Baby's growth - Developmental milestones\n4. Toothache in pregnancy\n5. Latching baby to the breast\n6. None of these are helpful – speak to [health agent]\n\n👇🏽 Please reply with the number of your selection."
+          "🤖 Here are some topics you might find helpful.\n\n1. Baby's first teeth\n2. Vaginal discharge in pregnancy\n3. Baby's growth - Developmental milestones\n4. Toothache in pregnancy\n5. Latching baby to the breast\n6. None of these are helpful – speak to [health agent]\n\n👇🏽 Please reply with the number of your selection."
       })
     end
-
   end
 end

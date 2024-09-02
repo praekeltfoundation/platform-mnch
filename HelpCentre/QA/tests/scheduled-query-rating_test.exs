@@ -126,7 +126,7 @@ defmodule ScheduledQueryRatingTest do
       })
       |> FlowTester.send(button_label: "No")
 
-      # TODO: Ask Jeremy's help here
+      # TODO: Leaving this code commented out for now for debugging purposes
       |> FlowTester.handle_child_flow("2d3f1f0e-6973-41e4-8a18-e565beeb3988", fn step ->
         # IO.puts(inspect(FlowTester.FlowStep.get_vars(step), pretty: true))
         # Set contact properties here

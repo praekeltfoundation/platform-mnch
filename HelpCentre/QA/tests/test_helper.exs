@@ -1,6 +1,7 @@
 defmodule HelpCentre.QA.Helpers do
   alias FlowTester.WebhookHandler.Generic
   alias FlowTester.WebhookHandler, as: WH
+
   defp turn_contacts_messages(env, ctx) do
     assigned_to =
       Map.get(ctx, :chat_assigned_to, %{
@@ -9,11 +10,10 @@ defmodule HelpCentre.QA.Helpers do
         "type" => "OPERATOR"
       })
 
-    # IO.puts(inspect(assigned_to))
     body = %{
       "messages" => [
         %{
-          "id" => "someid",
+          "id" => "someid"
         }
       ],
       "chat" => %{
@@ -27,7 +27,6 @@ defmodule HelpCentre.QA.Helpers do
       }
     }
 
-    # IO.puts(inspect(body))
     %Tesla.Env{env | status: 200, body: body}
   end
 
