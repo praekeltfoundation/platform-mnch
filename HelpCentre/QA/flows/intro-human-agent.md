@@ -79,6 +79,8 @@ Please expand this note to view the full notes on this flow, or you can scroll t
 
 ## Global variables
 
+The following variable(s) are set in the `settings` global dictionary
+
 * `contentrepo_qa_token` used to authenticate the API calls pulling content from CMS
 
 ## Content dependencies

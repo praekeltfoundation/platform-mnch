@@ -19,6 +19,10 @@ It only runs if the helpdesk agent does not run the 'Agent Wrap up' flow manuall
 
 ## Global variables
 
+The following variable(s) are set in the `settings` global dictionary
+
+* `contentrepo_qa_token` used to auth api calls to the cms
+
 ## Content dependencies
 
 ```stack

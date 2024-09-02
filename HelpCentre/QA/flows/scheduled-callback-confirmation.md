@@ -16,6 +16,8 @@ This flow follows up with the user, whether they received the callback they requ
 
 ## Global variables
 
+The following variable(s) are set in the `settings` global dictionary
+
 * `contentrepo_qa_token` auth for API calls to CMS
 
 ## Content dependencies

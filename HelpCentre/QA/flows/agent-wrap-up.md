@@ -10,7 +10,8 @@ If run it cancels the scheduled flow 'Scheduled Query Rating', as we'll ask thos
 
 ## Flow results
 
-* `emergency_help`, Get set to `yes` once the user enters the Emergency Help menu
+* `callback_requested`, Get set to `yes` once the user requests a callback
+* `operator_resolved_query`, Gets set to either `yes` or `no` depending on whether the operator was able to resolve the query or not
 
 ## Connections to other stacks
 
@@ -18,6 +19,8 @@ If run it cancels the scheduled flow 'Scheduled Query Rating', as we'll ask thos
 * `HC: Scheduled - Callback follow up`
 
 ## Global variables
+
+The following variable(s) are set in the `settings` global dictionary
 
 * `contentrepo_qa_token` used to auth api calls
 
@@ -145,6 +148,20 @@ card CheckResolution, then: CheckResolutionError do
   end
 end
 
+card CheckResolutionError, then: CheckResolutionError do
+  buttons(
+    AgentHelpfulResponse: "@button_labels[0]",
+    UnresolvedWhatNext: "@button_labels[1]"
+  ) do
+    text("@button_error_text")
+  end
+end
+
+```
+
+## Agent Helpful Response
+
+```stack
 card AgentHelpfulResponse do
   write_result("operator_resolved_query", "yes")
 
@@ -172,18 +189,9 @@ card AgentHelpfulResponse do
   text("@agent_helful_msg")
 end
 
-card CheckResolutionError, then: CheckResolutionError do
-  buttons(
-    AgentHelpfulResponse: "@button_labels[0]",
-    UnresolvedWhatNext: "@button_labels[1]"
-  ) do
-    text("@button_error_text")
-  end
-end
-
 ```
 
-# What next
+# Unresolved what next
 
 ```stack
 card UnresolvedWhatNext, then: WhatNextError do
@@ -362,10 +370,6 @@ end
 
 ```stack
 card UseAnotherNumber, then: ValidateAlternateNumber do
-  # HC: Scheduled - Callback follow up
-  cancel_scheduled_stacks("36ec8712-99c2-453c-b6cb-fbe9f7cf4bae")
-  schedule_stack("36ec8712-99c2-453c-b6cb-fbe9f7cf4bae", in: 900)
-
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -397,7 +401,7 @@ card UseAnotherNumber, then: ValidateAlternateNumber do
   schedule_stack("36ec8712-99c2-453c-b6cb-fbe9f7cf4bae", in: 900)
 
   log(
-    "Scheduled stack `HC: Scheduled - Callback follow up - 36ec8712-99c2-453c-b6cb-fbe9f7cf4bae` to run in 2 minutes"
+    "Scheduled stack `HC: Scheduled - Callback follow up - 36ec8712-99c2-453c-b6cb-fbe9f7cf4bae` to run in 15 minutes"
   )
 
   preferred_callback_number =
@@ -409,6 +413,8 @@ card ValidateAlternateNumber, then: ConfirmSaveAlternateNumber do
 end
 
 ```
+
+## Confirm saving of alternate number
 
 ```stack
 card ConfirmSaveAlternateNumber, then: ConfirmSaveAlternateNumberError do
@@ -459,6 +465,8 @@ card ConfirmSaveAlternateNumberError, then: ConfirmSaveAlternateNumberError do
 end
 
 ```
+
+## Bot to agent handover waiting room
 
 ```stack
 card BotToAgentHandoverWait do

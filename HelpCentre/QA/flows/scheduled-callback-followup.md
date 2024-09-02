@@ -20,6 +20,8 @@ It asks the user if they still want a callback, and provides an option to goto t
 
 ## Global variables
 
+The following variable(s) are set in the `settings` global dictionary
+
 * `contentrepo_qa_token` used to auth api calls
 
 ## Content dependencies

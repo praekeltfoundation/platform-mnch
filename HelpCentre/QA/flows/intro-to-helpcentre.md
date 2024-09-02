@@ -30,6 +30,8 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 
 ## Global variables
 
+The following variable(s) are set in the `settings` global dictionary
+
 * `contentrepo_qa_token` used to auth api calls to CMS
 * `working_hours_start_day`the day of the week the helpdesk opens (note days of the week starts at Sunday being 1, and Saturday being 7)
 * `working_hours_end_day` the day of the week the helpdesk closes
@@ -131,14 +133,9 @@ card CheckWorkingHours when current_hour >= opening_hour and current_hour < clos
   log("Helpdesk open at this time")
 end
 
-card CheckWorkingHours when current_hour < opening_hour or current_hour >= closing_hour,
-  then: CheckForNavBypass do
+card CheckWorkingHours, then: CheckForNavBypass do
   helpdesk_open = false
   log("Helpdesk closed at this time")
-end
-
-card CheckWorkingHours do
-  log("Default CheckHours")
 end
 
 ```
@@ -463,8 +460,6 @@ card SearchMyHealth, then: CheckInbound do
   get_latest_msg =
     get(
       "https://whatsapp-praekelt-cloud.turn.io/v1/contacts/@contact.whatsapp_id/messages",
-      timeout: 5_000,
-      cache_ttl: 60_000,
       headers: [
         [
           "Authorization",
@@ -523,8 +518,6 @@ card TechSupport, then: CheckInbound do
   get_latest_msg =
     get(
       "https://whatsapp-praekelt-cloud.turn.io/v1/contacts/@contact.whatsapp_id/messages",
-      timeout: 5_000,
-      cache_ttl: 60_000,
       headers: [
         [
           "Authorization",
@@ -681,8 +674,6 @@ card CheckUrgency, then: RouteUrgency do
   urgency_result =
     post(
       "https://hub.qa.momconnect.co.za/api/v1/check-urgency",
-      timeout: 5_000,
-      cache_ttl: 60_000,
       body: """
         {"question": "@user_question"}
       """,
@@ -710,8 +701,6 @@ card RouteUrgency when urgency_score == 1.0, then: RouteUrgencyError do
   attach_label_result =
     post(
       "https://whatsapp-praekelt-cloud.turn.io/v1/messages/@inbound_message_id/labels",
-      timeout: 5_000,
-      cache_ttl: 60_000,
       body: """
       {
         "labels": ["urgent"]
@@ -1090,8 +1079,6 @@ card HelpdeskOpen do
   attach_label_result =
     post(
       "https://whatsapp-praekelt-cloud.turn.io/v1/messages/@inbound_message_id/labels",
-      timeout: 5_000,
-      cache_ttl: 60_000,
       body: """
       {
         "labels": ["@inbound_query_type"]

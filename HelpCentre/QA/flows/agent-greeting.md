@@ -8,9 +8,11 @@ This is a very basic flow, that sends a greeting message to the user, including 
 
 ## Connections to other stacks
 
-* This stack is manually run by the operator
+* This stack is manually run by the operator right before they take over the chat. At this point the chat should be assigned to them already.
 
 ## Global variables
+
+The following variable(s) are set in the `settings` global dictionary
 
 * `turn_qa_token` used to authenticate calls to the Turn API.  In this case, to query and label a specific message
 * `contentrepo_qa_token` used to auth calls to CMS API
@@ -33,8 +35,6 @@ card GetLatestMessage, then: GetPageContent do
   get_latest_msg =
     get(
       "https://whatsapp-praekelt-cloud.turn.io/v1/contacts/@contact.whatsapp_id/messages",
-      timeout: 5_000,
-      cache_ttl: 60_000,
       headers: [
         [
           "Authorization",
