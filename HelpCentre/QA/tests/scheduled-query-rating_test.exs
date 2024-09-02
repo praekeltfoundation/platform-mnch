@@ -16,7 +16,7 @@ defmodule ScheduledQueryRatingTest do
       wa_messages: [
         %WAMsg{
           message:
-            "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?",
+            "Hi there!\r\n\r\nEarlier you asked to be transferred to one of our human agents.\r\n\r\nWas your query successfully resolved?",
           buttons: [
             %Btn.Next{title: "Yes"},
             %Btn.Next{title: "No"}
@@ -84,7 +84,7 @@ defmodule ScheduledQueryRatingTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <>
+          "Hi there!\r\n\r\nEarlier you asked to be transferred to one of our human agents.\r\n\r\nWas your query successfully resolved?" <>
             _,
         buttons: button_labels(["Yes", "No"])
       })
@@ -95,7 +95,7 @@ defmodule ScheduledQueryRatingTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <>
+          "Hi there!\r\n\r\nEarlier you asked to be transferred to one of our human agents.\r\n\r\nWas your query successfully resolved?" <>
             _,
         buttons: button_labels(["Yes", "No"])
       })
@@ -106,7 +106,7 @@ defmodule ScheduledQueryRatingTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <>
+          "Hi there!\r\n\r\nEarlier you asked to be transferred to one of our human agents.\r\n\r\nWas your query successfully resolved?" <>
             _,
         buttons: button_labels(["Yes", "No"])
       })
@@ -120,7 +120,7 @@ defmodule ScheduledQueryRatingTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there!\n\nEarlier you asked to be transferred to one of our human agents.\n\nWas your query successfully resolved?" <>
+          "Hi there!\r\n\r\nEarlier you asked to be transferred to one of our human agents.\r\n\r\nWas your query successfully resolved?" <>
             _,
         buttons: button_labels(["Yes", "No"])
       })

@@ -43,7 +43,7 @@ defmodule AgentWrapUpTest do
       wa_messages: [
         %WAMsg{
           message:
-            "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾",
+            "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾",
           buttons: [
             %Btn.Next{title: "Call me back"},
             %Btn.Next{title: "Search MyHealth"},
@@ -60,7 +60,7 @@ defmodule AgentWrapUpTest do
       wa_messages: [
         %WAMsg{
           message:
-            "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\n\nWhat would you like to do?",
+            "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. \r\n\r\nWhat would you like to do?",
           buttons: [
             %Btn.Next{title: "Call me back"},
             %Btn.Next{title: "Main menu"}
@@ -76,7 +76,7 @@ defmodule AgentWrapUpTest do
       wa_messages: [
         %WAMsg{
           message:
-            "A trained counsellor/nurse will call you back.\n\nThey’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist."
+            "A trained counsellor/nurse will call you back.\r\n\r\nThey’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist."
         }
       ]
     }
@@ -187,7 +187,7 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
       })
     end
 
@@ -200,12 +200,12 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_message(%{
         text:
-          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\n\nWhat would you like to do?"
+          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. \r\n\r\nWhat would you like to do?"
       })
     end
 
@@ -218,18 +218,18 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that.\n\nI would love to assist you with your problem, let’s try again.\n\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_message(%{
         text:
-          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\n\nWhat would you like to do?"
+          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. \r\n\r\nWhat would you like to do?"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_messages([
         %{
           text:
-            "A trained counsellor/nurse will call you back.\n\nThey’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist."
+            "A trained counsellor/nurse will call you back.\r\n\r\nThey’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist."
         },
         %{
           text:

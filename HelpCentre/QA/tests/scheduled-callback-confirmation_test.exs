@@ -28,7 +28,7 @@ defmodule ScheduledCallbackConfirmationTest do
       wa_messages: [
         %WAMsg{
           message:
-            "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+            "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
           buttons: [
             %Btn.Next{title: "Yes"},
             %Btn.Next{title: "No"}
@@ -60,7 +60,7 @@ defmodule ScheduledCallbackConfirmationTest do
       wa_messages: [
         %WAMsg{
           message:
-            "Thanks for letting me know. This feedback will be used to improve the [My Health] service.\n\nIf you have anything urgent to discuss, go to the nearest health facility and speak to a health worker.\n\nIf you'd like, you can request another call from a [health agent], or have a look at topics that might interest you. \n\n👇🏽 What do you want to do?",
+            "Thanks for letting me know. This feedback will be used to improve the [My Health] service.\r\n\r\nIf you have anything urgent to discuss, go to the nearest health facility and speak to a health worker.\r\n\r\nIf you'd like, you can request another call from a [health agent], or have a look at topics that might interest you. \r\n\r\n👇🏽 What do you want to do?",
           buttons: [
             %Btn.Next{title: "Call me back"},
             %Btn.Next{title: "See topics"},
@@ -145,7 +145,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
     end
@@ -155,7 +155,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -169,7 +169,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -190,7 +190,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -210,7 +210,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call-back a few minutes ago.\n\nDid you receive the call?",
+          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "No")

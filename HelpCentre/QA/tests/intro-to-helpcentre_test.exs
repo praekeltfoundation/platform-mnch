@@ -90,8 +90,7 @@ defmodule IntroToHelpCentreTest do
       title: "Search MyHealth prompt",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "Let's find you the information you need.
-"}
+        %WAMsg{message: "Let's find you the information you need.\r\n\r\nJust type in what you are looking for and press send."}
       ]
     }
 
@@ -127,7 +126,7 @@ defmodule IntroToHelpCentreTest do
       title: "Medical emergency secondary",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "medical_emergency_secondary"}
+        %WAMsg{message: "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?"}
       ]
     }
 
@@ -138,7 +137,7 @@ defmodule IntroToHelpCentreTest do
       wa_messages: [
         %WAMsg{
           message:
-            "🤖 Here are some topics you might find helpful.\n\n{faq_topic_list}\n6. None of these are helpful – speak to [health agent]\n\n👇🏽 Please reply with the number of your selection."
+            "🤖 Here are some topics you might find helpful.\r\n\r\n{faq_topic_list}\r\n6. None of these are helpful – speak to [health agent]\r\n\r\n👇🏽 Please reply with the number of your selection."
         }
       ]
     }
@@ -185,9 +184,7 @@ defmodule IntroToHelpCentreTest do
       parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "[Health agents] are available between [9am - 4pm on weekdays].
-
-👇🏽 You are welcome to browse the service by choosing an option below.",
+          message: "[Health agents] are available between [9am - 4pm on weekdays].\r\n\r\n👇🏽 You are welcome to browse the service by choosing an option below.",
           buttons: [
             %Btn.Next{title: "Help Centre menu"},
             %Btn.Next{title: "Topics for you"},
@@ -292,13 +289,23 @@ defmodule IntroToHelpCentreTest do
     WH.set_adapter(step, "https://hub.qa.momconnect.co.za/", Generic.wh_adapter(gen_pid))
   end
 
-  defp set_config(step) do
+  defp set_config_helpdesk_open(step) do
     step
     |> FlowTester.set_global_dict("settings", %{
       "working_hours_start_hour" => "6",
       "working_hours_end_hour" => "19",
       "working_hours_start_day" => "2",
       "working_hours_end_day" => "6"
+    })
+  end
+
+  defp set_config_helpdesk_closed(step) do
+    step
+    |> FlowTester.set_global_dict("settings", %{
+      "working_hours_start_hour" => "0",
+      "working_hours_end_hour" => "0",
+      "working_hours_start_day" => "0",
+      "working_hours_end_day" => "0"
     })
   end
 
@@ -316,7 +323,7 @@ defmodule IntroToHelpCentreTest do
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> Helpers.setup_fake_turn(ctx)
       |> setup_fake_aaq(ctx)
-      |> set_config()
+      |> set_config_helpdesk_open()
 
     %{flow: flow}
   end
@@ -413,23 +420,22 @@ defmodule IntroToHelpCentreTest do
     end
 
     # TODO: Ask Rudi to help with setting up flag for open/closed helpdesk
-#     test "talk to health agent while helpdesk outside of operating hours", %{flow: flow} do
-#       FlowTester.start(flow)
-#       |> FlowTester.send(button_label: "Help centre 📞")
-#       |> FlowTester.send(button_label: "Emergency help")
-#       |> FlowStep.clear_messages()
-#       |> FlowTester.send(button_label: "Talk to health agent")
-#       |> receive_message(%{
-#         text:
-#           "[Health agents] are available between [9am - 4pm on weekdays].
+    test "talk to health agent while helpdesk outside of operating hours", %{flow: flow} do
+      flow = set_config_helpdesk_closed(flow)
+      FlowTester.start(flow)
+      |> FlowTester.send(button_label: "Help centre 📞")
+      |> FlowTester.send(button_label: "Emergency help")
+      |> FlowStep.clear_messages()
+      |> FlowTester.send(button_label: "Talk to health agent")
+      |> receive_message(%{
+        text:
+          "[Health agents] are available between [9am - 4pm on weekdays].\r\n\r\n👇🏽 You are welcome to browse the service by choosing an option below." <>
+            _,
+        buttons: button_labels(["Help Centre menu", "Topics for you", "Main menu"])
+      })
 
-# 👇🏽 You are welcome to browse the service by choosing an option below." <>
-#             _,
-#         buttons: button_labels(["Help Centre menu", "Topics for you", "Main menu"])
-#       })
-
-#       # |> flow_finished()
-#     end
+      # |> flow_finished()
+    end
   end
 
   describe "Search MyHealth:" do
@@ -448,7 +454,7 @@ defmodule IntroToHelpCentreTest do
       setup_flow_search_myhealth(flow)
       |> FlowTester.send("xyz")
       |> receive_message(%{
-        text: "medical_emergency_secondary" <> _
+        text: "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?" <> _
       })
     end
 
@@ -457,7 +463,7 @@ defmodule IntroToHelpCentreTest do
       |> FlowTester.send("My tummy hurts")
       |> receive_message(%{
         text:
-          "🤖 Here are some topics you might find helpful.\n\n1. Baby's first teeth\n2. Vaginal discharge in pregnancy\n3. Baby's growth - Developmental milestones\n4. Toothache in pregnancy\n5. Latching baby to the breast\n6. None of these are helpful – speak to [health agent]\n\n👇🏽 Please reply with the number of your selection."
+          "🤖 Here are some topics you might find helpful.\r\n\r\n1. Baby's first teeth\n2. Vaginal discharge in pregnancy\n3. Baby's growth - Developmental milestones\n4. Toothache in pregnancy\n5. Latching baby to the breast\r\n6. None of these are helpful – speak to [health agent]\r\n\r\n👇🏽 Please reply with the number of your selection."
       })
     end
   end

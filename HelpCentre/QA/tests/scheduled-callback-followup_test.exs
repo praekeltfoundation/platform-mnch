@@ -16,7 +16,7 @@ defmodule ScheduledCallbackfollowupTest do
       wa_messages: [
         %WAMsg{
           message:
-            "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+            "Hi there\r\n\r\nYou requested a call back. Do you still want to speak to a counsellor?",
           buttons: [
             %Btn.Next{title: "Yes please"},
             %Btn.Next{title: "No thanks"},
@@ -85,7 +85,7 @@ defmodule ScheduledCallbackfollowupTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+          "Hi there\r\n\r\nYou requested a call back. Do you still want to speak to a counsellor?",
         buttons: button_labels(["Yes please", "No thanks", "Main menu"])
       })
     end
@@ -95,7 +95,7 @@ defmodule ScheduledCallbackfollowupTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+          "Hi there\r\n\r\nYou requested a call back. Do you still want to speak to a counsellor?",
         buttons: button_labels(["Yes please", "No thanks", "Main menu"])
       })
       |> FlowTester.send(button_label: "Yes please")
@@ -108,7 +108,7 @@ defmodule ScheduledCallbackfollowupTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+          "Hi there\r\n\r\nYou requested a call back. Do you still want to speak to a counsellor?",
         buttons: button_labels(["Yes please", "No thanks", "Main menu"])
       })
       |> FlowTester.send(button_label: "No thanks")
@@ -121,7 +121,7 @@ defmodule ScheduledCallbackfollowupTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there\n\nYou requested a call back. Do you still want to speak to a counsellor?",
+          "Hi there\r\n\r\nYou requested a call back. Do you still want to speak to a counsellor?",
         buttons: button_labels(["Yes please", "No thanks", "Main menu"])
       })
       |> FlowTester.send(button_label: "Main menu")
