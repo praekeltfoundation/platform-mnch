@@ -29,10 +29,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: praekeltfoundation/flow_tester
-          ref: v0.1.1
+          ref: v0.2.1
           path: flow_tester
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Test flows
         run: |
-          ./flow_tester/run_flow_tests.exs HelpCentre/QA/tests/ 
+          ./flow_tester/run_flow_tests.exs HelpCentre/QA/tests/ Onboarding/QA/tests/ 
+          
