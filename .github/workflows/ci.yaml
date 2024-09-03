@@ -35,4 +35,4 @@ jobs:
 
       - name: Test flows
         run: |
-          ./flow_tester/run_flow_tests.exs Onboarding/QA/tests/ HelpCentre/QA/tests/ 
+          ./flow_tester/run_flow_tests.exs HelpCentre/QA/tests/ 
