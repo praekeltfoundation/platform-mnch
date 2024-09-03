@@ -3,6 +3,10 @@ defmodule ProfileHCWTest do
 
   alias FlowTester.WebhookHandler, as: WH
 
+  alias Onboarding.QA.Helpers
+
+  import Onboarding.QA.Helpers.Macros
+
   defp flow_path(flow_name), do: Path.join([__DIR__, "..","flows", flow_name <> ".json"])
 
   def setup_fake_cms(auth_token) do
@@ -188,44 +192,10 @@ defmodule ProfileHCWTest do
     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
   end
 
-  defp init_basic_info(context) do
-    context |> FlowTester.set_contact_properties(%{"year_of_birth" => "", "province" => "", "area_type" => "", "gender" => ""})
-  end
-
-  defp init_personal_info(context) do
-    context |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""})
-  end
-
-  defp init_daily_life(context) do
-    context |> FlowTester.set_contact_properties(%{"dma_01" => "", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
-  end
-
-  defp init_hcw_info(context) do
-    context |> FlowTester.set_contact_properties(%{"occupational_role" => "", "facility_type" => "", "professional_support" => ""})
-  end
-
-  # This lets us have cleaner button/list assertions.
-  def indexed_list(var, labels) do
-    Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
-  end
-
-  # The common case for buttons.
-  defmacro button_labels(labels) do
-    quote do: unquote(indexed_list("button_labels", labels))
-  end
-
-  # The common case for lists.
-  defmacro list_items(labels) do
-    quote do: unquote(indexed_list("list_items", labels))
-  end
-
   describe "profile hcw" do
     test "100% complete" do
       setup_flow()
-      |> init_basic_info()
-      |> init_personal_info()
-      |> init_daily_life()
-      |> init_hcw_info()
+      |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> contact_matches(%{"profile_completion" => "0%", "checkpoint" => "hcw_profile_0"})
       |> receive_message(%{
@@ -263,8 +233,8 @@ defmodule ProfileHCWTest do
         text: "Thanks for sharing! \r\n\r\nNow is your chance to tell me more about yourself" <> _,
         buttons: button_labels(["Sure, let's go ➡️", "Why?"])
       })
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
       |> FlowTester.send(button_label: "Sure, let's go ➡️")
+      |> Helpers.handle_basic_profile_flow()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "🏥 Employment information 3/3")
@@ -277,8 +247,8 @@ defmodule ProfileHCWTest do
         text: "Your profile is already 50% complete!" <> _,
         buttons: button_labels(["Let's go"])
       })
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "single", "education" => "high school", "socio_economic" => "i get by", "other_children" => "0"}) # Personal Information
       |> FlowTester.send(button_label: "Let's go")
+      |> Helpers.handle_personal_info_flow(relationship_status: "single", education: "degree", socio_economic: "i get by", other_children: "0")
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "🏥 Employment information 3/3")
@@ -291,8 +261,8 @@ defmodule ProfileHCWTest do
         text: "🟩🟩🟩🟩🟩🟩⬜⬜ " <> _,
         buttons: button_labels(["➡️ Complete it!", "Remind me later"])
       })
-      |> FlowTester.set_contact_properties(%{"dma_01" => "answer", "dma_02" => ""}) # Daily Life
       |> FlowTester.send(button_label: "➡️ Complete it!")
+      |> Helpers.handle_daily_life_flow()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "🏥 Employment information 3/3")
