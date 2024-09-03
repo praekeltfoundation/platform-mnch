@@ -3,6 +3,10 @@ defmodule ProfilePregnancyHealthTest do
 
   alias FlowTester.WebhookHandler, as: WH
 
+  alias Onboarding.QA.Helpers
+
+  import Onboarding.QA.Helpers.Macros
+
   defp flow_path(flow_name), do: Path.join([__DIR__, "..","flows", flow_name <> ".json"])
 
   def setup_fake_cms(auth_token) do
@@ -279,35 +283,12 @@ defmodule ProfilePregnancyHealthTest do
     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
   end
 
-  defp init_basic_info(context) do
-    context |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"})
-  end
-
-  defp init_personal_info(context) do
-    context |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""})
-  end
-
-  defp init_daily_life(context) do
-    context |> FlowTester.set_contact_properties(%{"dma_01" => "", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
-  end
-
   defp init_pregnancy_info(context) do
     context |> FlowTester.set_contact_properties(%{"pregnancy_status" => "im_pregnant", "edd" => "24/04/2026", "pregnancy_sentiment" => "excited"})
   end
 
-  # This lets us have cleaner button/list assertions.
-  def indexed_list(var, labels) do
-    Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
-  end
-
-  # The common case for buttons.
-  defmacro button_labels(labels) do
-    quote do: unquote(indexed_list("button_labels", labels))
-  end
-
-  # The common case for lists.
-  defmacro list_items(labels) do
-    quote do: unquote(indexed_list("list_items", labels))
+  defp init_contact_fields(context) do
+    context |> FlowTester.set_contact_properties(%{"gender" => "", "name" => "Lily", "opted_in" => "true"})
   end
 
   describe "profile pregnancy health" do
@@ -352,12 +333,9 @@ defmodule ProfilePregnancyHealthTest do
       full_edd = Calendar.strftime(this_month_plus_one, "%Y") <> "-" <> "#{edd_month}" <> "-25"
 
       setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
       |> init_pregnancy_info()
-      |> init_basic_info()
-      |> init_personal_info()
-      |> init_daily_life()
-      |> FlowTester.set_contact_properties(%{"gender" => "", "name" => "Lily"})
-      |> FlowTester.set_contact_properties(%{"opted_in" => "true"})
       |> FlowTester.start()
       |> receive_message(%{
         text: "I've got a *lot* of information on pregnancy" <> _,
@@ -422,6 +400,7 @@ defmodule ProfilePregnancyHealthTest do
         buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"])
       })
       |> FlowTester.send(button_label: "➡️ Complete profile")
+      |> Helpers.handle_basic_profile_flow(year_of_birth: "1988", province: "Western Cape", area_type: "", gender: "male")
       |> contact_matches(%{"profile_completion" => "50%"})
       |> fn step ->
         [msg] = step.messages
@@ -436,6 +415,8 @@ defmodule ProfilePregnancyHealthTest do
         buttons: button_labels(["Continue"])
       })
       |> FlowTester.send(button_label: "Continue")
+      |> Helpers.handle_personal_info_flow(relationship_status: "", education: "", socio_economic: "", other_children: "")
+      |> Helpers.handle_daily_life_flow()
       |> contact_matches(%{"profile_completion" => "100%"})
       |> fn step ->
         [msg] = step.messages

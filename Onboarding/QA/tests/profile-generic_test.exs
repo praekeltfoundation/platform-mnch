@@ -3,6 +3,10 @@ defmodule ProfileGenericTest do
 
   alias FlowTester.WebhookHandler, as: WH
 
+  alias Onboarding.QA.Helpers
+
+  import Onboarding.QA.Helpers.Macros
+
   defp flow_path(flow_name), do: Path.join([__DIR__, "..","flows", flow_name <> ".json"])
 
   def setup_fake_cms(auth_token) do
@@ -112,45 +116,16 @@ defmodule ProfileGenericTest do
     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
   end
 
-  defp init_basic_info(context) do
-    context |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"})
-  end
-
-  defp init_personal_info(context) do
-    context |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""})
-  end
-
-  defp init_daily_life(context) do
-    context |> FlowTester.set_contact_properties(%{"dma_01" => "answer", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
-  end
-
-  # This lets us have cleaner button/list assertions.
-  def indexed_list(var, labels) do
-    Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
-  end
-
-  # The common case for buttons.
-  defmacro button_labels(labels) do
-    quote do: unquote(indexed_list("button_labels", labels))
-  end
-
-  # The common case for lists.
-  defmacro list_items(labels) do
-    quote do: unquote(indexed_list("list_items", labels))
-  end
-
   describe "profile generic" do
     test "30% complete" do
       setup_flow()
-      |> init_basic_info()
-      |> init_personal_info()
-      |> init_daily_life()
       |> FlowTester.start()
+      |> Helpers.handle_basic_profile_flow()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "Basic information 3/4")
         assert String.contains?(msg.text, "Personal information 0/4")
-        assert String.contains?(msg.text, "Daily life 1/5")
+        assert String.contains?(msg.text, "Daily life 0/5")
         step
       end.()
       |> receive_message(%{
@@ -161,15 +136,13 @@ defmodule ProfileGenericTest do
 
     test "30% complete -> why -> let's go" do
       setup_flow()
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{"dma_01" => "answer", "dma_02" => "answer2",}) # Daily Life
       |> FlowTester.start()
+      |> Helpers.handle_basic_profile_flow()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "Basic information 3/4")
         assert String.contains?(msg.text, "Personal information 0/4")
-        assert String.contains?(msg.text, "Daily life 2/5")
+        assert String.contains?(msg.text, "Daily life 0/5")
         step
       end.()
       |> receive_message(%{
@@ -182,6 +155,9 @@ defmodule ProfileGenericTest do
         buttons: button_labels(["Yes, let's go", "Not right now"])
       })
       |> FlowTester.send(button_label: "Yes, let's go")
+      |> Helpers.handle_personal_info_flow()
+      |> Helpers.handle_daily_life_flow()
+      |> Helpers.handle_opt_in_reminder_flow()
       |> receive_message(%{
         text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
         buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
@@ -190,10 +166,8 @@ defmodule ProfileGenericTest do
 
     test "30% complete -> why -> not right now" do
       setup_flow()
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{}) # Daily Life
       |> FlowTester.start()
+      |> Helpers.handle_basic_profile_flow()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "Basic information 3/4")
@@ -219,16 +193,17 @@ defmodule ProfileGenericTest do
 
     test "100% complete - all complete" do
       setup_flow()
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "something", "gender" => "male"}) # Basic Information
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "married", "education" => "degree", "socio_economic" => "something", "other_children" => "0"}) # Personal Information
       |> FlowTester.set_contact_properties(%{"name" => "Severus"})
       |> FlowTester.set_contact_properties(%{"opted_in" => "true"})
       |> FlowTester.start()
+      |> Helpers.handle_basic_profile_flow(year_of_birth: "1988", province: "Western Cape", area_type: "rural", gender: "male")
       |> receive_message(%{
         text: "Your profile is already 30% complete" <> _,
         buttons: button_labels(["Continue", "Why?"])
       })
       |> FlowTester.send(button_label: "Continue")
+      |> Helpers.handle_personal_info_flow(relationship_status: "single", education: "degree", socio_economic: "i get by", other_children: "0")
+      |> Helpers.handle_daily_life_flow()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "*Name:* Severus")
@@ -245,17 +220,18 @@ defmodule ProfileGenericTest do
 
     test "100% complete - incomplete basic info" do
       setup_flow()
-      |> FlowTester.set_contact_properties(%{"year_of_birth" => "1988", "province" => "Western Cape", "area_type" => "", "gender" => "male"}) # Basic Information
-      |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""}) # Personal Information
-      |> FlowTester.set_contact_properties(%{}) # Daily Life
       |> FlowTester.set_contact_properties(%{"name" => "Severus"})
       |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
       |> FlowTester.start()
+      |> Helpers.handle_basic_profile_flow()
       |> receive_message(%{
         text: "Your profile is already 30% complete" <> _,
         buttons: button_labels(["Continue", "Why?"])
       })
       |> FlowTester.send(button_label: "Continue")
+      |> Helpers.handle_personal_info_flow()
+      |> Helpers.handle_daily_life_flow()
+      |> Helpers.handle_opt_in_reminder_flow()
       |> fn step ->
         [msg] = step.messages
         assert String.contains?(msg.text, "*Name:* Severus")
