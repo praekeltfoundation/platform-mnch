@@ -292,7 +292,7 @@ defmodule IntroToHelpCentreTest do
   defp set_config_helpdesk_open(step) do
     step
     |> FlowTester.set_global_dict("settings", %{
-      "working_hours_start_hour" => "6",
+      "working_hours_start_hour" => "5",
       "working_hours_end_hour" => "19",
       "working_hours_start_day" => "2",
       "working_hours_end_day" => "6"

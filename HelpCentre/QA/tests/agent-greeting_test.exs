@@ -39,7 +39,7 @@ defmodule AgentGreetingTest do
   defp set_config(step) do
     step
     |> FlowTester.set_global_dict("settings", %{
-      "working_hours_start_hour" => "6",
+      "working_hours_start_hour" => "5",
       "working_hours_end_hour" => "19",
       "working_hours_start_day" => "2",
       "working_hours_end_day" => "6"
@@ -90,7 +90,7 @@ defmodule AgentGreetingTest do
   test "get greeting for no agent assigned", %{flow: flow} do
     FlowTester.start(flow)
     |> receive_message(%{
-      text: "👨You are now chatting with {a MomConnect operator}" <> _
+      text: "👨You are now chatting with a MomConnect operator" <> _
     })
   end
 end

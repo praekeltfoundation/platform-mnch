@@ -546,7 +546,8 @@ card CheckInbound when num_inbound_attempts > 1 and helpdesk_open == true, then:
 end
 
 card CheckInbound
-     when user_question == "image" or user_question == "audio" or user_question == "video",
+     when user_question == "image" or user_question == "audio" or user_question == "video" or
+            user_question == "document",
      then: NonTextDetected do
   num_inbound_attempts = num_inbound_attempts + 1
   log("Non text input found. Setting num_inbound_attempts = @num_inbound_attempts")

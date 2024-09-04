@@ -73,7 +73,7 @@ card GetPageContent, then: SendGreeting do
 end
 
 card SendGreeting when is_nil_or_empty(chat.assigned_to) do
-  substituted_msg = substitute(greeting_msg, "{operator_name}", "{a MomConnect operator}")
+  substituted_msg = substitute(greeting_msg, "{operator_name}", "a MomConnect operator")
 
   text("@substituted_msg")
 end
