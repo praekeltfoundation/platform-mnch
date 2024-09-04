@@ -1,0 +1,29 @@
+---
+base_url: "https://whatsapp-praekelt-cloud.turn.io/"
+workspace_uuid: "db6aae74-7510-4987-8510-149f38a6cbee"
+qa_url: https://content-repo-api-qa.prk-k8s.prd-p6t.org
+prod_url: https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org
+stack_uuids:
+  - name: "intro-to-helpcentre" # HelpCentre: Intro to HelpCentre
+    prod_uuid: NOT_UUID
+    qa_uuid: 7b50f9f4-b6cf-424b-8893-8fef6d0f489b
+  - name: "intro-human-agent" # HelpCentre: Intro Human Agent Flow
+    prod_uuid: NOT_UUID
+    qa_uuid: 8046066f-3cb1-43d6-ace0-850769bd13a3
+  - name: "agent-greeting" # HelpCentre: Agent Greeting
+    prod_uuid: NOT_UUID
+    qa_uuid: 1558176d-4e4e-4625-b9b4-93c77c1bac92
+  - name: "agent-wrap-up" # HelpCentre: Agent Wrap-up
+    prod_uuid: NOT_UUID
+    qa_uuid: 2d3f1f0e-6973-41e4-8a18-e565beeb3988
+  - name: "scheduled-callback-followup" # HelpCentre: Scheduled - Callback follow up
+    prod_uuid: NOT_UUID
+    qa_uuid: 36ec8712-99c2-453c-b6cb-fbe9f7cf4bae
+  - name: "scheduled-callback-confirmation" # HelpCentre: Scheduled - Callback confirmation
+    prod_uuid: NOT_UUID
+    qa_uuid: 69557475-02fa-4d44-a091-277f3cb5908b
+  - name: "scheduled-query-rating" # HelpCentre: Scheduled - Query rating
+    prod_uuid: NOT_UUID
+    qa_uuid: dbf8e71b-d2bb-4c08-829c-925d53752bbf
+         
+

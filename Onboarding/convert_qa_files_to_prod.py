@@ -51,11 +51,9 @@ class StackEnvironmentConverter:
             self.prod_str = self.prod_str.replace(
                 str(stack["qa_uuid"]), str(stack["prod_uuid"])
             )
-    
+
     def replace_urls(self, qa_url, prod_url):
-        self.prod_str = self.prod_str.replace(
-            str(qa_url), str(prod_url)
-        )
+        self.prod_str = self.prod_str.replace(str(qa_url), str(prod_url))
 
     def qa_to_prod(self, stack_uuids, qa_url, prod_url):
         self.prod_str = self.prod_str.replace('["qa", "true"]', '["qa", "false"]')
@@ -74,7 +72,9 @@ if __name__ == "__main__":
     qa_url, prod_url = get_urls()
     config = Config(stack_uuids, QA_DIR, PROD_DIR)
     for qa_file in all_filenames:
-        StackEnvironmentConverter(path=qa_file, config=config, qa_url=qa_url, prod_url=prod_url).export_prod()
+        StackEnvironmentConverter(
+            path=qa_file, config=config, qa_url=qa_url, prod_url=prod_url
+        ).export_prod()
     stack_not_in_prod = get_stacks_with_no_prod_uuid(stack_uuids)
 
     if not stack_not_in_prod:
