@@ -25,5 +25,8 @@ stack_uuids:
   - name: "scheduled-query-rating" # HelpCentre: Scheduled - Query rating
     prod_uuid: NOT_UUID
     qa_uuid: dbf8e71b-d2bb-4c08-829c-925d53752bbf
+  - name: "scheduled-topics-no-response-followup" # Scheduled - Topics no response follow-up
+    prod_uuid: NOT_UUID
+    qa_uuid: 988b513e-8063-4f2c-821c-94e75536f09f   
          
 
