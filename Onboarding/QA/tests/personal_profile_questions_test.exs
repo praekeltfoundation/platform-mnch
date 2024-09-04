@@ -5,8 +5,6 @@ defmodule PersonalProfileQuestionsTest do
 
   alias Onboarding.QA.Helpers
 
-  import Onboarding.QA.Helpers.Macros
-
   defp flow_path(flow_name), do: Path.join([__DIR__, "..","flows", flow_name <> ".json"])
 
   def setup_fake_cms(auth_token) do
@@ -121,7 +119,7 @@ defmodule PersonalProfileQuestionsTest do
             %ListItem{value: "2"},
             %ListItem{value: "3"},
             %ListItem{value: "More than 3"},
-            %ListItem{value: "Why do you ask?"}
+            %ListItem{value: "Skip this question"}
           ]
         }
       ]
@@ -354,27 +352,233 @@ defmodule PersonalProfileQuestionsTest do
     end
 
     test "socio economic then children" do
-
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🗝️ *What is your current relationship status?*",
+        buttons: [{"Single", "Single"}, {"In a relationship", "In a relationship"}, {"It's complicated", "It's complicated"}],
+      })
+      |> FlowTester.send(button_label: "Single")
+      |> receive_message(%{
+        text: "🗝️ *What is your highest level of education?*\r\n\r\n• Primary school\r\n• High school\r\n• Diploma\r\n• Degree\r\n• Master's degree\r\n• Doctoral degree",
+        list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
+      })
+      |> contact_matches(%{"relationship_status" => "single"})
+      |> FlowTester.send("Diploma")
+      |> receive_message(%{
+        text: "🗝️ *How would you describe your personal finances when it comes to having enough money?*",
+        buttons: [{"Comfortable", "Comfortable"}, {"I get by", "I get by"}, {"Money is an issue", "Money is an issue"}],
+      })
+      |> contact_matches(%{"education" => "diploma"})
+      |> FlowTester.send(button_label: "Comfortable")
+      |> receive_message(%{
+        text: "🗝️ *How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
+      })
+      |> contact_matches(%{"socio_economic" => "comfortable"})
     end
 
     test "children error" do
-
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🗝️ *What is your current relationship status?*",
+        buttons: [{"Single", "Single"}, {"In a relationship", "In a relationship"}, {"It's complicated", "It's complicated"}],
+      })
+      |> FlowTester.send(button_label: "Single")
+      |> receive_message(%{
+        text: "🗝️ *What is your highest level of education?*\r\n\r\n• Primary school\r\n• High school\r\n• Diploma\r\n• Degree\r\n• Master's degree\r\n• Doctoral degree",
+        list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
+      })
+      |> contact_matches(%{"relationship_status" => "single"})
+      |> FlowTester.send("Diploma")
+      |> receive_message(%{
+        text: "🗝️ *How would you describe your personal finances when it comes to having enough money?*",
+        buttons: [{"Comfortable", "Comfortable"}, {"I get by", "I get by"}, {"Money is an issue", "Money is an issue"}],
+      })
+      |> contact_matches(%{"education" => "diploma"})
+      |> FlowTester.send("Comfortable")
+      |> receive_message(%{
+        text: "🗝️ *How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
+      })
+      |> contact_matches(%{"socio_economic" => "comfortable"})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
+      })
+      |> contact_matches(%{"other_children" => ""})
     end
 
     test "skip children" do
-
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🗝️ *What is your current relationship status?*",
+        buttons: [{"Single", "Single"}, {"In a relationship", "In a relationship"}, {"It's complicated", "It's complicated"}],
+      })
+      |> FlowTester.send(button_label: "Single")
+      |> receive_message(%{
+        text: "🗝️ *What is your highest level of education?*\r\n\r\n• Primary school\r\n• High school\r\n• Diploma\r\n• Degree\r\n• Master's degree\r\n• Doctoral degree",
+        list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
+      })
+      |> contact_matches(%{"relationship_status" => "single"})
+      |> FlowTester.send("Diploma")
+      |> receive_message(%{
+        text: "🗝️ *How would you describe your personal finances when it comes to having enough money?*",
+        buttons: [{"Comfortable", "Comfortable"}, {"I get by", "I get by"}, {"Money is an issue", "Money is an issue"}],
+      })
+      |> contact_matches(%{"education" => "diploma"})
+      |> FlowTester.send("Comfortable")
+      |> receive_message(%{
+        text: "🗝️ *How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
+      })
+      |> contact_matches(%{"socio_economic" => "comfortable"})
+      |> FlowTester.send("skip")
+      |> contact_matches(%{"other_children" => ""})
+      |> flow_finished()
     end
 
     test "children then why" do
-
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🗝️ *What is your current relationship status?*",
+        buttons: [{"Single", "Single"}, {"In a relationship", "In a relationship"}, {"It's complicated", "It's complicated"}],
+      })
+      |> FlowTester.send(button_label: "Single")
+      |> receive_message(%{
+        text: "🗝️ *What is your highest level of education?*\r\n\r\n• Primary school\r\n• High school\r\n• Diploma\r\n• Degree\r\n• Master's degree\r\n• Doctoral degree",
+        list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
+      })
+      |> contact_matches(%{"relationship_status" => "single"})
+      |> FlowTester.send("Diploma")
+      |> receive_message(%{
+        text: "🗝️ *How would you describe your personal finances when it comes to having enough money?*",
+        buttons: [{"Comfortable", "Comfortable"}, {"I get by", "I get by"}, {"Money is an issue", "Money is an issue"}],
+      })
+      |> contact_matches(%{"education" => "diploma"})
+      |> FlowTester.send("Comfortable")
+      |> receive_message(%{
+        text: "🗝️ *How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
+      })
+      |> contact_matches(%{"socio_economic" => "comfortable"})
+      |> FlowTester.send("Why do you ask?")
+      |> receive_message(%{
+        text: "ℹ️ Children change our lives a lot! Our team of health experts works hard to find information and services that fit your needs.\r\n\r\n*How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Skip this question", "Skip this question"}],}
+      })
+      |> contact_matches(%{"other_children" => ""})
     end
 
-    test "children then why then finished" do
+    test "children then why then skip by typing then finished" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🗝️ *What is your current relationship status?*",
+        buttons: [{"Single", "Single"}, {"In a relationship", "In a relationship"}, {"It's complicated", "It's complicated"}],
+      })
+      |> FlowTester.send(button_label: "Single")
+      |> receive_message(%{
+        text: "🗝️ *What is your highest level of education?*\r\n\r\n• Primary school\r\n• High school\r\n• Diploma\r\n• Degree\r\n• Master's degree\r\n• Doctoral degree",
+        list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
+      })
+      |> contact_matches(%{"relationship_status" => "single"})
+      |> FlowTester.send("Diploma")
+      |> receive_message(%{
+        text: "🗝️ *How would you describe your personal finances when it comes to having enough money?*",
+        buttons: [{"Comfortable", "Comfortable"}, {"I get by", "I get by"}, {"Money is an issue", "Money is an issue"}],
+      })
+      |> contact_matches(%{"education" => "diploma"})
+      |> FlowTester.send("Comfortable")
+      |> receive_message(%{
+        text: "🗝️ *How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
+      })
+      |> contact_matches(%{"socio_economic" => "comfortable"})
+      |> FlowTester.send("Why do you ask?")
+      |> receive_message(%{
+        text: "ℹ️ Children change our lives a lot! Our team of health experts works hard to find information and services that fit your needs.\r\n\r\n*How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Skip this question", "Skip this question"}],}
+      })
+      |> FlowTester.send("skip")
+      |> contact_matches(%{"other_children" => ""})
+      |> flow_finished()
+    end
 
+    test "children then why then skip by selection then finished" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🗝️ *What is your current relationship status?*",
+        buttons: [{"Single", "Single"}, {"In a relationship", "In a relationship"}, {"It's complicated", "It's complicated"}],
+      })
+      |> FlowTester.send(button_label: "Single")
+      |> receive_message(%{
+        text: "🗝️ *What is your highest level of education?*\r\n\r\n• Primary school\r\n• High school\r\n• Diploma\r\n• Degree\r\n• Master's degree\r\n• Doctoral degree",
+        list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
+      })
+      |> contact_matches(%{"relationship_status" => "single"})
+      |> FlowTester.send("Diploma")
+      |> receive_message(%{
+        text: "🗝️ *How would you describe your personal finances when it comes to having enough money?*",
+        buttons: [{"Comfortable", "Comfortable"}, {"I get by", "I get by"}, {"Money is an issue", "Money is an issue"}],
+      })
+      |> contact_matches(%{"education" => "diploma"})
+      |> FlowTester.send("Comfortable")
+      |> receive_message(%{
+        text: "🗝️ *How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
+      })
+      |> contact_matches(%{"socio_economic" => "comfortable"})
+      |> FlowTester.send("Why do you ask?")
+      |> receive_message(%{
+        text: "ℹ️ Children change our lives a lot! Our team of health experts works hard to find information and services that fit your needs.\r\n\r\n*How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Skip this question", "Skip this question"}],}
+      })
+      |> FlowTester.send("Skip this question")
+      |> contact_matches(%{"other_children" => ""})
+      |> flow_finished()
     end
 
     test "children then finished" do
-
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🗝️ *What is your current relationship status?*",
+        buttons: [{"Single", "Single"}, {"In a relationship", "In a relationship"}, {"It's complicated", "It's complicated"}],
+      })
+      |> FlowTester.send(button_label: "Single")
+      |> receive_message(%{
+        text: "🗝️ *What is your highest level of education?*\r\n\r\n• Primary school\r\n• High school\r\n• Diploma\r\n• Degree\r\n• Master's degree\r\n• Doctoral degree",
+        list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
+      })
+      |> contact_matches(%{"relationship_status" => "single"})
+      |> FlowTester.send("Diploma")
+      |> receive_message(%{
+        text: "🗝️ *How would you describe your personal finances when it comes to having enough money?*",
+        buttons: [{"Comfortable", "Comfortable"}, {"I get by", "I get by"}, {"Money is an issue", "Money is an issue"}],
+      })
+      |> contact_matches(%{"education" => "diploma"})
+      |> FlowTester.send("Comfortable")
+      |> receive_message(%{
+        text: "🗝️ *How many children do you have?*",
+        list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
+      })
+      |> contact_matches(%{"socio_economic" => "comfortable"})
+      |> FlowTester.send("1")
+      |> contact_matches(%{"other_children" => "1"})
+      |> flow_finished()
     end
   end
 end
