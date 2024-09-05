@@ -166,9 +166,9 @@ end
 
 card Checkpoint
      when contact.checkpoint == "curious_pregnancy_profile" and
-            is_nil_or_empty(contact.profile_completion),
-     then: PregnantEDDMonth do
-  log("Go to PregnantEDDMonth")
+            contact.profile_completion == "0%",
+     then: Curious do
+  log("Go to Curious")
 end
 
 card Checkpoint
@@ -3693,9 +3693,13 @@ end
 ## Curious 01
 
 ```stack
-card Curious, then: DisplayCurious do
+card Curious, then Curious01 do
   update_contact(checkpoint: "curious_pregnancy_profile")
+  update_contact(profile_completion: "0%")
+  write_result("profile_completion", "0%")
+end
 
+card Curious01, then: DisplayCurious do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",

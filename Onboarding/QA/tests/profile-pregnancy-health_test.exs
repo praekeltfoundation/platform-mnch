@@ -74,6 +74,17 @@ defmodule ProfilePregnancyHealthTest do
       ]
     }
 
+    question_02_secondary = %ContentPage{
+      slug: "mnch_onboarding_secondary_02",
+      title: "Secondary_02",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n👤 *Which month are you expecting your baby to be born?*"
+        }
+      ]
+    }
+
     question_03 = %ContentPage{
       slug: "mnch_onboarding_pregnancy_qa_03",
       title: "Pregnancy_QA_03",
@@ -81,6 +92,46 @@ defmodule ProfilePregnancyHealthTest do
       wa_messages: [
         %WAMsg{
           message: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. ",
+          buttons: []
+        }
+      ]
+    }
+
+    curious_01 = %ContentPage{
+      slug: "mnch_onboarding_curious_01",
+      title: "Pregnancy_QA_03",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "👤 *What gender do you identify most with?*",
+          buttons: [
+            %Btn.Next{title: "Male"},
+            %Btn.Next{title: "Female"},
+            %Btn.Next{title: "Other"}
+          ]
+        }
+      ]
+    }
+
+    curious_02 = %ContentPage{
+      slug: "mnch_onboarding_curious_02",
+      title: "Pregnancy_QA_03",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "👤 *Tell me, do you have any children?*",
+          buttons: []
+        }
+      ]
+    }
+
+    curious_03 = %ContentPage{
+      slug: "mnch_onboarding_curious_03",
+      title: "Pregnancy_QA_03",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "👤 *Which stage of pregnancy are you most interested in?*	 ",
           buttons: []
         }
       ]
@@ -210,6 +261,40 @@ defmodule ProfilePregnancyHealthTest do
       ]
     }
 
+    progress_25_secondary = %ContentPage{
+      slug: "mnch_onboarding_profile_progress_25_secondary",
+      title: "Profile_progress_25",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+          buttons: [
+            %Btn.Next{title: "➡️ Complete profile"},
+            %Btn.Next{title: "View topics for you"},
+            %Btn.Next{title: "Explore health guide"}
+
+          ]
+        }
+      ]
+    }
+
+    progress_25_secondary_2 = %ContentPage{
+      slug: "mnch_onboarding_profile_progress_25_secondary_",
+      title: "Profile_progress_25",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+          buttons: [
+            %Btn.Next{title: "➡️ Complete profile"},
+            %Btn.Next{title: "View topics for you"},
+            %Btn.Next{title: "Explore health guide"}
+
+          ]
+        }
+      ]
+    }
+
     progress_50 = %ContentPage{
       slug: "mnch_onboarding_profile_progress_50",
       title: "Profile_progress_50",
@@ -249,15 +334,21 @@ defmodule ProfilePregnancyHealthTest do
                error_number,
                question_01,
                question_02,
+               question_02_secondary,
                question_03,
                confirm_edd,
                question_05,
+               curious_01,
+               curious_02,
+               curious_03,
                content_00,
                loading_01,
                loading_02,
                loading_03,
                topics,
                progress_25,
+               progress_25_secondary,
+               progress_25_secondary_2,
                progress_50,
                progress_100,
              ])
@@ -291,46 +382,287 @@ defmodule ProfilePregnancyHealthTest do
     context |> FlowTester.set_contact_properties(%{"gender" => "", "name" => "Lily", "opted_in" => "true"})
   end
 
-  describe "profile pregnancy health" do
-    test "100% complete" do
-      this_month = DateTime.utc_now()
+  defp get_months() do
+    this_month = DateTime.utc_now()
+    [
+      this_month,
+      Date.shift(this_month, month: 1),
+      Date.shift(this_month, month: 2),
+      Date.shift(this_month, month: 3),
+      Date.shift(this_month, month: 4),
+      Date.shift(this_month, month: 5),
+      Date.shift(this_month, month: 6),
+      Date.shift(this_month, month: 7),
+      Date.shift(this_month, month: 8)
+    ]
 
-      this_month_plus_one = Date.shift(this_month, month: 1)
-      this_month_plus_two = Date.shift(this_month, month: 2)
-      this_month_plus_three = Date.shift(this_month, month: 3)
-      this_month_plus_four = Date.shift(this_month, month: 4)
-      this_month_plus_five = Date.shift(this_month, month: 5)
-      this_month_plus_six = Date.shift(this_month, month: 6)
-      this_month_plus_seven = Date.shift(this_month, month: 7)
-      this_month_plus_eight = Date.shift(this_month, month: 8)
+  end
 
-      this_month_word = Calendar.strftime(this_month, "%B")
-      this_month_plus_one_word = Calendar.strftime(this_month_plus_one, "%B")
-      this_month_plus_two_word = Calendar.strftime(this_month_plus_two, "%B")
-      this_month_plus_three_word = Calendar.strftime(this_month_plus_three, "%B")
-      this_month_plus_four_word = Calendar.strftime(this_month_plus_four, "%B")
-      this_month_plus_five_word = Calendar.strftime(this_month_plus_five, "%B")
-      this_month_plus_six_word = Calendar.strftime(this_month_plus_six, "%B")
-      this_month_plus_seven_word = Calendar.strftime(this_month_plus_seven, "%B")
-      this_month_plus_eight_word = Calendar.strftime(this_month_plus_eight, "%B")
+  defp get_month_words(months) do
+    [
+      Calendar.strftime(Enum.at(months, 0), "%B"),
+      Calendar.strftime(Enum.at(months, 1), "%B"),
+      Calendar.strftime(Enum.at(months, 2), "%B"),
+      Calendar.strftime(Enum.at(months, 3), "%B"),
+      Calendar.strftime(Enum.at(months, 4), "%B"),
+      Calendar.strftime(Enum.at(months, 5), "%B"),
+      Calendar.strftime(Enum.at(months, 6), "%B"),
+      Calendar.strftime(Enum.at(months, 7), "%B"),
+      Calendar.strftime(Enum.at(months, 8), "%B")
+    ]
+  end
 
-      list_of_months = [
-        {"@datevalue(this_month, \"%B\")", "#{this_month_word}"},
-        {"@datevalue(this_month_plus_one, \"%B\")", "#{this_month_plus_one_word}"},
-        {"@datevalue(this_month_plus_two, \"%B\")", "#{this_month_plus_two_word}"},
-        {"@datevalue(this_month_plus_three, \"%B\")", "#{this_month_plus_three_word}"},
-        {"@datevalue(this_month_plus_four, \"%B\")", "#{this_month_plus_four_word}"},
-        {"@datevalue(this_month_plus_five, \"%B\")", "#{this_month_plus_five_word}"},
-        {"@datevalue(this_month_plus_six, \"%B\")", "#{this_month_plus_six_word}"},
-        {"@datevalue(this_month_plus_seven, \"%B\")", "#{this_month_plus_seven_word}"},
-        {"@datevalue(this_month_plus_eight, \"%B\")", "#{this_month_plus_eight_word}"},
-        {"I don't know", "I don't know"}
-      ]
+  defp get_edd(months, month_words) do
+    list_of_months = [
+      {"@datevalue(this_month, \"%B\")", "#{Enum.at(month_words, 0)}"},
+      {"@datevalue(this_month_plus_one, \"%B\")", "#{Enum.at(month_words, 1)}"},
+      {"@datevalue(this_month_plus_two, \"%B\")", "#{Enum.at(month_words, 2)}"},
+      {"@datevalue(this_month_plus_three, \"%B\")", "#{Enum.at(month_words, 3)}"},
+      {"@datevalue(this_month_plus_four, \"%B\")", "#{Enum.at(month_words, 4)}"},
+      {"@datevalue(this_month_plus_five, \"%B\")", "#{Enum.at(month_words, 5)}"},
+      {"@datevalue(this_month_plus_six, \"%B\")", "#{Enum.at(month_words, 6)}"},
+      {"@datevalue(this_month_plus_seven, \"%B\")", "#{Enum.at(month_words, 7)}"},
+      {"@datevalue(this_month_plus_eight, \"%B\")", "#{Enum.at(month_words, 8)}"},
+      {"I don't know", "I don't know"}
+    ]
 
-      edd_confirmation_text = "Thank you! Just confirming your estimated due date 🗓️\r\n\r\nAre you expecting the baby on *25 #{this_month_plus_one_word} #{Calendar.strftime(this_month_plus_one, "%Y")}*?"
+    edd_confirmation_text = "Thank you! Just confirming your estimated due date 🗓️\r\n\r\nAre you expecting the baby on *25 #{Enum.at(month_words, 1)} #{Calendar.strftime(Enum.at(months, 1), "%Y")}*?"
 
-      edd_month = String.pad_leading("#{this_month_plus_one.month}", 2, "0")
-      full_edd = Calendar.strftime(this_month_plus_one, "%Y") <> "-" <> "#{edd_month}" <> "-25"
+    edd_month = String.pad_leading("#{Enum.at(months, 1).month}", 2, "0")
+    full_edd = Calendar.strftime(Enum.at(months, 1), "%Y") <> "-" <> "#{edd_month}" <> "-25"
+
+    {list_of_months, edd_confirmation_text, full_edd}
+  end
+
+  describe "checkpoints" do
+    test "pregnant mom 0%" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
+        list: {"Month", ^list_of_months}
+      })
+    end
+
+    test "pregnant mom 25%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnant_mom_profile", "profile_completion" => "25%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩⬜⬜⬜⬜⬜⬜ \r\n\r\nYour profile is already 25% complete! I think now is a good time to complete it, but it's up to you.\r\n\r\n👇🏽 What do you want to do next?" <> _,
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"])
+      })
+    end
+
+    test "pregnant mom 50%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnant_mom_profile", "profile_completion" => "50%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩⬜⬜⬜⬜ \r\n\r\nYour profile is already 50% complete" <> _,
+        buttons: button_labels(["Continue"])
+      })
+    end
+
+    test "pregnant mom 100%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnant_mom_profile", "profile_completion" => "100%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
+        buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
+      })
+    end
+
+    test "partner pregnant 0%" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "partner_of_pregnant_mom_profile", "profile_completion" => "0%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n👤 *Which month are you expecting your baby to be born?*",
+        list: {"Month", ^list_of_months}
+      })
+    end
+
+    test "partner pregnant 25%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "partner_of_pregnant_mom_profile", "profile_completion" => "25%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"])
+      })
+    end
+
+    test "partner pregnant 50%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "partner_of_pregnant_mom_profile", "profile_completion" => "50%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩⬜⬜⬜⬜ \r\n\r\nYour profile is already 50% complete" <> _,
+        buttons: button_labels(["Continue"])
+      })
+    end
+
+    test "partner pregnant 100%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "partner_of_pregnant_mom_profile", "profile_completion" => "100%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
+        buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
+      })
+    end
+
+    test "curious 0%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "curious_pregnancy_profile", "profile_completion" => "0%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "👤 *What gender do you identify most with?*",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+    end
+
+    test "curious 25%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "curious_pregnancy_profile", "profile_completion" => "25%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"])
+      })
+    end
+
+    test "curious 50%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "curious_pregnancy_profile", "profile_completion" => "50%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩⬜⬜⬜⬜ \r\n\r\nYour profile is already 50% complete" <> _,
+        buttons: button_labels(["Continue"])
+      })
+    end
+
+    test "curious 100%" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "curious_pregnancy_profile", "profile_completion" => "100%"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
+        buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
+      })
+    end
+
+    test "pregnancy_basic_info" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnancy_basic_info", "profile_completion" => ""})
+      |> FlowTester.start()
+      |> Helpers.handle_basic_profile_flow()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩⬜⬜⬜⬜ \r\n\r\nYour profile is already 50% complete" <> _,
+        buttons: button_labels(["Continue"])
+      })
+    end
+
+    test "pregnancy_personal_info" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnancy_personal_info", "profile_completion" => ""})
+      |> FlowTester.start()
+      |> Helpers.handle_personal_info_flow(relationship_status: "single", education: "degree", socio_economic: "i get by", other_children: "0")
+      |> Helpers.handle_daily_life_flow()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
+        buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
+      })
+    end
+
+    test "pregnancy_daily_life_info" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnancy_daily_life_info", "profile_completion" => ""})
+      |> FlowTester.start()
+      |> Helpers.handle_daily_life_flow()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
+        buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
+      })
+    end
+
+    test "default" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"checkpoint" => "", "profile_completion" => ""})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "I've got a *lot* of information on pregnancy" <> _,
+        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
+      })
+      |> contact_matches(%{"checkpoint" => "basic_pregnancy_profile"})
+    end
+  end
+
+  describe "profile pregnancy health - pregnant" do
+    test "question 1 error" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "I've got a *lot* of information on pregnancy" <> _,
+        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
+      })
+    end
+
+    test "question 1 - i'm pregnant" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       setup_flow()
       |> Helpers.init_contact_fields()
@@ -347,7 +679,64 @@ defmodule ProfilePregnancyHealthTest do
         text: "👤 *Which month are you expecting your baby to be born?*" <> _,
         list: {"Month", ^list_of_months}
       })
-      |> FlowTester.send(button_label: this_month_plus_one_word)
+    end
+
+    test "i'm pregnant then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "I've got a *lot* of information on pregnancy" <> _,
+        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
+      })
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> receive_message(%{
+        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
+        list: {"Month", ^list_of_months}
+      })
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        list: {"Month", ^list_of_months}
+      })
+    end
+
+    # test "edd month then edd day" do
+
+    # end
+
+    # test "edd month edd month unknown" do
+
+    # end
+
+    test "100% complete" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, edd_confirmation_text, full_edd} = get_edd(months, month_words)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "I've got a *lot* of information on pregnancy" <> _,
+        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
+      })
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> receive_message(%{
+        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
+        list: {"Month", ^list_of_months}
+      })
+      |> FlowTester.send(button_label: Enum.at(month_words, 1))
       |> receive_message(%{
         text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31." <> _
       })
