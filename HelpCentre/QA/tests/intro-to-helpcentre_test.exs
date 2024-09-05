@@ -90,7 +90,10 @@ defmodule IntroToHelpCentreTest do
       title: "Search MyHealth prompt",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "Let's find you the information you need.\r\n\r\nJust type in what you are looking for and press send."}
+        %WAMsg{
+          message:
+            "Let's find you the information you need.\r\n\r\nJust type in what you are looking for and press send."
+        }
       ]
     }
 
@@ -126,7 +129,10 @@ defmodule IntroToHelpCentreTest do
       title: "Medical emergency secondary",
       parent: "test",
       wa_messages: [
-        %WAMsg{message: "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?"}
+        %WAMsg{
+          message:
+            "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?"
+        }
       ]
     }
 
@@ -184,7 +190,8 @@ defmodule IntroToHelpCentreTest do
       parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "[Health agents] are available between [9am - 4pm on weekdays].\r\n\r\n👇🏽 You are welcome to browse the service by choosing an option below.",
+          message:
+            "[Health agents] are available between [9am - 4pm on weekdays].\r\n\r\n👇🏽 You are welcome to browse the service by choosing an option below.",
           buttons: [
             %Btn.Next{title: "Help Centre menu"},
             %Btn.Next{title: "Topics for you"},
@@ -309,8 +316,6 @@ defmodule IntroToHelpCentreTest do
     })
   end
 
-
-
   defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
     auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
@@ -408,7 +413,6 @@ defmodule IntroToHelpCentreTest do
       })
     end
 
-
     test "talk to health agent while helpdesk during operating hours", %{flow: flow} do
       FlowTester.start(flow)
       |> FlowTester.send(button_label: "Help centre 📞")
@@ -422,6 +426,7 @@ defmodule IntroToHelpCentreTest do
     # TODO: Ask Rudi to help with setting up flag for open/closed helpdesk
     test "talk to health agent while helpdesk outside of operating hours", %{flow: flow} do
       flow = set_config_helpdesk_closed(flow)
+
       FlowTester.start(flow)
       |> FlowTester.send(button_label: "Help centre 📞")
       |> FlowTester.send(button_label: "Emergency help")
@@ -454,7 +459,9 @@ defmodule IntroToHelpCentreTest do
       setup_flow_search_myhealth(flow)
       |> FlowTester.send("xyz")
       |> receive_message(%{
-        text: "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?" <> _
+        text:
+          "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?" <>
+            _
       })
     end
 

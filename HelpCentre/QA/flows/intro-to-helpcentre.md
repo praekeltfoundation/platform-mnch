@@ -1,3 +1,5 @@
+Add markdown here
+
 # Intro to HelpCentre
 
 This is the main flow that users interact with at the HelpCentre.
@@ -25,7 +27,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 
 ## Connections to other stacks
 
-* There is a scheduled reminder stack ("Topics no response followup") that has not been implemented yet
+* There is a scheduled reminder stack "Topics no response followup" that gets set to run 15 minutes after the AAQ Topics List is shown, but we haven't received any input from the user
 * At the end of this flow, the users get handed over to the "Intro to human agent" flow
 
 ## Global variables
@@ -150,8 +152,10 @@ card CheckForNavBypass when contact.navbypass == "HelpCentre", then: HelpCentre 
   update_contact(navbypass: "")
 end
 
-card CheckForNavBypass when contact.navbypass == "TopicsForYou", then: TopicsForYou do
-  log("Bypassing Main Menu - Goto TopicsForYou")
+card CheckForNavBypass when contact.navbypass == "FAQTopicsList", then: CheckInbound do
+  log("Bypassing Main Menu - Goto FAQTopicsList")
+  aaq_metadata = parse_json("@contact.aaq_metadata")
+  user_question = aaq_metadata.user_question
   update_contact(navbypass: "")
 end
 
@@ -580,11 +584,6 @@ card CheckInbound, then: RouteResults do
   faq_topic_list = substitute("@faq_topic_list", "*5* -", "5.")
 end
 
-# card RouteResults when num_inbound_attempts > 1 and helpdesk_open == true, then: SendToHelpdesk do
-#   log("Two failed attempts and helpdesk is open, sending to helpdesk")
-#   update_contact(route_to_operator_origin: "failed_attempts")
-# end
-
 card RouteResults when faq_topic_list == "Gibberish Detected", then: GibberishDetected do
   num_inbound_attempts = num_inbound_attempts + 1
   log("Routing results as gibberish. Num failed attempts = @num_inbound_attempts")
@@ -771,12 +770,23 @@ end
 
 ```stack
 card DisplayFAQTopicsList, then: ValidateFAQSelection do
+  # Set these values to a contact field so we can route back to the results page from other stacks
   json_values =
     parse_json("""
-    {"inbound_id": "@inbound_id", "feedback_secret_key": "@feedback_secret_key"}
+      {
+        "inbound_id": "@inbound_id", 
+        "feedback_secret_key": "@feedback_secret_key",
+        "user_question": "@user_question"
+      }
     """)
 
   update_contact(aaq_metadata: "@json(json_values)")
+
+  schedule_stack("988b513e-8063-4f2c-821c-94e75536f09f", in: 900)
+
+  log(
+    "Scheduled stack `HC: Scheduled - Topics No Response followup - 988b513e-8063-4f2c-821c-94e75536f09f` to run in 15 minutes"
+  )
 
   search =
     get(
@@ -812,6 +822,11 @@ end
 
 card ValidateFAQSelection when selected_faq > 0 and selected_faq < 6, then: DisplayFAQ do
   log("Get FAQ Article")
+  cancel_scheduled_stacks("988b513e-8063-4f2c-821c-94e75536f09f")
+
+  log(
+    "Valid FAQ Topic List input received. Cancelling previously scheduled stack `HC: Scheduled - Topics no response follow-up - 988b513e-8063-4f2c-821c-94e75536f09f`"
+  )
 end
 
 card ValidateFAQSelection when selected_faq > 6, then: ValidateFAQSelectionError do
@@ -820,6 +835,11 @@ end
 
 card ValidateFAQSelection when selected_faq == 6, then: SendToHelpdesk do
   log("None helpful on page")
+  cancel_scheduled_stacks("988b513e-8063-4f2c-821c-94e75536f09f")
+
+  log(
+    "Valid FAQ Topic List input received. Cancelling previously scheduled stack `HC: Scheduled - Topics no response follow-up - 988b513e-8063-4f2c-821c-94e75536f09f`"
+  )
 
   feedback_result =
     put(

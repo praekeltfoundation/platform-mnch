@@ -35,7 +35,6 @@ defmodule AgentGreetingTest do
   defp real_or_fake_cms(step, base_url, auth_token, :fake),
     do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
-
   defp set_config(step) do
     step
     |> FlowTester.set_global_dict("settings", %{
