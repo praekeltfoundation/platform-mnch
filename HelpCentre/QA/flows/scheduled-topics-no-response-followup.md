@@ -43,24 +43,13 @@ card FetchError, then: TopicsNoResponseFollowup do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
+        ["slug", "mnch_onboarding_error_handling_button"],
         ["whatsapp", "true"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = search.body.results[0].body.text.value.message
 end
 
 card GotoMainMenu do
@@ -82,7 +71,7 @@ end
 
 ```
 
-## Information not helpful
+## Followup Message
 
 ```stack
 card TopicsNoResponseFollowup, then: TopicsNoResponseFollowupError do
@@ -90,24 +79,14 @@ card TopicsNoResponseFollowup, then: TopicsNoResponseFollowupError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "plat_help_topics_no_response_follow_up"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
+        ["slug", "plat_help_topics_no_response_follow_up"],
         ["whatsapp", "true"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_conf_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  callback_conf_msg = search.body.results[0].body.text.value.message
+  button_labels = map(search.body.results[0].body.text.value.buttons, & &1.value.title)
 
   buttons(
     TopicsNoResponseFollowupYes: "@button_labels[0]",
@@ -159,24 +138,14 @@ card TopicsNoResponseFollowupYes, then: TopicsNoResponseFollowupYesError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "plat_help_acknowledgement_positive_"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
+        ["slug", "plat_help_acknowledgement_positive_"],
         ["whatsapp", "true"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  conf_yes_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  conf_yes_msg = search.body.results[0].body.text.value.message
+  button_labels = map(search.body.results[0].body.text.value.buttons, & &1.value.title)
 
   buttons(
     GotoFAQTopicsList: "@button_labels[0]",
@@ -235,23 +204,13 @@ card TopicsNoResponseFollowupNo, then: GotoFAQTopicsList do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "plat_help_acknowledgement_negative_"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
+        ["slug", "plat_help_acknowledgement_negative_"],
         ["whatsapp", "true"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_conf_no = page.body.body.text.value.message
+  callback_conf_no = search.body.results[0].body.text.value.message
   text("@callback_conf_no")
 end
 
