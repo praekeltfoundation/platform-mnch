@@ -408,7 +408,7 @@ card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_edd_unknown"]
+        ["slug", "mnch_onboarding_edd_unknown_1"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -469,8 +469,8 @@ card EDDMonthUnknownError, then: EDDMonthUnknownError do
   end
 end
 
-card EDDMonthUnknownBranch when status == "im_pregnant" do
-  # TODO: Go to Profile Progress 50
+card EDDMonthUnknownBranch when status == "im_pregnant", then: ProfileProgress25 do
+  schedule_stack("15c9127a-2e90-4b99-a41b-25e2a39d453f", in: datetime_add(now(), 5, "D"))
   log("EDD month unknown, navigating to profile progess 50%")
 end
 

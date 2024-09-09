@@ -59,6 +59,8 @@ defmodule Onboarding.QA.Helpers do
 
   def explore_uuid(), do: "4288d6a9-23c9-4fc6-95b7-c675a6254ea5"
 
+  def edd_reminder_uuid(), do: "15c9127a-2e90-4b99-a41b-25e2a39d453f"
+
   def handle_basic_profile_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, basic_profile_flow_uuid(), fn step ->
     FlowTester.set_contact_properties(step, %{
       "year_of_birth" => Keyword.get(opts, :year_of_birth, "1988"),
@@ -99,6 +101,8 @@ defmodule Onboarding.QA.Helpers do
   def handle_profile_classifier_flow(step), do: FlowTester.handle_child_flow(step, profile_classifier_uuid())
 
   def handle_explore_flow(step), do: FlowTester.handle_child_flow(step, explore_uuid())
+
+  def handle_edd_reminder_flow(step), do: FlowTester.handle_child_flow(step, edd_reminder_uuid())
 
   defmodule Macros do
     # This lets us have cleaner button/list assertions.
