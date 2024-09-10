@@ -795,22 +795,22 @@ end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 1,
   then: SentimentExcitedHappyFirst do
-  log("Happy or excited on 1st trimesster")
+  log("Happy or excited on 1st trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 2,
   then: SentimentExcitedHappySecond do
-  log("Happy or excited on 2nd trimesster")
+  log("Happy or excited on 2nd trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 3,
   then: SentimentExcitedHappyThird do
-  log("Happy or excited on 3rd trimesster")
+  log("Happy or excited on 3rd trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 1,
   then: SentimentScaredWorriedFirst do
-  log("scared or worried on 1st trimesster")
+  log("scared or worried on 1st trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 2,
@@ -820,19 +820,22 @@ end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 3,
   then: SentimentScaredWorriedThird do
-  log("scared or worried on 3rd trimesster")
+  log("scared or worried on 3rd trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 1, then: SentimentOtherFirst do
-  log("Other on 1st trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 1,
+  then: SentimentOtherFirst do
+  log("Other on 1st trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 2, then: SentimentOtherSecond do
-  log("Other on 2nd trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 2,
+  then: SentimentOtherSecond do
+  log("Other on 2nd trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 3, then: SentimentOtherThird do
-  log("other on 3rd trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 3,
+  then: SentimentOtherThird do
+  log("other on 3rd trimester")
 end
 
 card GoToSentiment, then: SentimentOtherFirst do
@@ -3693,7 +3696,7 @@ end
 ## Curious 01
 
 ```stack
-card Curious, then Curious01 do
+card Curious, then(Curious01) do
   update_contact(checkpoint: "curious_pregnancy_profile")
   update_contact(profile_completion: "0%")
   write_result("profile_completion", "0%")

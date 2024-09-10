@@ -200,13 +200,125 @@ defmodule ProfilePregnancyHealthTest do
       ]
     }
 
-    content_00 = %ContentPage{
+    excited_happy_first = %ContentPage{
+      slug: "mnch_sentiment_excited_happy_first",
+      title: "excited_happy_first",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*Congratulations on your pregnancy*🤰🏾\r\n\r\nEven if you can't see your baby bump yet, there's a lot going on!\r\n\r\nYour baby is growing quickly and doing amazing things like developing a brain, heart, facial features, and even tiny feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 There's so much to look forward to!",
+          buttons: [
+            %Btn.Next{title: "Let's check it out"},
+          ]
+        }
+      ]
+    }
+
+    excited_happy_second = %ContentPage{
+      slug: "mnch_sentiment_excited_happy_second",
+      title: "excited_happy_second",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*Congratulations! You're in your 2nd trimester*🤰🏾\r\n\r\nInside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are!",
+          buttons: [
+            %Btn.Next{title: "Let's check it out"},
+          ]
+        }
+      ]
+    }
+
+    excited_happy_third = %ContentPage{
       slug: "mnch_sentiment_excited_happy_third",
       title: "excited_happy_third",
       parent: "test",
       wa_messages: [
         %WAMsg{
           message: "*Congratulations! You're in your 3rd trimester*🤰🏾\r\n\r\nYour belly is probably bigger than you thought it could get! Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!",
+          buttons: [
+            %Btn.Next{title: "Let's check it out"},
+          ]
+        }
+      ]
+    }
+
+    scared_worried_first = %ContentPage{
+      slug: "mnch_sentiment_scared_worried_first",
+      title: "scared_worried_first",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*It’s okay that you’re feeling this way about being pregnant – it’s a big life change*\r\n\r\nJust remember that you are strong and capable. The more information you have, the more you can prepare for what's coming next 🌟\r\n\r\nYour baby is growing quickly, already developing a brain, heart, facial features, and even feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 Let's have a look at what you can expect.",
+          buttons: [
+            %Btn.Next{title: "Let's check it out"},
+          ]
+        }
+      ]
+    }
+
+    scared_worried_second = %ContentPage{
+      slug: "mnch_sentiment_scared_worried_second",
+      title: "scared_worried_second",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*It’s okay that you’re feeling this way about being pregnant*\r\n\r\nTake a moment to think about what an amazing thing you're doing. Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are.",
+          buttons: [
+            %Btn.Next{title: "Let's check it out"},
+          ]
+        }
+      ]
+    }
+
+    scared_worried_third = %ContentPage{
+      slug: "mnch_sentiment_scared_worried_third",
+      title: "scared_worried_third",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*It’s normal to feel this way about a pregnancy*\r\n\r\nIt's important to remember that you are strong and capable.\r\n\r\nThere is a lot going on during the 3rd trimester. Your belly is probably bigger than you thought it could get. Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!",
+          buttons: [
+            %Btn.Next{title: "Let's check it out"},
+          ]
+        }
+      ]
+    }
+
+    other_first = %ContentPage{
+      slug: "mnch_sentiment_other_first",
+      title: "other_first",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nJust remember that you are strong and capable. The more information you have, the more you can prepare for what's coming next 🌟\r\n\r\nYour baby is growing quickly, already developing a brain, heart, facial features, and even feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 Let's have a look at what you can expect.",
+          buttons: [
+            %Btn.Next{title: "Let's check it out"},
+          ]
+        }
+      ]
+    }
+
+    other_second = %ContentPage{
+      slug: "mnch_sentiment_other_second",
+      title: "other_second",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nTake a moment to think about what an amazing thing you're doing. Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are.",
+          buttons: [
+            %Btn.Next{title: "Let's check it out"},
+          ]
+        }
+      ]
+    }
+
+    other_third = %ContentPage{
+      slug: "mnch_sentiment_other_third",
+      title: "other_third",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nIt's important to remember that you are strong and capable.\r\n\r\nThere is a lot going on during the 3rd trimester. Your belly is probably bigger than you thought it could get. Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!",
           buttons: [
             %Btn.Next{title: "Let's check it out"},
           ]
@@ -373,7 +485,15 @@ defmodule ProfilePregnancyHealthTest do
                curious_01,
                curious_02,
                curious_03,
-               content_00,
+               excited_happy_first,
+               excited_happy_second,
+               excited_happy_third,
+               scared_worried_first,
+               scared_worried_second,
+               scared_worried_third,
+               other_first,
+               other_second,
+               other_third,
                loading_01,
                loading_02,
                loading_03,
@@ -444,7 +564,7 @@ defmodule ProfilePregnancyHealthTest do
     ]
   end
 
-  defp get_edd(months, month_words) do
+  defp get_edd(months, month_words, selected_edd_day \\ 25, selected_edd_month \\ 1) do
     list_of_months = [
       {"@datevalue(this_month, \"%B\")", "#{Enum.at(month_words, 0)}"},
       {"@datevalue(this_month_plus_one, \"%B\")", "#{Enum.at(month_words, 1)}"},
@@ -458,10 +578,10 @@ defmodule ProfilePregnancyHealthTest do
       {"I don't know", "I don't know"}
     ]
 
-    edd_confirmation_text = "Thank you! Just confirming your estimated due date 🗓️\r\n\r\nAre you expecting the baby on *25 #{Enum.at(month_words, 1)} #{Calendar.strftime(Enum.at(months, 1), "%Y")}*?"
+    edd_confirmation_text = "Thank you! Just confirming your estimated due date 🗓️\r\n\r\nAre you expecting the baby on *#{selected_edd_day} #{Enum.at(month_words, selected_edd_month)} #{Calendar.strftime(Enum.at(months, selected_edd_month), "%Y")}*?"
 
-    edd_month = String.pad_leading("#{Enum.at(months, 1).month}", 2, "0")
-    full_edd = Calendar.strftime(Enum.at(months, 1), "%Y") <> "-" <> "#{edd_month}" <> "-25"
+    edd_month = String.pad_leading("#{Enum.at(months, selected_edd_month).month}", 2, "0")
+    full_edd = Calendar.strftime(Enum.at(months, 1), "%Y") <> "-" <> "#{edd_month}" <> "-#{selected_edd_day}"
 
     {list_of_months, edd_confirmation_text, full_edd}
   end
@@ -680,10 +800,7 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
         text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
@@ -701,10 +818,7 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
       |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
       |> receive_message(%{
@@ -723,16 +837,9 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
         text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
@@ -751,16 +858,9 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(month)
       |> receive_message(%{
         text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. "
@@ -779,16 +879,9 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{
         text: "*It's important to know the due date* 🗓️\r\n\r\nThere are two ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the first day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update your expected due date at any time in `Settings`",
@@ -808,21 +901,11 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
-      |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are two ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the first day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update your expected due date at any time in `Settings`",
-        buttons: button_labels(["Update due date", "I’ll do this later"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
         text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
@@ -842,21 +925,11 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
-      |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are two ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the first day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update your expected due date at any time in `Settings`",
-        buttons: button_labels(["Update due date", "I’ll do this later"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "Update due date")
       |> receive_message(%{
         text: "👤 *Which month are you expecting your baby to be born?*" <> _,
@@ -876,21 +949,11 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
-      |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are two ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the first day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update your expected due date at any time in `Settings`",
-        buttons: button_labels(["Update due date", "I’ll do this later"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I’ll do this later")
       # TODO: Add this test when we have a way to test for scheduling stacks
       #|> Helpers.handle_edd_reminder_flow()
@@ -912,20 +975,11 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(month)
-      |> receive_message(%{
-        text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. "
-      })
+      |> receive_message(%{})
       |> FlowTester.send("25")
       |> receive_message(%{
         text: ^edd_confirmation_text,
@@ -944,20 +998,11 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(month)
-      |> receive_message(%{
-        text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. "
-      })
+      |> receive_message(%{})
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
         text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
@@ -975,20 +1020,11 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(month)
-      |> receive_message(%{
-        text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. "
-      })
+      |> receive_message(%{})
       |> FlowTester.send("0")
       |> receive_message(%{
         text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
@@ -1006,20 +1042,11 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(month)
-      |> receive_message(%{
-        text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. "
-      })
+      |> receive_message(%{})
       |> FlowTester.send("32")
       |> receive_message(%{
         text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
@@ -1032,7 +1059,7 @@ defmodule ProfilePregnancyHealthTest do
     test "edd confirm then error" do
       months = get_months()
       month_words = get_month_words(months)
-      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       setup_flow()
@@ -1040,25 +1067,13 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(month)
-      |> receive_message(%{
-        text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. "
-      })
+      |> receive_message(%{})
       |> FlowTester.send("25")
-      |> receive_message(%{
-        text: ^edd_confirmation_text,
-        buttons: button_labels(["Yes, that's right", "Pick another date"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
         text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
@@ -1069,7 +1084,7 @@ defmodule ProfilePregnancyHealthTest do
     test "edd confirm then pick another date" do
       months = get_months()
       month_words = get_month_words(months)
-      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       setup_flow()
@@ -1077,25 +1092,13 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(month)
-      |> receive_message(%{
-        text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. "
-      })
+      |> receive_message(%{})
       |> FlowTester.send("25")
-      |> receive_message(%{
-        text: ^edd_confirmation_text,
-        buttons: button_labels(["Yes, that's right", "Pick another date"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "Pick another date")
       |> receive_message(%{
         text: "👤 *Which month are you expecting your baby to be born?*" <> _,
@@ -1106,7 +1109,7 @@ defmodule ProfilePregnancyHealthTest do
     test "edd confirm then that's right" do
       months = get_months()
       month_words = get_month_words(months)
-      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       setup_flow()
@@ -1114,29 +1117,836 @@ defmodule ProfilePregnancyHealthTest do
       |> init_contact_fields()
       |> init_pregnancy_info()
       |> FlowTester.start()
-      |> receive_message(%{
-        text: "I've got a *lot* of information on pregnancy" <> _,
-        buttons: button_labels(["I'm pregnant", "Partner is pregnant", "Just curious"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "I'm pregnant")
-      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
-      |> receive_message(%{
-        text: "👤 *Which month are you expecting your baby to be born?*" <> _,
-        list: {"Month", ^list_of_months}
-      })
+      |> receive_message(%{})
       |> FlowTester.send(month)
-      |> receive_message(%{
-        text: "👤 *On what day of the month are you expecting the baby to be born?*\n\nType in a number between 1 and 31. "
-      })
+      |> receive_message(%{})
       |> FlowTester.send("25")
-      |> receive_message(%{
-        text: ^edd_confirmation_text,
-        buttons: button_labels(["Yes, that's right", "Pick another date"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "Yes, that's right")
       |> receive_message(%{
         text: "Thank you! \n\n👤 *How are you feeling about this pregnancy?*",
         list: {"I'm feeling", [{"Excited", "Excited"}, {"Happy", "Happy"}, {"Worried", "Worried"}, {"Scared", "Scared"}, {"Other", "Other"}]}
+      })
+    end
+
+    test "feelings then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        list: {"I'm feeling", [{"Excited", "Excited"}, {"Happy", "Happy"}, {"Worried", "Worried"}, {"Scared", "Scared"}, {"Other", "Other"}]}
+      })
+    end
+
+    test "feelings then scared 1st trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Worried")
+      |> contact_matches(%{"pregnancy_sentiment" => "Worried"})
+      |> receive_message(%{
+        text: "*It’s okay that you’re feeling this way about being pregnant – it’s a big life change*\r\n\r\nJust remember that you are strong and capable. The more information you have, the more you can prepare for what's coming next 🌟\r\n\r\nYour baby is growing quickly, already developing a brain, heart, facial features, and even feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 Let's have a look at what you can expect.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "feelings then scared 2nd trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Worried")
+      |> contact_matches(%{"pregnancy_sentiment" => "Worried"})
+      |> receive_message(%{
+        text: "*It’s okay that you’re feeling this way about being pregnant*\r\n\r\nTake a moment to think about what an amazing thing you're doing. Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "feelings then scared 3rd trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Worried")
+      |> contact_matches(%{"pregnancy_sentiment" => "Worried"})
+      |> receive_message(%{
+        text: "*It’s normal to feel this way about a pregnancy*\r\n\r\nIt's important to remember that you are strong and capable.\r\n\r\nThere is a lot going on during the 3rd trimester. Your belly is probably bigger than you thought it could get. Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "feelings then excited 1st trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
+      |> receive_message(%{
+        text: "*Congratulations on your pregnancy*🤰🏾\r\n\r\nEven if you can't see your baby bump yet, there's a lot going on!\r\n\r\nYour baby is growing quickly and doing amazing things like developing a brain, heart, facial features, and even tiny feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 There's so much to look forward to!",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "feelings then excited 2nd trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
+      |> receive_message(%{
+        text: "*Congratulations! You're in your 2nd trimester*🤰🏾\r\n\r\nInside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are!",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "feelings then excited 3rd trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
+      |> receive_message(%{
+        text: "*Congratulations! You're in your 3rd trimester*🤰🏾\r\n\r\nYour belly is probably bigger than you thought it could get! Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!" <> _,
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "feelings then other 1st trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> contact_matches(%{"pregnancy_sentiment" => "Other"})
+      |> receive_message(%{
+        text: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nJust remember that you are strong and capable. The more information you have, the more you can prepare for what's coming next 🌟\r\n\r\nYour baby is growing quickly, already developing a brain, heart, facial features, and even feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 Let's have a look at what you can expect.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "feelings then other 2nd trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> contact_matches(%{"pregnancy_sentiment" => "Other"})
+      |> receive_message(%{
+        text: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nTake a moment to think about what an amazing thing you're doing. Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "feelings then other 3rd trimester" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> contact_matches(%{"gender" => "female", "pregnancy_status" => "im_pregnant", "checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> contact_matches(%{"pregnancy_sentiment" => "Other"})
+      |> receive_message(%{
+        text: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nIt's important to remember that you are strong and capable.\r\n\r\nThere is a lot going on during the 3rd trimester. Your belly is probably bigger than you thought it could get. Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "excited 1st trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "excited 2nd trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "exited 3rd trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "scared 1st trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Scared")
+      |> contact_matches(%{"pregnancy_sentiment" => "Scared"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "scared 2nd trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Scared")
+      |> contact_matches(%{"pregnancy_sentiment" => "Scared"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "scared 3rd trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Scared")
+      |> contact_matches(%{"pregnancy_sentiment" => "Scared"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "other 1st trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> contact_matches(%{"pregnancy_sentiment" => "Other"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "other 2nd trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> contact_matches(%{"pregnancy_sentiment" => "Other"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "other 3rd trimester then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> contact_matches(%{"pregnancy_sentiment" => "Other"})
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Let's check it out"])
+      })
+    end
+
+    test "excited 1st trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
+      })
+    end
+
+    test "excited 2nd trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
+      })
+    end
+
+    test "excited 3rd trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Excited")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
+      })
+    end
+
+    test "scared 1st trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Scared")
+      |> contact_matches(%{"pregnancy_sentiment" => "Scared"})
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
+      })
+    end
+
+    test "scared 2nd trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Scared")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
+      })
+    end
+
+    test "scared 3rd trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Scared")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
+      })
+    end
+
+    test "other 1st trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
+      month = elem(Enum.at(list_of_months, 8), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> contact_matches(%{"pregnancy_sentiment" => "Other"})
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
+      })
+    end
+
+    test "other 2nd trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
+      month = elem(Enum.at(list_of_months, 4), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
+      })
+    end
+
+    test "other 3rd trimester then loading 1" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send("Other")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Let's check it out")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"])
       })
     end
 
