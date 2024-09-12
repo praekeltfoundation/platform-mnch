@@ -3540,7 +3540,7 @@ card ContentFeedbackNo, then: DisplayContentFeedbackNo do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_curious_content_feedback"]
+        ["slug", "mnch_onboarding_content_feedback_no"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )

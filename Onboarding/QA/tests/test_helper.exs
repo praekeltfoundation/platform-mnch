@@ -116,8 +116,8 @@ defmodule Onboarding.QA.Helpers do
     end
 
     # The common case for lists.
-    defmacro list_items(labels) do
-      quote do: unquote(indexed_list("list_items", labels))
+    defmacro list_items(labels, option \\ "list_items") do
+      quote do: unquote(indexed_list(option, labels))
     end
   end
 
