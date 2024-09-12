@@ -1003,7 +1003,7 @@ end
 ### 7. Display the list
 
 ```stack
-card TopicsStart, then: TopicsStartError do
+card TopicsStart, then: DisplayTopicStart do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -1025,7 +1025,9 @@ card TopicsStart, then: TopicsStartError do
     )
 
   message = page.body.body.text.value
+end
 
+card DisplayTopicStart when contact.data_preference == "text only", then: TopicsStartError do
   # TODO: Use the DS recommender to find the 4 items in this list to recommend
   # We can look at Browsable FAQs to see how to implement this dynamic list
   # https://github.com/praekeltfoundation/contentrepo-base-flow/blob/main/Browsable%20FAQs/browsable_faqs.md
@@ -1038,6 +1040,32 @@ card TopicsStart, then: TopicsStartError do
   ) do
     text("@message.message")
   end
+end
+
+# Display with image
+card DisplayTopicStart, then: TopicsStartError do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @global.config.contentrepo_token"]
+      ]
+    )
+
+  image("@image_data.body.meta.download_url")
+  selected_topic =
+    list("Choose a Topic",
+      ArticleTopic: "item 1",
+      ArticleTopic: "item 2",
+      ArticleTopic: "item 3",
+      ArticleTopic: "item 4",
+      ArticleFeedbackNo: "Show me other topics"
+    ) do
+      image("@image_data.body.meta.download_url")
+      text("@message.message")
+    end
 end
 
 card TopicsStartError, then: TopicsStartError do
