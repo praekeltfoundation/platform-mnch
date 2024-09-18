@@ -1063,7 +1063,6 @@ card DisplayTopicStart, then: TopicsStartError do
       ArticleTopic: "item 4",
       ArticleFeedbackNo: "Show me other topics"
     ) do
-      image("@image_data.body.meta.download_url")
       text("@message.message")
     end
 end
