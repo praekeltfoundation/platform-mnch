@@ -5,28 +5,28 @@ qa_url: https://content-repo-api-qa.prk-k8s.prd-p6t.org
 prod_url: https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org
 stack_uuids:
   - name: "intro-to-helpcentre" # HelpCentre: Intro to HelpCentre
-    prod_uuid: NOT_UUID
+    prod_uuid: dca8c89d-1e98-48f3-98ae-e586add6381a
     qa_uuid: 7b50f9f4-b6cf-424b-8893-8fef6d0f489b
   - name: "intro-human-agent" # HelpCentre: Intro Human Agent Flow
-    prod_uuid: NOT_UUID
+    prod_uuid: fc8c5d4e-67a6-4225-ba5b-c96f6873daeb
     qa_uuid: 8046066f-3cb1-43d6-ace0-850769bd13a3
   - name: "agent-greeting" # HelpCentre: Agent Greeting
-    prod_uuid: NOT_UUID
+    prod_uuid: 21589d78-26b2-49c5-afda-da8d27ca6365
     qa_uuid: 1558176d-4e4e-4625-b9b4-93c77c1bac92
   - name: "agent-wrap-up" # HelpCentre: Agent Wrap-up
-    prod_uuid: NOT_UUID
+    prod_uuid: 4ae03111-dec8-418d-a6ee-4ba442c413d3
     qa_uuid: 2d3f1f0e-6973-41e4-8a18-e565beeb3988
   - name: "scheduled-callback-followup" # HelpCentre: Scheduled - Callback follow up
-    prod_uuid: NOT_UUID
+    prod_uuid: e048e0f9-f8e9-49b6-8937-b94544864687
     qa_uuid: 36ec8712-99c2-453c-b6cb-fbe9f7cf4bae
   - name: "scheduled-callback-confirmation" # HelpCentre: Scheduled - Callback confirmation
-    prod_uuid: NOT_UUID
+    prod_uuid: 5eda920c-2379-4bc8-8e72-d94acd08e463
     qa_uuid: 69557475-02fa-4d44-a091-277f3cb5908b
   - name: "scheduled-query-rating" # HelpCentre: Scheduled - Query rating
-    prod_uuid: NOT_UUID
+    prod_uuid: 8ab8eb08-5a32-4a47-8b8e-06f953b950e4
     qa_uuid: dbf8e71b-d2bb-4c08-829c-925d53752bbf
   - name: "scheduled-topics-no-response-followup" # Scheduled - Topics no response follow-up
-    prod_uuid: NOT_UUID
+    prod_uuid: 986496ff-13d1-4e30-bb59-9fbd6b091c32
     qa_uuid: 988b513e-8063-4f2c-821c-94e75536f09f   
          
 
