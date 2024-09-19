@@ -3,6 +3,8 @@ defmodule IntroAndWelcomeTest do
 
   alias FlowTester.WebhookHandler, as: WH
 
+  alias FlowTester.WebhookHandler.FakeCMS.Content.Document
+
   alias Onboarding.QA.Helpers
 
   import Onboarding.QA.Helpers.Macros
@@ -96,7 +98,8 @@ defmodule IntroAndWelcomeTest do
             %Btn.Next{title: "Yes, I accept ✅"},
             %Btn.Next{title: "No, I don’t accept"},
             %Btn.Next{title: "Read a summary"}
-          ]
+          ],
+          document: 1
         }
       ]
     }
@@ -208,6 +211,8 @@ defmodule IntroAndWelcomeTest do
         data_preferences_yes
       ])
 
+    assert :ok = FakeCMS.add_document(wh_pid, %Document{id: 1, title: "Privacy Policy"})
+
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
   end
@@ -259,7 +264,8 @@ defmodule IntroAndWelcomeTest do
       |> FlowTester.start()
       |> receive_message(%{
         text: "*Your information is safe and won't be shared* 🔒\r\n\r\nThe information you share is only used to give you personalised advice and information.\r\n\r\nRead the privacy policy attached and let me know if you accept it.",
-        buttons: button_labels(["Yes, I accept ✅", "No, I don’t accept", "Read a summary"])
+        buttons: button_labels(["Yes, I accept ✅", "No, I don’t accept", "Read a summary"]),
+        document: "media.fake.url/Privacy-Policy.pdf"
       })
     end
 
