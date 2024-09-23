@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: praekeltfoundation/flow_tester
-          ref: v0.2.1
+          ref: v0.2.2
           path: flow_tester
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 

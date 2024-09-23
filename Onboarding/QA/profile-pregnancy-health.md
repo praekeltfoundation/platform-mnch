@@ -166,9 +166,9 @@ end
 
 card Checkpoint
      when contact.checkpoint == "curious_pregnancy_profile" and
-            is_nil_or_empty(contact.profile_completion),
-     then: PregnantEDDMonth do
-  log("Go to PregnantEDDMonth")
+            contact.profile_completion == "0%",
+     then: Curious do
+  log("Go to Curious")
 end
 
 card Checkpoint
@@ -408,7 +408,7 @@ card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_edd_unknown"]
+        ["slug", "mnch_onboarding_edd_unknown_1"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -469,8 +469,8 @@ card EDDMonthUnknownError, then: EDDMonthUnknownError do
   end
 end
 
-card EDDMonthUnknownBranch when status == "im_pregnant" do
-  # TODO: Go to Profile Progress 50
+card EDDMonthUnknownBranch when status == "im_pregnant", then: ProfileProgress25 do
+  schedule_stack("15c9127a-2e90-4b99-a41b-25e2a39d453f", in: datetime_add(now(), 5, "D"))
   log("EDD month unknown, navigating to profile progess 50%")
 end
 
@@ -795,22 +795,22 @@ end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 1,
   then: SentimentExcitedHappyFirst do
-  log("Happy or excited on 1st trimesster")
+  log("Happy or excited on 1st trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 2,
   then: SentimentExcitedHappySecond do
-  log("Happy or excited on 2nd trimesster")
+  log("Happy or excited on 2nd trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 3,
   then: SentimentExcitedHappyThird do
-  log("Happy or excited on 3rd trimesster")
+  log("Happy or excited on 3rd trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 1,
   then: SentimentScaredWorriedFirst do
-  log("scared or worried on 1st trimesster")
+  log("scared or worried on 1st trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 2,
@@ -820,19 +820,22 @@ end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 3,
   then: SentimentScaredWorriedThird do
-  log("scared or worried on 3rd trimesster")
+  log("scared or worried on 3rd trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 1, then: SentimentOtherFirst do
-  log("Other on 1st trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 1,
+  then: SentimentOtherFirst do
+  log("Other on 1st trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 2, then: SentimentOtherSecond do
-  log("Other on 2nd trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 2,
+  then: SentimentOtherSecond do
+  log("Other on 2nd trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 3, then: SentimentOtherThird do
-  log("other on 3rd trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 3,
+  then: SentimentOtherThird do
+  log("other on 3rd trimester")
 end
 
 card GoToSentiment, then: SentimentOtherFirst do
@@ -1000,7 +1003,7 @@ end
 ### 7. Display the list
 
 ```stack
-card TopicsStart, then: TopicsStartError do
+card TopicsStart, then: DisplayTopicStart do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -1022,7 +1025,9 @@ card TopicsStart, then: TopicsStartError do
     )
 
   message = page.body.body.text.value
+end
 
+card DisplayTopicStart when contact.data_preference == "text only", then: TopicsStartError do
   # TODO: Use the DS recommender to find the 4 items in this list to recommend
   # We can look at Browsable FAQs to see how to implement this dynamic list
   # https://github.com/praekeltfoundation/contentrepo-base-flow/blob/main/Browsable%20FAQs/browsable_faqs.md
@@ -1035,6 +1040,31 @@ card TopicsStart, then: TopicsStartError do
   ) do
     text("@message.message")
   end
+end
+
+# Display with image
+card DisplayTopicStart, then: TopicsStartError do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @global.config.contentrepo_token"]
+      ]
+    )
+
+  image("@image_data.body.meta.download_url")
+  selected_topic =
+    list("Choose a Topic",
+      ArticleTopic: "item 1",
+      ArticleTopic: "item 2",
+      ArticleTopic: "item 3",
+      ArticleTopic: "item 4",
+      ArticleFeedbackNo: "Show me other topics"
+    ) do
+      text("@message.message")
+    end
 end
 
 card TopicsStartError, then: TopicsStartError do
@@ -3509,7 +3539,7 @@ card ContentFeedbackNo, then: DisplayContentFeedbackNo do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_curious_content_feedback"]
+        ["slug", "mnch_onboarding_content_feedback_no"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -3693,9 +3723,13 @@ end
 ## Curious 01
 
 ```stack
-card Curious, then: DisplayCurious do
+card Curious, then(Curious01) do
   update_contact(checkpoint: "curious_pregnancy_profile")
+  update_contact(profile_completion: "0%")
+  write_result("profile_completion", "0%")
+end
 
+card Curious01, then: DisplayCurious do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",

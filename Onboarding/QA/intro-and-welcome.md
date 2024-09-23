@@ -70,6 +70,28 @@ card FetchError, then: GoToPrivacyPolicy do
     )
 
   button_error_text = page.body.body.text.value.message
+
+  search =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      query: [
+        ["slug", "mnch_onboarding_error_handling_list_message"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  page_id = search.body.results[0].id
+
+  page =
+    get(
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      query: [
+        ["whatsapp", "true"]
+      ],
+      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+    )
+
+  list_error_text = page.body.body.text.value.message
 end
 
 ```
@@ -209,7 +231,7 @@ card LanguageOptionsError, then: LanguageOptionsError do
       Language5: "@list_items[4]",
       Language6: "@list_items[5]"
     ) do
-      text("@button_error_text")
+      text("@list_error_text")
     end
 end
 

@@ -8,6 +8,7 @@ defmodule Onboarding.QA.Helpers do
     |> init_personal_info()
     |> init_daily_life()
     |> init_hcw_info()
+    |> init_intro_and_welcome()
   end
 
   # Technically this should be all the profile fields in Turn, but we can fill them in as we go along
@@ -17,7 +18,7 @@ defmodule Onboarding.QA.Helpers do
 
   # The contact fields that get filled in the intro flow
   defp init_intro(context) do
-    context |> FlowTester.set_contact_properties(%{"language" => "eng", "opted_in" => "false", "intent" => "create profile", "data_preference" => "all"})
+    context |> FlowTester.set_contact_properties(%{"language" => "", "opted_in" => "false", "intent" => "", "data_preference" => ""})
   end
 
   # The contact fields that get filled in the basic info flow
@@ -35,6 +36,10 @@ defmodule Onboarding.QA.Helpers do
     context |> FlowTester.set_contact_properties(%{"dma_01" => "", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
   end
 
+  defp init_intro_and_welcome(context) do
+    context |> FlowTester.set_contact_properties(%{"privacy_policy_accepted" => "", "opted_in" => false})
+  end
+
   # The contact fields that get filled in the HCW Profile flow
   defp init_hcw_info(context) do
     context |> FlowTester.set_contact_properties(%{"occupational_role" => "", "facility_type" => "", "professional_support" => ""})
@@ -49,6 +54,12 @@ defmodule Onboarding.QA.Helpers do
   def opt_in_reminder_uuid(), do: "537e4867-eb26-482d-96eb-d4783828c622"
 
   def profile_hcw_uuid(), do: "38cca9df-21a1-4edc-9c13-5724904ca3c3"
+
+  def profile_classifier_uuid(), do: "bd590c1e-7a06-49ed-b3a1-623cf94e8644"
+
+  def explore_uuid(), do: "4288d6a9-23c9-4fc6-95b7-c675a6254ea5"
+
+  def edd_reminder_uuid(), do: "15c9127a-2e90-4b99-a41b-25e2a39d453f"
 
   def handle_basic_profile_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, basic_profile_flow_uuid(), fn step ->
     FlowTester.set_contact_properties(step, %{
@@ -87,6 +98,12 @@ defmodule Onboarding.QA.Helpers do
       "professional_support" => Keyword.get(opts, :professional_support, "")})
   end)
 
+  def handle_profile_classifier_flow(step), do: FlowTester.handle_child_flow(step, profile_classifier_uuid())
+
+  def handle_explore_flow(step), do: FlowTester.handle_child_flow(step, explore_uuid())
+
+  def handle_edd_reminder_flow(step), do: FlowTester.handle_child_flow(step, edd_reminder_uuid())
+
   defmodule Macros do
     # This lets us have cleaner button/list assertions.
     def indexed_list(var, labels) do
@@ -99,8 +116,8 @@ defmodule Onboarding.QA.Helpers do
     end
 
     # The common case for lists.
-    defmacro list_items(labels) do
-      quote do: unquote(indexed_list("list_items", labels))
+    defmacro list_items(labels, option \\ "list_items") do
+      quote do: unquote(indexed_list(option, labels))
     end
   end
 
