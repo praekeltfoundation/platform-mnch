@@ -104,6 +104,8 @@ defmodule Onboarding.QA.Helpers do
 
   def handle_edd_reminder_flow(step), do: FlowTester.handle_child_flow(step, edd_reminder_uuid())
 
+  def flow_path(flow_name), do: Path.join([__DIR__, "..","flows_json", flow_name <> ".json"])
+
   defmodule Macros do
     # This lets us have cleaner button/list assertions.
     def indexed_list(var, labels) do
