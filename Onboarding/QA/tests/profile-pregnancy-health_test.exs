@@ -8,8 +8,6 @@ defmodule ProfilePregnancyHealthTest do
 
   import Onboarding.QA.Helpers.Macros
 
-  defp flow_path(flow_name), do: Path.join([__DIR__, "..","flows", flow_name <> ".json"])
-
   def setup_fake_cms(auth_token) do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
@@ -789,7 +787,7 @@ defmodule ProfilePregnancyHealthTest do
     auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
-    flow_path("profile-pregnancy-health")
+    Helpers.flow_path("profile-pregnancy-health")
     |> FlowTester.from_json!()
     |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})

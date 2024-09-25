@@ -1,8 +1,12 @@
 ---
-base_url: "https://whatsapp.turn.io"
-workspace_uuid: "2c329412-1dda-4365-bcc1-d0e9283a9513"
-qa_url: https://content-repo-api-qa.prk-k8s.prd-p6t.org
-prod_url: https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org
+tokens:
+  - name: contentrepo
+    qa_token: badly_managed_token_prod
+    prod_token: badly_managed_token_prod
+urls:
+  - name: contentrepo
+    qa_url: https://content-repo-api-qa.prk-k8s.prd-p6t.org
+    prod_url: https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org
 stack_uuids:
   - name: "intro-and-welcome" # "Onboarding: Intro & Welcome"
     prod_uuid: 47111691-cb8d-4cf0-8ecc-ed6792108157
