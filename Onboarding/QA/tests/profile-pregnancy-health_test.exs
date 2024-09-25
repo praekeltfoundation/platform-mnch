@@ -801,8 +801,7 @@ defmodule ProfilePregnancyHealthTest do
     context |> FlowTester.set_contact_properties(%{"gender" => "", "name" => "Lily", "opted_in" => "true"})
   end
 
-  defp get_months() do
-    this_month = DateTime.utc_now()
+  defp get_months(this_month \\ DateTime.utc_now()) do
     [
       this_month,
       Date.shift(this_month, month: 1),
@@ -1323,14 +1322,40 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then above max day error february 29" do
-      months = get_months()
+    test "edd day then feb 29 is valid" do
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("29")
+      |> receive_message(%{
+        text: ^edd_confirmation_text,
+        buttons: button_labels(["Yes, that's right", "Pick another date"])
+      })
+    end
+
+    test "edd day then feb 30 is not valid" do
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
       setup_flow()
-      |> FlowTester.set_fake_time(~U[2024-02-29 00:00:00Z])
+      |> FlowTester.set_fake_time(fake_time)
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -1346,8 +1371,103 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    # TODO: Tests for Feb, long months, and short months. This requires us to be able to mock the return value of now() so that we can dictacte what options
-    # are available in the list of months.
+    test "edd day then long month 31 is valid" do
+      fake_time = ~U[2023-01-01 00:00:00Z] # January
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 31, 0)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("31")
+      |> receive_message(%{
+        text: ^edd_confirmation_text,
+        buttons: button_labels(["Yes, that's right", "Pick another date"])
+      })
+    end
+
+    test "edd day then long month 32 is invalid" do
+      fake_time = ~U[2024-01-01 00:00:00Z] # January
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("32")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+      })
+    end
+
+    test "edd day then short month 30 is valid" do
+      fake_time = ~U[2024-04-01 00:00:00Z] # April
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 30, 0)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("30")
+      |> receive_message(%{
+        text: ^edd_confirmation_text,
+        buttons: button_labels(["Yes, that's right", "Pick another date"])
+      })
+    end
+
+    test "edd day then short month 31 is invalid" do
+      fake_time = ~U[2024-04-01 00:00:00Z] # April
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("31")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+      })
+    end
 
     test "edd confirm then error" do
       months = get_months()
