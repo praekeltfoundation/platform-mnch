@@ -8,6 +8,7 @@ defmodule IntroToHelpCentreTest do
   defp flow_path(flow_name), do: Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
 
   def setup_fake_cms(auth_token) do
+    use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
