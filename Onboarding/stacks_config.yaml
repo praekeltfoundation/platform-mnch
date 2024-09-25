@@ -1,7 +1,7 @@
 ---
 tokens:
   - name: contentrepo
-    qa_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJUdXJuIiwiZXhwIjoxNzQzNTEzODA1LCJpYXQiOjE3MTQ0ODM0MTcsImlzcyI6IlR1cm4iLCJqdGkiOiJiMTQ1MzNiMy05ODA2LTRkYTEtYjc2Ny02ZWM1ZmNkMWFhZmEiLCJuYmYiOjE3MTQ0ODM0MTYsInN1YiI6Im51bWJlcjo1NjU1IiwidHlwIjoiYWNjZXNzIn0.SDCIDq2VByf99zzCuW2suKCnPcyZSz0uLDDfzh6fjs7qdXNMWPKeR-G7nFXhx7Sy5eacz7mLtEEBmDaoykJloA
+    qa_token: badly_managed_token_prod
     prod_token: badly_managed_token_prod
 urls:
   - name: contentrepo
