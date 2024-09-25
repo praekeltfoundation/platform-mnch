@@ -8,6 +8,7 @@ defmodule ProfileHCWTest do
   import Onboarding.QA.Helpers.Macros
 
   def setup_fake_cms(auth_token) do
+    use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 

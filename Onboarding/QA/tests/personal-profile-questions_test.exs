@@ -6,6 +6,7 @@ defmodule PersonalProfileQuestionsTest do
   alias Onboarding.QA.Helpers
 
   def setup_fake_cms(auth_token) do
+    use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 

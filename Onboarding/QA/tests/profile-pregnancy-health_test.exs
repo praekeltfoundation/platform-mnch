@@ -2,13 +2,13 @@ defmodule ProfilePregnancyHealthTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
-  alias FlowTester.WebhookHandler.FakeCMS.Content.{Image}
 
   alias Onboarding.QA.Helpers
 
   import Onboarding.QA.Helpers.Macros
 
   def setup_fake_cms(auth_token) do
+    use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
@@ -1318,6 +1318,29 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(month)
       |> receive_message(%{})
       |> FlowTester.send("32")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+      })
+    end
+
+    test "edd day then above max day error february 29" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(~U[2024-02-29 00:00:00Z])
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "I'm pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("30")
       |> receive_message(%{
         text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
       })
