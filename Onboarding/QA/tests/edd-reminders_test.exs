@@ -1,4 +1,4 @@
-defmodule BasicQuestionsTest do
+defmodule EDDRemindersTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
