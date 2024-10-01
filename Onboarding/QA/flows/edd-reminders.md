@@ -1,9 +1,54 @@
-# EDD Reminder
+## EDD Reminder
+
+This is the EDD Reminder flow that gets triggered if the user selects that the EDD month is unknown.
+
+This flow is scheduled to be run 5 days later, so it must start with a template message as per WA requirements.
+
+## Contact fields
+
+* `edd`, saves the EDD if the user chooses to update it
+
+## Flow results
+
+* `edd`, saves the EDD if the user chooses to update it
+
+## Connections to other stacks
+
+The user can navigate to either of these options at the end of this flow. (Currently both of these are placeholders that navigate the user to the Profile Pregnancy Health Flow)
+
+* Main Menu
+* Health Guide
+
+## Auth
+
+The token for ContentRepo is stored in a global dictionary.
+
+## Content dependancies
+
+Content is stored in the content repo, and referenced in the stack by slug. This means that we require the following slugs to be present in the contentrepo, and we're making the following assumptions:
+
+* `mnch_onboarding_edd_reminder`, The EDD reminder message. The message isn't actually used as it's part of the template, but we need the button text saved as part of the message.
+* `mnch_onboarding_edd_got_it`, The message the user sees if they tap on the Got it button in the EDD reminder
+* `mnch_onboarding_edd_month`, A message asking the user for the EDD month
+* `mnch_onboarding_edd_unknown`, A message stressing the importance of knowing the EDD
+* `mnch_onboarding_edd_day`, A message asking the user for the EDD day
+* `mnch_onboarding_edd_confirmed`, A message confirming the EDD
+* `mnch_onboarding_edd_do_it_later`, A message that gets displayed if the user says they'll fill in the EDD later
+
+## Error messages
+
+* `mnch_onboarding_error_handling_button`, for when a user sends in a message when we're expecting them to press one of the buttons
+* `mnch_onboarding_error_handling_list_message`, for when a user sends in a message when we're expecting them to press one of the list options
+* `mnch_onboarding_unrecognised_number`, for when a user sends in a message that contains a number that doesn't match our validation
 
 ```stack
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "eddreminder")
 
 ```
+
+## Setup
+
+Here we do any setup and fetching of values before we start the flow.
 
 ```stack
 card FetchError, then: EDDReminder do
@@ -78,6 +123,8 @@ end
 
 ```
 
+## EDD Reminder
+
 <!-- { section: "6053de2e-cff0-4e46-9682-b623e3b3e36e", x: 0, y: 0} -->
 
 ```stack
@@ -103,20 +150,18 @@ card EDDReminder, then: DisplayEDDReminder do
     )
 
   message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 # Text only
 card DisplayEDDReminder when contact.data_preference == "text only",
   then: DisplayEDDReminderError do
-  buttons(
-    EDDGotIt: "@button_labels[0]",
-    EDDMonth: "@button_labels[1]",
-    EDDRUnknown: "@button_labels[2]"
-  ) do
-    text("@loading_message")
-  end
+  send_message_template(
+    "edd_reminder_2041",
+    "en",
+    ["@contact.name"],
+    buttons: [EDDGotIt, EDDMonth, EDDRUnknown]
+  )
 end
 
 # Display with image
@@ -131,14 +176,13 @@ card DisplayEDDReminder, then: DisplayEDDReminderError do
       ]
     )
 
-  buttons(
-    EDDGotIt: "@button_labels[0]",
-    EDDMonth: "@button_labels[1]",
-    EDDRUnknown: "@button_labels[2]"
-  ) do
-    image("@image_data.body.meta.download_url")
-    text("@loading_message")
-  end
+  send_message_template(
+    "edd_reminder_2041",
+    "en",
+    ["@contact.name"],
+    image: "@image_data.body.meta.download_url",
+    buttons: [EDDGotIt, EDDMonth, EDDRUnknown]
+  )
 end
 
 card DisplayEDDReminderError, then: DisplayEDDReminderError do
@@ -153,10 +197,10 @@ end
 
 ```
 
-# EDD Got It
+## EDD Got It
 
 ```stack
-card EDDGotIt, then: DisplayEDDGotIt do
+card EDDGotIt, "@button_labels[0]", then: DisplayEDDGotIt do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -195,10 +239,10 @@ end
 
 ```
 
-# EDD Month
+## EDD Month
 
 ```stack
-card EDDMonth, then: EDDMonthError do
+card EDDMonth, "@button_labels[1]", then: EDDMonthError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -248,26 +292,6 @@ card EDDMonth, then: EDDMonthError do
 end
 
 card EDDMonthError, then: EDDMonthError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "edd-month-error"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      headers: [
-        ["Authorization", "Token @global.config.contentrepo_token"]
-      ],
-      query: [["whatsapp", "true"]]
-    )
-
   list("Month", [
     ThisMonth,
     ThisMonthPlusOne,
@@ -372,7 +396,7 @@ end
 
 ```
 
-# EDD Day
+## EDD Day
 
 ```stack
 card EDDDay, then: ValidateEDDDay do
@@ -438,7 +462,7 @@ end
 card SaveEDDAndContinue, then: EDDConfirm do
   edd_date_full = date(edd_date_year, edd_date_month, edd_day)
 
-  edd_date_full_str = datevalue(edd_date_full, "%Y/%m/%d")
+  edd_date_full_str = datevalue(edd_date_full, "%Y-%m-%d")
   log("EDD Saved as @edd_date_full_str")
   update_contact(edd: "@edd_date_full_str")
   write_result("edd", "@edd_date_full_str")
@@ -446,7 +470,7 @@ end
 
 ```
 
-# EDD Confirm
+## EDD Confirm
 
 ```stack
 card EDDConfirm, then: DisplayEDDConfirm do
@@ -489,10 +513,10 @@ end
 
 ```
 
-# EDD Unknown
+## EDD Unknown
 
 ```stack
-card EDDRUnknown, then: DisplayEDDUnknown do
+card EDDRUnknown, "@button_labels[2]", then: DisplayEDDUnknown do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -560,7 +584,7 @@ end
 
 ```
 
-# EDD Do It Later
+## EDD Do It Later
 
 ```stack
 card EDDLater, then: DisplayEDDLater do
@@ -602,7 +626,7 @@ card DisplayEDDLaterError, then: DisplayEDDLaterError do
     MainMenu: "@button_labels[0]",
     HealthGuide: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@button_error_text")
   end
 end
 
