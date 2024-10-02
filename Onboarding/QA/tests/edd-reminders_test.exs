@@ -59,7 +59,8 @@ defmodule EDDRemindersTest do
             %Btn.Next{title: "How to calculate it"}
           ]
         }
-      ]
+      ],
+      whatsapp_template_name: "edd_reminder_2041"
     }
 
     got_it = %ContentPage{

@@ -150,6 +150,7 @@ card EDDReminder, then: DisplayEDDReminder do
     )
 
   message = content_data.body.body.text.value
+  whatsapp_template_name = content_data.body.body.whatsapp_template_name
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -157,7 +158,7 @@ end
 card DisplayEDDReminder when contact.data_preference == "text only",
   then: DisplayEDDReminderError do
   send_message_template(
-    "edd_reminder_2041",
+    "@whatsapp_template_name",
     "en",
     ["@contact.name"],
     buttons: [EDDGotIt, EDDMonth, EDDRUnknown]
@@ -177,7 +178,7 @@ card DisplayEDDReminder, then: DisplayEDDReminderError do
     )
 
   send_message_template(
-    "edd_reminder_2041",
+    "@whatsapp_template_name",
     "en",
     ["@contact.name"],
     image: "@image_data.body.meta.download_url",
