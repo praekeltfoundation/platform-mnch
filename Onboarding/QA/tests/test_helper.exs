@@ -61,6 +61,8 @@ defmodule Onboarding.QA.Helpers do
 
   def edd_reminder_uuid(), do: "15c9127a-2e90-4b99-a41b-25e2a39d453f"
 
+  def profile_pregnancy_health_uuid(), do: "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+
   def handle_basic_profile_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, basic_profile_flow_uuid(), fn step ->
     FlowTester.set_contact_properties(step, %{
       "year_of_birth" => Keyword.get(opts, :year_of_birth, "1988"),
@@ -103,6 +105,8 @@ defmodule Onboarding.QA.Helpers do
   def handle_explore_flow(step), do: FlowTester.handle_child_flow(step, explore_uuid())
 
   def handle_edd_reminder_flow(step), do: FlowTester.handle_child_flow(step, edd_reminder_uuid())
+
+  def handle_profile_pregnancy_health_flow(step), do: FlowTester.handle_child_flow(step, profile_pregnancy_health_uuid())
 
   def flow_path(flow_name), do: Path.join([__DIR__, "..","flows_json", flow_name <> ".json"])
 
