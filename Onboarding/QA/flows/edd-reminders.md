@@ -159,7 +159,7 @@ card DisplayEDDReminder when contact.data_preference == "text only",
   then: DisplayEDDReminderError do
   send_message_template(
     "@whatsapp_template_name",
-    "en",
+    "en_US",
     ["@contact.name"],
     buttons: [EDDGotIt, EDDMonth, EDDRUnknown]
   )
@@ -179,7 +179,7 @@ card DisplayEDDReminder, then: DisplayEDDReminderError do
 
   send_message_template(
     "@whatsapp_template_name",
-    "en",
+    "en_US",
     ["@contact.name"],
     image: "@image_data.body.meta.download_url",
     buttons: [EDDGotIt, EDDMonth, EDDRUnknown]

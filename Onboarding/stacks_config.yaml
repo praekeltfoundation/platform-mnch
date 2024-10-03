@@ -48,7 +48,7 @@ stack_uuids:
     prod_uuid: 78cca41f-d27d-4669-ae16-a785744047a1
     qa_uuid: b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d
   - name: "edd-reminders" # "Onboarding: EDD Reminders"
-    prod_uuid: 80cb5e3d-3dd4-4c69-af0a-2c03a03eb5c8
+    prod_uuid: 5b67121a-b097-4eec-9493-e948f71d3c6f
     qa_uuid: 15c9127a-2e90-4b99-a41b-25e2a39d453f
   - name: "menu-personalised" # "Onboarding: Personalised Menu"
     prod_uuid: 31bfb947-74a5-4b3b-8dec-def4b7732fd5
