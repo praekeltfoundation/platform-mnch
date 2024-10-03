@@ -235,7 +235,7 @@ defmodule EDDRemindersTest do
       setup_flow()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
@@ -250,7 +250,7 @@ defmodule EDDRemindersTest do
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en.\nBody parameters: [@name]\n\nThe buttons represented"  <> _,
+        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\n\nThe buttons represented"  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
@@ -265,7 +265,7 @@ defmodule EDDRemindersTest do
     #   setup_flow()
     #   |> FlowTester.start()
     #   |> receive_message(%{
-    #     text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+    #     text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
     #     buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
     #   })
     #   |> FlowTester.send(button_label: "nope")
@@ -279,7 +279,7 @@ defmodule EDDRemindersTest do
       setup_flow()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
