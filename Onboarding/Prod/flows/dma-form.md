@@ -76,7 +76,7 @@ card GetAssessment, then: CheckEnd do
   log("Fetching assessment @config.items.assessment_tag")
 
   response =
-    get("https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/assessment/",
+    get("https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/assessment/",
       timeout: 5_000,
       cache_ttl: 60_000,
       query: [
@@ -684,7 +684,7 @@ card DisplayEndPage do
   write_result("mnch_onboarding_dma_form_v1.0_max_score", max_score)
 
   response =
-    get("https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+    get("https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       timeout: 5_000,
       cache_ttl: 60_000,
       query: [
