@@ -28,6 +28,10 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+## Tests
+
+Running the tests requires elixir >= 1.17 (for Date.shift)
+
 ## Opening Journey as Markdown
 You can open a Turn Journey as a markdown file by taking the url, removing `/app` and appending `?format=md`. A one click solution is to add the following code as a bookmark
 

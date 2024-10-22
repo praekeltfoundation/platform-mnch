@@ -484,7 +484,7 @@ defmodule EDDRemindersTest do
         text:  ^edd_confirmation_text,
       })
       |> contact_matches(%{"edd" => ^full_edd})
-      # TODO: Add a test for the write_result
+      |> result_matches(%{name: "edd", value: ^full_edd})
     end
 
     test "edd confirmed -> main menu" do
