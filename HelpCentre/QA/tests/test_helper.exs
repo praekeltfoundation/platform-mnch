@@ -2,6 +2,11 @@ defmodule HelpCentre.QA.Helpers do
   alias FlowTester.WebhookHandler.Generic
   alias FlowTester.WebhookHandler, as: WH
 
+  def load_flow(flow_name) do
+    Path.join([__DIR__, "..","flows_json", flow_name <> ".json"])
+    |> FlowTester.from_json!()
+  end
+
   defp turn_contacts_messages(env, ctx) do
     assigned_to =
       Map.get(ctx, :chat_assigned_to, %{
