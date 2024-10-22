@@ -1,8 +1,7 @@
 defmodule IntroHumanAgentTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
-  # alias FlowTester.FlowStep
-  defp flow_path(flow_name), do: Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
+  alias HelpCentre.QA.Helpers
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
@@ -78,17 +77,22 @@ defmodule IntroHumanAgentTest do
     })
   end
 
-  defp setup_flow() do
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("intro-human-agent")}
+
+  defp setup_flow(%{init_flow: init_flow}) do
     # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
     auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
-    flow_path("intro-human-agent")
-    |> FlowTester.from_json!()
-    |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
-    |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
-    |> set_config()
+    flow =
+      init_flow
+      |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
+      |> set_config()
+    %{flow: flow}
   end
+
+  setup [:setup_flow]
 
   # This lets us have cleaner button/list assertions.
   def indexed_list(var, labels) do
@@ -106,8 +110,8 @@ defmodule IntroHumanAgentTest do
   end
 
   describe "get pre handover message:" do
-    test "emergency" do
-      setup_flow()
+    test "emergency", %{flow: flow} do
+      flow
       |> FlowTester.set_contact_properties(%{"route_to_operator_origin" => "emergency"})
       |> FlowTester.start()
       |> receive_message(%{
@@ -115,8 +119,8 @@ defmodule IntroHumanAgentTest do
       })
     end
 
-    test "search myhealth" do
-      setup_flow()
+    test "search myhealth", %{flow: flow} do
+      flow
       |> FlowTester.set_contact_properties(%{"route_to_operator_origin" => "search_myhealth"})
       |> FlowTester.set_contact_properties(%{
         "route_to_operator_search_text" => "mock search myhealth query"
@@ -127,8 +131,8 @@ defmodule IntroHumanAgentTest do
       })
     end
 
-    test "tech support" do
-      setup_flow()
+    test "tech support", %{flow: flow} do
+      flow
       |> FlowTester.set_contact_properties(%{"route_to_operator_origin" => "tech_support"})
       |> FlowTester.set_contact_properties(%{
         "route_to_operator_search_text" => "mock tech support query"
@@ -139,8 +143,8 @@ defmodule IntroHumanAgentTest do
       })
     end
 
-    test "failed attempts" do
-      setup_flow()
+    test "failed attempts", %{flow: flow} do
+      flow
       |> FlowTester.set_contact_properties(%{"route_to_operator_origin" => "failed_attempts"})
       |> FlowTester.start()
       |> receive_message(%{

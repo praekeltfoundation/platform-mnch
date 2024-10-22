@@ -2,8 +2,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
   alias FlowTester.WebhookHandler.Generic
-
-  defp flow_path(flow_name), do: Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
+  alias HelpCentre.QA.Helpers
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
@@ -99,14 +98,15 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
     WH.set_adapter(step, "https://hub.qa.momconnect.co.za/", Generic.wh_adapter(gen_pid))
   end
 
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("scheduled-topics-no-response-followup")}
+
   defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
     auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
     flow =
-      flow_path("scheduled-topics-no-response-followup")
-      |> FlowTester.from_json!()
+      ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> setup_fake_aaq(ctx)

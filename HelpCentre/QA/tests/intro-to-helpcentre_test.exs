@@ -5,8 +5,6 @@ defmodule IntroToHelpCentreTest do
   alias FlowTester.WebhookHandler.Generic
   alias HelpCentre.QA.Helpers
 
-  defp flow_path(flow_name), do: Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
-
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
@@ -317,14 +315,15 @@ defmodule IntroToHelpCentreTest do
     })
   end
 
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("intro-to-helpcentre")}
+
   defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
     auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
     flow =
-      flow_path("intro-to-helpcentre")
-      |> FlowTester.from_json!()
+      ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> Helpers.setup_fake_turn(ctx)
