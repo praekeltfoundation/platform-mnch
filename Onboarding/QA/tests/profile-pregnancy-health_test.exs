@@ -179,7 +179,13 @@ defmodule ProfilePregnancyHealthTest do
       wa_messages: [
         %WAMsg{
           message: "👤 *Tell me, do you have any children?*",
-          buttons: []
+          list_items: [
+            %ListItem{value: "No other children"},
+            %ListItem{value: "Yes, one"},
+            %ListItem{value: "Yes, two"},
+            %ListItem{value: "Yes, more than two"},
+            %ListItem{value: "Skip this question"},
+          ]
         }
       ]
     }
@@ -190,8 +196,14 @@ defmodule ProfilePregnancyHealthTest do
       parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "👤 *Which stage of pregnancy are you most interested in?*	 ",
-          buttons: []
+          message: "👤 *Which stage of pregnancy are you most interested in?*",
+          list_items: [
+            %ListItem{value: "First trimester"},
+            %ListItem{value: "Second trimester"},
+            %ListItem{value: "Third trimester"},
+            %ListItem{value: "General pregnancy info"},
+            %ListItem{value: "Skip this question"},
+          ]
         }
       ]
     }
@@ -382,6 +394,21 @@ defmodule ProfilePregnancyHealthTest do
     loading_01 = %ContentPage{
       slug: "mnch_onboarding_loading_01",
       title: "Loading_01",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "Thanks {@username} 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+          buttons: [
+            %Btn.Next{title: "Okay"},
+          ],
+          image: image.id
+        }
+      ]
+    }
+
+    loading_component_01 = %ContentPage{
+      slug: "mnch_onboarding_loading_component_01",
+      title: "Loading_component_01",
       parent: "test",
       wa_messages: [
         %WAMsg{
@@ -602,6 +629,22 @@ defmodule ProfilePregnancyHealthTest do
       ]
     }
 
+    curious_content_feedback = %ContentPage{
+      slug: "mnch_onboarding_curious_content_feedback",
+      title: "curios_content_feedback",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "Mmm, maybe I need a bit more information about you... 🤔\r\n\r\n👇🏽 Would you like to answer some more questions now?",
+          buttons: [
+            %Btn.Next{title: "Yes, sure ✅"},
+            %Btn.Next{title: "Maybe later"},
+            %Btn.Next{title: "No thanks"},
+          ]
+        }
+      ]
+    }
+
     opt_in = %ContentPage{
       slug: "mnch_onboarding_reminder_opt_in",
       title: "Reminder_opt_in",
@@ -609,6 +652,11 @@ defmodule ProfilePregnancyHealthTest do
       wa_messages: [
         %WAMsg{
           message: "*Be a big support to your partner!* 🔔\r\n\r\nCan we send you notifications with weekly information that will help you manage your family’s health?",
+          buttons: [
+            %Btn.Next{title: "Yes, sign me up"},
+            %Btn.Next{title: "Maybe later"},
+
+          ]
         }
       ]
     }
@@ -619,7 +667,7 @@ defmodule ProfilePregnancyHealthTest do
       parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "Great decision, {username}!\r\n\r\nThese messages are a great way to stay up to date and informed about your baby on the way 💛"
+          message: "Great decision, {@username}!\r\n\r\nThese messages are a great way to stay up to date and informed about your baby on the way 💛"
         }
       ]
     }
@@ -747,6 +795,7 @@ defmodule ProfilePregnancyHealthTest do
                other_second,
                other_third,
                loading_01,
+               loading_component_01,
                loading_01_secondary,
                loading_02_secondary,
                facts_factoid_1_trimester_1,
@@ -760,6 +809,7 @@ defmodule ProfilePregnancyHealthTest do
                article_topic_01_secondary,
                article_feedback,
                article_feedback_no,
+               curious_content_feedback,
                opt_in,
                opt_in_yes,
                opt_in_no,
@@ -4755,8 +4805,152 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    # TODO: Tests for Feb, long months, and short months. This requires us to be able to mock the return value of now() so that we can dictacte what options
-    # are available in the list of months.
+    test "edd day then feb 29 is valid" do
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("29")
+      |> receive_message(%{
+        text: ^edd_confirmation_text,
+        buttons: button_labels(["Yes, that's right", "Pick another date"])
+      })
+    end
+
+    test "edd day then feb 30 is not valid" do
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("30")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+      })
+    end
+
+    test "edd day then long month 31 is valid" do
+      fake_time = ~U[2023-01-01 00:00:00Z] # January
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 31, 0)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("31")
+      |> receive_message(%{
+        text: ^edd_confirmation_text,
+        buttons: button_labels(["Yes, that's right", "Pick another date"])
+      })
+    end
+
+    test "edd day then long month 32 is invalid" do
+      fake_time = ~U[2024-01-01 00:00:00Z] # January
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("32")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+      })
+    end
+
+    test "edd day then short month 30 is valid" do
+      fake_time = ~U[2024-04-01 00:00:00Z] # April
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 30, 0)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("30")
+      |> receive_message(%{
+        text: ^edd_confirmation_text,
+        buttons: button_labels(["Yes, that's right", "Pick another date"])
+      })
+    end
+
+    test "edd day then short month 31 is invalid" do
+      fake_time = ~U[2024-04-01 00:00:00Z] # April
+      months = get_months(fake_time)
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 0), 0)
+
+      setup_flow()
+      |> FlowTester.set_fake_time(fake_time)
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("31")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+      })
+    end
 
     test "edd confirm then error" do
       months = get_months()
@@ -5515,6 +5709,731 @@ defmodule ProfilePregnancyHealthTest do
         text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
         buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"])
       })
+    end
+
+    test "rate this article then yes not opted in" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Female")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{
+        text: "*Be a big support to your partner!* 🔔\r\n\r\nCan we send you notifications with weekly information that will help you manage your family’s health?",
+        buttons: button_labels(["Yes, sign me up", "Maybe later"])
+      })
+    end
+
+    test "rate this article then yes not opted in then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Female")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{
+        text: "*Be a big support to your partner!* 🔔\r\n\r\nCan we send you notifications with weekly information that will help you manage your family’s health?",
+        buttons: button_labels(["Yes, sign me up", "Maybe later"])
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Yes, sign me up", "Maybe later"])
+      })
+    end
+
+    test "rate this article then yes not opted in then yes" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Female")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, sign me up")
+      |> receive_messages([
+        %{
+          text: "Great decision, Lily!\r\n\r\nThese messages are a great way to stay up to date and informed about your baby on the way 💛",
+        },
+        %{
+          text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+          buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"])
+        }])
+    end
+
+    test "rate this article then yes not opted in then later" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Female")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Maybe later")
+      |> receive_messages([
+        %{
+          text: "Thousands of people have signed up to receive these messages – they're the best way to stay in control 🙌🏾\r\n\r\nYou can always change your update choice in `Settings`",
+        },
+        %{
+          text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+          buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"])
+        }])
+    end
+
+    test "25% complete then error" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Female")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"])
+      })
+    end
+
+    test "25% complete then complete profile" do
+      months = get_months()
+      month_words = get_month_words(months)
+      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      month = elem(Enum.at(list_of_months, 1), 0)
+
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Partner is pregnant")
+      |> receive_message(%{})
+      |> FlowTester.send(month)
+      |> receive_message(%{})
+      |> FlowTester.send("25")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes, that's right")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Female")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "➡️ Complete profile")
+      |> Helpers.handle_basic_profile_flow()
+      |> contact_matches(%{"profile_completion" => "50%"})
+      |> fn step ->
+        [msg] = step.messages
+        assert String.contains?(msg.text, "Pregnancy info 3/3")
+        assert String.contains?(msg.text, "Basic information 3/4")
+        assert String.contains?(msg.text, "Personal information 0/4")
+        assert String.contains?(msg.text, "Daily life 0/5")
+        step
+      end.()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩⬜⬜⬜⬜ \r\n\r\nYour profile is already 50% complete" <> _,
+        buttons: button_labels(["Continue"])
+      })
+    end
+    # We don't have to test the rest because we've already done it in the I'm pregnant section
+  end
+
+  describe "profile pregnancy health - curious" do
+    test "i'm curious - question 1" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{
+        text: "👤 *What gender do you identify most with?*",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+    end
+
+    test "i'm curious - question 1 then error" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{
+        text: "👤 *What gender do you identify most with?*",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+    end
+
+    test "i'm curious - question 1 then error then male" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{
+        text: "👤 *What gender do you identify most with?*",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+      |> FlowTester.send("falalalalaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+      |> FlowTester.send(button_label: "Male")
+      |> contact_matches(%{"gender" => "male"})
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 1 then male" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{
+        text: "👤 *What gender do you identify most with?*",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+      |> FlowTester.send(button_label: "Male")
+      |> contact_matches(%{"gender" => "male"})
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 1 then female" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{
+        text: "👤 *What gender do you identify most with?*",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+      |> FlowTester.send(button_label: "Female")
+      |> contact_matches(%{"gender" => "female"})
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 1 then other" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{
+        text: "👤 *What gender do you identify most with?*",
+        buttons: button_labels(["Male", "Female", "Other"])
+      })
+      |> FlowTester.send(button_label: "Other")
+      |> contact_matches(%{"gender" => "other"})
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 2 then error" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 2 then error then 0" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[0]")
+      |> contact_matches(%{"other_children" => "0"})
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 2 then 0" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[0]")
+      |> contact_matches(%{"other_children" => "0"})
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 2 then 1" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[1]")
+      |> contact_matches(%{"other_children" => "1"})
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 2 then 2" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[2]")
+      |> contact_matches(%{"other_children" => "2"})
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 2 then 3+" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[3]")
+      |> contact_matches(%{"other_children" => "3+"})
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 2 then skip" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{
+        text: "👤 *Tell me, do you have any children?*",
+        list: {"Other children", [{"@menu_items[0]", "No other children"}, {"@menu_items[1]", "Yes, one"}, {"@menu_items[2]", "Yes, two"}, {"@menu_items[3]", "Yes, more than two"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[4]")
+      |> contact_matches(%{"other_children" => "skip"})
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 3 then error" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+    end
+
+    test "i'm curious - question 3 then error then loading" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[0]")
+      |> result_matches(%{name: "pregnancy_stage_interest", value: "First trimester"})
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+    end
+
+    test "i'm curious - question 3 then 1st" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> result_matches(%{name: "pregnancy_stage_interest", value: "First trimester"})
+    end
+
+    test "i'm curious - question 3 then 2nd" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> result_matches(%{name: "pregnancy_stage_interest", value: "Second trimester"})
+    end
+
+    test "i'm curious - question 3 then 3rd" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> result_matches(%{name: "pregnancy_stage_interest", value: "Third trimester"})
+    end
+
+    test "i'm curious - question 3 then general" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[3]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> result_matches(%{name: "pregnancy_stage_interest", value: "General pregnancy info"})
+    end
+
+    test "i'm curious - question 3 then skip" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[4]")
+      |> receive_message(%{
+        text: "Mmm, maybe I need a bit more information about you... 🤔\r\n\r\n👇🏽 Would you like to answer some more questions now?",
+        buttons: button_labels(["Yes, sure ✅", "Maybe later", "No thanks"])
+      })
+      |> result_matches(%{name: "pregnancy_stage_interest", value: "Skip this question"})
     end
   end
 end

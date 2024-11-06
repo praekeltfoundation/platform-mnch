@@ -3915,7 +3915,7 @@ card DisplayCurious03Error, then: DisplayCurious03Error do
       GeneralInfo: "@menu_items[3]",
       SkipQuestion: "@menu_items[4]"
     ) do
-      text("@message.message")
+      text("@list_error_text")
     end
 end
 
