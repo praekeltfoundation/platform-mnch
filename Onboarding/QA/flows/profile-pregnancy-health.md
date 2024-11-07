@@ -1,3 +1,5 @@
+<!-- { section: "e544152f-bf53-4d7c-ae1b-c84314772219", x: 500, y: 48} -->
+
 ```stack
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "profile")
 
@@ -1053,6 +1055,7 @@ card DisplayTopicStart, then: TopicsStartError do
     )
 
   image("@image_data.body.meta.download_url")
+
   selected_topic =
     list("Choose a Topic",
       ArticleTopic: "item 1",
@@ -3972,14 +3975,15 @@ end
 
 # TODO display facts 
 # Text only
-card DisplayLoadingComponent01 when contact.data_preference == "text only" do
+card DisplayLoadingComponent01 when contact.data_preference == "text only",
+  then: DisplayLoadingComponent01Error do
   buttons(LoadingComponentGoTo: "@button_labels[0]") do
     text("@loading_message")
   end
 end
 
 # Display with image
-card DisplayLoadingComponent01 do
+card DisplayLoadingComponent01, then: DisplayLoadingComponent01Error do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -4007,11 +4011,11 @@ card LoadingComponentGoTo when selected_topic = "first_trimester", then: FactsFa
 end
 
 card LoadingComponentGoTo when selected_topic = "second_trimester", then: FactsFactoid1Trimester2 do
-  log(" trimester topic")
+  log("Second trimester topic")
 end
 
 card LoadingComponentGoTo when selected_topic = "third_trimester", then: FactsFactoid1Trimester3 do
-  log(" trimester topic")
+  log("Third trimester topic")
 end
 
 card LoadingComponentGoTo when selected_topic = "general_info", then: LoadingComponent02 do
@@ -4019,7 +4023,7 @@ card LoadingComponentGoTo when selected_topic = "general_info", then: LoadingCom
 end
 
 card LoadingComponentGoTo, then: CuriousContentIntro do
-  log("Skip topic")
+  log("Skip topic @selected_topic")
 end
 
 ```

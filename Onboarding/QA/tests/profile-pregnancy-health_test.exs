@@ -579,6 +579,42 @@ defmodule ProfilePregnancyHealthTest do
       ]
     }
 
+    curious_content_intro = %ContentPage{
+      slug: "mnch_onboarding_curious_content_intro",
+      title: "Content_intro",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list_items: [
+            %ListItem{value: "Managing mood swings"},
+            %ListItem{value: "This week"},
+            %ListItem{value: "The third trimester"},
+            %ListItem{value: "Clinic visits"},
+            %ListItem{value: "Show me other topics"},
+          ],
+          image: image.id
+        }
+      ]
+    }
+
+    article_topic_01 = %ContentPage{
+      slug: "mnch_onboarding_article_topic_01",
+      title: "Article_topic_01",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "*Managing mood swings* 🎢\r\n[THIS IS JUST FILLER COPY. CONTENT TO BE SOURCED FROM CONTENTREPO.]\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n1. *Avoid Caffeine*: Avoiding caffeine can help stabilise your partner's mood.\r\n2. *Learn Cognitive Behavioral Techniques*: They can help your partner to challenge negative thought patterns that cause mood swings.\r\n3. *Stay Mindful*: Practice mindfulness to stay present and focused.\r\n4. *Consider Professional Help*: If your partner's mood swings are severe or interfering with her daily life, consider seeking help.\r\n5. *Stay Patient and Kind*: Managing mood swings can take time and effort.",
+          buttons: [
+            %Btn.Next{title: "➡️ Complete profile"},
+            %Btn.Next{title: "Rate this article"},
+            %Btn.Next{title: "Choose another topic"}
+          ],
+          image: image.id
+        }
+      ]
+    }
+
     article_topic_01_secondary = %ContentPage{
       slug: "mnch_onboarding_article_topic_01_secondary",
       title: "Article_topic_01_secondary",
@@ -608,6 +644,21 @@ defmodule ProfilePregnancyHealthTest do
             %Btn.Next{title: "Not really"},
           ],
           image: image.id
+        }
+      ]
+    }
+
+    curious_content_05 = %ContentPage{
+      slug: "mnch_onboarding_curious_content_05",
+      title: "Curious_content_05",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "Was this the information you were looking for?",
+          buttons: [
+            %Btn.Next{title: "Yes"},
+            %Btn.Next{title: "Not really"},
+          ]
         }
       ]
     }
@@ -694,8 +745,8 @@ defmodule ProfilePregnancyHealthTest do
             %Btn.Next{title: "➡️ Complete profile"},
             %Btn.Next{title: "View topics for you"},
             %Btn.Next{title: "Explore health guide"}
-
-          ]
+          ],
+          image: image.id
         }
       ]
     }
@@ -728,8 +779,8 @@ defmodule ProfilePregnancyHealthTest do
             %Btn.Next{title: "➡️ Complete profile"},
             %Btn.Next{title: "View topics for you"},
             %Btn.Next{title: "Explore health guide"}
-
-          ]
+          ],
+          image: image.id
         }
       ]
     }
@@ -806,8 +857,11 @@ defmodule ProfilePregnancyHealthTest do
                facts_factoid_2_trimester_3,
                topics,
                content_intro,
+               curious_content_intro,
+               article_topic_01,
                article_topic_01_secondary,
                article_feedback,
+               curious_content_05,
                article_feedback_no,
                curious_content_feedback,
                opt_in,
@@ -6412,6 +6466,31 @@ defmodule ProfilePregnancyHealthTest do
       |> result_matches(%{name: "pregnancy_stage_interest", value: "General pregnancy info"})
     end
 
+    test "i'm curious - question 3 then general (text only)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "👤 *Which stage of pregnancy are you most interested in?*",
+        list: {"Select option", [{"@menu_items[0]", "First trimester"}, {"@menu_items[1]", "Second trimester"}, {"@menu_items[2]", "Third trimester"}, {"@menu_items[3]", "General pregnancy info"}, {"@menu_items[4]", "Skip this question"}]}
+      })
+      |> FlowTester.send("@menu_items[3]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: nil
+      })
+      |> result_matches(%{name: "pregnancy_stage_interest", value: "General pregnancy info"})
+    end
     test "i'm curious - question 3 then skip" do
       setup_flow()
       |> Helpers.init_contact_fields()
@@ -6434,6 +6513,1223 @@ defmodule ProfilePregnancyHealthTest do
         buttons: button_labels(["Yes, sure ✅", "Maybe later", "No thanks"])
       })
       |> result_matches(%{name: "pregnancy_stage_interest", value: "Skip this question"})
+    end
+
+    test "i'm curious - loading 1 then error" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[3]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Okay"]),
+      })
+    end
+
+    test "i'm curious - loading 1 then error then ok" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Okay"]),
+      })
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nA uterus can stretch from the size of a lemon to the size of a watermelon during pregnancy 🍋",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 1 then ok (first trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nA uterus can stretch from the size of a lemon to the size of a watermelon during pregnancy 🍋",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 1 then ok then error (first trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nA uterus can stretch from the size of a lemon to the size of a watermelon during pregnancy 🍋",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 (first trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nA uterus can stretch from the size of a lemon to the size of a watermelon during pregnancy 🍋",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nA woman's blood volume can increase by 40 to 50 percent during pregnancy. This provides the extra oxygen needed for a healthy pregnancy 🤰🏽",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 then error (first trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nA uterus can stretch from the size of a lemon to the size of a watermelon during pregnancy 🍋",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nA woman's blood volume can increase by 40 to 50 percent during pregnancy. This provides the extra oxygen needed for a healthy pregnancy 🤰🏽",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 then error then awesome (first trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+    end
+
+    test "i'm curious - loading 2 then awesome (first trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+    end
+
+    test "i'm curious - loading 2 then awesome (first trimester, text only)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+          image: nil
+        })
+    end
+
+    test "i'm curious - loading 1 then ok (second trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nMoms-to-be can start producing breast milk as early as 14 weeks into their pregnancy! 🍼",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 1 then ok then error (second trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nMoms-to-be can start producing breast milk as early as 14 weeks into their pregnancy! 🍼",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 (second trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nMoms-to-be can start producing breast milk as early as 14 weeks into their pregnancy! 🍼",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nBabies can start to taste flavours even before they're born. From week 14 or 15, from the food you eat enters your bloodstream and the fluid surrounding the baby in the womb.",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 then error (second trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nBabies can start to taste flavours even before they're born. From week 14 or 15, from the food you eat enters your bloodstream and the fluid surrounding the baby in the womb.",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 then error then awesome (second trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+    end
+
+    test "i'm curious - loading 2 then awesome (second trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+    end
+
+    test "i'm curious - loading 2 then awesome (second trimester, text only)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+          image: nil
+        })
+    end
+
+    test "i'm curious - loading 1 then ok (third trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{
+        text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
+        buttons: button_labels(["Okay"]),
+        image: "https://example.org/image.jpeg"
+      })
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nSome women may experience changes in their voice during pregnancy. This is because hormonal changes can cause the vocal cords to swell!",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 1 then ok then error (third trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nSome women may experience changes in their voice during pregnancy. This is because hormonal changes can cause the vocal cords to swell!",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 (third trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{
+        text: "*Did you know?* 💡\r\n\r\nSome women may experience changes in their voice during pregnancy. This is because hormonal changes can cause the vocal cords to swell!",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{
+        text: "*Did you know* 💡\r\n\r\nBy the third trimester, a developing baby can recognise their mother’s voice from inside the womb 🤰🏽",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 then error (third trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{
+        text: "*Did you know* 💡\r\n\r\nBy the third trimester, a developing baby can recognise their mother’s voice from inside the womb 🤰🏽",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+    end
+
+    test "i'm curious - loading 2 then error then awesome (third trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Awesome"]),
+      })
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+    end
+
+    test "i'm curious - loading 2 then awesome (third trimester)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+    end
+
+    test "i'm curious - loading 2 then awesome (third trimester, text only)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+          image: nil
+        })
+    end
+
+    test "i'm curious - article topic" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{
+        text: "*Managing mood swings* 🎢\r\n[THIS IS JUST FILLER COPY. CONTENT TO BE SOURCED FROM CONTENTREPO.]\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n1. *Avoid Caffeine*: Avoiding caffeine can help stabilise your partner's mood.\r\n2. *Learn Cognitive Behavioral Techniques*: They can help your partner to challenge negative thought patterns that cause mood swings.\r\n3. *Stay Mindful*: Practice mindfulness to stay present and focused.\r\n4. *Consider Professional Help*: If your partner's mood swings are severe or interfering with her daily life, consider seeking help.\r\n5. *Stay Patient and Kind*: Managing mood swings can take time and effort.",
+        buttons: button_labels(["➡️ Complete profile", "Rate this article", "Choose another topic"])
+      })
+    end
+
+    test "i'm curious - show other topics" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[4]")
+      |> receive_message(%{
+        text: "Mmm, maybe I need a bit more information about you... 🤔\r\n\r\n👇🏽 Would you like to answer some more questions now?",
+        buttons: button_labels(["Yes, sure ✅", "Maybe later", "No thanks"])
+      })
+    end
+
+    test "i'm curious - article topic complete profile" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "➡️ Complete profile")
+      |> contact_matches(%{"profile_completion" => "25%"})
+      |> receive_message(%{
+        text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
+        image: "https://example.org/image.jpeg"
+      })
+    end
+
+    test "i'm curious - article topic rate this article" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{
+        text: "Was this the information you were looking for?",
+        buttons: button_labels(["Yes", "Not really"]),
+      })
+    end
+
+    test "i'm curious - article topic rate this article yes (opted in)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "true"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{
+        text: "Was this the information you were looking for?",
+        buttons: button_labels(["Yes", "Not really"]),
+      })
+      |> FlowTester.send(button_label: "Yes")
+      |> receive_message(%{
+        text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
+        image: "https://example.org/image.jpeg"
+      })
+    end
+
+    test "i'm curious - article topic rate this article yes (opted out)" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{
+        text: "Was this the information you were looking for?",
+        buttons: button_labels(["Yes", "Not really"]),
+      })
+      |> FlowTester.send(button_label: "Yes")
+      |> Helpers.handle_opt_in_reminder_flow()
+      |> receive_message(%{
+        text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
+        image: "https://example.org/image.jpeg"
+      })
+    end
+
+    test "i'm curious - article topic rate this article error" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{
+        text: "Was this the information you were looking for?",
+        buttons: button_labels(["Yes", "Not really"]),
+      })
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Yes", "Not really"]),
+      })
+    end
+
+    test "i'm curious - article topic rate this article no" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{
+        text: "Was this the information you were looking for?",
+        buttons: button_labels(["Yes", "Not really"]),
+      })
+      |> FlowTester.send(button_label: "Not really")
+      |> receive_message(%{
+        text: "Mmm, maybe I need a bit more information about you... 🤔\r\n\r\n👇🏽 Would you like to answer some more questions now?",
+        buttons: button_labels(["Yes, sure ✅", "Maybe later", "No thanks"])
+      })
+    end
+
+    test "i'm curious - article feedback error" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Not really")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Yes, sure ✅", "Maybe later", "No thanks"])
+      })
+    end
+
+    test "i'm curious - article feedback error then yes" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Not really")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Yes, sure ✅", "Maybe later", "No thanks"])
+      })
+      |> FlowTester.send(button_label: "Yes, sure ✅")
+      |> Helpers.handle_basic_profile_flow()
+      |> receive_message(%{
+        text: "🟩🟩🟩🟩⬜⬜⬜⬜ \r\n\r\nYour profile is already 50% complete! 🎉\r\n\r\n🤰🏽 Pregnancy info 3/3\r\n👤 Basic information 3/4\r\n➡️ Personal information 1/4\r\n⬜ Daily life 0/5\r\n\r\n👇🏾 Let’s move on to personal information.",
+        buttons: button_labels(["Continue"])
+      })
+    end
+
+    test "i'm curious - article feedback error then maybe" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Not really")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Yes, sure ✅", "Maybe later", "No thanks"])
+      })
+      |> FlowTester.send(button_label: "Maybe later")
+      |> receive_message(%{
+        text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
+        image: "https://example.org/image.jpeg"
+      })
+    end
+
+    test "i'm curious - article feedback error then no" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Rate this article")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Not really")
+      |> receive_message(%{})
+      |> FlowTester.send("falalalalaaaa")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        buttons: button_labels(["Yes, sure ✅", "Maybe later", "No thanks"])
+      })
+      |> FlowTester.send(button_label: "No thanks")
+      |> receive_message(%{
+        text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
+        buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
+        image: "https://example.org/image.jpeg"
+      })
+    end
+
+    test "i'm curious - article topic choose another topic" do
+      setup_flow()
+      |> Helpers.init_contact_fields()
+      |> init_contact_fields()
+      |> init_pregnancy_info()
+      |> FlowTester.start()
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Just curious")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Other")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[1]")
+      |> receive_message(%{})
+      |> FlowTester.send("@menu_items[2]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Okay")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Awesome")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
+      |> FlowTester.send("@menu_items[0]")
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "Choose another topic")
+      |> receive_messages([
+        %{
+          image: "https://example.org/image.jpeg"
+        },
+        %{
+          text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
+          list: {"Choose a topic", list_items(["Managing mood swings", "This week", "The third trimester", "Clinic visits", "Show me other topics"], "menu_items")},
+        }])
     end
   end
 end
