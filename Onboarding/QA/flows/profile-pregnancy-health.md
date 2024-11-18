@@ -1,3 +1,5 @@
+<!-- { section: "e544152f-bf53-4d7c-ae1b-c84314772219", x: 500, y: 48} -->
+
 ```stack
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "profile")
 
@@ -594,11 +596,6 @@ card PregnantEDDConfirmationError, then: PregnantEDDConfirmationError do
   end
 end
 
-```
-
-## SaveEDDAndContinue
-
-```stack
 card SaveEDDAndContinue, then: ContinueEDDBranch do
   edd_date_full_str = datevalue(edd_date_full, "%Y-%m-%d")
   log("EDD Saved as @edd_date_full_str")
@@ -905,11 +902,6 @@ card Loading1BranchError, then: Loading1BranchError do
   end
 end
 
-```
-
-## Loading Facts
-
-```stack
 card LoadingFactoid when trimester == 1, then: FactsFactoid1Trimester1 do
   log("Load factoid for 1st trimester")
 end
@@ -1053,6 +1045,7 @@ card DisplayTopicStart, then: TopicsStartError do
     )
 
   image("@image_data.body.meta.download_url")
+
   selected_topic =
     list("Choose a Topic",
       ArticleTopic: "item 1",
@@ -1191,11 +1184,6 @@ card ArticleFeedbackNoError, then: ArticleFeedbackNoError do
   end
 end
 
-```
-
-## Pregnant Mom Opt-In
-
-```stack
 card MomReminderOptIn
      when contact.opted_in == false or
             is_nil_or_empty(contact.opted_in),
@@ -1208,11 +1196,6 @@ card MomReminderOptIn, then: HealthProfessionals do
   log("Already opted in")
 end
 
-```
-
-## Pregnant Mom Who Is Health Professional
-
-```stack
 card HealthProfessionals when contact.info_for_health_professionals == true do
   log("Go to Pregnant nurse")
   run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
@@ -1299,11 +1282,7 @@ card ProfileProgress25Error, then: ProfileProgress25Error do
   end
 end
 
-```
-
-## Partner Profile Progress 25% Secondary
-
-```stack
+# Partner Profile Progress 25% Secondary
 card ProfileProgress25Secondary, then: DisplayProfileProgress25Secondary do
   write_result("profile_completion", "25%")
   update_contact(profile_completion: "25%")
@@ -1376,11 +1355,7 @@ card ProfileProgress25SecondaryError, then: ProfileProgress25SecondaryError do
   end
 end
 
-```
-
-## Curious Profile Progress 25% Secondary 2
-
-```stack
+# Curious Profile Progress 25% Secondary 2
 card ProfileProgress25Secondary2, then: DisplayProfileProgress25Secondary2 do
   write_result("profile_completion", "25%")
   update_contact(profile_completion: "25%")
@@ -1453,11 +1428,6 @@ card ProfileProgress25Secondary2Error, then: ProfileProgress25Secondary2Error do
   end
 end
 
-```
-
-## Complete Profile
-
-```stack
 card CompleteProfile, then: ProfileProgress50 do
   # Kick off Basic Profile Questions
   log("Running Basic Profile Questions")
@@ -1467,31 +1437,20 @@ end
 
 ```
 
-## Topics for you
-
-This will be developed as part of a new Activity
+## Go to next
+* Topics for you
+* Explore health guide
+* Main Menu
 
 ```stack
 card TopicsForYou, then: TODO do
   log("TopicsForYou to be developed as part of a new activity")
 end
 
-```
-
-## Explore health guide
-
-This will be developed as part of a new Activity
-
-```stack
 card ExploreHealthGuide, then: TODO do
   log("ExploreHealthGuide to be developed as part of a new activity")
 end
 
-```
-
-## Main Menu
-
-```stack
 card MainMenu do
   run_stack("21b892d6-685c-458e-adae-304ece46022a")
 end
@@ -1790,8 +1749,16 @@ card ProfileProgress100Error, then: ProfileProgress100Error do
 end
 
 ```
-
-## Sentiment Other First
+## Sentiments
+* Sentiment Other First
+* Sentiment Other Second
+* Sentiment Other Third
+* Sentiment Scared Worried First
+* Sentiment Scared Worried Second
+* Sentiment Scared Worried Third
+* Sentiment Excited Happy First
+* Sentiment Excited Happy Second
+* Sentiment Excited Happy Third
 
 ```stack
 card SentimentOtherFirst, then: DisplaySentimentOtherFirst do
@@ -1851,11 +1818,6 @@ card DisplaySentimentOtherFirstError, then: DisplaySentimentOtherFirstError do
   end
 end
 
-```
-
-## Sentiment Other Second
-
-```stack
 card SentimentOtherSecond, then: DisplaySentimentOtherSecond do
   search =
     get(
@@ -1913,11 +1875,6 @@ card DisplaySentimentOtherSecondError, then: DisplaySentimentOtherSecondError do
   end
 end
 
-```
-
-## Sentiment Other Third
-
-```stack
 card SentimentOtherThird, then: DisplaySentimentOtherThird do
   search =
     get(
@@ -1975,11 +1932,6 @@ card DisplaySentimentOtherThirdError, then: DisplaySentimentOtherThirdError do
   end
 end
 
-```
-
-## Sentiment Scared Worried First
-
-```stack
 card SentimentScaredWorriedFirst, then: DisplaySentimentScaredWorriedFirst do
   search =
     get(
@@ -2037,11 +1989,6 @@ card DisplaySentimentScaredWorriedFirstError, then: DisplaySentimentScaredWorrie
   end
 end
 
-```
-
-## Sentiment Scared Worried Second
-
-```stack
 card SentimentScaredWorriedSecond, then: DisplaySentimentScaredWorriedSecond do
   search =
     get(
@@ -2099,11 +2046,6 @@ card DisplaySentimentScaredWorriedSecondError, then: DisplaySentimentScaredWorri
   end
 end
 
-```
-
-## Sentiment Scared Worried Third
-
-```stack
 card SentimentScaredWorriedThird, then: DisplaySentimentScaredWorriedThird do
   search =
     get(
@@ -2161,11 +2103,6 @@ card DisplaySentimentScaredWorriedThirdError, then: DisplaySentimentScaredWorrie
   end
 end
 
-```
-
-## Sentiment Excited Happy First
-
-```stack
 card SentimentExcitedHappyFirst, then: DisplaySentimentExcitedHappyFirst do
   search =
     get(
@@ -2223,11 +2160,6 @@ card DisplaySentimentExcitedHappyFirstError, then: DisplaySentimentExcitedHappyF
   end
 end
 
-```
-
-## Sentiment Excited Happy Second
-
-```stack
 card SentimentExcitedHappySecond, then: DisplaySentimentExcitedHappySecond do
   search =
     get(
@@ -2285,11 +2217,6 @@ card DisplaySentimentExcitedHappySecondError, then: DisplaySentimentExcitedHappy
   end
 end
 
-```
-
-## Sentiment Excited Happy Third
-
-```stack
 card SentimentExcitedHappyThird, then: DisplaySentimentExcitedHappyThird do
   search =
     get(
@@ -2349,7 +2276,13 @@ end
 
 ```
 
-## Facts Factoid 1 Trimester 1
+## Factoids
+* Facts Factoid 1 Trimester 1
+* Facts Factoid 1 Trimester 2
+* Facts Factoid 1 Trimester 3
+* Facts Factoid 2 Trimester 1
+* Facts Factoid 2 Trimester 2
+* Facts Factoid 2 Trimester 3
 
 ```stack
 card FactsFactoid1Trimester1, then: DisplayFactsFactoid1Trimester1 do
@@ -2409,11 +2342,6 @@ card DisplayFactsFactoid1Trimester1Error, then: DisplayFactsFactoid1Trimester1Er
   end
 end
 
-```
-
-## Facts Factoid 1 Trimester 2
-
-```stack
 card FactsFactoid1Trimester2, then: DisplayFactsFactoid1Trimester2 do
   search =
     get(
@@ -2471,11 +2399,6 @@ card DisplayFactsFactoid1Trimester2Error, then: DisplayFactsFactoid1Trimester2Er
   end
 end
 
-```
-
-## Facts Factoid 1 Trimester 3
-
-```stack
 card FactsFactoid1Trimester3, then: DisplayFactsFactoid1Trimester3 do
   search =
     get(
@@ -2533,11 +2456,6 @@ card DisplayFactsFactoid1Trimester3Error, then: DisplayFactsFactoid1Trimester3Er
   end
 end
 
-```
-
-## Facts Factoid 2 Trimester 1
-
-```stack
 card FactsFactoid2Trimester1, then: DisplayFactsFactoid2Trimester1 do
   search =
     get(
@@ -2607,11 +2525,6 @@ card FactoidTrimester1GoToNext, then: TopicsStart do
   log("Go to im pregnant content intro")
 end
 
-```
-
-## Facts Factoid 2 Trimester 2
-
-```stack
 card FactsFactoid2Trimester2, then: DisplayFactsFactoid2Trimester2 do
   search =
     get(
@@ -2681,11 +2594,6 @@ card FactoidTrimester2GoToNext, then: TopicsStart do
   log("Go to im pregnant content intro")
 end
 
-```
-
-## Facts Factoid 2 Trimester 3
-
-```stack
 card FactsFactoid2Trimester3, then: DisplayFactsFactoid2Trimester3 do
   search =
     get(
@@ -3120,11 +3028,6 @@ card PartnerEDDConfirmationError, then: PartnerEDDConfirmationError do
   end
 end
 
-```
-
-## Partner Save EDD
-
-```stack
 card SavePartnerEDD, then: PartnerPregnantGender do
   edd_date_full_str = datevalue(edd_date_full, "%Y-%m-%d")
   log("EDD Saved as @edd_date_full_str")
@@ -3636,11 +3539,6 @@ card ReminderOptIn, then: HealthProfessionalsSecondary do
   log("Already opted in")
 end
 
-```
-
-## Partner Reminder Opt In Yes
-
-```stack
 card ReminderOptInYes, then: HealthProfessionalsSecondary do
   update_contact(opted_in: "true")
 
@@ -3669,11 +3567,6 @@ card ReminderOptInYes, then: HealthProfessionalsSecondary do
   text("@loading_message")
 end
 
-```
-
-## Partner Reminder Opt In No
-
-```stack
 card ReminderOptInNo, then: HealthProfessionalsSecondary do
   update_contact(opted_in: "false")
 
@@ -3915,7 +3808,7 @@ card DisplayCurious03Error, then: DisplayCurious03Error do
       GeneralInfo: "@menu_items[3]",
       SkipQuestion: "@menu_items[4]"
     ) do
-      text("@message.message")
+      text("@list_error_text")
     end
 end
 
@@ -3972,14 +3865,15 @@ end
 
 # TODO display facts 
 # Text only
-card DisplayLoadingComponent01 when contact.data_preference == "text only" do
+card DisplayLoadingComponent01 when contact.data_preference == "text only",
+  then: DisplayLoadingComponent01Error do
   buttons(LoadingComponentGoTo: "@button_labels[0]") do
     text("@loading_message")
   end
 end
 
 # Display with image
-card DisplayLoadingComponent01 do
+card DisplayLoadingComponent01, then: DisplayLoadingComponent01Error do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -4007,11 +3901,11 @@ card LoadingComponentGoTo when selected_topic = "first_trimester", then: FactsFa
 end
 
 card LoadingComponentGoTo when selected_topic = "second_trimester", then: FactsFactoid1Trimester2 do
-  log(" trimester topic")
+  log("Second trimester topic")
 end
 
 card LoadingComponentGoTo when selected_topic = "third_trimester", then: FactsFactoid1Trimester3 do
-  log(" trimester topic")
+  log("Third trimester topic")
 end
 
 card LoadingComponentGoTo when selected_topic = "general_info", then: LoadingComponent02 do
@@ -4019,7 +3913,7 @@ card LoadingComponentGoTo when selected_topic = "general_info", then: LoadingCom
 end
 
 card LoadingComponentGoTo, then: CuriousContentIntro do
-  log("Skip topic")
+  log("Skip topic @selected_topic")
 end
 
 ```

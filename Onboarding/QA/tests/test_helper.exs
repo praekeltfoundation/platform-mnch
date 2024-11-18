@@ -9,6 +9,7 @@ defmodule Onboarding.QA.Helpers do
     |> init_daily_life()
     |> init_hcw_info()
     |> init_intro_and_welcome()
+    |> init_profile_classifier()
   end
 
   # Technically this should be all the profile fields in Turn, but we can fill them in as we go along
@@ -45,6 +46,10 @@ defmodule Onboarding.QA.Helpers do
     context |> FlowTester.set_contact_properties(%{"occupational_role" => "", "facility_type" => "", "professional_support" => ""})
   end
 
+  defp init_profile_classifier(context) do
+    context |> FlowTester.set_contact_properties(%{"love_and_relationships" => "false", "pregnancy_information" => "false", "baby_and_child" => "false", "well_being" => "false", "family_planning" => "false", "info_for_health_professionals" => "false"})
+  end
+
   def basic_profile_flow_uuid(), do: "26e0c9e4-6547-4e3f-b9f4-e37c11962b6d"
 
   def personal_info_uuid(), do: "61a880e4-cf7b-47c5-a047-60802aaa7975"
@@ -62,6 +67,8 @@ defmodule Onboarding.QA.Helpers do
   def edd_reminder_uuid(), do: "15c9127a-2e90-4b99-a41b-25e2a39d453f"
 
   def profile_pregnancy_health_uuid(), do: "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+
+  def generic_profile_uuid(), do: "51701b44-bcca-486e-9c99-bf3545a8ba2d"
 
   def handle_basic_profile_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, basic_profile_flow_uuid(), fn step ->
     FlowTester.set_contact_properties(step, %{
@@ -107,6 +114,8 @@ defmodule Onboarding.QA.Helpers do
   def handle_edd_reminder_flow(step), do: FlowTester.handle_child_flow(step, edd_reminder_uuid())
 
   def handle_profile_pregnancy_health_flow(step), do: FlowTester.handle_child_flow(step, profile_pregnancy_health_uuid())
+
+  def handle_generic_profile_flow(step), do: FlowTester.handle_child_flow(step, generic_profile_uuid())
 
   def flow_path(flow_name), do: Path.join([__DIR__, "..","flows_json", flow_name <> ".json"])
 

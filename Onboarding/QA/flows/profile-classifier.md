@@ -39,6 +39,7 @@ Here we do any setup and fetching of values before we start the flow.
 ```stack
 card Checkpoint, then: NameError do
   update_contact(checkpoint: "profile_classifier")
+  write_result("profile_classifier_started", "yes")
 end
 
 card NameError, then: Name do
@@ -119,7 +120,7 @@ card Name, then: NameValidation do
   name = ask("@message.message")
 end
 
-card NameValidation when lower("@name") == "skip" do
+card NameValidation when lower("@name") == "skip", then: NameValidationError do
   search =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -157,6 +158,12 @@ card NameValidation, then: Domains1 do
   update_contact(name: "@name")
 end
 
+card NameValidationError, then: NameValidationError do
+  buttons(Name: "@button_labels[0]", Domains1: "@button_labels[1]") do
+    text("@button_error_text")
+  end
+end
+
 ```
 
 # Domains
@@ -190,7 +197,12 @@ card Domains1, then: Domains1Branch do
     )
 
   message = page.body.body.text.value
-  message_text = substitute(message.message, "{@username}", "@contact.name")
+
+  message_text =
+    if is_nil_or_empty(contact.name),
+      do: substitute(message.message, ", {@username}", ""),
+      else: substitute(message.message, "{@username}", "@contact.name")
+
   button_labels = map(message.buttons, & &1.value.title)
 end
 
