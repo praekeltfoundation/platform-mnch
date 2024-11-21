@@ -2,6 +2,7 @@ defmodule IntroAndWelcomeTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
 
@@ -17,206 +18,20 @@ defmodule IntroAndWelcomeTest do
     assert :ok = FakeCMS.add_pages(wh_pid, [index])
 
     # Error messages are in a separate sheet.
-    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", [index])
+    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: [index])
 
     # The content for these tests.
-    assert :ok = Helpers.import_content_csv(wh_pid, "intro-and-welcome", [index])
-
-    # # Add some content.
-    # error_button = %ContentPage{
-    #   slug: "mnch_onboarding_error_handling_button",
-    #   title: "error",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-    #     }
-    #   ]
-    # }
-
-    # error_list = %ContentPage{
-    #   slug: "mnch_onboarding_error_handling_list_message",
-    #   title: "error",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send."
-    #     }
-    #   ]
-    # }
-
-    # welcome = %ContentPage{
-    #   slug: "mnch_onboarding_welcome",
-    #   title: "Welcome",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
-    #       buttons: [
-    #         %Btn.Next{title: "Get started"},
-    #         %Btn.Next{title: "Change my language"},
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # languages = %ContentPage{
-    #   slug: "mnch_onboarding_languages",
-    #   title: "Language",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "*Which language would you prefer?*\r\n\r\n👇🏽 Choose from the list below.",
-    #       list_items: [
-    #         %ListItem{value: "English"},
-    #         %ListItem{value: "Français"},
-    #         %ListItem{value: "Português"},
-    #         %ListItem{value: "عربي"},
-    #         %ListItem{value: "Español"},
-    #         %ListItem{value: "中国人"}
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # language_updated = %ContentPage{
-    #   slug: "mnch_onboarding_language_updated",
-    #   title: "Language_updated",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "Your language has been updated to {language selection}.",
-    #       buttons: [
-    #         %Btn.Next{title: "Ok, thanks"},
-    #         %Btn.Next{title: "Choose another one"},
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # pp_document = %ContentPage{
-    #   slug: "mnch_onboarding_pp_document",
-    #   title: "PP_Document",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "*Your information is safe and won't be shared* 🔒\r\n\r\nThe information you share is only used to give you personalised advice and information.\r\n\r\nRead the privacy policy attached and let me know if you accept it.",
-    #       buttons: [
-    #         %Btn.Next{title: "Yes, I accept ✅"},
-    #         %Btn.Next{title: "No, I don’t accept"},
-    #         %Btn.Next{title: "Read a summary"}
-    #       ],
-    #       document: 1
-    #     }
-    #   ]
-    # }
-
-    # pp_summary = %ContentPage{
-    #   slug: "mnch_onboarding_pp_summary",
-    #   title: "PP_summary",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "*What’s in the privacy policy*\r\n\r\n*Privacy*\r\nWe keep your personal information safe and private.\r\n\r\n*Terms and conditions*\r\nThis service gives you health information and self-help tools. It is not a replacement for advice from a real-life health worker or doctor, and professionals should still be relied upon for medical concerns.\r\n\r\n👇🏽 Do you accept the privacy policy?",
-    #       buttons: [
-    #         %Btn.Next{title: "Yes"},
-    #         %Btn.Next{title: "No"}
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # pp_not_accepted = %ContentPage{
-    #   slug: "mnch_onboarding_pp_not_accepted",
-    #   title: "PP_not_accepted",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "In order to use [my_health], you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
-    #       buttons: [
-    #         %Btn.Next{title: "See privacy policy"}
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # opt_in = %ContentPage{
-    #   slug: "mnch_onboarding_opt_in",
-    #   title: "Opt_in",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "*Sometimes I'll need to send you important messages – like appointment reminders or urgent health news* 🔔\r\n\r\nYou can choose which types messages you want to receive later from your profile. It’s also easy to stop messages at any time.\r\n\r\n👇🏽 Can I send you these messages?",
-    #       buttons: [
-    #         %Btn.Next{title: "Yes ✅"},
-    #         %Btn.Next{title: "Decide later"}
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # intent = %ContentPage{
-    #   slug: "mnch_onboarding_intent",
-    #   title: "Intent",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
-    #       buttons: [
-    #         %Btn.Next{title: "Create a profile 👤"},
-    #         %Btn.Next{title: "Explore the service"},
-    #         %Btn.Next{title: "Go to help desk"}
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # data_preferences = %ContentPage{
-    #   slug: "mnch_onboarding_data_preferences",
-    #   title: "Data_preferences",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
-    #       buttons: [
-    #         %Btn.Next{title: "All"},
-    #         %Btn.Next{title: "Text & images"},
-    #         %Btn.Next{title: "Text only"}
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # data_preferences_yes = %ContentPage{
-    #   slug: "mnch_onboarding_data_preferences_yes",
-    #   title: "Data_preferences_yes",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{
-    #       message: "Got it 👍🏽\r\n\r\nI'll share {option choice} for now.\r\n\r\nYou can change this at any time in `Settings`",
-    #       buttons: [
-    #         %Btn.Next{title: "That's great!"}
-    #       ]
-    #     }
-    #   ]
-    # }
-
-    # assert :ok =
-    #   FakeCMS.add_pages(wh_pid, [
-    #     %Index{slug: "test", title: "test"},
-    #     error_button,
-    #     error_list,
-    #     welcome,
-    #     languages,
-    #     language_updated,
-    #     pp_document,
-    #     pp_summary,
-    #     pp_not_accepted,
-    #     opt_in,
-    #     intent,
-    #     data_preferences,
-    #     data_preferences_yes
-    #   ])
+    assert :ok = Helpers.import_content_csv(
+                   wh_pid,
+                   "intro-and-welcome",
+                   existing_pages: [index],
+                   field_transform: fn s ->
+                     s
+                     |> String.replace(~r/\r?\n$/, "")
+                     |> String.replace("{language_selection}", "{language selection}")
+                     |> String.replace("{option_choice}", "{option choice}")
+                   end
+                 )
 
     assert :ok = FakeCMS.add_document(wh_pid, %Document{id: 1, title: "Privacy Policy"})
 
@@ -243,6 +58,9 @@ defmodule IntroAndWelcomeTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
     %{flow: flow}
   end
