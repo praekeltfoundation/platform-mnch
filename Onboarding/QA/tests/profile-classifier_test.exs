@@ -191,20 +191,25 @@ defmodule ProfileClassifierTest do
   defp real_or_fake_cms(step, base_url, auth_token, :fake),
     do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
-  defp setup_flow() do
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("profile-classifier")}
+
+  defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
     auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
-    Helpers.flow_path("profile-classifier")
-    |> FlowTester.from_json!()
-    |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
-    |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    flow =
+      ctx.init_flow
+      |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    %{flow: flow}
   end
 
+  setup [:setup_flow]
+
   describe "Profile Classifier" do
-    test "name" do
-      setup_flow()
+    test "name", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -214,8 +219,8 @@ defmodule ProfileClassifierTest do
       |> result_matches(%{name: "profile_classifier_started", value: "yes"})
     end
 
-    test "name skip" do
-      setup_flow()
+    test "name skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowStep.clear_messages()
@@ -226,8 +231,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name skip then go back" do
-      setup_flow()
+    test "name skip then go back", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("skip")
@@ -238,8 +243,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name skip then got it" do
-      setup_flow()
+    test "name skip then got it", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{"name" => ""})
       |> FlowTester.start()
@@ -251,8 +256,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name skip then error" do
-      setup_flow()
+    test "name skip then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("skip")
@@ -264,8 +269,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name skip then error then go back" do
-      setup_flow()
+    test "name skip then error then go back", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("skip")
@@ -277,8 +282,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name validate no numbers" do
-      setup_flow()
+    test "name validate no numbers", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowStep.clear_messages()
@@ -288,8 +293,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name validate no numbers then skip" do
-      setup_flow()
+    test "name validate no numbers then skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("1234")
@@ -301,8 +306,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name validate no numbers then correct" do
-      setup_flow()
+    test "name validate no numbers then correct", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("1234")
@@ -315,8 +320,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name validate length" do
-      setup_flow()
+    test "name validate length", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowStep.clear_messages()
@@ -326,8 +331,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "name entered" do
-      setup_flow()
+    test "name entered", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowStep.clear_messages()
@@ -339,8 +344,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 2 error" do
-      setup_flow()
+    test "domain 2 error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -358,8 +363,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 2 add" do
-      setup_flow()
+    test "domain 2 add", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -374,8 +379,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 2 skip" do
-      setup_flow()
+    test "domain 2 skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -390,8 +395,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 3 error" do
-      setup_flow()
+    test "domain 3 error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -406,8 +411,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 3 add" do
-      setup_flow()
+    test "domain 3 add", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -423,8 +428,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 3 skip" do
-      setup_flow()
+    test "domain 3 skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -440,8 +445,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 4 error" do
-      setup_flow()
+    test "domain 4 error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -457,8 +462,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 4 add" do
-      setup_flow()
+    test "domain 4 add", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -475,8 +480,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 4 skip" do
-      setup_flow()
+    test "domain 4 skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -493,8 +498,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 5 error" do
-      setup_flow()
+    test "domain 5 error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -511,8 +516,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 5 add" do
-      setup_flow()
+    test "domain 5 add", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -530,8 +535,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 5 skip" do
-      setup_flow()
+    test "domain 5 skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -549,8 +554,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 6 error" do
-      setup_flow()
+    test "domain 6 error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -568,8 +573,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 6 add" do
-      setup_flow()
+    test "domain 6 add", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -588,8 +593,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 6 skip" do
-      setup_flow()
+    test "domain 6 skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -608,8 +613,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 7 error" do
-      setup_flow()
+    test "domain 7 error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -628,8 +633,8 @@ defmodule ProfileClassifierTest do
       })
     end
 
-    test "domain 7 add - go to HCW flow" do
-      setup_flow()
+    test "domain 7 add - go to HCW flow", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -647,8 +652,8 @@ defmodule ProfileClassifierTest do
       |> flow_finished()
     end
 
-    test "domain 7 skip - go to generic flow" do
-      setup_flow()
+    test "domain 7 skip - go to generic flow", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")
@@ -666,8 +671,8 @@ defmodule ProfileClassifierTest do
       |> flow_finished()
     end
 
-    test "domain 7 skip - go to profile pregnancy health flow" do
-      setup_flow()
+    test "domain 7 skip - go to profile pregnancy health flow", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> FlowTester.send("abcdefghijklmnopqrst")

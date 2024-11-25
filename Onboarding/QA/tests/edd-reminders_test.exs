@@ -168,16 +168,21 @@ defmodule EDDRemindersTest do
   defp real_or_fake_cms(step, base_url, auth_token, :fake),
     do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
-  defp setup_flow() do
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("edd-reminders")}
+
+  defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
     auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
-    Helpers.flow_path("edd-reminders")
-    |> FlowTester.from_json!()
-    |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
-    |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    flow =
+      ctx.init_flow
+      |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    %{flow: flow}
   end
+
+  setup [:setup_flow]
 
   defp get_months(this_month \\ DateTime.utc_now()) do
     [
@@ -231,8 +236,8 @@ defmodule EDDRemindersTest do
   end
 
   describe "EDD Reminder" do
-    test "Got it" do
-      setup_flow()
+    test "Got it", %{flow: flow} do
+      flow
       |> FlowTester.start()
       |> receive_message(%{
         text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
@@ -245,8 +250,8 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "Got it text only" do
-      setup_flow()
+    test "Got it text only", %{flow: flow} do
+      flow
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{
@@ -261,8 +266,8 @@ defmodule EDDRemindersTest do
     end
 
     # TODO: Figure out why this doesn't work - it probably has something to do with the fact that we're sending a template
-    # test "Got it error" do
-    #   setup_flow()
+    # test "Got it error", %{flow: flow} do
+    #   flow
     #   |> FlowTester.start()
     #   |> receive_message(%{
     #     text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
@@ -275,8 +280,8 @@ defmodule EDDRemindersTest do
     #   })
     # end
 
-    test "Got it -> Main menu" do
-      setup_flow()
+    test "Got it -> Main menu", %{flow: flow} do
+      flow
       |> FlowTester.start()
       |> receive_message(%{
         text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
@@ -292,8 +297,8 @@ defmodule EDDRemindersTest do
       |> flow_finished()
     end
 
-    test "EDD Unknown" do
-      setup_flow()
+    test "EDD Unknown", %{flow: flow} do
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -303,8 +308,8 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "EDD Unknown error" do
-      setup_flow()
+    test "EDD Unknown error", %{flow: flow} do
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -319,8 +324,8 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "EDD Unknown -> I'll do this later" do
-      setup_flow()
+    test "EDD Unknown -> I'll do this later", %{flow: flow} do
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -332,12 +337,12 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "EDD Unknown -> Update due date" do
+    test "EDD Unknown -> Update due date", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -349,8 +354,8 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "I'll do this later error" do
-      setup_flow()
+    test "I'll do this later error", %{flow: flow} do
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -364,8 +369,8 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "I'll do this later -> main menu" do
-      setup_flow()
+    test "I'll do this later -> main menu", %{flow: flow} do
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -380,8 +385,8 @@ defmodule EDDRemindersTest do
       |> flow_finished()
     end
 
-    test "I'll do this later -> go to health guide" do
-      setup_flow()
+    test "I'll do this later -> go to health guide", %{flow: flow} do
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -396,12 +401,12 @@ defmodule EDDRemindersTest do
       |> flow_finished()
     end
 
-    test "edd month" do
+    test "edd month", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("edd_month")
@@ -411,12 +416,12 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd month error" do
+    test "edd month error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("edd_month")
@@ -428,7 +433,7 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd month -> edd unknown" do
+    test "edd month -> edd unknown", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
@@ -436,7 +441,7 @@ defmodule EDDRemindersTest do
       last_month = length(list_of_months) - 1
       month = elem(Enum.at(list_of_months, last_month), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("edd_month")
@@ -448,13 +453,13 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd month -> edd day" do
+    test "edd month -> edd day", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 2), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("edd_month")
@@ -465,13 +470,13 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day -> confirmed" do
+    test "edd day -> confirmed", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{})
@@ -487,13 +492,13 @@ defmodule EDDRemindersTest do
       |> result_matches(%{name: "edd", value: ^full_edd})
     end
 
-    test "edd confirmed -> main menu" do
+    test "edd confirmed -> main menu", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{})
@@ -509,13 +514,13 @@ defmodule EDDRemindersTest do
     end
 
     ## EDD Calculator Validation
-    test "edd day then not number error" do
+    test "edd day then not number error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{})
@@ -529,13 +534,13 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day then not a day error" do
+    test "edd day then not a day error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{})
@@ -549,13 +554,13 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day then above max day error" do
+    test "edd day then above max day error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{})
@@ -569,14 +574,14 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day then feb 29 is valid" do
+    test "edd day then feb 29 is valid", %{flow: flow} do
       fake_time = ~U[2023-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
@@ -592,14 +597,14 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day then feb 30 is not valid" do
+    test "edd day then feb 30 is not valid", %{flow: flow} do
       fake_time = ~U[2023-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
@@ -614,14 +619,14 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day then long month 31 is valid" do
+    test "edd day then long month 31 is valid", %{flow: flow} do
       fake_time = ~U[2023-01-01 00:00:00Z] # January
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 31, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
@@ -637,14 +642,14 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day then long month 32 is invalid" do
+    test "edd day then long month 32 is invalid", %{flow: flow} do
       fake_time = ~U[2024-01-01 00:00:00Z] # January
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
@@ -659,14 +664,14 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day then short month 30 is valid" do
+    test "edd day then short month 30 is valid", %{flow: flow} do
       fake_time = ~U[2024-04-01 00:00:00Z] # April
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 30, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
@@ -682,14 +687,14 @@ defmodule EDDRemindersTest do
       })
     end
 
-    test "edd day then short month 31 is invalid" do
+    test "edd day then short month 31 is invalid", %{flow: flow} do
       fake_time = ~U[2024-04-01 00:00:00Z] # April
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> Helpers.init_contact_fields()
       |> FlowTester.start()

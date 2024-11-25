@@ -153,20 +153,25 @@ defmodule BasicQuestionsTest do
   defp real_or_fake_cms(step, base_url, auth_token, :fake),
     do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
-  defp setup_flow() do
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("basic-questions")}
+
+  defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
     auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
-    Helpers.flow_path("basic-questions")
-    |> FlowTester.from_json!()
-    |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
-    |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    flow =
+      ctx.init_flow
+      |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    %{flow: flow}
   end
 
+  setup [:setup_flow]
+
   describe "Basic questions" do
-    test "correct YoB" do
-      setup_flow()
+    test "correct YoB", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -180,8 +185,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"year_of_birth" => "1988"})
     end
 
-    test "skip age question" do
-      setup_flow()
+    test "skip age question", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -195,8 +200,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"year_of_birth" => ""})
     end
 
-    test "validate YoB less than now" do
-      setup_flow()
+    test "validate YoB less than now", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -209,8 +214,8 @@ defmodule BasicQuestionsTest do
       })
     end
 
-    test "validate YoB is a number" do
-      setup_flow()
+    test "validate YoB is a number", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -223,8 +228,8 @@ defmodule BasicQuestionsTest do
       })
     end
 
-    test "validate YoB is 4 digits" do
-      setup_flow()
+    test "validate YoB is 4 digits", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -237,8 +242,8 @@ defmodule BasicQuestionsTest do
       })
     end
 
-    test "validate YoB is greater than min" do
-      setup_flow()
+    test "validate YoB is greater than min", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -251,8 +256,8 @@ defmodule BasicQuestionsTest do
       })
     end
 
-    test "validate YoB is not a string" do
-      setup_flow()
+    test "validate YoB is not a string", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -265,8 +270,8 @@ defmodule BasicQuestionsTest do
       })
     end
 
-    test "YoB error then province" do
-      setup_flow()
+    test "YoB error then province", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -285,8 +290,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"year_of_birth" => "1988"})
     end
 
-    test "Province then why" do
-      setup_flow()
+    test "Province then why", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -306,8 +311,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"province" => ""})
     end
 
-    test "Province then error" do
-      setup_flow()
+    test "Province then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -327,8 +332,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"province" => ""})
     end
 
-    test "skip province question" do
-      setup_flow()
+    test "skip province question", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -348,8 +353,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"province" => ""})
     end
 
-    test "Province then area" do
-      setup_flow()
+    test "Province then area", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -369,8 +374,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"province" => "{province_name_01}"})
     end
 
-    test "Area then error" do
-      setup_flow()
+    test "Area then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -395,8 +400,8 @@ defmodule BasicQuestionsTest do
       })
     end
 
-    test "skip area question" do
-      setup_flow()
+    test "skip area question", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -422,8 +427,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"area_type" => ""})
     end
 
-    test "Area (Urban) then gender" do
-      setup_flow()
+    test "Area (Urban) then gender", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -449,8 +454,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"area_type" => "big town / city"})
     end
 
-    test "Area (Rural) then gender" do
-      setup_flow()
+    test "Area (Rural) then gender", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -476,8 +481,8 @@ defmodule BasicQuestionsTest do
       |> contact_matches(%{"area_type" => "countryside / village"})
     end
 
-    test "Gender already set -> end of flow" do
-      setup_flow()
+    test "Gender already set -> end of flow", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{"gender" => "female"})
       |> FlowTester.start()
@@ -501,8 +506,8 @@ defmodule BasicQuestionsTest do
       |> flow_finished()
     end
 
-    test "Gender to gender error" do
-      setup_flow()
+    test "Gender to gender error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -533,8 +538,8 @@ defmodule BasicQuestionsTest do
       })
     end
 
-    test "Skip gender question" do
-      setup_flow()
+    test "Skip gender question", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -563,8 +568,8 @@ defmodule BasicQuestionsTest do
       |> flow_finished()
     end
 
-    test "Gender Male" do
-      setup_flow()
+    test "Gender Male", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -593,8 +598,8 @@ defmodule BasicQuestionsTest do
       |> flow_finished()
     end
 
-    test "Gender Female" do
-      setup_flow()
+    test "Gender Female", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -623,8 +628,8 @@ defmodule BasicQuestionsTest do
       |> flow_finished()
     end
 
-    test "Gender Other" do
-      setup_flow()
+    test "Gender Other", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{

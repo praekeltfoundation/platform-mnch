@@ -1,5 +1,10 @@
 defmodule Onboarding.QA.Helpers do
 
+  def load_flow(flow_name) do
+    Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
+    |> FlowTester.from_json!()
+  end
+
   def init_contact_fields(context) do
     context
     |> init_base()
@@ -116,8 +121,6 @@ defmodule Onboarding.QA.Helpers do
   def handle_profile_pregnancy_health_flow(step), do: FlowTester.handle_child_flow(step, profile_pregnancy_health_uuid())
 
   def handle_generic_profile_flow(step), do: FlowTester.handle_child_flow(step, generic_profile_uuid())
-
-  def flow_path(flow_name), do: Path.join([__DIR__, "..","flows_json", flow_name <> ".json"])
 
   defmodule Macros do
     # This lets us have cleaner button/list assertions.

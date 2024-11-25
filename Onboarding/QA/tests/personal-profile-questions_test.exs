@@ -146,20 +146,25 @@ defmodule PersonalProfileQuestionsTest do
   defp real_or_fake_cms(step, base_url, auth_token, :fake),
     do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
-  defp setup_flow() do
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("personal-profile-questions")}
+
+  defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
     auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
-    Helpers.flow_path("personal-profile-questions")
-    |> FlowTester.from_json!()
-    |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
-    |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    flow =
+      ctx.init_flow
+      |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    %{flow: flow}
   end
 
+  setup [:setup_flow]
+
   describe "Personal Profile questions" do
-    test "relationship status error" do
-      setup_flow()
+    test "relationship status error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -174,8 +179,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"relationship_status" => ""})
     end
 
-    test "skip relationship status" do
-      setup_flow()
+    test "skip relationship status", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -190,8 +195,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"relationship_status" => ""})
     end
 
-    test "relationship status then education" do
-      setup_flow()
+    test "relationship status then education", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -206,8 +211,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"relationship_status" => "single"})
     end
 
-    test "education error" do
-      setup_flow()
+    test "education error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -228,8 +233,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"education" => ""})
     end
 
-    test "skip education by typing" do
-      setup_flow()
+    test "skip education by typing", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -250,8 +255,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"education" => ""})
     end
 
-    test "skip education by selection" do
-      setup_flow()
+    test "skip education by selection", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -272,8 +277,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"education" => ""})
     end
 
-    test "education then socio economic" do
-      setup_flow()
+    test "education then socio economic", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -294,8 +299,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"education" => "diploma"})
     end
 
-    test "socio economic error" do
-      setup_flow()
+    test "socio economic error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -322,8 +327,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"socio_economic" => ""})
     end
 
-    test "skip socio economic" do
-      setup_flow()
+    test "skip socio economic", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -350,8 +355,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"socio_economic" => ""})
     end
 
-    test "socio economic then children" do
-      setup_flow()
+    test "socio economic then children", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -378,8 +383,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"socio_economic" => "comfortable"})
     end
 
-    test "children error" do
-      setup_flow()
+    test "children error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -412,8 +417,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"other_children" => ""})
     end
 
-    test "skip children" do
-      setup_flow()
+    test "skip children", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -443,8 +448,8 @@ defmodule PersonalProfileQuestionsTest do
       |> flow_finished()
     end
 
-    test "children then why" do
-      setup_flow()
+    test "children then why", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -477,8 +482,8 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"other_children" => ""})
     end
 
-    test "children then why then skip by typing then finished" do
-      setup_flow()
+    test "children then why then skip by typing then finished", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -513,8 +518,8 @@ defmodule PersonalProfileQuestionsTest do
       |> flow_finished()
     end
 
-    test "children then why then skip by selection then finished" do
-      setup_flow()
+    test "children then why then skip by selection then finished", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -549,8 +554,8 @@ defmodule PersonalProfileQuestionsTest do
       |> flow_finished()
     end
 
-    test "children then finished" do
-      setup_flow()
+    test "children then finished", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
