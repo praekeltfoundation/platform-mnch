@@ -220,20 +220,25 @@ defmodule IntroAndWelcomeTest do
   defp real_or_fake_cms(step, base_url, auth_token, :fake),
     do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
-  defp setup_flow() do
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("intro-and-welcome")}
+
+  defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
     auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
-    Helpers.flow_path("intro-and-welcome")
-    |> FlowTester.from_json!()
-    |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
-    |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    flow =
+      ctx.init_flow
+      |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    %{flow: flow}
   end
 
+  setup [:setup_flow]
+
   describe "Intro and Welcome" do
-    test "Branch: Opt in" do
-      setup_flow()
+    test "Branch: Opt in", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{"privacy_policy_accepted" => "yes", "opted_in" => false})
       |> FlowTester.start()
@@ -243,8 +248,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Branch: User intent" do
-      setup_flow()
+    test "Branch: User intent", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{"privacy_policy_accepted" => "yes", "opted_in" => true})
       |> FlowTester.start()
@@ -254,8 +259,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Branch: Privacy Policy" do
-      setup_flow()
+    test "Branch: Privacy Policy", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{"privacy_policy_accepted" => "no", "opted_in" => false})
       |> FlowTester.start()
@@ -266,8 +271,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Welcome message then change my language" do
-      setup_flow()
+    test "Welcome message then change my language", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -281,8 +286,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Welcome message then error" do
-      setup_flow()
+    test "Welcome message then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -296,8 +301,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Welcome message then continue with current set language" do
-      setup_flow()
+    test "Welcome message then continue with current set language", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{"language" => "pt"})
       |> FlowTester.start()
@@ -313,8 +318,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "pt"})
     end
 
-    test "Welcome message then continue with default language" do
-      setup_flow()
+    test "Welcome message then continue with default language", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -329,8 +334,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "eng"})
     end
 
-    test "Change my language then error" do
-      setup_flow()
+    test "Change my language then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -349,8 +354,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Change my language then English" do
-      setup_flow()
+    test "Change my language then English", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -370,8 +375,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "eng"})
     end
 
-    test "Change my language then French" do
-      setup_flow()
+    test "Change my language then French", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -391,8 +396,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "fra"})
     end
 
-    test "Change my language then Português" do
-      setup_flow()
+    test "Change my language then Português", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -412,8 +417,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "por"})
     end
 
-    test "Change my language then Arabic" do
-      setup_flow()
+    test "Change my language then Arabic", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -433,8 +438,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "ara"})
     end
 
-    test "Change my language then Spanish" do
-      setup_flow()
+    test "Change my language then Spanish", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -454,8 +459,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "spa"})
     end
 
-    test "Change my language then Chinese" do
-      setup_flow()
+    test "Change my language then Chinese", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -475,8 +480,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "zho"})
     end
 
-    test "Language confirmation then error" do
-      setup_flow()
+    test "Language confirmation then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -501,8 +506,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Language confirmation then welcome" do
-      setup_flow()
+    test "Language confirmation then welcome", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -527,8 +532,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Privacy policy then error" do
-      setup_flow()
+    test "Privacy policy then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -549,8 +554,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => ""})
     end
 
-    test "Privacy policy then yes" do
-      setup_flow()
+    test "Privacy policy then yes", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -571,8 +576,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
     end
 
-    test "Privacy policy then no" do
-      setup_flow()
+    test "Privacy policy then no", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -593,8 +598,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "no"})
     end
 
-    test "Privacy policy then no then error" do
-      setup_flow()
+    test "Privacy policy then no then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -620,8 +625,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Privacy policy then no then see policy" do
-      setup_flow()
+    test "Privacy policy then no then see policy", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -648,8 +653,8 @@ defmodule IntroAndWelcomeTest do
       # TODO: Add a test to see that the scheduled stack has been scheduled
     end
 
-    test "Privacy policy then read a summary" do
-      setup_flow()
+    test "Privacy policy then read a summary", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -669,8 +674,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Privacy policy then read a summary then error" do
-      setup_flow()
+    test "Privacy policy then read a summary then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -695,8 +700,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Privacy policy then read a summary then yes" do
-      setup_flow()
+    test "Privacy policy then read a summary then yes", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -722,8 +727,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
     end
 
-    test "Privacy policy then read a summary then no" do
-      setup_flow()
+    test "Privacy policy then read a summary then no", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -749,8 +754,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "no"})
     end
 
-    test "Opt in then error" do
-      setup_flow()
+    test "Opt in then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -776,8 +781,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Opt in accepted" do
-      setup_flow()
+    test "Opt in accepted", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -804,8 +809,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
     end
 
-    test "Opt in declined" do
-      setup_flow()
+    test "Opt in declined", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -832,8 +837,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "false"})
     end
 
-    test "User intent error" do
-      setup_flow()
+    test "User intent error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -865,8 +870,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "User intent create profile" do
-      setup_flow()
+    test "User intent create profile", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -899,8 +904,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"intent" => "create profile"})
     end
 
-    test "User intent explore" do
-      setup_flow()
+    test "User intent explore", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -933,8 +938,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"intent" => "explore"})
     end
 
-    test "User intent speak to agent" do
-      setup_flow()
+    test "User intent speak to agent", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -964,8 +969,8 @@ defmodule IntroAndWelcomeTest do
       |> flow_finished()
     end
 
-    test "Data preferences then error" do
-      setup_flow()
+    test "Data preferences then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1004,8 +1009,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preferences all then data preference selected" do
-      setup_flow()
+    test "Data preferences all then data preference selected", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1044,8 +1049,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preferences text and images then data preference selected" do
-      setup_flow()
+    test "Data preferences text and images then data preference selected", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1084,8 +1089,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preferences text only then data preference selected" do
-      setup_flow()
+    test "Data preferences text only then data preference selected", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1124,8 +1129,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preference selected then error" do
-      setup_flow()
+    test "Data preference selected then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1169,8 +1174,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preference selected then create profile" do
-      setup_flow()
+    test "Data preference selected then create profile", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1212,8 +1217,8 @@ defmodule IntroAndWelcomeTest do
       |> flow_finished()
     end
 
-    test "Data preference selected then explore" do
-      setup_flow()
+    test "Data preference selected then explore", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{

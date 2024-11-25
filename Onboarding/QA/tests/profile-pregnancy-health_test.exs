@@ -886,16 +886,21 @@ defmodule ProfilePregnancyHealthTest do
   defp real_or_fake_cms(step, base_url, auth_token, :fake),
     do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
-  defp setup_flow() do
+  setup_all _ctx, do: %{init_flow: Helpers.load_flow("profile-pregnancy-health")}
+
+  defp setup_flow(ctx) do
     # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
     auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
-    Helpers.flow_path("profile-pregnancy-health")
-    |> FlowTester.from_json!()
-    |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
-    |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    flow =
+      ctx.init_flow
+      |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+    %{flow: flow}
   end
+
+  setup [:setup_flow]
 
   defp init_pregnancy_info(context) do
     context |> FlowTester.set_contact_properties(%{"pregnancy_status" => "im_pregnant", "edd" => "24/04/2026", "pregnancy_sentiment" => "excited"})
@@ -1258,12 +1263,12 @@ defmodule ProfilePregnancyHealthTest do
   end
 
   describe "checkpoints" do
-    test "pregnant mom 0%" do
+    test "pregnant mom 0%", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnant_mom_profile", "profile_completion" => "0%"})
@@ -1274,8 +1279,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "pregnant mom 25%" do
-      setup_flow()
+    test "pregnant mom 25%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnant_mom_profile", "profile_completion" => "25%"})
@@ -1286,8 +1291,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "pregnant mom 50%" do
-      setup_flow()
+    test "pregnant mom 50%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnant_mom_profile", "profile_completion" => "50%"})
@@ -1298,8 +1303,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "pregnant mom 100%" do
-      setup_flow()
+    test "pregnant mom 100%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnant_mom_profile", "profile_completion" => "100%"})
@@ -1310,12 +1315,12 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "partner pregnant 0%" do
+    test "partner pregnant 0%", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "partner_of_pregnant_mom_profile", "profile_completion" => "0%"})
@@ -1326,8 +1331,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "partner pregnant 25%" do
-      setup_flow()
+    test "partner pregnant 25%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "partner_of_pregnant_mom_profile", "profile_completion" => "25%"})
@@ -1338,8 +1343,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "partner pregnant 50%" do
-      setup_flow()
+    test "partner pregnant 50%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "partner_of_pregnant_mom_profile", "profile_completion" => "50%"})
@@ -1350,8 +1355,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "partner pregnant 100%" do
-      setup_flow()
+    test "partner pregnant 100%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "partner_of_pregnant_mom_profile", "profile_completion" => "100%"})
@@ -1362,8 +1367,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "curious 0%" do
-      setup_flow()
+    test "curious 0%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "curious_pregnancy_profile", "profile_completion" => "0%"})
@@ -1374,8 +1379,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "curious 25%" do
-      setup_flow()
+    test "curious 25%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "curious_pregnancy_profile", "profile_completion" => "25%"})
@@ -1386,8 +1391,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "curious 50%" do
-      setup_flow()
+    test "curious 50%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "curious_pregnancy_profile", "profile_completion" => "50%"})
@@ -1398,8 +1403,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "curious 100%" do
-      setup_flow()
+    test "curious 100%", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "curious_pregnancy_profile", "profile_completion" => "100%"})
@@ -1410,8 +1415,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "pregnancy_basic_info" do
-      setup_flow()
+    test "pregnancy_basic_info", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnancy_basic_info", "profile_completion" => ""})
@@ -1423,8 +1428,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "pregnancy_personal_info" do
-      setup_flow()
+    test "pregnancy_personal_info", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnancy_personal_info", "profile_completion" => ""})
@@ -1437,8 +1442,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "pregnancy_daily_life_info" do
-      setup_flow()
+    test "pregnancy_daily_life_info", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "pregnancy_daily_life_info", "profile_completion" => ""})
@@ -1450,8 +1455,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "default" do
-      setup_flow()
+    test "default", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> FlowTester.set_contact_properties(%{"checkpoint" => "", "profile_completion" => ""})
@@ -1465,8 +1470,8 @@ defmodule ProfilePregnancyHealthTest do
   end
 
   describe "profile pregnancy health - pregnant" do
-    test "question 1 error" do
-      setup_flow()
+    test "question 1 error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -1482,12 +1487,12 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "question 1 - i'm pregnant" do
+    test "question 1 - i'm pregnant", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -1501,12 +1506,12 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month then error" do
+    test "edd month then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> go_to_edd_month()
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
@@ -1515,13 +1520,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month then edd day" do
+    test "edd month then edd day", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 2), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_month()
       |> FlowTester.send(month)
       |> receive_message(%{
@@ -1529,14 +1534,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month to edd month unknown" do
+    test "edd month to edd month unknown", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       last_month = length(list_of_months) - 1
 
-      setup_flow()
+      flow
       |> go_to_edd_month()
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{
@@ -1545,14 +1550,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month unknown error" do
+    test "edd month unknown error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       last_month = length(list_of_months) - 1
 
-      setup_flow()
+      flow
       |> go_to_edd_month()
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{})
@@ -1563,14 +1568,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month unknown update" do
+    test "edd month unknown update", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       last_month = length(list_of_months) - 1
 
-      setup_flow()
+      flow
       |> go_to_edd_month()
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{})
@@ -1581,14 +1586,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month edd month unknown later" do
+    test "edd month edd month unknown later", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       last_month = length(list_of_months) - 1
 
-      setup_flow()
+      flow
       |> go_to_edd_month()
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{})
@@ -1602,13 +1607,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then confirm" do
+    test "edd day then confirm", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_day(month)
       |> FlowTester.send("25")
       |> receive_message(%{
@@ -1617,13 +1622,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then not number error" do
+    test "edd day then not number error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_day(month)
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
@@ -1631,13 +1636,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then not a day error" do
+    test "edd day then not a day error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_day(month)
       |> FlowTester.send("0")
       |> receive_message(%{
@@ -1645,13 +1650,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then above max day error" do
+    test "edd day then above max day error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_day(month)
       |> FlowTester.send("32")
       |> receive_message(%{
@@ -1659,14 +1664,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then feb 29 is valid" do
+    test "edd day then feb 29 is valid", %{flow: flow} do
       fake_time = ~U[2023-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month)
       |> FlowTester.send("29")
@@ -1677,14 +1682,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then feb 30 is not valid" do
+    test "edd day then feb 30 is not valid", %{flow: flow} do
       fake_time = ~U[2023-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month)
       |> FlowTester.send("30")
@@ -1694,14 +1699,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then long month 31 is valid" do
+    test "edd day then long month 31 is valid", %{flow: flow} do
       fake_time = ~U[2023-01-01 00:00:00Z] # January
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 31, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month)
       |> FlowTester.send("31")
@@ -1712,14 +1717,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then long month 32 is invalid" do
+    test "edd day then long month 32 is invalid", %{flow: flow} do
       fake_time = ~U[2024-01-01 00:00:00Z] # January
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month)
       |> FlowTester.send("32")
@@ -1729,14 +1734,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then short month 30 is valid" do
+    test "edd day then short month 30 is valid", %{flow: flow} do
       fake_time = ~U[2024-04-01 00:00:00Z] # April
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 30, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month)
       |> FlowTester.send("30")
@@ -1747,14 +1752,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then short month 31 is invalid" do
+    test "edd day then short month 31 is invalid", %{flow: flow} do
       fake_time = ~U[2024-04-01 00:00:00Z] # April
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month)
       |> FlowTester.send("31")
@@ -1764,13 +1769,13 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd confirm then error" do
+    test "edd confirm then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_confirm(month)
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
@@ -1779,13 +1784,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd confirm then pick another date" do
+    test "edd confirm then pick another date", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_confirm(month)
       |> FlowTester.send(button_label: "Pick another date")
       |> receive_message(%{
@@ -1794,13 +1799,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd confirm then that's right" do
+    test "edd confirm then that's right", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_confirm(month)
       |> FlowTester.send(button_label: "Yes, that's right")
       |> receive_message(%{
@@ -1809,13 +1814,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then error" do
+    test "feelings then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
@@ -1824,13 +1829,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then scared 1st trimester (all)" do
+    test "feelings then scared 1st trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Worried")
@@ -1842,13 +1847,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then scared 1st trimester (text only)" do
+    test "feelings then scared 1st trimester (text only)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Worried")
@@ -1860,13 +1865,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then scared 2nd trimester (all)" do
+    test "feelings then scared 2nd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Worried")
@@ -1878,13 +1883,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then scared 2nd trimester (text only)" do
+    test "feelings then scared 2nd trimester (text only)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Worried")
@@ -1896,13 +1901,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then scared 3rd trimester (all)" do
+    test "feelings then scared 3rd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Worried")
@@ -1914,13 +1919,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then scared 3rd trimester" do
+    test "feelings then scared 3rd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Worried")
@@ -1932,13 +1937,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then excited 1st trimester (all)" do
+    test "feelings then excited 1st trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Excited")
@@ -1950,13 +1955,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then excited 1st trimester" do
+    test "feelings then excited 1st trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Excited")
@@ -1968,13 +1973,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then excited 2nd trimester (all)" do
+    test "feelings then excited 2nd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Excited")
@@ -1986,13 +1991,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then excited 2nd trimester" do
+    test "feelings then excited 2nd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Excited")
@@ -2004,13 +2009,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then excited 3rd trimester (all)" do
+    test "feelings then excited 3rd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Excited")
@@ -2022,13 +2027,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then excited 3rd trimester" do
+    test "feelings then excited 3rd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Excited")
@@ -2040,13 +2045,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then other 1st trimester (all)" do
+    test "feelings then other 1st trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Other")
@@ -2058,13 +2063,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then other 1st trimester" do
+    test "feelings then other 1st trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Other")
@@ -2076,13 +2081,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then other 2nd trimester (all)" do
+    test "feelings then other 2nd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Other")
@@ -2094,13 +2099,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then other 2nd trimester" do
+    test "feelings then other 2nd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Other")
@@ -2112,13 +2117,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then other 3rd trimester (all)" do
+    test "feelings then other 3rd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Other")
@@ -2130,13 +2135,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "feelings then other 3rd trimester" do
+    test "feelings then other 3rd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Other")
@@ -2148,13 +2153,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "excited 1st trimester then error" do
+    test "excited 1st trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Excited")
       |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
@@ -2166,13 +2171,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "excited 2nd trimester then error" do
+    test "excited 2nd trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Excited")
       |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
@@ -2184,13 +2189,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "exited 3rd trimester then error" do
+    test "exited 3rd trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Excited")
       |> contact_matches(%{"pregnancy_sentiment" => "Excited"})
@@ -2202,13 +2207,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 1st trimester then error" do
+    test "scared 1st trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Scared")
       |> contact_matches(%{"pregnancy_sentiment" => "Scared"})
@@ -2220,13 +2225,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 2nd trimester then error" do
+    test "scared 2nd trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Scared")
       |> contact_matches(%{"pregnancy_sentiment" => "Scared"})
@@ -2238,13 +2243,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 3rd trimester then error" do
+    test "scared 3rd trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Scared")
       |> contact_matches(%{"pregnancy_sentiment" => "Scared"})
@@ -2256,13 +2261,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 1st trimester then error" do
+    test "other 1st trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Other")
       |> contact_matches(%{"pregnancy_sentiment" => "Other"})
@@ -2274,13 +2279,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 2nd trimester then error" do
+    test "other 2nd trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Other")
       |> contact_matches(%{"pregnancy_sentiment" => "Other"})
@@ -2292,13 +2297,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 3rd trimester then error" do
+    test "other 3rd trimester then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.send("Other")
       |> contact_matches(%{"pregnancy_sentiment" => "Other"})
@@ -2310,13 +2315,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "excited 1st trimester then loading 1 (all)" do
+    test "excited 1st trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Excited")
@@ -2330,13 +2335,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "excited 1st trimester then loading 1" do
+    test "excited 1st trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Excited")
@@ -2350,13 +2355,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "excited 2nd trimester then loading 1 (all)" do
+    test "excited 2nd trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Excited")
@@ -2369,13 +2374,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "excited 2nd trimester then loading 1" do
+    test "excited 2nd trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Excited")
@@ -2388,13 +2393,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "excited 3rd trimester then loading 1 (all)" do
+    test "excited 3rd trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Excited")
@@ -2407,13 +2412,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "excited 3rd trimester then loading 1" do
+    test "excited 3rd trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Excited")
@@ -2426,13 +2431,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 1st trimester then loading 1 (all)" do
+    test "scared 1st trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Scared")
@@ -2446,13 +2451,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 1st trimester then loading 1" do
+    test "scared 1st trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Scared")
@@ -2466,13 +2471,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 2nd trimester then loading 1 (all)" do
+    test "scared 2nd trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Scared")
@@ -2485,13 +2490,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 2nd trimester then loading 1" do
+    test "scared 2nd trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Scared")
@@ -2504,13 +2509,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 3rd trimester then loading 1 (all)" do
+    test "scared 3rd trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Scared")
@@ -2523,13 +2528,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "scared 3rd trimester then loading 1" do
+    test "scared 3rd trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Scared")
@@ -2542,13 +2547,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 1st trimester then loading 1 (all)" do
+    test "other 1st trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Other")
@@ -2562,13 +2567,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 1st trimester then loading 1" do
+    test "other 1st trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Other")
@@ -2582,13 +2587,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 2nd trimester then loading 1 (all)" do
+    test "other 2nd trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Other")
@@ -2601,13 +2606,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 2nd trimester then loading 1" do
+    test "other 2nd trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Other")
@@ -2620,13 +2625,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 3rd trimester then loading 1 (all)" do
+    test "other 3rd trimester then loading 1 (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send("Other")
@@ -2639,13 +2644,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "other 3rd trimester then loading 1" do
+    test "other 3rd trimester then loading 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_feelings(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("Other")
@@ -2658,13 +2663,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then error" do
+    test "loading 1 then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1(month)
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
@@ -2673,13 +2678,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then factoid 1 1st trimester (all)" do
+    test "loading 1 then factoid 1 1st trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Okay")
@@ -2690,13 +2695,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then factoid 1 1st trimester" do
+    test "loading 1 then factoid 1 1st trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Okay")
@@ -2707,13 +2712,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then factoid 1 2nd trimester (all)" do
+    test "loading 1 then factoid 1 2nd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Okay")
@@ -2724,13 +2729,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then factoid 1 2nd trimester" do
+    test "loading 1 then factoid 1 2nd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Okay")
@@ -2741,13 +2746,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then factoid 1 3rd trimester (all)" do
+    test "loading 1 then factoid 1 3rd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> go_to_loading_1(month)
       |> FlowTester.send(button_label: "Okay")
@@ -2758,13 +2763,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then factoid 1 3rd trimester" do
+    test "loading 1 then factoid 1 3rd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Okay")
@@ -2775,13 +2780,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then error" do
+    test "factoid 1 then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1(month)
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
@@ -2790,13 +2795,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then factoid 2 1st trimester (all)" do
+    test "factoid 1 then factoid 2 1st trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2807,13 +2812,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then factoid 2 1st trimester" do
+    test "factoid 1 then factoid 2 1st trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2824,13 +2829,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then factoid 2 2nd trimester (all)" do
+    test "factoid 1 then factoid 2 2nd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2841,13 +2846,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then factoid 2 2nd trimester" do
+    test "factoid 1 then factoid 2 2nd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2858,13 +2863,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then factoid 2 3rd trimester (all)" do
+    test "factoid 1 then factoid 2 3rd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2875,13 +2880,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then factoid 2 3rd trimester" do
+    test "factoid 1 then factoid 2 3rd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2892,13 +2897,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 2 then error" do
+    test "factoid 2 then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_2(month)
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
@@ -2907,13 +2912,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 2 then topics 1st trimester (all)" do
+    test "factoid 2 then topics 1st trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_2(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2925,13 +2930,13 @@ defmodule ProfilePregnancyHealthTest do
       }])
     end
 
-    test "factoid 2 then topics 1st trimester" do
+    test "factoid 2 then topics 1st trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_2(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2942,13 +2947,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 2 then topics 2nd trimester (all)" do
+    test "factoid 2 then topics 2nd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_2(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2960,13 +2965,13 @@ defmodule ProfilePregnancyHealthTest do
       }])
     end
 
-    test "factoid 2 then topics 2nd trimester" do
+    test "factoid 2 then topics 2nd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 4)
       month = elem(Enum.at(list_of_months, 4), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_2(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2977,13 +2982,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 2 then topics 3rd trimester (all)" do
+    test "factoid 2 then topics 3rd trimester (all)", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 1)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_2(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
@@ -2995,13 +3000,13 @@ defmodule ProfilePregnancyHealthTest do
       }])
     end
 
-    test "factoid 2 then topics 3rd trimester" do
+    test "factoid 2 then topics 3rd trimester", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 1)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_2(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Awesome")
@@ -3012,13 +3017,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "topics then error" do
+    test "topics then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_topics(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("falalalalaaaa")
@@ -3029,13 +3034,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "topics then dummy topic" do
+    test "topics then dummy topic", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_topics(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("item 1")
@@ -3045,13 +3050,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "dummy topic then error" do
+    test "dummy topic then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_dummy_topic(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("falalalalaaaa")
@@ -3061,13 +3066,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "dummy topic then choose another topic" do
+    test "dummy topic then choose another topic", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_dummy_topic(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Choose another topic")
@@ -3078,13 +3083,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "dummy topic then rate this article" do
+    test "dummy topic then rate this article", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_dummy_topic(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Rate this article")
@@ -3094,13 +3099,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then error" do
+    test "rate this article then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_rate_this_article(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("falalalalaaa")
@@ -3110,13 +3115,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then yes" do
+    test "rate this article then yes", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_rate_this_article(month)
       |> FlowTester.set_contact_properties(%{"opted_in" => "false"})
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
@@ -3129,13 +3134,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then not really" do
+    test "rate this article then not really", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_rate_this_article(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Not really")
@@ -3145,13 +3150,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "Not really then yes sure" do
+    test "Not really then yes sure", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_more_info(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Yes, sure ✅")
@@ -3171,13 +3176,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "not really then maybe later" do
+    test "not really then maybe later", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_more_info(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Maybe later")
@@ -3188,13 +3193,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "not really then no thanks" do
+    test "not really then no thanks", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_more_info(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "No thanks")
@@ -3205,13 +3210,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "dummy topic then complete profile" do
+    test "dummy topic then complete profile", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_dummy_topic(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Complete Profile")
@@ -3222,13 +3227,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "25% then error" do
+    test "25% then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_25_percent(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("falalalalaaaa")
@@ -3238,13 +3243,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "25% complete then view topics" do
+    test "25% complete then view topics", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_25_percent(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "View topics for you")
@@ -3254,13 +3259,13 @@ defmodule ProfilePregnancyHealthTest do
       |> flow_finished()
     end
 
-    test "25% complete then explore health guide" do
+    test "25% complete then explore health guide", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_25_percent(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "Explore health guide")
@@ -3270,13 +3275,13 @@ defmodule ProfilePregnancyHealthTest do
       |> flow_finished()
     end
 
-    test "25% complete then complete profile" do
+    test "25% complete then complete profile", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_25_percent(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send(button_label: "➡️ Complete profile")
@@ -3296,13 +3301,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "50% complete then error" do
+    test "50% complete then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_50_percent(month)
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.send("falalalalaaa")
@@ -3312,13 +3317,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "100% complete" do
+    test "100% complete", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, full_edd} = get_edd(months, month_words, 25, 8)
       month = elem(Enum.at(list_of_months, 8), 0)
 
-      setup_flow()
+      flow
       |> go_to_50_percent(month)
       |> FlowTester.send(button_label: "Continue")
       |> Helpers.handle_personal_info_flow(relationship_status: "", education: "", socio_economic: "", other_children: "")
@@ -3340,12 +3345,12 @@ defmodule ProfilePregnancyHealthTest do
   end
 
   describe "profile pregnancy health - partner pregnant" do
-    test "question 1 - partner is pregnant" do
+    test "question 1 - partner is pregnant", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -3359,12 +3364,12 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month then error" do
+    test "edd month then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
-      setup_flow()
+      flow
       |> go_to_edd_month("Partner is pregnant")
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
@@ -3373,13 +3378,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month then edd day" do
+    test "edd month then edd day", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 2), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_month("Partner is pregnant")
       |> FlowTester.send(month)
       |> receive_message(%{
@@ -3387,14 +3392,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month to edd month unknown" do
+    test "edd month to edd month unknown", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       last_month = length(list_of_months) - 1
 
-      setup_flow()
+      flow
       |> go_to_edd_month("Partner is pregnant")
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{
@@ -3403,14 +3408,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month unknown error" do
+    test "edd month unknown error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       last_month = length(list_of_months) - 1
 
-      setup_flow()
+      flow
       |> go_to_edd_month("Partner is pregnant")
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{})
@@ -3421,14 +3426,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month unknown update" do
+    test "edd month unknown update", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       last_month = length(list_of_months) - 1
 
-      setup_flow()
+      flow
       |> go_to_edd_month("Partner is pregnant")
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{})
@@ -3439,14 +3444,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd month edd month unknown later" do
+    test "edd month edd month unknown later", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       last_month = length(list_of_months) - 1
 
-      setup_flow()
+      flow
       |> go_to_edd_month("Partner is pregnant")
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{})
@@ -3459,13 +3464,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then confirm" do
+    test "edd day then confirm", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("25")
       |> receive_message(%{
@@ -3474,13 +3479,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then not number error" do
+    test "edd day then not number error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
@@ -3488,13 +3493,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then not a day error" do
+    test "edd day then not a day error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("0")
       |> receive_message(%{
@@ -3502,13 +3507,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then above max day error" do
+    test "edd day then above max day error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("32")
       |> receive_message(%{
@@ -3516,14 +3521,14 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd day then feb 29 is valid" do
+    test "edd day then feb 29 is valid", %{flow: flow} do
       fake_time = ~U[2023-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("29")
@@ -3534,14 +3539,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then feb 30 is not valid" do
+    test "edd day then feb 30 is not valid", %{flow: flow} do
       fake_time = ~U[2023-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("30")
@@ -3551,14 +3556,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then long month 31 is valid" do
+    test "edd day then long month 31 is valid", %{flow: flow} do
       fake_time = ~U[2023-01-01 00:00:00Z] # January
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 31, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("31")
@@ -3569,14 +3574,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then long month 32 is invalid" do
+    test "edd day then long month 32 is invalid", %{flow: flow} do
       fake_time = ~U[2024-01-01 00:00:00Z] # January
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("32")
@@ -3586,14 +3591,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then short month 30 is valid" do
+    test "edd day then short month 30 is valid", %{flow: flow} do
       fake_time = ~U[2024-04-01 00:00:00Z] # April
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 30, 0)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("30")
@@ -3604,14 +3609,14 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd day then short month 31 is invalid" do
+    test "edd day then short month 31 is invalid", %{flow: flow} do
       fake_time = ~U[2024-04-01 00:00:00Z] # April
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 0), 0)
 
-      setup_flow()
+      flow
       |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("31")
@@ -3621,13 +3626,13 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.clear_fake_time()
     end
 
-    test "edd confirm then error" do
+    test "edd confirm then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_confirm(month, "Partner is pregnant")
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
@@ -3636,13 +3641,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd confirm then pick another date" do
+    test "edd confirm then pick another date", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_confirm(month, "Partner is pregnant")
       |> FlowTester.send(button_label: "Pick another date")
       |> receive_message(%{
@@ -3651,13 +3656,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "edd confirm then that's right" do
+    test "edd confirm then that's right", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_edd_confirm(month, "Partner is pregnant")
       |> FlowTester.send(button_label: "Yes, that's right")
       |> receive_message(%{
@@ -3666,13 +3671,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "gender then error" do
+    test "gender then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_gender(month)
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
@@ -3681,13 +3686,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "gender then male" do
+    test "gender then male", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_gender(month)
       |> FlowTester.send(button_label: "Male")
       |> contact_matches(%{"gender" => "male"})
@@ -3697,13 +3702,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "gender then female" do
+    test "gender then female", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_gender(month)
       |> FlowTester.send(button_label: "Female")
       |> contact_matches(%{"gender" => "female"})
@@ -3713,13 +3718,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then error" do
+    test "loading 1 then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1_partner(month)
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
@@ -3728,7 +3733,7 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then loading 2 no edd" do
+    test "loading 1 then loading 2 no edd", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
@@ -3736,7 +3741,7 @@ defmodule ProfilePregnancyHealthTest do
       last_month = length(list_of_months) - 1
       month = elem(Enum.at(list_of_months, last_month), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1_partner_no_edd(month)
       |> FlowTester.send(button_label: "Okay")
       |> receive_message(%{
@@ -3745,7 +3750,7 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 2 then error no edd" do
+    test "loading 2 then error no edd", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
@@ -3754,7 +3759,7 @@ defmodule ProfilePregnancyHealthTest do
 
       month = elem(Enum.at(list_of_months, last_month), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_2_partner(month)
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
@@ -3763,7 +3768,7 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 2 then content intro no edd" do
+    test "loading 2 then content intro no edd", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
@@ -3771,7 +3776,7 @@ defmodule ProfilePregnancyHealthTest do
       last_month = length(list_of_months) - 1
       month = elem(Enum.at(list_of_months, last_month), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_2_partner(month)
       |> FlowTester.send(button_label: "Got it")
       |> receive_message(%{
@@ -3780,13 +3785,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "loading 1 then factoid 1" do
+    test "loading 1 then factoid 1", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_loading_1_partner(month)
       |> FlowTester.send(button_label: "Okay")
       |> receive_message(%{
@@ -3795,13 +3800,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then error" do
+    test "factoid 1 then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1_partner(month)
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
@@ -3810,13 +3815,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "factoid 1 then factoid 2 then content intro" do
+    test "factoid 1 then factoid 2 then content intro", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_factoid_1_partner(month)
       |> FlowTester.send(button_label: "Awesome")
       |> receive_message(%{})
@@ -3827,13 +3832,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "content intro then error" do
+    test "content intro then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_content_intro_partner(month)
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
@@ -3842,13 +3847,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "content intro then article topic" do
+    test "content intro then article topic", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> go_to_content_intro_partner(month)
       |> FlowTester.send("@menu_items[0]")
       |> receive_message(%{
@@ -3857,13 +3862,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "article topic then error" do
+    test "article topic then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -3894,13 +3899,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "article topic then complete" do
+    test "article topic then complete", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -3934,13 +3939,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "article topic then choose another topic" do
+    test "article topic then choose another topic", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -3971,13 +3976,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "article topic then rate this article" do
+    test "article topic then rate this article", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4011,13 +4016,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then error" do
+    test "rate this article then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4053,13 +4058,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then no" do
+    test "rate this article then no", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4092,13 +4097,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "content feedback no then error" do
+    test "content feedback no then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4133,13 +4138,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then yes opted in" do
+    test "rate this article then yes opted in", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4175,13 +4180,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then yes not opted in" do
+    test "rate this article then yes not opted in", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4215,13 +4220,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then yes not opted in then error" do
+    test "rate this article then yes not opted in then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4260,13 +4265,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "rate this article then yes not opted in then yes" do
+    test "rate this article then yes not opted in then yes", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4306,13 +4311,13 @@ defmodule ProfilePregnancyHealthTest do
         }])
     end
 
-    test "rate this article then yes not opted in then later" do
+    test "rate this article then yes not opted in then later", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4352,13 +4357,13 @@ defmodule ProfilePregnancyHealthTest do
         }])
     end
 
-    test "25% complete then error" do
+    test "25% complete then error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4393,13 +4398,13 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "25% complete then complete profile" do
+    test "25% complete then complete profile", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
-      setup_flow()
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4447,8 +4452,8 @@ defmodule ProfilePregnancyHealthTest do
   end
 
   describe "profile pregnancy health - curious" do
-    test "i'm curious - question 1" do
-      setup_flow()
+    test "i'm curious - question 1", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4461,8 +4466,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 1 then error" do
-      setup_flow()
+    test "i'm curious - question 1 then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4480,8 +4485,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 1 then error then male" do
-      setup_flow()
+    test "i'm curious - question 1 then error then male", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4505,8 +4510,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 1 then male" do
-      setup_flow()
+    test "i'm curious - question 1 then male", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4525,8 +4530,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 1 then female" do
-      setup_flow()
+    test "i'm curious - question 1 then female", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4545,8 +4550,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 1 then other" do
-      setup_flow()
+    test "i'm curious - question 1 then other", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4565,8 +4570,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 2 then error" do
-      setup_flow()
+    test "i'm curious - question 2 then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4586,8 +4591,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 2 then error then 0" do
-      setup_flow()
+    test "i'm curious - question 2 then error then 0", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4613,8 +4618,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 2 then 0" do
-      setup_flow()
+    test "i'm curious - question 2 then 0", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4635,8 +4640,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 2 then 1" do
-      setup_flow()
+    test "i'm curious - question 2 then 1", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4657,8 +4662,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 2 then 2" do
-      setup_flow()
+    test "i'm curious - question 2 then 2", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4679,8 +4684,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 2 then 3+" do
-      setup_flow()
+    test "i'm curious - question 2 then 3+", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4701,8 +4706,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 2 then skip" do
-      setup_flow()
+    test "i'm curious - question 2 then skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4723,8 +4728,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 3 then error" do
-      setup_flow()
+    test "i'm curious - question 3 then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4746,8 +4751,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 3 then error then loading" do
-      setup_flow()
+    test "i'm curious - question 3 then error then loading", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4776,8 +4781,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - question 3 then 1st" do
-      setup_flow()
+    test "i'm curious - question 3 then 1st", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4801,8 +4806,8 @@ defmodule ProfilePregnancyHealthTest do
       |> result_matches(%{name: "pregnancy_stage_interest", value: "First trimester"})
     end
 
-    test "i'm curious - question 3 then 2nd" do
-      setup_flow()
+    test "i'm curious - question 3 then 2nd", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4826,8 +4831,8 @@ defmodule ProfilePregnancyHealthTest do
       |> result_matches(%{name: "pregnancy_stage_interest", value: "Second trimester"})
     end
 
-    test "i'm curious - question 3 then 3rd" do
-      setup_flow()
+    test "i'm curious - question 3 then 3rd", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4851,8 +4856,8 @@ defmodule ProfilePregnancyHealthTest do
       |> result_matches(%{name: "pregnancy_stage_interest", value: "Third trimester"})
     end
 
-    test "i'm curious - question 3 then general" do
-      setup_flow()
+    test "i'm curious - question 3 then general", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4876,8 +4881,8 @@ defmodule ProfilePregnancyHealthTest do
       |> result_matches(%{name: "pregnancy_stage_interest", value: "General pregnancy info"})
     end
 
-    test "i'm curious - question 3 then general (text only)" do
-      setup_flow()
+    test "i'm curious - question 3 then general (text only)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4901,8 +4906,8 @@ defmodule ProfilePregnancyHealthTest do
       })
       |> result_matches(%{name: "pregnancy_stage_interest", value: "General pregnancy info"})
     end
-    test "i'm curious - question 3 then skip" do
-      setup_flow()
+    test "i'm curious - question 3 then skip", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4925,8 +4930,8 @@ defmodule ProfilePregnancyHealthTest do
       |> result_matches(%{name: "pregnancy_stage_interest", value: "Skip this question"})
     end
 
-    test "i'm curious - loading 1 then error" do
-      setup_flow()
+    test "i'm curious - loading 1 then error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4951,8 +4956,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 1 then error then ok" do
-      setup_flow()
+    test "i'm curious - loading 1 then error then ok", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -4982,8 +4987,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 1 then ok (first trimester)" do
-      setup_flow()
+    test "i'm curious - loading 1 then ok (first trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5008,8 +5013,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 1 then ok then error (first trimester)" do
-      setup_flow()
+    test "i'm curious - loading 1 then ok then error (first trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5035,8 +5040,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 (first trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 (first trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5062,8 +5067,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 then error (first trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then error (first trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5094,8 +5099,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 then error then awesome (first trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then error then awesome (first trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5129,8 +5134,8 @@ defmodule ProfilePregnancyHealthTest do
         }])
     end
 
-    test "i'm curious - loading 2 then awesome (first trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then awesome (first trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5159,8 +5164,8 @@ defmodule ProfilePregnancyHealthTest do
         }])
     end
 
-    test "i'm curious - loading 2 then awesome (first trimester, text only)" do
-      setup_flow()
+    test "i'm curious - loading 2 then awesome (first trimester, text only)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5188,8 +5193,8 @@ defmodule ProfilePregnancyHealthTest do
         })
     end
 
-    test "i'm curious - loading 1 then ok (second trimester)" do
-      setup_flow()
+    test "i'm curious - loading 1 then ok (second trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5214,8 +5219,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 1 then ok then error (second trimester)" do
-      setup_flow()
+    test "i'm curious - loading 1 then ok then error (second trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5241,8 +5246,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 (second trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 (second trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5268,8 +5273,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 then error (second trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then error (second trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5297,8 +5302,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 then error then awesome (second trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then error then awesome (second trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5332,8 +5337,8 @@ defmodule ProfilePregnancyHealthTest do
         }])
     end
 
-    test "i'm curious - loading 2 then awesome (second trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then awesome (second trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5362,8 +5367,8 @@ defmodule ProfilePregnancyHealthTest do
         }])
     end
 
-    test "i'm curious - loading 2 then awesome (second trimester, text only)" do
-      setup_flow()
+    test "i'm curious - loading 2 then awesome (second trimester, text only)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5391,8 +5396,8 @@ defmodule ProfilePregnancyHealthTest do
         })
     end
 
-    test "i'm curious - loading 1 then ok (third trimester)" do
-      setup_flow()
+    test "i'm curious - loading 1 then ok (third trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5417,8 +5422,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 1 then ok then error (third trimester)" do
-      setup_flow()
+    test "i'm curious - loading 1 then ok then error (third trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5444,8 +5449,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 (third trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 (third trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5471,8 +5476,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 then error (third trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then error (third trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5500,8 +5505,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - loading 2 then error then awesome (third trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then error then awesome (third trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5535,8 +5540,8 @@ defmodule ProfilePregnancyHealthTest do
         }])
     end
 
-    test "i'm curious - loading 2 then awesome (third trimester)" do
-      setup_flow()
+    test "i'm curious - loading 2 then awesome (third trimester)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5565,8 +5570,8 @@ defmodule ProfilePregnancyHealthTest do
         }])
     end
 
-    test "i'm curious - loading 2 then awesome (third trimester, text only)" do
-      setup_flow()
+    test "i'm curious - loading 2 then awesome (third trimester, text only)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5594,8 +5599,8 @@ defmodule ProfilePregnancyHealthTest do
         })
     end
 
-    test "i'm curious - article topic" do
-      setup_flow()
+    test "i'm curious - article topic", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5629,8 +5634,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - show other topics" do
-      setup_flow()
+    test "i'm curious - show other topics", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5664,8 +5669,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article topic complete profile" do
-      setup_flow()
+    test "i'm curious - article topic complete profile", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5703,8 +5708,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article topic rate this article" do
-      setup_flow()
+    test "i'm curious - article topic rate this article", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5740,8 +5745,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article topic rate this article yes (opted in)" do
-      setup_flow()
+    test "i'm curious - article topic rate this article yes (opted in)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5784,8 +5789,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article topic rate this article yes (opted out)" do
-      setup_flow()
+    test "i'm curious - article topic rate this article yes (opted out)", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5829,8 +5834,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article topic rate this article error" do
-      setup_flow()
+    test "i'm curious - article topic rate this article error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5872,8 +5877,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article topic rate this article no" do
-      setup_flow()
+    test "i'm curious - article topic rate this article no", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5915,8 +5920,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article feedback error" do
-      setup_flow()
+    test "i'm curious - article feedback error", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -5957,8 +5962,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article feedback error then yes" do
-      setup_flow()
+    test "i'm curious - article feedback error then yes", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -6005,8 +6010,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article feedback error then maybe" do
-      setup_flow()
+    test "i'm curious - article feedback error then maybe", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -6053,8 +6058,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article feedback error then no" do
-      setup_flow()
+    test "i'm curious - article feedback error then no", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
@@ -6101,8 +6106,8 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    test "i'm curious - article topic choose another topic" do
-      setup_flow()
+    test "i'm curious - article topic choose another topic", %{flow: flow} do
+      flow
       |> Helpers.init_contact_fields()
       |> init_contact_fields()
       |> init_pregnancy_info()
