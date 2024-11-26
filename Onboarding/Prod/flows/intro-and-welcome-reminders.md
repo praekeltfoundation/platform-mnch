@@ -1,14 +1,24 @@
 <!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "optinr")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "intror")
 
 ```
 
-<!-- { section: "d032bc4c-282f-422e-bff6-1d83897b82a5", x: 500, y: 48} -->
+# Reminder
+
+A reminder message that gets sent 23 hours after a user hasn't accepted the Privacy Policy.
+
+## Auth
+
+The token for ContentRepo is stored in a global dictionary.
+
+## Setup
+
+Here we do any setup and fetching of values before we start the flow.
 
 ```stack
-card FetchError, then: OptInReminder do
+card FetchError, then: Reminder do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
@@ -36,24 +46,22 @@ end
 
 ```
 
-# Opt In Reminder
-
-<!-- { section: "a68fcad6-6fd1-4506-8bd0-b6218c2c155e", x: 0, y: 0} -->
+<!-- { section: "3e991636-f6d9-436c-a5dd-2fe3296a9359", x: 0, y: 0} -->
 
 ```stack
-card OptInReminder, then: DisplayOptInReminder do
+card Reminder, then: ReminderError do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_opt_in_reminder"]
+        ["slug", "mnch_onboarding_reminder_1"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
   page_id = search.body.results[0].id
 
-  content_data =
+  page =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
@@ -62,64 +70,40 @@ card OptInReminder, then: DisplayOptInReminder do
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = page.body.body.text.value
   button_labels = map(message.buttons, & &1.value.title)
-end
 
-# Text only
-card DisplayOptInReminder when contact.data_preference == "text only",
-  then: DisplayOptInReminderError do
   buttons(
-    OptInYes: "@button_labels[0]",
-    OptInNo: "@button_labels[1]"
+    PrivacyPolicy: "@button_labels[0]",
+    RemindTomorrow: "@button_labels[1]",
+    RemindNo: "@button_labels[2]"
   ) do
     text("@message.message")
   end
 end
 
-# Display with image
-card DisplayOptInReminder, then: DisplayOptInReminderError do
-  image_id = content_data.body.body.text.value.image
-
-  image_data =
-    get(
-      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
-      headers: [
-        ["Authorization", "Token @global.config.contentrepo_token"]
-      ]
-    )
-
+card ReminderError, then: ReminderError do
   buttons(
-    OptInYes: "@button_labels[0]",
-    OptInNo: "@button_labels[1]"
-  ) do
-    image("@image_data.body.meta.download_url")
-    text("@message.message")
-  end
-end
-
-card DisplayOptInReminderError, then: DisplayOptInReminderError do
-  buttons(
-    OptInYes: "@button_labels[0]",
-    OptInNo: "@button_labels[1]"
+    PrivacyPolicy: "@button_labels[0]",
+    RemindTomorrow: "@button_labels[1]",
+    RemindNo: "@button_labels[2]"
   ) do
     text("@button_error_text")
   end
 end
 
-```
+card PrivacyPolicy do
+  # Go to the Intro & Welcome
+  log("Starting intro & welcome stack")
+  run_stack("47111691-cb8d-4cf0-8ecc-ed6792108157")
+end
 
-# Opt In No
-
-```stack
-card OptInNo do
-  update_contact(opted_in: "false")
-
+card RemindNo do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_opt_in_no"]
+        ["slug", "mnch_onboarding_reminder_no"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -139,19 +123,12 @@ card OptInNo do
   text("@message.message")
 end
 
-```
-
-# Opt In Yes
-
-```stack
-card OptInYes do
-  update_contact(opted_in: "true")
-
+card RemindTomorrow do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_opt_in_yes"]
+        ["slug", "mnch_onboarding_reminder_tomorrow"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -168,8 +145,18 @@ card OptInYes do
     )
 
   message = page.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
-  text("@loading_message")
+  text("@message.message")
+  # Cancel any previous scheduled instance of this stack
+  cancel_scheduled_stacks("d28a1658-18af-4552-a985-905cf040d50e")
+  schedule_stack("d28a1658-18af-4552-a985-905cf040d50e", in: 60 * 60 * 23)
 end
 
 ```
+
+## Content dependancies
+
+Content is stored in the content repo, and referenced in the stack by slug. This means that we require the following slugs to be present in the contentrepo, and we're making the following assumptions:
+
+* `reminder`, whatsapp message with 3 buttons
+* `reminder_no`, whatsapp message
+* `reminder_tomorrow`, whatsapp message

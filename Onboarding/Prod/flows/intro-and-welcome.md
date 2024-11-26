@@ -1,5 +1,3 @@
-<!-- { section: "fab529b2-584b-46e4-803e-54702ba2a95d", x: 500, y: 48} -->
-
 ```stack
 trigger(on: "MESSAGE RECEIVED") when has_any_exact_phrase(event.message.text.body, ["0", "hi"])
 
@@ -442,9 +440,19 @@ card ReadSummary, then: ReadSummaryError do
 
   message = page.body.body.text.value
 
+  # document =
+  #   get(
+  #     "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/documents/@message.document/",
+  #     headers: [["Authorization", "Token @global.config.contentrepo_token"]]
+  #   )
+
+  # document_url = document.body.meta.download_url
+
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(AcceptPrivacyPolicy: "@button_labels[0]", DeclinePrivacyPolicy: "@button_labels[1]") do
+    # TODO: When we finally have the document, upload it and make this work
+    # document("@document_url")
     text("@message.message")
   end
 end
@@ -503,7 +511,8 @@ end
 card OptInAccept, then: UserIntent do
   log("OptIn Accepted")
   update_contact(opted_in: "true")
-  schedule_stack("78cca41f-d27d-4669-ae16-a785744047a1", in: 60 * 60)
+  # re engagement
+  # schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 60 * 60)
 end
 
 card OptInDecideLater, then: UserIntent do

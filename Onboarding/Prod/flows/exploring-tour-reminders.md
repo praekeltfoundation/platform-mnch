@@ -1,3 +1,10 @@
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "tourr")
+
+```
+
 ```stack
 card FetchError, then: Reminder do
   # Fetch and store the error message, so that we don't need to do it for every error card
@@ -76,7 +83,7 @@ card ReminderError, then: ReminderError do
 end
 
 card CreateProfiles do
-  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
+  run_stack("e1f6a4d6-f245-4203-aed5-6577bbd4d96a")
 end
 
 card RemindLater, then: RemindLaterError do
@@ -122,8 +129,7 @@ card RemindLaterError, then: RemindLaterError do
 end
 
 card MainMenu do
-  # TODO this is a placeholder
-  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
+  run_stack("d02746ff-a3e2-4153-99ff-cd01a941a00d")
 end
 
 ```

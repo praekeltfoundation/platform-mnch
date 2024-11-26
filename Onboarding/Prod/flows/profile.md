@@ -1,7 +1,7 @@
-<!-- { section: "32c8bc6b-7ac9-47b6-b461-fa225e05e2ca", x: 500, y: 48} -->
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "t_profile")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "profile")
 
 ```
 
@@ -46,6 +46,8 @@ This stack runs other stacks if there is information that needs capturing.
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
+
+<!-- { section: "32c8bc6b-7ac9-47b6-b461-fa225e05e2ca", x: 500, y: 48} -->
 
 ```stack
 card FetchError, then: YourProfileRedirect do
