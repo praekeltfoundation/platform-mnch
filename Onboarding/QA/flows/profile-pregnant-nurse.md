@@ -4,7 +4,9 @@
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "nurse")
 
 ```
+
 # Onboarding: Profile Pregnant Nurse
+
 This is the onboarding flow specifically for pregnant nurses, indicating that they need to receive both content for pregnant women, and for HCW's.
 
 All content for this flow is stored in the ContentRepo. This stack uses the ContentRepo API to fetch the content, referencing it by the slug. A list of these slugs can be found at the end of this stack.
@@ -23,7 +25,7 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Connections to other stacks
 
 * Basic Profile Questions
-* Personal Profile Questions 
+* Personal Profile Questions
 * Nurse Profile Questions
 * Menu Redirect
 
