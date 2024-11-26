@@ -1,9 +1,11 @@
-<!-- { section: "5eb07fbf-ec80-4696-bcd2-5bdc43eb1947", x: 500, y: 48} -->
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "generic")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "genp")
 
 ```
+
+<!-- { section: "5eb07fbf-ec80-4696-bcd2-5bdc43eb1947", x: 500, y: 48} -->
 
 ```stack
 card FetchError, then: CheckPointRedirect do
@@ -219,6 +221,7 @@ end
 card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
+  # re engagement
   cancel_scheduled_stacks("78cca41f-d27d-4669-ae16-a785744047a1")
 
   search =
@@ -339,7 +342,7 @@ end
 ```stack
 card ViewTopics do
   log("View topics content goes here")
-  # run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
+  # run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
 end
 
 ```
@@ -358,13 +361,15 @@ end
 
 ```stack
 card HealthGuide do
-  log("Health guide goes here")
-  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
+  log("Health guide")
+  # TODO
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 card BrowsableContent do
-  log("Browsable content goes here")
-  run_stack("2063ff09-4405-4cf2-9a57-12ffa00c99da")
+  log("Browsable content")
+  # TODO
+  run_stack("75eada25-7a3e-4df8-a19c-39ace798427d")
 end
 
 ```

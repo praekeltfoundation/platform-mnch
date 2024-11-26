@@ -1,9 +1,10 @@
-<!-- { section: "41a32b90-a27b-48a5-a8a4-05b2bf55cb9a", x: 500, y: 48} -->
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "nurse")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "pregnurse")
 
 ```
+
 # Onboarding: Profile Pregnant Nurse
 
 This is the onboarding flow specifically for pregnant nurses, indicating that they need to receive both content for pregnant women, and for HCW's.
@@ -24,13 +25,16 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Connections to other stacks
 
 * Basic Profile Questions
-* Personal Profile Questions 
+* Personal Profile Questions
 * Nurse Profile Questions
 * Menu Redirect
 
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
+
+<!-- { section: "41a32b90-a27b-48a5-a8a4-05b2bf55cb9a", x: 500, y: 48} -->
+
 ```stack
 card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
@@ -306,7 +310,7 @@ end
 card PersonalProfileQuestions, then: PregnantNurse80 do
   write_result("questioning_info_gathering", "no")
   log("Go to Personal Questions")
-  run_stack("fe7139a4-60c5-4ced-ad82-daa43f483c37")
+  run_stack("67e29cda-52a9-4eb4-9fc0-224c44585c8c")
 end
 
 ```
@@ -505,8 +509,7 @@ end
 
 ```stack
 card LOCAssessment, then: PregnantNurse100 do
-  ## TODO
-  text("LOC Assessment")
+  run_stack("b283e7c1-0a79-45ab-976c-5566d9ba06cd")
 end
 
 ```

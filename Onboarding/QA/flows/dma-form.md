@@ -580,7 +580,7 @@ card StoreResponse when question_id == "dma-do-things" do
   # TODO: remove this hard-coding once we can have dynamic labels for flow results
   answer = filter(question.answers, &(&1.answer == question_response))
   semantic_id = if(count(answer) == 0, "skip", answer[0].semantic_id)
-  write_result("mnch_onboarding_dma_form_dma-do-things", semantic_id)
+  write_result("mnch_onboarding_dma_form_v1.0_dma-do-things", semantic_id)
   update_contact(dma_01: "@question_response")
   then(CheckEnd)
 end
@@ -589,7 +589,7 @@ card StoreResponse when question_id == "dma-medical-care" do
   # TODO: remove this hard-coding once we can have dynamic labels for flow results
   answer = filter(question.answers, &(&1.answer == question_response))
   semantic_id = if(count(answer) == 0, "skip", answer[0].semantic_id)
-  write_result("mnch_onboarding_dma_form_dma-medical-care", semantic_id)
+  write_result("mnch_onboarding_dma_form_v1.0_dma-medical-care", semantic_id)
   update_contact(dma_02: "@question_response")
   then(CheckEnd)
 end
@@ -598,7 +598,7 @@ card StoreResponse when question_id == "dma-sharing" do
   # TODO: remove this hard-coding once we can have dynamic labels for flow results
   answer = filter(question.answers, &(&1.answer == question_response))
   semantic_id = if(count(answer) == 0, "skip", answer[0].semantic_id)
-  write_result("mnch_onboarding_dma_form_dma-sharing", semantic_id)
+  write_result("mnch_onboarding_dma_form_v1.0_dma-sharing", semantic_id)
   update_contact(dma_03: "@question_response")
   then(CheckEnd)
 end
@@ -607,7 +607,7 @@ card StoreResponse when question_id == "dma-medical-advice" do
   # TODO: remove this hard-coding once we can have dynamic labels for flow results
   answer = filter(question.answers, &(&1.answer == question_response))
   semantic_id = if(count(answer) == 0, "skip", answer[0].semantic_id)
-  write_result("mnch_onboarding_dma_form_dma-medical-advice", semantic_id)
+  write_result("mnch_onboarding_dma_form_v1.0_dma-medical-advice", semantic_id)
   update_contact(dma_04: "@question_response")
   then(CheckEnd)
 end
@@ -616,7 +616,7 @@ card StoreResponse when question_id == "dma-find-solutions" do
   # TODO: remove this hard-coding once we can have dynamic labels for flow results
   answer = filter(question.answers, &(&1.answer == question_response))
   semantic_id = if(count(answer) == 0, "skip", answer[0].semantic_id)
-  write_result("mnch_onboarding_dma_form_dma-find-solutions", semantic_id)
+  write_result("mnch_onboarding_dma_form_v1.0_dma-find-solutions", semantic_id)
   update_contact(dma_05: "@question_response")
   then(CheckEnd)
 end

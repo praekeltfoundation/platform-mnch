@@ -1,7 +1,7 @@
-<!-- { section: "e544152f-bf53-4d7c-ae1b-c84314772219", x: 500, y: 48} -->
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "profile")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "preg")
 
 ```
 
@@ -31,6 +31,8 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
+
+<!-- { section: "e544152f-bf53-4d7c-ae1b-c84314772219", x: 500, y: 48} -->
 
 ```stack
 card FetchError, then: Checkpoint do
@@ -139,7 +141,7 @@ end
 card Checkpoint
      when contact.checkpoint == "partner_of_pregnant_mom_profile" and
             contact.profile_completion == "0%",
-     then: PartnerPregnant do
+     then: PartnerEDDMonth do
   log("Go to PartnerPregnant")
 end
 
@@ -167,8 +169,8 @@ end
 card Checkpoint
      when contact.checkpoint == "curious_pregnancy_profile" and
             is_nil_or_empty(contact.profile_completion),
-     then: PregnantEDDMonth do
-  log("Go to PregnantEDDMonth")
+     then: Curious do
+  log("Go to Curious")
 end
 
 card Checkpoint
@@ -273,6 +275,7 @@ end
 card ImPregnant, then: PregnantEDDMonth do
   update_contact(gender: "female")
   update_contact(pregnancy_status: "@status")
+  # text("@contact.pregnancy_status")
   update_contact(checkpoint: "pregnant_mom_profile")
   update_contact(profile_completion: "0%")
   write_result("pregnancy_status", status)
@@ -469,8 +472,8 @@ card EDDMonthUnknownError, then: EDDMonthUnknownError do
   end
 end
 
-card EDDMonthUnknownBranch when status == "im_pregnant" do
-  # TODO: Go to Profile Progress 50
+card EDDMonthUnknownBranch when status == "im_pregnant", then: ProfileProgress25 do
+  schedule_stack("5b67121a-b097-4eec-9493-e948f71d3c6f", in: datetime_add(now(), 5, "D"))
   log("EDD month unknown, navigating to profile progess 50%")
 end
 
@@ -619,6 +622,7 @@ card ContinueEDDBranch when contact.pregnancy_status == "partner_pregnant",
 end
 
 card ContinueEDDBranch do
+  log("@contact.pregnancy_status")
   log("ContinueEDDBranch: How did we get here and what do we do now? Status: @status.")
 end
 

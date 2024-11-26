@@ -1,8 +1,22 @@
 {
   "name": "Onboarding: HCW Reminder",
   "description": "Default description",
-  "uuid": "fef6044e-789c-4989-86e3-62ee4bb063a1",
+  "uuid": "97e8ba1c-5638-4515-bd5d-ca6aca01e7f8",
   "resources": [
+    {
+      "values": [
+        {
+          "value": "Go to HCWProfile to complete",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "9e91f26f-fb66-43c8-88e6-f42572bd7fc2"
+        }
+      ],
+      "uuid": "169f5574-2312-44e3-9eb3-c554c5934ce0"
+    },
     {
       "values": [
         {
@@ -12,10 +26,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "ea0105d6-2b41-4612-8d0c-df555b6e9519"
+          "language_id": "9e91f26f-fb66-43c8-88e6-f42572bd7fc2"
         }
       ],
-      "uuid": "0791c640-2353-48f0-8586-332300280f6d"
+      "uuid": "4e2b3719-31c4-4f61-917c-50d98e15f6ff"
     },
     {
       "values": [
@@ -26,10 +40,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "ea0105d6-2b41-4612-8d0c-df555b6e9519"
+          "language_id": "9e91f26f-fb66-43c8-88e6-f42572bd7fc2"
         }
       ],
-      "uuid": "bc2c8702-bd6d-4e13-8abd-875249bf067a"
+      "uuid": "f1b7a1b1-965e-45b7-9373-2164abc52bcd"
     },
     {
       "values": [
@@ -40,10 +54,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "ea0105d6-2b41-4612-8d0c-df555b6e9519"
+          "language_id": "9e91f26f-fb66-43c8-88e6-f42572bd7fc2"
         }
       ],
-      "uuid": "27ac483a-c627-42be-b504-6fc7df96de85"
+      "uuid": "525bbe5f-3132-4b24-9ed0-9ce903e1d6a9"
     },
     {
       "values": [
@@ -54,10 +68,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "ea0105d6-2b41-4612-8d0c-df555b6e9519"
+          "language_id": "9e91f26f-fb66-43c8-88e6-f42572bd7fc2"
         }
       ],
-      "uuid": "22bde7e0-629c-425d-acb1-6653cf784ac8"
+      "uuid": "18db681c-bb17-4fa2-b865-f82866d7e32b"
     },
     {
       "values": [
@@ -68,10 +82,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "ea0105d6-2b41-4612-8d0c-df555b6e9519"
+          "language_id": "9e91f26f-fb66-43c8-88e6-f42572bd7fc2"
         }
       ],
-      "uuid": "e354207a-cfa7-4807-b3c6-c67fa343eb79"
+      "uuid": "7202d1e5-1ede-4d66-abb7-2fb011f19f2b"
     },
     {
       "values": [
@@ -82,38 +96,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "ea0105d6-2b41-4612-8d0c-df555b6e9519"
+          "language_id": "9e91f26f-fb66-43c8-88e6-f42572bd7fc2"
         }
       ],
-      "uuid": "293c6576-22f9-4e38-8684-3e618c27b857"
-    },
-    {
-      "values": [
-        {
-          "value": "Go to HCWProfile to complete",
-          "modes": [
-            "RICH_MESSAGING"
-          ],
-          "content_type": "TEXT",
-          "mime_type": "text/plain",
-          "language_id": "ea0105d6-2b41-4612-8d0c-df555b6e9519"
-        }
-      ],
-      "uuid": "9c4496f5-4b9b-4887-97fa-0f3c813384c0"
-    },
-    {
-      "values": [
-        {
-          "value": "TODO: Go to non-personalised menu",
-          "modes": [
-            "RICH_MESSAGING"
-          ],
-          "content_type": "TEXT",
-          "mime_type": "text/plain",
-          "language_id": "ea0105d6-2b41-4612-8d0c-df555b6e9519"
-        }
-      ],
-      "uuid": "7bd1dec9-5cdf-4d87-9f41-cc244f8511b2"
+      "uuid": "d65f52c5-0bca-4f21-8d71-0ef394cfe081"
     }
   ],
   "flows": [
@@ -123,25 +109,139 @@
       "blocks": [
         {
           "label": null,
+          "name": "complete_profile_log",
+          "type": "Core.Log",
+          "config": {
+            "message": "169f5574-2312-44e3-9eb3-c554c5934ce0"
+          },
+          "tags": [],
+          "uuid": "d210cbfc-bfbf-56e1-8418-65dc4419a51a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "complete_profile_log",
+              "config": {},
+              "test": "",
+              "uuid": "804c1c22-384b-43c1-9b12-4090c410b9a8",
+              "destination_block": "c9d6f3f7-4a05-59e5-894b-805c40cd3fc6",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 94
+                      },
+                      "name": "CompleteProfile",
+                      "uuid": "4e01abbd-26a3-5909-81bd-9ee5b4ec6e94"
+                    },
+                    "card_item": {
+                      "log": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 96
+                      },
+                      "type": "log"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "complete_profile_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "c4c8d015-2255-4aeb-94be-eb0b7a2174e0"
+          },
+          "tags": [],
+          "uuid": "c9d6f3f7-4a05-59e5-894b-805c40cd3fc6",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "complete_profile_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "be64b867-89e1-4a9c-9075-6a569e586ab9",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 94
+                      },
+                      "name": "CompleteProfile",
+                      "uuid": "4e01abbd-26a3-5909-81bd-9ee5b4ec6e94"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 97
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
           "name": "hcw_nudge_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "0791c640-2353-48f0-8586-332300280f6d",
+            "prompt": "4e2b3719-31c4-4f61-917c-50d98e15f6ff",
             "choices": [
               {
                 "name": "complete_profile",
-                "prompt": "bc2c8702-bd6d-4e13-8abd-875249bf067a",
+                "prompt": "f1b7a1b1-965e-45b7-9373-2164abc52bcd",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "main_menu",
-                "prompt": "27ac483a-c627-42be-b504-6fc7df96de85",
+                "prompt": "525bbe5f-3132-4b24-9ed0-9ce903e1d6a9",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "631ea03f-db22-5aca-b4cb-45f549aee88a",
+          "uuid": "3bea6fc5-ec15-5537-a2a1-03f0a4273d1f",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -154,8 +254,8 @@
               "name": "complete_profile",
               "config": {},
               "test": "block.value = \"complete_profile\"",
-              "uuid": "72fada0e-5b3b-46d3-99ba-0d83b30ad071",
-              "destination_block": "74d2b169-c529-5191-b400-7d2a022ee7a0",
+              "uuid": "b0183389-e1d4-498f-9ddb-0118cf7574be",
+              "destination_block": "d210cbfc-bfbf-56e1-8418-65dc4419a51a",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -164,8 +264,8 @@
               "name": "main_menu",
               "config": {},
               "test": "block.value = \"main_menu\"",
-              "uuid": "9586f06a-e759-4b70-a6e5-761c86e1f412",
-              "destination_block": "a526aeab-d7be-510c-af08-84e531a96c99",
+              "uuid": "ee138584-dc23-473b-9bc3-5813938198bf",
+              "destination_block": "b54129d6-a05a-590c-844a-47b1e519535b",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -174,8 +274,8 @@
               "name": "Default exit to \"HCWNudgeError\"",
               "config": {},
               "test": "",
-              "uuid": "d24f6b0d-da5c-4389-bf3c-7599ead96161",
-              "destination_block": "631ea03f-db22-5aca-b4cb-45f549aee88a",
+              "uuid": "8cf461d7-ea49-4278-bd70-97d7f759c609",
+              "destination_block": "3bea6fc5-ec15-5537-a2a1-03f0a4273d1f",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -191,7 +291,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 83
+                        "line": 85
                       },
                       "name": "HCWNudgeError",
                       "uuid": "0ffb8984-c90d-5f00-975a-6032cf93dcce"
@@ -200,7 +300,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 84
+                        "line": 86
                       },
                       "type": "button_block"
                     },
@@ -225,7 +325,7 @@
                 "mnch_onboarding_nudge_complete_profile"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -236,7 +336,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "0038f5b5-203a-5abb-8a47-a88adcf8ce26",
+          "uuid": "7a4253f1-687f-5b0e-96c5-6aa14a7013bf",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -249,8 +349,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "17165774-c8d5-4c7c-8239-a2f5ae75260f",
-              "destination_block": "3dad5a0e-68b8-5c22-95d6-afb3c62a9cb9",
+              "uuid": "cbbada87-061a-42cc-a7ac-24e03c8fe782",
+              "destination_block": "4fa0fc9d-8c0f-557f-b657-bb67e4dc4ad1",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -265,7 +365,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 49
+                        "line": 51
                       },
                       "name": "HCWNudge",
                       "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
@@ -273,7 +373,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 50
+                        "line": 52
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -291,7 +391,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "3dad5a0e-68b8-5c22-95d6-afb3c62a9cb9",
+          "uuid": "4fa0fc9d-8c0f-557f-b657-bb67e4dc4ad1",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -304,8 +404,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "c8e4e862-c6f8-4f9d-887a-901343aae6a9",
-              "destination_block": "978a1b37-d8fb-59b9-b38e-0d0337853a90",
+              "uuid": "3af73357-456c-4366-b4f0-138c0d4002df",
+              "destination_block": "52b87537-5147-5604-b6f5-995f25c52f35",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -320,7 +420,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 49
+                        "line": 51
                       },
                       "name": "HCWNudge",
                       "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
@@ -329,7 +429,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 59
+                        "line": 61
                       },
                       "type": "expression"
                     },
@@ -354,7 +454,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -365,7 +465,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "978a1b37-d8fb-59b9-b38e-0d0337853a90",
+          "uuid": "52b87537-5147-5604-b6f5-995f25c52f35",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -378,8 +478,8 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "8aa69d6f-153e-4cbd-9482-cd6edb6ee2e4",
-              "destination_block": "b16b815c-c5e0-5c6a-86fc-c33b4fe2c79e",
+              "uuid": "491a5bf5-6b1b-4ea0-9dc8-0b1131f8a317",
+              "destination_block": "cb7601f3-9783-59e9-af63-1ed42650340a",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -394,7 +494,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 49
+                        "line": 51
                       },
                       "name": "HCWNudge",
                       "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
@@ -402,7 +502,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 61
+                        "line": 63
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -420,7 +520,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "b16b815c-c5e0-5c6a-86fc-c33b4fe2c79e",
+          "uuid": "cb7601f3-9783-59e9-af63-1ed42650340a",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -433,8 +533,8 @@
               "name": "page.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "eb7528c2-5dca-420f-9c76-935d8379bfba",
-              "destination_block": "21e70f06-b3c0-5103-9709-743b5c3cd9be",
+              "uuid": "a3bfa3d6-1400-471c-a327-9c444b04b787",
+              "destination_block": "115541cf-977e-545c-aca9-4f92b3e4ef51",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -449,7 +549,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 49
+                        "line": 51
                       },
                       "name": "HCWNudge",
                       "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
@@ -458,7 +558,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 70
+                        "line": 72
                       },
                       "type": "expression"
                     },
@@ -475,7 +575,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "21e70f06-b3c0-5103-9709-743b5c3cd9be",
+          "uuid": "115541cf-977e-545c-aca9-4f92b3e4ef51",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -488,8 +588,8 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "3e208171-97fa-41f5-957d-083bf98a3845",
-              "destination_block": "19f6ba0e-0a03-5ddc-a37a-bcc2508f924b",
+              "uuid": "be10e5a4-06db-4e00-b7e8-08ad0c7f3868",
+              "destination_block": "b6bdf89f-3eaa-5164-9401-762c3d6ffda3",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -504,7 +604,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 49
+                        "line": 51
                       },
                       "name": "HCWNudge",
                       "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
@@ -513,7 +613,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 71
+                        "line": 73
                       },
                       "type": "expression"
                     },
@@ -532,7 +632,7 @@
             "value": "\"0%\""
           },
           "tags": [],
-          "uuid": "19f6ba0e-0a03-5ddc-a37a-bcc2508f924b",
+          "uuid": "b6bdf89f-3eaa-5164-9401-762c3d6ffda3",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -545,8 +645,8 @@
               "name": "profile_completion",
               "config": {},
               "test": "",
-              "uuid": "0dfec982-cfc2-403a-bba2-b96c52eb519d",
-              "destination_block": "7a80ad46-1266-5c90-b141-3f1a4cbca0ab",
+              "uuid": "4dbc7e44-bcec-40d9-8718-d5d52ec396ae",
+              "destination_block": "79f04d21-06ea-5adc-a15b-3d62d1891057",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -561,7 +661,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 49
+                        "line": 51
                       },
                       "name": "HCWNudge",
                       "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
@@ -569,7 +669,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 73
+                        "line": 75
                       },
                       "type": "write_result",
                       "write_result": {}
@@ -586,22 +686,22 @@
           "name": "hcw_nudge",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "22bde7e0-629c-425d-acb1-6653cf784ac8",
+            "prompt": "18db681c-bb17-4fa2-b865-f82866d7e32b",
             "choices": [
               {
                 "name": "complete_profile",
-                "prompt": "e354207a-cfa7-4807-b3c6-c67fa343eb79",
+                "prompt": "7202d1e5-1ede-4d66-abb7-2fb011f19f2b",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "main_menu",
-                "prompt": "293c6576-22f9-4e38-8684-3e618c27b857",
+                "prompt": "d65f52c5-0bca-4f21-8d71-0ef394cfe081",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "7a80ad46-1266-5c90-b141-3f1a4cbca0ab",
+          "uuid": "79f04d21-06ea-5adc-a15b-3d62d1891057",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -614,8 +714,8 @@
               "name": "complete_profile",
               "config": {},
               "test": "block.value = \"complete_profile\"",
-              "uuid": "ec8a69cf-96cf-48fd-b025-9ba347029f13",
-              "destination_block": "74d2b169-c529-5191-b400-7d2a022ee7a0",
+              "uuid": "595687df-3604-43fe-b1d2-ad65a95b579d",
+              "destination_block": "d210cbfc-bfbf-56e1-8418-65dc4419a51a",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -624,8 +724,8 @@
               "name": "main_menu",
               "config": {},
               "test": "block.value = \"main_menu\"",
-              "uuid": "af006ca2-a01f-44d8-bb6f-0388ce6f0616",
-              "destination_block": "a526aeab-d7be-510c-af08-84e531a96c99",
+              "uuid": "a92b1783-8b16-4e41-8610-98028ee64a60",
+              "destination_block": "b54129d6-a05a-590c-844a-47b1e519535b",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -634,8 +734,8 @@
               "name": "Default exit to \"HCWNudgeError\"",
               "config": {},
               "test": "",
-              "uuid": "5a28f54f-6920-493a-92b3-d8f7fab81e67",
-              "destination_block": "631ea03f-db22-5aca-b4cb-45f549aee88a",
+              "uuid": "bdb32dec-4cfe-4cef-a1c7-5affe92ef4c6",
+              "destination_block": "3bea6fc5-ec15-5537-a2a1-03f0a4273d1f",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -651,7 +751,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 49
+                        "line": 51
                       },
                       "name": "HCWNudge",
                       "uuid": "335b5625-d3ac-507a-a2b8-45237c365b49"
@@ -660,123 +760,9 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 75
+                        "line": 77
                       },
                       "type": "button_block"
-                    },
-                    "index": 0
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "label": null,
-          "name": "complete_profile_log",
-          "type": "Core.Log",
-          "config": {
-            "message": "9c4496f5-4b9b-4887-97fa-0f3c813384c0"
-          },
-          "tags": [],
-          "uuid": "74d2b169-c529-5191-b400-7d2a022ee7a0",
-          "ui_metadata": {
-            "canvas_coordinates": {
-              "x": 0,
-              "y": 0
-            }
-          },
-          "exits": [
-            {
-              "default": true,
-              "name": "complete_profile_log",
-              "config": {},
-              "test": "",
-              "uuid": "856b8ae5-4059-49bd-8c3a-58c01d24433b",
-              "destination_block": "fcb33909-327b-5353-a2c1-6e5c472c6223",
-              "semantic_label": "",
-              "vendor_metadata": {}
-            }
-          ],
-          "semantic_label": null,
-          "vendor_metadata": {
-            "io": {
-              "turn": {
-                "stacks_dsl": {
-                  "0.1.0": {
-                    "card": {
-                      "condition": null,
-                      "meta": {
-                        "column": 1,
-                        "line": 92
-                      },
-                      "name": "CompleteProfile",
-                      "uuid": "4e01abbd-26a3-5909-81bd-9ee5b4ec6e94"
-                    },
-                    "card_item": {
-                      "log": {},
-                      "meta": {
-                        "column": 3,
-                        "line": 94
-                      },
-                      "type": "log"
-                    },
-                    "index": 0
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "label": null,
-          "name": "complete_profile_run_stack",
-          "type": "Core.RunFlow",
-          "config": {
-            "flow_id": "38cca9df-21a1-4edc-9c13-5724904ca3c3"
-          },
-          "tags": [],
-          "uuid": "fcb33909-327b-5353-a2c1-6e5c472c6223",
-          "ui_metadata": {
-            "canvas_coordinates": {
-              "x": 0,
-              "y": 0
-            }
-          },
-          "exits": [
-            {
-              "default": true,
-              "name": "complete_profile_run_stack",
-              "config": {},
-              "test": "",
-              "uuid": "ae3dd904-542a-40b0-974c-f3940f0fad13",
-              "destination_block": null,
-              "semantic_label": "",
-              "vendor_metadata": {}
-            }
-          ],
-          "semantic_label": null,
-          "vendor_metadata": {
-            "io": {
-              "turn": {
-                "stacks_dsl": {
-                  "0.1.0": {
-                    "card": {
-                      "condition": null,
-                      "meta": {
-                        "column": 1,
-                        "line": 92
-                      },
-                      "name": "CompleteProfile",
-                      "uuid": "4e01abbd-26a3-5909-81bd-9ee5b4ec6e94"
-                    },
-                    "card_item": {
-                      "meta": {
-                        "column": 3,
-                        "line": 95
-                      },
-                      "run_stack": {},
-                      "type": "run_stack"
                     },
                     "index": 0
                   }
@@ -799,7 +785,7 @@
                 "mnch_onboarding_error_handling_button"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -810,7 +796,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+          "uuid": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -823,8 +809,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "4896cf81-822c-4bbd-a58e-a1d1b54e7eda",
-              "destination_block": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+              "uuid": "2d46b978-5863-43be-a1d0-02fd60d980c2",
+              "destination_block": "e912c29c-549e-5a43-82f3-c61730ff74d2",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -839,7 +825,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 1
+                        "line": 3
                       },
                       "name": "FetchError",
                       "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
@@ -847,7 +833,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 3
+                        "line": 5
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -865,7 +851,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+          "uuid": "e912c29c-549e-5a43-82f3-c61730ff74d2",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -878,8 +864,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "4027a039-d013-40bf-afd6-6c049a4fdd9a",
-              "destination_block": "272ca113-9656-5e12-85ac-fe046ed163a8",
+              "uuid": "7bce2d1a-ced4-4b18-9e62-ea842ba09831",
+              "destination_block": "869fc622-5c05-57b0-801f-c65125482a11",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -894,7 +880,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 1
+                        "line": 3
                       },
                       "name": "FetchError",
                       "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
@@ -903,7 +889,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 13
+                        "line": 15
                       },
                       "type": "expression"
                     },
@@ -928,7 +914,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -939,7 +925,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "272ca113-9656-5e12-85ac-fe046ed163a8",
+          "uuid": "869fc622-5c05-57b0-801f-c65125482a11",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -952,8 +938,8 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "58dbf608-df12-4b2d-a60a-3b7d9df7a209",
-              "destination_block": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+              "uuid": "a220fe6b-1e5e-41dc-b290-2a051b310339",
+              "destination_block": "ef95e080-1070-5291-aeed-ee5b54983e2d",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -968,7 +954,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 1
+                        "line": 3
                       },
                       "name": "FetchError",
                       "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
@@ -976,7 +962,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 15
+                        "line": 17
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -994,7 +980,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+          "uuid": "ef95e080-1070-5291-aeed-ee5b54983e2d",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1007,8 +993,8 @@
               "name": "page.body.body.text.value.message",
               "config": {},
               "test": "",
-              "uuid": "6e285b6a-89ae-4f05-b10c-6ceecf64add7",
-              "destination_block": "8dfaa76d-8eff-54c6-b852-20b19fcb2509",
+              "uuid": "94f2c45d-ac21-48dc-92af-d121e557db84",
+              "destination_block": "517fb154-b90c-5069-a6c0-431f34f86eb9",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1023,7 +1009,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 1
+                        "line": 3
                       },
                       "name": "FetchError",
                       "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
@@ -1032,7 +1018,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 24
+                        "line": 26
                       },
                       "type": "expression"
                     },
@@ -1057,7 +1043,7 @@
                 "mnch_onboarding_error_handling_list_message"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -1068,7 +1054,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "8dfaa76d-8eff-54c6-b852-20b19fcb2509",
+          "uuid": "517fb154-b90c-5069-a6c0-431f34f86eb9",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1081,8 +1067,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "735c141d-4e96-4df5-92fc-d4006af82b85",
-              "destination_block": "3c894579-86e8-5648-9c68-408ebc9e6ef5",
+              "uuid": "8c95ce36-0f5c-407c-9166-f8f624d26c14",
+              "destination_block": "a42c23e0-1a43-5297-9062-37b1f145395b",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1097,7 +1083,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 1
+                        "line": 3
                       },
                       "name": "FetchError",
                       "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
@@ -1105,7 +1091,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 26
+                        "line": 28
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -1123,7 +1109,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "3c894579-86e8-5648-9c68-408ebc9e6ef5",
+          "uuid": "a42c23e0-1a43-5297-9062-37b1f145395b",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1136,8 +1122,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "b2099d34-c064-4d88-b8bb-5f2dc9b157c0",
-              "destination_block": "81f90e8f-b8f0-57f5-ab26-6911c60408f0",
+              "uuid": "b9603c20-e358-4c28-b81a-78f5f1619583",
+              "destination_block": "de8382af-7921-5ac7-b1d4-a206121da8f3",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1152,7 +1138,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 1
+                        "line": 3
                       },
                       "name": "FetchError",
                       "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
@@ -1161,7 +1147,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 35
+                        "line": 37
                       },
                       "type": "expression"
                     },
@@ -1186,7 +1172,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -1197,7 +1183,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "81f90e8f-b8f0-57f5-ab26-6911c60408f0",
+          "uuid": "de8382af-7921-5ac7-b1d4-a206121da8f3",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1210,8 +1196,8 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "8570980a-bfb5-4c4f-b9ab-128bb9d720b8",
-              "destination_block": "2a0dae83-be9d-593d-b945-0c9b9be30041",
+              "uuid": "4a94ed53-5576-4ef1-a959-cb9ad853f65b",
+              "destination_block": "354e7b3a-cd91-5d53-a8d8-12add557e674",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1226,7 +1212,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 1
+                        "line": 3
                       },
                       "name": "FetchError",
                       "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
@@ -1234,7 +1220,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 37
+                        "line": 39
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -1252,7 +1238,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "2a0dae83-be9d-593d-b945-0c9b9be30041",
+          "uuid": "354e7b3a-cd91-5d53-a8d8-12add557e674",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1265,8 +1251,8 @@
               "name": "page.body.body.text.value.message",
               "config": {},
               "test": "",
-              "uuid": "95e290e3-653c-4f95-809c-e65491a3fd70",
-              "destination_block": "0038f5b5-203a-5abb-8a47-a88adcf8ce26",
+              "uuid": "8b5e0927-f4f7-4901-beac-a9e6a23f8e28",
+              "destination_block": "7a4253f1-687f-5b0e-96c5-6aa14a7013bf",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1281,7 +1267,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 1
+                        "line": 3
                       },
                       "name": "FetchError",
                       "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
@@ -1290,7 +1276,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 46
+                        "line": 48
                       },
                       "type": "expression"
                     },
@@ -1303,13 +1289,13 @@
         },
         {
           "label": null,
-          "name": "main_menu_text",
-          "type": "MobilePrimitives.Message",
+          "name": "main_menu_run_stack",
+          "type": "Core.RunFlow",
           "config": {
-            "prompt": "7bd1dec9-5cdf-4d87-9f41-cc244f8511b2"
+            "flow_id": "75eada25-7a3e-4df8-a19c-39ace798427d"
           },
           "tags": [],
-          "uuid": "a526aeab-d7be-510c-af08-84e531a96c99",
+          "uuid": "b54129d6-a05a-590c-844a-47b1e519535b",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1319,10 +1305,10 @@
           "exits": [
             {
               "default": true,
-              "name": "main_menu_text",
+              "name": "main_menu_run_stack",
               "config": {},
               "test": "",
-              "uuid": "ed5ab365-c305-4f86-989f-c7b668e0af89",
+              "uuid": "94d8870a-8050-4229-af3d-a60391dba63c",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -1338,7 +1324,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 98
+                        "line": 100
                       },
                       "name": "MainMenu",
                       "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
@@ -1346,10 +1332,10 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 99
+                        "line": 101
                       },
-                      "text": {},
-                      "type": "text"
+                      "run_stack": {},
+                      "type": "run_stack"
                     },
                     "index": 0
                   }
@@ -1359,19 +1345,19 @@
           }
         }
       ],
-      "last_modified": "2024-09-23T13:58:24.467600Z",
+      "last_modified": "2024-07-29T08:27:36.330698Z",
       "uuid": "68ed6848-b57b-55d7-81e7-036a64e6613e",
       "languages": [
         {
-          "id": "ea0105d6-2b41-4612-8d0c-df555b6e9519",
+          "id": "9e91f26f-fb66-43c8-88e6-f42572bd7fc2",
           "label": "English",
           "variant": null,
-          "bcp_47": null,
-          "iso_639_3": "eng"
+          "iso_639_3": "eng",
+          "bcp_47": null
         }
       ],
+      "first_block_id": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
       "interaction_timeout": 300,
-      "first_block_id": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"

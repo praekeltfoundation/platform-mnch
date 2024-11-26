@@ -1,5 +1,7 @@
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
+
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "explore")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "tour")
 
 ```
 
@@ -399,7 +401,8 @@ card CreateProfiles do
 end
 
 card SpeakToAgent do
-  run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
+  text("Speak to agent goes here")
+  # run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
 end
 
 ```

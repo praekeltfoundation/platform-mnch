@@ -1,9 +1,11 @@
-<!-- { section: "6ccb73e1-e909-4a46-b571-16e4bcb28565", x: 500, y: 48} -->
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "pm")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "pmenu")
 
 ```
+
+<!-- { section: "6ccb73e1-e909-4a46-b571-16e4bcb28565", x: 500, y: 48} -->
 
 ```stack
 card FetchError, then: PersonalisedMenu do
@@ -541,7 +543,7 @@ end
 ```stack
 card GoToHelpCentre, then: PersonalisedMenu do
   log("Help Centre")
-  run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
+  # run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
 end
 
 ```
@@ -550,7 +552,7 @@ end
 
 ```stack
 card YourProfile do
-  log("Your Progile")
+  log("Your Profile")
   run_stack("f085a8b1-5e73-408d-bcc2-9487d0512085")
 end
 

@@ -1,3 +1,10 @@
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
+
+```stack
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "pregnurser")
+
+```
+
 ```stack
 card FetchError, then: NudgeCompleteProfile do
   # Fetch and store the error message, so that we don't need to do it for every error card

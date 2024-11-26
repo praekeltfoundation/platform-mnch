@@ -1,8 +1,22 @@
 {
-  "name": "Onboarding: Exploring Tour",
+  "name": "Default name",
   "description": "Default description",
-  "uuid": "4288d6a9-23c9-4fc6-95b7-c675a6254ea5",
+  "uuid": "160ac3f4-ab18-4610-bbab-c003f79e1197",
   "resources": [
+    {
+      "values": [
+        {
+          "value": "Speak to agent goes here",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
+        }
+      ],
+      "uuid": "102e3787-f478-40d4-a037-7a5afc9f6bc8"
+    },
     {
       "values": [
         {
@@ -12,10 +26,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "ad881009-7e60-4266-b48e-dd599550a72f"
+      "uuid": "ffc507c1-747e-443c-a470-0ff2831a16cd"
     },
     {
       "values": [
@@ -26,10 +40,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "1277428f-a7e9-42cf-a389-ec7895ea05c5"
+      "uuid": "5639b657-9630-4b5a-b9e0-1aa6e6c4086f"
     },
     {
       "values": [
@@ -40,10 +54,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "9248aa8e-34e8-4557-bcc0-88b2cb3fc53e"
+      "uuid": "903ee752-2c74-4296-a245-5da84c4a606a"
     },
     {
       "values": [
@@ -54,10 +68,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "61c423d2-d984-4de2-86c3-87f1a010f84e"
+      "uuid": "54ca964d-e6e9-4cbf-a98c-c9438f8bd1dd"
     },
     {
       "values": [
@@ -68,10 +82,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "e4d63fa6-98ef-4aba-9538-21b7cf24773c"
+      "uuid": "fd8b57bc-ae59-4bbf-a6db-23d172b35760"
     },
     {
       "values": [
@@ -82,10 +96,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "889af1eb-7d22-4046-8db6-c3166b96e6f0"
+      "uuid": "4fd26fd4-3f47-4432-ad80-5ff39e286e1f"
     },
     {
       "values": [
@@ -96,10 +110,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "1fb849d2-df59-47fc-bb22-53ab8c841dd4"
+      "uuid": "db0d1cd3-f327-4114-ba8d-4ca59a107443"
     },
     {
       "values": [
@@ -110,10 +124,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "aa5962aa-a317-4969-91aa-e6b84a050751"
+      "uuid": "c20e4c23-5d89-4aca-9e63-d9270feeff53"
     },
     {
       "values": [
@@ -124,10 +138,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "93dd654f-1982-4bf8-a289-750c33b45808"
+      "uuid": "fa6bc521-891c-491e-b202-34da6101e54d"
     },
     {
       "values": [
@@ -138,7 +152,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         },
         {
           "value": "@message.message",
@@ -147,10 +161,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "32c39f8a-8b22-45bb-ba0e-77fd8bf49d89"
+      "uuid": "d13148ee-48c4-4183-91eb-01be4938ec04"
     },
     {
       "values": [
@@ -161,10 +175,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "7ddfce99-b0c8-46d4-9484-13c1446f9d75"
+      "uuid": "db6a169a-68dc-48a7-93e8-c410df320dd8"
     },
     {
       "values": [
@@ -175,10 +189,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "b1265960-2392-4f36-baab-475b93a675b4"
+      "uuid": "f979c9c6-3f01-46ac-bdc7-39e8dd5aca53"
     },
     {
       "values": [
@@ -189,10 +203,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "80c7dd50-b6b6-49cf-99d6-a13ea6513f8e"
+      "uuid": "9481c434-2a51-469a-993f-02c839a3a941"
     },
     {
       "values": [
@@ -203,10 +217,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "e84546dc-1124-4763-aa13-e2d1c6076f7c"
+      "uuid": "5c8f7441-e165-4b8c-b9a9-c29b743a966e"
     },
     {
       "values": [
@@ -217,10 +231,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "f87aa933-1676-4fdb-8229-ed16a05d3bca"
+      "uuid": "fcaadaad-a544-4763-8368-19e2b44f04b1"
     },
     {
       "values": [
@@ -231,7 +245,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         },
         {
           "value": "@message.message",
@@ -240,10 +254,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "600a189d-c02a-4a0b-8e40-339113313b40"
+      "uuid": "deb78945-335b-483b-9e3f-bf8f9f067921"
     },
     {
       "values": [
@@ -254,10 +268,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "949a253d-b459-4a4d-bfa7-8d32429c23a0"
+      "uuid": "a4ba23b8-0a0b-44b3-9e73-8bce2acb01a7"
     },
     {
       "values": [
@@ -268,10 +282,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "59056d57-db06-4988-a80a-e6a06fcc0712"
+      "uuid": "fe85c3f0-16b9-4ec4-b676-878077f845ba"
     },
     {
       "values": [
@@ -282,10 +296,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "44c7d9cc-d84e-4713-93fc-9d0cd7700cf9"
+      "uuid": "6eb7cb87-35b7-413b-9e27-8e15598d89f6"
     },
     {
       "values": [
@@ -296,10 +310,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "a5aefe7c-f392-4009-955c-0939134013e9"
+      "uuid": "cdf13dff-e360-4a7c-8a74-7adab3472acf"
     },
     {
       "values": [
@@ -310,10 +324,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "f9d80248-df40-4819-b9eb-8290958478bd"
+      "uuid": "45d8e2fe-4493-48da-8f62-96a7f30067a4"
     },
     {
       "values": [
@@ -324,7 +338,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         },
         {
           "value": "@message.message",
@@ -333,10 +347,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "0b74ec4a-b603-4152-b1a7-56c008d80876"
+      "uuid": "2c43020e-3c66-42aa-8a55-3aff73abf748"
     },
     {
       "values": [
@@ -347,10 +361,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "afb49fb9-39ff-440b-9192-d60a91b8bad4"
+      "uuid": "5631e347-8f6f-4952-bb71-a857cf3a3c34"
     },
     {
       "values": [
@@ -361,10 +375,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "b4af834d-eb9d-4eb8-8ff0-4e7e5711d2ba"
+      "uuid": "6d66e35a-6775-42d5-adb9-c9972170c121"
     },
     {
       "values": [
@@ -375,10 +389,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "667140eb-9c15-4e2f-b780-10c38bc6758a"
+      "uuid": "959bafc9-a200-4063-92a2-0c869acfb316"
     },
     {
       "values": [
@@ -389,10 +403,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "c11eb689-946a-4bd0-92dc-bab11e410dd1"
+      "uuid": "0adaebc9-3687-430d-9e5a-7dc2e3e59e87"
     },
     {
       "values": [
@@ -403,10 +417,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "f5f99d2a-d7bf-4bf2-bc7c-e3691faf5483"
+      "uuid": "7db4a863-f9de-421d-82bc-f77241d8fcb8"
     },
     {
       "values": [
@@ -417,7 +431,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         },
         {
           "value": "@message.message",
@@ -426,10 +440,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "6808708b-2f4e-4325-b866-1b1cfcec87ff"
+      "uuid": "e1c1c9c8-c4fe-41a7-90f7-f9409a134256"
     },
     {
       "values": [
@@ -440,10 +454,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "7e903e34-c1d8-44ac-acb3-fded3d014af8"
+      "uuid": "0960098e-0f04-41e7-8fd4-d7c89b9c47f3"
     },
     {
       "values": [
@@ -454,10 +468,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "85b80b3e-7003-43f2-ac54-0267aaf74bc0"
+      "uuid": "bbec1e9d-6316-4070-b742-7d1edd67e4b5"
     },
     {
       "values": [
@@ -468,10 +482,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "df8a11e4-8c90-43ac-8ba9-7e230c0e23d9"
+      "uuid": "41a1c8b4-e61d-45ef-89e6-247071e5414f"
     },
     {
       "values": [
@@ -482,10 +496,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "760a9b8a-b19a-4333-8087-c8edb0ac29a1"
+      "uuid": "0542e362-4d43-4096-8507-b4b22c134486"
     },
     {
       "values": [
@@ -496,10 +510,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "64b32092-ee41-4c6c-a722-b704ea2f2141"
+      "uuid": "44a1b97b-9075-4f12-bfa2-66d79d048b5e"
     },
     {
       "values": [
@@ -510,7 +524,7 @@
           ],
           "content_type": "IMAGE",
           "mime_type": "application/octet-stream",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         },
         {
           "value": "@message.message",
@@ -519,10 +533,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "c84560f4-e11c-4988-979a-1a95e0ad7b86"
+      "uuid": "688bbfa3-c49b-4ce0-b3d2-e41cb2ef9ae3"
     },
     {
       "values": [
@@ -533,10 +547,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "d3bc9fab-e34f-4595-9e47-49b60b73ef4d"
+      "uuid": "35445b8d-f2e4-4851-889b-2326ec2a3745"
     },
     {
       "values": [
@@ -547,10 +561,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "ea8a6fe6-ac1e-418c-9d6d-f1cf887c0703"
+      "uuid": "8bff6a50-8ee3-4ac2-9e1e-28484674cb20"
     },
     {
       "values": [
@@ -561,24 +575,10 @@
           ],
           "content_type": "TEXT",
           "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
+          "language_id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe"
         }
       ],
-      "uuid": "181c943f-b00e-41be-8b3d-e3c37688e44e"
-    },
-    {
-      "values": [
-        {
-          "value": "Go to FetchTourCard01",
-          "modes": [
-            "RICH_MESSAGING"
-          ],
-          "content_type": "TEXT",
-          "mime_type": "text/plain",
-          "language_id": "a4f6b448-9536-4654-a3db-d2c92d3256e8"
-        }
-      ],
-      "uuid": "1ea99632-4cdd-40ad-9525-f27d165a9841"
+      "uuid": "2db3f144-5ec9-44dc-a180-ef9e52a5c188"
     }
   ],
   "flows": [
@@ -588,13 +588,13 @@
       "blocks": [
         {
           "label": null,
-          "name": "speak_to_agent_run_stack",
-          "type": "Core.RunFlow",
+          "name": "speak_to_agent_text",
+          "type": "MobilePrimitives.Message",
           "config": {
-            "flow_id": "ea366b74-df7b-41ed-a479-7d501435d38e"
+            "prompt": "102e3787-f478-40d4-a037-7a5afc9f6bc8"
           },
           "tags": [],
-          "uuid": "a6ba3668-550b-56f5-a6cd-cbc1988c1586",
+          "uuid": "b0f950bd-3ad0-5b28-aeda-bca42d2c4d68",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -604,67 +604,10 @@
           "exits": [
             {
               "default": true,
-              "name": "speak_to_agent_run_stack",
+              "name": "speak_to_agent_text",
               "config": {},
               "test": "",
-              "uuid": "9e1cd042-49b1-4100-9b64-2fd18088c659",
-              "destination_block": null,
-              "semantic_label": "",
-              "vendor_metadata": {}
-            }
-          ],
-          "semantic_label": null,
-          "vendor_metadata": {
-            "io": {
-              "turn": {
-                "stacks_dsl": {
-                  "0.1.0": {
-                    "card": {
-                      "condition": null,
-                      "meta": {
-                        "column": 1,
-                        "line": 368
-                      },
-                      "name": "SpeakToAgent",
-                      "uuid": "01736df7-e50d-596c-989c-af14708ee584"
-                    },
-                    "card_item": {
-                      "meta": {
-                        "column": 3,
-                        "line": 369
-                      },
-                      "run_stack": {},
-                      "type": "run_stack"
-                    },
-                    "index": 0
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "label": null,
-          "name": "create_profiles_run_stack",
-          "type": "Core.RunFlow",
-          "config": {
-            "flow_id": "bd590c1e-7a06-49ed-b3a1-623cf94e8644"
-          },
-          "tags": [],
-          "uuid": "4fae50c4-fad7-5cea-82e6-bd96807808f0",
-          "ui_metadata": {
-            "canvas_coordinates": {
-              "x": 0,
-              "y": 0
-            }
-          },
-          "exits": [
-            {
-              "default": true,
-              "name": "create_profiles_run_stack",
-              "config": {},
-              "test": "",
-              "uuid": "4e0f8c61-5a23-4598-929b-72cc1d6cad17",
+              "uuid": "a2af593e-2762-4da1-bb5d-66d3ec99c663",
               "destination_block": null,
               "semantic_label": "",
               "vendor_metadata": {}
@@ -682,13 +625,70 @@
                         "column": 1,
                         "line": 363
                       },
+                      "name": "SpeakToAgent",
+                      "uuid": "01736df7-e50d-596c-989c-af14708ee584"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 364
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "create_profiles_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "e1f6a4d6-f245-4203-aed5-6577bbd4d96a"
+          },
+          "tags": [],
+          "uuid": "ecafa90b-7623-547a-aa5e-86bf2dc171c4",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "create_profiles_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "b8453a1c-e1f2-4815-988e-7677f6a8cf97",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 358
+                      },
                       "name": "CreateProfiles",
                       "uuid": "1ab9b205-2af5-5214-97da-b611406e45c9"
                     },
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 365
+                        "line": 360
                       },
                       "run_stack": {},
                       "type": "run_stack"
@@ -705,22 +705,22 @@
           "name": "display_guided_tour_menu_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "ad881009-7e60-4266-b48e-dd599550a72f",
+            "prompt": "ffc507c1-747e-443c-a470-0ff2831a16cd",
             "choices": [
               {
                 "name": "create_profiles",
-                "prompt": "1277428f-a7e9-42cf-a389-ec7895ea05c5",
+                "prompt": "5639b657-9630-4b5a-b9e0-1aa6e6c4086f",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "speak_to_agent",
-                "prompt": "9248aa8e-34e8-4557-bcc0-88b2cb3fc53e",
+                "prompt": "903ee752-2c74-4296-a245-5da84c4a606a",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "f04c403c-34b5-5deb-aa46-e351aba700ea",
+          "uuid": "33697b37-35bf-553a-b305-10175bf12592",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -733,8 +733,8 @@
               "name": "create_profiles",
               "config": {},
               "test": "block.value = \"create_profiles\"",
-              "uuid": "a69e2ddd-22a8-4992-bfc6-d21742de3dc9",
-              "destination_block": "4fae50c4-fad7-5cea-82e6-bd96807808f0",
+              "uuid": "e34b8ca4-db3f-4219-bb08-355b155ff0ab",
+              "destination_block": "ecafa90b-7623-547a-aa5e-86bf2dc171c4",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -743,8 +743,8 @@
               "name": "speak_to_agent",
               "config": {},
               "test": "block.value = \"speak_to_agent\"",
-              "uuid": "1121c913-bee0-4dca-a775-831fec62280b",
-              "destination_block": "a6ba3668-550b-56f5-a6cd-cbc1988c1586",
+              "uuid": "320eef43-137a-439b-8604-cdf2123e9e3a",
+              "destination_block": "b0f950bd-3ad0-5b28-aeda-bca42d2c4d68",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -753,8 +753,8 @@
               "name": "Default exit to \"DisplayGuidedTourMenuError\"",
               "config": {},
               "test": "",
-              "uuid": "8cb2ea63-e027-4617-a333-9468a0450884",
-              "destination_block": "f04c403c-34b5-5deb-aa46-e351aba700ea",
+              "uuid": "def309e4-ece1-48e7-b79e-5455d9bc57ca",
+              "destination_block": "33697b37-35bf-553a-b305-10175bf12592",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -770,7 +770,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 354
+                        "line": 349
                       },
                       "name": "DisplayGuidedTourMenuError",
                       "uuid": "809d96b7-7ef1-5663-9a58-1c537bfbf8f1"
@@ -779,7 +779,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 355
+                        "line": 350
                       },
                       "type": "button_block"
                     },
@@ -795,22 +795,22 @@
           "name": "display_guided_tour_menu",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "61c423d2-d984-4de2-86c3-87f1a010f84e",
+            "prompt": "54ca964d-e6e9-4cbf-a98c-c9438f8bd1dd",
             "choices": [
               {
                 "name": "create_profiles",
-                "prompt": "e4d63fa6-98ef-4aba-9538-21b7cf24773c",
+                "prompt": "fd8b57bc-ae59-4bbf-a6db-23d172b35760",
                 "test": "block.response = \"@@button_labels[0]\""
               },
               {
                 "name": "speak_to_agent",
-                "prompt": "889af1eb-7d22-4046-8db6-c3166b96e6f0",
+                "prompt": "4fd26fd4-3f47-4432-ad80-5ff39e286e1f",
                 "test": "block.response = \"@@button_labels[1]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "d1573209-7ccc-5eea-a8b2-a68ee6b71ecc",
+          "uuid": "9bba3617-82aa-5ad0-9f6e-d139eba83f48",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -823,8 +823,8 @@
               "name": "create_profiles",
               "config": {},
               "test": "block.value = \"create_profiles\"",
-              "uuid": "c7394ae5-496d-4233-8a8e-b861f6664c71",
-              "destination_block": "4fae50c4-fad7-5cea-82e6-bd96807808f0",
+              "uuid": "817a0803-f83a-40e5-8489-96a0cc7cce22",
+              "destination_block": "ecafa90b-7623-547a-aa5e-86bf2dc171c4",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -833,8 +833,8 @@
               "name": "speak_to_agent",
               "config": {},
               "test": "block.value = \"speak_to_agent\"",
-              "uuid": "e3e0dba1-99b7-4379-b8bb-54a773aa763e",
-              "destination_block": "a6ba3668-550b-56f5-a6cd-cbc1988c1586",
+              "uuid": "db6f543c-b420-4d3e-89be-dfbe0a57e8f2",
+              "destination_block": "b0f950bd-3ad0-5b28-aeda-bca42d2c4d68",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -843,8 +843,8 @@
               "name": "Default exit to \"DisplayGuidedTourMenuError\"",
               "config": {},
               "test": "",
-              "uuid": "0b92e112-cbc2-426c-8642-deb10e9966c3",
-              "destination_block": "f04c403c-34b5-5deb-aa46-e351aba700ea",
+              "uuid": "65cb67fb-9879-456a-a355-8a4f57aa7eab",
+              "destination_block": "33697b37-35bf-553a-b305-10175bf12592",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -860,7 +860,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 345
+                        "line": 340
                       },
                       "name": "DisplayGuidedTourMenu",
                       "uuid": "a7544ca2-8735-5544-98db-345cf7ac0457"
@@ -869,7 +869,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 346
+                        "line": 341
                       },
                       "type": "button_block"
                     },
@@ -888,7 +888,7 @@
             "value": "\"yes\""
           },
           "tags": [],
-          "uuid": "37b321a5-dc51-50ca-a43a-241af735729d",
+          "uuid": "4bf1486b-358d-5440-9f74-eda1ec2d3de8",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -901,8 +901,8 @@
               "name": "guided_tour_menu",
               "config": {},
               "test": "",
-              "uuid": "aa266b50-7704-4ca4-b274-239ee0b3ade0",
-              "destination_block": "afce4fe0-48b6-5e07-97b0-ec5f5ffafce7",
+              "uuid": "f3a31d2d-7046-4484-9b5d-12747fb3ed54",
+              "destination_block": "21c795ab-a99b-5a57-8fc5-b807c1012c24",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -917,7 +917,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 317
+                        "line": 312
                       },
                       "name": "FetchGuidedTourMenu",
                       "uuid": "1b9d9c45-3409-50e7-912a-f5281f488227"
@@ -925,7 +925,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 318
+                        "line": 313
                       },
                       "type": "write_result",
                       "write_result": {}
@@ -951,7 +951,7 @@
                 "mnch_onboarding_guided_tour_menu"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -962,7 +962,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "afce4fe0-48b6-5e07-97b0-ec5f5ffafce7",
+          "uuid": "21c795ab-a99b-5a57-8fc5-b807c1012c24",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -975,8 +975,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "95e3d221-8ed2-44b0-bc42-d302dea95ae9",
-              "destination_block": "1497e388-eed7-5778-851c-b8ae3a1e716e",
+              "uuid": "851dae28-f4a6-460f-8ed4-79ec62a5172e",
+              "destination_block": "eb2af141-e9c0-504e-9417-3fb9b2239ada",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -991,7 +991,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 317
+                        "line": 312
                       },
                       "name": "FetchGuidedTourMenu",
                       "uuid": "1b9d9c45-3409-50e7-912a-f5281f488227"
@@ -999,7 +999,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 320
+                        "line": 315
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -1017,7 +1017,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "1497e388-eed7-5778-851c-b8ae3a1e716e",
+          "uuid": "eb2af141-e9c0-504e-9417-3fb9b2239ada",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1030,8 +1030,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "a096d1ad-588c-4455-bd29-7bb6b88f4e41",
-              "destination_block": "e8f3545b-bdce-586a-90ff-73bd1d545b5b",
+              "uuid": "e83cf2c2-c051-466c-8d45-fddaabb82d4c",
+              "destination_block": "6076be9e-bded-5ee0-917a-46d8815961c2",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1046,7 +1046,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 317
+                        "line": 312
                       },
                       "name": "FetchGuidedTourMenu",
                       "uuid": "1b9d9c45-3409-50e7-912a-f5281f488227"
@@ -1055,7 +1055,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 329
+                        "line": 324
                       },
                       "type": "expression"
                     },
@@ -1080,7 +1080,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -1091,7 +1091,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "e8f3545b-bdce-586a-90ff-73bd1d545b5b",
+          "uuid": "6076be9e-bded-5ee0-917a-46d8815961c2",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1104,8 +1104,8 @@
               "name": "content_data",
               "config": {},
               "test": "",
-              "uuid": "f96ebdc7-baac-43fe-a885-6328c19db976",
-              "destination_block": "99ddb047-ef37-58ef-b8b1-4435936dd9d3",
+              "uuid": "d9874788-3288-423f-9a33-54806f3f895b",
+              "destination_block": "b8d7b7aa-e373-57ae-9e3e-415d902a82fd",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1120,7 +1120,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 317
+                        "line": 312
                       },
                       "name": "FetchGuidedTourMenu",
                       "uuid": "1b9d9c45-3409-50e7-912a-f5281f488227"
@@ -1128,7 +1128,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 331
+                        "line": 326
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -1146,7 +1146,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "99ddb047-ef37-58ef-b8b1-4435936dd9d3",
+          "uuid": "b8d7b7aa-e373-57ae-9e3e-415d902a82fd",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1159,8 +1159,8 @@
               "name": "content_data.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "11686594-af5c-4ab5-85cf-4700852a7932",
-              "destination_block": "fdffa06e-9450-578a-8baf-6b1a573d3307",
+              "uuid": "b39e2025-e49b-4a4f-9315-42d71b762095",
+              "destination_block": "bea91c30-19f9-5280-94dd-b759f4b0c21e",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1175,7 +1175,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 317
+                        "line": 312
                       },
                       "name": "FetchGuidedTourMenu",
                       "uuid": "1b9d9c45-3409-50e7-912a-f5281f488227"
@@ -1184,7 +1184,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 340
+                        "line": 335
                       },
                       "type": "expression"
                     },
@@ -1201,7 +1201,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "fdffa06e-9450-578a-8baf-6b1a573d3307",
+          "uuid": "bea91c30-19f9-5280-94dd-b759f4b0c21e",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1214,8 +1214,8 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "c0c41e83-caa6-497a-8dbf-c6dfee4b86a1",
-              "destination_block": "6815706e-5468-5ea8-8e1c-d1f5f5e557c7",
+              "uuid": "563087c0-6c26-481d-9553-4d1819cc66d2",
+              "destination_block": "80bbe903-99ab-516a-a523-5a7996e38785",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1230,7 +1230,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 317
+                        "line": 312
                       },
                       "name": "FetchGuidedTourMenu",
                       "uuid": "1b9d9c45-3409-50e7-912a-f5281f488227"
@@ -1239,7 +1239,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 341
+                        "line": 336
                       },
                       "type": "expression"
                     },
@@ -1255,10 +1255,10 @@
           "name": "fetch_guided_tour_menu_log",
           "type": "Core.Log",
           "config": {
-            "message": "1fb849d2-df59-47fc-bb22-53ab8c841dd4"
+            "message": "db0d1cd3-f327-4114-ba8d-4ca59a107443"
           },
           "tags": [],
-          "uuid": "6815706e-5468-5ea8-8e1c-d1f5f5e557c7",
+          "uuid": "80bbe903-99ab-516a-a523-5a7996e38785",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1271,8 +1271,8 @@
               "name": "Default exit to \"DisplayGuidedTourMenu\"",
               "config": {},
               "test": "",
-              "uuid": "d0700caf-b71a-4aff-8e5c-b8a63820c1e0",
-              "destination_block": "d1573209-7ccc-5eea-a8b2-a68ee6b71ecc",
+              "uuid": "7226c26b-bd02-4922-8134-f98ee6cd5ed4",
+              "destination_block": "9bba3617-82aa-5ad0-9f6e-d139eba83f48",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1287,7 +1287,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 317
+                        "line": 312
                       },
                       "name": "FetchGuidedTourMenu",
                       "uuid": "1b9d9c45-3409-50e7-912a-f5281f488227"
@@ -1296,7 +1296,7 @@
                       "log": {},
                       "meta": {
                         "column": 3,
-                        "line": 342
+                        "line": 337
                       },
                       "type": "log"
                     },
@@ -1312,17 +1312,17 @@
           "name": "display_tour_card05_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "aa5962aa-a317-4969-91aa-e6b84a050751",
+            "prompt": "c20e4c23-5d89-4aca-9e63-d9270feeff53",
             "choices": [
               {
                 "name": "fetch_guided_tour_menu",
-                "prompt": "93dd654f-1982-4bf8-a289-750c33b45808",
+                "prompt": "fa6bc521-891c-491e-b202-34da6101e54d",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "0be4a653-fee3-596c-9d1e-c0c17d74caac",
+          "uuid": "788c21db-dcf8-5021-9b16-f84ffde39812",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1335,8 +1335,8 @@
               "name": "fetch_guided_tour_menu",
               "config": {},
               "test": "block.value = \"fetch_guided_tour_menu\"",
-              "uuid": "95994625-9c53-453a-addc-aa33ba776f5a",
-              "destination_block": "37b321a5-dc51-50ca-a43a-241af735729d",
+              "uuid": "42ba3402-70ee-4a6d-a283-b1ae663fa983",
+              "destination_block": "4bf1486b-358d-5440-9f74-eda1ec2d3de8",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -1345,8 +1345,8 @@
               "name": "Default exit to \"DisplayTourCard05Error\"",
               "config": {},
               "test": "",
-              "uuid": "6b640282-1969-4905-9009-dab21a74c183",
-              "destination_block": "0be4a653-fee3-596c-9d1e-c0c17d74caac",
+              "uuid": "e9212b3d-39b1-4441-b912-bfb8997e5edf",
+              "destination_block": "788c21db-dcf8-5021-9b16-f84ffde39812",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1362,7 +1362,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 311
+                        "line": 306
                       },
                       "name": "DisplayTourCard05Error",
                       "uuid": "9e1d10e7-6763-5b56-a89b-36a93d7e0a08"
@@ -1371,7 +1371,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 312
+                        "line": 307
                       },
                       "type": "button_block"
                     },
@@ -1396,8 +1396,8 @@
               "name": "Exit for display_tour_card05_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "9faaba8a-f655-4edb-a8aa-d4690c2acc88",
-              "destination_block": "e8906ac6-6665-5b1f-b5da-01aad5b50275",
+              "uuid": "11b9ae24-cab4-450d-9150-77094ecea82f",
+              "destination_block": "8a075d7a-396d-5cab-84dc-ac09a08d5512",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -1406,8 +1406,8 @@
               "name": "Exit for display_tour_card05_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "f3b05e01-4452-4def-bb76-ddf438af8d42",
-              "destination_block": "b156e973-7d79-5ca9-8322-fb1a08bb30b2",
+              "uuid": "4c777cab-cac8-4718-8d0d-23e755a4cfcd",
+              "destination_block": "a3e3a349-6c19-538d-ad11-f47e230abf0e",
               "semantic_label": null,
               "vendor_metadata": {}
             }
@@ -1421,7 +1421,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "b156e973-7d79-5ca9-8322-fb1a08bb30b2",
+          "uuid": "a3e3a349-6c19-538d-ad11-f47e230abf0e",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1434,8 +1434,8 @@
               "name": "content_data.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "cd1b191b-e71c-4caa-922d-5b95ae9e6737",
-              "destination_block": "dba8d583-59f6-593c-b58d-ab008c3eeab6",
+              "uuid": "12901240-d0d8-4d77-8d1e-7d69b3722e77",
+              "destination_block": "06e7957b-97cf-54ce-9769-b449e7caa7a9",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1450,7 +1450,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 294
+                        "line": 289
                       },
                       "name": "DisplayTourCard05",
                       "uuid": "0217fd53-9665-5310-920e-63729881c41a"
@@ -1459,7 +1459,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 295
+                        "line": 290
                       },
                       "type": "expression"
                     },
@@ -1479,7 +1479,7 @@
             "mode": "sync",
             "body": null,
             "query": [],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
             "headers": [
               [
                 "Authorization",
@@ -1490,7 +1490,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "dba8d583-59f6-593c-b58d-ab008c3eeab6",
+          "uuid": "06e7957b-97cf-54ce-9769-b449e7caa7a9",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1503,8 +1503,8 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "a66b2cfd-b811-4329-a84f-1a39b108ddd5",
-              "destination_block": "7e369828-db88-544b-a0a2-cb6b893ca369",
+              "uuid": "4e946485-7bd0-488f-8283-aa8db82e840c",
+              "destination_block": "b65d523e-d9a9-5637-8d2f-ddbb35eac00a",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1519,7 +1519,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 294
+                        "line": 289
                       },
                       "name": "DisplayTourCard05",
                       "uuid": "0217fd53-9665-5310-920e-63729881c41a"
@@ -1527,7 +1527,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 297
+                        "line": 292
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -1544,17 +1544,17 @@
           "name": "display_tour_card05_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "32c39f8a-8b22-45bb-ba0e-77fd8bf49d89",
+            "prompt": "d13148ee-48c4-4183-91eb-01be4938ec04",
             "choices": [
               {
                 "name": "fetch_guided_tour_menu",
-                "prompt": "7ddfce99-b0c8-46d4-9484-13c1446f9d75",
+                "prompt": "db6a169a-68dc-48a7-93e8-c410df320dd8",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "7e369828-db88-544b-a0a2-cb6b893ca369",
+          "uuid": "b65d523e-d9a9-5637-8d2f-ddbb35eac00a",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1567,8 +1567,8 @@
               "name": "fetch_guided_tour_menu",
               "config": {},
               "test": "block.value = \"fetch_guided_tour_menu\"",
-              "uuid": "3b1ee1d9-0345-4a5b-ae8c-238fb4f28cca",
-              "destination_block": "37b321a5-dc51-50ca-a43a-241af735729d",
+              "uuid": "90a1d3f3-87a1-49c8-afaf-9df6fe9ae289",
+              "destination_block": "4bf1486b-358d-5440-9f74-eda1ec2d3de8",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -1577,8 +1577,8 @@
               "name": "Default exit to \"DisplayTourCard05Error\"",
               "config": {},
               "test": "",
-              "uuid": "8a9f9b8f-23ad-4d64-92a7-2998734ccc3c",
-              "destination_block": "0be4a653-fee3-596c-9d1e-c0c17d74caac",
+              "uuid": "ed6fee7c-36d1-4f33-9631-0646747a6457",
+              "destination_block": "788c21db-dcf8-5021-9b16-f84ffde39812",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1594,7 +1594,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 294
+                        "line": 289
                       },
                       "name": "DisplayTourCard05",
                       "uuid": "0217fd53-9665-5310-920e-63729881c41a"
@@ -1603,7 +1603,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 305
+                        "line": 300
                       },
                       "type": "button_block"
                     },
@@ -1619,17 +1619,17 @@
           "name": "display_tour_card05_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "b1265960-2392-4f36-baab-475b93a675b4",
+            "prompt": "f979c9c6-3f01-46ac-bdc7-39e8dd5aca53",
             "choices": [
               {
                 "name": "fetch_guided_tour_menu",
-                "prompt": "80c7dd50-b6b6-49cf-99d6-a13ea6513f8e",
+                "prompt": "9481c434-2a51-469a-993f-02c839a3a941",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "e8906ac6-6665-5b1f-b5da-01aad5b50275",
+          "uuid": "8a075d7a-396d-5cab-84dc-ac09a08d5512",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1642,8 +1642,8 @@
               "name": "fetch_guided_tour_menu",
               "config": {},
               "test": "block.value = \"fetch_guided_tour_menu\"",
-              "uuid": "6e5aace0-a95c-4abf-b0f9-f5acbb92e158",
-              "destination_block": "37b321a5-dc51-50ca-a43a-241af735729d",
+              "uuid": "422dbed6-fbd3-4d01-875d-22403131ee92",
+              "destination_block": "4bf1486b-358d-5440-9f74-eda1ec2d3de8",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -1652,8 +1652,8 @@
               "name": "Default exit to \"DisplayTourCard05Error\"",
               "config": {},
               "test": "",
-              "uuid": "3ca4e915-f04d-4c23-a2dc-af2ef168b6fa",
-              "destination_block": "0be4a653-fee3-596c-9d1e-c0c17d74caac",
+              "uuid": "73d6d6d2-31f9-4d28-a9dc-c29bd2e8cb3d",
+              "destination_block": "788c21db-dcf8-5021-9b16-f84ffde39812",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1669,7 +1669,7 @@
                       "condition": "contact.data_preference == \"text only\"",
                       "meta": {
                         "column": 1,
-                        "line": 287
+                        "line": 282
                       },
                       "name": "DisplayTourCard05",
                       "uuid": "2a7ce37b-df25-5684-b6b5-3559b8fd6311"
@@ -1678,7 +1678,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 289
+                        "line": 284
                       },
                       "type": "button_block"
                     },
@@ -1697,7 +1697,7 @@
             "value": "\"yes\""
           },
           "tags": [],
-          "uuid": "e0b8d749-9c43-594c-a3aa-cc811f16dd2c",
+          "uuid": "a343d96b-4b52-5919-ace6-b3bd379e0e8d",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1710,8 +1710,8 @@
               "name": "guided_tour_completed",
               "config": {},
               "test": "",
-              "uuid": "58e1efdb-4cda-4de1-b6ef-dde5f59a9674",
-              "destination_block": "728c12aa-a65c-51b0-aab0-1a8e9faaa6cb",
+              "uuid": "e4b592a4-3db2-4c1c-b414-b7cca9f4ab79",
+              "destination_block": "50a80269-a1fd-51a4-8ae3-637b2598c16b",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1726,7 +1726,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 260
+                        "line": 255
                       },
                       "name": "FetchTourCard05",
                       "uuid": "88b38a7e-c46f-57f4-9734-aa8c8905686b"
@@ -1734,7 +1734,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 261
+                        "line": 256
                       },
                       "type": "write_result",
                       "write_result": {}
@@ -1760,7 +1760,7 @@
                 "mnch_onboarding_tour_card_05"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -1771,7 +1771,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "728c12aa-a65c-51b0-aab0-1a8e9faaa6cb",
+          "uuid": "50a80269-a1fd-51a4-8ae3-637b2598c16b",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1784,8 +1784,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "f8cee398-dcbb-4588-944e-4901e0a54950",
-              "destination_block": "4d5a68a3-6321-5ba4-bc23-bbb5ef7b6951",
+              "uuid": "7a8e0fbb-0aac-4b1d-805f-61f54da00fab",
+              "destination_block": "b3885a0b-56ae-5bd4-92e1-ddf95c361e19",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1800,7 +1800,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 260
+                        "line": 255
                       },
                       "name": "FetchTourCard05",
                       "uuid": "88b38a7e-c46f-57f4-9734-aa8c8905686b"
@@ -1808,7 +1808,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 263
+                        "line": 258
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -1826,7 +1826,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "4d5a68a3-6321-5ba4-bc23-bbb5ef7b6951",
+          "uuid": "b3885a0b-56ae-5bd4-92e1-ddf95c361e19",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1839,8 +1839,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "b3f786d9-80b6-4a08-a118-2fa780fa7211",
-              "destination_block": "61f47488-7882-540b-be06-f431b2ff653b",
+              "uuid": "0445a77f-d411-4856-88b1-af3d22f2f7cb",
+              "destination_block": "857d6d34-9b60-5644-b0b3-282cd8fd1262",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1855,7 +1855,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 260
+                        "line": 255
                       },
                       "name": "FetchTourCard05",
                       "uuid": "88b38a7e-c46f-57f4-9734-aa8c8905686b"
@@ -1864,7 +1864,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 272
+                        "line": 267
                       },
                       "type": "expression"
                     },
@@ -1889,7 +1889,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -1900,7 +1900,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "61f47488-7882-540b-be06-f431b2ff653b",
+          "uuid": "857d6d34-9b60-5644-b0b3-282cd8fd1262",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1913,8 +1913,8 @@
               "name": "content_data",
               "config": {},
               "test": "",
-              "uuid": "ba6232b9-ff0d-4ec1-bb15-32762072c567",
-              "destination_block": "645629e9-318a-589d-a2f8-49861a794bce",
+              "uuid": "636dc763-286e-4ef2-bf8a-11eff08c3328",
+              "destination_block": "bf10cb03-509d-567a-94dd-dfeabf356dfa",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1929,7 +1929,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 260
+                        "line": 255
                       },
                       "name": "FetchTourCard05",
                       "uuid": "88b38a7e-c46f-57f4-9734-aa8c8905686b"
@@ -1937,7 +1937,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 274
+                        "line": 269
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -1955,7 +1955,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "645629e9-318a-589d-a2f8-49861a794bce",
+          "uuid": "bf10cb03-509d-567a-94dd-dfeabf356dfa",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -1968,8 +1968,8 @@
               "name": "content_data.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "002b9891-2f3e-488f-a7da-9a66c0044780",
-              "destination_block": "7b6814af-8f0d-54e8-9e61-663973946aef",
+              "uuid": "f09b372a-e7a0-4837-9345-c909f80b7cee",
+              "destination_block": "f296fd32-8877-59d9-b480-0cd491b6364a",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -1984,7 +1984,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 260
+                        "line": 255
                       },
                       "name": "FetchTourCard05",
                       "uuid": "88b38a7e-c46f-57f4-9734-aa8c8905686b"
@@ -1993,7 +1993,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 283
+                        "line": 278
                       },
                       "type": "expression"
                     },
@@ -2010,7 +2010,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "7b6814af-8f0d-54e8-9e61-663973946aef",
+          "uuid": "f296fd32-8877-59d9-b480-0cd491b6364a",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2023,7 +2023,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "cda2f92e-9f03-4714-9282-97753c285335",
+              "uuid": "55e33ba0-3c0f-4e8b-ad6d-df8262266fc9",
               "destination_block": "2a7ce37b-df25-5684-b6b5-3559b8fd6311",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2039,7 +2039,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 260
+                        "line": 255
                       },
                       "name": "FetchTourCard05",
                       "uuid": "88b38a7e-c46f-57f4-9734-aa8c8905686b"
@@ -2048,7 +2048,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 284
+                        "line": 279
                       },
                       "type": "expression"
                     },
@@ -2064,17 +2064,17 @@
           "name": "display_tour_card04_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "e84546dc-1124-4763-aa13-e2d1c6076f7c",
+            "prompt": "5c8f7441-e165-4b8c-b9a9-c29b743a966e",
             "choices": [
               {
                 "name": "fetch_tour_card05",
-                "prompt": "f87aa933-1676-4fdb-8229-ed16a05d3bca",
+                "prompt": "fcaadaad-a544-4763-8368-19e2b44f04b1",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "a0ef48e1-29cd-54e6-b68d-b85e69be159e",
+          "uuid": "1364d1fd-d68c-55bc-a7c9-965f24d63bf1",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2087,8 +2087,8 @@
               "name": "fetch_tour_card05",
               "config": {},
               "test": "block.value = \"fetch_tour_card05\"",
-              "uuid": "ee26e82d-d1f1-44f1-ba53-dd4592826ebe",
-              "destination_block": "e0b8d749-9c43-594c-a3aa-cc811f16dd2c",
+              "uuid": "517f98fa-4a34-4acb-ae23-40e3ca0518af",
+              "destination_block": "a343d96b-4b52-5919-ace6-b3bd379e0e8d",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -2097,8 +2097,8 @@
               "name": "Default exit to \"DisplayTourCard04Error\"",
               "config": {},
               "test": "",
-              "uuid": "b9a33591-345d-437d-ba9c-b61b5ab2b41c",
-              "destination_block": "a0ef48e1-29cd-54e6-b68d-b85e69be159e",
+              "uuid": "b768e2c8-0e02-4e85-8d14-b70b644ad0ff",
+              "destination_block": "1364d1fd-d68c-55bc-a7c9-965f24d63bf1",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2114,7 +2114,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 254
+                        "line": 249
                       },
                       "name": "DisplayTourCard04Error",
                       "uuid": "d86ec986-d6f5-5789-b24a-9ad1f45d8c6e"
@@ -2123,7 +2123,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 255
+                        "line": 250
                       },
                       "type": "button_block"
                     },
@@ -2148,8 +2148,8 @@
               "name": "Exit for display_tour_card04_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "eefd036c-1acb-4f80-b6e7-10cc102058dd",
-              "destination_block": "7ceb377d-1127-5708-b730-7a924ab2632f",
+              "uuid": "154c31c7-350f-40fb-aae1-a0c00bae14ac",
+              "destination_block": "8ad38091-549d-5194-adf0-ab78c718d2f4",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -2158,8 +2158,8 @@
               "name": "Exit for display_tour_card04_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "c2e3e924-4aec-44f9-81e6-b195a3be5446",
-              "destination_block": "69001d01-ec32-52dd-b5e5-11647b6c37ac",
+              "uuid": "14c04898-2c9d-4872-800c-e64bbf9b06d6",
+              "destination_block": "a1f86b52-cb71-5484-8b52-8a3ce13bc9ed",
               "semantic_label": null,
               "vendor_metadata": {}
             }
@@ -2173,7 +2173,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "69001d01-ec32-52dd-b5e5-11647b6c37ac",
+          "uuid": "a1f86b52-cb71-5484-8b52-8a3ce13bc9ed",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2186,8 +2186,8 @@
               "name": "content_data.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "ec8342a3-882c-4632-b878-b4cd38006a93",
-              "destination_block": "f5f789fe-bd46-50b1-939f-9914ed73beb4",
+              "uuid": "3aced652-4ccf-49ae-9ea6-543a55087b7d",
+              "destination_block": "4afd1081-16cb-5d99-9634-5b5c1d5a17e8",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2202,7 +2202,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 237
+                        "line": 232
                       },
                       "name": "DisplayTourCard04",
                       "uuid": "85f9569a-d777-59de-9541-14e660548d20"
@@ -2211,7 +2211,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 238
+                        "line": 233
                       },
                       "type": "expression"
                     },
@@ -2231,7 +2231,7 @@
             "mode": "sync",
             "body": null,
             "query": [],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
             "headers": [
               [
                 "Authorization",
@@ -2242,7 +2242,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "f5f789fe-bd46-50b1-939f-9914ed73beb4",
+          "uuid": "4afd1081-16cb-5d99-9634-5b5c1d5a17e8",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2255,8 +2255,8 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "313034d7-9180-413e-a830-6813b4abbcf7",
-              "destination_block": "c02e3cb7-4541-5da8-b677-a591e6d180ea",
+              "uuid": "b6bfac4c-ac1a-4f6c-91f3-1d633245bdd0",
+              "destination_block": "d204f8fd-babb-5c7b-b7fa-e9f07c29e375",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2271,7 +2271,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 237
+                        "line": 232
                       },
                       "name": "DisplayTourCard04",
                       "uuid": "85f9569a-d777-59de-9541-14e660548d20"
@@ -2279,7 +2279,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 240
+                        "line": 235
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -2296,17 +2296,17 @@
           "name": "display_tour_card04_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "600a189d-c02a-4a0b-8e40-339113313b40",
+            "prompt": "deb78945-335b-483b-9e3f-bf8f9f067921",
             "choices": [
               {
                 "name": "fetch_tour_card05",
-                "prompt": "949a253d-b459-4a4d-bfa7-8d32429c23a0",
+                "prompt": "a4ba23b8-0a0b-44b3-9e73-8bce2acb01a7",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "c02e3cb7-4541-5da8-b677-a591e6d180ea",
+          "uuid": "d204f8fd-babb-5c7b-b7fa-e9f07c29e375",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2319,8 +2319,8 @@
               "name": "fetch_tour_card05",
               "config": {},
               "test": "block.value = \"fetch_tour_card05\"",
-              "uuid": "5e5583f8-526f-4335-a711-c47f68aefb49",
-              "destination_block": "e0b8d749-9c43-594c-a3aa-cc811f16dd2c",
+              "uuid": "68dbec6e-037c-4f07-8735-18e71ae0d5f7",
+              "destination_block": "a343d96b-4b52-5919-ace6-b3bd379e0e8d",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -2329,8 +2329,8 @@
               "name": "Default exit to \"DisplayTourCard04Error\"",
               "config": {},
               "test": "",
-              "uuid": "edccd726-d5ff-46a9-9a6a-4a6b2db60074",
-              "destination_block": "a0ef48e1-29cd-54e6-b68d-b85e69be159e",
+              "uuid": "90698891-bbd3-4f11-950e-6b69e79f9935",
+              "destination_block": "1364d1fd-d68c-55bc-a7c9-965f24d63bf1",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2346,7 +2346,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 237
+                        "line": 232
                       },
                       "name": "DisplayTourCard04",
                       "uuid": "85f9569a-d777-59de-9541-14e660548d20"
@@ -2355,7 +2355,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 248
+                        "line": 243
                       },
                       "type": "button_block"
                     },
@@ -2371,17 +2371,17 @@
           "name": "display_tour_card04_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "59056d57-db06-4988-a80a-e6a06fcc0712",
+            "prompt": "fe85c3f0-16b9-4ec4-b676-878077f845ba",
             "choices": [
               {
                 "name": "fetch_tour_card05",
-                "prompt": "44c7d9cc-d84e-4713-93fc-9d0cd7700cf9",
+                "prompt": "6eb7cb87-35b7-413b-9e27-8e15598d89f6",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "7ceb377d-1127-5708-b730-7a924ab2632f",
+          "uuid": "8ad38091-549d-5194-adf0-ab78c718d2f4",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2394,8 +2394,8 @@
               "name": "fetch_tour_card05",
               "config": {},
               "test": "block.value = \"fetch_tour_card05\"",
-              "uuid": "f059b3d9-ee3b-4540-9652-725b0bb7982b",
-              "destination_block": "e0b8d749-9c43-594c-a3aa-cc811f16dd2c",
+              "uuid": "736c1687-a4d8-40d9-a14b-5c410900ed89",
+              "destination_block": "a343d96b-4b52-5919-ace6-b3bd379e0e8d",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -2404,8 +2404,8 @@
               "name": "Default exit to \"DisplayTourCard04Error\"",
               "config": {},
               "test": "",
-              "uuid": "f6b9becb-831e-4508-a7bd-1a961f37b96f",
-              "destination_block": "a0ef48e1-29cd-54e6-b68d-b85e69be159e",
+              "uuid": "64387edb-a229-4bb2-ba5a-a0fc559496bd",
+              "destination_block": "1364d1fd-d68c-55bc-a7c9-965f24d63bf1",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2421,7 +2421,7 @@
                       "condition": "contact.data_preference == \"text only\"",
                       "meta": {
                         "column": 1,
-                        "line": 230
+                        "line": 225
                       },
                       "name": "DisplayTourCard04",
                       "uuid": "e5ee8db0-1382-5228-b8f4-804120a087d0"
@@ -2430,7 +2430,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 232
+                        "line": 227
                       },
                       "type": "button_block"
                     },
@@ -2455,7 +2455,7 @@
                 "mnch_onboarding_tour_card_04"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -2466,7 +2466,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "ab17305c-f865-5cdf-a94f-b204f8a9ef12",
+          "uuid": "6ac0ad77-033b-52d6-bace-b9b2a739a289",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2479,8 +2479,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "5678322a-1100-4e44-8381-36ff926cb319",
-              "destination_block": "349843b7-1ef9-5c3a-8ff7-8bf6bea3b853",
+              "uuid": "174a71bb-1a2a-4e01-810a-dc9c678d13ba",
+              "destination_block": "1345a71f-6eca-5734-b2ce-e8ca7705bc4d",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2495,7 +2495,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 205
+                        "line": 200
                       },
                       "name": "FetchTourCard04",
                       "uuid": "cd335131-ce1a-5b91-88c7-27f89ddc78c8"
@@ -2503,7 +2503,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 206
+                        "line": 201
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -2521,7 +2521,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "349843b7-1ef9-5c3a-8ff7-8bf6bea3b853",
+          "uuid": "1345a71f-6eca-5734-b2ce-e8ca7705bc4d",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2534,8 +2534,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "0dac1567-7f98-4e79-8b4f-ce9ec8c325e1",
-              "destination_block": "da4b9ac7-561d-5e70-868d-6040680300c7",
+              "uuid": "99b51207-4955-4764-abcf-f393a36ed842",
+              "destination_block": "91046e08-83d8-504e-a796-a9feab4a52be",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2550,7 +2550,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 205
+                        "line": 200
                       },
                       "name": "FetchTourCard04",
                       "uuid": "cd335131-ce1a-5b91-88c7-27f89ddc78c8"
@@ -2559,7 +2559,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 215
+                        "line": 210
                       },
                       "type": "expression"
                     },
@@ -2584,7 +2584,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -2595,7 +2595,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "da4b9ac7-561d-5e70-868d-6040680300c7",
+          "uuid": "91046e08-83d8-504e-a796-a9feab4a52be",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2608,8 +2608,8 @@
               "name": "content_data",
               "config": {},
               "test": "",
-              "uuid": "61146ab9-4949-4158-bd38-146e5927029c",
-              "destination_block": "45a188e1-e33e-530a-b3ba-b4c009bdb032",
+              "uuid": "ebdbb280-4029-4c33-8f8f-f628d99b3cfd",
+              "destination_block": "52cf7a9a-cf7a-5ade-b12f-9e4384066d81",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2624,7 +2624,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 205
+                        "line": 200
                       },
                       "name": "FetchTourCard04",
                       "uuid": "cd335131-ce1a-5b91-88c7-27f89ddc78c8"
@@ -2632,7 +2632,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 217
+                        "line": 212
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -2650,7 +2650,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "45a188e1-e33e-530a-b3ba-b4c009bdb032",
+          "uuid": "52cf7a9a-cf7a-5ade-b12f-9e4384066d81",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2663,8 +2663,8 @@
               "name": "content_data.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "641090f2-26a3-4434-93dc-1914d69005dd",
-              "destination_block": "e398e61e-8357-571a-be8b-7345064911ea",
+              "uuid": "7d102137-7ab4-4d09-b82b-90e01d2e653a",
+              "destination_block": "492c218a-6349-5252-bb75-d3915938721e",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2679,7 +2679,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 205
+                        "line": 200
                       },
                       "name": "FetchTourCard04",
                       "uuid": "cd335131-ce1a-5b91-88c7-27f89ddc78c8"
@@ -2688,7 +2688,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 226
+                        "line": 221
                       },
                       "type": "expression"
                     },
@@ -2705,7 +2705,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "e398e61e-8357-571a-be8b-7345064911ea",
+          "uuid": "492c218a-6349-5252-bb75-d3915938721e",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2718,7 +2718,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "fc3c341f-f140-474d-8ab0-9368132ec1cf",
+              "uuid": "ba66180c-bbf8-40ea-8a3d-5677df5b77f0",
               "destination_block": "e5ee8db0-1382-5228-b8f4-804120a087d0",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -2734,7 +2734,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 205
+                        "line": 200
                       },
                       "name": "FetchTourCard04",
                       "uuid": "cd335131-ce1a-5b91-88c7-27f89ddc78c8"
@@ -2743,7 +2743,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 227
+                        "line": 222
                       },
                       "type": "expression"
                     },
@@ -2759,17 +2759,17 @@
           "name": "display_tour_card03_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "a5aefe7c-f392-4009-955c-0939134013e9",
+            "prompt": "cdf13dff-e360-4a7c-8a74-7adab3472acf",
             "choices": [
               {
                 "name": "fetch_tour_card04",
-                "prompt": "f9d80248-df40-4819-b9eb-8290958478bd",
+                "prompt": "45d8e2fe-4493-48da-8f62-96a7f30067a4",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "4f5b7ecc-93a8-5d90-ad31-be3c0b88b0eb",
+          "uuid": "65889fb5-3ac3-5977-afc8-580d12b6b733",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2782,8 +2782,8 @@
               "name": "fetch_tour_card04",
               "config": {},
               "test": "block.value = \"fetch_tour_card04\"",
-              "uuid": "9d5c4f8f-49fc-484c-9e61-f7d80fba3ac5",
-              "destination_block": "ab17305c-f865-5cdf-a94f-b204f8a9ef12",
+              "uuid": "267919d1-b0ce-47a2-8042-54cd19cdd9a8",
+              "destination_block": "6ac0ad77-033b-52d6-bace-b9b2a739a289",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -2792,8 +2792,8 @@
               "name": "Default exit to \"DisplayTourCard03Error\"",
               "config": {},
               "test": "",
-              "uuid": "a428b393-174e-4a37-bd09-3bfc95843c98",
-              "destination_block": "4f5b7ecc-93a8-5d90-ad31-be3c0b88b0eb",
+              "uuid": "d3204dd6-fb2b-4c25-a477-c2d8dd817504",
+              "destination_block": "65889fb5-3ac3-5977-afc8-580d12b6b733",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2809,7 +2809,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 199
+                        "line": 194
                       },
                       "name": "DisplayTourCard03Error",
                       "uuid": "fd8ab9aa-8ac7-5903-99ad-c7cdf9fdd124"
@@ -2818,7 +2818,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 200
+                        "line": 195
                       },
                       "type": "button_block"
                     },
@@ -2843,8 +2843,8 @@
               "name": "Exit for display_tour_card03_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "b51f9922-6f1e-4f36-9632-5994cb48a2ff",
-              "destination_block": "7ec39ca9-f2f7-5296-acdb-3bf0362c257b",
+              "uuid": "2eaf3144-7e9a-43e8-8514-cc78b749111d",
+              "destination_block": "aa562ebd-54af-5138-a023-f40c424edf44",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -2853,8 +2853,8 @@
               "name": "Exit for display_tour_card03_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "77683f3b-2e54-42a2-9b40-8bc848c189a7",
-              "destination_block": "d07b24e3-022c-5480-8117-8ef36af66eeb",
+              "uuid": "baaeb598-1c30-4358-8397-4f0d35037146",
+              "destination_block": "d480cd93-f43e-54ed-9e12-8f345833abd0",
               "semantic_label": null,
               "vendor_metadata": {}
             }
@@ -2868,7 +2868,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "d07b24e3-022c-5480-8117-8ef36af66eeb",
+          "uuid": "d480cd93-f43e-54ed-9e12-8f345833abd0",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2881,8 +2881,8 @@
               "name": "content_data.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "9307f5a8-b932-4c41-b718-1771e424dbbd",
-              "destination_block": "4c043880-9a3b-5bca-a20d-8543c3e89cf8",
+              "uuid": "33c663ef-f9f2-455a-94a7-69c41085dc36",
+              "destination_block": "3e238b2c-b40e-57ac-be7b-5b9bb3263762",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2897,7 +2897,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 182
+                        "line": 177
                       },
                       "name": "DisplayTourCard03",
                       "uuid": "92687a5f-d6f9-54cb-bcaf-eb257e069431"
@@ -2906,7 +2906,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 183
+                        "line": 178
                       },
                       "type": "expression"
                     },
@@ -2926,7 +2926,7 @@
             "mode": "sync",
             "body": null,
             "query": [],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
             "headers": [
               [
                 "Authorization",
@@ -2937,7 +2937,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "4c043880-9a3b-5bca-a20d-8543c3e89cf8",
+          "uuid": "3e238b2c-b40e-57ac-be7b-5b9bb3263762",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -2950,8 +2950,8 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "1a0c80be-1af9-4442-905b-249a6aa9475d",
-              "destination_block": "adf9f636-dd7f-5a67-b8aa-5579ce677530",
+              "uuid": "2b0d88e6-d277-490b-8ad5-866a5fd07bb1",
+              "destination_block": "a0bfe233-94d9-5b30-9dd6-d5f6fb30d944",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -2966,7 +2966,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 182
+                        "line": 177
                       },
                       "name": "DisplayTourCard03",
                       "uuid": "92687a5f-d6f9-54cb-bcaf-eb257e069431"
@@ -2974,7 +2974,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 185
+                        "line": 180
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -2991,17 +2991,17 @@
           "name": "display_tour_card03_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "0b74ec4a-b603-4152-b1a7-56c008d80876",
+            "prompt": "2c43020e-3c66-42aa-8a55-3aff73abf748",
             "choices": [
               {
                 "name": "fetch_tour_card04",
-                "prompt": "afb49fb9-39ff-440b-9192-d60a91b8bad4",
+                "prompt": "5631e347-8f6f-4952-bb71-a857cf3a3c34",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "adf9f636-dd7f-5a67-b8aa-5579ce677530",
+          "uuid": "a0bfe233-94d9-5b30-9dd6-d5f6fb30d944",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3014,8 +3014,8 @@
               "name": "fetch_tour_card04",
               "config": {},
               "test": "block.value = \"fetch_tour_card04\"",
-              "uuid": "804f9441-4ad9-4c07-b799-6e932b13fc9c",
-              "destination_block": "ab17305c-f865-5cdf-a94f-b204f8a9ef12",
+              "uuid": "b58461f7-c6f7-49d0-8dca-c4a6dfbf5631",
+              "destination_block": "6ac0ad77-033b-52d6-bace-b9b2a739a289",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -3024,8 +3024,8 @@
               "name": "Default exit to \"DisplayTourCard03Error\"",
               "config": {},
               "test": "",
-              "uuid": "5802aa0e-dbff-4e66-85c8-09cebab79de4",
-              "destination_block": "4f5b7ecc-93a8-5d90-ad31-be3c0b88b0eb",
+              "uuid": "3645c2f3-b705-41e5-acc8-021763f58a3b",
+              "destination_block": "65889fb5-3ac3-5977-afc8-580d12b6b733",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3041,7 +3041,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 182
+                        "line": 177
                       },
                       "name": "DisplayTourCard03",
                       "uuid": "92687a5f-d6f9-54cb-bcaf-eb257e069431"
@@ -3050,7 +3050,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 193
+                        "line": 188
                       },
                       "type": "button_block"
                     },
@@ -3066,17 +3066,17 @@
           "name": "display_tour_card03_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "b4af834d-eb9d-4eb8-8ff0-4e7e5711d2ba",
+            "prompt": "6d66e35a-6775-42d5-adb9-c9972170c121",
             "choices": [
               {
                 "name": "fetch_tour_card04",
-                "prompt": "667140eb-9c15-4e2f-b780-10c38bc6758a",
+                "prompt": "959bafc9-a200-4063-92a2-0c869acfb316",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "7ec39ca9-f2f7-5296-acdb-3bf0362c257b",
+          "uuid": "aa562ebd-54af-5138-a023-f40c424edf44",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3089,8 +3089,8 @@
               "name": "fetch_tour_card04",
               "config": {},
               "test": "block.value = \"fetch_tour_card04\"",
-              "uuid": "6ca2a4c9-73c4-4286-a24c-a73a67920f0a",
-              "destination_block": "ab17305c-f865-5cdf-a94f-b204f8a9ef12",
+              "uuid": "aa594b41-ecb1-4a46-8faa-2f966910ba13",
+              "destination_block": "6ac0ad77-033b-52d6-bace-b9b2a739a289",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -3099,8 +3099,8 @@
               "name": "Default exit to \"DisplayTourCard03Error\"",
               "config": {},
               "test": "",
-              "uuid": "2fbb331b-bf75-43cb-b8c1-692b812c9ba5",
-              "destination_block": "4f5b7ecc-93a8-5d90-ad31-be3c0b88b0eb",
+              "uuid": "1705fec5-f695-4ec8-bddb-8d2533abd133",
+              "destination_block": "65889fb5-3ac3-5977-afc8-580d12b6b733",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3116,7 +3116,7 @@
                       "condition": "contact.data_preference == \"text only\"",
                       "meta": {
                         "column": 1,
-                        "line": 175
+                        "line": 170
                       },
                       "name": "DisplayTourCard03",
                       "uuid": "c97d6fb6-3e1f-5e5c-b2bf-582a79f7def7"
@@ -3125,7 +3125,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 177
+                        "line": 172
                       },
                       "type": "button_block"
                     },
@@ -3150,7 +3150,7 @@
                 "mnch_onboarding_tour_card_03"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -3161,7 +3161,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "63480639-f963-5890-8879-580c78754367",
+          "uuid": "50b9fbe8-1eda-5909-9ceb-48e538c65c2e",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3174,8 +3174,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "9e300708-9e43-4771-9dc6-031f57dc2541",
-              "destination_block": "e09422d0-86f1-57ff-8708-a4cb6375b115",
+              "uuid": "99b294db-d2be-469f-864c-07d11f73b73f",
+              "destination_block": "6e19b9de-3963-591a-8b22-4e7067fc46ca",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3190,7 +3190,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 150
+                        "line": 145
                       },
                       "name": "FetchTourCard03",
                       "uuid": "01acc06f-c515-5da3-a075-ae59a47fdb8b"
@@ -3198,7 +3198,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 151
+                        "line": 146
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -3216,7 +3216,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "e09422d0-86f1-57ff-8708-a4cb6375b115",
+          "uuid": "6e19b9de-3963-591a-8b22-4e7067fc46ca",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3229,8 +3229,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "ca1a902d-4ba8-49cd-80ed-b7cf167966ab",
-              "destination_block": "f62bbdb7-5025-53f5-b27d-9cfd59840f6d",
+              "uuid": "60d04748-d1ac-4bba-8d8d-395cde0881c3",
+              "destination_block": "1cf9171d-35d4-5333-b602-9eb32fa1863d",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3245,7 +3245,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 150
+                        "line": 145
                       },
                       "name": "FetchTourCard03",
                       "uuid": "01acc06f-c515-5da3-a075-ae59a47fdb8b"
@@ -3254,7 +3254,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 160
+                        "line": 155
                       },
                       "type": "expression"
                     },
@@ -3279,7 +3279,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -3290,7 +3290,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "f62bbdb7-5025-53f5-b27d-9cfd59840f6d",
+          "uuid": "1cf9171d-35d4-5333-b602-9eb32fa1863d",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3303,8 +3303,8 @@
               "name": "content_data",
               "config": {},
               "test": "",
-              "uuid": "a4e52e1e-9876-4cfd-86f3-8b448e0cf0fa",
-              "destination_block": "cd60f5d4-c190-5a7c-91e2-d76174a701f0",
+              "uuid": "a72a25ab-bc04-44cd-8c4c-b402f0b5bd66",
+              "destination_block": "6f8b4aad-9fb2-54aa-a453-2a47cc2caffd",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3319,7 +3319,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 150
+                        "line": 145
                       },
                       "name": "FetchTourCard03",
                       "uuid": "01acc06f-c515-5da3-a075-ae59a47fdb8b"
@@ -3327,7 +3327,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 162
+                        "line": 157
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -3345,7 +3345,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "cd60f5d4-c190-5a7c-91e2-d76174a701f0",
+          "uuid": "6f8b4aad-9fb2-54aa-a453-2a47cc2caffd",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3358,8 +3358,8 @@
               "name": "content_data.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "e6de0161-fc4e-4335-b410-b28a8dc7845b",
-              "destination_block": "9de56df7-8754-50ae-856b-d624f58908c5",
+              "uuid": "5ce5b771-8eb2-4187-bcaa-e98eb8853d5e",
+              "destination_block": "bf6802ab-68aa-5a1a-ba07-0888a40210c6",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3374,7 +3374,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 150
+                        "line": 145
                       },
                       "name": "FetchTourCard03",
                       "uuid": "01acc06f-c515-5da3-a075-ae59a47fdb8b"
@@ -3383,7 +3383,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 171
+                        "line": 166
                       },
                       "type": "expression"
                     },
@@ -3400,7 +3400,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "9de56df7-8754-50ae-856b-d624f58908c5",
+          "uuid": "bf6802ab-68aa-5a1a-ba07-0888a40210c6",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3413,7 +3413,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "a03bdf37-2a6d-4495-80d9-89fef5e91910",
+              "uuid": "df3876ef-d771-4ccf-9df4-8c1efb8746a3",
               "destination_block": "c97d6fb6-3e1f-5e5c-b2bf-582a79f7def7",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -3429,7 +3429,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 150
+                        "line": 145
                       },
                       "name": "FetchTourCard03",
                       "uuid": "01acc06f-c515-5da3-a075-ae59a47fdb8b"
@@ -3438,7 +3438,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 172
+                        "line": 167
                       },
                       "type": "expression"
                     },
@@ -3454,17 +3454,17 @@
           "name": "display_tour_card02_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "c11eb689-946a-4bd0-92dc-bab11e410dd1",
+            "prompt": "0adaebc9-3687-430d-9e5a-7dc2e3e59e87",
             "choices": [
               {
                 "name": "fetch_tour_card03",
-                "prompt": "f5f99d2a-d7bf-4bf2-bc7c-e3691faf5483",
+                "prompt": "7db4a863-f9de-421d-82bc-f77241d8fcb8",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "9e1a6dcd-946f-561b-8793-b42f695f6656",
+          "uuid": "d021e701-5089-54be-8a7f-9385886a027e",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3477,8 +3477,8 @@
               "name": "fetch_tour_card03",
               "config": {},
               "test": "block.value = \"fetch_tour_card03\"",
-              "uuid": "3225668c-af44-44aa-9d36-831e1914ca3f",
-              "destination_block": "63480639-f963-5890-8879-580c78754367",
+              "uuid": "fdf4eb91-c396-4499-8c14-a8813e67d0a3",
+              "destination_block": "50b9fbe8-1eda-5909-9ceb-48e538c65c2e",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -3487,8 +3487,8 @@
               "name": "Default exit to \"DisplayTourCard02Error\"",
               "config": {},
               "test": "",
-              "uuid": "012abaf7-f0df-455e-999f-cfc1de7a18a2",
-              "destination_block": "9e1a6dcd-946f-561b-8793-b42f695f6656",
+              "uuid": "ba51ebd7-666f-4354-9137-9c0ec25e3c2f",
+              "destination_block": "d021e701-5089-54be-8a7f-9385886a027e",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3504,7 +3504,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 144
+                        "line": 139
                       },
                       "name": "DisplayTourCard02Error",
                       "uuid": "5f6427e6-2a4b-5733-99e2-7cd32f66b802"
@@ -3513,7 +3513,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 145
+                        "line": 140
                       },
                       "type": "button_block"
                     },
@@ -3538,8 +3538,8 @@
               "name": "Exit for display_tour_card02_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "d4a60c5b-7818-4364-94f6-d9ad3121416c",
-              "destination_block": "d0b657ee-59e4-5e06-9afa-1e96d89607d6",
+              "uuid": "f9e3a27d-4d40-4b4f-873c-c6a2423e1c2e",
+              "destination_block": "17d81d45-2ba9-5ec5-9e80-d9f2b734e21b",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -3548,8 +3548,8 @@
               "name": "Exit for display_tour_card02_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "d583ef74-cba6-46a8-bf06-119a9243064e",
-              "destination_block": "dc2bd181-8c2c-56b9-939a-d8e902a5fbd0",
+              "uuid": "c2047eec-f5de-43fc-a937-98b697ae5c14",
+              "destination_block": "2e674072-3688-56dd-8f91-c1d4a89c3e0e",
               "semantic_label": null,
               "vendor_metadata": {}
             }
@@ -3563,7 +3563,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "dc2bd181-8c2c-56b9-939a-d8e902a5fbd0",
+          "uuid": "2e674072-3688-56dd-8f91-c1d4a89c3e0e",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3576,8 +3576,8 @@
               "name": "content_data.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "fa2639ae-17e6-49c5-b79b-617f2641e2e4",
-              "destination_block": "d9e33081-895a-580d-9897-71a891d696fa",
+              "uuid": "6956b561-508d-423a-a789-f36ecf2f946d",
+              "destination_block": "19981d91-ba00-5686-8f4a-04fe8350577c",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3592,7 +3592,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 127
+                        "line": 122
                       },
                       "name": "DisplayTourCard02",
                       "uuid": "b13b4f99-fd24-5d2c-8b3d-76d531941da6"
@@ -3601,7 +3601,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 128
+                        "line": 123
                       },
                       "type": "expression"
                     },
@@ -3621,7 +3621,7 @@
             "mode": "sync",
             "body": null,
             "query": [],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
             "headers": [
               [
                 "Authorization",
@@ -3632,7 +3632,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "d9e33081-895a-580d-9897-71a891d696fa",
+          "uuid": "19981d91-ba00-5686-8f4a-04fe8350577c",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3645,8 +3645,8 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "b20bdd86-d71e-4921-8cd0-497d6d30211d",
-              "destination_block": "30dbf44f-f917-5e84-b371-6981238eb0ba",
+              "uuid": "2d30fa33-d03f-456b-9812-f101c04df416",
+              "destination_block": "c3218314-aeb9-56c8-85f8-4e14d44a9c99",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3661,7 +3661,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 127
+                        "line": 122
                       },
                       "name": "DisplayTourCard02",
                       "uuid": "b13b4f99-fd24-5d2c-8b3d-76d531941da6"
@@ -3669,7 +3669,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 130
+                        "line": 125
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -3686,17 +3686,17 @@
           "name": "display_tour_card02_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "6808708b-2f4e-4325-b866-1b1cfcec87ff",
+            "prompt": "e1c1c9c8-c4fe-41a7-90f7-f9409a134256",
             "choices": [
               {
                 "name": "fetch_tour_card03",
-                "prompt": "7e903e34-c1d8-44ac-acb3-fded3d014af8",
+                "prompt": "0960098e-0f04-41e7-8fd4-d7c89b9c47f3",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "30dbf44f-f917-5e84-b371-6981238eb0ba",
+          "uuid": "c3218314-aeb9-56c8-85f8-4e14d44a9c99",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3709,8 +3709,8 @@
               "name": "fetch_tour_card03",
               "config": {},
               "test": "block.value = \"fetch_tour_card03\"",
-              "uuid": "36e9e9bb-ace1-45a7-aad8-85e77d93b944",
-              "destination_block": "63480639-f963-5890-8879-580c78754367",
+              "uuid": "6b79ac66-14af-4d7d-96bc-040b3fea4b9a",
+              "destination_block": "50b9fbe8-1eda-5909-9ceb-48e538c65c2e",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -3719,8 +3719,8 @@
               "name": "Default exit to \"DisplayTourCard02Error\"",
               "config": {},
               "test": "",
-              "uuid": "db8e16d9-a01e-453e-9ef3-d200312c51c5",
-              "destination_block": "9e1a6dcd-946f-561b-8793-b42f695f6656",
+              "uuid": "63dce00e-f9a4-46e4-a8ba-8a03ab7f7bed",
+              "destination_block": "d021e701-5089-54be-8a7f-9385886a027e",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3736,7 +3736,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 127
+                        "line": 122
                       },
                       "name": "DisplayTourCard02",
                       "uuid": "b13b4f99-fd24-5d2c-8b3d-76d531941da6"
@@ -3745,7 +3745,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 138
+                        "line": 133
                       },
                       "type": "button_block"
                     },
@@ -3761,17 +3761,17 @@
           "name": "display_tour_card02_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "85b80b3e-7003-43f2-ac54-0267aaf74bc0",
+            "prompt": "bbec1e9d-6316-4070-b742-7d1edd67e4b5",
             "choices": [
               {
                 "name": "fetch_tour_card03",
-                "prompt": "df8a11e4-8c90-43ac-8ba9-7e230c0e23d9",
+                "prompt": "41a1c8b4-e61d-45ef-89e6-247071e5414f",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "d0b657ee-59e4-5e06-9afa-1e96d89607d6",
+          "uuid": "17d81d45-2ba9-5ec5-9e80-d9f2b734e21b",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3784,8 +3784,8 @@
               "name": "fetch_tour_card03",
               "config": {},
               "test": "block.value = \"fetch_tour_card03\"",
-              "uuid": "a016a093-6bdd-4e92-bab2-fb1e0e250c00",
-              "destination_block": "63480639-f963-5890-8879-580c78754367",
+              "uuid": "f77980a7-2a34-47eb-a678-99bfa0697c62",
+              "destination_block": "50b9fbe8-1eda-5909-9ceb-48e538c65c2e",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -3794,8 +3794,8 @@
               "name": "Default exit to \"DisplayTourCard02Error\"",
               "config": {},
               "test": "",
-              "uuid": "478f2b93-4c9d-4184-970f-dae3ff3c2189",
-              "destination_block": "9e1a6dcd-946f-561b-8793-b42f695f6656",
+              "uuid": "d1d8f482-54f0-4f2d-9489-e414613b480b",
+              "destination_block": "d021e701-5089-54be-8a7f-9385886a027e",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3811,7 +3811,7 @@
                       "condition": "contact.data_preference == \"text only\"",
                       "meta": {
                         "column": 1,
-                        "line": 120
+                        "line": 115
                       },
                       "name": "DisplayTourCard02",
                       "uuid": "2a6ca07a-b82b-5ef2-b886-c2a987af4414"
@@ -3820,7 +3820,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 122
+                        "line": 117
                       },
                       "type": "button_block"
                     },
@@ -3845,7 +3845,7 @@
                 "mnch_onboarding_tour_card_02"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -3856,7 +3856,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "2b2865c7-f7c4-5573-8578-fa161830428b",
+          "uuid": "928ed522-0110-5fff-8dfd-f554ca0cd086",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3869,8 +3869,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "dc5b21d8-47f3-441e-97ce-80dcba8acc06",
-              "destination_block": "a3b9c98d-d53a-5b83-b783-022eea3bb221",
+              "uuid": "38f93343-b082-4f65-8ae0-6e7548ff11b5",
+              "destination_block": "1944d276-1fd9-5639-a0e3-a7a886ac5614",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3885,7 +3885,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 95
+                        "line": 90
                       },
                       "name": "FetchTourCard02",
                       "uuid": "6fbfedf1-997a-5ac7-b1db-c1a0815eeee3"
@@ -3893,7 +3893,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 96
+                        "line": 91
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -3911,7 +3911,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "a3b9c98d-d53a-5b83-b783-022eea3bb221",
+          "uuid": "1944d276-1fd9-5639-a0e3-a7a886ac5614",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3924,8 +3924,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "c0d029c0-278c-4c64-adb6-2576100c70e7",
-              "destination_block": "180f135d-391b-55d2-a204-c2d11481e854",
+              "uuid": "c9514893-c207-4160-8b39-c618ffe25bbd",
+              "destination_block": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -3940,7 +3940,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 95
+                        "line": 90
                       },
                       "name": "FetchTourCard02",
                       "uuid": "6fbfedf1-997a-5ac7-b1db-c1a0815eeee3"
@@ -3949,7 +3949,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 105
+                        "line": 100
                       },
                       "type": "expression"
                     },
@@ -3974,7 +3974,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -3985,7 +3985,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "180f135d-391b-55d2-a204-c2d11481e854",
+          "uuid": "b3fda6f9-43d4-5fe4-965b-a0d129cb6937",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -3998,8 +3998,8 @@
               "name": "content_data",
               "config": {},
               "test": "",
-              "uuid": "69c07fd3-5d36-4564-b6e4-ed9c0704c7d0",
-              "destination_block": "5e46222a-bdd2-54ce-88b1-9e1e7f6a54bc",
+              "uuid": "c230de44-06dd-43c3-9613-404787c3c284",
+              "destination_block": "048dc483-6718-58c2-80cd-f3b8dad18b28",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4014,7 +4014,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 95
+                        "line": 90
                       },
                       "name": "FetchTourCard02",
                       "uuid": "6fbfedf1-997a-5ac7-b1db-c1a0815eeee3"
@@ -4022,7 +4022,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 107
+                        "line": 102
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -4040,7 +4040,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "5e46222a-bdd2-54ce-88b1-9e1e7f6a54bc",
+          "uuid": "048dc483-6718-58c2-80cd-f3b8dad18b28",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4053,8 +4053,8 @@
               "name": "content_data.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "c5c6b6e5-5b37-47fa-ac59-212e756d609a",
-              "destination_block": "6e5ab5bb-4a04-5c11-a762-44ed0de8c22c",
+              "uuid": "74366f36-a175-4bf2-8d4c-6cc2aebbaaad",
+              "destination_block": "dcf14149-72c0-5dc2-91da-8b6c342e6b61",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4069,7 +4069,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 95
+                        "line": 90
                       },
                       "name": "FetchTourCard02",
                       "uuid": "6fbfedf1-997a-5ac7-b1db-c1a0815eeee3"
@@ -4078,7 +4078,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 116
+                        "line": 111
                       },
                       "type": "expression"
                     },
@@ -4095,7 +4095,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "6e5ab5bb-4a04-5c11-a762-44ed0de8c22c",
+          "uuid": "dcf14149-72c0-5dc2-91da-8b6c342e6b61",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4108,7 +4108,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "6c1904de-e971-44d9-8f9b-67fe12be2e95",
+              "uuid": "06e69344-9e4e-4407-9309-0049ae6b4dc5",
               "destination_block": "2a6ca07a-b82b-5ef2-b886-c2a987af4414",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4124,7 +4124,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 95
+                        "line": 90
                       },
                       "name": "FetchTourCard02",
                       "uuid": "6fbfedf1-997a-5ac7-b1db-c1a0815eeee3"
@@ -4133,7 +4133,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 117
+                        "line": 112
                       },
                       "type": "expression"
                     },
@@ -4149,17 +4149,17 @@
           "name": "display_tour_card01_error",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "760a9b8a-b19a-4333-8087-c8edb0ac29a1",
+            "prompt": "0542e362-4d43-4096-8507-b4b22c134486",
             "choices": [
               {
                 "name": "fetch_tour_card02",
-                "prompt": "64b32092-ee41-4c6c-a722-b704ea2f2141",
+                "prompt": "44a1b97b-9075-4f12-bfa2-66d79d048b5e",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "e5c94841-e275-5579-acc3-539459a1bd67",
+          "uuid": "447d4e1e-dffa-549c-bf70-120fde675945",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4172,8 +4172,8 @@
               "name": "fetch_tour_card02",
               "config": {},
               "test": "block.value = \"fetch_tour_card02\"",
-              "uuid": "7d9a82bc-40b3-4779-97bb-5785000cf999",
-              "destination_block": "2b2865c7-f7c4-5573-8578-fa161830428b",
+              "uuid": "c33e10aa-f377-4da6-8891-8fd5021a5c60",
+              "destination_block": "928ed522-0110-5fff-8dfd-f554ca0cd086",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -4182,8 +4182,8 @@
               "name": "Default exit to \"DisplayTourCard01Error\"",
               "config": {},
               "test": "",
-              "uuid": "649a2f9d-8afe-4f29-95ed-75e875bd17ff",
-              "destination_block": "e5c94841-e275-5579-acc3-539459a1bd67",
+              "uuid": "339e0bac-410d-41ef-bfec-ab78a00fb9d7",
+              "destination_block": "447d4e1e-dffa-549c-bf70-120fde675945",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4199,7 +4199,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 89
+                        "line": 84
                       },
                       "name": "DisplayTourCard01Error",
                       "uuid": "5d5d73cb-1db5-511d-9b29-d200acc38230"
@@ -4208,7 +4208,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 90
+                        "line": 85
                       },
                       "type": "button_block"
                     },
@@ -4233,8 +4233,8 @@
               "name": "Exit for display_tour_card01_case_condition_0",
               "config": {},
               "test": "contact.data_preference == \"text only\"",
-              "uuid": "bc380044-56ff-4b90-93b6-5487c60de2cd",
-              "destination_block": "8d8352df-13e1-539e-ada8-adbbf5288d0d",
+              "uuid": "8effdb82-aa21-4f64-a658-388712ce1ea9",
+              "destination_block": "75a71e47-949e-59a7-919d-2528a758431a",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -4243,8 +4243,8 @@
               "name": "Exit for display_tour_card01_case_condition_1",
               "config": {},
               "test": null,
-              "uuid": "5060a368-a256-471e-a40e-62f7d5f672bf",
-              "destination_block": "115541cf-977e-545c-aca9-4f92b3e4ef51",
+              "uuid": "99789350-9eb5-4b06-bc7c-e55decfa7978",
+              "destination_block": "42c04994-0aee-569d-aa4a-fe1b9043bc2e",
               "semantic_label": null,
               "vendor_metadata": {}
             }
@@ -4258,7 +4258,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "115541cf-977e-545c-aca9-4f92b3e4ef51",
+          "uuid": "42c04994-0aee-569d-aa4a-fe1b9043bc2e",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4271,8 +4271,8 @@
               "name": "content_data.body.body.text.value.image",
               "config": {},
               "test": "",
-              "uuid": "41caadd5-1d1e-4fc5-b9f3-570604b93e8b",
-              "destination_block": "e86c4a7c-1410-57a1-a414-68d3142d3e18",
+              "uuid": "4221a644-e7ae-45b9-87aa-7c1dcbdeb502",
+              "destination_block": "dce094cc-3702-5814-8b28-d78f3178ca15",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4287,7 +4287,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 72
+                        "line": 67
                       },
                       "name": "DisplayTourCard01",
                       "uuid": "7a597bdd-bbf6-5799-a90f-a4ee80bf4911"
@@ -4296,7 +4296,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 73
+                        "line": 68
                       },
                       "type": "expression"
                     },
@@ -4316,7 +4316,7 @@
             "mode": "sync",
             "body": null,
             "query": [],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
             "headers": [
               [
                 "Authorization",
@@ -4327,7 +4327,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "e86c4a7c-1410-57a1-a414-68d3142d3e18",
+          "uuid": "dce094cc-3702-5814-8b28-d78f3178ca15",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4340,8 +4340,8 @@
               "name": "image_data",
               "config": {},
               "test": "",
-              "uuid": "98f739c6-c5c2-41a5-bfa7-b754a518ea91",
-              "destination_block": "2a2b1c24-14e8-5d89-9a63-8d41ad0b71df",
+              "uuid": "9e0582fe-97df-46cf-ad6c-2abeae75478a",
+              "destination_block": "d3482b38-53df-5169-b990-1359d22749c7",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4356,7 +4356,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 72
+                        "line": 67
                       },
                       "name": "DisplayTourCard01",
                       "uuid": "7a597bdd-bbf6-5799-a90f-a4ee80bf4911"
@@ -4364,7 +4364,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 75
+                        "line": 70
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -4381,17 +4381,17 @@
           "name": "display_tour_card01_case_condition_1",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "c84560f4-e11c-4988-979a-1a95e0ad7b86",
+            "prompt": "688bbfa3-c49b-4ce0-b3d2-e41cb2ef9ae3",
             "choices": [
               {
                 "name": "fetch_tour_card02",
-                "prompt": "d3bc9fab-e34f-4595-9e47-49b60b73ef4d",
+                "prompt": "35445b8d-f2e4-4851-889b-2326ec2a3745",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "2a2b1c24-14e8-5d89-9a63-8d41ad0b71df",
+          "uuid": "d3482b38-53df-5169-b990-1359d22749c7",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4404,8 +4404,8 @@
               "name": "fetch_tour_card02",
               "config": {},
               "test": "block.value = \"fetch_tour_card02\"",
-              "uuid": "2dd0ef8b-93c0-4698-8f61-485312183376",
-              "destination_block": "2b2865c7-f7c4-5573-8578-fa161830428b",
+              "uuid": "f15dd5d3-3df6-4a54-847d-1bdab3266dee",
+              "destination_block": "928ed522-0110-5fff-8dfd-f554ca0cd086",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -4414,8 +4414,8 @@
               "name": "Default exit to \"DisplayTourCard01Error\"",
               "config": {},
               "test": "",
-              "uuid": "31fd1cd8-569c-47cf-8111-20060f010cc7",
-              "destination_block": "e5c94841-e275-5579-acc3-539459a1bd67",
+              "uuid": "8a58f56f-113b-4f2b-847a-1a8cb8cf4e01",
+              "destination_block": "447d4e1e-dffa-549c-bf70-120fde675945",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4431,7 +4431,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 72
+                        "line": 67
                       },
                       "name": "DisplayTourCard01",
                       "uuid": "7a597bdd-bbf6-5799-a90f-a4ee80bf4911"
@@ -4440,7 +4440,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 83
+                        "line": 78
                       },
                       "type": "button_block"
                     },
@@ -4456,17 +4456,17 @@
           "name": "display_tour_card01_case_condition_0",
           "type": "MobilePrimitives.SelectOneResponse",
           "config": {
-            "prompt": "ea8a6fe6-ac1e-418c-9d6d-f1cf887c0703",
+            "prompt": "8bff6a50-8ee3-4ac2-9e1e-28484674cb20",
             "choices": [
               {
                 "name": "fetch_tour_card02",
-                "prompt": "181c943f-b00e-41be-8b3d-e3c37688e44e",
+                "prompt": "2db3f144-5ec9-44dc-a180-ef9e52a5c188",
                 "test": "block.response = \"@@button_labels[0]\""
               }
             ]
           },
           "tags": [],
-          "uuid": "8d8352df-13e1-539e-ada8-adbbf5288d0d",
+          "uuid": "75a71e47-949e-59a7-919d-2528a758431a",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4479,8 +4479,8 @@
               "name": "fetch_tour_card02",
               "config": {},
               "test": "block.value = \"fetch_tour_card02\"",
-              "uuid": "6386b5fd-90e8-47eb-bf68-8a8c601c004c",
-              "destination_block": "2b2865c7-f7c4-5573-8578-fa161830428b",
+              "uuid": "95792645-d2d9-4136-80c0-6cb98e8ad408",
+              "destination_block": "928ed522-0110-5fff-8dfd-f554ca0cd086",
               "semantic_label": null,
               "vendor_metadata": {}
             },
@@ -4489,8 +4489,8 @@
               "name": "Default exit to \"DisplayTourCard01Error\"",
               "config": {},
               "test": "",
-              "uuid": "bb2ceebd-23bb-4b00-8e14-1dfce169057e",
-              "destination_block": "e5c94841-e275-5579-acc3-539459a1bd67",
+              "uuid": "bfe85084-4bb8-45b9-8731-bef9e4b17667",
+              "destination_block": "447d4e1e-dffa-549c-bf70-120fde675945",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4506,7 +4506,7 @@
                       "condition": "contact.data_preference == \"text only\"",
                       "meta": {
                         "column": 1,
-                        "line": 64
+                        "line": 59
                       },
                       "name": "DisplayTourCard01",
                       "uuid": "2d171227-ce34-5a1d-a12b-2a06ea545243"
@@ -4515,7 +4515,7 @@
                       "button_block": {},
                       "meta": {
                         "column": 3,
-                        "line": 66
+                        "line": 61
                       },
                       "type": "button_block"
                     },
@@ -4534,7 +4534,7 @@
             "value": "\"yes\""
           },
           "tags": [],
-          "uuid": "685854e0-54bd-5e8a-a950-e00f730dc208",
+          "uuid": "373475d1-7f73-5db4-be43-481760e2ce92",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4547,8 +4547,8 @@
               "name": "guided_tour_started",
               "config": {},
               "test": "",
-              "uuid": "c8882d50-0d6f-4d0e-bf57-e3d08f34cfef",
-              "destination_block": "de8382af-7921-5ac7-b1d4-a206121da8f3",
+              "uuid": "1c84bc05-19b7-41b0-88a9-fc5932d0c4b0",
+              "destination_block": "0a80293e-6d61-5a15-a0a6-d092ed8245c2",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4563,7 +4563,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 34
+                        "line": 29
                       },
                       "name": "FetchTourCard01",
                       "uuid": "cf2229bf-bcb0-5409-887e-2bc3267b2323"
@@ -4571,7 +4571,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 37
+                        "line": 32
                       },
                       "type": "write_result",
                       "write_result": {}
@@ -4597,7 +4597,7 @@
                 "mnch_onboarding_tour_card_01"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -4608,7 +4608,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "de8382af-7921-5ac7-b1d4-a206121da8f3",
+          "uuid": "0a80293e-6d61-5a15-a0a6-d092ed8245c2",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4621,8 +4621,8 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "cd6fcd3f-b7ad-4da0-a8cf-1c4e2cac2667",
-              "destination_block": "354e7b3a-cd91-5d53-a8d8-12add557e674",
+              "uuid": "e7e07508-3f66-4ed5-8b89-8b45ec734815",
+              "destination_block": "9ac4eae1-a3dc-5022-81ed-252bf8e1f738",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4637,7 +4637,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 34
+                        "line": 29
                       },
                       "name": "FetchTourCard01",
                       "uuid": "cf2229bf-bcb0-5409-887e-2bc3267b2323"
@@ -4645,7 +4645,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 39
+                        "line": 34
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -4663,7 +4663,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "354e7b3a-cd91-5d53-a8d8-12add557e674",
+          "uuid": "9ac4eae1-a3dc-5022-81ed-252bf8e1f738",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4676,8 +4676,8 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "1b7cfb10-0248-4a37-abf2-1fb0b3d99571",
-              "destination_block": "0038f5b5-203a-5abb-8a47-a88adcf8ce26",
+              "uuid": "62ad7727-1c9a-4fe5-a99e-33caef5d9cf5",
+              "destination_block": "2103c40d-45ac-5035-8083-99bcb27bd89a",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4692,7 +4692,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 34
+                        "line": 29
                       },
                       "name": "FetchTourCard01",
                       "uuid": "cf2229bf-bcb0-5409-887e-2bc3267b2323"
@@ -4701,7 +4701,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 48
+                        "line": 43
                       },
                       "type": "expression"
                     },
@@ -4726,7 +4726,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -4737,7 +4737,7 @@
             "cache_ttl": 60000
           },
           "tags": [],
-          "uuid": "0038f5b5-203a-5abb-8a47-a88adcf8ce26",
+          "uuid": "2103c40d-45ac-5035-8083-99bcb27bd89a",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4750,8 +4750,8 @@
               "name": "content_data",
               "config": {},
               "test": "",
-              "uuid": "725c3dbf-21ec-48da-92de-fadc20e109cd",
-              "destination_block": "3dad5a0e-68b8-5c22-95d6-afb3c62a9cb9",
+              "uuid": "883b5a47-ed3b-44e1-89a9-e8d2c54a938c",
+              "destination_block": "5950c048-d5d0-5117-b188-2320b644c0e1",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4766,7 +4766,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 34
+                        "line": 29
                       },
                       "name": "FetchTourCard01",
                       "uuid": "cf2229bf-bcb0-5409-887e-2bc3267b2323"
@@ -4774,7 +4774,7 @@
                     "card_item": {
                       "meta": {
                         "column": 3,
-                        "line": 50
+                        "line": 45
                       },
                       "type": "webhook",
                       "webhook": {}
@@ -4792,7 +4792,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "3dad5a0e-68b8-5c22-95d6-afb3c62a9cb9",
+          "uuid": "5950c048-d5d0-5117-b188-2320b644c0e1",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4805,8 +4805,8 @@
               "name": "content_data.body.body.text.value",
               "config": {},
               "test": "",
-              "uuid": "e0fb8aef-5eb3-4909-8eda-925f6ca26880",
-              "destination_block": "13155706-afee-5db5-b8d2-463198a95826",
+              "uuid": "d48ecbcf-ae55-4acb-b49d-4118d4d429e1",
+              "destination_block": "77a491ab-a8e3-58e6-ba46-a57d5f5f805a",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -4821,7 +4821,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 34
+                        "line": 29
                       },
                       "name": "FetchTourCard01",
                       "uuid": "cf2229bf-bcb0-5409-887e-2bc3267b2323"
@@ -4830,7 +4830,7 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 59
+                        "line": 54
                       },
                       "type": "expression"
                     },
@@ -4847,7 +4847,7 @@
           "type": "Core.Case",
           "config": {},
           "tags": [],
-          "uuid": "13155706-afee-5db5-b8d2-463198a95826",
+          "uuid": "77a491ab-a8e3-58e6-ba46-a57d5f5f805a",
           "ui_metadata": {
             "canvas_coordinates": {
               "x": 0,
@@ -4860,7 +4860,7 @@
               "name": "map(message.buttons, & &1.value.title)",
               "config": {},
               "test": "",
-              "uuid": "b6978d34-c892-4813-b619-35d69c2e0f82",
+              "uuid": "c2db9092-c3ab-4c65-bf49-bc3466c089dc",
               "destination_block": "2d171227-ce34-5a1d-a12b-2a06ea545243",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -4876,7 +4876,7 @@
                       "condition": null,
                       "meta": {
                         "column": 1,
-                        "line": 34
+                        "line": 29
                       },
                       "name": "FetchTourCard01",
                       "uuid": "cf2229bf-bcb0-5409-887e-2bc3267b2323"
@@ -4885,126 +4885,9 @@
                       "expression": {},
                       "meta": {
                         "column": 3,
-                        "line": 60
+                        "line": 55
                       },
                       "type": "expression"
-                    },
-                    "index": 0
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "label": null,
-          "name": "checkpoint_log",
-          "type": "Core.Log",
-          "config": {
-            "message": "1ea99632-4cdd-40ad-9525-f27d165a9841"
-          },
-          "tags": [],
-          "uuid": "58d57d22-d9da-5da8-9acc-0b6e26c60be8",
-          "ui_metadata": {
-            "canvas_coordinates": {
-              "x": 0,
-              "y": 0
-            }
-          },
-          "exits": [
-            {
-              "default": true,
-              "name": "checkpoint_log",
-              "config": {},
-              "test": "",
-              "uuid": "5b458367-28e6-47cb-ac26-1e076d66c30c",
-              "destination_block": "7a32b3d0-8111-512c-a723-ec27d9a687ea",
-              "semantic_label": "",
-              "vendor_metadata": {}
-            }
-          ],
-          "semantic_label": null,
-          "vendor_metadata": {
-            "io": {
-              "turn": {
-                "stacks_dsl": {
-                  "0.1.0": {
-                    "card": {
-                      "condition": null,
-                      "meta": {
-                        "column": 1,
-                        "line": 29
-                      },
-                      "name": "Checkpoint",
-                      "uuid": "9df841f1-7fa0-5457-85a1-62573a75c4d1"
-                    },
-                    "card_item": {
-                      "log": {},
-                      "meta": {
-                        "column": 3,
-                        "line": 30
-                      },
-                      "type": "log"
-                    },
-                    "index": 0
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "label": null,
-          "name": "checkpoint_contact_update_checkpoint",
-          "type": "Core.SetContactProperty",
-          "config": {
-            "set_contact_property": {
-              "property_key": "checkpoint",
-              "property_value": "tour"
-            }
-          },
-          "tags": [],
-          "uuid": "7a32b3d0-8111-512c-a723-ec27d9a687ea",
-          "ui_metadata": {
-            "canvas_coordinates": {
-              "x": 0,
-              "y": 0
-            }
-          },
-          "exits": [
-            {
-              "default": true,
-              "name": "Default exit to \"FetchTourCard01\"",
-              "config": {},
-              "test": "",
-              "uuid": "79afee9e-9351-4ce7-86f2-175f405c470a",
-              "destination_block": "685854e0-54bd-5e8a-a950-e00f730dc208",
-              "semantic_label": "",
-              "vendor_metadata": {}
-            }
-          ],
-          "semantic_label": null,
-          "vendor_metadata": {
-            "io": {
-              "turn": {
-                "stacks_dsl": {
-                  "0.1.0": {
-                    "card": {
-                      "condition": null,
-                      "meta": {
-                        "column": 1,
-                        "line": 29
-                      },
-                      "name": "Checkpoint",
-                      "uuid": "9df841f1-7fa0-5457-85a1-62573a75c4d1"
-                    },
-                    "card_item": {
-                      "meta": {
-                        "column": 3,
-                        "line": 31
-                      },
-                      "type": "update_contact",
-                      "update_contact": {}
                     },
                     "index": 0
                   }
@@ -5027,7 +4910,7 @@
                 "mnch_onboarding_error_handling_button"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
             "headers": [
               [
                 "Authorization",
@@ -5051,7 +4934,7 @@
               "name": "search",
               "config": {},
               "test": "",
-              "uuid": "3469675e-28b5-45e9-ab6f-d4e433ca1c31",
+              "uuid": "d63f609f-29f7-4c89-a4fe-1ea235cc67e5",
               "destination_block": "e912c29c-549e-5a43-82f3-c61730ff74d2",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5106,7 +4989,7 @@
               "name": "search.body.results[0].id",
               "config": {},
               "test": "",
-              "uuid": "efe77d8c-9559-4618-aa86-d47694157e7a",
+              "uuid": "29979c0c-f71c-4531-814a-771135c3f2f3",
               "destination_block": "869fc622-5c05-57b0-801f-c65125482a11",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5156,7 +5039,7 @@
                 "true"
               ]
             ],
-            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "url": "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
             "headers": [
               [
                 "Authorization",
@@ -5180,7 +5063,7 @@
               "name": "page",
               "config": {},
               "test": "",
-              "uuid": "f7237897-d4ce-4015-9f63-b71b3cf6e9c3",
+              "uuid": "23b1303d-05b9-432f-a988-e2d19257d457",
               "destination_block": "ef95e080-1070-5291-aeed-ee5b54983e2d",
               "semantic_label": "",
               "vendor_metadata": {}
@@ -5235,8 +5118,8 @@
               "name": "page.body.body.text.value.message",
               "config": {},
               "test": "",
-              "uuid": "8c39d965-4cc0-4f83-a71a-3833cd0ccd16",
-              "destination_block": "58d57d22-d9da-5da8-9acc-0b6e26c60be8",
+              "uuid": "a6dba7e9-e780-49fa-bae4-37a9dd111a7a",
+              "destination_block": "373475d1-7f73-5db4-be43-481760e2ce92",
               "semantic_label": "",
               "vendor_metadata": {}
             }
@@ -5272,19 +5155,19 @@
           }
         }
       ],
-      "last_modified": "2024-09-23T13:58:24.592513Z",
+      "last_modified": "2024-09-04T10:29:05.766179Z",
       "uuid": "fbb587e2-7bca-5e37-93f4-64cdd5090afc",
       "languages": [
         {
-          "id": "a4f6b448-9536-4654-a3db-d2c92d3256e8",
+          "id": "9d83f430-0a48-41b4-88ad-8ee1cc1dbdfe",
           "label": "English",
           "variant": null,
-          "bcp_47": null,
-          "iso_639_3": "eng"
+          "iso_639_3": "eng",
+          "bcp_47": null
         }
       ],
-      "interaction_timeout": 300,
       "first_block_id": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
+      "interaction_timeout": 300,
       "vendor_metadata": {},
       "supported_modes": [
         "RICH_MESSAGING"

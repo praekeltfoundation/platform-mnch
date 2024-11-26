@@ -1,4 +1,4 @@
-<!-- { section: "d032bc4c-282f-422e-bff6-1d83897b82a5", x: 500, y: 48} -->
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
 
 ```stack
 trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "hcw")
@@ -35,6 +35,8 @@ The token for ContentRepo is stored in a global dictionary.
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
+
+<!-- { section: "d032bc4c-282f-422e-bff6-1d83897b82a5", x: 500, y: 48} -->
 
 ```stack
 card FetchError, then: Checkpoint do

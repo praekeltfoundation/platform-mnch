@@ -1,7 +1,7 @@
-<!-- { section: "97ca43be-ba28-49df-98f1-4207014d0d65", x: 500, y: 48} -->
+<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "engage")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "reengage")
 
 ```
 
