@@ -1,1 +1,1041 @@
-{"name":"Onboarding: Pregnant Nurse Reminder","description":"Default description","uuid":"1fb80591-565b-4e5f-a18d-e02420a12058","resources":[{"values":[{"value":"@button_error_text","modes":["RICH_MESSAGING"],"content_type":"TEXT","mime_type":"text/plain","language_id":"5e3cbc0a-373a-4557-b1df-f901e8945aea"}],"uuid":"84d97521-6a22-4ff4-b866-c7b36486ca92"},{"values":[{"value":"@button_labels[0]","modes":["RICH_MESSAGING"],"content_type":"TEXT","mime_type":"text/plain","language_id":"5e3cbc0a-373a-4557-b1df-f901e8945aea"}],"uuid":"c755a23c-9e7f-401c-9cc4-4d1ffb93ccbb"},{"values":[{"value":"@button_labels[1]","modes":["RICH_MESSAGING"],"content_type":"TEXT","mime_type":"text/plain","language_id":"5e3cbc0a-373a-4557-b1df-f901e8945aea"}],"uuid":"0010a759-7b0c-428e-9926-f3b16812cdcd"},{"values":[{"value":"@message.message","modes":["RICH_MESSAGING"],"content_type":"TEXT","mime_type":"text/plain","language_id":"5e3cbc0a-373a-4557-b1df-f901e8945aea"}],"uuid":"42aecaff-a266-4ac5-8082-c0edabbdb207"},{"values":[{"value":"@button_labels[0]","modes":["RICH_MESSAGING"],"content_type":"TEXT","mime_type":"text/plain","language_id":"5e3cbc0a-373a-4557-b1df-f901e8945aea"}],"uuid":"59dafa7f-830b-4015-abb7-c745da5c8a3b"},{"values":[{"value":"@button_labels[1]","modes":["RICH_MESSAGING"],"content_type":"TEXT","mime_type":"text/plain","language_id":"5e3cbc0a-373a-4557-b1df-f901e8945aea"}],"uuid":"4546607a-71c2-4c4f-88b7-09235f39f226"}],"flows":[{"label":null,"name":"stack","blocks":[{"label":null,"name":"nudge_complete_profile_error","type":"MobilePrimitives.SelectOneResponse","config":{"prompt":"84d97521-6a22-4ff4-b866-c7b36486ca92","choices":[{"name":"continue","prompt":"c755a23c-9e7f-401c-9cc4-4d1ffb93ccbb","test":"block.response = \"@@button_labels[0]\""},{"name":"main_menu","prompt":"0010a759-7b0c-428e-9926-f3b16812cdcd","test":"block.response = \"@@button_labels[1]\""}]},"tags":[],"uuid":"b785f91d-0b60-5212-a37d-56bbd5900e45","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":null,"name":"continue","config":{},"test":"block.value = \"continue\"","uuid":"f558b4ea-6d48-4476-8cc3-29cb3f861d9d","destination_block":"e061a02f-7d15-59b7-8ad6-9dc374238ef9","semantic_label":null,"vendor_metadata":{}},{"default":null,"name":"main_menu","config":{},"test":"block.value = \"main_menu\"","uuid":"de62fba3-2eb9-49c8-b373-18e54e187f0e","destination_block":"05879a9a-c0df-55ea-8a56-cb8796314c06","semantic_label":null,"vendor_metadata":{}},{"default":true,"name":"Default exit to \"NudgeCompleteProfileError\"","config":{},"test":"","uuid":"fd242d2f-096b-4545-9a87-1ebd08d57eae","destination_block":"b785f91d-0b60-5212-a37d-56bbd5900e45","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"buttons_metadata":{},"card":{"condition":null,"meta":{"column":1,"line":61},"name":"NudgeCompleteProfileError","uuid":"b4c7d888-c0e2-581a-918a-34d8a6343bdd"},"card_item":{"button_block":{},"meta":{"column":3,"line":62},"type":"button_block"},"index":0}}}}}},{"label":null,"name":"nudge_complete_profile_schedule_stack","type":"Io.Turn.ScheduleFlow","config":{"flow_id":"1fb80591-565b-4e5f-a18d-e02420a12058"},"tags":[],"uuid":"9a84b395-82bf-560f-a93f-64e658d3db32","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"nudge_complete_profile_schedule_stack","config":{},"test":"","uuid":"af59f930-ffd9-4743-ae11-a23b1d8a4e84","destination_block":"68fa2077-3500-5afc-8750-312d0edcca36","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":27},"name":"NudgeCompleteProfile","uuid":"f113bb12-e3af-5385-adc7-0a04d8109f1f"},"card_item":{"meta":{"column":3,"line":28},"schedule_stack":{},"type":"schedule_stack"},"index":0}}}}}},{"label":null,"name":"search","type":"Io.Turn.Webhook","config":{"timeout":5000,"mode":"sync","body":null,"query":[["slug","mnch_onboarding_nudge_complete_profile"]],"url":"https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/","headers":[["Authorization","Token @global.config.contentrepo_token"]],"method":"GET","cache_ttl":60000},"tags":[],"uuid":"68fa2077-3500-5afc-8750-312d0edcca36","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"search","config":{},"test":"","uuid":"ffd67ddd-c768-4e3e-8c38-0b3ea19820a7","destination_block":"85a0770f-f213-5c97-8ba8-85baa0289540","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":27},"name":"NudgeCompleteProfile","uuid":"f113bb12-e3af-5385-adc7-0a04d8109f1f"},"card_item":{"meta":{"column":3,"line":30},"type":"webhook","webhook":{}},"index":0}}}}}},{"label":null,"name":"page_id","type":"Core.Case","config":{},"tags":[],"uuid":"85a0770f-f213-5c97-8ba8-85baa0289540","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"search.body.results[0].id","config":{},"test":"","uuid":"f4c5f7eb-87e8-4f5f-8c68-9a48a68a947d","destination_block":"3cedd662-840b-5af0-adec-749bd449d41a","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":27},"name":"NudgeCompleteProfile","uuid":"f113bb12-e3af-5385-adc7-0a04d8109f1f"},"card_item":{"expression":{},"meta":{"column":3,"line":39},"type":"expression"},"index":0}}}}}},{"label":null,"name":"content_data","type":"Io.Turn.Webhook","config":{"timeout":5000,"mode":"sync","body":null,"query":[["whatsapp","true"]],"url":"https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/","headers":[["Authorization","Token @global.config.contentrepo_token"]],"method":"GET","cache_ttl":60000},"tags":[],"uuid":"3cedd662-840b-5af0-adec-749bd449d41a","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"content_data","config":{},"test":"","uuid":"2845267b-d5ed-4b19-872a-ce6eec43b1ca","destination_block":"a014a2fb-4379-5943-a129-0359bf07e44c","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":27},"name":"NudgeCompleteProfile","uuid":"f113bb12-e3af-5385-adc7-0a04d8109f1f"},"card_item":{"meta":{"column":3,"line":41},"type":"webhook","webhook":{}},"index":0}}}}}},{"label":null,"name":"message","type":"Core.Case","config":{},"tags":[],"uuid":"a014a2fb-4379-5943-a129-0359bf07e44c","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"content_data.body.body.text.value","config":{},"test":"","uuid":"140f3532-a56f-448a-a043-68db08f1772d","destination_block":"b6da3d1a-0ef1-5c97-b924-32249055178f","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":27},"name":"NudgeCompleteProfile","uuid":"f113bb12-e3af-5385-adc7-0a04d8109f1f"},"card_item":{"expression":{},"meta":{"column":3,"line":50},"type":"expression"},"index":0}}}}}},{"label":null,"name":"button_labels","type":"Core.Case","config":{},"tags":[],"uuid":"b6da3d1a-0ef1-5c97-b924-32249055178f","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"map(message.buttons, & &1.value.title)","config":{},"test":"","uuid":"ea3bc221-4d2d-4416-a53d-1a14c2bfaae2","destination_block":"dc31d37b-b874-5284-a00a-14be661dc32d","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":27},"name":"NudgeCompleteProfile","uuid":"f113bb12-e3af-5385-adc7-0a04d8109f1f"},"card_item":{"expression":{},"meta":{"column":3,"line":51},"type":"expression"},"index":0}}}}}},{"label":null,"name":"nudge_complete_profile","type":"MobilePrimitives.SelectOneResponse","config":{"prompt":"42aecaff-a266-4ac5-8082-c0edabbdb207","choices":[{"name":"continue","prompt":"59dafa7f-830b-4015-abb7-c745da5c8a3b","test":"block.response = \"@@button_labels[0]\""},{"name":"main_menu","prompt":"4546607a-71c2-4c4f-88b7-09235f39f226","test":"block.response = \"@@button_labels[1]\""}]},"tags":[],"uuid":"dc31d37b-b874-5284-a00a-14be661dc32d","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":null,"name":"continue","config":{},"test":"block.value = \"continue\"","uuid":"0532aa7a-547e-444c-ad31-52848b55fab5","destination_block":"e061a02f-7d15-59b7-8ad6-9dc374238ef9","semantic_label":null,"vendor_metadata":{}},{"default":null,"name":"main_menu","config":{},"test":"block.value = \"main_menu\"","uuid":"d21b0d55-6cd5-4320-82cd-7a4a22210869","destination_block":"05879a9a-c0df-55ea-8a56-cb8796314c06","semantic_label":null,"vendor_metadata":{}},{"default":true,"name":"Default exit to \"NudgeCompleteProfileError\"","config":{},"test":"","uuid":"51b5ad25-32a5-450e-b612-98a4c0b54cfe","destination_block":"b785f91d-0b60-5212-a37d-56bbd5900e45","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"buttons_metadata":{},"card":{"condition":null,"meta":{"column":1,"line":27},"name":"NudgeCompleteProfile","uuid":"f113bb12-e3af-5385-adc7-0a04d8109f1f"},"card_item":{"button_block":{},"meta":{"column":3,"line":53},"type":"button_block"},"index":0}}}}}},{"label":null,"name":"search","type":"Io.Turn.Webhook","config":{"timeout":5000,"mode":"sync","body":null,"query":[["slug","mnch_onboarding_error_handling_button"]],"url":"https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/","headers":[["Authorization","Token @global.config.contentrepo_token"]],"method":"GET","cache_ttl":60000},"tags":[],"uuid":"b78e354e-9ca1-57ce-b9d1-febdcc43b44b","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"search","config":{},"test":"","uuid":"c674a05d-3a8e-4aa3-a465-65af0ae0623f","destination_block":"d7c46788-42ab-5a81-b07b-df7dbd72bdef","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":1},"name":"FetchError","uuid":"bbc9856f-539f-5dd8-93eb-f874b868b2f3"},"card_item":{"meta":{"column":3,"line":3},"type":"webhook","webhook":{}},"index":0}}}}}},{"label":null,"name":"page_id","type":"Core.Case","config":{},"tags":[],"uuid":"d7c46788-42ab-5a81-b07b-df7dbd72bdef","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"search.body.results[0].id","config":{},"test":"","uuid":"3503c2a2-fa82-4e23-9229-370b1ef043e2","destination_block":"272ca113-9656-5e12-85ac-fe046ed163a8","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":1},"name":"FetchError","uuid":"bbc9856f-539f-5dd8-93eb-f874b868b2f3"},"card_item":{"expression":{},"meta":{"column":3,"line":13},"type":"expression"},"index":0}}}}}},{"label":null,"name":"page","type":"Io.Turn.Webhook","config":{"timeout":5000,"mode":"sync","body":null,"query":[["whatsapp","true"]],"url":"https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/","headers":[["Authorization","Token @global.config.contentrepo_token"]],"method":"GET","cache_ttl":60000},"tags":[],"uuid":"272ca113-9656-5e12-85ac-fe046ed163a8","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"page","config":{},"test":"","uuid":"276445ac-2db0-4906-ae4b-64c3a12ef49f","destination_block":"a6568c9d-de22-5a47-89a4-8c6ac7a05cae","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":1},"name":"FetchError","uuid":"bbc9856f-539f-5dd8-93eb-f874b868b2f3"},"card_item":{"meta":{"column":3,"line":15},"type":"webhook","webhook":{}},"index":0}}}}}},{"label":null,"name":"button_error_text","type":"Core.Case","config":{},"tags":[],"uuid":"a6568c9d-de22-5a47-89a4-8c6ac7a05cae","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"page.body.body.text.value.message","config":{},"test":"","uuid":"dc17b1cb-945c-45fc-8518-67b393071de4","destination_block":"9a84b395-82bf-560f-a93f-64e658d3db32","semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":1},"name":"FetchError","uuid":"bbc9856f-539f-5dd8-93eb-f874b868b2f3"},"card_item":{"expression":{},"meta":{"column":3,"line":24},"type":"expression"},"index":0}}}}}},{"label":null,"name":"continue_run_stack","type":"Core.RunFlow","config":{"flow_id":"406cd221-3e6d-41cb-bc1e-cec65d412fb8"},"tags":[],"uuid":"e061a02f-7d15-59b7-8ad6-9dc374238ef9","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"continue_run_stack","config":{},"test":"","uuid":"cd17d1c2-445e-44b6-8234-14a095eea992","destination_block":null,"semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":70},"name":"Continue","uuid":"4c973888-ea3c-5222-b4ae-2ced0e2df3cb"},"card_item":{"meta":{"column":3,"line":71},"run_stack":{},"type":"run_stack"},"index":0}}}}}},{"label":null,"name":"main_menu_run_stack","type":"Core.RunFlow","config":{"flow_id":"21b892d6-685c-458e-adae-304ece46022a"},"tags":[],"uuid":"05879a9a-c0df-55ea-8a56-cb8796314c06","ui_metadata":{"canvas_coordinates":{"x":0,"y":0}},"exits":[{"default":true,"name":"main_menu_run_stack","config":{},"test":"","uuid":"38607ae6-552e-4613-80e9-653770456fcb","destination_block":null,"semantic_label":"","vendor_metadata":{}}],"semantic_label":null,"vendor_metadata":{"io":{"turn":{"stacks_dsl":{"0.1.0":{"card":{"condition":null,"meta":{"column":1,"line":74},"name":"MainMenu","uuid":"a980d0f2-6b63-51f0-b712-4c6a7344ecad"},"card_item":{"meta":{"column":3,"line":75},"run_stack":{},"type":"run_stack"},"index":0}}}}}}],"last_modified":"2024-09-23T13:58:24.388028Z","uuid":"f95636b2-bb19-4fa3-8c07-7fa197c5de4f","languages":[{"id":"5e3cbc0a-373a-4557-b1df-f901e8945aea","label":"English","variant":null,"bcp_47":null,"iso_639_3":"eng"}],"interaction_timeout":300,"first_block_id":"b78e354e-9ca1-57ce-b9d1-febdcc43b44b","vendor_metadata":{},"supported_modes":["RICH_MESSAGING"],"exit_block_id":""}],"vendor_metadata":{},"specification_version":"1.0.0-rc3"}
+{
+  "name": "Onboarding: Pregnant Nurse Reminder",
+  "description": "Default description",
+  "uuid": "1fb80591-565b-4e5f-a18d-e02420a12058",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "@button_error_text",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "5e3cbc0a-373a-4557-b1df-f901e8945aea"
+        }
+      ],
+      "uuid": "84d97521-6a22-4ff4-b866-c7b36486ca92"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "5e3cbc0a-373a-4557-b1df-f901e8945aea"
+        }
+      ],
+      "uuid": "c755a23c-9e7f-401c-9cc4-4d1ffb93ccbb"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "5e3cbc0a-373a-4557-b1df-f901e8945aea"
+        }
+      ],
+      "uuid": "0010a759-7b0c-428e-9926-f3b16812cdcd"
+    },
+    {
+      "values": [
+        {
+          "value": "@message.message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "5e3cbc0a-373a-4557-b1df-f901e8945aea"
+        }
+      ],
+      "uuid": "42aecaff-a266-4ac5-8082-c0edabbdb207"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[0]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "5e3cbc0a-373a-4557-b1df-f901e8945aea"
+        }
+      ],
+      "uuid": "59dafa7f-830b-4015-abb7-c745da5c8a3b"
+    },
+    {
+      "values": [
+        {
+          "value": "@button_labels[1]",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "5e3cbc0a-373a-4557-b1df-f901e8945aea"
+        }
+      ],
+      "uuid": "4546607a-71c2-4c4f-88b7-09235f39f226"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "nudge_complete_profile_error",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "84d97521-6a22-4ff4-b866-c7b36486ca92",
+            "choices": [
+              {
+                "name": "continue",
+                "prompt": "c755a23c-9e7f-401c-9cc4-4d1ffb93ccbb",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "main_menu",
+                "prompt": "0010a759-7b0c-428e-9926-f3b16812cdcd",
+                "test": "block.response = \"@@button_labels[1]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "b785f91d-0b60-5212-a37d-56bbd5900e45",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "continue",
+              "config": {},
+              "test": "block.value = \"continue\"",
+              "uuid": "f558b4ea-6d48-4476-8cc3-29cb3f861d9d",
+              "destination_block": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "main_menu",
+              "config": {},
+              "test": "block.value = \"main_menu\"",
+              "uuid": "de62fba3-2eb9-49c8-b373-18e54e187f0e",
+              "destination_block": "05879a9a-c0df-55ea-8a56-cb8796314c06",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"NudgeCompleteProfileError\"",
+              "config": {},
+              "test": "",
+              "uuid": "fd242d2f-096b-4545-9a87-1ebd08d57eae",
+              "destination_block": "b785f91d-0b60-5212-a37d-56bbd5900e45",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 61
+                      },
+                      "name": "NudgeCompleteProfileError",
+                      "uuid": "b4c7d888-c0e2-581a-918a-34d8a6343bdd"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 62
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "nudge_complete_profile_schedule_stack",
+          "type": "Io.Turn.ScheduleFlow",
+          "config": {
+            "flow_id": "1fb80591-565b-4e5f-a18d-e02420a12058"
+          },
+          "tags": [],
+          "uuid": "9a84b395-82bf-560f-a93f-64e658d3db32",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "nudge_complete_profile_schedule_stack",
+              "config": {},
+              "test": "",
+              "uuid": "af59f930-ffd9-4743-ae11-a23b1d8a4e84",
+              "destination_block": "68fa2077-3500-5afc-8750-312d0edcca36",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "NudgeCompleteProfile",
+                      "uuid": "f113bb12-e3af-5385-adc7-0a04d8109f1f"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 28
+                      },
+                      "schedule_stack": {},
+                      "type": "schedule_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_nudge_complete_profile"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "68fa2077-3500-5afc-8750-312d0edcca36",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "ffd67ddd-c768-4e3e-8c38-0b3ea19820a7",
+              "destination_block": "85a0770f-f213-5c97-8ba8-85baa0289540",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "NudgeCompleteProfile",
+                      "uuid": "f113bb12-e3af-5385-adc7-0a04d8109f1f"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 30
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "85a0770f-f213-5c97-8ba8-85baa0289540",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "f4c5f7eb-87e8-4f5f-8c68-9a48a68a947d",
+              "destination_block": "3cedd662-840b-5af0-adec-749bd449d41a",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "NudgeCompleteProfile",
+                      "uuid": "f113bb12-e3af-5385-adc7-0a04d8109f1f"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 39
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "content_data",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "3cedd662-840b-5af0-adec-749bd449d41a",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "content_data",
+              "config": {},
+              "test": "",
+              "uuid": "2845267b-d5ed-4b19-872a-ce6eec43b1ca",
+              "destination_block": "a014a2fb-4379-5943-a129-0359bf07e44c",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "NudgeCompleteProfile",
+                      "uuid": "f113bb12-e3af-5385-adc7-0a04d8109f1f"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 41
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "a014a2fb-4379-5943-a129-0359bf07e44c",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "content_data.body.body.text.value",
+              "config": {},
+              "test": "",
+              "uuid": "140f3532-a56f-448a-a043-68db08f1772d",
+              "destination_block": "b6da3d1a-0ef1-5c97-b924-32249055178f",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "NudgeCompleteProfile",
+                      "uuid": "f113bb12-e3af-5385-adc7-0a04d8109f1f"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 50
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_labels",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "b6da3d1a-0ef1-5c97-b924-32249055178f",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "map(message.buttons, & &1.value.title)",
+              "config": {},
+              "test": "",
+              "uuid": "ea3bc221-4d2d-4416-a53d-1a14c2bfaae2",
+              "destination_block": "dc31d37b-b874-5284-a00a-14be661dc32d",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "NudgeCompleteProfile",
+                      "uuid": "f113bb12-e3af-5385-adc7-0a04d8109f1f"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 51
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "nudge_complete_profile",
+          "type": "MobilePrimitives.SelectOneResponse",
+          "config": {
+            "prompt": "42aecaff-a266-4ac5-8082-c0edabbdb207",
+            "choices": [
+              {
+                "name": "continue",
+                "prompt": "59dafa7f-830b-4015-abb7-c745da5c8a3b",
+                "test": "block.response = \"@@button_labels[0]\""
+              },
+              {
+                "name": "main_menu",
+                "prompt": "4546607a-71c2-4c4f-88b7-09235f39f226",
+                "test": "block.response = \"@@button_labels[1]\""
+              }
+            ]
+          },
+          "tags": [],
+          "uuid": "dc31d37b-b874-5284-a00a-14be661dc32d",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": null,
+              "name": "continue",
+              "config": {},
+              "test": "block.value = \"continue\"",
+              "uuid": "0532aa7a-547e-444c-ad31-52848b55fab5",
+              "destination_block": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": null,
+              "name": "main_menu",
+              "config": {},
+              "test": "block.value = \"main_menu\"",
+              "uuid": "d21b0d55-6cd5-4320-82cd-7a4a22210869",
+              "destination_block": "05879a9a-c0df-55ea-8a56-cb8796314c06",
+              "semantic_label": null,
+              "vendor_metadata": {}
+            },
+            {
+              "default": true,
+              "name": "Default exit to \"NudgeCompleteProfileError\"",
+              "config": {},
+              "test": "",
+              "uuid": "51b5ad25-32a5-450e-b612-98a4c0b54cfe",
+              "destination_block": "b785f91d-0b60-5212-a37d-56bbd5900e45",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "buttons_metadata": {},
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 27
+                      },
+                      "name": "NudgeCompleteProfile",
+                      "uuid": "f113bb12-e3af-5385-adc7-0a04d8109f1f"
+                    },
+                    "card_item": {
+                      "button_block": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 53
+                      },
+                      "type": "button_block"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "search",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_error_handling_button"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search",
+              "config": {},
+              "test": "",
+              "uuid": "c674a05d-3a8e-4aa3-a465-65af0ae0623f",
+              "destination_block": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 3
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page_id",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "d7c46788-42ab-5a81-b07b-df7dbd72bdef",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "search.body.results[0].id",
+              "config": {},
+              "test": "",
+              "uuid": "3503c2a2-fa82-4e23-9229-370b1ef043e2",
+              "destination_block": "272ca113-9656-5e12-85ac-fe046ed163a8",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 13
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "page",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "query": [
+              [
+                "whatsapp",
+                "true"
+              ]
+            ],
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "272ca113-9656-5e12-85ac-fe046ed163a8",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page",
+              "config": {},
+              "test": "",
+              "uuid": "276445ac-2db0-4906-ae4b-64c3a12ef49f",
+              "destination_block": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 15
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "button_error_text",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "a6568c9d-de22-5a47-89a4-8c6ac7a05cae",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "page.body.body.text.value.message",
+              "config": {},
+              "test": "",
+              "uuid": "dc17b1cb-945c-45fc-8518-67b393071de4",
+              "destination_block": "9a84b395-82bf-560f-a93f-64e658d3db32",
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 1
+                      },
+                      "name": "FetchError",
+                      "uuid": "bbc9856f-539f-5dd8-93eb-f874b868b2f3"
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 24
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "continue_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "406cd221-3e6d-41cb-bc1e-cec65d412fb8"
+          },
+          "tags": [],
+          "uuid": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "continue_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "cd17d1c2-445e-44b6-8234-14a095eea992",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 70
+                      },
+                      "name": "Continue",
+                      "uuid": "4c973888-ea3c-5222-b4ae-2ced0e2df3cb"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 71
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "label": null,
+          "name": "main_menu_run_stack",
+          "type": "Core.RunFlow",
+          "config": {
+            "flow_id": "21b892d6-685c-458e-adae-304ece46022a"
+          },
+          "tags": [],
+          "uuid": "05879a9a-c0df-55ea-8a56-cb8796314c06",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "main_menu_run_stack",
+              "config": {},
+              "test": "",
+              "uuid": "38607ae6-552e-4613-80e9-653770456fcb",
+              "destination_block": null,
+              "semantic_label": "",
+              "vendor_metadata": {}
+            }
+          ],
+          "semantic_label": null,
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 74
+                      },
+                      "name": "MainMenu",
+                      "uuid": "a980d0f2-6b63-51f0-b712-4c6a7344ecad"
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 75
+                      },
+                      "run_stack": {},
+                      "type": "run_stack"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "last_modified": "2024-09-23T13:58:24.388028Z",
+      "uuid": "f95636b2-bb19-4fa3-8c07-7fa197c5de4f",
+      "languages": [
+        {
+          "id": "5e3cbc0a-373a-4557-b1df-f901e8945aea",
+          "label": "English",
+          "variant": null,
+          "bcp_47": null,
+          "iso_639_3": "eng"
+        }
+      ],
+      "interaction_timeout": 300,
+      "first_block_id": "b78e354e-9ca1-57ce-b9d1-febdcc43b44b",
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}
