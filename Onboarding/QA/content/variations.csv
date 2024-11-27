@@ -1,0 +1,87 @@
+no,slug,parent,web_title,whatsapp_title,Image,whatsapp_body,footer,ButtonA,ButtonB,ButtonC,ListOption,OptionA,OptionB,OptionC,OptionD,OptionE,OptionF,OptionG,OptionH,OptionI,OptionJ,list_items,ButtonA Goto,ButtonB Goto,ButtonC Goto,ButtonA Type,ButtonB Type,ButtonC Type,buttons,locale
+1,mnch_sentiment_other_first,Sentiment,other_first,other_first,https://github.com/HelenAReach/Images_Sync/blob/main/Pregnancy%20stages-rafiki%20(1).png?raw=true,"*It’s normal to have mixed feelings about your pregnancy*
+
+Just remember that you are strong and capable. The more information you have, the more you can prepare for what's coming next 🌟
+
+Your baby is growing quickly, already developing a brain, heart, facial features, and even feet, hands, fingernails, and toenails. 
+
+👇🏽 Let's have a look at what you can expect.",,Let's check it out,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Let's check it out"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+2,mnch_sentiment_other_second,Sentiment,other_second,other_second,https://github.com/HelenAReach/Images_Sync/blob/main/Pregnancy%20stages-rafiki.png?raw=true,"*It’s normal to have mixed feelings about your pregnancy*
+
+Take a moment to think about what an amazing thing you're doing. Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.
+
+Hopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.
+
+👇🏽 Be prepared by learning what they are.",,Let's check it out,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Let's check it out"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+3,mnch_sentiment_other_third,Sentiment,other_third,other_third,https://github.com/HelenAReach/Images_Sync/blob/main/baby%20shower-cuate.png?raw=true,"*It’s normal to have mixed feelings about your pregnancy*
+
+It's important to remember that you are strong and capable.
+
+There is a lot going on during the 3rd trimester. Your belly is probably bigger than you thought it could get. Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!
+
+This last stretch can be uncomfortable, but you're nearly there 🌟
+
+👇🏽 Don’t worry, there are positive things coming!",,Let's check it out,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Let's check it out"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+4,mnch_sentiment_scared_worried_first,Sentiment,scared_worried_first,scared_worried_first,https://github.com/HelenAReach/Images_Sync/blob/main/Pregnancy%20stages-cuate%20(1).png?raw=true,"*It’s okay that you’re feeling this way about being pregnant – it’s a big life change*
+
+Just remember that you are strong and capable. The more information you have, the more you can prepare for what's coming next 🌟
+
+Your baby is growing quickly, already developing a brain, heart, facial features, and even feet, hands, fingernails, and toenails. 
+
+👇🏽 Let's have a look at what you can expect.",,Let's check it out,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Let's check it out"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+5,mnch_sentiment_scared_worried_second,Sentiment,scared_worried_second,scared_worried_second,https://github.com/HelenAReach/Images_Sync/blob/main/Pregnancy%20stages-cuate.png?raw=true,"*It’s okay that you’re feeling this way about being pregnant*
+
+Take a moment to think about what an amazing thing you're doing. Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.
+
+Hopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.
+
+👇🏽 Be prepared by learning what they are.",,Let's check it out,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Let's check it out"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+6,mnch_sentiment_scared_worried_third,Sentiment,scared_worried_third,scared_worried_third,https://github.com/HelenAReach/Images_Sync/blob/main/Pregnancy%20stages-cuate%20(1).png?raw=true,"*It’s normal to feel this way about a pregnancy*
+
+It's important to remember that you are strong and capable.
+
+There is a lot going on during the 3rd trimester. Your belly is probably bigger than you thought it could get. Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!
+
+This last stretch can be uncomfortable, but you're nearly there 🌟
+
+👇🏽 Don’t worry, there are positive things coming!",,Let's check it out,,,,,,,,,,,,,,,mnch_sentiment_other_second,,,go_to_page,,,"[{""type"": ""go_to_page"",""title"": ""Let's check it out"", ""slug"": ""mnch_sentiment_other_second""},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+7,mnch_sentiment_excited_happy_first,Sentiment,excited_happy_first,excited_happy_first,https://github.com/HelenAReach/Images_Sync/blob/main/Pregnancy%20stages-pana%20(1).png?raw=true,"*Congratulations on your pregnancy*🤰🏾
+
+Even if you can't see your baby bump yet, there's a lot going on! 
+
+Your baby is growing quickly and doing amazing things like developing a brain, heart, facial features, and even tiny feet, hands, fingernails, and toenails. 
+
+👇🏽 There's so much to look forward to!",,Let's check it out,,,,,,,,,,,,,,,mnch_sentiment_other_second,,,go_to_page,,,"[{""type"": ""go_to_page"",""title"": ""Let's check it out"", ""slug"": ""mnch_sentiment_other_second""},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+8,mnch_sentiment_excited_happy_second,Sentiment,excited_happy_second,excited_happy_second,https://github.com/HelenAReach/Images_Sync/blob/main/Baby%20birth-amico%20(1).png?raw=true,"*Congratulations! You're in your 2nd trimester*🤰🏾
+
+Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.
+
+Hopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.
+
+👇🏽 Be prepared by learning what they are! ",,Let's check it out,,,,,,,,,,,,,,,mnch_sentiment_other_second,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Let's check it out"", ""slug"": ""mnch_sentiment_other_second""},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+9,mnch_sentiment_excited_happy_third,Sentiment,excited_happy_third,excited_happy_third,https://github.com/HelenAReach/Images_Sync/blob/main/Baby%20birth-amico%20(2).png?raw=true,"*Congratulations! You're in your 3rd trimester*🤰🏾
+
+Your belly is probably bigger than you thought it could get! Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!
+
+This last stretch can be uncomfortable, but you're nearly there 🌟
+
+👇🏽 Don’t worry, there are positive things coming!",,Let's check it out,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Let's check it out"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+1,mnch_facts_factoid_1_trimester_1,Facts,factoid_1_trimester_1,factoid_1_trimester_1,https://github.com/HelenAReach/Images_Sync/blob/main/loading_2.png?raw=true,"*Did you know?* 💡
+
+A uterus can stretch from the size of a lemon to the size of a watermelon during pregnancy 🍋",,Awesome,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Awesome"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+2,mnch_facts_factoid_2_trimester_1,Facts,factoid_2_trimester_1,factoid_2_trimester_1,https://github.com/HelenAReach/Images_Sync/blob/main/loading_2.png?raw=true,"*Did you know?* 💡
+
+A woman's blood volume can increase by 40 to 50 percent during pregnancy. This provides the extra oxygen needed for a healthy pregnancy 🤰🏽
+",,Awesome,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Awesome"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+3,mnch_facts_factoid_1_trimester_2,Facts,factoid_1_trimester_2,factoid_1_trimester_2,https://github.com/HelenAReach/Images_Sync/blob/main/loading_2.png?raw=true,"*Did you know?* 💡
+
+Moms-to-be can start producing breast milk as early as 14 weeks into their pregnancy! 🍼",,Awesome,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Awesome"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+4,mnch_facts_factoid_2_trimester_2,Facts,factoid_2_trimester_2,factoid_2_trimester_2,https://github.com/HelenAReach/Images_Sync/blob/main/loading_2.png?raw=true,"*Did you know?* 💡
+
+Babies can start to taste flavours even before they're born. From week 14 or 15, from the food you eat enters your bloodstream and the fluid surrounding the baby in the womb.",,Awesome,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Awesome"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+5,mnch_facts_factoid_1_trimester_3,Facts,factoid_1_trimester_3,factoid_1_trimester_3,https://github.com/HelenAReach/Images_Sync/blob/main/loading_2.png?raw=true,"*Did you know?* 💡
+
+Some women may experience changes in their voice during pregnancy. This is because hormonal changes can cause the vocal cords to swell!",,Awesome,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Awesome"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English
+6,mnch_facts_factoid_2_trimester_3,Facts,factoid_2_trimester_3,factoid_2_trimester_3,https://github.com/HelenAReach/Images_Sync/blob/main/loading_2.png?raw=true,"*Did you know* 💡
+
+By the third trimester, a developing baby can recognise their mother’s voice from inside the womb 🤰🏽",,Awesome,,,,,,,,,,,,,,,,,,next_message,,,"[{""type"": ""next_message"",""title"": ""Awesome"", ""slug"": """"},{""type"":"""",""title"":"""",""slug"":""""},{""type"":"""",""title"":"""",""slug"":""""}]",English

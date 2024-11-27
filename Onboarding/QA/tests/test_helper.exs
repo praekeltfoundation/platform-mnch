@@ -122,6 +122,14 @@ defmodule Onboarding.QA.Helpers do
 
   def handle_generic_profile_flow(step), do: FlowTester.handle_child_flow(step, generic_profile_uuid())
 
+  def csv_path(csv_name), do: Path.join([__DIR__, "..", "content", csv_name <> ".csv"])
+
+  def import_content_csv(fakecms_pid, csv_name, opts \\ []),
+    do: FakeCMS.ImportExport.import_pages_from_csv(fakecms_pid, csv_path(csv_name), opts)
+
+  def pages_from_content_csv(csv_name, opts \\ []),
+    do: FakeCMS.ImportExport.pages_from_csv(csv_path(csv_name), opts)
+
   defmodule Macros do
     # This lets us have cleaner button/list assertions.
     def indexed_list(var, labels) do
