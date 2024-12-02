@@ -470,7 +470,7 @@ card EDDMonthUnknownError, then: EDDMonthUnknownError do
 end
 
 card EDDMonthUnknownBranch when status == "im_pregnant", then: ProfileProgress25 do
-  schedule_stack("15c9127a-2e90-4b99-a41b-25e2a39d453f", in: datetime_add(now(), 5, "D"))
+  schedule_stack("15c9127a-2e90-4b99-a41b-25e2a39d453f", at: datetime_add(now(), 5, "D"))
   log("EDD month unknown, navigating to profile progess 50%")
 end
 

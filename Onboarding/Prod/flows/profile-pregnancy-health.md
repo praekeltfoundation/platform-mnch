@@ -1,7 +1,7 @@
-<!-- { section: "e335b0ad-9a0c-47ac-a750-61806ef44305", x: 500, y: 48} -->
+<!-- { section: "e544152f-bf53-4d7c-ae1b-c84314772219", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "preg")
+trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "profile")
 
 ```
 
@@ -31,8 +31,6 @@ All content for this flow is stored in the ContentRepo. This stack uses the Cont
 ## Setup
 
 Here we do any setup and fetching of values before we start the flow.
-
-<!-- { section: "e544152f-bf53-4d7c-ae1b-c84314772219", x: 500, y: 48} -->
 
 ```stack
 card FetchError, then: Checkpoint do
@@ -141,7 +139,7 @@ end
 card Checkpoint
      when contact.checkpoint == "partner_of_pregnant_mom_profile" and
             contact.profile_completion == "0%",
-     then: PartnerEDDMonth do
+     then: PartnerPregnant do
   log("Go to PartnerPregnant")
 end
 
@@ -168,7 +166,7 @@ end
 
 card Checkpoint
      when contact.checkpoint == "curious_pregnancy_profile" and
-            is_nil_or_empty(contact.profile_completion),
+            contact.profile_completion == "0%",
      then: Curious do
   log("Go to Curious")
 end
@@ -275,7 +273,6 @@ end
 card ImPregnant, then: PregnantEDDMonth do
   update_contact(gender: "female")
   update_contact(pregnancy_status: "@status")
-  # text("@contact.pregnancy_status")
   update_contact(checkpoint: "pregnant_mom_profile")
   update_contact(profile_completion: "0%")
   write_result("pregnancy_status", status)
@@ -411,7 +408,7 @@ card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_edd_unknown"]
+        ["slug", "mnch_onboarding_edd_unknown_1"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -473,7 +470,7 @@ card EDDMonthUnknownError, then: EDDMonthUnknownError do
 end
 
 card EDDMonthUnknownBranch when status == "im_pregnant", then: ProfileProgress25 do
-  schedule_stack("5b67121a-b097-4eec-9493-e948f71d3c6f", in: datetime_add(now(), 5, "D"))
+  schedule_stack("5b67121a-b097-4eec-9493-e948f71d3c6f", at: datetime_add(now(), 5, "D"))
   log("EDD month unknown, navigating to profile progess 50%")
 end
 
@@ -557,8 +554,7 @@ card EDDConfirmation, then: PregnantEDDConfirmationError do
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_confirm_edd"],
-        ["whatsapp", "true"]
+        ["slug", "mnch_onboarding_confirm_edd"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -622,7 +618,6 @@ card ContinueEDDBranch when contact.pregnancy_status == "partner_pregnant",
 end
 
 card ContinueEDDBranch do
-  log("@contact.pregnancy_status")
   log("ContinueEDDBranch: How did we get here and what do we do now? Status: @status.")
 end
 
@@ -800,22 +795,22 @@ end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 1,
   then: SentimentExcitedHappyFirst do
-  log("Happy or excited on 1st trimesster")
+  log("Happy or excited on 1st trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 2,
   then: SentimentExcitedHappySecond do
-  log("Happy or excited on 2nd trimesster")
+  log("Happy or excited on 2nd trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["happy", "excited"]) and trimester == 3,
   then: SentimentExcitedHappyThird do
-  log("Happy or excited on 3rd trimesster")
+  log("Happy or excited on 3rd trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 1,
   then: SentimentScaredWorriedFirst do
-  log("scared or worried on 1st trimesster")
+  log("scared or worried on 1st trimester")
 end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 2,
@@ -825,19 +820,22 @@ end
 
 card GoToSentiment when has_any_phrase("@feeling", ["scared", "worried"]) and trimester == 3,
   then: SentimentScaredWorriedThird do
-  log("scared or worried on 3rd trimesster")
+  log("scared or worried on 3rd trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 1, then: SentimentOtherFirst do
-  log("Other on 1st trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 1,
+  then: SentimentOtherFirst do
+  log("Other on 1st trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 2, then: SentimentOtherSecond do
-  log("Other on 2nd trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 2,
+  then: SentimentOtherSecond do
+  log("Other on 2nd trimester")
 end
 
-card GoToSentiment when feeling == "other" and trimester == 3, then: SentimentOtherThird do
-  log("other on 3rd trimesster")
+card GoToSentiment when has_any_phrase("@feeling", ["other"]) and trimester == 3,
+  then: SentimentOtherThird do
+  log("other on 3rd trimester")
 end
 
 card GoToSentiment, then: SentimentOtherFirst do
@@ -1005,7 +1003,7 @@ end
 ### 7. Display the list
 
 ```stack
-card TopicsStart, then: TopicsStartError do
+card TopicsStart, then: DisplayTopicStart do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -1027,7 +1025,9 @@ card TopicsStart, then: TopicsStartError do
     )
 
   message = page.body.body.text.value
+end
 
+card DisplayTopicStart when contact.data_preference == "text only", then: TopicsStartError do
   # TODO: Use the DS recommender to find the 4 items in this list to recommend
   # We can look at Browsable FAQs to see how to implement this dynamic list
   # https://github.com/praekeltfoundation/contentrepo-base-flow/blob/main/Browsable%20FAQs/browsable_faqs.md
@@ -1040,6 +1040,32 @@ card TopicsStart, then: TopicsStartError do
   ) do
     text("@message.message")
   end
+end
+
+# Display with image
+card DisplayTopicStart, then: TopicsStartError do
+  image_id = page.body.body.text.value.image
+
+  image_data =
+    get(
+      "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/images/@image_id/",
+      headers: [
+        ["Authorization", "Token @global.config.contentrepo_token"]
+      ]
+    )
+
+  image("@image_data.body.meta.download_url")
+
+  selected_topic =
+    list("Choose a Topic",
+      ArticleTopic: "item 1",
+      ArticleTopic: "item 2",
+      ArticleTopic: "item 3",
+      ArticleTopic: "item 4",
+      ArticleFeedbackNo: "Show me other topics"
+    ) do
+      text("@message.message")
+    end
 end
 
 card TopicsStartError, then: TopicsStartError do
@@ -1503,10 +1529,96 @@ card ProfileProgress50, then: ProfileProgress50Error do
     )
 
   message = page.body.body.text.value
+
+  pregnancy_questions_answers = [
+    contact.pregnancy_status,
+    contact.edd,
+    contact.pregnancy_sentiment
+  ]
+
+  pregnancy_questions_answers_count = count(pregnancy_questions_answers)
+
+  pregnancy_questions_list =
+    filter(
+      pregnancy_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  pregnancy_questions_count = count(pregnancy_questions_list)
+
+  pregnancy_questions_value = "@pregnancy_questions_count/@pregnancy_questions_answers_count"
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  personal_questions_value = "@personal_questions_count/@personal_questions_answers_count"
+
+  dma_questions_answers = [
+    contact.dma_01,
+    contact.dma_02,
+    contact.dma_03,
+    contact.dma_04,
+    contact.dma_05
+  ]
+
+  dma_questions_list =
+    filter(
+      dma_questions_answers,
+      &(is_nil_or_empty(&1) == false)
+    )
+
+  dma_questions_answers_count = count(dma_questions_answers)
+
+  dma_questions_count = count(dma_questions_list)
+
+  dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
+
+  progress_message = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+
+  progress_message =
+    substitute(progress_message, "{personal_info_count}", "@personal_questions_value")
+
+  progress_message =
+    substitute(progress_message, "{pregnancy_info_count}", "@pregnancy_questions_value")
+
+  progress_message = substitute(progress_message, "{daily_life_count}", "@dma_questions_value")
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(ContinueProfileCompletion: "@button_labels[0]") do
-    text("@message.message")
+    text("@progress_message")
   end
 end
 
@@ -1559,6 +1671,80 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
     )
 
   message = page.body.body.text.value
+  name = if is_nil_or_empty(contact.name), do: "None", else: contact.name
+
+  opted_in =
+    if(contact.opted_in == false or is_nil_or_empty(contact.opted_in), do: "❌", else: "✅")
+
+  pregnancy_questions_answers = [
+    contact.pregnancy_status,
+    contact.edd,
+    contact.pregnancy_sentiment
+  ]
+
+  pregnancy_questions_answers_count = count(pregnancy_questions_answers)
+
+  pregnancy_questions_list =
+    filter(
+      pregnancy_questions_answers,
+      &has_text(&1)
+    )
+
+  pregnancy_questions_count = count(pregnancy_questions_list)
+
+  pregnancy_questions_value = "@pregnancy_questions_count/@pregnancy_questions_answers_count"
+
+  basic_questions_answers = [
+    contact.gender,
+    contact.year_of_birth,
+    contact.province,
+    contact.area_type
+  ]
+
+  basic_questions_answers_count = count(basic_questions_answers)
+
+  basic_questions_list =
+    filter(
+      basic_questions_answers,
+      &(&1 != "")
+    )
+
+  basic_questions_count = count(basic_questions_list)
+
+  basic_questions_value = "@basic_questions_count/@basic_questions_answers_count"
+
+  personal_questions_answers = [
+    contact.relationship_status,
+    contact.education,
+    contact.socio_economic,
+    contact.other_children
+  ]
+
+  personal_questions_answers_count = count(personal_questions_answers)
+
+  personal_questions_list =
+    filter(
+      personal_questions_answers,
+      &(&1 != "")
+    )
+
+  personal_questions_count = count(personal_questions_list)
+
+  questions_count = basic_questions_count + personal_questions_count + pregnancy_questions_count
+
+  answers_count =
+    basic_questions_answers_count + personal_questions_answers_count +
+      pregnancy_questions_answers_count
+
+  edd_string = if is_nil_or_empty("@contact.edd"), do: "Unknown", else: "@contact.edd"
+
+  loading_message = substitute(message.message, "{name}", "@name")
+  loading_message = substitute(loading_message, "{edd}", "@edd_string")
+
+  loading_message =
+    substitute(loading_message, "{profile_questions}", "@questions_count/@answers_count")
+
+  loading_message = substitute(loading_message, "{get_important_messages}", "@opted_in")
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -1570,7 +1756,7 @@ card DisplayProfileProgress100 when contact.data_preference == "text only",
     TopicsForYou: "@button_labels[1]",
     MainMenu: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
@@ -1592,7 +1778,7 @@ card DisplayProfileProgress100, then: ProfileProgress100Error do
     MainMenu: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@loading_message")
   end
 end
 
@@ -3354,7 +3540,7 @@ card ContentFeedbackNo, then: DisplayContentFeedbackNo do
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_curious_content_feedback"]
+        ["slug", "mnch_onboarding_content_feedback_no"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -3538,9 +3724,13 @@ end
 ## Curious 01
 
 ```stack
-card Curious, then: DisplayCurious do
+card Curious, then(Curious01) do
   update_contact(checkpoint: "curious_pregnancy_profile")
+  update_contact(profile_completion: "0%")
+  write_result("profile_completion", "0%")
+end
 
+card Curious01, then: DisplayCurious do
   search =
     get(
       "https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org/api/v2/pages/",
@@ -3728,7 +3918,7 @@ card DisplayCurious03Error, then: DisplayCurious03Error do
       GeneralInfo: "@menu_items[3]",
       SkipQuestion: "@menu_items[4]"
     ) do
-      text("@message.message")
+      text("@list_error_text")
     end
 end
 
@@ -3785,14 +3975,15 @@ end
 
 # TODO display facts 
 # Text only
-card DisplayLoadingComponent01 when contact.data_preference == "text only" do
+card DisplayLoadingComponent01 when contact.data_preference == "text only",
+  then: DisplayLoadingComponent01Error do
   buttons(LoadingComponentGoTo: "@button_labels[0]") do
     text("@loading_message")
   end
 end
 
 # Display with image
-card DisplayLoadingComponent01 do
+card DisplayLoadingComponent01, then: DisplayLoadingComponent01Error do
   image_id = content_data.body.body.text.value.image
 
   image_data =
@@ -3820,11 +4011,11 @@ card LoadingComponentGoTo when selected_topic = "first_trimester", then: FactsFa
 end
 
 card LoadingComponentGoTo when selected_topic = "second_trimester", then: FactsFactoid1Trimester2 do
-  log(" trimester topic")
+  log("Second trimester topic")
 end
 
 card LoadingComponentGoTo when selected_topic = "third_trimester", then: FactsFactoid1Trimester3 do
-  log(" trimester topic")
+  log("Third trimester topic")
 end
 
 card LoadingComponentGoTo when selected_topic = "general_info", then: LoadingComponent02 do
@@ -3832,7 +4023,7 @@ card LoadingComponentGoTo when selected_topic = "general_info", then: LoadingCom
 end
 
 card LoadingComponentGoTo, then: CuriousContentIntro do
-  log("Skip topic")
+  log("Skip topic @selected_topic")
 end
 
 ```
