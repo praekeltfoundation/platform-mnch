@@ -141,7 +141,7 @@ card CheckEnd when question_num == count(questions), then: End do
   # workaround because the percentage calculation will throw a division by 0 error if max_score is 0 in either an if or a when clause.
   score_perc = score / max(max_score, 1) * 100
   slug_end = concatenate(slug, "_", version, "_end")
-  write_result("slug", "@assessment_data.slug", label: "@slug_end")
+  write_result("end", "@assessment_data.slug", label: "@slug_end")
 end
 
 card CheckEnd do
@@ -517,7 +517,7 @@ card QuestionResponse when questions[question_num].question_type == "integer_que
   result_tag = concatenate("@slug", "_", "@version", "_question")
   write_result("question", question.question, label: "@result_tag")
   result_tag = concatenate("@slug", "_", "@version", "_", "@question_id")
-  write_result("@result_tag", "@question_response")
+  write_result("question_id", "@question_response", label: "@result_tag")
   result_tag = concatenate("@slug", "_", "@version", "_min")
   write_result("min", min, label: "@result_tag")
   result_tag = concatenate("@slug", "_", "@version", "_max")

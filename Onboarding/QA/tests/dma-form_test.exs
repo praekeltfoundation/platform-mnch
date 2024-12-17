@@ -402,7 +402,7 @@ defmodule DMAFormTest do
       |> results_match([
         %{name: "question_num", value: 4, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_05_strongly_disagree", label: "@result_tag"},
-        %{name: "slug", value: "dma-form", label: "@slug_end"},
+        %{name: "end", value: "dma-form", label: "@slug_end"},
         %{name: "risk", value: "high", label: "@result_tag"},
         %{name: "score", value: 10.0, label: "@result_tag"},
         %{name: "max_score", value: 10.0, label: "@result_tag"},
@@ -430,7 +430,7 @@ defmodule DMAFormTest do
       |> results_match([
         %{name: "question_num", value: 4, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_05_neutral", label: "@result_tag"},
-        %{name: "slug", value: "dma-form", label: "@slug_end"},
+        %{name: "end", value: "dma-form", label: "@slug_end"},
         %{name: "risk", value: "medium", label: "@result_tag"},
         %{name: "score", value: 3.0, label: "@result_tag"},
         %{name: "max_score", value: 10.0, label: "@result_tag"},
@@ -458,7 +458,7 @@ defmodule DMAFormTest do
       |> results_match([
         %{name: "question_num", value: 4, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_05_neutral", label: "@result_tag"},
-        %{name: "slug", value: "dma-form", label: "@slug_end"},
+        %{name: "end", value: "dma-form", label: "@slug_end"},
         %{name: "risk", value: "low", label: "@result_tag"},
         %{name: "score", value: 2.0, label: "@result_tag"},
         %{name: "max_score", value: 10.0, label: "@result_tag"},
@@ -486,7 +486,7 @@ defmodule DMAFormTest do
       |> results_match([
         %{name: "question_num", value: 4, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_05_neutral", label: "@result_tag"},
-        %{name: "slug", value: "dma-form", label: "@slug_end"},
+        %{name: "end", value: "dma-form", label: "@slug_end"},
         %{name: "risk", value: "skip_high", label: "@result_tag"},
         %{name: "score", value: 1.0, label: "@result_tag"},
         %{name: "max_score", value: 8.0, label: "@result_tag"},
