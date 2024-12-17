@@ -65,14 +65,14 @@ defmodule BasicQuestionsTest do
         %WAMsg{
           message: "👤 *Which province do you call home?*",
           list_items: [
-            %ListItem{value: "{province_name_01}"},
-            %ListItem{value: "{province_name_02}"},
-            %ListItem{value: "{province_name_03}"},
-            %ListItem{value: "{province_name_04}"},
-            %ListItem{value: "{province_name_05}"},
-            %ListItem{value: "{province_name_06}"},
-            %ListItem{value: "{province_name_07}"},
-            %ListItem{value: "Why do you ask?"},
+            %ListItem.Next{title: "{province_name_01}"},
+            %ListItem.Next{title: "{province_name_02}"},
+            %ListItem.Next{title: "{province_name_03}"},
+            %ListItem.Next{title: "{province_name_04}"},
+            %ListItem.Next{title: "{province_name_05}"},
+            %ListItem.Next{title: "{province_name_06}"},
+            %ListItem.Next{title: "{province_name_07}"},
+            %ListItem.Next{title: "Why do you ask?"},
           ]
         }
       ]
@@ -86,14 +86,14 @@ defmodule BasicQuestionsTest do
         %WAMsg{
           message: "Knowing your province helps me find you relevant services when you need them.\r\n\r\n👤 *So, which province do you live in?*",
           list_items: [
-            %ListItem{value: "{province_name_01}"},
-            %ListItem{value: "{province_name_02}"},
-            %ListItem{value: "{province_name_03}"},
-            %ListItem{value: "{province_name_04}"},
-            %ListItem{value: "{province_name_05}"},
-            %ListItem{value: "{province_name_06}"},
-            %ListItem{value: "{province_name_07}"},
-            %ListItem{value: "Skip this question"},
+            %ListItem.Next{title: "{province_name_01}"},
+            %ListItem.Next{title: "{province_name_02}"},
+            %ListItem.Next{title: "{province_name_03}"},
+            %ListItem.Next{title: "{province_name_04}"},
+            %ListItem.Next{title: "{province_name_05}"},
+            %ListItem.Next{title: "{province_name_06}"},
+            %ListItem.Next{title: "{province_name_07}"},
+            %ListItem.Next{title: "Skip this question"},
           ]
         }
       ]

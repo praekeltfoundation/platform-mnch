@@ -47,14 +47,14 @@ defmodule ProfileHCWTest do
         %WAMsg{
           message: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🏥 *What title best describes the type of nurse you are?*\r\n\r\n• Enrolled Nurse (EN)\r\n• Enrolled Nursing Auxiliary (ENA)\r\n• Registered Nurse (RN)\r\n• Advanced Practice Nurse (APN)\r\n• Public Health Nurse\r\n• Midwife\r\n• Psychiatric Nurse\r\n• Other",
           list_items: [
-            %ListItem{value: "EN"},
-            %ListItem{value: "ENA"},
-            %ListItem{value: "RN"},
-            %ListItem{value: "APN"},
-            %ListItem{value: "Public Health Nurse"},
-            %ListItem{value: "Midwife"},
-            %ListItem{value: "Psychiatric nurse"},
-            %ListItem{value: "Other"},
+            %ListItem.Next{title: "EN"},
+            %ListItem.Next{title: "ENA"},
+            %ListItem.Next{title: "RN"},
+            %ListItem.Next{title: "APN"},
+            %ListItem.Next{title: "Public Health Nurse"},
+            %ListItem.Next{title: "Midwife"},
+            %ListItem.Next{title: "Psychiatric nurse"},
+            %ListItem.Next{title: "Other"},
           ]
         }
       ]
@@ -68,13 +68,13 @@ defmodule ProfileHCWTest do
         %WAMsg{
           message: "🏥 *What kind of healthcare facility do you work in?*\r\n\r\n• Level 1 - District Hospital\r\n• Level 2 - Regional Hospital\r\n• Level 3 - Academic Hospital\r\n• Clinic\r\n• Community Health Clinic (CHC)\r\n• Satellite Clinic\r\n• Other",
           list_items: [
-            %ListItem{value: "Level 1"},
-            %ListItem{value: "Level 2"},
-            %ListItem{value: "Level 3"},
-            %ListItem{value: "Clinic"},
-            %ListItem{value: "CHC"},
-            %ListItem{value: "Satellite Clinic"},
-            %ListItem{value: "Other"},
+            %ListItem.Next{title: "Level 1"},
+            %ListItem.Next{title: "Level 2"},
+            %ListItem.Next{title: "Level 3"},
+            %ListItem.Next{title: "Clinic"},
+            %ListItem.Next{title: "CHC"},
+            %ListItem.Next{title: "Satellite Clinic"},
+            %ListItem.Next{title: "Other"},
           ]
         }
       ]

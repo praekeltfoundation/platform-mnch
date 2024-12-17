@@ -57,14 +57,14 @@ defmodule PersonalProfileQuestionsTest do
         %WAMsg{
           message: "🗝️ *What is your highest level of education?*\r\n\r\n• Primary school\r\n• High school\r\n• Diploma\r\n• Degree\r\n• Master's degree\r\n• Doctoral degree",
           list_items: [
-            %ListItem{value: "Primary school"},
-            %ListItem{value: "High school"},
-            %ListItem{value: "Diploma"},
-            %ListItem{value: "Degree"},
-            %ListItem{value: "Master's degree"},
-            %ListItem{value: "Doctoral degree"},
-            %ListItem{value: "None"},
-            %ListItem{value: "Skip this question"},
+            %ListItem.Next{title: "Primary school"},
+            %ListItem.Next{title: "High school"},
+            %ListItem.Next{title: "Diploma"},
+            %ListItem.Next{title: "Degree"},
+            %ListItem.Next{title: "Master's degree"},
+            %ListItem.Next{title: "Doctoral degree"},
+            %ListItem.Next{title: "None"},
+            %ListItem.Next{title: "Skip this question"},
           ]
         }
       ]
@@ -94,12 +94,12 @@ defmodule PersonalProfileQuestionsTest do
         %WAMsg{
           message: "🗝️ *How many children do you have?*",
           list_items: [
-            %ListItem{value: "None"},
-            %ListItem{value: "1"},
-            %ListItem{value: "2"},
-            %ListItem{value: "3"},
-            %ListItem{value: "More than 3"},
-            %ListItem{value: "Why do you ask?"}
+            %ListItem.Next{title: "None"},
+            %ListItem.Next{title: "1"},
+            %ListItem.Next{title: "2"},
+            %ListItem.Next{title: "3"},
+            %ListItem.Next{title: "More than 3"},
+            %ListItem.Next{title: "Why do you ask?"}
           ]
         }
       ]
@@ -113,12 +113,12 @@ defmodule PersonalProfileQuestionsTest do
         %WAMsg{
           message: "ℹ️ Children change our lives a lot! Our team of health experts works hard to find information and services that fit your needs.\r\n\r\n*How many children do you have?*",
           list_items: [
-            %ListItem{value: "None"},
-            %ListItem{value: "1"},
-            %ListItem{value: "2"},
-            %ListItem{value: "3"},
-            %ListItem{value: "More than 3"},
-            %ListItem{value: "Skip this question"}
+            %ListItem.Next{title: "None"},
+            %ListItem.Next{title: "1"},
+            %ListItem.Next{title: "2"},
+            %ListItem.Next{title: "3"},
+            %ListItem.Next{title: "More than 3"},
+            %ListItem.Next{title: "Skip this question"}
           ]
         }
       ]
