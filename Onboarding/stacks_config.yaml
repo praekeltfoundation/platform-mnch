@@ -71,3 +71,6 @@ stack_uuids:
   - name: "dma-form" # DMA Form
     prod_uuid: b283e7c1-0a79-45ab-976c-5566d9ba06cd
     qa_uuid: 690a9ffd-db6d-42df-ad8f-a1e5b469a099
+  - name: "quiz-breastfeeding" # Quiz: Breastfeeding
+    prod_uuid: todo
+    qa_uuid: 9be6bd36-a687-44de-8cdd-f5ec758908c2
