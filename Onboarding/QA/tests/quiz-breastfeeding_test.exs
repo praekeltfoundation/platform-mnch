@@ -225,6 +225,7 @@ defmodule QuizBreastfeedingTest do
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz", "response_button_text" => "Next question"})
     %{flow: flow}
   end
 
@@ -233,7 +234,6 @@ defmodule QuizBreastfeedingTest do
   describe "Breastfeeding quiz" do
     test "First question", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> receive_message(%{
         text: "*Question 1*" <> _,
@@ -248,14 +248,13 @@ defmodule QuizBreastfeedingTest do
 
     test "First question correct", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowStep.clear_messages()
       |> FlowStep.clear_results()
       |> FlowTester.send("Breast milk only")
       |> receive_message(%{
         text: "*Yes!* ✅\r\n\r\nIt's best to give your baby only breast milk" <> _,
-        buttons: [{"Next question", "Next question"}]
+        buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
         %{name: "question_num", value: 0},
@@ -265,14 +264,13 @@ defmodule QuizBreastfeedingTest do
 
     test "First question incorrect", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowStep.clear_messages()
       |> FlowStep.clear_results()
       |> FlowTester.send("Formula")
       |> receive_message(%{
         text: "🤔\r\n\r\nActually, it's best to give your baby *only breast milk*" <> _,
-        buttons: [{"Next question", "Next question"}]
+        buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
         %{name: "question_num", value: 0},
@@ -282,7 +280,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Second question", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowStep.clear_messages()
@@ -297,7 +294,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Second question correct", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -306,7 +302,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("All of the above")
       |> receive_message(%{
         text: "*Yes!* ✅\r\n\r\nBreastfeeding is great for moms for practical" <> _,
-        buttons: [{"Next question", "Next question"}]
+        buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
         %{name: "question_num", value: 1},
@@ -316,7 +312,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Second question incorrect", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -325,7 +320,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("It helps bonding")
       |> receive_message(%{
         text: "🤔 It's even better than that!\r\n\r\nBreastfeeding is great for" <> _,
-        buttons: [{"Next question", "Next question"}]
+        buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
         %{name: "question_num", value: 1},
@@ -335,7 +330,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Third question", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -352,7 +346,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Third question correct", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -363,7 +356,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("All of the above")
       |> receive_message(%{
         text: "*Yes, all of these benefits are true* ✅" <> _,
-        buttons: [{"Next question", "Next question"}]
+        buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
         %{name: "question_num", value: 2},
@@ -373,7 +366,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Third question incorrect", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -384,7 +376,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("Immune boost")
       |> receive_message(%{
         text: "*It's even better than that - all of these are true!* 🤔" <> _,
-        buttons: [{"Next question", "Next question"}]
+        buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
         %{name: "question_num", value: 2},
@@ -394,7 +386,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Fourth question", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -413,7 +404,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Fourth question correct", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -426,7 +416,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("When he is hungry")
       |> receive_message(%{
         text: "*That's correct* ✅" <> _,
-        buttons: [{"Next question", "Next question"}]
+        buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
         %{name: "question_num", value: 3},
@@ -436,7 +426,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Fourth question incorrect", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -449,7 +438,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("Every 4 hours")
       |> receive_message(%{
         text: "🤔\r\n\r\nIn fact, experts around the world recommend that you" <> _,
-        buttons: [{"Next question", "Next question"}]
+        buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
         %{name: "question_num", value: 3},
@@ -459,7 +448,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Champion result", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Breast milk only")
       |> FlowTester.send("Next question")
@@ -485,7 +473,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Good result", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")
@@ -511,7 +498,6 @@ defmodule QuizBreastfeedingTest do
 
     test "Learner result", %{flow: flow} do
       flow
-      |> FlowTester.set_local_params("config", %{"assessment_tag" => "breastfeeding_quiz"})
       |> FlowTester.start()
       |> FlowTester.send("Formula")
       |> FlowTester.send("Next question")

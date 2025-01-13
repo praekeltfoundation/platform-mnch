@@ -50,9 +50,10 @@ version: "0.1.0"
 columns: [] 
 -->
 
-| Key            | Value              |
-| -------------- | ------------------ |
-| assessment_tag | breastfeeding_quiz |
+| Key                  | Value              |
+| -------------------- | ------------------ |
+| assessment_tag       | breastfeeding_quiz |
+| response_button_text | Next question      |
 
 ## Get Assessment
 
@@ -625,7 +626,7 @@ card QuestionResponse, then: DisplayResponse do
 end
 
 card DisplayResponse when has_text("@answer.response"), then: StoreResponse do
-  buttons(StoreResponse: "Next question") do
+  buttons(StoreResponse: "@config.items.response_button_text") do
     text("@answer.response")
   end
 end
