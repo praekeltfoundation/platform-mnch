@@ -815,12 +815,14 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then not number error", %{flow: flow} do
-      months = get_months()
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       flow
+      |> FlowTester.set_fake_time(~U[2023-02-28 00:00:00Z])
       |> go_to_edd_day(month)
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
@@ -829,12 +831,14 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then not a day error", %{flow: flow} do
-      months = get_months()
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       flow
+      |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month)
       |> FlowTester.send("0")
       |> receive_message(%{
@@ -843,12 +847,14 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then above max day error", %{flow: flow} do
-      months = get_months()
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       flow
+      |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month)
       |> FlowTester.send("32")
       |> receive_message(%{
@@ -2672,12 +2678,14 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then not number error", %{flow: flow} do
-      months = get_months()
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       flow
+      |> FlowTester.set_fake_time(~U[2023-02-28 00:00:00Z])
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
@@ -2686,12 +2694,14 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then not a day error", %{flow: flow} do
-      months = get_months()
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       flow
+      |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("0")
       |> receive_message(%{
@@ -2700,12 +2710,14 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then above max day error", %{flow: flow} do
-      months = get_months()
+      fake_time = ~U[2023-02-28 00:00:00Z]
+      months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
 
       flow
+      |> FlowTester.set_fake_time(fake_time)
       |> go_to_edd_day(month, "Partner is pregnant")
       |> FlowTester.send("32")
       |> receive_message(%{
