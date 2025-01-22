@@ -114,7 +114,7 @@ card GetAssessment, then: CheckEnd do
   log("Starting assessment @config.items.assessment_tag")
   write_result("version", "@version")
   v_start = concatenate(slug, "_", version, "_started")
-  write_result("started", "@config.items.assessment_tag", label: "@v_start")
+  write_result("started", "@assessment_data.slug", label: "@v_start")
   write_result("locale", "@locale")
 end
 
@@ -609,7 +609,7 @@ card QuestionResponse, then: StoreResponse do
   question_id = questions[question_num].semantic_id
 
   result_tag = concatenate("@slug", "_", "@version", "_question_num")
-  write_result("question_num", question_num, label: "@result_tag")
+  write_result("question_num", question_num + 1, label: "@result_tag")
   # for multiple choice and categorical questions, save the semantic_id
   result_tag = concatenate("@slug", "_", "@version", "_", "@question_id")
   write_result("question_id", answer.semantic_id, label: "@result_tag")
