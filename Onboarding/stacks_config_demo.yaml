@@ -1,0 +1,72 @@
+base_url: https://whatsapp-praekelt-cloud.turn.io/
+prod_dir: Prod
+qa_dir: Demo
+stack_uuids:
+- name: intro-and-welcome
+  prod_uuid: None
+  qa_uuid: e2203073-f8b3-45f4-b19d-4079d5af368a
+- name: intro-and-welcome-reminders
+  prod_uuid: None
+  qa_uuid: 8407c748-140f-43fa-b5f4-b5652e07f484
+- name: profile-classifier
+  prod_uuid: None
+  qa_uuid: c77efa62-1c9d-4ace-ae7a-4585e4e929d1
+- name: exploring-tour
+  prod_uuid: None
+  qa_uuid: 359b3ff4-796d-4b80-91a6-15532c7bdb90
+- name: exploring-tour-reminders
+  prod_uuid: None
+  qa_uuid: 9a69c7bf-607a-4d9a-930b-0079a55e536c
+- name: profile-pregnancy-health
+  prod_uuid: None
+  qa_uuid: f582feb5-8605-4509-8279-ec17202b42a6
+- name: profile-generic
+  prod_uuid: None
+  qa_uuid: 718e6b27-d818-40cf-8a7b-50c17bd236ba
+- name: profile-hcw
+  prod_uuid: None
+  qa_uuid: 9aa596d3-40f0-4349-8322-e44d1fd1d127
+- name: profile-hcw-nudge
+  prod_uuid: None
+  qa_uuid: 03656be1-d528-453b-b7f7-efd3cbbf1123
+- name: profile-pregnant-nurse
+  prod_uuid: None
+  qa_uuid: 1ed10e1b-f812-4730-8ec5-3f46088c41c7
+- name: profile-pregnant-nurse-reminder
+  prod_uuid: None
+  qa_uuid: 107bebf6-eb76-4886-a0ee-1a11067fe089
+- name: opt-in-reminder
+  prod_uuid: None
+  qa_uuid: f36d4d47-9cc7-4202-a73f-db6f03e478cd
+- name: re-engagement
+  prod_uuid: None
+  qa_uuid: 689e019d-beb5-4ba2-8c04-f4663a67ab81
+- name: edd-reminders
+  prod_uuid: None
+  qa_uuid: 99754af5-1696-48c8-8562-4b52c13db61d
+- name: menu-personalised
+  prod_uuid: None
+  qa_uuid: bd10611d-73b6-4c56-a4ca-41d4136d0d6a
+- name: menu-non-personalised
+  prod_uuid: None
+  qa_uuid: 141a7271-30ec-4b31-83a5-11e4fa655df7
+- name: profile
+  prod_uuid: None
+  qa_uuid: 90d3135d-6c0c-43c2-b2a8-a099d63639bf
+- name: basic-questions
+  prod_uuid: None
+  qa_uuid: 74bd3d95-2aec-4174-ad32-926952c795ca
+- name: personal-profile-questions
+  prod_uuid: None
+  qa_uuid: e1e033d4-897a-4c9b-9eea-2411458c3c4c
+- name: menu-redirect
+  prod_uuid: None
+  qa_uuid: fb98bb9d-60a6-47a1-a474-bb0f45b80030
+- name: dma-form
+  prod_uuid: None
+  qa_uuid: 9bd8c27a-d08e-4c9e-8623-b4007373437e
+- name: quiz-breastfeeding
+  prod_uuid: None
+  qa_uuid: 6a002d8f-dd9d-4648-96d2-148e9deeed5e
+tokens: []
+urls: []
