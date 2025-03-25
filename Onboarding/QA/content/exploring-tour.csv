@@ -1,0 +1,33 @@
+structure,message,page_id,slug,parent,web_title,web_subtitle,web_body,whatsapp_title,whatsapp_body,whatsapp_template_name,whatsapp_template_category,example_values,variation_title,variation_body,list_title,list_items,sms_title,sms_body,ussd_title,ussd_body,messenger_title,messenger_body,viber_title,viber_body,translation_tag,tags,quick_replies,triggers,next_prompt,buttons,image_link,doc_link,media_link,related_pages,footer,language_code
+Sub 5.1.14,1,3544,mnch_onboarding_tour_card_01,Onboarding,Tour_card_01,,,Tour_card_01,"Great, let's talk about what {MyHealth} has to offer you.
+
+🟩⬜⬜⬜⬜
+
+*Information from the experts*
+
+24/7 access to health information right here on WhatsApp.",,UTILITY,,,,,[],,,,,,,,,67f04630-632e-450b-9066-81d4ec60d953,,,,,"[{""type"": ""go_to_page"", ""title"": ""Next"", ""slug"": ""mnch_onboarding_tour_card_02""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Tour_01_v2.png,,,,,en
+Sub 5.1.15,1,3545,mnch_onboarding_tour_card_02,Onboarding,Tour_card_02,,,Tour_card_02,"🟩🟩⬜⬜⬜
+
+*Important reminders*
+
+Health-related reminders, specific to you, when you need them.",,UTILITY,,,,,[],,,,,,,,,04639add-4f79-4779-bc41-8640416aa6ef,,,,,"[{""type"": ""go_to_page"", ""title"": ""Next"", ""slug"": ""mnch_onboarding_tour_card_03""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Tour_02_v2.png,,,,,en
+Sub 5.1.16,1,3546,mnch_onboarding_tour_card_03,Onboarding,Tour_card_03,,,Tour_card_03,"🟩🟩🟩⬜⬜
+
+*Help in a hurry*
+
+Contact numbers and resources for emergencies.",,UTILITY,,,,,[],,,,,,,,,5c49eb1c-8a99-49d9-a92e-9eaed47a135e,,,,,"[{""type"": ""go_to_page"", ""title"": ""Next"", ""slug"": ""mnch_onboarding_tour_card_04""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Tour_03_v2.png,,,,,en
+Sub 5.1.17,1,3547,mnch_onboarding_tour_card_04,Onboarding,Tour_card_04,,,Tour_card_04,"🟩🟩🟩🟩⬜
+
+*Someone to talk to*
+
+Experts ready to help you with your health concerns.",,UTILITY,,,,,[],,,,,,,,,8723af03-fdae-4390-8c46-2555277080aa,,,,,"[{""type"": ""go_to_page"", ""title"": ""Next"", ""slug"": ""mnch_onboarding_tour_card_05""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/tour_card_4.png,,,,,en
+Sub 5.1.18,1,3548,mnch_onboarding_tour_card_05,Onboarding,Tour_card_05,,,Tour_card_05,"🟩🟩🟩🟩🟩
+
+*Progress tracking*
+
+Whether it's your stress levels or pregnancy, I'll keep track of things.",,UTILITY,,,,,[],,,,,,,,,17b2045b-063e-4d1e-ac46-d79fad5e5230,,,,,"[{""type"": ""go_to_page"", ""title"": ""Got it!"", ""slug"": ""mnch_onboarding_guided_tour_menu""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Tour_06_v2.png,,,,,en
+Sub 5.1.19,1,3549,mnch_onboarding_guided_tour_menu,Onboarding,Guided_tour_menu,,,Guided_tour_menu,"I hope you've now got a good idea of what {service name} can do.
+
+At this point, most people choose to create their profile. The more info you give me, the more control you have!
+
+👇🏽 What do you want to do?",,UTILITY,,,,,[],,,,,,,,,aa92320d-d398-4d06-bb4b-59a6fc58925c,,,,,"[{""type"": ""next_message"", ""title"": ""Create a profile \ud83d\udc64""}, {""type"": ""next_message"", ""title"": ""Go to help desk""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
