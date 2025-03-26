@@ -613,7 +613,7 @@ end
 
 card SpeakToAgent do
   update_contact(intent: "get health advice")
-  # TODO: Kick off Speak to agent workflow
+  run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
 end
 
 ```
