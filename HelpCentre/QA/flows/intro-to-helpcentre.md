@@ -164,71 +164,8 @@ card CheckForNavBypass when contact.navbypass == "SearchMyHealth", then: SearchM
   update_contact(navbypass: "")
 end
 
-card CheckForNavBypass, then: MainMenu do
-  log("Going to Main Menu")
-end
-
-```
-
-# Main Menu
-
-<!-- { section: "ab5aa25e-783a-4632-9b79-798dd5314d68", x: 0, y: 0} -->
-
-```stack
-card MainMenu, then: MainMenuError do
-  list("Menu",
-    YourHealthGuide: "Your health guide 🔒",
-    TopicsForYou: "View topics for you 📚",
-    ChatToHealthAgent: "Chat to a nurse 🧑🏾‍⚕️",
-    YourProfile: "Your profile ({0%}) 👤",
-    ManageUpdates: "Manage updates 🔔",
-    ManageData: "Manage data 🖼️",
-    HelpCentre: "Help centre 📞",
-    TakeATour: "Take a tour 🚌",
-    AboutAndPrivacy: "About and Privacy policy ℹ️",
-    TalkToACouncellor: "Talk to a counsellor"
-  ) do
-    text("""
-    *{MyHealth} Main Menu*
-
-    Tap the ‘Menu’ button to make your selection.
-
-    *Get Health Advice*
-    • Your health guide 🔒
-    • View topics for you 📚
-    • Chat to a nurse 🧑🏾‍⚕️
-
-    *Settings*
-    • Your profile ({0%}) 👤 
-    • Manage updates 🔔
-    • Manage data 🖼️
-
-    *{MyHealth Service}*
-    • Help centre 📞
-    • Take a tour 🚌
-    • About and Privacy policy ℹ️
-    • Talk to a counsellor 
-
-    _Send in “menu” to go to the main menu._
-    """)
-  end
-end
-
-card MainMenuError, then: MainMenuError do
-  list("Menu",
-    YourHealthGuide: "Your health guide 🔒",
-    TopicsForYou: "View topics for you 📚",
-    ChatToHealthAgent: "Chat to a nurse 🧑🏾‍⚕️",
-    YourProfile: "Your profile ({0%}) 👤",
-    ManageUpdates: "Manage updates 🔔",
-    ManageData: "Manage data 🖼️",
-    HelpCentre: "Help centre 📞",
-    TakeATour: "Take a tour 🚌",
-    AboutAndPrivacy: "About and Privacy policy ℹ️",
-    TalkToACouncellor: "Talk to a counsellor"
-  ) do
-    text("@button_error_text")
-  end
+card CheckForNavBypass, then: HelpCentre do
+  log("Going to HelpCentre")
 end
 
 ```
@@ -404,7 +341,7 @@ card EmergencyNumbers, then: EmergencyNumbersError do
   buttons(
     ChatToHealthAgent: "@button_labels[0]",
     SearchMyHealth: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
+    HelpCentre: "@button_labels[2]"
   ) do
     text("""
     @emergency_numbers_msg
@@ -416,7 +353,7 @@ card EmergencyNumbersError, then: EmergencyNumbersError do
   buttons(
     ChatToHealthAgent: "@button_labels[0]",
     SearchMyHealth: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
+    HelpCentre: "@button_labels[2]"
   ) do
     text("""
     @button_error_text
@@ -1033,7 +970,7 @@ card AcknowledgePositive do
   buttons(
     RouteUrgency: "@button_labels[0]",
     HelpCentre: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
+    HelpCentre: "@button_labels[2]"
   ) do
     text("@ack_pos_msg")
   end
@@ -1043,7 +980,7 @@ card AcknowledgePositiveError, then: AcknowledgePositiveError do
   buttons(
     RouteUrgency: "@button_labels[0]",
     HelpCentre: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
+    HelpCentre: "@button_labels[2]"
   ) do
     text("@button_error_text")
   end
@@ -1146,7 +1083,7 @@ card HelpdeskClosed, then: HelpdeskClosedError do
   buttons(
     HelpCentre: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
+    HelpCentre: "@button_labels[2]"
   ) do
     text("""
     @closed_msg
@@ -1158,7 +1095,7 @@ card HelpdeskClosedError, then: HelpdeskClosedError do
   buttons(
     HelpCentre: "@button_labels[0]",
     TopicsForYou: "@button_labels[1]",
-    MainMenu: "@button_labels[2]"
+    HelpCentre: "@button_labels[2]"
   ) do
     text("""
     @button_error_text

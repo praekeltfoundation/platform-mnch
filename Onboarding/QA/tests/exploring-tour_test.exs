@@ -188,7 +188,7 @@ defmodule ExploringTourTest do
       |> FlowTester.send(button_label: "Got it!")
       |> receive_message(%{})
       |> FlowTester.send(button_label: "Go to help desk")
-      |> Helpers.handle_help_center_flow()
+      |> Helpers.handle_non_personalised_menu_flow()
       |> flow_finished()
     end
   end
