@@ -77,6 +77,8 @@ defmodule Onboarding.QA.Helpers do
 
   def help_center_uuid(), do: "ea366b74-df7b-41ed-a479-7d501435d38e"
 
+  def non_personalised_menu_uuid(), do: "c73d7bc1-4b07-44f0-9949-38d2b88f4707"
+
   def handle_basic_profile_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, basic_profile_flow_uuid(), fn step ->
     FlowTester.set_contact_properties(step, %{
       "year_of_birth" => Keyword.get(opts, :year_of_birth, "1988"),
@@ -125,6 +127,8 @@ defmodule Onboarding.QA.Helpers do
   def handle_generic_profile_flow(step), do: FlowTester.handle_child_flow(step, generic_profile_uuid())
 
   def handle_help_center_flow(step), do: FlowTester.handle_child_flow(step, help_center_uuid())
+
+  def handle_non_personalised_menu_flow(step), do: FlowTester.handle_child_flow(step, non_personalised_menu_uuid())
 
   def csv_path(csv_name), do: Path.join([__DIR__, "..", "content", csv_name <> ".csv"])
 

@@ -798,7 +798,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Go to help desk")
       |> contact_matches(%{"intent" => "get health advice"})
-      |> Helpers.handle_help_center_flow()
+      |> Helpers.handle_non_personalised_menu_flow()
       |> flow_finished()
     end
 
