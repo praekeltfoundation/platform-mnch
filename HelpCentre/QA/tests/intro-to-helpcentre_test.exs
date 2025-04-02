@@ -350,36 +350,10 @@ defmodule IntroToHelpCentreTest do
 
   setup [:setup_flow]
 
-  test "main menu", %{flow: flow} do
-    FlowTester.start(flow)
-    |> receive_message(%{
-      text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-      list:
-        {"Menu",
-         [
-           {"Your health guide 🔒", "Your health guide 🔒"},
-           {"View topics for you 📚", "View topics for you 📚"},
-           {"Chat to a nurse 🧑🏾‍⚕️", "Chat to a nurse 🧑🏾‍⚕️"},
-           {"Your profile ({0%}) 👤", "Your profile ({0%}) 👤"},
-           {"Manage updates 🔔", "Manage updates 🔔"},
-           {"Manage data 🖼️", "Manage data 🖼️"},
-           {"Help centre 📞", "Help centre 📞"},
-           {"Take a tour 🚌", "Take a tour 🚌"},
-           {"About and Privacy policy ℹ️", "About and Privacy policy ℹ️"},
-           {"Talk to a counsellor", "Talk to a counsellor"}
-         ]}
-    })
-  end
-
   test "new to helpcentre", %{flow: flow} do
     flow
     |> FlowTester.set_contact_properties(%{"returning_help_centre_user" => ""})
     |> FlowTester.start()
-    |> receive_message(%{
-      text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _,
-      list: {"Menu", _}
-    })
-    |> FlowTester.send(button_label: "Help centre 📞")
     |> receive_message(%{
       text: "*Welcome to the [MyHealth] Help Centre*" <> _
     })
@@ -390,10 +364,6 @@ defmodule IntroToHelpCentreTest do
     |> FlowTester.set_contact_properties(%{"returning_help_centre_user" => "true"})
     |> FlowTester.start()
     |> receive_message(%{
-      text: "*{MyHealth} Main Menu*\n\nTap the ‘Menu’ button to make your selection." <> _
-    })
-    |> FlowTester.send(button_label: "Help centre 📞")
-    |> receive_message(%{
       text: "*Welcome back to the Help Centre*" <> _
     })
   end
@@ -401,7 +371,6 @@ defmodule IntroToHelpCentreTest do
   describe "Emergency Help:" do
     test "emergency numbers", %{flow: flow} do
       FlowTester.start(flow)
-      |> FlowTester.send(button_label: "Help centre 📞")
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Emergency help")
       |> receive_message(%{
@@ -415,7 +384,6 @@ defmodule IntroToHelpCentreTest do
 
     test "talk to health agent while helpdesk during operating hours", %{flow: flow} do
       FlowTester.start(flow)
-      |> FlowTester.send(button_label: "Help centre 📞")
       |> FlowTester.send(button_label: "Emergency help")
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Talk to health agent")
@@ -428,7 +396,6 @@ defmodule IntroToHelpCentreTest do
       flow = set_config_helpdesk_closed(flow)
 
       FlowTester.start(flow)
-      |> FlowTester.send(button_label: "Help centre 📞")
       |> FlowTester.send(button_label: "Emergency help")
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Talk to health agent")
@@ -446,7 +413,6 @@ defmodule IntroToHelpCentreTest do
   describe "Search MyHealth:" do
     defp setup_flow_search_myhealth(flow) do
       FlowTester.start(flow)
-      |> FlowTester.send(button_label: "Help centre 📞")
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Search MyHealth")
       |> receive_message(%{
