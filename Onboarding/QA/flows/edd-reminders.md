@@ -51,7 +51,7 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 Here we do any setup and fetching of values before we start the flow.
 
 ```stack
-card FetchError, then: EDDReminder do
+card FetchError, then: GetLocaleCodes do
   # Fetch and store the error message, so that we don't need to do it for every error card
   search =
     get(
@@ -121,6 +121,16 @@ card FetchError, then: EDDReminder do
   unrecognised_number_text = page.body.body.text.value.message
 end
 
+card GetLocaleCodes when contact.language = "por", then: EDDReminder do
+  cms_locale = "pt"
+  template_locale = "pt_PT"
+end
+
+card GetLocaleCodes, then: EDDReminder do
+  cms_locale = "en"
+  template_locale = "en_US"
+end
+
 ```
 
 ## EDD Reminder
@@ -133,7 +143,8 @@ card EDDReminder, then: DisplayEDDReminder do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_edd_reminder"]
+        ["slug", "mnch_onboarding_edd_reminder"],
+        ["locale", "@cms_locale"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -144,7 +155,8 @@ card EDDReminder, then: DisplayEDDReminder do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
-        ["whatsapp", "true"]
+        ["whatsapp", "true"],
+        ["locale", "@cms_locale"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -159,7 +171,7 @@ card DisplayEDDReminder when contact.data_preference == "text only",
   then: DisplayEDDReminderError do
   send_message_template(
     "@whatsapp_template_name",
-    "en_US",
+    "@template_locale",
     ["@contact.name"],
     buttons: [EDDGotIt, EDDMonth, EDDRUnknown]
   )
@@ -179,7 +191,7 @@ card DisplayEDDReminder, then: DisplayEDDReminderError do
 
   send_message_template(
     "@whatsapp_template_name",
-    "en_US",
+    "@template_locale",
     ["@contact.name"],
     image: "@image_data.body.meta.download_url",
     buttons: [EDDGotIt, EDDMonth, EDDRUnknown]
@@ -206,7 +218,8 @@ card EDDGotIt, "@button_labels[0]", then: DisplayEDDGotIt do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
       query: [
-        ["slug", "mnch_onboarding_edd_got_it"]
+        ["slug", "mnch_onboarding_edd_got_it"],
+        ["locale", "@cms_locale"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -217,7 +230,8 @@ card EDDGotIt, "@button_labels[0]", then: DisplayEDDGotIt do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
       query: [
-        ["whatsapp", "true"]
+        ["whatsapp", "true"],
+        ["locale", "@cms_locale"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
