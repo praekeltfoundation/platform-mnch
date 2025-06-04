@@ -135,6 +135,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
   describe "scheduled topics no response followup:" do
     test "initial message", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"aaq_metadata" => "{}"})
       |> FlowTester.start()
       |> receive_message(%{
         text:
@@ -145,6 +146,9 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
 
     test "clicked yes", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{
+        "aaq_metadata" => "{}"
+      })
       |> FlowTester.start()
       |> receive_message(%{
         text: "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n" <> _,
@@ -161,6 +165,9 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
 
     test "click no", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{
+        "aaq_metadata" => "{}"
+      })
       |> FlowTester.start()
       |> receive_message(%{
         text: "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n" <> _,
