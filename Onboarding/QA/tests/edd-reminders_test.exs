@@ -77,6 +77,37 @@ defmodule EDDRemindersTest do
       ]
     }
 
+    edd_reminder_pt = %ContentPage{
+      slug: "mnch_onboarding_edd_reminder",
+      title: "EDD Reminder pt",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "Olá {username}\r\n\r\nSua próxima visita antenatal está chegando logo, não esqueça de perguntar ao profissional de saúde sua data de parto prevista 👩🏽\r\n\r\nVocê pode atualizar a data de parto na configuração, encontrada no menu principal.",
+          buttons: [
+            %Btn.Next{title: "Entendi!"},
+            %Btn.Next{title: "Atualizar data de parto"},
+            %Btn.Next{title: "Como calcular"}
+          ]
+        }
+      ],
+      whatsapp_template_name: "edd_reminder_2041_pt"
+    }
+
+    got_it_pt = %ContentPage{
+      slug: "mnch_onboarding_edd_got_it",
+      title: "Got it pt",
+      parent: "test",
+      wa_messages: [
+        %WAMsg{
+          message: "Bem feito por você e pelo seu bebê!",
+          buttons: [
+            %Btn.Next{title: "Ver menu principal"},
+          ]
+        }
+      ]
+    }
+
     edd_month = %ContentPage{
       slug: "mnch_onboarding_edd_month",
       title: "EDD Month",
@@ -156,7 +187,14 @@ defmodule EDDRemindersTest do
                edd_confirmed,
                edd_unknown,
                do_it_later
-             ])
+             ], "en")
+
+      assert :ok =
+              FakeCMS.add_pages(wh_pid, [
+                %Index{slug: "test", title: "test"},
+                edd_reminder_pt,
+                got_it_pt
+              ], "pt")
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -247,6 +285,21 @@ defmodule EDDRemindersTest do
       |> receive_message(%{
         text: "Well done on taking care of you and baby’s health!",
         buttons: button_labels(["See main menu"]),
+      })
+    end
+
+    test "Got it (pt)", %{flow: flow} do
+      flow
+      |> FlowTester.set_contact_properties(%{"language" => "por"})
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "[DEBUG]\nTemplate edd_reminder_2041_pt sent with language pt_PT.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
+      })
+      |> FlowTester.send("edd_got_it")
+      |> receive_message(%{
+        text: "Bem feito por você e pelo seu bebê!",
+        buttons: button_labels(["Ver menu principal"]),
       })
     end
 
