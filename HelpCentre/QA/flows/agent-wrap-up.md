@@ -45,28 +45,17 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "a
 
 card FetchError, then: CheckForNavBypass do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 card CheckForNavBypass when contact.navbypass == "BotToAgentHandoverWaitingRoom",
@@ -117,27 +106,16 @@ end
 card CheckResolution, then: CheckResolutionError do
   cancel_scheduled_stacks("dbf8e71b-d2bb-4c08-829c-925d53752bbf")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_query_successful"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_query_successful/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  msg = page.body.body.text.value.message
+  msg = page.body.messages[0].text
   button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
 
   buttons(
@@ -165,27 +143,16 @@ end
 card AgentHelpfulResponse do
   write_result("operator_resolved_query", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_agent_helpful_response"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_helpful_response/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  agent_helful_msg = page.body.body.text.value.message
+  agent_helful_msg = page.body.messages[0].text
   text("@agent_helful_msg")
 end
 
@@ -197,27 +164,16 @@ end
 card UnresolvedWhatNext, then: WhatNextError do
   write_result("operator_resolved_query", "no")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_agent_unsuccessful_response"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_unsuccessful_response/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  what_next_msg = page.body.body.text.value.message
+  what_next_msg = page.body.messages[0].text
   button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
 
   buttons(
@@ -245,27 +201,16 @@ end
 
 ```stack
 card CallMeBack, then: CallMeBackError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_call_back_response"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_call_back_response/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  msg = page.body.body.text.value.message
+  msg = page.body.messages[0].text
   button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
 
   buttons(
@@ -279,27 +224,16 @@ end
 card CallMeBackConfirm, then: ChooseNumberToCall do
   write_result("callback_requested", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_call_back_confirmation"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_call_back_confirmation/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  msg = page.body.body.text.value.message
+  msg = page.body.messages[0].text
   text("@msg")
 end
 
@@ -318,27 +252,16 @@ end
 
 ```stack
 card ChooseNumberToCall, then: ChooseNumberToCallError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_agent_call_back_number_confirmation"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_call_back_number_confirmation/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  choose_number_msg = page.body.body.text.value.message
+  choose_number_msg = page.body.messages[0].text
   button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
 
   buttons(
@@ -370,27 +293,16 @@ end
 
 ```stack
 card UseAnotherNumber, then: ValidateAlternateNumber do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_agent_call_back_number_update"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_call_back_number_update/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  update_number_msg = page.body.body.text.value.message
+  update_number_msg = page.body.messages[0].text
 
   cancel_scheduled_stacks("36ec8712-99c2-453c-b6cb-fbe9f7cf4bae")
 
@@ -418,27 +330,16 @@ end
 
 ```stack
 card ConfirmSaveAlternateNumber, then: ConfirmSaveAlternateNumberError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_agent_contact_number_save"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_contact_number_save/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  save_number_msg = page.body.body.text.value.message
+  save_number_msg = page.body.messages[0].text
   button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
 
   buttons(
@@ -482,27 +383,16 @@ card BotToAgentHandoverWait do
     "Scheduled stack `HC: Scheduled - Callback confirmation - 69557475-02fa-4d44-a091-277f3cb5908b` to run in 2 minutes"
   )
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_bot_to_agent_handover_waiting_room"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_bot_to_agent_handover_waiting_room/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  handover_msg = page.body.body.text.value.message
+  handover_msg = page.body.messages[0].text
   text("@handover_msg")
 end
 
