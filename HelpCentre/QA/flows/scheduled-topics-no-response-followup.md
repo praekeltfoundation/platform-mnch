@@ -48,7 +48,7 @@ card FetchError, then: TopicsNoResponseFollowup do
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  button_error_text = page.body.results[0].body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 card GotoMainMenu do
@@ -83,8 +83,8 @@ card TopicsNoResponseFollowup, then: TopicsNoResponseFollowupError do
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_conf_msg = page.body.results[0].body.text.value.message
-  button_labels = map(page.body.results[0].body.text.value.buttons, & &1.value.title)
+  callback_conf_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     TopicsNoResponseFollowupYes: "@button_labels[0]",
@@ -141,8 +141,8 @@ card TopicsNoResponseFollowupYes, then: TopicsNoResponseFollowupYesError do
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  conf_yes_msg = page.body.results[0].body.text.value.message
-  button_labels = map(page.body.results[0].body.text.value.buttons, & &1.value.title)
+  conf_yes_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     GotoFAQTopicsList: "@button_labels[0]",
@@ -206,7 +206,7 @@ card TopicsNoResponseFollowupNo, then: GotoFAQTopicsList do
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_conf_no = page.body.results[0].body.text.value.message
+  callback_conf_no = page.body.messages[0].text
   text("@callback_conf_no")
 end
 

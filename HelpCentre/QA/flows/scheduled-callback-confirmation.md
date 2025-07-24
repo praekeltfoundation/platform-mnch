@@ -79,7 +79,7 @@ card CallbackConfirmation, then: CallbackConfirmationError do
     )
 
   callback_conf_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     CallbackConfirmationYes: "@button_labels[0]",
@@ -116,7 +116,7 @@ card CallbackConfirmationYes, then: CallbackConfirmationYesError do
     )
 
   conf_yes_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     AgentHelpfulResponse: "@button_labels[0]",
@@ -157,7 +157,7 @@ card CallbackConfirmationNo do
     )
 
   callback_conf_no = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     GotoCallback: "@button_labels[0]",

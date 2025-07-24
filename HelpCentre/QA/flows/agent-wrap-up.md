@@ -116,7 +116,7 @@ card CheckResolution, then: CheckResolutionError do
     )
 
   msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     AgentHelpfulResponse: "@button_labels[0]",
@@ -174,7 +174,7 @@ card UnresolvedWhatNext, then: WhatNextError do
     )
 
   what_next_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     CallMeBack: "@button_labels[0]",
@@ -211,7 +211,7 @@ card CallMeBack, then: CallMeBackError do
     )
 
   msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     CallMeBackConfirm: "@button_labels[0]",
@@ -262,7 +262,7 @@ card ChooseNumberToCall, then: ChooseNumberToCallError do
     )
 
   choose_number_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     UseThisNumber: "@button_labels[0]",
@@ -340,7 +340,7 @@ card ConfirmSaveAlternateNumber, then: ConfirmSaveAlternateNumberError do
     )
 
   save_number_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     SaveAlternateNumber: "@button_labels[0]",

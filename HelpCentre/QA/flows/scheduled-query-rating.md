@@ -62,7 +62,7 @@ card ScheduledQueryRating, then: ScheduledQueryRatingError do
     )
 
   query_rating_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     GotoAgentHelpfulResponse: "@button_labels[0]",

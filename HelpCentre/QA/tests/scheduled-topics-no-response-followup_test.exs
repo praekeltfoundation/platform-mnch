@@ -132,6 +132,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
 
   setup [:setup_flow]
 
+  @tag :testtorun
   describe "scheduled topics no response followup:" do
     test "initial message", %{flow: flow} do
       flow

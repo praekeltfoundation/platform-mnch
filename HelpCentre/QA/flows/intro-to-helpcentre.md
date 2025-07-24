@@ -177,7 +177,7 @@ card HelpCentre
     )
 
   intro_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
   update_contact(returning_help_centre_user: "true")
 end
 
@@ -192,7 +192,7 @@ card HelpCentre when contact.returning_help_centre_user == true, then: ShowHelpC
     )
 
   intro_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 end
 
 card HelpCentre do
@@ -239,7 +239,7 @@ card MedicalEmergency, then: MedicalEmergencyError do
     )
 
   emergency_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     EmergencyNumbers: "@button_labels[0]",
@@ -282,7 +282,7 @@ card EmergencyNumbers, then: EmergencyNumbersError do
     )
 
   emergency_numbers_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     ChatToHealthAgent: "@button_labels[0]",
@@ -567,7 +567,7 @@ card RouteUrgency when urgency_score == 1.0, then: RouteUrgencyError do
     )
 
   urgent_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     EmergencyNumbers: "@button_labels[0]",
@@ -718,7 +718,7 @@ card DisplayFAQ, then: DisplayFAQError do
     )
 
   display_faq_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
   text("@body['@selected_faq'].text")
 
   buttons(
@@ -812,7 +812,7 @@ card AcknowledgePositive do
     )
 
   ack_pos_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     RouteUrgency: "@button_labels[0]",
@@ -903,7 +903,7 @@ card HelpdeskClosed, then: HelpdeskClosedError do
     )
 
   closed_msg = page.body.messages[0].text
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     HelpCentre: "@button_labels[0]",
