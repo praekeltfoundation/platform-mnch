@@ -48,50 +48,27 @@ card FetchError, then: GoToPrivacyPolicy do
   # Fetch and store the error message, so that we don't need to do it for every error card
   log("Starting the Intro & Welcome journey")
 
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
+  button_error_text = page.body.messages[0].text
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_list_message/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_list_message"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  list_error_text = page.body.body.text.value.message
+  list_error_text = page.body.messages[0].text
 end
 
 ```
@@ -132,31 +109,20 @@ end
 
 ```stack
 card WelcomeMessage, then: WelcomeMessageError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_welcome"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_welcome/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(DefaultLanguageSelection: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -185,27 +151,16 @@ Each language goes to its own stack, but is all set to English for now, since th
 
 ```stack
 card LanguageOptions, then: LanguageOptionsError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_languages"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_languages/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   list_items = map(message.list_items, & &1.value)
 
   language =
@@ -217,7 +172,7 @@ card LanguageOptions, then: LanguageOptionsError do
       Language5: "@list_items[4]",
       Language6: "@list_items[5]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -279,27 +234,16 @@ Occurances of `{language selection}` in the message are replaced with the user-s
 
 ```stack
 card LanguageConfirmation, then: LanguageConfirmationError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_language_updated"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_language_updated/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   message_text = substitute(message.message, "{language selection}", "@selected_language")
   button_labels = map(message.buttons, & &1.value.title)
 
@@ -328,27 +272,16 @@ This message has the privacy policy as a document attachment
 card PrivacyPolicy, then: PrivacyPolicyError do
   update_contact(onboarding_part_1: "incomplete")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pp_document"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pp_document/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
 
   log("@message.document")
 
@@ -369,7 +302,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
   ) do
     # TODO: When we finally have the document, upload it and make this work
     document("@document_url", filename: "Privacy Policy")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -395,39 +328,28 @@ end
 card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
   update_contact(privacy_policy_accepted: "no")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pp_not_accepted"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pp_not_accepted/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
 
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(SeePrivacyPolicy: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 card SeePrivacyPolicy, then: PrivacyPolicy do
   # Cancel any previous scheduled instance of this stack
-  cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
-  schedule_stack("ce992f8b-49d8-4876-8bfd-a62b6482206d", in: 60 * 60 * 23)
+  cancel_scheduled_stacks("8407c748-140f-43fa-b5f4-b5652e07f484")
+  schedule_stack("8407c748-140f-43fa-b5f4-b5652e07f484", in: 60 * 60 * 23)
 end
 
 card DeclinePrivacyPolicyError, then: DeclinePrivacyPolicyError do
@@ -442,27 +364,16 @@ end
 
 ```stack
 card ReadSummary, then: ReadSummaryError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pp_summary"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pp_summary/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
 
   # document =
   #   get(
@@ -477,7 +388,7 @@ card ReadSummary, then: ReadSummaryError do
   buttons(AcceptPrivacyPolicy: "@button_labels[0]", DeclinePrivacyPolicy: "@button_labels[1]") do
     # TODO: When we finally have the document, upload it and make this work
     # document("@document_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -495,31 +406,20 @@ Opt in for push messages
 
 ```stack
 card OptIn, then: OptInError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_opt_in"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_opt_in/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(OptInAccept: "@button_labels[0]", OptInDecideLater: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -535,7 +435,7 @@ end
 card OptInAccept, then: UserIntent do
   log("OptIn Accepted")
   update_contact(opted_in: "true")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 60 * 60)
+  schedule_stack("689e019d-beb5-4ba2-8c04-f4663a67ab81", in: 60 * 60)
 end
 
 card OptInDecideLater, then: UserIntent do
@@ -558,27 +458,16 @@ Values saved into the `intent` contact field:
 card UserIntent, then: UserIntentError do
   update_contact(checkpoint: "intro_welcome")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_intent"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_intent/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 
   intent =
@@ -587,7 +476,7 @@ card UserIntent, then: UserIntentError do
       Explore: "@button_labels[1]",
       SpeakToAgent: "@button_labels[2]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -613,7 +502,7 @@ end
 
 card SpeakToAgent do
   update_contact(intent: "get health advice")
-  run_stack("c73d7bc1-4b07-44f0-9949-38d2b88f4707")
+  run_stack("141a7271-30ec-4b31-83a5-11e4fa655df7")
 end
 
 ```
@@ -630,27 +519,16 @@ Values saved into data_preference contact field:
 
 ```stack
 card DataPreferences, then: DataPreferencesError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_data_preferences"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_data_preferences/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 
   data_preference =
@@ -659,7 +537,7 @@ card DataPreferences, then: DataPreferencesError do
       DataPreferenceTextAndImages: "@button_labels[1]",
       DataPreferenceTextOnly: "@button_labels[2]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -686,27 +564,16 @@ card DataPreferenceTextOnly, then: DataPreferencesSelected do
 end
 
 card DataPreferencesSelected, then: DataPreferencesSelectedError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_data_preferences_yes"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_data_preferences_yes/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   message_text = substitute(message.message, "{option choice}", "@contact.data_preference")
   button_labels = map(message.buttons, & &1.value.title)
 
@@ -725,14 +592,14 @@ card SelectNextJourney when contact.intent == "create profile" do
   # Go to Profile Classifier journey
   log("Navigating to Profile Classifier")
   write_result("intro_completed", "yes")
-  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
+  run_stack("c77efa62-1c9d-4ace-ae7a-4585e4e929d1")
 end
 
 card SelectNextJourney when contact.intent == "explore" do
   # Go to Explore journey
   log("Navigating to Explore")
   write_result("intro_completed", "yes")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+  run_stack("359b3ff4-796d-4b80-91a6-15532c7bdb90")
 end
 
 card SelectNextJourney do
@@ -749,28 +616,16 @@ Temporary TODO card to route to when we haven't created the destination yet
 
 ```stack
 card TODO do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["whatsapp", "true"],
-        ["slug", "todo"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/todo/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  text("@page.body.body.text.value.message")
+  text("@page.body.messages[0].text")
 end
 
 ```

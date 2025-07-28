@@ -9,50 +9,27 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "p
 card FetchError, then: PersonalisedMenu do
   # Fetch and store the error message, so that we don't need to do it for every error card
 
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
+  button_error_text = page.body.messages[0].text
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_list_message/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_list_message"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  list_error_text = page.body.body.text.value.message
+  list_error_text = page.body.messages[0].text
 end
 
 ```
@@ -63,27 +40,16 @@ end
 
 ```stack
 card PersonalisedMenu, then: DisplayPersonalisedMenu do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_main_menu_personalised"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_main_menu_personalised/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   menu_items = map(message.list_items, & &1.value)
 end
 
@@ -99,7 +65,7 @@ card DisplayPersonalisedMenu, then: DisplayPersonalisedMenuError do
       TakeATour: "@menu_items[6]",
       About: "@menu_items[7]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -157,27 +123,16 @@ end
 
 ```stack
 card HealthGuideGeneric, then: DisplayHealthGuideGeneric do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_health_guide_generic"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_health_guide_generic/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   menu_items = map(message.list_items, & &1.value)
 end
 
@@ -193,7 +148,7 @@ card DisplayHealthGuideGeneric, then: DisplayHealthGuideGenericError do
       Generic2: "@menu_items[6]",
       PersonalisedMenu: "@menu_items[7]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -257,27 +212,16 @@ end
 
 ```stack
 card LibraryTopics, then: DisplayLibraryTopics do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_library"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_library/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   menu_items = map(message.list_items, & &1.value)
 end
 
@@ -292,7 +236,7 @@ card DisplayLibraryTopics, then: DisplayLibraryTopicsError do
       HealthProfessional: "@menu_items[5]",
       PersonalisedMenu: "@menu_items[6]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -341,27 +285,16 @@ end
 
 ```stack
 card ManageUpdates, then: DisplayManageUpdates do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_manage_updates"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_manage_updates/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   menu_items = map(message.list_items, & &1.value)
 end
 
@@ -376,7 +309,7 @@ card DisplayManageUpdates, then: DisplayManageUpdatesError do
       HealthWorkers: "@menu_items[5]",
       PersonalisedMenu: "@menu_items[6]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -425,27 +358,16 @@ end
 
 ```stack
 card DataSettings, then: DisplayDataSettings do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_data_settings"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_data_settings/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -455,7 +377,7 @@ card DisplayDataSettings, then: DisplayDataSettingsError do
     TextAndImages: "@button_labels[1]",
     TextOnly: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -490,27 +412,16 @@ end
 
 ```stack
 card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_data_preferences_confirmation"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_data_preferences_confirmation/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
 
   loading_message =
     substitute(
@@ -541,7 +452,7 @@ end
 ```stack
 card GoToHelpCentre, then: PersonalisedMenu do
   log("Help Centre")
-  run_stack("ea366b74-df7b-41ed-a479-7d501435d38e")
+  run_stack("7b50f9f4-b6cf-424b-8893-8fef6d0f489b")
 end
 
 ```
@@ -551,7 +462,7 @@ end
 ```stack
 card YourProfile do
   log("Your Progile")
-  run_stack("1f551cbc-db57-41d3-b5ee-dc6c77b3030b")
+  run_stack("90d3135d-6c0c-43c2-b2a8-a099d63639bf")
 end
 
 ```
@@ -561,7 +472,7 @@ end
 ```stack
 card GoToTakeATour do
   log("Take a tour")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+  run_stack("359b3ff4-796d-4b80-91a6-15532c7bdb90")
 end
 
 ```
@@ -570,27 +481,16 @@ end
 
 ```stack
 card AboutPrivacy, then: DisplayAboutPrivacy do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_about_privacy"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_about_privacy/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -607,7 +507,7 @@ card DisplayAboutPrivacy, then: DisplayAboutPrivacyError do
 
   buttons(PersonalisedMenu: "@button_labels[0]") do
     document("@doc_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 

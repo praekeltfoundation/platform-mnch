@@ -1,7 +1,7 @@
 {
   "name": "Onboarding: Exploring Tour",
   "description": "Default description",
-  "uuid": "4288d6a9-23c9-4fc6-95b7-c675a6254ea5",
+  "uuid": "359b3ff4-796d-4b80-91a6-15532c7bdb90",
   "resources": [
     {
       "values": [
@@ -591,7 +591,7 @@
           "name": "speak_to_agent_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "c73d7bc1-4b07-44f0-9949-38d2b88f4707"
+            "flow_id": "141a7271-30ec-4b31-83a5-11e4fa655df7"
           },
           "tags": [],
           "uuid": "a6ba3668-550b-56f5-a6cd-cbc1988c1586",
@@ -648,7 +648,7 @@
           "name": "create_profiles_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "bd590c1e-7a06-49ed-b3a1-623cf94e8644"
+            "flow_id": "c77efa62-1c9d-4ace-ae7a-4585e4e929d1"
           },
           "tags": [],
           "uuid": "4fae50c4-fad7-5cea-82e6-bd96807808f0",

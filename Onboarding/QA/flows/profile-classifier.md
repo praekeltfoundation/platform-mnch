@@ -43,49 +43,27 @@ card Checkpoint, then: NameError do
 end
 
 card NameError, then: Name do
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_name_error/",
       query: [
-        ["slug", "mnch_onboarding_name_error"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  page_id = search.body.results[0].id
+  name_error_text = page.body.messages[0].text
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  name_error_text = page.body.body.text.value.message
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 ```
@@ -96,56 +74,34 @@ end
 
 ```stack
 card Name, then: NameValidation do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_name_call"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_name_call/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  name = ask("@message.message")
+  message = page.body.messages[0]
+  name = ask("@message.text")
 end
 
 card NameValidation when lower("@name") == "skip", then: NameValidationError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_name_skip"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_name_skip/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(Name: "@button_labels[0]", Domains1: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -176,27 +132,16 @@ Introductory message to domains.
 
 ```stack
 card Domains1, then: Domains1Branch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_domains_01"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_domains_01/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
 
   message_text =
     if is_nil_or_empty(contact.name),
@@ -215,7 +160,7 @@ end
 
 # Show image
 card Domains1Branch, then: Domains1Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -245,39 +190,28 @@ Love and relationships
 
 ```stack
 card Domains2, then: Domains2Branch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_domains_02"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_domains_02/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 # Text only
 card Domains2Branch when @contact.data_preference == "text only", then: Domains2Error do
   buttons(AddDomain2: "@button_labels[0]", Domains3: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 card Domains2Branch, then: Domains2Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -289,7 +223,7 @@ card Domains2Branch, then: Domains2Error do
 
   buttons(AddDomain2: "@button_labels[0]", Domains3: "@button_labels[1]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -311,40 +245,29 @@ Pregnancy Information
 
 ```stack
 card Domains3, then: Domains3Branch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_domains_03"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_domains_03/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 # Text only
 card Domains3Branch when @contact.data_preference == "text only", then: Domains3Error do
   buttons(AddDomain3: "@button_labels[0]", Domains4: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card Domains3Branch, then: Domains3Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -356,7 +279,7 @@ card Domains3Branch, then: Domains3Error do
 
   buttons(AddDomain3: "@button_labels[0]", Domains4: "@button_labels[1]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -378,40 +301,29 @@ Baby and Child Health
 
 ```stack
 card Domains4, then: Domains4Branch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_domains_04"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_domains_04/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 # Text only
 card Domains4Branch when @contact.data_preference == "text only", then: Domains4Error do
   buttons(AddDomain4: "@button_labels[0]", Domains5: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card Domains4Branch, then: Domains4Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -423,7 +335,7 @@ card Domains4Branch, then: Domains4Error do
 
   buttons(AddDomain4: "@button_labels[0]", Domains5: "@button_labels[1]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -445,40 +357,29 @@ Well-Being
 
 ```stack
 card Domains5, then: Domains5Branch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_domains_05"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_domains_05/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 # Text only
 card Domains5Branch when @contact.data_preference == "text only", then: Domains5Error do
   buttons(AddDomain5: "@button_labels[0]", Domains6: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card Domains5Branch, then: Domains5Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -490,7 +391,7 @@ card Domains5Branch, then: Domains5Error do
 
   buttons(AddDomain5: "@button_labels[0]", Domains6: "@button_labels[1]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -512,40 +413,29 @@ Family Planning
 
 ```stack
 card Domains6, then: Domains6Branch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_domains_06"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_domains_06/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 # Text only
 card Domains6Branch when @contact.data_preference == "text only", then: Domains6Error do
   buttons(AddDomain6: "@button_labels[0]", Domains7: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card Domains6Branch, then: Domains6Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -557,7 +447,7 @@ card Domains6Branch, then: Domains6Error do
 
   buttons(AddDomain6: "@button_labels[0]", Domains7: "@button_labels[1]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -579,40 +469,29 @@ Info for health professionals
 
 ```stack
 card Domains7, then: Domains7Branch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_domains_07"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_domains_07/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 # Text only
 card Domains7Branch when @contact.data_preference == "text only", then: Domains7Error do
   buttons(AddDomain7: "@button_labels[0]", GoToNext: "@button_labels[1]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card Domains7Branch, then: Domains7Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -624,7 +503,7 @@ card Domains7Branch, then: Domains7Error do
 
   buttons(AddDomain7: "@button_labels[0]", GoToNext: "@button_labels[1]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -651,18 +530,18 @@ This determines which journey to kick off next based on prioritising the domains
 ```stack
 card GoToNext when contact.pregnancy_information do
   log("Navigating to Pregnancy Profile")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("f582feb5-8605-4509-8279-ec17202b42a6")
 end
 
 card GoToNext when contact.info_for_health_professionals do
   log("Navigating to Health Professional Profile")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("9aa596d3-40f0-4349-8322-e44d1fd1d127")
 end
 
 card GoToNext do
   # For all other options, go to the generic profile onboarding
   log("Navigating to generic profile")
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("718e6b27-d818-40cf-8a7b-50c17bd236ba")
 end
 
 ```

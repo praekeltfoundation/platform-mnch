@@ -50,10 +50,10 @@ card ClearData do
   update_contact(reengagement_message: "")
 
   # Cancel all scheduled stacks
-  cancel_scheduled_stacks("fef6044e-789c-4989-86e3-62ee4bb063a1")
-  cancel_scheduled_stacks("1fb80591-565b-4e5f-a18d-e02420a12058")
-  cancel_scheduled_stacks("ce992f8b-49d8-4876-8bfd-a62b6482206d")
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
+  cancel_scheduled_stacks("03656be1-d528-453b-b7f7-efd3cbbf1123")
+  cancel_scheduled_stacks("107bebf6-eb76-4886-a0ee-1a11067fe089")
+  cancel_scheduled_stacks("8407c748-140f-43fa-b5f4-b5652e07f484")
+  cancel_scheduled_stacks("689e019d-beb5-4ba2-8c04-f4663a67ab81")
 
   text("Profile successfully reseted")
 end

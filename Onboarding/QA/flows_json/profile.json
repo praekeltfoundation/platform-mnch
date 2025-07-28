@@ -1,7 +1,7 @@
 {
   "name": "Onboarding: Your Profile",
   "description": "Default description",
-  "uuid": "1f551cbc-db57-41d3-b5ee-dc6c77b3030b",
+  "uuid": "90d3135d-6c0c-43c2-b2a8-a099d63639bf",
   "resources": [
     {
       "values": [
@@ -17286,7 +17286,7 @@
           "name": "complete_profile_case_condition_5_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "38cca9df-21a1-4edc-9c13-5724904ca3c3"
+            "flow_id": "9aa596d3-40f0-4349-8322-e44d1fd1d127"
           },
           "tags": [],
           "uuid": "b417f5b2-fa05-5da9-b22a-e858451b031a",
@@ -17343,7 +17343,7 @@
           "name": "complete_profile_case_condition_4_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "51701b44-bcca-486e-9c99-bf3545a8ba2d"
+            "flow_id": "718e6b27-d818-40cf-8a7b-50c17bd236ba"
           },
           "tags": [],
           "uuid": "ad252aa3-de34-54a7-840d-436d2677c8bf",
@@ -17400,7 +17400,7 @@
           "name": "complete_profile_case_condition_3_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "51701b44-bcca-486e-9c99-bf3545a8ba2d"
+            "flow_id": "718e6b27-d818-40cf-8a7b-50c17bd236ba"
           },
           "tags": [],
           "uuid": "f7671cf9-d234-5ed6-be1e-ea8cb0460253",
@@ -17457,7 +17457,7 @@
           "name": "complete_profile_case_condition_2_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "51701b44-bcca-486e-9c99-bf3545a8ba2d"
+            "flow_id": "718e6b27-d818-40cf-8a7b-50c17bd236ba"
           },
           "tags": [],
           "uuid": "517a00dc-bd66-51a3-84b3-0f25193bc831",
@@ -17514,7 +17514,7 @@
           "name": "complete_profile_case_condition_1_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "51701b44-bcca-486e-9c99-bf3545a8ba2d"
+            "flow_id": "718e6b27-d818-40cf-8a7b-50c17bd236ba"
           },
           "tags": [],
           "uuid": "7d6425e1-72a8-5c89-9f4a-88a0a1fddb7d",
@@ -17571,7 +17571,7 @@
           "name": "complete_profile_case_condition_0_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+            "flow_id": "f582feb5-8605-4509-8279-ec17202b42a6"
           },
           "tags": [],
           "uuid": "c035fa6b-cd7d-55d8-b9c4-48f3ba8f92fe",
@@ -38238,7 +38238,7 @@
           "name": "main_menu_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "21b892d6-685c-458e-adae-304ece46022a"
+            "flow_id": "fb98bb9d-60a6-47a1-a474-bb0f45b80030"
           },
           "tags": [],
           "uuid": "9a6058fc-a914-5708-b752-0fbe67cc813e",

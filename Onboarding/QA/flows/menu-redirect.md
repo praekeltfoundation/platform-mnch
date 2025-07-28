@@ -22,7 +22,7 @@ end
 
 ```stack
 card PersonalisedMenu do
-  run_stack("e823ad1d-e2d7-4d5c-b928-786b601f0f29")
+  run_stack("bd10611d-73b6-4c56-a4ca-41d4136d0d6a")
 end
 
 ```
@@ -31,7 +31,7 @@ end
 
 ```stack
 card NonPersonalisedMenu do
-  run_stack("c73d7bc1-4b07-44f0-9949-38d2b88f4707")
+  run_stack("141a7271-30ec-4b31-83a5-11e4fa655df7")
 end
 
 ```

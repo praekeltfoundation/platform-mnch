@@ -1,7 +1,7 @@
 {
   "name": "Onboarding: Exploring Tour Reminders",
   "description": "Default description",
-  "uuid": "c7d4635f-5099-4c27-94c2-1dffe237f841",
+  "uuid": "9a69c7bf-607a-4d9a-930b-0079a55e536c",
   "resources": [
     {
       "values": [
@@ -210,7 +210,7 @@
           "name": "create_profiles_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+            "flow_id": "f582feb5-8605-4509-8279-ec17202b42a6"
           },
           "tags": [],
           "uuid": "e061a02f-7d15-59b7-8ad6-9dc374238ef9",
@@ -1123,7 +1123,7 @@
           "name": "main_menu_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+            "flow_id": "f582feb5-8605-4509-8279-ec17202b42a6"
           },
           "tags": [],
           "uuid": "af93028e-4d41-569e-9d8f-1aa5c6b9c813",

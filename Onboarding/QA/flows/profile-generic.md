@@ -8,28 +8,16 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "g
 ```stack
 card FetchError, then: CheckPointRedirect do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 ```
@@ -65,7 +53,7 @@ card BasicQuestions, then: ProfileProgress30Generic do
   log("Basic questions")
   update_contact(profile_type: "generic")
   update_contact(checkpoint: "generic_basic_info")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("74bd3d95-2aec-4174-ad32-926952c795ca")
 end
 
 ```
@@ -79,22 +67,11 @@ card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
   write_result("profile_completion", "30%")
   update_contact(profile_completion: "30%")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_30_generic"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_profile_progress_30_generic/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -157,7 +134,7 @@ card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
@@ -188,27 +165,16 @@ end
 
 ```stack
 card WhyPersonalInfo1, then: DisplayWhyPersonalInfo1 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_why_personal_info_1"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_why_personal_info_1/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -217,7 +183,7 @@ card DisplayWhyPersonalInfo1, then: DisplayWhyPersonalInfo1Error do
     PersonalProfileQuestions: "@button_labels[0]",
     ReminderLater: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -236,33 +202,22 @@ end
 
 ```stack
 card ReminderLater, then: DisplayReminderLater do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_remind_later"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_remind_later/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 card DisplayReminderLater, then: DisplayReminderLaterError do
   buttons(ViewTopics: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -280,29 +235,18 @@ end
 card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_100_generic"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
+  cancel_scheduled_stacks("689e019d-beb5-4ba2-8c04-f4663a67ab81")
 
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_profile_progress_100_generic/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   name = if is_nil_or_empty(contact.name), do: "None", else: contact.name
 
   basic_questions_answers = [
@@ -378,7 +322,7 @@ end
 
 # Display with image
 card DisplayProfileProgress100Generic, then: DisplayProfileProgress100GenericError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -416,7 +360,7 @@ end
 card PersonalProfileQuestions, then: LOCAssessment do
   log("Personal profile questions")
   update_contact(checkpoint: "generic_personal_info")
-  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+  run_stack("e1e033d4-897a-4c9b-9eea-2411458c3c4c")
 end
 
 ```
@@ -426,7 +370,7 @@ end
 ```stack
 card LOCAssessment, then: OptInReminder do
   log("Placeholder Form")
-  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
+  run_stack("9bd8c27a-d08e-4c9e-8623-b4007373437e")
 end
 
 ```
@@ -441,7 +385,7 @@ card OptInReminder
             contact.opted_in == "false" or
             is_nil_or_empty(contact.opted_in),
      then: ProfileProgress100Generic do
-  run_stack("537e4867-eb26-482d-96eb-d4783828c622")
+  run_stack("f36d4d47-9cc7-4202-a73f-db6f03e478cd")
 end
 
 card OptInReminder, then: ProfileProgress100Generic do
@@ -455,7 +399,7 @@ end
 ```stack
 card ViewTopics do
   log("View topics content goes here")
-  # run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  # run_stack("f582feb5-8605-4509-8279-ec17202b42a6")
 end
 
 ```
@@ -465,7 +409,7 @@ end
 ```stack
 card MainMenu do
   log("Go to main menu")
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("fb98bb9d-60a6-47a1-a474-bb0f45b80030")
 end
 
 ```
@@ -475,12 +419,12 @@ end
 ```stack
 card HealthGuide do
   log("Health guide goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("f582feb5-8605-4509-8279-ec17202b42a6")
 end
 
 card BrowsableContent do
   log("Browsable content goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("f582feb5-8605-4509-8279-ec17202b42a6")
 end
 
 ```

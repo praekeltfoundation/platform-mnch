@@ -1,7 +1,7 @@
 {
   "name": "Onboarding: Profile Classifier",
   "description": "Default description",
-  "uuid": "bd590c1e-7a06-49ed-b3a1-623cf94e8644",
+  "uuid": "c77efa62-1c9d-4ace-ae7a-4585e4e929d1",
   "resources": [
     {
       "values": [
@@ -5573,7 +5573,7 @@
           "name": "go_to_next_case_condition_2_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "51701b44-bcca-486e-9c99-bf3545a8ba2d"
+            "flow_id": "718e6b27-d818-40cf-8a7b-50c17bd236ba"
           },
           "tags": [],
           "uuid": "57b4f42f-99cc-5b46-98ce-45a91a0d4ddb",
@@ -5687,7 +5687,7 @@
           "name": "go_to_next_case_condition_1_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "38cca9df-21a1-4edc-9c13-5724904ca3c3"
+            "flow_id": "9aa596d3-40f0-4349-8322-e44d1fd1d127"
           },
           "tags": [],
           "uuid": "9439be23-b9ab-50ba-8e1c-935e20315ca2",
@@ -5801,7 +5801,7 @@
           "name": "go_to_next_case_condition_0_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+            "flow_id": "f582feb5-8605-4509-8279-ec17202b42a6"
           },
           "tags": [],
           "uuid": "4154f12b-4d9e-59c0-8836-50c0c998768b",

@@ -55,29 +55,29 @@ defmodule Onboarding.QA.Helpers do
     context |> FlowTester.set_contact_properties(%{"love_and_relationships" => "false", "pregnancy_information" => "false", "baby_and_child" => "false", "well_being" => "false", "family_planning" => "false", "info_for_health_professionals" => "false"})
   end
 
-  def basic_profile_flow_uuid(), do: "26e0c9e4-6547-4e3f-b9f4-e37c11962b6d"
+  def basic_profile_flow_uuid(), do: "74bd3d95-2aec-4174-ad32-926952c795ca"
 
-  def personal_info_uuid(), do: "61a880e4-cf7b-47c5-a047-60802aaa7975"
+  def personal_info_uuid(), do: "e1e033d4-897a-4c9b-9eea-2411458c3c4c"
 
-  def daily_life_uuid(), do: "690a9ffd-db6d-42df-ad8f-a1e5b469a099"
+  def daily_life_uuid(), do: "9bd8c27a-d08e-4c9e-8623-b4007373437e"
 
-  def opt_in_reminder_uuid(), do: "537e4867-eb26-482d-96eb-d4783828c622"
+  def opt_in_reminder_uuid(), do: "f36d4d47-9cc7-4202-a73f-db6f03e478cd"
 
-  def profile_hcw_uuid(), do: "38cca9df-21a1-4edc-9c13-5724904ca3c3"
+  def profile_hcw_uuid(), do: "9aa596d3-40f0-4349-8322-e44d1fd1d127"
 
-  def profile_classifier_uuid(), do: "bd590c1e-7a06-49ed-b3a1-623cf94e8644"
+  def profile_classifier_uuid(), do: "c77efa62-1c9d-4ace-ae7a-4585e4e929d1"
 
-  def explore_uuid(), do: "4288d6a9-23c9-4fc6-95b7-c675a6254ea5"
+  def explore_uuid(), do: "359b3ff4-796d-4b80-91a6-15532c7bdb90"
 
-  def edd_reminder_uuid(), do: "15c9127a-2e90-4b99-a41b-25e2a39d453f"
+  def edd_reminder_uuid(), do: "99754af5-1696-48c8-8562-4b52c13db61d"
 
-  def profile_pregnancy_health_uuid(), do: "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+  def profile_pregnancy_health_uuid(), do: "f582feb5-8605-4509-8279-ec17202b42a6"
 
-  def generic_profile_uuid(), do: "51701b44-bcca-486e-9c99-bf3545a8ba2d"
+  def generic_profile_uuid(), do: "718e6b27-d818-40cf-8a7b-50c17bd236ba"
 
-  def help_center_uuid(), do: "ea366b74-df7b-41ed-a479-7d501435d38e"
+  def help_center_uuid(), do: "7b50f9f4-b6cf-424b-8893-8fef6d0f489b"
 
-  def non_personalised_menu_uuid(), do: "c73d7bc1-4b07-44f0-9949-38d2b88f4707"
+  def non_personalised_menu_uuid(), do: "141a7271-30ec-4b31-83a5-11e4fa655df7"
 
   def handle_basic_profile_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, basic_profile_flow_uuid(), fn step ->
     FlowTester.set_contact_properties(step, %{

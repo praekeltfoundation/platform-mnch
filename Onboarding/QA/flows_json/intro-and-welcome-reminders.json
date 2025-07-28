@@ -1,7 +1,7 @@
 {
   "name": "Onboarding: Intro & Welcome Reminders",
   "description": "Default description",
-  "uuid": "ce992f8b-49d8-4876-8bfd-a62b6482206d",
+  "uuid": "8407c748-140f-43fa-b5f4-b5652e07f484",
   "resources": [
     {
       "values": [
@@ -798,7 +798,7 @@
           "name": "remind_tomorrow_schedule_stack",
           "type": "Io.Turn.ScheduleFlow",
           "config": {
-            "flow_id": "ce992f8b-49d8-4876-8bfd-a62b6482206d"
+            "flow_id": "8407c748-140f-43fa-b5f4-b5652e07f484"
           },
           "tags": [],
           "uuid": "5357536a-985f-59a0-9f5b-dae558569ddd",
@@ -856,7 +856,7 @@
           "type": "Io.Turn.ScheduleFlow",
           "config": {
             "schedule_in": "60 * 60 * 23",
-            "flow_id": "ce992f8b-49d8-4876-8bfd-a62b6482206d"
+            "flow_id": "8407c748-140f-43fa-b5f4-b5652e07f484"
           },
           "tags": [],
           "uuid": "0128618a-b288-5c65-bee9-039b5cbbb1ef",
@@ -1493,7 +1493,7 @@
           "name": "privacy_policy_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "5e59aafb-fc30-41f9-b268-6268173b2aff"
+            "flow_id": "e2203073-f8b3-45f4-b19d-4079d5af368a"
           },
           "tags": [],
           "uuid": "299409b3-c379-5f48-84db-eb57585ace6c",

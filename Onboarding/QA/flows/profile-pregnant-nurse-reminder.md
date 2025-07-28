@@ -1,28 +1,16 @@
 ```stack
 card FetchError, then: NudgeCompleteProfile do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 ```
@@ -31,36 +19,25 @@ end
 
 ```stack
 card NudgeCompleteProfile, then: NudgeCompleteProfileError do
-  cancel_scheduled_stacks("1fb80591-565b-4e5f-a18d-e02420a12058")
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_nudge_complete_profile"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
+  cancel_scheduled_stacks("107bebf6-eb76-4886-a0ee-1a11067fe089")
 
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_nudge_complete_profile/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 
   buttons(
     Continue: "@button_labels[0]",
     MainMenu: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -77,7 +54,7 @@ end
 
 ```stack
 card Continue do
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("1ed10e1b-f812-4730-8ec5-3f46088c41c7")
 end
 
 ```
@@ -86,7 +63,7 @@ end
 
 ```stack
 card MainMenu do
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("fb98bb9d-60a6-47a1-a474-bb0f45b80030")
 end
 
 ```

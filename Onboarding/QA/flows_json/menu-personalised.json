@@ -1,7 +1,7 @@
 {
   "name": "Onboarding: Personalised Menu",
   "description": "Default description",
-  "uuid": "e823ad1d-e2d7-4d5c-b928-786b601f0f29",
+  "uuid": "bd10611d-73b6-4c56-a4ca-41d4136d0d6a",
   "resources": [
     {
       "values": [
@@ -2038,7 +2038,7 @@
           "name": "go_to_take_a_tour_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "4288d6a9-23c9-4fc6-95b7-c675a6254ea5"
+            "flow_id": "359b3ff4-796d-4b80-91a6-15532c7bdb90"
           },
           "tags": [],
           "uuid": "855382e9-9076-5883-9571-ba76f1853b95",
@@ -3448,7 +3448,7 @@
           "name": "go_to_help_centre_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "ea366b74-df7b-41ed-a479-7d501435d38e"
+            "flow_id": "7b50f9f4-b6cf-424b-8893-8fef6d0f489b"
           },
           "tags": [],
           "uuid": "ee3428df-bf13-5a28-9974-2d3dd0e17694",
@@ -7764,7 +7764,7 @@
           "name": "your_profile_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "1f551cbc-db57-41d3-b5ee-dc6c77b3030b"
+            "flow_id": "90d3135d-6c0c-43c2-b2a8-a099d63639bf"
           },
           "tags": [],
           "uuid": "bd3d7e0f-221c-5493-9197-219758c3cfff",

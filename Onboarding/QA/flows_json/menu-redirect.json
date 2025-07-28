@@ -1,7 +1,7 @@
 {
   "name": "Onboarding: Menu Redirect",
   "description": "Default description",
-  "uuid": "21b892d6-685c-458e-adae-304ece46022a",
+  "uuid": "fb98bb9d-60a6-47a1-a474-bb0f45b80030",
   "resources": [
     {
       "values": [
@@ -42,7 +42,7 @@
           "name": "non_personalised_menu_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "c73d7bc1-4b07-44f0-9949-38d2b88f4707"
+            "flow_id": "141a7271-30ec-4b31-83a5-11e4fa655df7"
           },
           "tags": [],
           "uuid": "aa4a3764-2b6d-5394-940c-44273e4b979a",
@@ -99,7 +99,7 @@
           "name": "personalised_menu_run_stack",
           "type": "Core.RunFlow",
           "config": {
-            "flow_id": "e823ad1d-e2d7-4d5c-b928-786b601f0f29"
+            "flow_id": "bd10611d-73b6-4c56-a4ca-41d4136d0d6a"
           },
           "tags": [],
           "uuid": "54903535-2e7e-5fd0-8128-74f7152790af",

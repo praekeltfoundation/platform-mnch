@@ -8,28 +8,16 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 ```stack
 card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 ```
@@ -54,27 +42,16 @@ card FetchTourCard01, then: DisplayTourCard01 do
 
   write_result("guided_tour_started", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_tour_card_01"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_01/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
@@ -82,13 +59,13 @@ end
 card DisplayTourCard01 when contact.data_preference == "text only",
   then: DisplayTourCard01Error do
   buttons(FetchTourCard02: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayTourCard01, then: DisplayTourCard01Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -100,7 +77,7 @@ card DisplayTourCard01, then: DisplayTourCard01Error do
 
   buttons(FetchTourCard02: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -116,39 +93,28 @@ end
 
 ```stack
 card FetchTourCard02, then: DisplayTourCard02 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_tour_card_02"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_02/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 card DisplayTourCard02 when contact.data_preference == "text only",
   then: DisplayTourCard02Error do
   buttons(FetchTourCard03: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 card DisplayTourCard02, then: DisplayTourCard02Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -160,7 +126,7 @@ card DisplayTourCard02, then: DisplayTourCard02Error do
 
   buttons(FetchTourCard03: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -176,39 +142,28 @@ end
 
 ```stack
 card FetchTourCard03, then: DisplayTourCard03 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_tour_card_03"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_03/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 card DisplayTourCard03 when contact.data_preference == "text only",
   then: DisplayTourCard03Error do
   buttons(FetchTourCard04: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 card DisplayTourCard03, then: DisplayTourCard03Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -220,7 +175,7 @@ card DisplayTourCard03, then: DisplayTourCard03Error do
 
   buttons(FetchTourCard04: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -236,39 +191,28 @@ end
 
 ```stack
 card FetchTourCard04, then: DisplayTourCard04 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_tour_card_04"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_04/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 card DisplayTourCard04 when contact.data_preference == "text only",
   then: DisplayTourCard04Error do
   buttons(FetchTourCard05: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 card DisplayTourCard04, then: DisplayTourCard04Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -280,7 +224,7 @@ card DisplayTourCard04, then: DisplayTourCard04Error do
 
   buttons(FetchTourCard05: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -298,39 +242,28 @@ end
 card FetchTourCard05, then: DisplayTourCard05 do
   write_result("guided_tour_completed", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_tour_card_05"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_05/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
 end
 
 card DisplayTourCard05 when contact.data_preference == "text only",
   then: DisplayTourCard05Error do
   buttons(FetchGuidedTourMenu: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 card DisplayTourCard05, then: DisplayTourCard05Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -342,7 +275,7 @@ card DisplayTourCard05, then: DisplayTourCard05Error do
 
   buttons(FetchGuidedTourMenu: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -360,27 +293,16 @@ end
 card FetchGuidedTourMenu, then: DisplayGuidedTourMenu do
   write_result("guided_tour_menu", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_guided_tour_menu"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_guided_tour_menu/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   button_labels = map(message.buttons, & &1.value.title)
   log("@button_labels")
 end
@@ -390,7 +312,7 @@ card DisplayGuidedTourMenu, then: DisplayGuidedTourMenuError do
     CreateProfiles: "@button_labels[0]",
     SpeakToAgent: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -405,11 +327,11 @@ end
 
 card CreateProfiles do
   # Profile Classifier
-  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
+  run_stack("c77efa62-1c9d-4ace-ae7a-4585e4e929d1")
 end
 
 card SpeakToAgent do
-  run_stack("c73d7bc1-4b07-44f0-9949-38d2b88f4707")
+  run_stack("141a7271-30ec-4b31-83a5-11e4fa655df7")
 end
 
 ```
