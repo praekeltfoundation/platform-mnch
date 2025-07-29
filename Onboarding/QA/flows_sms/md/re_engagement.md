@@ -1,9 +1,11 @@
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "engage")
+trigger(interval: "+3m", relative_to: "contact.registration_started")
+when contact.registration_status != "completed"
 
 ```
 
 ## Re-Engagement SMS
+
 ```stack
 card ReEngagementSms do
   content_data =
@@ -17,6 +19,8 @@ card ReEngagementSms do
     )
 
   message = content_data.body.results[0].body.text.message
+  name = if(is_nil_or_empty(contact.name), do: "", else: contact.name)
+  message = substitute(message, "{{name}}", "@name")
   text("@message")
 end
 
