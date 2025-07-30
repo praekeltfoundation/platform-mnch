@@ -156,7 +156,7 @@ card Province, then: ProvinceError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   province =
     list("Province", ProvinceSelected, map(list_items, &[&1, &1])) do
@@ -179,7 +179,7 @@ card ProvinceSelected when "@province" == "Why do you ask?", then: ProvinceError
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   province =
     list("Province", ProvinceSelected, map(list_items, &[&1, &1])) do
@@ -219,7 +219,7 @@ card AreaType, then: AreaTypeError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   area_type =
     buttons(Urban: "@button_labels[0]", Rural: "@button_labels[1]") do
@@ -265,7 +265,7 @@ card Gender, then: GenderError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   gender =
     buttons(Male: "@button_labels[0]", Female: "@button_labels[1]", Other: "@button_labels[2]") do

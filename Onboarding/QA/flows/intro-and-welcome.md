@@ -119,7 +119,7 @@ card WelcomeMessage, then: WelcomeMessageError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(DefaultLanguageSelection: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
     text("@message.text")
@@ -161,7 +161,7 @@ card LanguageOptions, then: LanguageOptionsError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   language =
     list("Languages",
@@ -245,7 +245,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
 
   message = page.body.messages[0]
   message_text = substitute(message.message, "{language selection}", "@selected_language")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(OkThanks: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
     text("@message_text")
@@ -293,7 +293,7 @@ card PrivacyPolicy, then: PrivacyPolicyError do
 
   document_url = document.body.meta.download_url
 
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     AcceptPrivacyPolicy: "@button_labels[0]",
@@ -339,7 +339,7 @@ card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
 
   message = page.body.messages[0]
 
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(SeePrivacyPolicy: "@button_labels[0]") do
     text("@message.text")
@@ -383,7 +383,7 @@ card ReadSummary, then: ReadSummaryError do
 
   # document_url = document.body.meta.download_url
 
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(AcceptPrivacyPolicy: "@button_labels[0]", DeclinePrivacyPolicy: "@button_labels[1]") do
     # TODO: When we finally have the document, upload it and make this work
@@ -416,7 +416,7 @@ card OptIn, then: OptInError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(OptInAccept: "@button_labels[0]", OptInDecideLater: "@button_labels[1]") do
     text("@message.text")
@@ -468,7 +468,7 @@ card UserIntent, then: UserIntentError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   intent =
     buttons(
@@ -529,7 +529,7 @@ card DataPreferences, then: DataPreferencesError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   data_preference =
     buttons(
@@ -575,7 +575,7 @@ card DataPreferencesSelected, then: DataPreferencesSelectedError do
 
   message = page.body.messages[0]
   message_text = substitute(message.message, "{option choice}", "@contact.data_preference")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(SelectNextJourney: "@button_labels[0]") do
     text("@message_text")

@@ -52,7 +52,7 @@ card FetchTourCard01, then: DisplayTourCard01 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -103,7 +103,7 @@ card FetchTourCard02, then: DisplayTourCard02 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayTourCard02 when contact.data_preference == "text only",
@@ -152,7 +152,7 @@ card FetchTourCard03, then: DisplayTourCard03 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayTourCard03 when contact.data_preference == "text only",
@@ -201,7 +201,7 @@ card FetchTourCard04, then: DisplayTourCard04 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayTourCard04 when contact.data_preference == "text only",
@@ -252,7 +252,7 @@ card FetchTourCard05, then: DisplayTourCard05 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayTourCard05 when contact.data_preference == "text only",
@@ -303,7 +303,7 @@ card FetchGuidedTourMenu, then: DisplayGuidedTourMenu do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
   log("@button_labels")
 end
 

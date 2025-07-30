@@ -31,7 +31,7 @@ card NudgeCompleteProfile, then: NudgeCompleteProfileError do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     Continue: "@button_labels[0]",

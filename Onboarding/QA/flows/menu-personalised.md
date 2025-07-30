@@ -50,7 +50,7 @@ card PersonalisedMenu, then: DisplayPersonalisedMenu do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayPersonalisedMenu, then: DisplayPersonalisedMenuError do
@@ -133,7 +133,7 @@ card HealthGuideGeneric, then: DisplayHealthGuideGeneric do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayHealthGuideGeneric, then: DisplayHealthGuideGenericError do
@@ -222,7 +222,7 @@ card LibraryTopics, then: DisplayLibraryTopics do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayLibraryTopics, then: DisplayLibraryTopicsError do
@@ -295,7 +295,7 @@ card ManageUpdates, then: DisplayManageUpdates do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayManageUpdates, then: DisplayManageUpdatesError do
@@ -368,7 +368,7 @@ card DataSettings, then: DisplayDataSettings do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayDataSettings, then: DisplayDataSettingsError do
@@ -430,7 +430,7 @@ card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
       "@contact.data_preference"
     )
 
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayDataPreferencesConfirmation, then: DisplayDataPreferencesConfirmationError do
@@ -491,7 +491,7 @@ card AboutPrivacy, then: DisplayAboutPrivacy do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayAboutPrivacy, then: DisplayAboutPrivacyError do

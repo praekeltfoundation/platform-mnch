@@ -42,7 +42,7 @@ card Reminder, then: ReminderError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     PrivacyPolicy: "@button_labels[0]",

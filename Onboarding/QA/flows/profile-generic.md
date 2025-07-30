@@ -138,7 +138,7 @@ card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
   message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayProfileProgress30Generic, then: DisplayProfileProgress30GenericError do
@@ -175,7 +175,7 @@ card WhyPersonalInfo1, then: DisplayWhyPersonalInfo1 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayWhyPersonalInfo1, then: DisplayWhyPersonalInfo1Error do
@@ -212,7 +212,7 @@ card ReminderLater, then: DisplayReminderLater do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayReminderLater, then: DisplayReminderLaterError do
@@ -305,7 +305,7 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
     substitute(loading_message, "{personal_info_count}", "@personal_questions_value")
 
   loading_message = substitute(loading_message, "{get_important_messages}", "@opted_in")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only

@@ -140,7 +140,7 @@ card YourProfile, then: YourProfileError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -187,7 +187,7 @@ card ProfilePregnancyInfo, then: ProfilePregnancyInfoError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -232,7 +232,7 @@ card ProfileEmploymentInfo, then: ProfileEmploymentInfoError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -277,7 +277,7 @@ card DefaultProfile, then: DefaultProfileError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -367,7 +367,7 @@ card BasicInfo, then: BasicInfoError do
 
   display_message = substitute(display_message, "{area_type}", "@area_type")
   display_message = substitute(display_message, "{language}", "@contact.language")
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -490,7 +490,7 @@ card Gender, then: GenderError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   gender =
     buttons(Male: "@button_labels[0]", Female: "@button_labels[1]", Other: "@button_labels[2]") do
@@ -535,7 +535,7 @@ card Province, then: ProvinceError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   province =
     list("Province", ProvinceSelected, map(list_items, &[&1, &1])) do
@@ -558,7 +558,7 @@ card ProvinceSelected when "@province" == "Why do you ask?", then: ProvinceError
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   province =
     list("Province", ProvinceSelected, map(list_items, &[&1, &1])) do
@@ -594,7 +594,7 @@ card AreaType, then: AreaTypeError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   area_type =
     buttons(Urban: "@button_labels[0]", Rural: "@button_labels[1]") do
@@ -632,7 +632,7 @@ card LanguageOptions, then: LanguageOptionsError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   language =
     list("Languages",
@@ -709,7 +709,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
 
   message = page.body.messages[0]
   message_text = substitute(message.message, "{language selection}", "@selected_language")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(OkThanks: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do
     text("@message_text")
@@ -789,7 +789,7 @@ card PersonalInfo, then: PersonalInfoError do
 
   display_message = substitute(display_message, "{no_of_children}", "@no_of_children")
 
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -832,7 +832,7 @@ card NoOfChildren, then: NoOfChildrenError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   children =
     list("Children", NoOfChildrenResponse, map(list_items, &[&1, &1])) do
@@ -858,7 +858,7 @@ card NoOfChildrenResponse when has_phrase(lower("@children"), "why") do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   children =
     list("Children", NoOfChildrenResponse, map(list_items, &[&1, &1])) do
@@ -888,7 +888,7 @@ card Education, then: EducationError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   education =
     list("Education", EducationResponse, map(list_items, &[&1, &1])) do
@@ -933,7 +933,7 @@ card Relationship, then: RelationshipError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   relationship_status =
     buttons(RelationshipResponse, map(button_labels, &[&1, &1])) do
@@ -974,7 +974,7 @@ card Finances, then: FinancesError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   socio_economic =
     buttons(FinancesResponse, map(button_labels, &[&1, &1])) do
@@ -1079,7 +1079,7 @@ card PregnancyInfo when contact.pregnancy_status == "curious", then: PregnancyIn
 
   display_message = substitute(display_message, "{number_of_children}", "@number_of_children")
 
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -1141,7 +1141,7 @@ card PregnancyInfo, then: PregnancyInfoError do
 
   display_message = substitute(display_message, "{feeling}", "@pregnancy_sentiment")
 
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -1196,7 +1196,7 @@ card MyRole, then: MyRoleError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   status =
     buttons(
@@ -1351,7 +1351,7 @@ card EDDMonthUnknown, "I don't know" do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     PregnantEDDMonth: "@button_labels[0]",
@@ -1426,7 +1426,7 @@ card EDDConfirmation, then: SaveEDDAndContinue do
   question = substitute("@question", "{yyyy}", "@edd_date_year")
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     SaveEDDAndContinue: "@button_labels[0]",
@@ -1459,7 +1459,7 @@ card Children, then: ChildrenError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   children =
     list("Children", ChildrenResponse, map(list_items, &[&1, &1])) do
@@ -1485,7 +1485,7 @@ card ChildrenResponse when has_phrase(lower("@children"), "why") do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   children =
     list("Children", ChildrenResponse, map(list_items, &[&1, &1])) do
@@ -1515,7 +1515,7 @@ card Feeling, then: FeelingError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   feeling =
     list("I'm feeling", SaveFeeling, map(list_items, &[&1, &1])) do
@@ -1551,7 +1551,7 @@ card Trimester, then: TrimesterError do
     )
 
   message = content_data.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   selected_trimester =
     list("Select option", TrimesterResponse, map(list_items, &[&1, &1])) do
@@ -1621,7 +1621,7 @@ card EmploymentInfo, then: EmploymentInfoError do
 
   substitute(display_message, "{professional_support}", "@professional_support")
 
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   option =
     list("Choose",
@@ -1662,7 +1662,7 @@ card OccupationalRole, then: OccupationalRoleError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   role =
     list("Role", OccupationalRoleResponse, map(list_items, &[&1, &1])) do
@@ -1703,7 +1703,7 @@ card FacilityType, then: FacilityTypeError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   facility_type =
     list("Facility", FacilityTypeResponse, map(list_items, &[&1, &1])) do
@@ -1745,7 +1745,7 @@ card ProfessionalSupport, then: ProfessionalSupportError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   professional_support =
     buttons(ProfessionalSupportResponse, map(button_labels, &[&1, &1])) do
@@ -1782,7 +1782,7 @@ card DailyLife, then: DailyLifeError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   daily_life =
     list("Select", DailyLifeResponse, map(list_items, &[&1, &1])) do
@@ -1817,7 +1817,7 @@ card YourInterests, then: YourInterestsError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
   selected_topics = []
   unselected_topics = []
 
@@ -1961,7 +1961,7 @@ card YourInterestsResponse when has_phrase(lower("@interest"), "remove a topic")
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
   list_items = append(selected_topics, list_items)
 
   interest =
@@ -2128,7 +2128,7 @@ card AddProfileComplete, then: AddProfileCompleteError do
   message = page.body.messages[0]
   display_message = message.message
   display_message = substitute(display_message, "{domain}", "@interest")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     BrowseTopic: "@button_labels[0]",
@@ -2188,7 +2188,7 @@ card AddProfileIncomplete, then: AddProfileIncompleteError do
   message = page.body.messages[0]
   display_message = message.message
   display_message = substitute(display_message, "{domain}", "@interest")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     CompleteProfile: "@button_labels[0]",

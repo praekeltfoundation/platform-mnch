@@ -98,7 +98,7 @@ card NameValidation when lower("@name") == "skip", then: NameValidationError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(Name: "@button_labels[0]", Domains1: "@button_labels[1]") do
     text("@message.text")
@@ -148,7 +148,7 @@ card Domains1, then: Domains1Branch do
       do: substitute(message.message, ", {@username}", ""),
       else: substitute(message.message, "{@username}", "@contact.name")
 
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -200,7 +200,7 @@ card Domains2, then: Domains2Branch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -255,7 +255,7 @@ card Domains3, then: Domains3Branch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -311,7 +311,7 @@ card Domains4, then: Domains4Branch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -367,7 +367,7 @@ card Domains5, then: Domains5Branch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -423,7 +423,7 @@ card Domains6, then: Domains6Branch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -479,7 +479,7 @@ card Domains7, then: Domains7Branch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only

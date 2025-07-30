@@ -56,7 +56,7 @@ card NonPersonalisedMenu, then: DisplayNonPersonalisedMenu do
     if is_nil_or_empty(contact.profile_completion), do: "0%", else: contact.profile_completion
 
   loading_message = substitute(message.message, "{profile_completion}", profile_completion)
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayNonPersonalisedMenu, then: DisplayNonPersonalisedMenuError do
@@ -143,7 +143,7 @@ card PromptZero, then: DisplayPromptZero do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayPromptZero, then: DisplayPromptZeroError do
@@ -194,7 +194,7 @@ card PromptPartial, then: DisplayPromptPartial do
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
 
   loading_message = substitute(message.message, "{username}", "@name")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayPromptPartial, then: DisplayPromptPartialError do
@@ -299,7 +299,7 @@ card LibraryTopics, then: DisplayLibraryTopics do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayLibraryTopics, then: DisplayLibraryTopicsError do
@@ -372,7 +372,7 @@ card ManageUpdates, then: DisplayManageUpdates do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayManageUpdates, then: DisplayManageUpdatesError do
@@ -445,7 +445,7 @@ card DataSettings, then: DisplayDataSettings do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayDataSettings, then: DisplayDataSettingsError do
@@ -507,7 +507,7 @@ card DataPreferencesConfirmation, then: DisplayDataPreferencesConfirmation do
       "@contact.data_preference"
     )
 
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayDataPreferencesConfirmation, then: DisplayDataPreferencesConfirmationError do
@@ -569,7 +569,7 @@ card AboutPrivacy, then: DisplayAboutPrivacy do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayAboutPrivacy, then: DisplayAboutPrivacyError do

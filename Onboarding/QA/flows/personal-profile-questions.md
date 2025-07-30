@@ -77,7 +77,7 @@ card Question1, then: Question1Error do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   relationship_status =
     buttons(Question1Response, map(button_labels, &[&1, &1])) do
@@ -120,7 +120,7 @@ card Question2, then: Question2Error do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   education =
     list("Education", Question2Response, map(list_items, &[&1, &1])) do
@@ -167,7 +167,7 @@ card Question3, then: Question3Error do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   socio_economic =
     buttons(Question3Response, map(button_labels, &[&1, &1])) do
@@ -210,7 +210,7 @@ card Question4, then: Question4Error do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   children =
     list("Children", Question4Response, map(list_items, &[&1, &1])) do
@@ -244,7 +244,7 @@ card Question4Response when has_phrase(lower("@children"), "why") do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   children =
     list("Children", Question4Response, map(list_items, &[&1, &1])) do

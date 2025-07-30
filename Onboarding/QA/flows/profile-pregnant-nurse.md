@@ -102,7 +102,7 @@ card PregnantNurse20, then: DisplayPregnantNurse20 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -193,7 +193,7 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -338,7 +338,7 @@ card PregnantNurse60, then: PregnantNurse60Error do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -488,7 +488,7 @@ card WhyPersonalInfo, then: DisplayWhyPersonalInfo do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -550,7 +550,7 @@ card RemindLater, then: RemindLaterError do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(TopicsForYou: "@button_labels[0]") do
     text("@message.text")
@@ -583,7 +583,7 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -758,7 +758,7 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,

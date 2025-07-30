@@ -202,7 +202,7 @@ card Question1, then: Question1Error do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   status =
     buttons(
@@ -358,7 +358,7 @@ card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -488,7 +488,7 @@ card EDDConfirmation, then: PregnantEDDConfirmationError do
   question = substitute("@question", "{yyyy}", "@edd_date_year")
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     SaveEDDAndContinue: "@button_labels[0]",
@@ -548,7 +548,7 @@ card PregnantFeeling, then: PregnantFeelingError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   feeling =
     list("I'm feeling", SaveFeeling, map(list_items, &[&1, &1])) do
@@ -587,7 +587,7 @@ card PregnancyContentStart, then: PregnancyContentBranch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -751,7 +751,7 @@ card Loading1, then: Loading1Branch do
 
   message = page.body.messages[0]
   loading_message = substitute(message.message, "{@username}", "@contact.name")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -983,7 +983,7 @@ card ArticleFeedback, then: ArticleFeedbackError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     ArticleFeedbackYes: "@button_labels[0]",
@@ -1018,7 +1018,7 @@ card ArticleFeedbackNo, then: ArticleFeedbackNoError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     CompleteProfile: "@button_labels[0]",
@@ -1089,7 +1089,7 @@ card ProfileProgress25, then: DisplayProfileProgress25 do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1155,7 +1155,7 @@ card ProfileProgress25Secondary, then: DisplayProfileProgress25Secondary do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1221,7 +1221,7 @@ card ProfileProgress25Secondary2, then: DisplayProfileProgress25Secondary2 do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1416,7 +1416,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
     substitute(progress_message, "{pregnancy_info_count}", "@pregnancy_questions_value")
 
   progress_message = substitute(progress_message, "{daily_life_count}", "@dma_questions_value")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(ContinueProfileCompletion: "@button_labels[0]") do
     text("@progress_message")
@@ -1535,7 +1535,7 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
     substitute(loading_message, "{profile_questions}", "@questions_count/@answers_count")
 
   loading_message = substitute(loading_message, "{get_important_messages}", "@opted_in")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1598,7 +1598,7 @@ card SentimentOtherFirst, then: DisplaySentimentOtherFirst do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1649,7 +1649,7 @@ card SentimentOtherSecond, then: DisplaySentimentOtherSecond do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1700,7 +1700,7 @@ card SentimentOtherThird, then: DisplaySentimentOtherThird do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1751,7 +1751,7 @@ card SentimentScaredWorriedFirst, then: DisplaySentimentScaredWorriedFirst do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1802,7 +1802,7 @@ card SentimentScaredWorriedSecond, then: DisplaySentimentScaredWorriedSecond do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1853,7 +1853,7 @@ card SentimentScaredWorriedThird, then: DisplaySentimentScaredWorriedThird do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1904,7 +1904,7 @@ card SentimentExcitedHappyFirst, then: DisplaySentimentExcitedHappyFirst do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1955,7 +1955,7 @@ card SentimentExcitedHappySecond, then: DisplaySentimentExcitedHappySecond do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2006,7 +2006,7 @@ card SentimentExcitedHappyThird, then: DisplaySentimentExcitedHappyThird do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2057,7 +2057,7 @@ card FactsFactoid1Trimester1, then: DisplayFactsFactoid1Trimester1 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2108,7 +2108,7 @@ card FactsFactoid1Trimester2, then: DisplayFactsFactoid1Trimester2 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2159,7 +2159,7 @@ card FactsFactoid1Trimester3, then: DisplayFactsFactoid1Trimester3 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2210,7 +2210,7 @@ card FactsFactoid2Trimester1, then: DisplayFactsFactoid2Trimester1 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2273,7 +2273,7 @@ card FactsFactoid2Trimester2, then: DisplayFactsFactoid2Trimester2 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2336,7 +2336,7 @@ card FactsFactoid2Trimester3, then: DisplayFactsFactoid2Trimester3 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2409,7 +2409,7 @@ card PartnerPregnantGender, then: PartnerPregnantGenderError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     PartnerGenderMale: "@button_labels[0]",
@@ -2558,7 +2558,7 @@ card PartnerEDDMonthUnknown, "I don't know", then: DisplayPartnerEDDMonthUnknown
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2673,7 +2673,7 @@ card PartnerEDDConfirmation, then: PartnerEDDConfirmationError do
   question = substitute("@question", "{yyyy}", "@edd_date_year")
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     SavePartnerEDD: "@button_labels[0]",
@@ -2721,7 +2721,7 @@ card Loading01Secondary, then: Loading01SecondaryGoTo do
 
   message = content_data.body.messages[0]
   loading_message = substitute(message.message, "{@username}", "@contact.name")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card Loading01SecondaryGoTo when is_nil_or_empty(edd_date_full),
@@ -2813,7 +2813,7 @@ card Loading02Secondary, then: DisplayLoading02Secondary do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2864,7 +2864,7 @@ card ContentIntro, then: DisplayContentIntro do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 # #TODO Content
@@ -2958,7 +2958,7 @@ card ArticleTopic01Secondary, then: DisplayArticleTopic01Secondary do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # TODO Content
@@ -3023,7 +3023,7 @@ card ContentFeedback, then: DisplayContentFeedback do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayContentFeedback, then: DisplayContentFeedbackError do
@@ -3060,7 +3060,7 @@ card ContentFeedbackNo, then: DisplayContentFeedbackNo do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayContentFeedbackNo, then: DisplayContentFeedbackNoError do
@@ -3106,7 +3106,7 @@ card ReminderOptIn
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayReminderOptIn, then: DisplayReminderOptInError do
@@ -3211,7 +3211,7 @@ card Curious01, then: DisplayCurious do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayCurious, then: DisplayCuriousError do
@@ -3264,8 +3264,8 @@ card Curious02, then: DisplayCurious02 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
-  menu_items = map(message.list_items, & &1.value)
+  button_labels = map(message.buttons, & &1.title)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayCurious02, then: DisplayCurious02Error do
@@ -3330,7 +3330,7 @@ card Curious03, then: DisplayCurious03 do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayCurious03, then: DisplayCurious03Error do
@@ -3396,7 +3396,7 @@ card LoadingComponent01, then: DisplayLoadingComponent01 do
 
   message = content_data.body.messages[0]
   loading_message = substitute(message.message, "{@username}", "@contact.name")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # TODO display facts 
@@ -3466,7 +3466,7 @@ card LoadingComponent02, then: DisplayLoadingComponent02 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # TODO Content
@@ -3519,7 +3519,7 @@ card CuriousContentIntro, then: DisplayCuriousContentIntro do
     )
 
   message = content_data.body.messages[0]
-  menu_items = map(message.list_items, & &1.value)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 # #TODO Content
@@ -3594,7 +3594,7 @@ card ArticleTopic01, then: DisplayArticleTopic01 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # TODO Content
@@ -3659,7 +3659,7 @@ card CuriousContent05, then: DisplayCuriousContent05 do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayCuriousContent05, then: DisplayCuriousContent05Error do
@@ -3696,7 +3696,7 @@ card CuriousContentFeedback, then: DisplayCuriousContentFeedback do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayCuriousContentFeedback, then: DisplayCuriousContentFeedbackError do

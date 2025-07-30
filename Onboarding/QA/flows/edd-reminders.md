@@ -129,7 +129,7 @@ card EDDReminder, then: DisplayEDDReminder do
 
   message = content_data.body.messages[0]
   whatsapp_template_name = content_data.body.body.whatsapp_template_name
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -191,7 +191,7 @@ card EDDGotIt, "@button_labels[0]", then: DisplayEDDGotIt do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayEDDGotIt, then: DisplayEDDGotItError do
@@ -322,7 +322,7 @@ card EDDMonthUnknown, "I don't know", then: EDDMonthUnknownError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     EDDMonth: "@button_labels[0]",
@@ -421,7 +421,7 @@ card EDDConfirm, then: DisplayEDDConfirm do
 
   message = content_data.body.messages[0]
   loading_message = substitute(message.message, "[edd]", "@edd_date_full_str")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayEDDConfirm, then: DisplayEDDConfirmError do
@@ -452,7 +452,7 @@ card EDDRUnknown, "@button_labels[2]", then: DisplayEDDUnknown do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -513,7 +513,7 @@ card EDDLater, then: DisplayEDDLater do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayEDDLater, then: DisplayEDDLaterError do

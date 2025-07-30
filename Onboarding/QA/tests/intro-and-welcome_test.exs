@@ -51,8 +51,8 @@ defmodule IntroAndWelcomeTest do
   setup_all _ctx, do: %{init_flow: Helpers.load_flow("intro-and-welcome")}
 
   defp setup_flow(ctx) do
-    # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
-    auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
+    # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
+    auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
     flow =
@@ -85,7 +85,7 @@ defmodule IntroAndWelcomeTest do
       |> FlowTester.set_contact_properties(%{"privacy_policy_accepted" => "yes", "opted_in" => true})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
     end
@@ -107,7 +107,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -122,7 +122,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send("falalalalaaa")
@@ -138,7 +138,7 @@ defmodule IntroAndWelcomeTest do
       |> FlowTester.set_contact_properties(%{"language" => "pt"})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -154,7 +154,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -170,7 +170,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -190,7 +190,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -212,7 +212,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -233,7 +233,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -254,7 +254,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -275,7 +275,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -296,7 +296,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -317,7 +317,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -343,7 +343,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Change my language")
@@ -359,7 +359,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "eng"})
       |> FlowTester.send(button_label: "Ok, thanks")
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
     end
@@ -369,7 +369,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -391,7 +391,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -413,7 +413,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -424,7 +424,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "eng"})
       |> FlowTester.send(button_label: "No, I don’t accept")
       |> receive_message(%{
-        text: "In order to use [my_health], you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
+        text: "In order to use {MyHealth}, you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
         buttons: button_labels(["See privacy policy"])
       })
       |> contact_matches(%{"privacy_policy_accepted" => "no"})
@@ -435,7 +435,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -446,7 +446,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "eng"})
       |> FlowTester.send(button_label: "No, I don’t accept")
       |> receive_message(%{
-        text: "In order to use [my_health], you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
+        text: "In order to use {MyHealth}, you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
         buttons: button_labels(["See privacy policy"])
       })
       |> contact_matches(%{"privacy_policy_accepted" => "no"})
@@ -462,7 +462,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -473,7 +473,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "eng"})
       |> FlowTester.send(button_label: "No, I don’t accept")
       |> receive_message(%{
-        text: "In order to use [my_health], you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
+        text: "In order to use {MyHealth}, you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
         buttons: button_labels(["See privacy policy"])
       })
       |> contact_matches(%{"privacy_policy_accepted" => "no"})
@@ -490,7 +490,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -511,7 +511,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -537,7 +537,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -564,7 +564,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -580,7 +580,7 @@ defmodule IntroAndWelcomeTest do
       })
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
-        text: "In order to use [my_health], you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
+        text: "In order to use {MyHealth}, you need to accept the privacy policy.\r\n\r\n👇🏾 What do you want to do?",
         buttons: button_labels(["See privacy policy"])
       })
       |> contact_matches(%{"privacy_policy_accepted" => "no"})
@@ -591,7 +591,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -618,7 +618,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -635,7 +635,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -646,7 +646,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -663,7 +663,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Decide later")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "false"})
@@ -674,7 +674,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -691,7 +691,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -707,7 +707,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -724,7 +724,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -741,7 +741,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -758,7 +758,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -775,7 +775,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -792,7 +792,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -807,7 +807,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -824,7 +824,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -847,7 +847,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -864,7 +864,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -887,7 +887,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -904,7 +904,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -927,7 +927,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -944,7 +944,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -967,7 +967,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -984,7 +984,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -1012,7 +1012,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -1029,7 +1029,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})
@@ -1055,7 +1055,7 @@ defmodule IntroAndWelcomeTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "*Welcome to [my_health]*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
+        text: "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
         buttons: button_labels(["Get started", "Change my language"])
       })
       |> FlowTester.send(button_label: "Get started")
@@ -1072,7 +1072,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
       |> receive_message(%{
-        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of [my_health]\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
+        text: "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
       })
       |> contact_matches(%{"opted_in" => "true"})

@@ -39,7 +39,7 @@ card OptInReminder, then: DisplayOptInReminder do
     )
 
   message = content_data.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only

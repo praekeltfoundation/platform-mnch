@@ -113,7 +113,7 @@ card NurseCheck, then: NurseCheckBranch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   write_result("profile_completion", "0%")
   update_contact(profile_completion: "0%")
@@ -176,7 +176,7 @@ card OccupationalRole, then: OccupationalRoleError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   role =
     list("Role", OccupationalRoleResponse, map(list_items, &[&1, &1])) do
@@ -222,7 +222,7 @@ card JustCurious, then: JustCuriousError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(Curious: "@button_labels[0]") do
     text("@message.text")
@@ -262,7 +262,7 @@ card FacilityType, then: FacilityTypeError do
     )
 
   message = page.body.messages[0]
-  list_items = map(message.list_items, & &1.value)
+  list_items = map(message.list_items, & &1.title)
 
   facility_type =
     list("Facility", FacilityTypeResponse, map(list_items, &[&1, &1])) do
@@ -309,7 +309,7 @@ card ProfessionalSupport, then: ProfessionalSupportError do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   professional_support =
     buttons(ProfessionalSupportResponse, map(button_labels, &[&1, &1])) do
@@ -370,7 +370,7 @@ card ProfileProgress25, then: ProfileProgress25Error do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -489,7 +489,7 @@ card ProfileProgress25Why, then: ProfileProgress25WhyBranch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card ProfileProgress25WhyBranch when contact.data_preference == "text only",
@@ -542,7 +542,7 @@ card RemindMeLater do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   # kick off nudge to complete profile
   log("Scheduling nudge to complete profile")
@@ -577,7 +577,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -700,7 +700,7 @@ card ProfileProgress75, then: ProfileProgress75Branch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -853,7 +853,7 @@ card ProfileProgress100, then: ProfileProgress100Branch do
     )
 
   message = page.body.messages[0]
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
