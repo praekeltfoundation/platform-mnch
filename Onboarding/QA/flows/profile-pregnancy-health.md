@@ -750,7 +750,7 @@ card Loading1, then: Loading1Branch do
     )
 
   message = page.body.messages[0]
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.title)
 end
 
@@ -1407,7 +1407,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  progress_message = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  progress_message = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
 
   progress_message =
     substitute(progress_message, "{personal_info_count}", "@personal_questions_value")
@@ -1528,7 +1528,7 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
 
   edd_string = if is_nil_or_empty("@contact.edd"), do: "Unknown", else: "@contact.edd"
 
-  loading_message = substitute(message.message, "{name}", "@name")
+  loading_message = substitute(message.text, "{name}", "@name")
   loading_message = substitute(loading_message, "{edd}", "@edd_string")
 
   loading_message =
@@ -2720,7 +2720,7 @@ card Loading01Secondary, then: Loading01SecondaryGoTo do
     )
 
   message = content_data.body.messages[0]
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.title)
 end
 
@@ -3149,7 +3149,7 @@ card ReminderOptInYes, then: HealthProfessionalsSecondary do
     )
 
   message = content_data.body.messages[0]
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
   text("@loading_message")
 end
 
@@ -3395,7 +3395,7 @@ card LoadingComponent01, then: DisplayLoadingComponent01 do
     )
 
   message = content_data.body.messages[0]
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
   button_labels = map(message.buttons, & &1.title)
 end
 

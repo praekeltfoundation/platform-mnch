@@ -420,7 +420,7 @@ card EDDConfirm, then: DisplayEDDConfirm do
     )
 
   message = content_data.body.messages[0]
-  loading_message = substitute(message.message, "[edd]", "@edd_date_full_str")
+  loading_message = substitute(message.text, "[edd]", "@edd_date_full_str")
   button_labels = map(message.buttons, & &1.title)
 end
 

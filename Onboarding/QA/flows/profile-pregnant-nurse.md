@@ -289,7 +289,7 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
@@ -434,7 +434,7 @@ card PregnantNurse60, then: PregnantNurse60Error do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
@@ -679,7 +679,7 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
@@ -854,7 +854,7 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")

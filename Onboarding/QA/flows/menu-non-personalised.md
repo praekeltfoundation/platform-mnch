@@ -55,7 +55,7 @@ card NonPersonalisedMenu, then: DisplayNonPersonalisedMenu do
   profile_completion =
     if is_nil_or_empty(contact.profile_completion), do: "0%", else: contact.profile_completion
 
-  loading_message = substitute(message.message, "{profile_completion}", profile_completion)
+  loading_message = substitute(message.text, "{profile_completion}", profile_completion)
   menu_items = map(message.list_items, & &1.title)
 end
 
@@ -193,7 +193,7 @@ card PromptPartial, then: DisplayPromptPartial do
 
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
 
-  loading_message = substitute(message.message, "{username}", "@name")
+  loading_message = substitute(message.text, "{username}", "@name")
   button_labels = map(message.buttons, & &1.title)
 end
 

@@ -98,7 +98,7 @@ defmodule IntroAndWelcomeTest do
       |> receive_message(%{
         text: "*Your information is safe and won't be shared* 🔒\r\n\r\nThe information you share is only used to give you personalised advice and information.\r\n\r\nRead the privacy policy attached and let me know if you accept it.",
         buttons: button_labels(["Yes, I accept ✅", "No, I don’t accept", "Read a summary"]),
-        document: "media.fake.url/Privacy-Policy.pdf"
+        document: "https://content-repo-api-qa.prk-k8s.prd-p6t.org/documents/17/privacy_policy.pdf"
       })
     end
 
@@ -730,7 +730,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Create a profile 👤")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "create profile"})
@@ -764,7 +764,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Explore the service")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "explore"})
@@ -830,7 +830,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Explore the service")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "explore"})
@@ -870,7 +870,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Explore the service")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "explore"})
@@ -910,7 +910,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Explore the service")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "explore"})
@@ -950,7 +950,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Explore the service")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "explore"})
@@ -990,7 +990,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Explore the service")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "explore"})
@@ -1035,7 +1035,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Create a profile 👤")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "create profile"})
@@ -1078,7 +1078,7 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Explore the service")
       |> receive_message(%{
-        text: "You can *choose* how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
+        text: "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
         buttons: button_labels(["All", "Text & images", "Text only"])
       })
       |> contact_matches(%{"intent" => "explore"})

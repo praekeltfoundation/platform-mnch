@@ -135,7 +135,7 @@ card ProfileProgress30Generic, then: DisplayProfileProgress30Generic do
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
   message = content_data.body.messages[0]
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
   button_labels = map(message.buttons, & &1.title)
@@ -298,7 +298,7 @@ card ProfileProgress100Generic, then: DisplayProfileProgress100Generic do
   opted_in =
     if(contact.opted_in == false or is_nil_or_empty(contact.opted_in), do: "❌", else: "✅")
 
-  loading_message = substitute(message.message, "{name}", "@name")
+  loading_message = substitute(message.text, "{name}", "@name")
   loading_message = substitute(loading_message, "{basic_info_count}", "@basic_questions_value")
 
   loading_message =

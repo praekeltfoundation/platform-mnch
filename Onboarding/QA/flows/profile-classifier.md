@@ -145,8 +145,8 @@ card Domains1, then: Domains1Branch do
 
   message_text =
     if is_nil_or_empty(contact.name),
-      do: substitute(message.message, ", {@username}", ""),
-      else: substitute(message.message, "{@username}", "@contact.name")
+      do: substitute(message.text, ", {@username}", ""),
+      else: substitute(message.text, "{@username}", "@contact.name")
 
   button_labels = map(message.buttons, & &1.title)
 end

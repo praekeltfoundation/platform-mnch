@@ -122,7 +122,7 @@ card OptInYes do
     )
 
   message = page.body.messages[0]
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
   text("@loading_message")
 end
 

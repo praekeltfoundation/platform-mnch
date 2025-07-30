@@ -68,7 +68,7 @@ card DropOff1stReminder, then: DisplayDropOff1stReminder do
 
   message = content_data.body.messages[0]
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
-  loading_message = substitute(message.message, "{username}", "@name")
+  loading_message = substitute(message.text, "{username}", "@name")
   button_labels = map(message.buttons, & &1.title)
 end
 
@@ -109,7 +109,7 @@ card DropOff2ndReminder, then: DisplayDropOff2ndReminder do
 
   message = content_data.body.messages[0]
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
-  loading_message = substitute(message.message, "{username}", "@name")
+  loading_message = substitute(message.text, "{username}", "@name")
   button_labels = map(message.buttons, & &1.title)
 end
 
@@ -150,7 +150,7 @@ card DropOff3rdReminder, then: DisplayDropOff3rdReminder do
 
   message = page.body.messages[0]
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
-  loading_message = substitute(message.message, "{username}", "@name")
+  loading_message = substitute(message.text, "{username}", "@name")
   button_labels = map(message.buttons, & &1.title)
 end
 
@@ -213,7 +213,7 @@ card ReminderRequest, then: DisplayReminderRequest do
   message = page.body.messages[0]
 
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
-  loading_message = substitute(message.message, "{username}", "@name")
+  loading_message = substitute(message.text, "{username}", "@name")
   button_labels = map(message.buttons, & &1.title)
 end
 

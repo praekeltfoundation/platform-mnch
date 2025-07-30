@@ -93,7 +93,7 @@ card YearOfBirth, then: ValidateYearOfBirth do
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.messages[0].message
+  message = page.body.messages[0].text
 
   year_of_birth = ask("@message")
 end

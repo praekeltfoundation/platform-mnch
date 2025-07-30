@@ -30,7 +30,7 @@ defmodule ProfileGenericTest do
       parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "Your profile is already 30% complete!\n\n🟩🟩🟩⬜⬜⬜⬜⬜ \n\n👤 Basic information {basic_info_count}\n➡️ Personal information {personal_info_count}\n⬜ Daily life {daily_life_count}\n\n👇🏽 Let’s move on to personal information.",
+          message: "Your profile is already 30% complete!\r\n\r\n🟩🟩🟩⬜⬜⬜⬜⬜ \r\n\r\n👤 Basic information {basic_info_count}\n➡️ Personal information {personal_info_count}\n⬜ Daily life {daily_life_count}\r\n\r\n👇🏽 Let’s move on to personal information.",
           buttons: [
             %Btn.Next{title: "Continue"},
             %Btn.Next{title: "Why?"}
@@ -61,7 +61,7 @@ defmodule ProfileGenericTest do
       parent: "test",
       wa_messages: [
         %WAMsg{
-          message: "ℹ️ Our team of experts has put together loads of health information for you. To quickly get a selection of the info that is valuable to you, share more information about yourself.\n\nReady to share?",
+          message: "ℹ️ Our team of experts has put together loads of health information for you. To quickly get a selection of the info that is valuable to you, share more information about yourself.\r\n\r\nReady to share?",
           buttons: [
             %Btn.Next{title: "Yes, let's go"},
             %Btn.Next{title: "Not right now"}

@@ -708,7 +708,7 @@ card LanguageConfirmation, then: LanguageConfirmationError do
     )
 
   message = page.body.messages[0]
-  message_text = substitute(message.message, "{language selection}", "@selected_language")
+  message_text = substitute(message.text, "{language selection}", "@selected_language")
   button_labels = map(message.buttons, & &1.title)
 
   buttons(OkThanks: "@button_labels[0]", LanguageOptions: "@button_labels[1]") do

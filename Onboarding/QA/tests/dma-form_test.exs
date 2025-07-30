@@ -44,7 +44,7 @@ defmodule DMAFormTest do
         ]
       },
       %ContentPage{
-        slug: "skip-high-result",
+        slug: "skip-result-page",
         title: "Skip result",
         parent: "home",
         wa_messages: [
@@ -69,7 +69,7 @@ defmodule DMAFormTest do
       medium_inflection: 30.0,
       low_result_page: "low-result",
       skip_threshold: 1.0,
-      skip_high_result_page: "skip-high-result",
+      skip_high_result_page: "skip-result-page",
       questions: [
         %Forms.CategoricalQuestion{
           question: "Thanks, {{name}}\r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*",
@@ -272,7 +272,7 @@ defmodule DMAFormTest do
       })
       |> results_match([
         %{name: "version", value: "v1.0"},
-        %{name: "started", value: "dma_form", label: "@v_start"},
+        %{name: "started", value: "mnch_onboarding_dma_form", label: "@v_start"},
         %{name: "locale", value: "en"}
       ])
     end
@@ -286,7 +286,7 @@ defmodule DMAFormTest do
       |> receive_message(%{})
       |> FlowTester.send("explain")
       |> receive_messages([
-        %{text: "*Explainer:* Explainer 1"},
+        %{text: "*Explainer:* TEST: Explainer text"},
         %{
           text: "Thanks, Stitch\r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*",
           list: {"Select option", [{"Strongly disagree", "Strongly disagree"}, {"Disagree", "Disagree"}, {"Neutral", "Neutral"}, {"Agree", "Agree"}, {"Strongly agree", "Strongly agree"}]}
@@ -303,9 +303,9 @@ defmodule DMAFormTest do
       |> FlowTester.send("Strongly disagree")
       |> results_match([
         %{name: "version", value: "v1.0"},
-        %{name: "started", value: "dma_form", label: "@v_start"},
+        %{name: "started", value: "mnch_onboarding_dma_form", label: "@v_start"},
         %{name: "locale", value: "en"},
-        %{name: "question_num", value: 0, label: "@result_tag"},
+        %{name: "question_num", value: 1, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_01_strongly_disagree", label: "@result_tag"},
       ])
       |> contact_matches(%{
@@ -328,7 +328,7 @@ defmodule DMAFormTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Disagree")
       |> results_match([
-        %{name: "question_num", value: 1, label: "@result_tag"},
+        %{name: "question_num", value: 2, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_02_disagree", label: "@result_tag"},
       ])
       |> contact_matches(%{
@@ -351,7 +351,7 @@ defmodule DMAFormTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Neutral")
       |> results_match([
-        %{name: "question_num", value: 2, label: "@result_tag"},
+        %{name: "question_num", value: 3, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_03_neutral", label: "@result_tag"},
       ])
       |> contact_matches(%{
@@ -375,7 +375,7 @@ defmodule DMAFormTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Agree")
       |> results_match([
-        %{name: "question_num", value: 3, label: "@result_tag"},
+        %{name: "question_num", value: 4, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_04_agree", label: "@result_tag"},
       ])
       |> contact_matches(%{
@@ -400,9 +400,9 @@ defmodule DMAFormTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Strongly disagree")
       |> results_match([
-        %{name: "question_num", value: 4, label: "@result_tag"},
+        %{name: "question_num", value: 5, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_05_strongly_disagree", label: "@result_tag"},
-        %{name: "end", value: "dma-form", label: "@slug_end"},
+        %{name: "end", value: "mnch_onboarding_dma_form", label: "@slug_end"},
         %{name: "risk", value: "high", label: "@result_tag"},
         %{name: "score", value: 10.0, label: "@result_tag"},
         %{name: "max_score", value: 10.0, label: "@result_tag"},
@@ -411,7 +411,7 @@ defmodule DMAFormTest do
         "dma_05" => "Strongly disagree"
       })
       |> receive_message(%{
-        text: "High result message",
+        text: "*Thank you for completing this*\r\n\r\nYou seem comfortable and confident making decisions about your health.\r\n\r\nKeep on doing what you’re doing! 🤩",
       })
     end
 
@@ -428,10 +428,10 @@ defmodule DMAFormTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Neutral")
       |> results_match([
-        %{name: "question_num", value: 4, label: "@result_tag"},
+        %{name: "question_num", value: 5, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_05_neutral", label: "@result_tag"},
-        %{name: "end", value: "dma-form", label: "@slug_end"},
-        %{name: "risk", value: "medium", label: "@result_tag"},
+        %{name: "end", value: "mnch_onboarding_dma_form", label: "@slug_end"},
+        %{name: "risk", value: "high", label: "@result_tag"},
         %{name: "score", value: 3.0, label: "@result_tag"},
         %{name: "max_score", value: 10.0, label: "@result_tag"},
       ])
@@ -439,7 +439,7 @@ defmodule DMAFormTest do
         "dma_05" => "Neutral"
       })
       |> receive_message(%{
-        text: "Medium result message",
+        text: "*Thank you for completing this*\r\n\r\nYou seem comfortable and confident making decisions about your health.\r\n\r\nKeep on doing what you’re doing! 🤩",
       })
     end
 
@@ -456,10 +456,10 @@ defmodule DMAFormTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Neutral")
       |> results_match([
-        %{name: "question_num", value: 4, label: "@result_tag"},
+        %{name: "question_num", value: 5, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_05_neutral", label: "@result_tag"},
-        %{name: "end", value: "dma-form", label: "@slug_end"},
-        %{name: "risk", value: "low", label: "@result_tag"},
+        %{name: "end", value: "mnch_onboarding_dma_form", label: "@slug_end"},
+        %{name: "risk", value: "high", label: "@result_tag"},
         %{name: "score", value: 2.0, label: "@result_tag"},
         %{name: "max_score", value: 10.0, label: "@result_tag"},
       ])
@@ -467,7 +467,7 @@ defmodule DMAFormTest do
         "dma_05" => "Neutral"
       })
       |> receive_message(%{
-        text: "Low result message",
+        text: "*Thank you for completing this*\r\n\r\nYou seem comfortable and confident making decisions about your health.\r\n\r\nKeep on doing what you’re doing! 🤩",
       })
     end
 
@@ -484,9 +484,9 @@ defmodule DMAFormTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Neutral")
       |> results_match([
-        %{name: "question_num", value: 4, label: "@result_tag"},
+        %{name: "question_num", value: 5, label: "@result_tag"},
         %{name: "question_id", value: "dma_form_05_neutral", label: "@result_tag"},
-        %{name: "end", value: "dma-form", label: "@slug_end"},
+        %{name: "end", value: "mnch_onboarding_dma_form", label: "@slug_end"},
         %{name: "risk", value: "skip_high", label: "@result_tag"},
         %{name: "score", value: 1.0, label: "@result_tag"},
         %{name: "max_score", value: 8.0, label: "@result_tag"},
@@ -495,7 +495,7 @@ defmodule DMAFormTest do
         "dma_05" => "Neutral"
       })
       |> receive_message(%{
-        text: "Skip high result message",
+        text: "You are seeing this message because you skipped an answer.",
       })
     end
   end
