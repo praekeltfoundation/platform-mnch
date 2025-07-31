@@ -278,12 +278,15 @@ defmodule EDDRemindersTest do
       flow
       |> FlowTester.start()
       |> receive_message(%{
-        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        # text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\nTemplate @body.whatsapp_template_name sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url
+
+The buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
       |> receive_message(%{
-        text: "Well done on taking care of you and baby’s health!",
+        text: "Well done on taking care of you and baby’s health 🫶🏽",
         buttons: button_labels(["See main menu"]),
       })
     end
@@ -308,12 +311,13 @@ defmodule EDDRemindersTest do
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\r\n\r\nThe buttons represented"  <> _,
+        # text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\r\n\r\nThe buttons represented"  <> _,
+        text: "[DEBUG]\nTemplate @body.whatsapp_template_name sent with language en_US.\nBody parameters: [@name]\n\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
       |> receive_message(%{
-        text: "Well done on taking care of you and baby’s health!",
+        text: "Well done on taking care of you and baby’s health 🫶🏽",
         buttons: button_labels(["See main menu"]),
       })
     end
@@ -337,12 +341,15 @@ defmodule EDDRemindersTest do
       flow
       |> FlowTester.start()
       |> receive_message(%{
-        text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        # text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\nTemplate @body.whatsapp_template_name sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url
+
+The buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
       |> receive_message(%{
-        text: "Well done on taking care of you and baby’s health!",
+        text: "Well done on taking care of you and baby’s health 🫶🏽",
         buttons: button_labels(["See main menu"]),
       })
       |> FlowTester.send(button_label: "See main menu")
@@ -356,7 +363,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator \r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾\u200D⚕️ \r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
     end
@@ -367,7 +374,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator \r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾\u200D⚕️ \r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
       |> FlowTester.send("Nope")
@@ -402,7 +409,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send(button_label: "Update due date")
       |> receive_message(%{
-        text: "Great.\r\n\r\n👇🏽 Which month are you expecting your baby to be born?",
+        text: "Great. \n\n👇🏽 Which month are you expecting your baby to be born?",
         list: {"Month", ^list_of_months}
       })
     end
@@ -464,7 +471,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("edd_month")
       |> receive_message(%{
-        text: "Great.\r\n\r\n👇🏽 Which month are you expecting your baby to be born?",
+        text: "Great. \n\n👇🏽 Which month are you expecting your baby to be born?",
         list: {"Month", ^list_of_months}
       })
     end
@@ -481,8 +488,20 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
-        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
-        list: {"Month", ^list_of_months}
+        text: "I don't understand your reply. Please try that again. \n\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        # list: {"Month", ^list_of_months}
+        list: {"Month", [
+                    {"@datevalue(this_month, \"%B\")", "July"},
+                    {"@datevalue(this_month_plus_one, \"%B\")", "August"},
+                    {"@datevalue(this_month_plus_two, \"%B\")", "September"},
+                    {"@datevalue(this_month_plus_three, \"%B\")", "October"},
+                    {"@datevalue(this_month_plus_four, \"%B\")", "November"},
+                    {"@datevalue(this_month_plus_five, \"%B\")", "December"},
+                    {"@datevalue(this_month_plus_six, \"%B\")", "January"},
+                    {"@datevalue(this_month_plus_seven, \"%B\")", "February"},
+                    {"@datevalue(this_month_plus_eight, \"%B\")", "March"},
+                    {"I don't know", "I don't know"}
+                  ]}
       })
     end
 
@@ -501,7 +520,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send(month)
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator \r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️ \r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
     end
@@ -519,7 +538,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send(month)
       |> receive_message(%{
-        text: "On what *day* of the month are you expecting the baby to be born?\r\n\r\nType in a number between 1 and 31.\r\n\r\nIf you don't know, reply `Skip`",
+        text: "On what *day* of the month are you expecting the baby to be born? \n\nType in a number between 1 and 31. \n\nIf you don't know, reply `Skip`",
       })
     end
 
@@ -539,7 +558,8 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("25")
       |> receive_message(%{
-        text:  ^edd_confirmation_text,
+        # text:  ^edd_confirmation_text,
+        text:  "I’ve updated your baby’s estimated due date to: 2025-08-25\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽",
       })
       |> contact_matches(%{"edd" => ^full_edd})
       |> result_matches(%{name: "edd", value: ^full_edd})
@@ -583,7 +603,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
       })
     end
 
@@ -603,7 +623,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("0")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
       })
     end
 
@@ -623,7 +643,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("32")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
       })
     end
 
@@ -645,7 +665,8 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("29")
       |> receive_message(%{
-        text: ^edd_confirmation_text,
+        text: "I’ve updated your baby’s estimated due date to: 2023-02-29\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽",
+        # text: ^edd_confirmation_text,
         buttons: button_labels(["See main menu"])
       })
     end
@@ -668,7 +689,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("30")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 29."
       })
     end
 
@@ -690,7 +711,8 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("31")
       |> receive_message(%{
-        text: ^edd_confirmation_text,
+        text: "I’ve updated your baby’s estimated due date to: 2023-01-31\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽",
+        # text: ^edd_confirmation_text,
         buttons: button_labels(["See main menu"])
       })
     end
@@ -713,7 +735,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("32")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
       })
     end
 
@@ -735,7 +757,8 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("30")
       |> receive_message(%{
-        text: ^edd_confirmation_text,
+        # text: ^edd_confirmation_text,
+        text: "I’ve updated your baby’s estimated due date to: 2024-04-30\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽",
         buttons: button_labels(["See main menu"])
       })
     end
@@ -758,7 +781,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("31")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 30."
       })
     end
   end
