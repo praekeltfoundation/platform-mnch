@@ -167,7 +167,7 @@ defmodule ExploringTourTest do
         %{name: "guided_tour_menu", value: "yes"},
       ])
       |> receive_message(%{
-        text: "I hope you've now got a good idea of what {service name} can do.\r\n\r\nAt this point, most people choose to create their profile. The more info you give me, the more control you have!\r\n\r\n👇🏽 What do you want to do?",
+        text: "I hope you've now got a good idea of what {service name} can do.\n\nAt this point, most people choose to create their profile. The more info you give me, the more control you have!\n\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Go to help desk"]),
       })
     end

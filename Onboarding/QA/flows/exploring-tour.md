@@ -12,7 +12,8 @@ card FetchError, then: Checkpoint do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -46,7 +47,8 @@ card FetchTourCard01, then: DisplayTourCard01 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_01/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -97,7 +99,8 @@ card FetchTourCard02, then: DisplayTourCard02 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_02/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -146,7 +149,8 @@ card FetchTourCard03, then: DisplayTourCard03 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_03/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -195,7 +199,8 @@ card FetchTourCard04, then: DisplayTourCard04 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_04/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -246,7 +251,8 @@ card FetchTourCard05, then: DisplayTourCard05 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_tour_card_05/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -297,7 +303,8 @@ card FetchGuidedTourMenu, then: DisplayGuidedTourMenu do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_guided_tour_menu/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )

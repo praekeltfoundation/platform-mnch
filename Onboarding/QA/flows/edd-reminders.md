@@ -58,7 +58,8 @@ card FetchError, then: GetLocaleCodes do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -80,7 +81,8 @@ card FetchError, then: GetLocaleCodes do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_list_message/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -91,7 +93,8 @@ card FetchError, then: GetLocaleCodes do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_unrecognised_number/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -216,7 +219,8 @@ card EDDMonth, "@button_labels[1]", then: EDDMonthError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_month/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -318,7 +322,9 @@ card EDDMonthUnknown, "I don't know", then: EDDMonthUnknownError do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]]
     )
 
   message = page.body.messages[0]
@@ -353,7 +359,10 @@ card EDDDay, then: ValidateEDDDay do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+        ]
     )
 
   long_months = [1, 3, 5, 7, 8, 10, 12]
@@ -414,7 +423,8 @@ card EDDConfirm, then: DisplayEDDConfirm do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_confirmed/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -446,7 +456,8 @@ card EDDRUnknown, "@button_labels[2]", then: DisplayEDDUnknown do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_unknown/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -507,7 +518,8 @@ card EDDLater, then: DisplayEDDLater do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_do_it_later/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )

@@ -296,7 +296,8 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.set_contact_properties(%{"language" => "por"})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "[DEBUG]\nTemplate edd_reminder_2041_pt sent with language pt_PT.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        # text: "[DEBUG]\nTemplate edd_reminder_2041_pt sent with language pt_PT.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\nTemplate @body.whatsapp_template_name sent with language pt_PT.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
