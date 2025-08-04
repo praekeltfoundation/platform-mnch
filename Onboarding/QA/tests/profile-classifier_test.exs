@@ -289,7 +289,7 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("1234")
       |> receive_message(%{
-        text: "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
+        text: "I can *only accept names with letters* – no numbers or symbols.\n\nLet's try this again!\n\nWhat would you like me to call you?\n\nIf you don't want to answer this right now, reply `Skip`",
       })
     end
 
@@ -327,7 +327,7 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("abcdefghijklmnopqrstu")
       |> receive_message(%{
-        text: "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
+        text: "I can *only accept names with letters* – no numbers or symbols.\n\nLet's try this again!\n\nWhat would you like me to call you?\n\nIf you don't want to answer this right now, reply `Skip`",
       })
     end
 
