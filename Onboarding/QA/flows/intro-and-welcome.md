@@ -52,7 +52,8 @@ card FetchError, then: GoToPrivacyPolicy do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -63,7 +64,8 @@ card FetchError, then: GoToPrivacyPolicy do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_list_message/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -113,7 +115,8 @@ card WelcomeMessage, then: WelcomeMessageError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_welcome/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -155,7 +158,8 @@ card LanguageOptions, then: LanguageOptionsError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_languages/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -238,7 +242,8 @@ card LanguageConfirmation, then: LanguageConfirmationError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_language_updated/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -276,7 +281,8 @@ card PrivacyPolicy, then: PrivacyPolicyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pp_document/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -332,7 +338,8 @@ card DeclinePrivacyPolicy, then: DeclinePrivacyPolicyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pp_not_accepted/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -368,7 +375,8 @@ card ReadSummary, then: ReadSummaryError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pp_summary/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -410,7 +418,8 @@ card OptIn, then: OptInError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_opt_in/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -462,7 +471,8 @@ card UserIntent, then: UserIntentError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_intent/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -523,7 +533,8 @@ card DataPreferences, then: DataPreferencesError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_data_preferences/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -568,7 +579,8 @@ card DataPreferencesSelected, then: DataPreferencesSelectedError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_data_preferences_yes/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -620,7 +632,8 @@ card TODO do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/todo/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )

@@ -183,7 +183,6 @@ defmodule AgentWrapUpTest do
       })
     end
 
-    @tag :testtorun
     test "query resolved no", %{flow: flow} do
       flow
       |> FlowTester.start()

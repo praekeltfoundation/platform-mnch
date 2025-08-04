@@ -113,12 +113,12 @@ defmodule FormsTest do
       |> FlowTester.set_local_params("config", %{"assessment_tag" => "dma_form"})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "Input a number",
+        text: "Thanks, \r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*",
       })
       |> FlowTester.send("1")
       |> results_match([
         %{name: "version", value: "v1.0"},
-        %{name: "started", value: "dma_form", label: "@v_start"},
+        %{name: "started", value: "mnch_onboarding_dma_form", label: "@v_start"},
         %{name: "locale", value: "en"},
         %{name: "question_num", value: 0, label: "@result_tag"},
         %{name: "question", value: "Input a number", label: "@result_tag"},

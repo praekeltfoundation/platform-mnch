@@ -18,7 +18,8 @@ card FetchError, then: Reminder do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -36,7 +37,8 @@ card Reminder, then: ReminderError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_reminder_1/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -74,7 +76,8 @@ card RemindNo do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_reminder_no/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -88,7 +91,8 @@ card RemindTomorrow do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_reminder_tomorrow/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
