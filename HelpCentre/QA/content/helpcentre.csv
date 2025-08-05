@@ -1,0 +1,191 @@
+structure,message,page_id,slug,parent,web_title,web_subtitle,web_body,whatsapp_title,whatsapp_body,whatsapp_template_slug,variation_title,variation_body,list_title,list_items,sms_title,sms_body,ussd_title,ussd_body,messenger_title,messenger_body,viber_title,viber_body,translation_tag,tags,quick_replies,triggers,next_prompt,buttons,image_link,doc_link,media_link,related_pages,footer,language_code
+Menu 1,0,1980,mnch_main,,mnch,,,,,,,,,,,,,,,,,,a4192a58-04fe-4766-9d00-9ec4769ce3d8,,,,,,,,,,,en
+Menu 2,0,1982,faqs,,FAQs,,,,,,,,,,,,,,,,,,34f2ee6d-0e17-4b59-899d-e184af5e4863,,,,,,,,,,,en
+Menu 3,0,1983,dev-test,,Dev Test,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,en
+Menu 4,0,3175,main-menu,,Main Menu,,,,,,,,,,,,,,,,,,a0b85075-d01b-46bf-8997-8591e87ba171,,,,,,,,,,,en
+Menu 5,0,3722,functional_copy,,Functional copy,,,,,,,,,,,,,,,,,,ed5fde40-3fe7-48d7-9a90-a7952f1c8db8,,,,,,,,,,,en
+Sub 5.4.1,1,3739,plat_help_welcome_help_centre_returning,Help centre,Welcome Help Centre returning,,,Welcome Help Centre returning,"*Welcome back to the Help Centre*
+
+This is where you can find:
+
+• Help in a health emergency
+
+• Search MyHealth
+
+• Technical support
+
+👇🏽 What do you need?",,,,,[],,,,,,,,,1cd4b01e-7ec5-481c-9c00-277dab545815,,,,,"[{""type"": ""next_message"", ""title"": ""Emergency help""}, {""type"": ""next_message"", ""title"": ""Search MyHealth""}, {""type"": ""next_message"", ""title"": ""Tech support""}]",,,,,,en
+Sub 5.4.2,1,3740,plat_help_welcome_help_centre_first,Help centre,Welcome Help Centre first,,,Welcome Help Centre first,"*Welcome to the [MyHealth] Help Centre*
+
+This is where you can find:
+
+• Help in a health emergency
+
+• Search MyHealth
+
+• Technical support
+
+👇🏽 What do you need?",,,,,[],,,,,,,,,4106827f-dcc8-487d-89e7-25d12ae40421,,,,,"[{""type"": ""next_message"", ""title"": ""Emergency help""}, {""type"": ""next_message"", ""title"": ""Search MyHealth""}, {""type"": ""next_message"", ""title"": ""Tech support""}]",,,,,,en
+Sub 5.4.3,1,3741,plat_help_medical_emergency,Help centre,Medical emergency,,,Medical emergency,"If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. 
+
+👇🏽 What do you want to do?",,,,,[],,,,,,,,,47bac0f0-0178-4047-9e22-c64271ba3590,,,,,"[{""type"": ""next_message"", ""title"": ""Emergency Numbers""}, {""type"": ""next_message"", ""title"": ""Search MyHealth""}, {""type"": ""next_message"", ""title"": ""Talk to health agent""}]",,,,,,en
+Sub 5.4.4,1,3742,plat_help_search_myhealth_prompt,Help centre,Search MyHealth prompt,,,Search MyHealth prompt,"Let's find you the information you need.
+
+Just type in what you are looking for and press send.",,,,,[],,,,,,,,,9150038e-1608-410a-9ad9-0d2b9e3c2c7e,,,,,[],,,,,,en
+Sub 5.4.5,1,3743,plat_help_technical_issue_prompt,Help centre,Technical issue prompt,,,Technical issue prompt,Please explain the technical issue you're having.,,,,,[],,,,,,,,,c683c3f7-eedd-4542-92f2-68aa0424dfcd,,,,,[],,,,,,en
+Sub 5.4.6,1,3744,plat_help_emergency_contact_numbers,Help centre,Emergency contact numbers,,,Emergency contact numbers,"*Emergency contact numbers*
+
+[These are toll free – which means you don't need airtime.]
+
+• [Name/resource]: 
+[Telephone 1]
+
+• [Name/resource]
+[Telephone 2]
+
+• [Name/resource]: 
+[Telephone 3]
+
+You can also speak to a [health agent] on this chat, [Monday - Friday: 9am - 7pm].
+
+👇🏽 What do you want to do?",,,,,[],,,,,,,,,cffa3973-a545-4d5c-8c78-cc98daaf8bf8,,,,,"[{""type"": ""next_message"", ""title"": ""Talk to health agent""}, {""type"": ""next_message"", ""title"": ""Search MyHealth""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
+Sub 5.4.7,1,3745,plat_help_health_agent_query_overview,Help centre,Health Agent query overview,,,Health Agent query overview,"Before I connect you to a [health agent], please reply with a message explaining what you'd like to talk to them about.
+
+Please note that their working hours are 9am - 4pm on weekdays.",,,,,[],,,,,,,,,71ecdc1b-8aa3-4328-9e47-af906b909b18,,,,,[],,,,,,en
+Sub 5.4.8,1,3746,plat_help_health_agent_connection_reminder,Help centre,Health agent connection reminder,,,Health agent connection reminder,"🤖 Hello again!
+
+Do you still want me to connect you to a {Health Agent}?",,,,,[],,,,,,,,,81bce294-9b17-42c7-9d3b-84539117be45,,,,,"[{""type"": ""next_message"", ""title"": ""Yes please""}, {""type"": ""next_message"", ""title"": ""No thanks""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
+Sub 5.4.9,1,3747,plat_help_search_myhealth_secondary,Help centre,Search MyHealth secondary,,,Search MyHealth secondary,Just type in your question and hit send.,,,,,[],,,,,,,,,708cfcdb-d07d-4366-b39c-6864d35a007d,,,,,[],,,,,,en
+Sub 5.4.10,1,3748,plat_help_general_catch_all,Help centre,General catch all,,,General catch all,"I didn't understand that. Let's try again.
+
+👇🏽 Please reply with your question.",,,,,[],,,,,,,,,78d80afb-b32e-45cd-b846-20fde830fa4e,,,,,[],,,,,,en
+Sub 5.4.11,1,3749,plat_help_invalid_media_catch_all,Help centre,Invalid media catch all,,,Invalid media catch all,"I can only understand text. 
+
+Please try again and type in your question.",,,,,[],,,,,,,,,5e8dd6b4-55ce-431c-ab49-c2f32aee0f8d,,,,,[],,,,,,en
+Sub 5.4.12,1,3750,plat_help_health_agent_reminder_no,Help centre,Health agent reminder no,,,Health agent reminder no,"Alright!
+
+You can find the Help Centre any time by sending in the word `Help`
+
+👇🏽  What do you want to see next?",,,,,[],,,,,,,,,ca017e05-eaf4-4ce3-80c7-79e203b43e24,,,,,"[{""type"": ""next_message"", ""title"": ""Help Centre""}, {""type"": ""next_message"", ""title"": ""Topics for you""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.13,1,3751,plat_help_general_catch_all_secondary,Help centre,General catch all secondary,,,General catch all secondary,"I didn't understand that. Let's try again.
+
+👇🏽 Please type in your question and press send.",,,,,[],,,,,,,,,b521b852-e36b-4065-8566-9783af021cd5,,,,,[],,,,,,en
+Sub 5.4.14,1,3752,plat_help_invalid_media_catch_all_secondary,Help centre,Invalid media catch all secondary,,,Invalid media catch all secondary,"I can only understand text. 
+
+Please try again and type in your question.",,,,,[],,,,,,,,,f03554bb-d100-469c-b17e-72eda9e85da7,,,,,[],,,,,,en
+Sub 5.4.15,1,3753,plat_help_medical_emergency_secondary,Help centre,Medical emergency secondary,,,Medical emergency secondary,"If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. 
+
+👇🏽 What do you want to do?",,,,,[],,,,,,,,,c39b2ffa-6349-4964-9517-996f3f443801,,,,,"[{""type"": ""next_message"", ""title"": ""Emergency Numbers""}, {""type"": ""next_message"", ""title"": ""Search MyHealth""}]",,,,,,en
+Sub 5.4.16,1,3754,plat_help_emergency_contact_numbers_secondary,Help centre,Emergency contact numbers secondary,,,Emergency contact numbers secondary,"*Emergency contact numbers*
+
+[These are toll free – which means you don't need airtime.]
+
+• {Name/resource}: 
+{Telephone 1}
+
+• {Name/resource}: 
+{Telephone 2}
+
+• {Name/resource}: 
+{Telephone 3}
+
+You can also speak to a {health agent} on this chat, [Monday - Friday: 9am - 7pm]
+
+👇🏽 What do you want to do?",,,,,[],,,,,,,,,a22d15bb-4d16-47d2-8665-ed47ec396911,,,,,"[{""type"": ""next_message"", ""title"": ""Search MyHealth""}, {""type"": ""next_message"", ""title"": ""Talk to health agent""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.17,1,3755,plat_help_faqs_topics_list,Help centre,FAQs topics list,,,FAQs topics list,"🤖 Here are some topics you might find helpful.
+
+{faq_topic_list}
+6. None of these are helpful – speak to [health agent]
+
+👇🏽 Please reply with the number of your selection.",,,,,[],,,,,,,,,9f90dc57-8c92-475d-a811-b4ac44314add,,,,,[],,,,,,en
+Sub 5.4.18,1,3756,plat_help_help_desk_entry_offline,Help centre,Help desk entry offline,,,Help desk entry offline,"[Health agents] are available between [9am - 4pm on weekdays].
+
+👇🏽 You are welcome to browse the service by choosing an option below.",,,,,[],,,,,,,,,1ef04a28-7254-4432-8cf8-abd9b3617ee6,,,,,"[{""type"": ""next_message"", ""title"": ""Help Centre menu""}, {""type"": ""next_message"", ""title"": ""Topics for you""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.19,1,3757,plat_help_help_desk_entry_online,Help centre,Help desk entry online,,,Help desk entry online,"🤖 I'm now connecting you to a [health agent]. This will take between [3 - 7 minutes].
+
+You can send me any other questions you have while you wait.",,,,,[],,,,,,,,,fb9f04b2-d32c-46e3-897e-c0c435e6e80a,,,,,[],,,,,,en
+Sub 5.4.20,1,3758,plat_help_faq_topic_content,Help centre,FAQ topic content,,,FAQ topic content,👇🏽 Was this helpful?,,,,,[],,,,,,,,,edc1daea-d5f0-4ee1-be4d-38998e825db4,,,,,"[{""type"": ""next_message"", ""title"": ""Yes \ud83d\udc4d\ud83c\udffd""}, {""type"": ""next_message"", ""title"": ""No \ud83d\udc4e\ud83c\udffd""}]",,,,,,en
+Sub 5.4.21,1,3759,plat_help_topics_no_response_follow_up,Help centre,Topics no response follow up,,,Topics no response follow up,"🤖 Hello again!
+
+I see you haven't replied. 
+
+👇🏽 Was the information I recommended helpful?",,,,,[],,,,,,,,,454b09e6-a50e-43b1-830a-623f7e05e04c,,,,,"[{""type"": ""next_message"", ""title"": ""Yes \ud83d\udc4d\ud83c\udffd""}, {""type"": ""next_message"", ""title"": ""No \ud83d\udc4e\ud83c\udffd""}]",,,,,,en
+Sub 5.4.22,1,3760,plat_help_acknowledgement_positive_,Help centre,Acknowledgement positive,,,Acknowledgement positive,"I'm happy to hear that.
+
+What would you like to see now?",,,,,[],,,,,,,,,912c6657-d878-4ee3-af47-14eda41ce4d9,,,,,"[{""type"": ""next_message"", ""title"": ""Back to topics list""}, {""type"": ""next_message"", ""title"": ""Help Centre menu""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.23,1,3761,plat_help_acknowledgement_negative_,Help centre,Acknowledgement negative,,,Acknowledgement negative,That's unfortunate. Let's try again!,,,,,[],,,,,,,,,a4913f05-e795-4109-a232-f879dca87b69,,,,,[],,,,,,en
+Sub 5.4.24,1,3762,plat_help_error_handling_button,Help centre,error handling - button,,,error handling - button,"I don't understand your reply. 
+
+👇🏽 Please try that again and respond by tapping a button.",,,,,[],,,,,,,,,22c79cd1-8645-4ea8-b22e-dc8be7bd7c62,,,,,[],,,,,,en
+Sub 5.4.25,1,3788,plat_help_faq_error_message,Help centre,FAQ error message,,,FAQ Topic List error,"Sorry, we didn’t get that. 
+
+Please respond with a number between 1 and 6.",,,,,[],,,,,,,,,8c8f3568-04fc-4ea7-8c05-c44d98bce82e,,,,,[],,,,,,en
+Sub 5.4.26,1,3789,plat_help_agent_greeting,Help centre,Agent greeting,,,Agent greeting,👨You are now chatting with {operator_name},,,,,[],,,,,,,,,d724d87c-4f91-4407-96e3-c95d8441917f,,,,,[],,,,,,en
+Sub 5.4.27,1,3790,plat_help_agent_close_chat,Help centre,Agent close chat,,,-8,"👨Glad to have helped, I’m available any time. I’m going to resume the bot now.",,,,,[],,,,,,,,,fe27cdc4-5f19-4e87-bbed-cd6db8a5f0a4,,,,,[],,,,,,en
+Sub 5.4.28,1,3791,plat_help_bot_active_notification,Help centre,Bot active notification,,,Bot active notification,🤖Welcome back! the person has left and now you’re chatting to the bot again.,,,,,[],,,,,,,,,6625005e-25a5-45ff-8257-7c38d41bd4ec,,,,,[],,,,,,en
+Sub 5.4.29,1,3792,plat_help_query_successful,Help centre,Query successful,,,Query successful,Was your query successfully resolved?,,,,,[],,,,,,,,,58f85b61-6e9e-4c2c-a67b-9a6277ca0c9c,,,,,"[{""type"": ""next_message"", ""title"": ""Yes""}, {""type"": ""next_message"", ""title"": ""No""}]",,,,,,en
+Sub 5.4.30,1,3793,plat_help_scheduled_query_rating,Help centre,Scheduled query rating,,,Scheduled query rating,"Hi there!
+
+Earlier you asked to be transferred to one of our human agents.
+
+Was your query successfully resolved?",,,,,[],,,,,,,,,29ee1d07-fb18-4d1b-a08f-ed1b7b839caf,,,,,"[{""type"": ""next_message"", ""title"": ""Yes""}, {""type"": ""next_message"", ""title"": ""No""}]",,,,,,en
+Sub 5.4.31,1,3794,plat_help_agent_helpful_response,Help centre,Agent helpful response,,,Agent helpful response,"Please take care of yourself and if you need more information, reply {help} anytime to get the info you need.",,,,,[],,,,,,,,,bef41402-ebd0-4597-bf36-12acadb1477f,,,,,[],,,,,,en
+Sub 5.4.32,1,3795,plat_help_agent_unsuccessful_response,Help centre,Agent unsuccessful response,,,Agent unsuccessful response,"Sorry to hear that. 
+
+I would love to assist you with your problem, let’s try again. 
+
+What would you like to do next?👇🏾",,,,,[],,,,,,,,,86430fca-4e42-4a57-93b1-20d30b3459bc,,,,,"[{""type"": ""next_message"", ""title"": ""Call me back""}, {""type"": ""next_message"", ""title"": ""Search MyHealth""}, {""type"": ""next_message"", ""title"": ""Main Menu""}]",,,,,,en
+Sub 5.4.33,1,3796,plat_help_call_back_response,Help centre,Call back response,,,Call back response,"You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. 
+
+What would you like to do?",,,,,[],,,,,,,,,2d8cc4b4-f9dd-451a-bcff-1f20e867cc64,,,,,"[{""type"": ""next_message"", ""title"": ""Call me back""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.34,1,3797,plat_help_call_back_confirmation,Help centre,Call back confirmation,,,Call back confirmation,"A trained counsellor/nurse will call you back.
+
+They’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist.",,,,,[],,,,,,,,,4d406ce4-bf61-4122-ad1d-28539af5ea65,,,,,[],,,,,,en
+Sub 5.4.35,1,3798,plat_help_agent_call_back_number_confirmation,Help centre,Agent call back number confirmation,,,Agent call back number confirmation,Should a counsellor call you on the WhatsApp number you are currently using to chat?,,,,,[],,,,,,,,,129d2d04-9f09-4fb8-9123-ed458f1d3f0b,,,,,"[{""type"": ""next_message"", ""title"": ""Use this number""}, {""type"": ""next_message"", ""title"": ""Use different number""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.36,1,3799,plat_help_agent_call_back_number_update,Help centre,Agent call back number update,,,Agent call back number update,"No problem, what number should we use? 
+
+Reply by sending the number.",,,,,[],,,,,,,,,a0a0f470-dc48-4d46-b630-200fa8378ebd,,,,,[],,,,,,en
+Sub 5.4.37,1,3800,plat_help_call_back_follow_up,Help centre,Call back follow up,,,Call back follow up,"Hi there
+
+You requested a call back. Do you still want to speak to a counsellor?",,,,,[],,,,,,,,,54c52e07-0c21-4b5b-b952-f33e703bdb68,,,,,"[{""type"": ""next_message"", ""title"": ""Yes please""}, {""type"": ""next_message"", ""title"": ""No thanks""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.38,1,3801,plat_help_bot_to_agent_handover_waiting_room,Help centre,Bot to agent handover waiting room,,,Bot to agent handover waiting room,"Great! I have successfully arranged for a counsellor to call you back.
+
+This might take some time. 
+
+Feel free to chat to me while you wait.",,,,,[],,,,,,,,,47c54a24-8aca-4f67-af2a-bf0dceb8fbfb,,,,,[],,,,,,en
+Sub 5.4.39,1,3802,plat_help_agent_contact_number_save,Help centre,Agent contact number save,,,Agent contact number save,"Thank you. 
+
+Should I save this number for next time?",,,,,[],,,,,,,,,c19098de-fd05-4715-a82f-84d2ec48c945,,,,,"[{""type"": ""next_message"", ""title"": ""Yes please""}, {""type"": ""next_message"", ""title"": ""No thanks""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.40,1,3803,plat_help_call_back_confirmation_scheduled,Help centre,Call back confirmation scheduled,,,Call back confirmation scheduled,"Hi there 
+
+You requested a call-back a few minutes ago. 
+
+Did you receive the call?",,,,,[],,,,,,,,,ea151d7c-e1ab-435d-96ab-2e1a67708f1e,,,,,"[{""type"": ""next_message"", ""title"": ""Yes""}, {""type"": ""next_message"", ""title"": ""No""}]",,,,,,en
+Sub 5.4.41,1,3804,plat_help_call_back_confirmation_yes,Help centre,Call back confirmation yes,,,Call back confirmation yes,Thats great to hear. Was the [health agent] able to help you?,,,,,[],,,,,,,,,32ef960c-2182-4ed7-86a3-c32a8dc948bf,,,,,"[{""type"": ""next_message"", ""title"": ""Yes""}, {""type"": ""next_message"", ""title"": ""No""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.42,1,3805,plat_help_call_back_confirmation_no,Help centre,Call back confirmation no,,,Call back confirmation no,"Thanks for letting me know. This feedback will be used to improve the [My Health] service.
+
+If you have anything urgent to discuss, go to the nearest health facility and speak to a health worker.
+
+If you'd like, you can request another call from a [health agent], or have a look at topics that might interest you. 
+
+👇🏽 What do you want to do?",,,,,[],,,,,,,,,5e1c42ac-975d-44c0-819b-5f3d78c1d83f,,,,,"[{""type"": ""next_message"", ""title"": ""Call me back""}, {""type"": ""next_message"", ""title"": ""See topics""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
+Sub 5.4.43,1,3806,plat_help_route_to_operator_emergency,Help centre,Route to operator emergency,,,Route to operator emergency,We will let the helpdesk know that this is an emergency situation,,,,,[],,,,,,,,,42bd7737-2eca-4fba-83af-ec6454800a88,,,,,[],,,,,,en
+Sub 5.4.44,1,3807,plat_help_route_to_operator_search_myhealth,Help centre,Route to operator Search MyHealth,,,Route to operator Search MyHealth,You searched for {xxx},,,,,[],,,,,,,,,dd94d906-4fe5-400e-bd01-aa7ae33c7892,,,,,[],,,,,,en
+Sub 5.4.45,1,3808,plat_help_route_to_operator_tech_support,Help centre,Route to operator Tech support,,,Route to operator Tech support,You searched for {xxx},,,,,[],,,,,,,,,c5eb4039-08ff-4cc0-81f2-6e10592c0976,,,,,[],,,,,,en
+Sub 5.4.46,1,3809,plat_help_route_to_operator_failed_attempts,Help centre,Route to operator failed attempts,,,Route to operator failed attempts,It seems that the bot has been unable to assist you so we will be routing you to a human helpdesk operator to try to resolve your issue,,,,,[],,,,,,,,,7bbbb4dd-4ccd-41d1-9228-c73c8066e673,,,,,[],,,,,,en
+Menu 6,0,3723,test,,TEST,,,,,,,,,,,,,,,,,,7bc53d56-c353-4194-884f-ff4fece7eabb,,,,,,,,,,,en
+Menu 7,0,3730,nurse_home_eng_nurse,,NURSE,,,,,,,,,,,,,,,,,,df3c6763-bc32-44f6-a5a6-495afcca858c,,,,,,,,,,,en
+Menu 8,0,3732,ma_test,,MA_TEST,,,,,,,,,,,,,,,,,,d69e6b91-f87e-43a7-90b4-70f965a60700,,,,,,,,,,,en
+Menu 12,0,7730,nurse_templates,,NURSE templates,,,,,,,,,,,,,,,,,,52d85323-744f-4b33-a2b8-5c712935d900,,,,,,,,,,,en
+Menu 13,0,12418,mpox,,mpox,,,,,,,,,,,,,,,,,,b13f808f-ccff-46f1-b7c9-784dfc924cac,,,,,,,,,,,en
+Menu 14,0,12797,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,en
+Menu 15,0,12863,mental-health,,Mental Health,,,,,,,,,,,,,,,,,,20c6e1a1-663a-4210-bb8e-d4ee64bbeec7,,,,,,,,,,,en
+Menu 16,0,12868,debtest,,DebTestPage,,,,,,,,,,,,,,,,,,fba05d65-d018-4bcc-8d7b-90334c7f6411,,,,,,,,,,,en
+Menu 1,0,2393,ma_test_spanish,,MA_TEST_SPANISH,,,,,,,,,,,,,,,,,,3222c815-39fc-4498-9c87-0c2c351c6853,,,,,,,,,,,es
+Menu 2,0,7429,dev-test-2,,Dev Test 2,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,es
+Menu 1,0,1984,stage-based-messages-por,,Stage-based messages Por,,,,,,,,,,,,,,,,,,35628191-624e-4a13-93bf-499f4e7de017,,,,,,,,,,,pt
+Menu 2,0,1985,helen_test,,Helen test por,,,,,,,,,,,,,,,,,,51cdf6dc-fb64-4197-bda0-f913b6a72811,,,,,,,,,,,pt
+Menu 3,0,1986,hlumi-por-test,,Hlumi por test,,,,,,,,,,,,,,,,,,743fef92-7384-493e-bcb2-3a7f47ac644f,,,,,,,,,,,pt
+Menu 4,0,12786,dev-test,,Dev Test,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,pt
+Menu 5,0,12832,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,pt
+Menu 6,0,12903,functional_copy,,Functional copy,,,,,,,,,,,,,,,,,,ed5fde40-3fe7-48d7-9a90-a7952f1c8db8,,,,,,,,,,,pt

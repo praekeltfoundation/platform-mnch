@@ -1,0 +1,1094 @@
+structure,message,page_id,slug,parent,web_title,web_subtitle,web_body,whatsapp_title,whatsapp_body,whatsapp_template_slug,variation_title,variation_body,list_title,list_items,sms_title,sms_body,ussd_title,ussd_body,messenger_title,messenger_body,viber_title,viber_body,translation_tag,tags,quick_replies,triggers,next_prompt,buttons,image_link,doc_link,media_link,related_pages,footer,language_code
+Menu 1,0,1980,mnch_main,,mnch,,,,,,,,,,,,,,,,,,a4192a58-04fe-4766-9d00-9ec4769ce3d8,,,,,,,,,,,en
+Menu 2,0,1982,faqs,,FAQs,,,,,,,,,,,,,,,,,,34f2ee6d-0e17-4b59-899d-e184af5e4863,,,,,,,,,,,en
+Menu 3,0,1983,dev-test,,Dev Test,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,en
+Menu 4,0,3175,main-menu,,Main Menu,,,,,,,,,,,,,,,,,,a0b85075-d01b-46bf-8997-8591e87ba171,,,,,,,,,,,en
+Menu 5,0,3722,functional_copy,,Functional copy,,,,,,,,,,,,,,,,,,ed5fde40-3fe7-48d7-9a90-a7952f1c8db8,,,,,,,,,,,en
+Sub 5.1.1,1,3531,mnch_onboarding_welcome,Onboarding,Welcome,,,Welcome,"*Welcome to {MyHealth}*
+
+Get free healthcare support for you and those you care for.
+
+On this chatbot, you'll find personalised info, advice, and reminders. 
+
+👇🏽 Let’s get started!",,,,,[],,,,,,,,,ed4a80fe-7820-4ed7-9fd7-d6344ea045e5,,,,,"[{""type"": ""go_to_page"", ""title"": ""Get started"", ""slug"": ""mnch_onboarding_languages""}, {""type"": ""go_to_page"", ""title"": ""Change my language"", ""slug"": ""mnch_onboarding_languages""}]",,,,,,en
+Sub 5.1.2,1,3532,mnch_onboarding_languages,Onboarding,Languages,,,Languages,"*Which language would you prefer?*
+
+👇🏽 Choose from the list below.",,,,LANG LIST,"[{""type"": ""next_message"", ""title"": ""English""}, {""type"": ""next_message"", ""title"": ""Fran\u00e7ais""}, {""type"": ""next_message"", ""title"": ""Portugu\u00eas""}, {""type"": ""next_message"", ""title"": ""\u0639\u0631\u0628\u064a""}, {""type"": ""next_message"", ""title"": ""Espa\u00f1ol""}, {""type"": ""next_message"", ""title"": ""\u4e2d\u56fd\u4eba""}]",,,,,,,,,29f9c332-3714-4adf-ae43-9d57aeee2ece,,,,,[],,,,,,en
+Sub 5.1.3,1,3533,mnch_onboarding_language_updated,Onboarding,Language_updated,,,Language_updated,Your language has been updated to {language selection}.,,,,,[],,,,,,,,,81a1f2f6-4fae-4423-976f-37a22c4a187e,,,,,"[{""type"": ""go_to_page"", ""title"": ""Ok, thanks"", ""slug"": ""mnch_onboarding_pp_document""}, {""type"": ""go_to_page"", ""title"": ""Choose another one"", ""slug"": ""mnch_onboarding_pp_document""}]",,,,,,en
+Sub 5.1.4,1,3534,mnch_onboarding_pp_document,Onboarding,PP_document,,,PP_document,"*Your information is safe and won't be shared* 🔒
+
+The information you share is only used to give you personalised advice and information.
+
+Read the privacy policy attached and let me know if you accept it.",,,,,[],,,,,,,,,58c7f38a-74ae-49ae-ab29-8c4641433960,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes, I accept \u2705"", ""slug"": ""mnch_onboarding_pp_summary""}, {""type"": ""go_to_page"", ""title"": ""No, I don\u2019t accept"", ""slug"": ""mnch_onboarding_pp_summary""}, {""type"": ""go_to_page"", ""title"": ""Read a summary"", ""slug"": ""mnch_onboarding_pp_summary""}]",,https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/documents/privacy_policy.pdf,,,,en
+Sub 5.1.5,1,3535,mnch_onboarding_pp_summary,Onboarding,PP_summary,,,PP_summary,"*What’s in the privacy policy*
+
+*Privacy*
+We keep your personal information safe and private.
+
+*Terms and conditions*
+This service gives you health information and self-help tools. It is not a replacement for advice from a real-life health worker or doctor, and professionals should still be relied upon for medical concerns.
+
+👇🏽 Do you accept the privacy policy?",,,,,[],,,,,,,,,cd1d7e04-41a2-4baa-b73d-f6d445cfa59c,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes"", ""slug"": ""mnch_onboarding_pp_not_accepted""}, {""type"": ""go_to_page"", ""title"": ""No"", ""slug"": ""mnch_onboarding_pp_not_accepted""}]",,,,,,en
+Sub 5.1.6,1,3536,mnch_onboarding_pp_not_accepted,Onboarding,PP_not_accepted,,,PP_not_accepted,"In order to use {MyHealth}, you need to accept the privacy policy.
+
+👇🏾 What do you want to do?",,,,,[],,,,,,,,,47a25f49-b96f-49b2-bcc5-5eeef96b6bd1,,,,,"[{""type"": ""go_to_page"", ""title"": ""See privacy policy"", ""slug"": ""mnch_onboarding_reminder_1""}, {""type"": ""go_to_page"", ""title"": ""Another button needed here"", ""slug"": ""mnch_onboarding_reminder_1""}]",,,,,,en
+Sub 5.1.7,1,3537,mnch_onboarding_reminder_1,Onboarding,Reminder_1,,,Reminder-2,"Hey – let's finish signing you up!
+
+The sooner you sign up to {MyHealth}, the sooner you can take control of your health journey 💪🏾 
+
+👇🏽 Are you ready to continue?",,,,,[],,,,,,,,,20c91f0a-d7aa-4b4d-a46f-f158f48a2acd,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes, let\u2019s go! \u2705"", ""slug"": ""mnch_onboarding_reminder_later""}, {""type"": ""go_to_page"", ""title"": ""Remind me tomorrow"", ""slug"": ""mnch_onboarding_reminder_later""}, {""type"": ""go_to_page"", ""title"": ""No thanks"", ""slug"": ""mnch_onboarding_reminder_later""}]",,,,,,en
+Sub 5.1.8,1,3538,mnch_onboarding_reminder_no,Onboarding,Reminder_no,,,Reminder_no,"Alright, I'll be here whenever you're ready. 
+
+Continue where you left off at any time by sending in the word `Hi`",,,,,[],,,,,,,,,644f4991-cdd6-497c-b1ce-a067a9dfc990,,,,,[],,,,,,en
+Sub 5.1.9,1,3539,mnch_onboarding_reminder_tomorrow,Onboarding,Reminder_tomorrow,,,Reminder_tomorrow,"Great! I'll remind you tomorrow 🗓️
+
+Chat soon.",,,,,[],,,,,,,,,f1f3cb68-84a5-4432-92dc-8e0023898b44,,,,,[],,,,,,en
+Sub 5.1.10,1,3540,mnch_onboarding_opt_in,Onboarding,Opt_in,,,Opt_in,"*Sometimes I'll need to send you important messages – like appointment reminders or urgent health news* 🔔 
+
+You can choose which types messages you want to receive later from your profile. It’s also easy to stop messages at any time.
+
+👇🏽 Can I send you these messages?",,,,,[],,,,,,,,,5d1bf365-7e0f-4981-bc50-2460a80fa2d8,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes \u2705"", ""slug"": ""mnch_onboarding_intent""}, {""type"": ""go_to_page"", ""title"": ""Decide later"", ""slug"": ""mnch_onboarding_intent""}]",,,,,,en
+Sub 5.1.11,1,3541,mnch_onboarding_intent,Onboarding,Intent,,,Intent,"Let's create your profile! The better I know you, the more I can do for you.
+
+*You have a few options:*
+
+• Create your profile and take control of {MyHealth}
+
+• Explore the service
+
+• Get assistance from an expert at the help desk
+
+👇🏽 What do you want to do?",,,,,[],,,,,,,,,25e3547b-e6bd-4c30-a3a8-d179bbfaf003,,,,,"[{""type"": ""go_to_page"", ""title"": ""Create a profile \ud83d\udc64"", ""slug"": ""mnch_onboarding_data_preferences""}, {""type"": ""go_to_page"", ""title"": ""Explore the service"", ""slug"": ""mnch_onboarding_data_preferences""}, {""type"": ""go_to_page"", ""title"": ""Go to help desk"", ""slug"": ""mnch_onboarding_data_preferences""}]",,,,,,en
+Sub 5.1.12,1,3542,mnch_onboarding_data_preferences,Onboarding,Data_preferences,,,Data_preferences,"Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱
+
+You can choose:
+
+• Text, images, audio & video (All)
+
+• Text and images 
+
+• Text only 
+
+👇🏽 What would you like?",,,,,[],,,,,,,,,de421068-afce-42b0-8642-38c11eb943bf,,,,,"[{""type"": ""go_to_page"", ""title"": ""All"", ""slug"": ""mnch_onboarding_data_preferences_yes""}, {""type"": ""go_to_page"", ""title"": ""Text & images"", ""slug"": ""mnch_onboarding_data_preferences_yes""}, {""type"": ""go_to_page"", ""title"": ""Text only"", ""slug"": ""mnch_onboarding_data_preferences_yes""}]",,,,,,en
+Sub 5.1.13,1,3543,mnch_onboarding_data_preferences_yes,Onboarding,Data_preferences_yes,,,Data_preferences_yes,"Got it 👍🏽 
+
+I'll share {option choice} for now.
+
+You can change this at any time in `Settings`",,,,,[],,,,,,,,,e2e5622e-6c4d-40f4-b507-41e2f84e8708,,,,,"[{""type"": ""next_message"", ""title"": ""That's great!""}]",,,,,,en
+Sub 5.1.14,1,3544,mnch_onboarding_tour_card_01,Onboarding,Tour_card_01,,,Tour_card_01,"Great, let's talk about what {MyHealth} has to offer you.
+
+🟩⬜⬜⬜⬜
+
+*Information from the experts*
+
+24/7 access to health information right here on WhatsApp.",,,,,[],,,,,,,,,67f04630-632e-450b-9066-81d4ec60d953,,,,,"[{""type"": ""go_to_page"", ""title"": ""Next"", ""slug"": ""mnch_onboarding_tour_card_02""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Tour_01_v2.png,,,,,en
+Sub 5.1.15,1,3545,mnch_onboarding_tour_card_02,Onboarding,Tour_card_02,,,Tour_card_02,"🟩🟩⬜⬜⬜
+
+*Important reminders*
+
+Health-related reminders, specific to you, when you need them.",,,,,[],,,,,,,,,04639add-4f79-4779-bc41-8640416aa6ef,,,,,"[{""type"": ""go_to_page"", ""title"": ""Next"", ""slug"": ""mnch_onboarding_tour_card_03""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Tour_02_v2.png,,,,,en
+Sub 5.1.16,1,3546,mnch_onboarding_tour_card_03,Onboarding,Tour_card_03,,,Tour_card_03,"🟩🟩🟩⬜⬜
+
+*Help in a hurry*
+
+Contact numbers and resources for emergencies.",,,,,[],,,,,,,,,5c49eb1c-8a99-49d9-a92e-9eaed47a135e,,,,,"[{""type"": ""go_to_page"", ""title"": ""Next"", ""slug"": ""mnch_onboarding_tour_card_04""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Tour_03_v2.png,,,,,en
+Sub 5.1.17,1,3547,mnch_onboarding_tour_card_04,Onboarding,Tour_card_04,,,Tour_card_04,"🟩🟩🟩🟩⬜
+
+*Someone to talk to*
+
+Experts ready to help you with your health concerns.",,,,,[],,,,,,,,,8723af03-fdae-4390-8c46-2555277080aa,,,,,"[{""type"": ""go_to_page"", ""title"": ""Next"", ""slug"": ""mnch_onboarding_tour_card_05""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/tour_card_4.png,,,,,en
+Sub 5.1.18,1,3548,mnch_onboarding_tour_card_05,Onboarding,Tour_card_05,,,Tour_card_05,"🟩🟩🟩🟩🟩
+
+*Progress tracking*
+
+Whether it's your stress levels or pregnancy, I'll keep track of things.",,,,,[],,,,,,,,,17b2045b-063e-4d1e-ac46-d79fad5e5230,,,,,"[{""type"": ""go_to_page"", ""title"": ""Got it!"", ""slug"": ""mnch_onboarding_guided_tour_menu""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Tour_06_v2.png,,,,,en
+Sub 5.1.19,1,3549,mnch_onboarding_guided_tour_menu,Onboarding,Guided_tour_menu,,,Guided_tour_menu,"I hope you've now got a good idea of what {service name} can do.
+
+At this point, most people choose to create their profile. The more info you give me, the more control you have!
+
+👇🏽 What do you want to do?",,,,,[],,,,,,,,,aa92320d-d398-4d06-bb4b-59a6fc58925c,,,,,"[{""type"": ""next_message"", ""title"": ""Create a profile \ud83d\udc64""}, {""type"": ""next_message"", ""title"": ""Go to help desk""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
+Sub 5.1.20,1,3550,mnch_onboarding_reminder_later,Onboarding,Reminder_later,,,Reminder_later,"*All good. I’ll remind you another time.* 🗓️
+
+For now, I recommend having a look at some of the most popular topics on {MyHealth}.
+
+👇🏽 What do you want to do now?",,,,,[],,,,,,,,,2082daae-e90e-4bec-a66a-2fd4e81ef9e9,,,,,"[{""type"": ""next_message"", ""title"": ""See popular topics""}, {""type"": ""next_message"", ""title"": ""Go to main menu \ud83d\udcd8""}]",,,,,,en
+Sub 5.1.21,1,3551,mnch_onboarding_name_call,Onboarding,Name_call,,,Name-2,"What would you like me to call you?
+
+If you don't want to answer this right now, reply `Skip`",,,,,[],,,,,,,,,3ae3ccb3-f09c-4e40-ab89-48243d7ec634,,,,,[],,,,,,en
+Sub 5.1.22,1,3552,mnch_onboarding_name_skip,Onboarding,Name_skip,,,Name_skip,"Sure, we’ll skip that for now.",,,,,[],,,,,,,,,e70d0589-95ee-47d6-9bb6-f37385715dcb,,,,,"[{""type"": ""next_message"", ""title"": ""Go back""}, {""type"": ""next_message"", ""title"": ""Got it""}]",,,,,,en
+Sub 5.1.23,1,3553,mnch_onboarding_domains_01,Onboarding,Domains_01,,,Domains_01,"Great to meet you, {@username}!
+
+I have tonnes of information on lots of different topics you can explore.
+
+But I want to know what topics you're interested in adding to your profile.
+
+I have some suggestions for you to pick from...",,,,,[],,,,,,,,,3c85ecce-755f-49c0-a16e-f9aa7f999d3f,,,,,"[{""type"": ""next_message"", ""title"": ""Let's go""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Domains_01.png,,,,,en
+Sub 5.1.24,1,3554,mnch_onboarding_domains_02,Onboarding,Domains_02,,,Domains_02,"*Love and relationships*
+
+Everything you need to know about finding love, having healthy relationships, getting out of bad relationships, and communicating better with your partner.",,,,,[],,,,,,,,,6fa76ce8-eac3-4079-b011-17bb1c0f1b57,,,,,"[{""type"": ""next_message"", ""title"": ""\u2795 Add this topic""}, {""type"": ""next_message"", ""title"": ""Not interested""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Love_n_Life.png,,,,,en
+Sub 5.1.25,1,3555,mnch_onboarding_domains_03,Onboarding,Domains_03,,,Domains_03,"*Pregnancy information*
+
+What you need to know about having a happy and healthy pregnancy from your 1st month 'til your last.",,,,,[],,,,,,,,,dc4acb6f-157f-4a7e-8066-527a6d0f26a0,,,,,"[{""type"": ""next_message"", ""title"": ""\u2795 Add this topic""}, {""type"": ""next_message"", ""title"": ""Not interested""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Domains_03.png,,,,,en
+Sub 5.1.26,1,3556,mnch_onboarding_domains_04,Onboarding,Domains_04,,,Domains_04,"*Baby and child health*
+
+Raising a child is hard work but with the right information, support, tips and tricks, you can enjoy being a super parent!",,,,,[],,,,,,,,,33c19d3c-f5e9-4496-b833-04878f122761,,,,,"[{""type"": ""next_message"", ""title"": ""\u2795 Add this topic""}, {""type"": ""next_message"", ""title"": ""Not interested""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Domains_04.png,,,,,en
+Sub 5.1.27,1,3557,mnch_onboarding_domains_05,Onboarding,Domains_05,,,Domains_05,"*Well-being*
+
+Whether you’re looking to add some mindfulness to your day, learn about the importance of looking after your mental health or finding ways to cope in difficult times, you'll find the right resource for you.",,,,,[],,,,,,,,,7bde2c44-7ac0-45de-8d96-257cb3ac90ea,,,,,"[{""type"": ""next_message"", ""title"": ""\u2795 Add this topic""}, {""type"": ""next_message"", ""title"": ""Not interested""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Domains_05.png,,,,,en
+Sub 5.1.28,1,3558,mnch_onboarding_domains_06,Onboarding,Domains_06,,,Domains_06,"*Family planning*
+
+You have the power to decide if and when you want children and how many you want. You might want none. You might want lots! Know your options so that you can decide what's best for you.",,,,,[],,,,,,,,,e503975b-1d8d-4734-9665-2a261c003fc4,,,,,"[{""type"": ""next_message"", ""title"": ""\u2795 Add this topic""}, {""type"": ""next_message"", ""title"": ""Not interested""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Domains_06.png,,,,,en
+Sub 5.1.29,1,3559,mnch_onboarding_domains_07,Onboarding,Domains_07,,,Domains_07,"*Info for health professionals*
+
+Are you a nurse? Get support, information, tips and guides to boost your knowledge and skills.",,,,,[],,,,,,,,,d407aad9-4359-4448-bb97-7efa286df766,,,,,"[{""type"": ""next_message"", ""title"": ""\u2795 Add this topic""}, {""type"": ""next_message"", ""title"": ""Not interested""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Domains_07.png,,,,,en
+Sub 5.1.30,1,3560,mnch_onboarding_name_error,Onboarding,Name_error,,,Name_error,"I can *only accept names with letters* – no numbers or symbols.
+
+Let's try this again!
+
+What would you like me to call you?
+
+If you don't want to answer this right now, reply `Skip`",,,,,[],,,,,,,,,b0e8b4b9-90a9-4ffd-9978-efa9e8580056,,,,,[],,,,,,en
+Sub 5.1.31,1,3561,mnch_onboarding_pregnancy_qa_01,Onboarding,Pregnancy_QA_01,,,Pregnancy_QA_01,"I've got a *lot* of information on pregnancy! 💡
+
+Take 2 minutes to answer a few questions so I can find the right info for you.
+
+If there are any questions you don’t want to answer right now, reply `Skip`
+
+👤 *Why are you interested in pregnancy info?*",,,,,[],,,,,,,,,64f0020d-a8dc-4543-8b36-4e36f4b728c3,,,,,"[{""type"": ""go_to_page"", ""title"": ""I'm pregnant"", ""slug"": ""mnch_onboarding_pregnancy_qa_02""}, {""type"": ""go_to_page"", ""title"": ""Partner is pregnant"", ""slug"": ""mnch_onboarding_pregnancy_qa_02""}, {""type"": ""go_to_page"", ""title"": ""Just curious"", ""slug"": ""mnch_onboarding_curious_01""}]",,,,,Profile question 1/5,en
+Sub 5.1.32,1,3562,mnch_onboarding_pregnancy_qa_02,Onboarding,Pregnancy_QA_02,,,Pregnancy_QA_02,👤 *Which month are you expecting your baby to be born?*,,,,,[],,,,,,,,,1cb72d04-77ad-49a6-acfd-863d5a28ac64,,,,,[],,,,,Profile question 2/5,en
+Sub 5.1.33,1,3563,mnch_onboarding_edd_unknown_1,Onboarding,EDD_unknown_1,,,EDD_unknown_1-2,"*It's important to know the due date* 🗓️
+
+There are two ways to calculate it:
+
+• Count 40 weeks (or 280 days) forward from the first day of your last menstrual period.
+
+• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator 
+
+Ask a health worker to confirm your expected due date at your next clinic visit 🧑🏾⚕️ 
+
+You can update your expected due date at any time in `Settings`",,,,,[],,,,,,,,,72e1d3f1-9378-4809-9591-e899d99ad030,,,,,"[{""type"": ""go_to_page"", ""title"": ""Update due date"", ""slug"": ""mnch_onboarding_edd_do_it_later""}, {""type"": ""go_to_page"", ""title"": ""I\u2019ll do this later"", ""slug"": ""mnch_onboarding_edd_do_it_later""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/EDD_Unknown.png,,,,,en
+Sub 5.1.34,1,3564,mnch_onboarding_pregnancy_qa_03,Onboarding,Pregnancy_QA_03,,,Pregnancy_QA_03,"👤 *On what day of the month are you expecting the baby to be born?*
+
+Type in a number between 1 and 31.",,,,,[],,,,,,,,,376154f0-7965-43ed-aa0e-8aace7b2786b,,,,,[],,,,,Profile question 3/5,en
+Sub 5.1.35,1,3565,mnch_onboarding_confirm_edd,Onboarding,Confirm_EDD,,,Confirm_EDD,"Thank you! Just confirming your estimated due date 🗓️
+
+Are you expecting the baby on *{dd} {month_name} {yyyy}*?",,,,,[],,,,,,,,,414aca90-2199-44b8-a1ec-9b9b0f50c434,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, that's right""}, {""type"": ""next_message"", ""title"": ""Pick another date""}]",,,,,,en
+Sub 5.1.36,1,3566,mnch_onboarding_pregnancy_qa_05,Onboarding,Pregnancy_QA_05,,,Pregnancy_QA_05,"Thank you! 
+
+👤 *How are you feeling about this pregnancy?*",,,,I'm feeling,"[{""type"": ""next_message"", ""title"": ""Excited""}, {""type"": ""next_message"", ""title"": ""Happy""}, {""type"": ""next_message"", ""title"": ""Worried""}, {""type"": ""next_message"", ""title"": ""Scared""}, {""type"": ""next_message"", ""title"": ""Other""}]",,,,,,,,,df84c0e7-6495-4600-8804-1a211f008ab4,,,,,[],,,,,Profile question 4/4,en
+Sub 5.1.37,1,3567,mnch_onboarding_pregnancy_content_00,Onboarding,Pregnancy_content_00,,,Pregnancy_content_00,"*Congratulations! You've made it to your third trimester*🤰🏾
+
+You may be feeling more tired and uncomfortable in these last weeks, but you have a lot to look forward to! ⭐",,,,,[],,,,,,,,,acc78624-a7ec-4bd7-836c-431c15a7f1d8,,,,,"[{""type"": ""go_to_page"", ""title"": ""Let's check it out"", ""slug"": ""mnch_onboarding_loading_01""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_content_00.png,,,,,en
+Sub 5.1.38,1,3568,mnch_onboarding_loading_01,Onboarding,Loading_01,,,Loading_01,"Thanks {@username} 🌟
+
+Give me a moment while I set up your profile and find the best information for you... ⏳",,,,,[],,,,,,,,,acde0699-c915-476c-8398-d3422c0e74df,,,,,"[{""type"": ""go_to_page"", ""title"": ""Okay"", ""slug"": ""mnch_onboarding_loading_02""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png,,,,,en
+Sub 5.1.39,1,3569,mnch_onboarding_loading_02,Onboarding,Loading_02,,,Loading_02,"{interesting facts for stage of pregnancy, specifically tailored to mother}",,,,,[],,,,,,,,,67a534b7-ef4b-4033-acfd-f4b83dc420c2,,,,,"[{""type"": ""go_to_page"", ""title"": ""Awesome!"", ""slug"": ""mnch_onboarding_topics_01""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
+Sub 5.1.40,1,3570,mnch_onboarding_topics_01,Onboarding,Topics_01,,,Topics_01,"Here are some topics picked just for you 💡
+
+*Managing mood swings* 🎢
+How to manage the ups and downs of pregnancy mood swings
+
+*Your pregnancy this week* 🗓️
+You’re in the home stretch. Here are some things you can expect.
+
+*What is the third trimester?* ⏳
+Learn more about the last phase of pregnancy
+
+*Don’t skip your clinic visits!* 🏥
+Why you should see a health worker throughout your pregnancy.
+
+Choose a topic to read more about it.",,,,Choose a topic,"[{""type"": ""next_message"", ""title"": ""Managing mood swings""}, {""type"": ""next_message"", ""title"": ""This week""}, {""type"": ""next_message"", ""title"": ""The third trimester""}, {""type"": ""next_message"", ""title"": ""Clinic visits""}, {""type"": ""next_message"", ""title"": ""Show me other topics""}]",,,,,,,,,4caa22b4-96de-4acf-aec8-faea2ff50ddc,,,,,[],https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png,,,,,en
+Sub 5.1.41,1,3571,mnch_onboarding_article_topic_01,Onboarding,Article_topic_01,,,Article_topic_01,"*Managing mood swings* 🎢
+[THIS IS JUST FILLER COPY. CONTENT TO BE SOURCED FROM CONTENTREPO.]
+How to manage the ups and downs of pregnancy mood swings
+
+1. *Avoid Caffeine*: Avoiding caffeine can help stabilise your mood.
+2. *Learn Cognitive Behavioral Techniques*: They can help you challenge negative thought patterns that cause mood swings.
+3. *Stay Mindful*: Practice mindfulness to stay present and focused.
+4. *Consider Professional Help*: If your mood swings are severe or interfering with your daily life, consider seeking help.
+5. *Stay Patient and Kind to Yourself*: Managing mood swings can take time and effort.",,,,,[],,,,,,,,,42427f49-8948-4909-8143-d7f5bb51754d,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""Rate this article""}, {""type"": ""next_message"", ""title"": ""Choose another topic""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Mood_swings.png,,,,,en
+Sub 5.1.42,1,3572,mnch_onboarding_article_feedback,Onboarding,Article_feedback,,,Article_feedback,Was this the information you were looking for?,,,,,[],,,,,,,,,aaf51a25-1b40-40a2-b4a3-b04b9560a38a,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes"", ""slug"": ""mnch_onboarding_article_feedback_no""}, {""type"": ""go_to_page"", ""title"": ""Not really"", ""slug"": ""mnch_onboarding_article_feedback_no""}]",,,,,,en
+Sub 5.1.43,1,3573,mnch_onboarding_article_feedback_no,Onboarding,Article_feedback_no,,,Article_feedback_no,"Mmm, maybe I need a bit more information about you... 🤔
+
+👇🏽 Would you like to answer some more questions now?",,,,,[],,,,,,,,,92ac86c4-a689-4476-a801-b266492ed089,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes, sure \u2705"", ""slug"": ""mnch_onboarding_profile_progress_50""}, {""type"": ""go_to_page"", ""title"": ""Maybe later"", ""slug"": ""mnch_onboarding_profile_progress_50""}, {""type"": ""go_to_page"", ""title"": ""No thanks"", ""slug"": ""mnch_onboarding_profile_progress_50""}]",,,,,,en
+Sub 5.1.44,1,3574,mnch_onboarding_profile_progress_50,Onboarding,Profile_progress_50,,,Profile_progress_50,"🟩🟩🟩🟩⬜⬜⬜⬜ 
+
+Your profile is already 50% complete! 🎉
+
+🤰🏽 Pregnancy info {pregnancy_info_count}
+👤 Basic information {basic_info_count}
+➡️ Personal information {personal_info_count}
+⬜ Daily life {daily_life_count}
+
+👇🏾 Let’s move on to personal information.",,,,,[],,,,,,,,,f96b4e13-62c7-40c9-8ff6-eb7c63eb1277,,,,,"[{""type"": ""next_message"", ""title"": ""Continue""}]",,,,,,en
+Sub 5.1.45,1,3575,mnch_onboarding_profile_progress_75,Onboarding,Profile_progress_75,,,Profile_progress_75,"🟩🟩🟩🟩🟩🟩🟩⬜⬜ 
+
+Your profile is already 75% complete! 🎉
+
+👤 Basic information 4/4
+➡️ Personal information 0/3
+⬜ Daily life 0/5
+
+👇🏾 Let’s move on to personal information.",,,,,[],,,,,,,,,7dce19d1-76d6-4250-baa4-a7ad5ba958fb,,,,,"[{""type"": ""next_message"", ""title"": ""Continue""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_75.png,,,,,en
+Sub 5.1.46,1,3576,mnch_onboarding_profile_progress_100,Onboarding,Profile_progress_100,,,Profile_progress_100,"🟩🟩🟩🟩🟩🟩🟩🟩
+
+Your profile is 100% complete! 🎉 🌟
+
+You can always edit it or provide more info. 
+
+*Profile name:* {name}
+*Baby due date:* {edd}
+*Profile questions:* {profile_questions}
+*Get important messages:* {get_important_messages}
+
+👇🏽 What do you want to do next?",,,,,[],,,,,,,,,0dabede9-c80b-4bf7-ba29-b9b005b3b321,,,,,"[{""type"": ""next_message"", ""title"": ""Explore health guide""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_100.png,,,,,en
+Sub 5.1.47,1,3577,mnch_onboarding_secondary_02,Onboarding,Secondary_02,,,Secondary_02,"If there are any questions you don’t want to answer right now, reply `Skip`
+
+👤 *Which month are you expecting your baby to be born?*",,,,,[],,,,,,,,,a25a085f-e4dc-4c97-9ae7-9a6636396fc9,,,,,[],,,,,Profile question 1/4,en
+Sub 5.1.48,1,3578,mnch_onboarding_edd_unknown_secondary,Onboarding,EDD_unknown_secondary,,,EDD_unknown_secondary,"*It's important to know the due date* 🗓️
+
+There are two ways to calculate it:
+
+• Count 40 weeks (or 280 days) forward from the first day of your partner's last menstrual period.
+
+• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator 
+
+A health worker should confirm this expected due date at your partner's next clinic visit 🧑🏾⚕️
+
+You can update your expected due date at any time in ‘Settings’ ⭐",,,,,[],,,,,,,,,0c6ce9c0-6255-4bbd-a59a-8ceffcb9f16a,,,,,"[{""type"": ""go_to_page"", ""title"": ""Update due date"", ""slug"": ""mnch_onboarding_secondary_03""}, {""type"": ""go_to_page"", ""title"": ""I'll do it later"", ""slug"": ""mnch_onboarding_secondary_03""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/EDD_Unknown.png,,,,,en
+Sub 5.1.49,1,3579,mnch_onboarding_secondary_03,Onboarding,Secondary_03,,,Secondary_03,"👤 *On what day of the month are you expecting the baby to be born?* 
+
+Type in a number between 1 and 31.",,,,,[],,,,,,,,,4d8d3787-8c20-4fc9-ad9f-44009e96c2d0,,,,,[],,,,,Profile question 2/4,en
+Sub 5.1.50,1,3580,mnch_onboarding_confirm_edd_secondary,Onboarding,Confirm_EDD_secondary,,,Confirm_EDD_secondary,"Thank you! Just confirming your estimated due date. 🗓️
+
+Are you expecting the baby on *{dd} {month_name} {yyyy}*?",,,,,[],,,,,,,,,c286adc2-f4ad-4eff-aeea-dffac2513811,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes, that's right"", ""slug"": ""mnch_onboarding_secondary_04""}, {""type"": ""go_to_page"", ""title"": ""Pick another date"", ""slug"": ""mnch_onboarding_secondary_04""}]",,,,,,en
+Sub 5.1.51,1,3581,mnch_onboarding_secondary_04,Onboarding,Secondary_04,,,Secondary_04,👤 *What gender do you identify most with?*,,,,,[],,,,,,,,,728234dc-8c85-46cb-87d4-b4a1941069b5,,,,,"[{""type"": ""next_message"", ""title"": ""Male""}, {""type"": ""next_message"", ""title"": ""Female""}, {""type"": ""next_message"", ""title"": ""Other""}]",,,,,Profile question 3/4,en
+Sub 5.1.52,1,3582,mnch_onboarding_loading_01_secondary,Onboarding,Loading_01_secondary,,,Loading_01_secondary,"Thanks, {@username}!
+
+Give me a moment while I set up your profile and find the best information for you... ⏳",,,,,[],,,,,,,,,4759d8c7-ed90-41b8-af65-2de67fd45dd8,,,,,"[{""type"": ""go_to_page"", ""title"": ""Okay"", ""slug"": ""mnch_onboarding_loading_02_secondary""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png,,,,,en
+Sub 5.1.53,1,3583,mnch_onboarding_loading_02_secondary,Onboarding,Loading_02_secondary,,,Loading_02_secondary,"{interesting facts for stage of pregnancy, specifically tailored to partner}",,,,,[],,,,,,,,,ccb681f3-d15a-45af-860c-d6a5ddbcce35,,,,,"[{""type"": ""go_to_page"", ""title"": ""Got it"", ""slug"": ""mnch_onboarding_content_intro""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
+Sub 5.1.54,1,3584,mnch_onboarding_content_intro,Onboarding,Content_intro,,,Content_intro,"Here are some topics picked just for you 💡
+
+*Managing mood swings* 🎢
+How to manage the ups and downs of pregnancy mood swings
+
+*Your partner this week* 🗓️
+Your partner is in the home stretch. Here are some things you can expect.
+
+*What is the third trimester?* ⏳
+Learn more about the last phase of pregnancy
+
+*Don’t skip clinic visits!* 🏥
+Why your partner should see a health worker throughout pregnancy.
+
+👇🏽 Choose a topic to read more about it.",,,,Select option,"[{""type"": ""next_message"", ""title"": ""Managing mood swings""}, {""type"": ""next_message"", ""title"": ""This week""}, {""type"": ""next_message"", ""title"": ""The third trimester""}, {""type"": ""next_message"", ""title"": ""Clinic visits""}, {""type"": ""next_message"", ""title"": ""Show me other topics""}]",,,,,,,,,a0695c39-4858-4b96-ae10-360b8fa8b597,,,,,[],https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png,,,,,en
+Sub 5.1.55,1,3585,mnch_onboarding_article_topic_01_secondary,Onboarding,Article_topic_01_secondary,,,Article_topic_01_secondary,"*Managing mood swings* 🎢
+[THIS IS JUST FILLER COPY. CONTENT TO BE SOURCED FROM CONTENTREPO.]
+How to manage the ups and downs of pregnancy mood swings
+
+1. *Avoid Caffeine*: Avoiding caffeine can help stabilise your partner's mood.
+2. *Learn Cognitive Behavioral Techniques*: They can help your partner to challenge negative thought patterns that cause mood swings.
+3. *Stay Mindful*: Practice mindfulness to stay present and focused.
+4. *Consider Professional Help*: If your partner's mood swings are severe or interfering with her daily life, consider seeking help.
+5. *Stay Patient and Kind*: Managing mood swings can take time and effort.",,,,,[],,,,,,,,,b8bec842-95f3-44ff-a61e-8eb7e55695cf,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""Rate this article""}, {""type"": ""next_message"", ""title"": ""Choose another topic""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png,,,,,en
+Sub 5.1.56,1,3586,mnch_onboarding_content_feedback,Onboarding,Content_feedback,,,Content_feedback,Was this the information you were looking for?,,,,,[],,,,,,,,,413090d6-03f0-4d12-b7a4-166dffacf998,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes"", ""slug"": ""mnch_onboarding_content_feedback_no""}, {""type"": ""go_to_page"", ""title"": ""Not really"", ""slug"": ""mnch_onboarding_content_feedback_no""}]",,,,,,en
+Sub 5.1.57,1,3587,mnch_onboarding_content_feedback_no,Onboarding,Content_feedback_no,,,Content_feedback_no,"Mmm maybe I need a bit more information about you...🤔
+
+Would you like to answer some more questions now?",,,,,[],,,,,,,,,2dfbd0ac-60e3-4f5c-9b4b-32baf0309e85,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes, sure"", ""slug"": ""mnch_onboarding_reminder_opt_in""}, {""type"": ""go_to_page"", ""title"": ""Maybe later"", ""slug"": ""mnch_onboarding_reminder_opt_in""}, {""type"": ""go_to_page"", ""title"": ""No thanks"", ""slug"": ""mnch_onboarding_reminder_opt_in""}]",,,,,,en
+Sub 5.1.58,1,3588,mnch_onboarding_reminder_opt_in,Onboarding,Reminder_opt_in,,,Reminder_opt_in,"*Be a big support to your partner!* 🔔 
+
+Can we send you notifications with weekly information that will help you manage your family’s health?",,,,,[],,,,,,,,,31107928-2dd4-4b97-89e4-9c925dfc935d,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes, sign me up"", ""slug"": ""mnch_onboarding_reminder_opt_in_no""}, {""type"": ""go_to_page"", ""title"": ""Maybe later"", ""slug"": ""mnch_onboarding_reminder_opt_in_no""}]",,,,,,en
+Sub 5.1.59,1,3589,mnch_onboarding_reminder_opt_in_no,Onboarding,Reminder_opt_in_no,,,Reminder_opt_in_no,"Thousands of people have signed up to receive these messages – they're the best way to stay in control 🙌🏾
+
+You can always change your update choice in `Settings`",,,,,[],,,,,,,,,876d7995-e629-431b-ae24-b6020026ede6,,,,,[],,,,,,en
+Sub 5.1.60,1,3590,mnch_onboarding_reminder_opt_in_yes,Onboarding,Reminder_opt_in_yes,,,Reminder_opt_in_yes,"Great decision, {@username}! 
+
+These messages are a great way to stay up to date and informed about your baby on the way 💛",,,,,[],,,,,,,,,497e7a31-32c3-40ac-85ec-256f19cd97eb,,,,,[],,,,,,en
+Sub 5.1.61,1,3591,mnch_onboarding_profile_progress_50_secondary,Onboarding,Profile_progress_50_secondary,,,Profile_progress_50_secondary,"🟩🟩🟩🟩⬜⬜⬜⬜ 
+
+Your profile is already 50% complete!
+
+What would you like to do next?",,,,,[],,,,,,,,,325ae959-d315-4f74-968a-a8278504feb4,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Explore health guide""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png,,,,,en
+Sub 5.1.62,1,3592,mnch_onboarding_curious_01,Onboarding,Curious_01,,,Curious_01,👤 *What gender do you identify most with?*,,,,,[],,,,,,,,,0da48a88-e9dc-4690-b2e0-1f5c1d209861,,,,,"[{""type"": ""go_to_page"", ""title"": ""Male"", ""slug"": ""mnch_onboarding_curious_02""}, {""type"": ""go_to_page"", ""title"": ""Female"", ""slug"": ""mnch_onboarding_curious_02""}, {""type"": ""go_to_page"", ""title"": ""Other"", ""slug"": ""mnch_onboarding_curious_02""}]",,,,,Profile question 2/4,en
+Sub 5.1.63,1,3593,mnch_onboarding_curious_02,Onboarding,Curious_02,,,Curious_02,"👤 *Tell me, do you have any children?*",,,,Other children,"[{""type"": ""next_message"", ""title"": ""No other children""}, {""type"": ""next_message"", ""title"": ""Yes, one""}, {""type"": ""next_message"", ""title"": ""Yes, two""}, {""type"": ""next_message"", ""title"": ""Yes, more than two""}, {""type"": ""next_message"", ""title"": ""Skip this question""}]",,,,,,,,,ce0c31e2-000b-46ed-a6e0-620898aaf449,,,,,[],,,,,Profile question 3/4,en
+Sub 5.1.64,1,3594,mnch_onboarding_curious_03,Onboarding,Curious_03,,,Curious_03,👤 *Which stage of pregnancy are you most interested in?*,,,,Select option,"[{""type"": ""next_message"", ""title"": ""First trimester""}, {""type"": ""next_message"", ""title"": ""Second trimester""}, {""type"": ""next_message"", ""title"": ""Third trimester""}, {""type"": ""next_message"", ""title"": ""General pregnancy info""}, {""type"": ""next_message"", ""title"": ""Skip this question""}]",,,,,,,,,88246cd7-c0b1-46ee-af50-7cbc77a7af8a,,,,,[],,,,,Profile question 4/4,en
+Sub 5.1.65,1,3595,mnch_onboarding_loading_component_01,Onboarding,Loading_component_01,,,Loading_component_01,"Thanks {@username}
+
+Give me a moment while I set up your profile and find the best information for you...⏳",,,,,[],,,,,,,,,7cc04fd5-70a5-475f-8558-2cbd09c7f1e3,,,,,"[{""type"": ""go_to_page"", ""title"": ""Okay"", ""slug"": ""mnch_onboarding_loading_component_02""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png,,,,,en
+Sub 5.1.66,1,3596,mnch_onboarding_loading_component_02,Onboarding,Loading_component_02,,,Loading_component_02,"{interesting facts for stage of pregnancy, more neutral as not mother/partner specific}",,,,,[],,,,,,,,,df4747b6-5d0e-49b2-afeb-917800d3e373,,,,,"[{""type"": ""go_to_page"", ""title"": ""Got it!"", ""slug"": ""mnch_onboarding_curious_content_intro""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
+Sub 5.1.67,1,3597,mnch_onboarding_curious_content_intro,Onboarding,Curious_content_intro,,,Curious_content_intro,"Here are some topics picked just for you 💡
+
+*Managing mood swings* 🎢
+How to manage the ups and downs of pregnancy mood swings
+
+*Your partner this week* 🗓️
+Your partner is in the home stretch. Here are some things you can expect.
+
+*What is the third trimester?* ⏳
+Learn more about the last phase of pregnancy
+
+*Don’t skip clinic visits!* 🏥
+Why your partner should see a health worker throughout pregnancy.
+
+👇🏽 Choose a topic to read more about it.",,,,Choose a topic,"[{""type"": ""next_message"", ""title"": ""Managing mood swings""}, {""type"": ""next_message"", ""title"": ""This week""}, {""type"": ""next_message"", ""title"": ""The third trimester""}, {""type"": ""next_message"", ""title"": ""Clinic visits""}, {""type"": ""next_message"", ""title"": ""Show me other topics""}]",,,,,,,,,cfa20d69-98f2-48d6-b9f1-183cf455bfb4,,,,,[],https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png,,,,,en
+Sub 5.1.68,1,3598,mnch_onboarding_article_topic_01_secondary_,Onboarding,Article_topic_01_secondary_,,,Article_topic_01_secondary_,"*Managing mood swings* 🎢
+[THIS IS JUST FILLER COPY. CONTENT TO BE SOURCED FROM CONTENTREPO.]
+How to manage the ups and downs of pregnancy mood swings
+
+1. *Avoid Caffeine*: Avoiding caffeine can help stabilise your partner's mood.
+2. *Learn Cognitive Behavioral Techniques*: They can help your partner to challenge negative thought patterns that cause mood swings.
+3. *Stay Mindful*: Practice mindfulness to stay present and focused.
+4. *Consider Professional Help*: If your partner's mood swings are severe or interfering with her daily life, consider seeking help.
+5. *Stay Patient and Kind*: Managing mood swings can take time and effort.",,,,,[],,,,,,,,,3248f29d-182b-4c82-98e8-edadbb5f309e,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""Rate this article""}, {""type"": ""next_message"", ""title"": ""Choose another topic""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png,,,,,en
+Sub 5.1.69,1,3599,mnch_onboarding_curious_content_05,Onboarding,Curious_content_05,,,Curious_content_05,Was this the information you were looking for?,,,,,[],,,,,,,,,de646040-e8ab-442d-97c8-d749fa2ba52c,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes"", ""slug"": ""mnch_onboarding_curious_content_feedback""}, {""type"": ""go_to_page"", ""title"": ""Not really"", ""slug"": ""mnch_onboarding_curious_content_feedback""}]",,,,,,en
+Sub 5.1.70,1,3600,mnch_onboarding_curious_content_feedback,Onboarding,Curious_content_feedback,,,Curious_content_feedback,"Mmm. Maybe I need a bit more information about you...🤔
+
+👇🏽 Would you like to answer some more questions now?",,,,,[],,,,,,,,,4c34831a-fb93-4fe5-997f-8a9a651dd136,,,,,"[{""type"": ""go_to_page"", ""title"": ""Yes, sure"", ""slug"": ""mnch_onboarding_profile_progress_50_secondary_""}, {""type"": ""go_to_page"", ""title"": ""Maybe later"", ""slug"": ""mnch_onboarding_profile_progress_50_secondary_""}, {""type"": ""go_to_page"", ""title"": ""No thanks"", ""slug"": ""mnch_onboarding_profile_progress_50_secondary_""}]",,,,,,en
+Sub 5.1.71,1,3601,mnch_onboarding_profile_progress_50_secondary_,Onboarding,Profile_progress_50_secondary_,,,Profile_progress_50_secondary_,"🟩🟩🟩🟩⬜⬜⬜⬜ 
+
+Your profile is already 50% complete!
+
+👇🏽 What would you like to do next? 🦄",,,,,[],,,,,,,,,af08849b-fb39-4bc1-be57-0d6d7b320c20,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Explore health guide""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png,,,,,en
+Sub 5.1.72,1,3602,mnch_onboarding_edd_reminder,Onboarding,EDD_reminder,,,EDD_reminder,"Hey {@username} 
+
+Your next antenatal visit is coming up soon, don’t forget to ask the health worker to confirm your expected due date 👩🏽‍⚕️ 
+
+You can update the expected due date in Settings, found in the main menu.",,,,,[],,,,,,,,,035c8b91-8d01-492d-928c-fa53140a091c,,,,,"[{""type"": ""next_message"", ""title"": ""Got it!""}, {""type"": ""next_message"", ""title"": ""Update due date""}, {""type"": ""next_message"", ""title"": ""How to calculate it""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/EDD_Reminder.png,,,,,en
+Sub 5.1.73,1,3603,mnch_onboarding_edd_got_it,Onboarding,EDD_got_it,,,EDD_got_it,Well done on taking care of you and baby’s health 🫶🏽,,,,,[],,,,,,,,,1caed98f-9458-4ca7-b6b0-5080106ffbd9,,,,,"[{""type"": ""go_to_page"", ""title"": ""See main menu"", ""slug"": ""mnch_onboarding_edd_month""}]",,,,,,en
+Sub 5.1.74,1,3604,mnch_onboarding_edd_month,Onboarding,EDD_month,,,EDD_month,"Great. 
+
+👇🏽 Which month are you expecting your baby to be born?",,,,,[],,,,,,,,,534f5c5c-52eb-4753-96b2-04a84e02a553,,,,,[],,,,,,en
+Sub 5.1.75,1,3605,mnch_onboarding_edd_day,Onboarding,EDD_day,,,EDD_day,"On what *day* of the month are you expecting the baby to be born? 
+
+Type in a number between 1 and 31. 
+
+If you don't know, reply `Skip`",,,,,[],,,,,,,,,414f46cb-a8d2-47e1-bb44-1f02b8da0cb7,,,,,[],,,,,,en
+Sub 5.1.76,1,3606,mnch_onboarding_edd_confirmed,Onboarding,EDD_confirmed,,,EDD_confirmed,"I’ve updated your baby’s estimated due date to: [edd]
+
+Well done on taking care of yours and baby’s health 🫶🏽",,,,,[],,,,,,,,,a9d1e328-136e-459f-803d-31013c658002,,,,,"[{""type"": ""next_message"", ""title"": ""See main menu""}]",,,,,,en
+Sub 5.1.77,1,3607,mnch_onboarding_edd_do_it_later,Onboarding,EDD_do_it_later,,,EDD_do_it_later,"Ok! We'll remind you again in a while.
+
+👇🏽 What would you like to do now?",,,,,[],,,,,,,,,67039cba-d011-41fc-8d41-fbf07228e3fe,,,,,"[{""type"": ""next_message"", ""title"": ""See main menu""}, {""type"": ""next_message"", ""title"": ""Go to health guide""}]",,,,,,en
+Sub 5.1.78,1,3608,mnch_onboarding_opt_in_reminder,Onboarding,Opt_in_reminder,,,Opt_in_reminder,"🔔 Never miss an important message. 
+
+You can get info like:
+
+• vaccine appointment reminders
+• breaking health news in your area
+• tips on managing stress
+• and much more
+
+You can always change the messages you get later in Settings, found in the main menu.
+
+👇🏽 Can I send you these messages?",,,,,[],,,,,,,,,0b935fab-dfec-4670-85e2-801f5fbf2315,,,,,"[{""type"": ""next_message"", ""title"": ""Yes \u2705""}, {""type"": ""next_message"", ""title"": ""Maybe later...""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Opt_in_pic.png,,,,,en
+Sub 5.1.79,1,3609,mnch_onboarding_opt_in_no,Onboarding,Opt_in_no,,,Opt_in_no,"Ok.
+
+But remember, signing up for these important messages keeps you in control of your health and this service.
+
+You can always change the messages you get later in Settings, found in the main menu.",,,,,[],,,,,,,,,60249bde-af53-4dc6-a7a3-0d4322a4e1dc,,,,,[],,,,,,en
+Sub 5.1.80,1,3610,mnch_onboarding_opt_in_yes,Onboarding,Opt_in_yes,,,Opt_in_yes,"Great decision, {@username}! 
+
+These important messages are a great way to stay in control ⭐",,,,,[],,,,,,,,,4653075f-9869-42bf-9f87-af92e4c7cd13,,,,,[],,,,,,en
+Sub 5.1.81,1,3611,mnch_onboarding_q_age,Onboarding,Q_age,,,Q_age,"If there are any questions you don’t want to answer right now, reply `Skip`
+
+👤 *What year were you born in?*",,,,,[],,,,,,,,,6a4f8d8d-e30b-4575-aa2c-be56c94ae6e6,,,,,[],,,,,Basic information 1/4,en
+Sub 5.1.82,1,3612,mnch_onboarding_q_province,Onboarding,Q_province,,,Q_province,👤 *Which province do you call home?*,,,,Province,"[{""type"": ""next_message"", ""title"": ""{province_name_01}""}, {""type"": ""next_message"", ""title"": ""{province_name_02}""}, {""type"": ""next_message"", ""title"": ""{province_name_03}""}, {""type"": ""next_message"", ""title"": ""{province_name_04}""}, {""type"": ""next_message"", ""title"": ""{province_name_05}""}, {""type"": ""next_message"", ""title"": ""{province_name_06}""}, {""type"": ""next_message"", ""title"": ""{province_name_07}""}, {""type"": ""next_message"", ""title"": ""Why do you ask?""}]",,,,,,,,,1bc93ed5-89fe-475a-b2b4-c1d1237e8e92,,,,,[],,,,,Basic information 2/4,en
+Sub 5.1.83,1,3613,mnch_onboarding_q_province_why,Onboarding,Q_province_why,,,Q_province_why,"Knowing your province helps me find you relevant services when you need them.
+
+👤 *So, which province do you live in?*",,,,,[],,,,,,,,,6f504277-f8ef-47f9-8e9a-9ff2b3c7dedf,,,,,[],,,,,,en
+Sub 5.1.84,1,3614,mnch_onboarding_q_province_many,Onboarding,Q_province_many,,,Q_province_many,"👤 *Which province do you call home?*
+
+1.{province_name_01}
+2.{province_name_02}
+3.{province_name_03}
+4.{province_name_04}
+5.{province_name_05}
+6.{province_name_06}
+7.{province_name_07}
+8.{province_name_08}
+9.{province_name_09}
+10.{province_name_10}
+11.{province_name_11}
+12.Why do you ask?
+
+Reply with the number next to your province.",,,,,[],,,,,,,,,06cf6ec9-ccaa-4ab9-9ba2-7a48f169afd4,,,,,[],,,,,Basic information 2/4,en
+Sub 5.1.85,1,3615,mnch_onboarding_q_province_many_why,Onboarding,Q_province_many_why,,,Q_province_many_why,"ℹ️ Knowing your province helps me find you relevant services when you need them.
+
+1.{province_name_01}
+2.{province_name_02}
+3.{province_name_03}
+4.{province_name_04}
+5.{province_name_05}
+6.{province_name_06}
+7.{province_name_07}
+8.{province_name_08}
+9.{province_name_09}
+10.{province_name_10}
+11.{province_name_11}
+
+Ready to share your province? Please reply with a number.",,,,,[],,,,,,,,,44e7f550-815b-48d1-a70f-251749876098,,,,,[],,,,,,en
+Sub 5.1.86,1,3616,mnch_onboarding_q_area_type,Onboarding,Q_area_type,,,Q_area_type,"👤 *Do you live in a big town or city, or in the countryside or a small village?*",,,,,[],,,,,,,,,09c6116c-678b-4d9d-8116-91187940090f,,,,,"[{""type"": ""next_message"", ""title"": ""Big town/City""}, {""type"": ""next_message"", ""title"": ""Countryside/Village""}]",,,,,Basic information 3/4,en
+Sub 5.1.87,1,3617,mnch_onboarding_q_gender,Onboarding,Q_gender,,,Q_gender,👤 *What gender do you identify as?*,,,,,[],,,,,,,,,16436c28-a66c-4253-8c6d-ab9d69e4c1b0,,,,,"[{""type"": ""next_message"", ""title"": ""Male""}, {""type"": ""next_message"", ""title"": ""Female""}, {""type"": ""next_message"", ""title"": ""Other""}]",,,,,Basic information 4/4,en
+Sub 5.1.88,1,3618,mnch_onboarding_error_handling_button,Onboarding,error handling - button,,,error handling - button-2,"I don't understand your reply.
+
+👇🏽 Please try that again and respond by tapping a button.",,,,,[],,,,,,,,,35878173-3838-467c-ac8b-73ad717ed898,,,,,[],,,,,,en
+Sub 5.1.89,1,3619,mnch_onboarding_error_handling_list_message,Onboarding,error handling - list message,,,error handling - list message,"I don't understand your reply. Please try that again. 
+
+👇🏽 Tap on the button below the message, choose your answer from the list, and send.",,,,,[],,,,,,,,,9914578a-4ab0-4b2d-adfb-b1d9555a03d6,,,,,[],,,,,,en
+Sub 5.1.90,1,3620,mnch_onboarding_error_handling_number_input,Onboarding,error handling - number input,,,error handling - number input,"I don't understand your reply. 
+
+👇🏽  Please try that again and respond with the number that comes before your answer.",,,,,[],,,,,,,,,070aedd5-b7ca-41b9-adc2-b996eed2d856,,,,,[],,,,,,en
+Sub 5.1.91,1,3621,mnch_onboarding_error_handling_undefined,Onboarding,error handling - undefined,,,error handling - undefined,"Something doesn't look right. 
+
+Please read the previous instruction and try that again.",,,,,[],,,,,,,,,0be74b50-bf71-43fe-a361-e8894bf360a2,,,,,[],,,,,,en
+Sub 5.1.92,1,3622,mnch_onboarding_unrecognised_number,Onboarding,Unrecognised_number,,,Unrecognised_number,"Sorry, I didn’t get that – let's try again.
+
+👇🏽 Please reply with a number between {minimum} and {maximum}.",,,,,[],,,,,,,,,2645993a-0166-4346-af8d-a32363647ce4,,,,,[],,,,,,en
+Sub 5.1.93,1,3623,mnch_onboarding_unrecognised_year,Onboarding,Unrecognised_year,,,Unrecognised_year,"Sorry, I didn’t get that – let's try again.
+
+👇🏽 Please reply with a specific year, like 2008 or 1998.",,,,,[],,,,,,,,,b05cd5f3-03ed-4ca5-b04b-1bfff93ee1d2,,,,,[],,,,,,en
+Sub 5.1.94,1,3624,mnch_onboarding_unrecognised_list,Onboarding,Unrecognised_list,,,Unrecognised_list,"Sorry, I didn’t get that – let’s try again.
+
+👇🏽 To respond, tap the menu button and then select the option from the list that best matches your response.",,,,,[],,,,,,,,,241e6b9e-aef2-4af8-b607-728cdfc5328a,,,,,[],,,,,,en
+Sub 5.1.95,1,3625,mnch_onboarding_intent_error,Onboarding,intent_error,,,intent_error,"Something doesn't look right. Let's try that again.
+
+👇🏽 What do you want to do?",,,,,[],,,,,,,,,88663cb1-03b9-45af-8e60-b0e894075f61,,,,,"[{""type"": ""next_message"", ""title"": ""Create a profile""}, {""type"": ""next_message"", ""title"": ""Get health advice""}, {""type"": ""next_message"", ""title"": ""Explore the service""}]",,,,,,en
+Sub 5.1.96,1,3626,mnch_onboarding_username_catchall,Onboarding,username_catchall,,,username_catchall,"I can *only accept names with letters* – no numbers or symbols.
+
+Let's try this again!
+
+What would you like me to call you?
+
+If you don't want to answer this right now, reply `Skip`",,,,,[],,,,,,,,,b24cf3a6-a600-43f4-ab24-c408f9e77e87,,,,,[],,,,,,en
+Sub 5.1.97,1,3627,mnch_onboarding_profile_progress_30_generic,Onboarding,Profile_progress_30_generic,,,Profile_progress_30_generic,"Your profile is already 30% complete!
+
+🟩🟩🟩⬜⬜⬜⬜⬜ 
+
+👤 Basic information {basic_info_count}
+➡️ Personal information {personal_info_count}
+⬜ Daily life {daily_life_count}
+
+👇🏽 Let’s move on to personal information.",,,,,[],,,,,,,,,6c991274-568e-4f4d-8f7d-8c9f8e7160ed,,,,,"[{""type"": ""next_message"", ""title"": ""Continue""}, {""type"": ""next_message"", ""title"": ""Why?""}]",,,,,,en
+Sub 5.1.98,1,3628,mnch_onboarding_why_personal_info,Onboarding,Why_personal_info,,,Why_personal_info,"ℹ️ Your time is important, and I have *a lot* of information on this service. 
+
+Make sure you get information that is specifically valuable to *you* by telling me more about yourself ⭐
+
+It will only take a few minutes.
+
+👇🏽 Are you ready to share more info?",,,,,[],,,,,,,,,16354a03-8c16-4da2-867b-d29e4d0ca5b7,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, let's go""}, {""type"": ""next_message"", ""title"": ""Not right now""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/HCW_info.png,,,,,en
+Sub 5.1.99,1,3629,mnch_onboarding_profile_progress_100_generic,Onboarding,Profile_progress_100_generic,,,Profile_progress_100_generic,"🟩🟩🟩🟩🟩🟩🟩🟩
+
+Your profile is 100% complete! 🎉 🌟
+
+You can always edit it or provide more info. 
+
+*Name:* {name}
+*Basic info:* {basic_info_count}
+*Personal info:* {personal_info_count}
+*Get important messages:* {get_important_messages}
+
+👇🏾 What do you want to do next?",,,,,[],,,,,,,,,a95f4432-08ef-4068-80ce-f42a98a38b51,,,,,"[{""type"": ""next_message"", ""title"": ""Explore health guide""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_100.png,,,,,en
+Sub 5.1.100,1,3630,mnch_onboarding_profile_progress_75_generic,Onboarding,Profile_progress_75_generic,,,Profile_progress_75_generic,"{🟩🟩🟩🟩🟩🟩⬜⬜} 
+
+Your profile is {75%} complete! 
+
+You can always change it or add more info. 
+
+*Name:* {UserName, “None”}
+*Basic info:* {✅, “#/4”}
+*Personal info:* {✅, “#/4”}
+*Get important messages:* {✅, ❌}
+
+👇🏾 What do you want to do next?",,,,,[],,,,,,,,,36d0fd60-c33e-4378-bdd8-40f9b3b1756a,,,,,"[{""type"": ""next_message"", ""title"": ""Explore health guide""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_75.png,,,,,en
+Sub 5.1.101,1,3631,mnch_onboarding_profile_progress_10_generic,Onboarding,Profile_progress_10_generic,,,Profile_progress_10_generic,"{🟩⬜⬜⬜⬜⬜⬜⬜} 
+
+Your profile is {10%} complete.💙
+
+Take control of {MyHealth} by completing your profile as soon as possible!
+
+*Name:* {UserName, “None”}
+*Basic info:* {✅, “1/4”}
+*Personal info:* {✅, “1/4”}
+*Get important messages:* {✅, ❌}
+
+👇🏾 What do you want to do next?",,,,,[],,,,,,,,,152193dd-91a5-4037-932c-f1e9d3e5d883,,,,,"[{""type"": ""next_message"", ""title"": ""Explore health guide""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_10.png,,,,,en
+Sub 5.1.102,1,3632,mnch_onboarding_q_relationshipstatus,Onboarding,Q_relationshipstatus,,,Q_relationshipstatus,"If there are any questions you don’t want to answer right now, reply `Skip`
+
+🗝️ *What is your current relationship status?*",,,,,[],,,,,,,,,e5428a44-0849-4d64-9be9-a2ca0bf994fa,,,,,"[{""type"": ""next_message"", ""title"": ""Single""}, {""type"": ""next_message"", ""title"": ""In a relationship""}, {""type"": ""next_message"", ""title"": ""It's complicated""}]",,,,,Personal information 1/4,en
+Sub 5.1.103,1,3633,mnch_onboarding_q_education,Onboarding,Q_education,,,Q_education,🗝️ *What is your highest level of education?*,,,,Education,"[{""type"": ""next_message"", ""title"": ""Primary school""}, {""type"": ""next_message"", ""title"": ""High school""}, {""type"": ""next_message"", ""title"": ""Diploma""}, {""type"": ""next_message"", ""title"": ""Degree""}, {""type"": ""next_message"", ""title"": ""Master's degree""}, {""type"": ""next_message"", ""title"": ""Doctoral degree""}, {""type"": ""next_message"", ""title"": ""None""}, {""type"": ""next_message"", ""title"": ""Skip this question""}]",,,,,,,,,7a5d2484-9c00-4884-9e28-e5e86fbc8de9,,,,,[],,,,,Personal information 2/4,en
+Sub 5.1.104,1,3634,mnch_onboarding_q_socioeconomic,Onboarding,Q_socioeconomic,,,Q_socioeconomic,🗝️ *How would you describe your personal finances when it comes to having enough money?*,,,,,[],,,,,,,,,2756e974-7e6b-43f8-b2b0-ccf93576e730,,,,,"[{""type"": ""next_message"", ""title"": ""Comfortable""}, {""type"": ""next_message"", ""title"": ""I get by""}, {""type"": ""next_message"", ""title"": ""Money is an issue""}]",,,,,Personal information 3/4,en
+Sub 5.1.105,1,3635,mnch_onboarding_children,Onboarding,Children,,,Children,🗝️ *How many children do you have?*,,,,Children,"[{""type"": ""next_message"", ""title"": ""None""}, {""type"": ""next_message"", ""title"": ""1""}, {""type"": ""next_message"", ""title"": ""2""}, {""type"": ""next_message"", ""title"": ""3""}, {""type"": ""next_message"", ""title"": ""More than 3""}, {""type"": ""next_message"", ""title"": ""Why do you ask?""}]",,,,,,,,,95c9ef62-c5f0-490a-9bb5-b31a0c08c1f3,,,,,[],,,,,Personal information 4/4,en
+Sub 5.1.106,1,3636,mnch_onboarding_children_why,Onboarding,Children_why,,,Children_why,"ℹ️ Children change our lives a lot! Our team of health experts works hard to find information and services that fit your needs.
+
+*How many children do you have?*",,,,,"[{""type"": ""next_message"", ""title"": ""None""}, {""type"": ""next_message"", ""title"": ""1""}, {""type"": ""next_message"", ""title"": ""2""}, {""type"": ""next_message"", ""title"": ""3""}, {""type"": ""next_message"", ""title"": ""More than 3""}, {""type"": ""next_message"", ""title"": ""Skip this question""}]",,,,,,,,,a0ef0731-ed59-4a39-a5e2-152725acf131,,,,,[],,,,,Why we need this,en
+Sub 5.1.107,1,3637,mnch_onboarding_loc_results_01,Onboarding,LOC_results_01,,,LOC_results_01,"Thanks for answering those questions, {@username}!
+
+From what you've told me, you think fate often plays a bigger role in your life and your health than your own decisions. It can sometimes be tough feeling this way!
+
+Keep using {MyHealth} and see how your perspective might change 🧭",,,,,[],,,,,,,,,07d6fd52-52e0-4845-9835-d9d1a4dafccb,,,,,"[{""type"": ""next_message"", ""title"": ""Thanks""}]",,,,,,en
+Sub 5.1.108,1,3638,mnch_onboarding_loc_results_02,Onboarding,LOC_results_02,,,LOC_results_02,"Thanks for answering those questions, {@username}!
+
+From what you've told me, you often feel in control of your life and health, but sometimes you think that luck – both good and bad – play a bigger role.
+
+Keep using our platform and see how your perspective might change! 🧭",,,,,[],,,,,,,,,8094f4a6-69d3-48d9-b9c2-637271f6dc99,,,,,"[{""type"": ""next_message"", ""title"": ""Thanks""}]",,,,,,en
+Sub 5.1.109,1,3639,mnch_onboarding_loc_results_03,Onboarding,LOC_results_03,,,LOC_results_03,"Thanks for answering those questions, {@username}!
+
+From what you've told me, you feel in control of your life and health. That’s wonderful!
+
+You probably make the best decisions possible in different situations, and know you'll reach your goals if you keep working hard. That's impressive ⭐",,,,,[],,,,,,,,,8c7f58bc-27be-4f99-b07b-39e7a1006a16,,,,,"[{""type"": ""next_message"", ""title"": ""Thanks!""}]",,,,,,en
+Sub 5.1.110,1,3640,mnch_onboarding_nursecheck,Onboarding,NurseCheck,,,NurseCheck,"Great! We have *lots* of interesting info for nurses.
+
+*Are you working as a nurse at the moment, or are you just curious?*",,,,,[],,,,,,,,,05180793-711f-4139-960f-37c91ca63e90,,,,,"[{""type"": ""next_message"", ""title"": ""I am a nurse""}, {""type"": ""next_message"", ""title"": ""Just curious""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/HCW_info.png,,,,,en
+Sub 5.1.111,1,3641,mnch_onboarding_occupational_role,Onboarding,Occupational_role,,,Occupational_role,"If there are any questions you don’t want to answer right now, reply `Skip`
+
+🏥 *What title best describes the type of nurse you are?*",,,,Role,"[{""type"": ""next_message"", ""title"": ""EN""}, {""type"": ""next_message"", ""title"": ""ENA""}, {""type"": ""next_message"", ""title"": ""RN""}, {""type"": ""next_message"", ""title"": ""APN""}, {""type"": ""next_message"", ""title"": ""Public Health Nurse""}, {""type"": ""next_message"", ""title"": ""Midwife""}, {""type"": ""next_message"", ""title"": ""Psychiatric nurse""}, {""type"": ""next_message"", ""title"": ""Other""}]",,,,,,,,,98e09350-050d-4104-a093-f0dd207871d6,,,,,[],,,,,Employment information 1/3,en
+Sub 5.1.112,1,3642,mnch_onboarding_facility_type,Onboarding,Facility_type,,,Facility_type,🏥 *What kind of healthcare facility do you work in?*,,,,Facility,"[{""type"": ""next_message"", ""title"": ""Level 1""}, {""type"": ""next_message"", ""title"": ""Level 2""}, {""type"": ""next_message"", ""title"": ""Level 3""}, {""type"": ""next_message"", ""title"": ""Clinic""}, {""type"": ""next_message"", ""title"": ""CHC""}, {""type"": ""next_message"", ""title"": ""Satellite Clinic""}, {""type"": ""next_message"", ""title"": ""Other""}]",,,,,,,,,aa1fcbcf-f9e8-49c5-985a-b6b4107e59ca,,,,,[],,,,,Employment information 2/3,en
+Sub 5.1.113,1,3643,mnch_onboarding_professional_support,Onboarding,Professional_support,,,Professional_support,🏥 *Do you feel supported in the workplace?*,,,,,[],,,,,,,,,88c26ccf-4ba2-4b68-8660-81d2fbde39ac,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, always""}, {""type"": ""next_message"", ""title"": ""Sometimes""}, {""type"": ""next_message"", ""title"": ""No, never""}]",,,,,Employment information 3/3,en
+Sub 5.1.114,1,3644,mnch_onboarding_profile_progress_30_hcw,Onboarding,Profile_progress_30_hcw,,,Profile_progress_30_hcw,"Thanks for sharing! 
+
+Now is your chance to tell me more about yourself, so I give you information that is valuable to *you.* 
+
+🟩🟩🟩⬜⬜⬜⬜⬜⬜
+
+🏥 Employment information 4/4
+➡️ Basic information 0/4
+⬜ Personal information 0/3
+⬜ Daily life 0/5
+
+👇🏾  Are you ready to answer a few questions?",,,,,[],,,,,,,,,f1fb7407-5147-4c76-a3e4-016ddc8637dc,,,,,"[{""type"": ""next_message"", ""title"": ""Sure, let's go \u27a1\ufe0f""}, {""type"": ""next_message"", ""title"": ""Why?""}]",,,,,,en
+Sub 5.1.115,1,3645,mnch_onboarding_remind_me_later,Onboarding,Remind_me_later,,,Remind_me_later,"*All good. I’ll ask again another time.* 🗓️
+
+👇🏽 For now, I recommend having a look at some of the most popular topics for nurses on {MyHealth}.",,,,,[],,,,,,,,,7131f961-4515-4aef-ada2-1d4711372a6e,,,,,"[{""type"": ""next_message"", ""title"": ""View popular topics""}, {""type"": ""next_message"", ""title"": ""Not right now""}]",,,,,,en
+Sub 5.1.116,1,3646,mnch_onboarding_profile_progress_50_hcw,Onboarding,Profile_progress_50_hcw,,,Profile_progress_50_hcw,"Your profile is already 50% complete!
+
+🟩🟩🟩🟩⬜⬜⬜⬜ 
+
+🏥 Employment information {employment_info_count}
+👤 Basic information {basic_info_count}
+➡️ Personal information {personal_info_count}
+⬜ Daily life {daily_life_count}
+
+
+👇🏽 Let’s move on to personal information.",,,,,[],,,,,,,,,572d704a-3b90-406d-b26e-da1ccfeb44aa,,,,,"[{""type"": ""next_message"", ""title"": ""Let's go""}]",,,,,,en
+Sub 5.1.117,1,3647,mnch_onboarding_profile_progress_75_hcw,Onboarding,Profile_progress_75_hcw,,,Profile_progress_75_hcw,"🟩🟩🟩🟩🟩🟩⬜⬜ 
+
+🏥 Employment information {employment_info_count}
+👤 Basic information {basic_info_count}
+🗝️ Personal information {personal_info_count}
+➡️ Daily life {daily_life_count}
+
+Your profile is already 75% there – now is a good time to take 5 minutes and complete it! ⭐
+
+👇🏽 What would you like to do next?",,,,,[],,,,,,,,,9e29f16f-8fbe-4d6f-8458-cce8677bb732,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete it!""}, {""type"": ""next_message"", ""title"": ""Remind me later""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Nurse_profile_progress.png,,,,,en
+Sub 5.1.118,1,3648,mnch_onboarding_profile_progress_100_hcw,Onboarding,Profile_progress_100_hcw,,,Profile_progress_100_hcw,"🟩🟩🟩🟩🟩🟩🟩🟩 
+
+🏥 Employment information {employment_info_count}
+👤 Basic information {basic_info_count}
+🗝️ Personal information {personal_info_count}
+☀️ Daily life {daily_life_count}
+
+Your profile is 100% complete! 🎉 🌟 ⭐
+
+You can always edit it or provide more info in `Menu -> Profile`
+
+👇🏽 What do you want to do next?",,,,,[],,,,,,,,,6deb5ece-d311-48ee-bd59-ae2ebc30ffa5,,,,,"[{""type"": ""next_message"", ""title"": ""Explore health guide""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_100.png,,,,,en
+Sub 5.1.119,1,3649,mnch_onboarding_nudge_complete_profile,Onboarding,Nudge_complete_profile,,,Nudge_complete_profile,"Hi! It’s {MyHealth} here 🤖
+
+Want to get useful nursing information, chosen especially for you?
+
+*Tell me a bit more about yourself. It will only take a few minutes!*",,,,,[],,,,,,,,,d7a30dcb-3843-4e15-9078-c541c0c8cde2,,,,,"[{""type"": ""next_message"", ""title"": ""Ok, let's go \u27a1\ufe0f""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
+Sub 5.1.120,1,3650,mnch_onboarding_reminder_secondary,Onboarding,Reminder_secondary,,,Reminder_secondary,"Hi! It’s {MyHealth} here. 
+
+Just a reminder that your profile isn’t complete yet 👤
+
+Creating your profile is easy! Just answer a few simple questions about yourself.",,,,,[],,,,,,,,,fd4a1fd7-8eae-419a-9094-7cb5719693a1,,,,,"[{""type"": ""go_to_page"", ""title"": ""Create my profile \u2705"", ""slug"": ""mnch_onboarding_reminder_later_2""}, {""type"": ""go_to_page"", ""title"": ""Maybe later"", ""slug"": ""mnch_onboarding_reminder_later_2""}, {""type"": ""go_to_page"", ""title"": ""Visit main menu"", ""slug"": ""mnch_onboarding_reminder_later_2""}]",,,,,,en
+Sub 5.1.121,1,3651,mnch_onboarding_reminder_later_2,Onboarding,Reminder_later_2,,,Reminder_later_2,"*All good. I’ll remind you another time.* 🗓️
+
+For now, I recommend having a look at some of the most popular topics on {MyHealth}.
+
+👇🏽 What do you want to do now?",,,,,[],,,,,,,,,5c09f170-f8a1-4c8d-a0be-5b1fa49a66e3,,,,,"[{""type"": ""next_message"", ""title"": ""See popular topics""}]",,,,,,en
+Sub 5.1.122,1,3662,mnch_onboarding_basic_info,Onboarding,Basic_info,,,Basic_info,"👤 *Basic info* #/6
+
+Please select anything you want to add or change.
+
+*Name:* {username}
+*Year of birth:* {year_of_birth}
+*Gender:* {gender}
+*Province:* {province}
+*Area type:* {area_type}
+*Language:* {language}",,,,,[],,,,,,,,,82425927-b500-40a4-8315-59c424271f83,,,,,[],,,,,,en
+Sub 5.1.123,1,3663,mnch_onboarding_personal_info,Onboarding,Personal_info,,,Personal_info,"🗝️ *Personal info* #/4
+
+Please select anything you want to add or change.
+
+*Education:* {education}
+*Relationship status:* {relationship_status}
+*Finances:* {finances}
+*Children*: {no_of_children}",,,,,[],,,,,,,,,a5b96f15-453b-41e6-8aae-0fc190f1653b,,,,,[],,,,,,en
+Sub 5.1.124,1,3664,mnch_onboarding_pregnancy_info_moms_partners,Onboarding,Pregnancy_info_moms_partners,,,Pregnancy_info_moms_partners,"🤰🏽 *Pregnancy info* #/4
+
+Please select anything you want to add or change.
+
+*My role:* {role}
+*Estimated due date:* {edd}
+*Number of children:* {number_of_children}
+*Feeling:* {feeling}",,,,,[],,,,,,,,,a8dea4b9-f8db-4cc9-b035-cd62845cf141,,,,,[],,,,,,en
+Sub 5.1.125,1,3665,mnch_onboarding_pregnancy_info_curious,Onboarding,Pregnancy_info_curious,,,Pregnancy_info_curious,"🤰🏽 *Pregnancy info* #/3
+
+Please select anything you want to add or change.
+
+*My role:* {role}
+*Trimester of interest:* {trimester}
+*Number of children:* {number_of_children}",,,,,[],,,,,,,,,160855c9-109c-4b61-836f-ce52e791239f,,,,,[],,,,,,en
+Sub 5.1.126,1,3666,mnch_onboarding_employment_info,Onboarding,Employment_info,,,Employment_info,"🏥 Employment info (#/3)
+
+Please select anything you want to add or change.
+
+*Role:* {role}
+*Facility type:* {facility_type}
+*Level of support:* {support_level}",,,,,[],,,,,,,,,8960bd01-6a65-4968-a180-293f477afbc1,,,,,[],,,,,,en
+Sub 5.1.127,1,3667,mnch_onboarding_daily_life,Onboarding,Daily_life,,,Daily_life,"🌞 *Daily life*
+
+Here are all the quizzes we have available for you! Feel free to retake one or to try a new one:
+
+✅ Daily life quiz 
+⬜ {Connectedness quiz}
+⬜ {Self-care quiz}
+⬜ {Inner strength quiz}",,,,,[],,,,,,,,,0ed365bf-1581-4ab9-8273-bb0d2e28ac5a,,,,,[],,,,,,en
+Sub 5.1.128,1,3668,mnch_onboarding_your_interests,Onboarding,Your_interests,,,Your_interests,"⭐ *Your interests*
+
+Here are the topics you've selected:
+
+{topics}
+
+Add more topics or remove a topic if you're no longer interested.",,,,,[],,,,,,,,,1d32553f-f31d-4088-8745-94d0c5e005fe,,,,,[],,,,,,en
+Sub 5.1.129,1,3669,mnch_onboarding_age,Onboarding,Age,,,Age,"👤 *In what year were you born?*
+
+Reply with your birth year, or tap `Back` to leave it as {year}.
+
+To leave your birth year as {age}, just tap the Back button.",,,,,[],,,,,,,,,50023a95-55c2-4c16-b622-e55bc41af1e5,,,,,"[{""type"": ""next_message"", ""title"": ""Back""}]",,,,,,en
+Sub 5.1.130,1,3670,mnch_onboarding_gender,Onboarding,Gender,,,Gender,👤 *What gender do you identify as?*,,,,,[],,,,,,,,,6127d77c-9210-4f35-977e-e808985fbda8,,,,,"[{""type"": ""next_message"", ""title"": ""Male""}, {""type"": ""next_message"", ""title"": ""Female""}, {""type"": ""next_message"", ""title"": ""Other""}]",,,,,,en
+Sub 5.1.131,1,3671,mnch_onboarding_add_profile_incomplete,Onboarding,Add_profile_incomplete,,,Add_profile_incomplete,"⭐  I’ve added {domain} to your topics!
+
+I have *lots* of information about {domain}.
+
+Tell me a little bit more about yourself, then you can get the information that is most valuable to you!",,,,,[],,,,,,,,,9c18fa7b-7fce-4678-b661-c46e6e256eab,,,,,"[{""type"": ""next_message"", ""title"": ""Complete profile \ud83d\udc64""}, {""type"": ""next_message"", ""title"": ""Browse topic""}, {""type"": ""next_message"", ""title"": ""Back to profile""}]",,,,,,en
+Sub 5.1.132,1,3672,mnch_onboarding_add_profile_complete,Onboarding,Add_profile_complete,,,Add_profile_complete,"⭐  I’ve added {domain} to your topics!
+
+I have *lots* of information about {domain}, selected just for you.
+
+Want to check it out?",,,,,[],,,,,,,,,a769165c-5be4-4f74-9316-90b4e3f24987,,,,,"[{""type"": ""next_message"", ""title"": ""Browse topic""}, {""type"": ""next_message"", ""title"": ""Back to profile""}]",,,,,,en
+Sub 5.1.133,1,3673,mnch_onboarding_remove_topic,Onboarding,Remove_topic,,,Remove_topic,🗑️ Which topic do you want to remove?,,,,,[],,,,,,,,,ae4282a3-3c36-4d7f-8e69-cc60ac63209e,,,,,[],,,,,,en
+Sub 5.1.134,1,3674,mnch_onboarding_why_personal_info_1,Onboarding,Why_personal_info_1,,,Why_personal_info_1,"ℹ️ Our team of experts has put together loads of health information for you. To quickly get a selection of the info that is valuable to you, share more information about yourself.
+
+Ready to share?",,,,,[],,,,,,,,,653f8d9e-ccd3-48ba-b57f-28fff44e1512,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, let's go""}, {""type"": ""next_message"", ""title"": ""Not right now""}]",,,,,,en
+Sub 5.1.135,1,3679,mnch_onboarding_main_menu_personalised,Onboarding,Main_menu_personalised,,,Main_menu_personalised,"*{MyHealth} main menu*
+
+Tap `≡ Menu` to make your choice.
+
+*Get health advice*
+ 👩🏽⚕️ Your health guide
+ 📚 View topics for you
+ 📞 Help centre
+
+*Settings*
+ 👤 Your profile
+ 🔔 Manage updates
+ 📱 Manage data
+
+*{MyHealth} Service*
+ 🚌 Take a tour
+ ℹ️ About & privacy policy
+
+To return here at any time, send in the word `menu`",,,,Menu,"[{""type"": ""next_message"", ""title"": ""Health Guide""}, {""type"": ""next_message"", ""title"": ""View Topics""}, {""type"": ""next_message"", ""title"": ""Go to Help Center""}, {""type"": ""next_message"", ""title"": ""Profile""}, {""type"": ""next_message"", ""title"": ""Manage Updates""}, {""type"": ""next_message"", ""title"": ""Manage Data""}, {""type"": ""next_message"", ""title"": ""Take a Tour""}, {""type"": ""next_message"", ""title"": ""About this service""}]",,,,,,,,,f7d246db-c55d-499b-a9c8-940e63cec2ed,,,,,[],,,,,,en
+Sub 5.1.136,1,3680,mnch_onboarding_health_guide_generic,Onboarding,Health_guide_generic,,,Health_guide_generic,"*Your Health Guide 👩🏽‍⚕️*
+
+{*Next check-up* 🏥}
+{20 week pregnancy check-up}
+
+*Why don’t you ...* 💡
+• Take a quiz on {topic}
+• Start the {topic} challenge
+• Practise circular breathing
+
+*Other topics for you*  📚
+• {Generic topic 1}
+• {Generic topic 2}
+• {Generic topic 3}
+
+👇🏽 What would you like to do?",,,,,[],,,,,,,,,33698d39-7e36-4126-b240-e8acad8c5bb2,,,,,[],,,,,,en
+Sub 5.1.137,1,3681,mnch_onboarding_health_guide_mnch_example,Onboarding,Health_guide_MNCH_example,,,Health_guide_MNCH_example,"*Your Health Guide 👩🏽‍⚕️*
+
+*Next check-up* 🏥
+20 week pregnancy check-up
+
+*Why don’t you ...* 💡
+• Take a quiz on breastfeeding
+• Start the nutrition challenge
+• Practise circular breathing
+
+*Topics for you*  📚
+• Breast is best
+• The first feed
+• Skin-to-skin contact
+
+👇🏽 What would you like to do?",,,,,[],,,,,,,,,0c305d52-f6e2-473f-9df6-43c32eb7ff9b,,,,,[],,,,,,en
+Sub 5.1.138,1,3682,mnch_onboarding_library,Onboarding,Library,,,Library,"*Topics for you 📚*
+
+Explore our library of health information and activities, created by experts.
+
+💕 Love & relationships
+🤰🏽 Pregnancy information
+👩🏽‍🍼 Baby & child health
+🍏 Well-being
+🫂 Family planning
+👩🏽‍⚕️ Info for health professionals",,,,,[],,,,,,,,,efd61ac1-3393-4f53-8174-5ecebe341b2b,,,,,[],,,,,,en
+Sub 5.1.139,1,3683,mnch_onboarding_your_profile,Onboarding,Your_profile,,,Your_profile,"*Your profile is looking good.*
+
+🟩🟩🟩🟩🟩🟩🟩🟩
+
+Select a section to view and edit, or share more about yourself for better suggestions.
+
+👤 Basic info (#/5)
+🗝️ Personal info (#/4)
+🤰🏽 Pregnancy info (#/#)
+🏥 Employment info (#/4)
+🌞 Daily life
+⭐ Your interests",,,,,[],,,,,,,,,3a97bdfe-9f5e-4f0d-bf09-286f924c254c,,,,,[],,,,,,en
+Sub 5.1.140,1,3684,mnch_onboarding_manage_updates,Onboarding,Manage_updates,,,Manage_updates,"*Manage updates* 🔔
+
+Take control of your experience on {MyHealth}.
+
+Tap `≡ Manage` to choose the types of messages you get from me.
+
+🤰🏾 *Pregnancy messages*
+Status: @(""On 🔔"", ""Off 🔕"")
+
+🤱🏾 *Baby and child messages*
+Status: @(""On 🔔"", ""Off 🔕"")
+
+🍏 *General health messages*
+Status: @(""On 🔔"", ""Off 🔕"")
+
+💕 *Love and life messages*
+Status: @(""On 🔔"", ""Off 🔕"")
+
+️🫂 *Safe sex messages*
+Status: @(""On 🔔"", ""Off 🔕"")
+
+👩🏽‍⚕️ *Messages for nurses*
+Status: @(""On 🔔"", ""Off 🔕"")
+
+To return to the main menu, reply `menu`",,,,,[],,,,,,,,,4dde92b1-bdd5-42c8-9050-df646c253f7f,,,,,[],,,,,,en
+Sub 5.1.141,1,3685,mnch_onboarding_data_settings,Onboarding,Data_settings,,,Data_settings,"*Manage data*📱
+
+You are getting: {Text only/ Text & images/ Text, images, audio & video}.
+
+Change how you want to get info while managing your data costs. You can choose:
+
+• Text, images, audio & video (All)
+
+• Text and images 
+
+• Text only 
+
+👇🏽 What would you like?",,,,,[],,,,,,,,,32e7097d-1c06-4e61-9a0b-054d69121c4e,,,,,"[{""type"": ""go_to_page"", ""title"": ""All"", ""slug"": ""mnch_onboarding_health_guide_generic""}, {""type"": ""go_to_page"", ""title"": ""Text and images"", ""slug"": ""mnch_onboarding_data_preferences_confirmation""}, {""type"": ""go_to_page"", ""title"": ""Text only"", ""slug"": ""mnch_onboarding_data_preferences_confirmation""}]",,,,,,en
+Sub 5.1.142,1,3686,mnch_onboarding_data_preferences_confirmation,Onboarding,Data_preferences_confirmation,,,Data_preferences_confirmation,"Thanks, you'll get {data_preference} 👏🏾",,,,,[],,,,,,,,,80f15d70-2eee-4fa2-b826-106d1e3846ee,,,,,"[{""type"": ""go_to_page"", ""title"": ""That's great!"", ""slug"": ""mnch_onboarding_health_guide_generic""}]",,,,,,en
+Sub 5.1.143,1,3687,mnch_onboarding_about_privacy,Onboarding,About_Privacy,,,About_Privacy,"*About and privacy policy*
+
+{MyHealth} is powered by {Reach Digital Health}. On this service, you can get health information and self-help tools for you and your baby.
+
+{MyHealth} keeps your personal information safe and private. 
+
+{Service Name} is not a replacement for advice from a real health worker or doctor. Always speak to a health worker or doctor for medical concerns. 
+
+👇🏽 You can view a PDF of the complete policy, or return to the main menu.",,,,,[],,,,,,,,,a644900d-27b2-4fbb-bc94-e4c962d22579,,,,,"[{""type"": ""go_to_page"", ""title"": ""Go to main menu"", ""slug"": ""mnch_onboarding_health_guide_generic""}]",,https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/documents/privacy_policy.pdf,,,,en
+Sub 5.1.147,1,3725,mnch_onboarding_name,Onboarding,Name,,,Name,"👤 *What would you like me to call you?*
+
+Your name must be less than 20 letters, and you can't use numbers or symbols.
+
+To leave your name as {username}, just tap the Back button.",,,,,[],,,,,,,,,bc17dd2a-493d-4c22-a8a7-912df774b85b,,,,,"[{""type"": ""next_message"", ""title"": ""Back""}]",,,,,,en
+Sub 5.1.148,1,3726,mnch_onboarding_edd_unknown,Onboarding,EDD_unknown,,,EDD_unknown_1,"*It's important to know the due date* 🗓️
+
+There are 2 ways to calculate it:
+
+• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.
+
+• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator 
+
+Ask a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️ 
+
+You can update the expected due date in Settings, found in the main menu.",,,,,[],,,,,,,,,15703274-945d-4bf4-a81f-2f4883810fa1,,,,,"[{""type"": ""go_to_page"", ""title"": ""Update due date"", ""slug"": ""mnch_onboarding_edd_do_it_later""}, {""type"": ""go_to_page"", ""title"": ""I\u2019ll do this later"", ""slug"": ""mnch_onboarding_edd_do_it_later""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/EDD_Unknown.png,,,,,en
+Sub 5.1.149,1,3727,mnch_onboarding_non_personalised_menu,Onboarding,non_personalised_menu,,,non_personalised_menu,"*{MyHealth} main menu*
+
+Tap `≡ Menu` to make your choice.
+
+*Get health advice*
+👩🏽⚕️ Your health guide
+📚 View topics for you
+📞 Help centre
+
+*Settings*
+👤 Your profile ({profile_completion})
+🔔 Manage updates
+📱 Manage data
+
+*{MyHealth} Service*
+🚌 Take a tour
+ℹ️ About and privacy policy
+
+To return here at any time, send in the word `menu`",,,,Menu,"[{""type"": ""next_message"", ""title"": ""Health Guide""}, {""type"": ""next_message"", ""title"": ""View Topics""}, {""type"": ""next_message"", ""title"": ""Go to Help Center""}, {""type"": ""next_message"", ""title"": ""Profile""}, {""type"": ""next_message"", ""title"": ""ManageUpdate""}, {""type"": ""next_message"", ""title"": ""Manage Data""}, {""type"": ""next_message"", ""title"": ""Take a Tour""}, {""type"": ""next_message"", ""title"": ""About this Service""}]",,,,,,,,,45a78166-5a75-4986-a405-1f94f315df21,,,,,[],,,,,,en
+Sub 5.1.150,1,3728,mnch_onboarding_personalisation_prompt_zero,Onboarding,personalisation_prompt_zero,,,personalisation_prompt_zero,"Hi there!
+
+To build your health guide, tell me more about yourself.
+
+Do you have 2 minutes to answer a few questions?",,,,,[],,,,,,,,,825b7061-2eb7-4880-8900-8f1d6175594a,,,,,"[{""type"": ""next_message"", ""title"": ""Yes \u2705""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
+Sub 5.1.151,1,3729,mnch_onboarding_personalisation_prompt_partial,Onboarding,personalisation_prompt_partial,,,personalisation_prompt_partial,"Hi {username}!
+
+To build your health guide, tell me more about yourself.
+
+Let’s continue where we left off last time.",,,,,[],,,,,,,,,aece7f30-543a-43c1-bb22-392b90775eb9,,,,,"[{""type"": ""next_message"", ""title"": ""Yes \u2705""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
+Sub 5.1.152,1,3734,mnch_onboarding_drop_off_1h_later,Onboarding,Drop_off_1h_later,,,Drop_off_1h_later,"Hi {username}!
+
+You started on your journey with {MyHealth} but then we lost touch.
+
+*Ready to tell me more about yourself now?*
+
+It will only take a couple of minutes and then I can share great health info with you!",,,,,[],,,,,,,,,7dcc8cf7-6596-46b3-823d-7f0353be4634,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, let\u2019s go""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",,,,,,en
+Sub 5.1.153,1,3763,mnch_onboarding_pregnant_nurse_20,Onboarding,Pregnant_nurse_20,,,Pregnant_nurse_20,"🟩🟩⬜⬜⬜⬜⬜⬜
+
+Your profile is already 20% complete! I think now is a good time to complete it, but it's up to you.
+
+👇🏽 What do you want to do next?",,,,,[],,,,,,,,,b0a0d8db-1e9e-4089-8d9e-e6180f38941c,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Explore health guide""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_75.png,,,,,en
+Sub 5.1.154,1,3764,mnch_onboarding_pregnant_nurse_40,Onboarding,Pregnant_nurse_40,,,Pregnant_nurse_40,"🟩🟩🟩🟩⬜⬜⬜⬜
+
+Your profile is already 40% complete! 🎉
+🤰🏽 Pregnancy info {pregnancy_info_count}
+🏥 Employment information {employment_info_count}
+➡️ Basic information {basic_info_count}
+⬜ Personal information {personal_info_count}
+⬜ Daily life {daily_life_count}
+
+👇🏾 Let’s move on to some basic information.",,,,,[],,,,,,,,,e87c9095-b195-47e8-9296-44e7cea177a6,,,,,"[{""type"": ""next_message"", ""title"": ""Continue""}]",,,,,,en
+Sub 5.1.155,1,3765,mnch_onboarding_pregnant_nurse_60,Onboarding,Pregnant_nurse_60,,,Pregnant_nurse_60,"Thanks for sharing!
+
+Now is your chance to tell me more about yourself. This allows me to give you information that is helpful to *you.* 
+
+🟩🟩🟩🟩🟩⬜⬜⬜
+
+Your profile is already 60% complete! 🎉
+🤰🏽 Pregnancy info {pregnancy_info_count}
+🏥 Employment information {employment_info_count}
+👤 Basic information {basic_info_count}
+➡️ Personal information {personal_info_count}
+⬜ Daily life {daily_life_count}
+
+👇🏾 Let’s move on to some personal information.",,,,,[],,,,,,,,,4ad3b98e-2304-4095-a441-73889c5ac9f3,,,,,"[{""type"": ""next_message"", ""title"": ""Continue \u27a1\ufe0f""}, {""type"": ""next_message"", ""title"": ""Why should I?""}]",,,,,,en
+Sub 5.1.156,1,3766,mnch_onboarding_pregnant_nurse_why_personal_info,Onboarding,Pregnant_nurse_why_personal_info,,,Pregnant_nurse_why_personal_info,"ℹ️ Your time is important, and I have *a lot* of information on this service. 
+
+By telling me more about yourself, I'm able to share information that is specifically valuable to *you* ⭐
+
+It will only take a few minutes.
+
+👇🏽 Are you ready to share more info with me?",,,,,[],,,,,,,,,0ae05126-be60-40ee-ab84-dd48d45f9475,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, let's go""}, {""type"": ""next_message"", ""title"": ""Not right now""}]",,,,,,en
+Sub 5.1.157,1,3767,mnch_onboarding_pregnant_nurse_emind_later,Onboarding,Pregnant_nurse_emind_later,,,Pregnant_nurse_emind_later,"*All good. I’ll ask again another time.* 🗓️
+
+For now, I recommend having a look at some of the most popular topics for nurses on {MyHealth}.",,,,,[],,,,,,,,,3fec7082-930a-4bc9-9362-0ffcfbf25bcd,,,,,"[{""type"": ""next_message"", ""title"": ""View popular topics""}]",,,,,,en
+Sub 5.1.158,1,3768,mnch_onboarding_pregnant_nurse_nudge_complete_profile,Onboarding,Pregnant_nurse_nudge_complete_profile,,,Pregnant_nurse_nudge_complete_profile,"Hi! It’s {MyHealth} here.🤖
+
+Want to get super helpful health information, tailored for you?
+
+*Tell me a bit more about yourself. It will only take a few minutes!*",,,,,[],,,,,,,,,761161b4-f3d3-4e89-b08f-1d6fba174be6,,,,,"[{""type"": ""next_message"", ""title"": ""Ok, let's go \u27a1\ufe0f""}, {""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
+Sub 5.1.159,1,3769,mnch_onboarding_pregnant_nurse_80,Onboarding,Pregnant_nurse_80,,,Pregnant_nurse_80,"🟩🟩🟩🟩🟩🟩⬜⬜ 
+
+🤰🏽 Pregnancy info {pregnancy_info_count}
+🏥 Employment information {employment_info_count}
+👤 Basic information {basic_info_count}
+🗝️ Personal information {personal_info_count}
+➡️ Daily life {daily_life_count}
+
+Your profile is already 80% there – now is a good time to take 5 minutes and complete it! ⭐
+
+👇🏽 What would you like to do next?",,,,,[],,,,,,,,,ef91bf8d-03af-4dd1-90aa-143f149f026e,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete it!""}, {""type"": ""next_message"", ""title"": ""Remind me later""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Nurse_profile_progress.png,,,,,en
+Sub 5.1.160,1,3770,mnch_onboarding_pregnant_nurse_100,Onboarding,Pregnant_nurse_100,,,Pregnant_nurse_100,"🟩🟩🟩🟩🟩🟩🟩🟩
+
+🤰🏽 Pregnancy info {pregnancy_info_count}
+🏥 Employment information {employment_info_count}
+👤 Basic information {basic_info_count}
+🗝️ Personal information {personal_info_count}
+☀️ Daily life {daily_life_count}
+
+Your profile is 100% complete! 🎉 🌟 ⭐
+
+You can always edit it or provide more info. 
+
+👇🏽 What do you want to do next?",,,,,[],,,,,,,,,36e4262b-d10e-46c0-8a7a-8144eb11168e,,,,,"[{""type"": ""next_message"", ""title"": ""Explore health guide""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Go to main menu \ud83d\udcd8""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_100.png,,,,,en
+Sub 5.1.161,1,3774,mnch_onboarding_profile_progress_25,Onboarding,Profile_progress_25,,,Profile_progress_25,"🟩🟩⬜⬜⬜⬜⬜⬜ 
+
+Your profile is already 25% complete! I think now is a good time to complete it, but it's up to you.
+
+👇🏽 What do you want to do next?",,,,,[],,,,,,,,,7eccd04c-c827-4653-8362-090e820ed761,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Explore health guide""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png,,,,,en
+Sub 5.1.162,1,3775,mnch_onboarding_profile_progress_25_secondary,Onboarding,Profile_progress_25_secondary,,,Profile_progress_25_secondary,"🟩🟩⬜⬜⬜⬜⬜⬜ 
+
+Your profile is already 25% complete!
+
+👇🏽 What do you want to do next?",,,,,[],,,,,,,,,029ce7c3-d739-40c4-8d23-8f228cd1a9cb,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Explore health guide""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png,,,,,en
+Sub 5.1.163,1,3776,mnch_onboarding_profile_progress_25_secondary_,Onboarding,Profile_progress_25_secondary_,,,Profile_progress_25_secondary_,"🟩🟩⬜⬜⬜⬜⬜⬜ 
+
+Your profile is already 25% complete!
+
+👇🏽 What do you want to do next?",,,,,[],,,,,,,,,58ac1b92-6738-4dfe-ac35-18da6de44d34,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Explore health guide""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png,,,,,en
+Sub 5.1.164,1,3777,mnch_onboarding_your_profile_generic,Onboarding,Your_profile_generic,,,Your_profile_generic,"*Your profile is looking good.*
+
+🟩🟩🟩🟩🟩🟩🟩🟩
+
+Select a section to view and edit, or share more about yourself for better suggestions.
+
+👤 Basic info (5/5)
+🗝️ Personal info (4/4)
+🌞 Daily life
+⭐ Your interests",,,,,[],,,,,,,,,89f386d0-ec7f-466f-b377-bfc648ec5491,,,,,[],,,,,,en
+Sub 5.1.165,1,3778,mnch_onboarding_your_profile_hcw,Onboarding,Your_profile_HCW,,,Your_profile_HCW,"*Your profile is looking good.*
+
+🟩🟩🟩🟩🟩🟩🟩🟩
+
+Select a section to view and edit, or share more about yourself for better suggestions.
+
+👤 Basic info (5/5)
+🗝️ Personal info (4/4)
+🏥 Employment info (4/4)
+🌞 Daily life
+⭐ Your interests",,,,,[],,,,,,,,,1bf88e27-2ac6-4423-b527-980b1a2b3d44,,,,,[],,,,,,en
+Sub 5.1.166,1,3779,mnch_onboarding_your_profile_pregnancy,Onboarding,Your_profile_pregnancy,,,Your_profile_pregnancy,"*Your profile is looking good.*
+
+🟩🟩🟩🟩🟩🟩🟩🟩
+
+Select a section to view and edit, or share more about yourself for better suggestions.
+
+👤 Basic info (5/5)
+🗝️ Personal info (4/4)
+🤰🏽 Pregnancy info (#/#)
+🌞 Daily life
+⭐ Your interests",,,,,[],,,,,,,,,0716c662-c271-417d-bf1b-bc9981944854,,,,,[],,,,,,en
+Sub 5.1.167,1,3780,mnch_onboarding_your_profile_pregnant_hcw,Onboarding,Your_profile_pregnant_HCW,,,Your_profile_pregnant_HCW,"*Your profile is looking good.*
+
+🟩🟩🟩🟩🟩🟩🟩🟩
+
+Select a section to view and edit, or share more about yourself for better suggestions.
+
+👤 Basic info (5/5)
+🗝️ Personal info (4/4)
+🤰🏽 Pregnancy info (#/#)
+🏥 Employment info (4/4)
+🌞 Daily life
+⭐ Your interests",,,,,[],,,,,,,,,fc437ae4-d255-45fe-869f-2975b4c78150,,,,,[],,,,,,en
+Sub 5.1.168,1,3782,mnch_onboarding_placeholder_form_results_01,Onboarding,Placeholder_form_results_01,,,Placeholder_form_results_01,"Thanks for answering those questions, {@username}!
+
+From what you've told me, you think fate often plays a bigger role in your life and your health than your own decisions. It can sometimes be tough feeling this way!
+
+Keep using {MyHealth} and see how your perspective might change 🧭",,,,,[],,,,,,,,,d325f3de-8f55-4dd7-a780-034a0abaa28b,,,,,"[{""type"": ""next_message"", ""title"": ""Thanks""}]",,,,,,en
+Sub 5.1.169,1,3783,mnch_onboarding_placeholder_form_results_02,Onboarding,Placeholder_form_results_02,,,Placeholder_form_results_02,"Thanks for answering those questions, {@username}!
+
+From what you've told me, you often feel in control of your life and health, but sometimes you think that luck – both good and bad – play a bigger role.
+
+Keep using our platform and see how your perspective might change! 🧭",,,,,[],,,,,,,,,3286f050-71b0-4990-aec9-f5bebcb276ff,,,,,"[{""type"": ""next_message"", ""title"": ""Thanks""}]",,,,,,en
+Sub 5.1.170,1,3784,mnch_onboarding_placeholder_form_results_03,Onboarding,Placeholder_form_results_03,,,Placeholder_form_results_03,"Thanks for answering those questions, {@username}!
+
+From what you've told me, you feel in control of your life and health. That’s wonderful!
+
+You probably make the best decisions possible in different situations, and know you'll reach your goals if you keep working hard. That's impressive ⭐",,,,,[],,,,,,,,,829a3162-a262-4345-ac43-ec33cd83ac2d,,,,,"[{""type"": ""next_message"", ""title"": ""Thanks!""}]",,,,,,en
+Sub 5.1.171,1,3785,mnch_onboarding_response_remind_me,Onboarding,Response_remind_me,,,Response_remind_me,Great! I’ll remind you tomorrow! 🗓️,,,,,[],,,,,,,,,42a78774-580e-4646-b2ba-ab50a04c6d8b,,,,,"[{""type"": ""next_message"", ""title"": ""Got it \ud83d\udc4d""}]",,,,,,en
+Sub 5.1.172,1,3786,mnch_onboarding_curioushcw,Onboarding,CuriousHCW,,,CuriousHCW,"This content was created specifically for nurses. When we add more content for health professionals, we will let you know.",,,,,[],,,,,,,,,0ebe6d5a-aa38-4e5e-9f25-175fd5c62142,,,,,"[{""type"": ""next_message"", ""title"": ""Got it!""}]",,,,,,en
+Sub 5.1.173,1,3787,mnch_onboarding_profile_progress_25_hcw,Onboarding,Profile_progress_25_hcw,,,Profile_progress_25_hcw,"Thanks for sharing! 
+
+Now is your chance to tell me more about yourself, so I give you information that is valuable to *you.* 
+
+🟩🟩⬜⬜⬜⬜⬜⬜
+
+🏥 Employment information {employment_info_count}
+➡️ Basic information {basic_info_count}
+⬜ Personal information {personal_info_count}
+⬜ Daily life {daily_life_count}
+
+👇🏾  Are you ready to answer a few questions?",,,,,[],,,,,,,,,bd9faded-12a3-4962-985b-5bf974f8a78a,,,,,"[{""type"": ""next_message"", ""title"": ""Sure, let's go \u27a1\ufe0f""}, {""type"": ""next_message"", ""title"": ""Why?""}]",,,,,,en
+Sub 5.1.175,1,12365,mnch_onboarding_dma_results_high,Onboarding,DMA_results_high,,,DMA_results_high,"*Thank you for completing this*
+
+You seem comfortable and confident making decisions about your health.
+
+Keep on doing what you’re doing! 🤩",,,,,[],,,,"You seem comfortable & confident making decisions about your health. Keep doing what you're doing!
+
+Reply:
+1. Continue",,,,,c3e8269d-eb42-4f47-9fe0-a903888869c8,,,,,"[{""type"": ""next_message"", ""title"": ""Thank you""}]",,,,,,en
+Sub 5.1.176,1,12366,mnch_onboarding_dma_results_medium,Onboarding,DMA_results_medium,,,DMA_results_medium,"*Thank you for completing this*
+
+Sometimes you feel that you’re in charge of your health, and sometimes you’re not so sure. 
+
+Stay on your journey with {MyHealth} and take control of your health. ⭐",,,,,[],,,,"Thanks for your answers!
+
+Sometimes you feel in charge, sometimes not. MomConnect can help you feel confident.
+
+Reply:
+1. Continue",,,,,cbf20a3b-66c3-44dd-926c-5acfc05caed6,,,,,"[{""type"": ""next_message"", ""title"": ""Thank you""}]",,,,,,en
+Sub 5.1.177,1,12367,mnch_onboarding_dma_results_low,Onboarding,DMA_results_low,,,DMA_results_low,"*Thank you for completing this*
+
+Your answers show that you don’t feel very confident making decisions and taking actions about your health. 
+
+Stay on {MyHealth} and see what might change for you. 🧭",,,,,[],,,,"You're not alone - MomConnect can help guide you with health decisions when things feel uncertain.
+
+Reply:
+1. Continue",,,,,e0508081-782e-487c-9c21-047d89104d5d,,,,,"[{""type"": ""next_message"", ""title"": ""Thank you""}]",,,,,,en
+Sub 5.1.178,1,12368,mnch_onboarding_all_skipped,Onboarding,All_skipped,,,All_skipped,"*You skipped some questions!*
+
+Let’s get back to this some other time when you feel ready. 
+
+Can I remind you to try again tomorrow?",,,,,[],,,,,,,,,8c7f57fd-6700-4dea-83ec-e078cf0cb007,,,,,"[{""type"": ""next_message"", ""title"": ""Sure, remind me""}, {""type"": ""next_message"", ""title"": ""No, go to main menu""}]",,,,,,en
+Sub 5.1.179,1,12369,mnch_onboarding_dma_reminder_confirmation,Onboarding,DMA_reminder_confirmation,,,DMA_reminder_confirmation,"*All good. I’ll remind you tomorrow.* 🗓️
+
+👇🏽 What do you want to do now?",,,,,[],,,,,,,,,3d9cd4a3-e615-45a1-bc2e-326949e77e91,,,,,"[{""type"": ""next_message"", ""title"": ""Go to main menu""}]",,,,,,en
+Sub 5.1.180,1,12370,mnch_onboarding_dma_reminder,Onboarding,DMA_reminder,,,DMA_reminder,"Hi {{name}}
+
+You asked to be reminded to tell me more about yourself.
+
+👇🏽 Do you have a minute to answer some questions now?",,,,,[],,,,,,,,,3ce871c3-d56b-4c38-93cd-3c64aefc37f8,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, let's do it""}]",,,,,,en
+Sub 5.1.181,1,12371,mnch_onboarding_remind_later,Onboarding,Remind_later,,,Remind_later,"*All good. I’ll check in with you about this another time.* 🗓️
+
+For now, I recommend having a look at some of the most popular topics on {MyHealth}.
+
+👇🏽 What do you want to do now?",,,,,[],,,,,,,,,d0e0383a-e4e1-4129-bf3d-35100c430595,,,,,"[{""type"": ""next_message"", ""title"": ""See popular topics""}]",,,,,,en
+Sub 5.1.182,1,12900,mnch_onboarding_error_handling_ussd,Onboarding,mnch_onboarding_error_handling_ussd,,,,,,,,,,,,,I don't understand your reply. Please try that again and respond with a valid option.,,,,,6f15bdd2-b0f6-4f03-acc0-3b77df04eaac,,,,,,,,,,,en
+Sub 5.1.183,1,12901,mnch_onboarding_reengagement_sms,Onboarding,ReEngagement,,,,,,,,,,,"Hi {{name}}, you started a health check on MomConnect. Finish it to learn something new. It only takes a minute. 
+
+To start, dial *120*4216*25#",,,,,,,2dd24fbc-081e-4ba8-bbbd-7d83da76be41,,,,,,,,,,,en
+Menu 6,0,3723,test,,TEST,,,,,,,,,,,,,,,,,,7bc53d56-c353-4194-884f-ff4fece7eabb,,,,,,,,,,,en
+Menu 7,0,3730,nurse_home_eng_nurse,,NURSE,,,,,,,,,,,,,,,,,,df3c6763-bc32-44f6-a5a6-495afcca858c,,,,,,,,,,,en
+Menu 8,0,3732,ma_test,,MA_TEST,,,,,,,,,,,,,,,,,,d69e6b91-f87e-43a7-90b4-70f965a60700,,,,,,,,,,,en
+Menu 9,1,3735,mnch_onboarding_drop_off_2nd_reminder,,Drop_off_2nd_reminder,,,Drop_off_2nd_reminder,"Hi {username}!
+
+Join thousands of people like you who are improving their health and well-being and of their loved ones by getting expert, personalised health info.
+
+*All you need to do to join them, is to answer a few quick questions.*
+
+It will only take a couple of minutes.",,,,,[],,,,,,,,,48c49732-543d-410e-af26-e52028aa0d1b,,,,,"[{""type"": ""next_message"", ""title"": ""Let\u2019s do it""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",,,,,,en
+Menu 10,1,3736,mnch_onboarding_drop_off_3rd_reminder,,Drop_off_3rd_reminder,,,Drop_off_3rd_reminder,"Hi {username}!
+
+Imagine yourself in the future. You are healthier and happier. That’s what I want to help you achieve! The journey to that future begins now.
+
+*Are you ready to answer some questions?*
+
+It will only take a couple of minutes. (I won’t bother you with this again.)",,,,,[],,,,,,,,,9b699fe9-f212-4717-b76f-8d9128824748,,,,,"[{""type"": ""next_message"", ""title"": ""Let\u2019s do it""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Re_engagement_04.png,,,,,en
+Menu 11,1,3737,mnch_onboarding_reminder_requested,,Reminder_requested,,,Reminder_requested,"Hi {username}!
+
+*This is your friendly reminder to share more about yourself.* Let’s do this.🔔",,,,,[],,,,,,,,,14f8fe1d-a028-4741-882e-16b24a3b957d,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, let\u2019s go""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Reminder.png,,,,,en
+Menu 12,0,7730,nurse_templates,,NURSE templates,,,,,,,,,,,,,,,,,,52d85323-744f-4b33-a2b8-5c712935d900,,,,,,,,,,,en
+Menu 13,0,12418,mpox,,mpox,,,,,,,,,,,,,,,,,,b13f808f-ccff-46f1-b7c9-784dfc924cac,,,,,,,,,,,en
+Menu 14,0,12797,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,en
+Menu 15,0,12863,mental-health,,Mental Health,,,,,,,,,,,,,,,,,,20c6e1a1-663a-4210-bb8e-d4ee64bbeec7,,,,,,,,,,,en
+Menu 16,0,12868,debtest,,DebTestPage,,,,,,,,,,,,,,,,,,fba05d65-d018-4bcc-8d7b-90334c7f6411,,,,,,,,,,,en
+Menu 1,0,2393,ma_test_spanish,,MA_TEST_SPANISH,,,,,,,,,,,,,,,,,,3222c815-39fc-4498-9c87-0c2c351c6853,,,,,,,,,,,es
+Menu 2,0,7429,dev-test-2,,Dev Test 2,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,es
+Menu 1,0,1984,stage-based-messages-por,,Stage-based messages Por,,,,,,,,,,,,,,,,,,35628191-624e-4a13-93bf-499f4e7de017,,,,,,,,,,,pt
+Menu 2,0,1985,helen_test,,Helen test por,,,,,,,,,,,,,,,,,,51cdf6dc-fb64-4197-bda0-f913b6a72811,,,,,,,,,,,pt
+Menu 3,0,1986,hlumi-por-test,,Hlumi por test,,,,,,,,,,,,,,,,,,743fef92-7384-493e-bcb2-3a7f47ac644f,,,,,,,,,,,pt
+Menu 4,0,12786,dev-test,,Dev Test,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,pt
+Menu 5,0,12832,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,pt
+Menu 6,0,12903,functional_copy,,Functional copy,,,,,,,,,,,,,,,,,,ed5fde40-3fe7-48d7-9a90-a7952f1c8db8,,,,,,,,,,,pt
