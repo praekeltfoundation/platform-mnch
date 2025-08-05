@@ -120,7 +120,7 @@ Sub 5.4.24,1,3762,plat_help_error_handling_button,Help centre,error handling - b
 Sub 5.4.25,1,3788,plat_help_faq_error_message,Help centre,FAQ error message,,,FAQ Topic List error,"Sorry, we didn’t get that. 
 
 Please respond with a number between 1 and 6.",,,,,[],,,,,,,,,8c8f3568-04fc-4ea7-8c05-c44d98bce82e,,,,,[],,,,,,en
-Sub 5.4.26,1,3789,plat_help_agent_greeting,Help centre,Agent greeting,,,Agent greeting,👨You are now chatting with {operator_name},,,,,[],,,,,,,,,d724d87c-4f91-4407-96e3-c95d8441917f,,,,,[],,,,,,en
+Sub 5.4.26,1,3789,plat_help_agent_greeting,Help centre,Agent greeting,,,Agent greeting,👨You are now chatting with {operator_name} from the CSV,,,,,[],,,,,,,,,d724d87c-4f91-4407-96e3-c95d8441917f,,,,,[],,,,,,en
 Sub 5.4.27,1,3790,plat_help_agent_close_chat,Help centre,Agent close chat,,,-8,"👨Glad to have helped, I’m available any time. I’m going to resume the bot now.",,,,,[],,,,,,,,,fe27cdc4-5f19-4e87-bbed-cd6db8a5f0a4,,,,,[],,,,,,en
 Sub 5.4.28,1,3791,plat_help_bot_active_notification,Help centre,Bot active notification,,,Bot active notification,🤖Welcome back! the person has left and now you’re chatting to the bot again.,,,,,[],,,,,,,,,6625005e-25a5-45ff-8257-7c38d41bd4ec,,,,,[],,,,,,en
 Sub 5.4.29,1,3792,plat_help_query_successful,Help centre,Query successful,,,Query successful,Was your query successfully resolved?,,,,,[],,,,,,,,,58f85b61-6e9e-4c2c-a67b-9a6277ca0c9c,,,,,"[{""type"": ""next_message"", ""title"": ""Yes""}, {""type"": ""next_message"", ""title"": ""No""}]",,,,,,en

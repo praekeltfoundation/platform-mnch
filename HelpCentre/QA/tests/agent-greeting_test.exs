@@ -3,26 +3,43 @@ defmodule AgentGreetingTest do
   alias FlowTester.WebhookHandler, as: WH
   alias HelpCentre.QA.Helpers
 
+  import HelpCentre.QA.Helpers.Macros
+
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    agent_greeting = %ContentPage{
-      slug: "plat_help_agent_greeting",
-      title: "Agent greeting",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "👨You are now chatting with {operator_name}"}
-      ]
-    }
+    # The index page isn't in the content sheet, so we need to add it manually.
+    index = %Index{title: "Help centre", slug: "test"}
+    assert :ok = FakeCMS.add_pages(wh_pid, [index])
 
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               agent_greeting
-             ])
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(
+                   wh_pid,
+                   "help-centre",
+                   existing_pages: [index],
+                   field_transform: fn s ->
+                     s
+                     |> String.replace(~r/\r?\n$/, "")
+                   end
+                 )
+
+    # # Add some content.
+    # agent_greeting = %ContentPage{
+    #   slug: "plat_help_agent_greeting",
+    #   title: "Agent greeting",
+    #   parent: "test",
+    #   wa_messages: [
+    #     %WAMsg{message: "👨You are now chatting with {operator_name}"}
+    #   ]
+    # }
+
+    # assert :ok =
+    #          FakeCMS.add_pages(wh_pid, [
+    #            %Index{slug: "test", title: "test"},
+    #            agent_greeting
+    #          ])
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -59,21 +76,6 @@ defmodule AgentGreetingTest do
       |> set_config()
 
     %{flow: flow}
-  end
-
-  # This lets us have cleaner button/list assertions.
-  def indexed_list(var, labels) do
-    Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
-  end
-
-  # The common case for buttons.
-  defmacro button_labels(labels) do
-    quote do: unquote(indexed_list("button_labels", labels))
-  end
-
-  # The common case for lists.
-  defmacro list_items(labels) do
-    quote do: unquote(indexed_list("list_items", labels))
   end
 
   setup [:setup_flow]
