@@ -359,7 +359,10 @@ card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -434,7 +437,10 @@ card PregnantEDDDay, then: ValidateEDDDay do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   long_months = [1, 3, 5, 7, 8, 10, 12]
@@ -483,7 +489,10 @@ card EDDConfirmation, then: PregnantEDDConfirmationError do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   edd_date_full = date(edd_date_year, edd_date_month, edd_day)
@@ -990,7 +999,10 @@ card ArticleFeedback, then: ArticleFeedbackError do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -1025,7 +1037,10 @@ card ArticleFeedbackNo, then: ArticleFeedbackNoError do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -1096,7 +1111,10 @@ card ProfileProgress25, then: DisplayProfileProgress25 do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -1162,7 +1180,10 @@ card ProfileProgress25Secondary, then: DisplayProfileProgress25Secondary do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -1228,7 +1249,10 @@ card ProfileProgress25Secondary2, then: DisplayProfileProgress25Secondary2 do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -1337,7 +1361,10 @@ card ProfileProgress50, then: ProfileProgress50Error do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -1468,7 +1495,10 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -2582,7 +2612,10 @@ card PartnerEDDMonthUnknown, "I don't know", then: DisplayPartnerEDDMonthUnknown
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -2642,7 +2675,10 @@ card PartnerEDDDay, then: PartnerValidateEDDDay do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   long_months = [1, 3, 5, 7, 8, 10, 12]
@@ -2691,7 +2727,10 @@ card PartnerEDDConfirmation, then: PartnerEDDConfirmationError do
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["channel", "whatsapp"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   edd_date_full = date(edd_date_year, edd_date_month, edd_day)

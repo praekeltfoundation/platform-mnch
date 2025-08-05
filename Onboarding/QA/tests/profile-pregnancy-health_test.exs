@@ -737,7 +737,7 @@ defmodule ProfilePregnancyHealthTest do
       |> go_to_edd_month()
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are two ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the first day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update your expected due date at any time in `Settings`",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are two ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the first day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic visit 🧑🏾⚕️\r\n\r\nYou can update your expected due date at any time in `Settings`",
         buttons: button_labels(["Update due date", "I’ll do this later"])
       })
     end
@@ -1041,7 +1041,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*It’s okay that you’re feeling this way about being pregnant – it’s a big life change*\r\n\r\nJust remember that you are strong and capable. The more information you have, the more you can prepare for what's coming next 🌟\r\n\r\nYour baby is growing quickly, already developing a brain, heart, facial features, and even feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 Let's have a look at what you can expect.",
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-cuate_1.png"
       })
     end
 
@@ -1077,7 +1077,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*It’s okay that you’re feeling this way about being pregnant*\r\n\r\nTake a moment to think about what an amazing thing you're doing. Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are.",
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-cuate.png"
       })
     end
 
@@ -1113,7 +1113,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*It’s normal to feel this way about a pregnancy*\r\n\r\nIt's important to remember that you are strong and capable.\r\n\r\nThere is a lot going on during the 3rd trimester. Your belly is probably bigger than you thought it could get. Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!",
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-cuate_1.png"
       })
     end
 
@@ -1149,7 +1149,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Congratulations on your pregnancy*🤰🏾\r\n\r\nEven if you can't see your baby bump yet, there's a lot going on!\r\n\r\nYour baby is growing quickly and doing amazing things like developing a brain, heart, facial features, and even tiny feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 There's so much to look forward to!",
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-pana_1.png"
       })
     end
 
@@ -1185,7 +1185,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Congratulations! You're in your 2nd trimester*🤰🏾\r\n\r\nInside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are!",
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Baby_birth-amico_1.png"
       })
     end
 
@@ -1221,7 +1221,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Congratulations! You're in your 3rd trimester*🤰🏾\r\n\r\nYour belly is probably bigger than you thought it could get! Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!" <> _,
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Baby_birth-amico_2.png"
       })
     end
 
@@ -1257,7 +1257,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nJust remember that you are strong and capable. The more information you have, the more you can prepare for what's coming next 🌟\r\n\r\nYour baby is growing quickly, already developing a brain, heart, facial features, and even feet, hands, fingernails, and toenails.\r\n\r\n👇🏽 Let's have a look at what you can expect.",
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-rafiki_1.png"
       })
     end
 
@@ -1293,7 +1293,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nTake a moment to think about what an amazing thing you're doing. Inside your belly, your baby's organs and systems are all formed. Now it's time for them to grow! By the end of this trimester, your baby will be about the size of a cauliflower.\r\n\r\nHopefully you're not still experiencing vomitting and nausea. There are some other symptoms you can expect during the 2nd trimester.\r\n\r\n👇🏽 Be prepared by learning what they are.",
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-rafiki.png"
       })
     end
 
@@ -1329,7 +1329,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*It’s normal to have mixed feelings about your pregnancy*\r\n\r\nIt's important to remember that you are strong and capable.\r\n\r\nThere is a lot going on during the 3rd trimester. Your belly is probably bigger than you thought it could get. Your baby is gaining weight quickly now, and by 40 weeks, will be the size of a pumpkin!\r\n\r\nThis last stretch can be uncomfortable, but you're nearly there 🌟\r\n\r\n👇🏽 Don’t worry, there are positive things coming!",
         buttons: button_labels(["Let's check it out"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/baby_shower-cuate.png"
       })
     end
 
@@ -1529,7 +1529,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1568,7 +1568,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1606,7 +1606,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1645,7 +1645,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1684,7 +1684,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1722,7 +1722,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1761,7 +1761,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1800,7 +1800,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1838,7 +1838,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily 🌟\r\n\r\nGive me a moment while I set up your profile and find the best information for you... ⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -1889,7 +1889,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Did you know?* 💡\r\n\r\nA uterus can stretch from the size of a lemon to the size of a watermelon during pregnancy 🍋",
         buttons: button_labels(["Awesome"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png"
       })
     end
 
@@ -1923,7 +1923,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Did you know?* 💡\r\n\r\nMoms-to-be can start producing breast milk as early as 14 weeks into their pregnancy! 🍼",
         buttons: button_labels(["Awesome"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png"
       })
     end
 
@@ -1957,7 +1957,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Did you know?* 💡\r\n\r\nSome women may experience changes in their voice during pregnancy. This is because hormonal changes can cause the vocal cords to swell!" <> _,
         buttons: button_labels(["Awesome"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png"
       })
     end
 
@@ -2006,7 +2006,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Did you know?* 💡\r\n\r\nA woman's blood volume can increase by 40 to 50 percent during pregnancy. This provides the extra oxygen needed for a healthy pregnancy 🤰🏽",
         buttons: button_labels(["Awesome"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png"
       })
     end
 
@@ -2040,7 +2040,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Did you know?* 💡\r\n\r\nBabies can start to taste flavours even before they're born. From week 14 or 15, from the food you eat enters your bloodstream and the fluid surrounding the baby in the womb.",
         buttons: button_labels(["Awesome"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png"
       })
     end
 
@@ -2074,7 +2074,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "*Did you know* 💡\r\n\r\nBy the third trimester, a developing baby can recognise their mother’s voice from inside the womb 🤰" <> _,
         buttons: button_labels(["Awesome"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png"
       })
     end
 
@@ -2121,7 +2121,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
-        %{image: "https://example.org/image.jpeg"},
+        %{image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"},
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your pregnancy this week* 🗓️\r\nYou’re in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip your clinic visits!* 🏥\r\nWhy you should see a health worker throughout your pregnancy.\r\n\r\nChoose a topic to read more about it.",
           list: {"Choose a Topic", [{"item 1", "item 1"}, {"item 2", "item 2"}, {"item 3", "item 3"}, {"item 4", "item 4"}, {"Show me other topics", "Show me other topics"}]},
@@ -2156,7 +2156,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
-        %{image: "https://example.org/image.jpeg"},
+        %{image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"},
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your pregnancy this week* 🗓️\r\nYou’re in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip your clinic visits!* 🏥\r\nWhy you should see a health worker throughout your pregnancy.\r\n\r\nChoose a topic to read more about it.",
           list: {"Choose a Topic", [{"item 1", "item 1"}, {"item 2", "item 2"}, {"item 3", "item 3"}, {"item 4", "item 4"}, {"Show me other topics", "Show me other topics"}]},
@@ -2191,7 +2191,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.set_contact_properties(%{"data_preference" => "all"})
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
-        %{image: "https://example.org/image.jpeg"},
+        %{image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"},
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your pregnancy this week* 🗓️\r\nYou’re in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip your clinic visits!* 🏥\r\nWhy you should see a health worker throughout your pregnancy.\r\n\r\nChoose a topic to read more about it.",
           list: {"Choose a Topic", [{"item 1", "item 1"}, {"item 2", "item 2"}, {"item 3", "item 3"}, {"item 4", "item 4"}, {"Show me other topics", "Show me other topics"}]},
@@ -2601,7 +2601,7 @@ defmodule ProfilePregnancyHealthTest do
       |> go_to_edd_month("Partner is pregnant")
       |> FlowTester.send(elem(Enum.at(list_of_months, last_month), 0))
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are two ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the first day of your partner's last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nA health worker should confirm this expected due date at your partner's next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update your expected due date at any time in ‘Settings’ ⭐",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are two ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the first day of your partner's last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nA health worker should confirm this expected due date at your partner's next clinic visit 🧑🏾⚕️\r\n\r\nYou can update your expected due date at any time in ‘Settings’ ⭐",
         buttons: button_labels(["Update due date", "I'll do it later"])
       })
     end
@@ -3981,7 +3981,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
     end
 
@@ -4005,7 +4005,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> result_matches(%{name: "pregnancy_stage_interest", value: "First trimester"})
     end
@@ -4030,7 +4030,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> result_matches(%{name: "pregnancy_stage_interest", value: "Second trimester"})
     end
@@ -4055,7 +4055,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> result_matches(%{name: "pregnancy_stage_interest", value: "Third trimester"})
     end
@@ -4080,7 +4080,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> result_matches(%{name: "pregnancy_stage_interest", value: "General pregnancy info"})
     end
@@ -4151,7 +4151,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
@@ -4177,7 +4177,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
@@ -4208,7 +4208,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> FlowTester.send(button_label: "Okay")
       |> receive_message(%{
@@ -4330,7 +4330,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4360,7 +4360,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4414,7 +4414,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> FlowTester.send(button_label: "Okay")
       |> receive_message(%{
@@ -4533,7 +4533,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4563,7 +4563,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4617,7 +4617,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "Thanks Lily\r\n\r\nGive me a moment while I set up your profile and find the best information for you...⏳",
         buttons: button_labels(["Okay"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
       })
       |> FlowTester.send(button_label: "Okay")
       |> receive_message(%{
@@ -4736,7 +4736,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4766,7 +4766,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4825,7 +4825,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4860,7 +4860,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4895,7 +4895,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4908,7 +4908,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
         buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png"
       })
     end
 
@@ -4934,7 +4934,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4972,7 +4972,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -4989,7 +4989,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
         buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png"
       })
     end
 
@@ -5016,7 +5016,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -5034,7 +5034,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
         buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png"
       })
     end
 
@@ -5061,7 +5061,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -5104,7 +5104,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -5147,7 +5147,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -5189,7 +5189,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -5237,7 +5237,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -5258,7 +5258,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
         buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png"
       })
     end
 
@@ -5285,7 +5285,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -5306,7 +5306,7 @@ defmodule ProfilePregnancyHealthTest do
       |> receive_message(%{
         text: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 25% complete!\r\n\r\n👇🏽 What do you want to do next?",
         buttons: button_labels(["➡️ Complete profile", "View topics for you", "Explore health guide"]),
-        image: "https://example.org/image.jpeg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png"
       })
     end
 
@@ -5332,7 +5332,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Awesome")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
@@ -5343,7 +5343,7 @@ defmodule ProfilePregnancyHealthTest do
       |> FlowTester.send(button_label: "Choose another topic")
       |> receive_messages([
         %{
-          image: "https://example.org/image.jpeg"
+          image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
         },
         %{
           text: "Here are some topics picked just for you 💡\r\n\r\n*Managing mood swings* 🎢\r\nHow to manage the ups and downs of pregnancy mood swings\r\n\r\n*Your partner this week* 🗓️\r\nYour partner is in the home stretch. Here are some things you can expect.\r\n\r\n*What is the third trimester?* ⏳\r\nLearn more about the last phase of pregnancy\r\n\r\n*Don’t skip clinic visits!* 🏥\r\nWhy your partner should see a health worker throughout pregnancy.\r\n\r\n👇🏽 Choose a topic to read more about it.",
