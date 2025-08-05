@@ -13,17 +13,17 @@ defmodule QuizBreastfeedingTest do
     FakeCMS.add_images(wh_pid, [
       %Image{
         id: 1,
-        download_url: "https://example.com/champion.jpg",
+        download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/6a5cefe396bea35baa1cc604f1aaab56.png",
         title: "Breastfeeding quiz champion"
       },
       %Image{
         id: 2,
-        download_url: "https://example.com/good.jpg",
+        download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/aa517ea3807b24713d0e1188e8687509.png",
         title: "Breastfeeding quiz good"
       },
       %Image{
         id: 3,
-        download_url: "https://example.com/learner.jpg",
+        download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/c6e7dabb45604e0946d282a7985e92c3.png",
         title: "Breastfeeding quiz learner"
       },
     ])
@@ -89,19 +89,19 @@ defmodule QuizBreastfeedingTest do
             %Forms.Answer{
               score: 0.0,
               answer: "Formula",
-              response: "🤔\r\n\r\nActually, it's best to give your baby *only breast milk* from birth to 6 months if you can.\r\n\r\nBreast milk has everything your baby needs, and your body will make as much milk as she needs.\r\n\r\nIf you are struggling to breastfeed, speak to a health worker about what to try.\r\n\r\nLet's keep going ...",
+              response: "🤔\n\nActually, it's best to give your baby *only breast milk* from birth to 6 months if you can.\r\n\r\nBreast milk has everything your baby needs, and your body will make as much milk as she needs.\r\n\r\nIf you are struggling to breastfeed, speak to a health worker about what to try.\r\n\r\nLet's keep going ...",
               semantic_id: "formula"
             },
             %Forms.Answer{
               score: 0.0,
               answer: "Formula+breast milk",
-              response: "🤔\r\n\r\nActually, it's best to give your baby *only breast milk* from birth to 6 months if you can.\r\n\r\nBreast milk has everything your baby needs, and your body will make as much milk as she needs.\r\n\r\nIf you are struggling to breastfeed, speak to a health worker about what to try.\r\n\r\nLet's keep going ...",
+              response: "🤔\n\nActually, it's best to give your baby *only breast milk* from birth to 6 months if you can.\r\n\r\nBreast milk has everything your baby needs, and your body will make as much milk as she needs.\r\n\r\nIf you are struggling to breastfeed, speak to a health worker about what to try.\r\n\r\nLet's keep going ...",
               semantic_id: "formula-and-breast-milk"
             },
             %Forms.Answer{
               score: 1.0,
               answer: "Breast milk only",
-              response: "*Yes!* ✅\r\n\r\nIt's best to give your baby only breast milk from birth to 6 months if you can.\r\n\r\nBreast milk has everything your baby needs, and your body will make as much milk as she needs.\r\n\r\nLet's keep going ...",
+              response: "*Yes!* ✅\n\nIt's best to give your baby only breast milk from birth to 6 months if you can.\r\n\r\nBreast milk has everything your baby needs, and your body will make as much milk as she needs.\r\n\r\nLet's keep going ...",
               semantic_id: "breast-milk-only"
             },
           ]
@@ -115,31 +115,31 @@ defmodule QuizBreastfeedingTest do
             %Forms.Answer{
               score: 0.0,
               answer: "It helps bonding",
-              response: "🤔 It's even better than that!\r\n\r\nBreastfeeding is great for moms for many practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
+              response: "🤔 It's even better than that!\n\nBreastfeeding is great for moms for many practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
               semantic_id: "bonding"
             },
             %Forms.Answer{
               score: 0.0,
               answer: "It can save money",
-              response: "🤔 It's even better than that!\r\n\r\nBreastfeeding is great for moms for many practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
+              response: "🤔 It's even better than that!\n\nBreastfeeding is great for moms for many practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
               semantic_id: "save-money"
             },
             %Forms.Answer{
               score: 0.0,
               answer: "It helps sleep",
-              response: "🤔 It's even better than that!\r\n\r\nBreastfeeding is great for moms for many practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
+              response: "🤔 It's even better than that!\n\nBreastfeeding is great for moms for many practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
               semantic_id: "sleep"
             },
             %Forms.Answer{
               score: 0.0,
               answer: "Depression risk",
-              response: "🤔 It's even better than that!\r\n\r\nBreastfeeding is great for moms for many practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
+              response: "🤔 It's even better than that!\n\nBreastfeeding is great for moms for many practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
               semantic_id: "depression-risk"
             },
             %Forms.Answer{
               score: 1.0,
               answer: "All of the above",
-              response: "*Yes!* ✅\r\n\r\nBreastfeeding is great for moms for practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
+              response: "*Yes!* ✅\n\nBreastfeeding is great for moms for practical and health reasons.\r\n\r\nIt helps mom:\r\n• bleed less after birth\r\n• bond with baby\r\n• save money and time\r\n• sleep better\r\n• lose pregnancy weight\r\n\r\nIt also lowers the risk of illnesses like:\r\n• depression\r\n• some cancers\r\n• heart disease\r\n• diabetes\r\n\r\nLet's keep going ...",
               semantic_id: "all-of-the-above"
             }
           ]
@@ -191,13 +191,13 @@ defmodule QuizBreastfeedingTest do
             %Forms.Answer{
               score: 0.0,
               answer: "Every 4 hours",
-              response: "🤔\r\n\r\nIn fact, experts around the world recommend that you breastfeed your baby whenever he is hungry. This is called demand feeding.\r\n\r\nWhen your baby is a newborn, feed him at least 8 times in 24 hours. As he gets older he will have bigger feeds less often.\r\n\r\nThe more your baby breastfeeds, the more milk your body makes.\r\n\r\nAlmost all mothers make enough milk so that their baby doesn't need anything else for the first 6 months of life.\r\n\r\nAnd that's it!",
+              response: "🤔\n\nIn fact, experts around the world recommend that you breastfeed your baby whenever he is hungry. This is called demand feeding.\r\n\r\nWhen your baby is a newborn, feed him at least 8 times in 24 hours. As he gets older he will have bigger feeds less often.\r\n\r\nThe more your baby breastfeeds, the more milk your body makes.\r\n\r\nAlmost all mothers make enough milk so that their baby doesn't need anything else for the first 6 months of life.\r\n\r\nAnd that's it!",
               semantic_id: "every-4-hours"
             },
             %Forms.Answer{
               score: 0.0,
               answer: "Every 2 hours",
-              response: "🤔\r\n\r\nIn fact, experts around the world recommend that you breastfeed your baby whenever he is hungry. This is called demand feeding.\r\n\r\nWhen your baby is a newborn, feed him at least 8 times in 24 hours. As he gets older he will have bigger feeds less often.\r\n\r\nThe more your baby breastfeeds, the more milk your body makes.\r\n\r\nAlmost all mothers make enough milk so that their baby doesn't need anything else for the first 6 months of life.\r\n\r\nAnd that's it!",
+              response: "🤔\n\nIn fact, experts around the world recommend that you breastfeed your baby whenever he is hungry. This is called demand feeding.\r\n\r\nWhen your baby is a newborn, feed him at least 8 times in 24 hours. As he gets older he will have bigger feeds less often.\r\n\r\nThe more your baby breastfeeds, the more milk your body makes.\r\n\r\nAlmost all mothers make enough milk so that their baby doesn't need anything else for the first 6 months of life.\r\n\r\nAnd that's it!",
               semantic_id: "every-2-hours"
             }
           ]
@@ -231,6 +231,7 @@ defmodule QuizBreastfeedingTest do
 
   setup [:setup_flow]
 
+  @moduletag :cms_forms
   describe "Breastfeeding quiz" do
     test "First question", %{flow: flow} do
       flow
@@ -240,7 +241,7 @@ defmodule QuizBreastfeedingTest do
         buttons: [{"Formula", "Formula"}, {"Formula+breast milk", "Formula+breast milk"}, {"Breast milk only", "Breast milk only"}]
       })
       |> results_match([
-        %{name: "version", value: "1.0"},
+        %{name: "version", value: "1"},
         %{name: "started", value: "breastfeeding_quiz", label: "@v_start"},
         %{name: "locale", value: "en"}
       ])
@@ -253,7 +254,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Breast milk only")
       |> receive_message(%{
-        text: "*Yes!* ✅\r\n\r\nIt's best to give your baby only breast milk" <> _,
+        text: "*Yes!* ✅\n\nIt's best to give your baby only breast milk" <> _,
         buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
@@ -269,7 +270,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Formula")
       |> receive_message(%{
-        text: "🤔\r\n\r\nActually, it's best to give your baby *only breast milk*" <> _,
+        text: "🤔\n\nActually, it's best to give your baby *only breast milk*" <> _,
         buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
@@ -301,7 +302,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("All of the above")
       |> receive_message(%{
-        text: "*Yes!* ✅\r\n\r\nBreastfeeding is great for moms for practical" <> _,
+        text: "*Yes!* ✅\n\nBreastfeeding is great for moms for practical" <> _,
         buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
@@ -319,7 +320,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("It helps bonding")
       |> receive_message(%{
-        text: "🤔 It's even better than that!\r\n\r\nBreastfeeding is great for" <> _,
+        text: "🤔 It's even better than that!\n\nBreastfeeding is great for" <> _,
         buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
@@ -437,7 +438,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowStep.clear_results()
       |> FlowTester.send("Every 4 hours")
       |> receive_message(%{
-        text: "🤔\r\n\r\nIn fact, experts around the world recommend that you" <> _,
+        text: "🤔\n\nIn fact, experts around the world recommend that you" <> _,
         buttons: [{"@config.items.response_button_text", "Next question"}]
       })
       |> results_match([
@@ -461,7 +462,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("Next question")
       |> receive_message(%{
         text: "*You are a champion!* 🏆\r\n\r\nYou got 4 out of 4 answers right." <> _,
-        image: "https://example.com/champion.jpg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/6a5cefe396bea35baa1cc604f1aaab56.png"
       })
       |> results_match([
         %{name: "end", value: "breastfeeding-quiz"},
@@ -486,7 +487,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("Next question")
       |> receive_message(%{
         text: "*Getting there*\r\n\r\nYou got 2 out of 4 answers right." <> _,
-        image: "https://example.com/good.jpg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/aa517ea3807b24713d0e1188e8687509.png"
       })
       |> results_match([
         %{name: "end", value: "breastfeeding-quiz"},
@@ -511,7 +512,7 @@ defmodule QuizBreastfeedingTest do
       |> FlowTester.send("Next question")
       |> receive_message(%{
         text: "*Up for the challenge?*\r\n\r\nYou didn't get any answers correct" <> _,
-        image: "https://example.com/learner.jpg"
+        image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/c6e7dabb45604e0946d282a7985e92c3.png"
       })
       |> results_match([
         %{name: "end", value: "breastfeeding-quiz"},

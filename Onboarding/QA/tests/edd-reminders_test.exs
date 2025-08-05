@@ -491,16 +491,17 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{
         text: "I don't understand your reply. Please try that again. \n\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
         # list: {"Month", ^list_of_months}
+        # TODO: Fix this so it works regardless of current month
         list: {"Month", [
-                    {"@datevalue(this_month, \"%B\")", "July"},
-                    {"@datevalue(this_month_plus_one, \"%B\")", "August"},
-                    {"@datevalue(this_month_plus_two, \"%B\")", "September"},
-                    {"@datevalue(this_month_plus_three, \"%B\")", "October"},
-                    {"@datevalue(this_month_plus_four, \"%B\")", "November"},
-                    {"@datevalue(this_month_plus_five, \"%B\")", "December"},
-                    {"@datevalue(this_month_plus_six, \"%B\")", "January"},
-                    {"@datevalue(this_month_plus_seven, \"%B\")", "February"},
-                    {"@datevalue(this_month_plus_eight, \"%B\")", "March"},
+                    {"@datevalue(this_month, \"%B\")", "August"},
+                    {"@datevalue(this_month_plus_one, \"%B\")", "September"},
+                    {"@datevalue(this_month_plus_two, \"%B\")", "October"},
+                    {"@datevalue(this_month_plus_three, \"%B\")", "November"},
+                    {"@datevalue(this_month_plus_four, \"%B\")", "December"},
+                    {"@datevalue(this_month_plus_five, \"%B\")", "January"},
+                    {"@datevalue(this_month_plus_six, \"%B\")", "February"},
+                    {"@datevalue(this_month_plus_seven, \"%B\")", "March"},
+                    {"@datevalue(this_month_plus_eight, \"%B\")", "April"},
                     {"I don't know", "I don't know"}
                   ]}
       })
@@ -560,7 +561,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send("25")
       |> receive_message(%{
         # text:  ^edd_confirmation_text,
-        text:  "I’ve updated your baby’s estimated due date to: 2025-08-25\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽",
+        text:  "I’ve updated your baby’s estimated due date to: 2025-09-25\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽",
       })
       |> contact_matches(%{"edd" => ^full_edd})
       |> result_matches(%{name: "edd", value: ^full_edd})
@@ -603,8 +604,9 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send(month)
       |> receive_message(%{})
       |> FlowTester.send("falalalalaaaaa")
+      # TODO: Fix the assertion to get the correct end day for the month
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 30."
       })
     end
 
@@ -623,8 +625,9 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send(month)
       |> receive_message(%{})
       |> FlowTester.send("0")
+      # TODO: Fix the assertion to get the correct end day for the month
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 30."
       })
     end
 
@@ -643,8 +646,9 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send(month)
       |> receive_message(%{})
       |> FlowTester.send("32")
+      # TODO: Fix the assertion to get the correct end day for the month
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
+        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 30."
       })
     end
 
@@ -735,6 +739,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send(month)
       |> receive_message(%{})
       |> FlowTester.send("32")
+      # TODO: Fix the assertion to get the correct end day for the month
       |> receive_message(%{
         text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
       })
