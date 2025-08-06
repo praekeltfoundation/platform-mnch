@@ -1,0 +1,359 @@
+{
+  "name": "Re Engagement",
+  "description": "Default description",
+  "uuid": "387a852d-e38e-42be-a7c8-9a7af6680c6e",
+  "resources": [
+    {
+      "values": [
+        {
+          "value": "@message",
+          "modes": [
+            "RICH_MESSAGING"
+          ],
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "language_id": "cd4c148d-689d-413c-9b78-3d8f530dfa45"
+        }
+      ],
+      "uuid": "686b16b3-56ba-49df-b55c-3f7088e17bbe"
+    }
+  ],
+  "flows": [
+    {
+      "label": null,
+      "name": "stack",
+      "blocks": [
+        {
+          "label": null,
+          "name": "content_data",
+          "type": "Io.Turn.Webhook",
+          "config": {
+            "timeout": 5000,
+            "mode": "sync",
+            "body": null,
+            "url": "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+            "query": [
+              [
+                "slug",
+                "mnch_onboarding_reengagement_sms"
+              ],
+              [
+                "sms",
+                "true"
+              ]
+            ],
+            "headers": [
+              [
+                "Authorization",
+                "Token @global.config.contentrepo_token"
+              ]
+            ],
+            "method": "GET",
+            "cache_ttl": 60000
+          },
+          "tags": [],
+          "uuid": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "content_data",
+              "config": {},
+              "test": "",
+              "uuid": "19889b7b-3b7e-4b45-9381-794032a99517",
+              "destination_block": "e912c29c-549e-5a43-82f3-c61730ff74d2",
+              "vendor_metadata": {},
+              "semantic_label": ""
+            }
+          ],
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "code_generator": null,
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "ReEngagementSms",
+                      "uuid": "84cb3742-275e-5256-9dfe-ce8b619ac63a",
+                      "version": null
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 5
+                      },
+                      "type": "webhook",
+                      "webhook": {}
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          },
+          "semantic_label": null
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "e912c29c-549e-5a43-82f3-c61730ff74d2",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "content_data.body.results[0].body.text.message",
+              "config": {},
+              "test": "",
+              "uuid": "3a5ad90d-b60d-40a2-969d-c136832fbee0",
+              "destination_block": "dd714290-769b-5d1c-96a1-56e2a610d171",
+              "vendor_metadata": {},
+              "semantic_label": ""
+            }
+          ],
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "code_generator": null,
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "ReEngagementSms",
+                      "uuid": "84cb3742-275e-5256-9dfe-ce8b619ac63a",
+                      "version": null
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 15
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          },
+          "semantic_label": null
+        },
+        {
+          "label": null,
+          "name": "name",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "dd714290-769b-5d1c-96a1-56e2a610d171",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "if(is_nil_or_empty(contact.name), \"\", contact.name)",
+              "config": {},
+              "test": "",
+              "uuid": "8e56e831-4783-4b06-9112-cbb660048e0f",
+              "destination_block": "3b542704-3580-507b-9558-f2d5683a8bbb",
+              "vendor_metadata": {},
+              "semantic_label": ""
+            }
+          ],
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "code_generator": null,
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "ReEngagementSms",
+                      "uuid": "84cb3742-275e-5256-9dfe-ce8b619ac63a",
+                      "version": null
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 16
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          },
+          "semantic_label": null
+        },
+        {
+          "label": null,
+          "name": "message",
+          "type": "Core.Case",
+          "config": {},
+          "tags": [],
+          "uuid": "3b542704-3580-507b-9558-f2d5683a8bbb",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "substitute(message, \"{{name}}\", \"@name\")",
+              "config": {},
+              "test": "",
+              "uuid": "a3288244-2b3d-4a7c-91bd-6651352a5530",
+              "destination_block": "ce05e7bc-5e5c-5ffe-af2b-156e0d8f3491",
+              "vendor_metadata": {},
+              "semantic_label": ""
+            }
+          ],
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "code_generator": null,
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "ReEngagementSms",
+                      "uuid": "84cb3742-275e-5256-9dfe-ce8b619ac63a",
+                      "version": null
+                    },
+                    "card_item": {
+                      "expression": {},
+                      "meta": {
+                        "column": 3,
+                        "line": 17
+                      },
+                      "type": "expression"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          },
+          "semantic_label": null
+        },
+        {
+          "label": null,
+          "name": "re_engagement_sms_text",
+          "type": "MobilePrimitives.Message",
+          "config": {
+            "prompt": "686b16b3-56ba-49df-b55c-3f7088e17bbe"
+          },
+          "tags": [],
+          "uuid": "ce05e7bc-5e5c-5ffe-af2b-156e0d8f3491",
+          "ui_metadata": {
+            "canvas_coordinates": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "exits": [
+            {
+              "default": true,
+              "name": "re_engagement_sms_text",
+              "config": {},
+              "test": "",
+              "uuid": "299b2198-bd3b-4fb0-b90e-3e5943859ee2",
+              "destination_block": null,
+              "vendor_metadata": {},
+              "semantic_label": ""
+            }
+          ],
+          "vendor_metadata": {
+            "io": {
+              "turn": {
+                "stacks_dsl": {
+                  "0.1.0": {
+                    "card": {
+                      "code_generator": null,
+                      "condition": null,
+                      "meta": {
+                        "column": 1,
+                        "line": 4
+                      },
+                      "name": "ReEngagementSms",
+                      "uuid": "84cb3742-275e-5256-9dfe-ce8b619ac63a",
+                      "version": null
+                    },
+                    "card_item": {
+                      "meta": {
+                        "column": 3,
+                        "line": 18
+                      },
+                      "text": {},
+                      "type": "text"
+                    },
+                    "index": 0
+                  }
+                }
+              }
+            }
+          },
+          "semantic_label": null
+        }
+      ],
+      "last_modified": "2025-07-29T07:13:09.477733Z",
+      "uuid": "04fbb107-3017-49b7-af6d-f6f155ea9262",
+      "languages": [
+        {
+          "id": "cd4c148d-689d-413c-9b78-3d8f530dfa45",
+          "label": "English",
+          "variant": null,
+          "iso_639_3": "eng",
+          "bcp_47": null
+        }
+      ],
+      "first_block_id": "f161bfa5-1985-5de7-a56e-0b68977c08ad",
+      "interaction_timeout": 300,
+      "vendor_metadata": {},
+      "supported_modes": [
+        "RICH_MESSAGING"
+      ],
+      "exit_block_id": ""
+    }
+  ],
+  "vendor_metadata": {},
+  "specification_version": "1.0.0-rc3"
+}
