@@ -53,7 +53,8 @@ card GetPageContent, then: SendGreeting do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_greeting/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )

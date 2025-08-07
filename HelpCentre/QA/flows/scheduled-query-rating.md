@@ -32,7 +32,8 @@ card FetchError, then: ScheduledQueryRating do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -56,7 +57,8 @@ card ScheduledQueryRating, then: ScheduledQueryRatingError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_scheduled_query_rating/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )

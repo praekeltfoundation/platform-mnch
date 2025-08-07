@@ -103,7 +103,8 @@ card RTOEmergency, then: HANDOVER_STARTS_1 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_route_to_operator_emergency/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -126,7 +127,8 @@ card RTOSearchMyHealth, then: HANDOVER_STARTS_1 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_route_to_operator_search_myhealth/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -150,7 +152,8 @@ card RTOTechSupport, then: HANDOVER_STARTS_1 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_route_to_operator_tech_support/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -174,7 +177,8 @@ card RTOFailedAttempts, then: HANDOVER_STARTS_1 do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_route_to_operator_failed_attempts/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )

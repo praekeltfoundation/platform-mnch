@@ -77,7 +77,8 @@ card FetchError, then: InitHelpdesk do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -171,7 +172,8 @@ card HelpCentre
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_welcome_help_centre_first/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -186,7 +188,8 @@ card HelpCentre when contact.returning_help_centre_user == true, then: ShowHelpC
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_welcome_help_centre_returning/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -233,7 +236,8 @@ card MedicalEmergency, then: MedicalEmergencyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_medical_emergency/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -276,7 +280,8 @@ card EmergencyNumbers, then: EmergencyNumbersError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_emergency_contact_numbers/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -321,7 +326,8 @@ card SearchMyHealth, then: CheckInbound do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_search_myhealth_prompt/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -368,7 +374,8 @@ card TechSupport, then: CheckInbound do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_technical_issue_prompt/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -473,7 +480,8 @@ card NonTextDetected, then: CheckInbound do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_invalid_media_catch_all/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -491,7 +499,8 @@ card GibberishDetected, then: CheckInbound do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_general_catch_all/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -561,7 +570,8 @@ card RouteUrgency when urgency_score == 1.0, then: RouteUrgencyError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_medical_emergency_secondary/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -620,7 +630,8 @@ card DisplayFAQTopicsList, then: ValidateFAQSelection do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_faqs_topics_list/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -689,7 +700,8 @@ card ValidateFAQSelectionError, then: ValidateFAQSelection do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_faqs_topics_list_error/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -712,7 +724,8 @@ card DisplayFAQ, then: DisplayFAQError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_faq_topic_content/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -806,7 +819,8 @@ card AcknowledgePositive do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_acknowledgement_positive_/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -840,7 +854,8 @@ card AcknowledgeNegative, then: RouteUrgency do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_acknowledgement_negative_/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -897,7 +912,8 @@ card HelpdeskClosed, then: HelpdeskClosedError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_help_desk_entry_offline/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )

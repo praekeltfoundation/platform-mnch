@@ -50,7 +50,8 @@ card FetchError, then: CheckForNavBypass do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -110,7 +111,8 @@ card CheckResolution, then: CheckResolutionError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_query_successful/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -147,7 +149,8 @@ card AgentHelpfulResponse do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_helpful_response/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -168,7 +171,8 @@ card UnresolvedWhatNext, then: WhatNextError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_unsuccessful_response/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -205,7 +209,8 @@ card CallMeBack, then: CallMeBackError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_call_back_response/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -228,7 +233,8 @@ card CallMeBackConfirm, then: ChooseNumberToCall do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_call_back_confirmation/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -256,7 +262,8 @@ card ChooseNumberToCall, then: ChooseNumberToCallError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_call_back_number_confirmation/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -297,7 +304,8 @@ card UseAnotherNumber, then: ValidateAlternateNumber do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_call_back_number_update/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -334,7 +342,8 @@ card ConfirmSaveAlternateNumber, then: ConfirmSaveAlternateNumberError do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_contact_number_save/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
@@ -387,7 +396,8 @@ card BotToAgentHandoverWait do
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_bot_to_agent_handover_waiting_room/",
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
