@@ -11,7 +11,7 @@ defmodule AgentGreetingTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # The index page isn't in the content sheet, so we need to add it manually.
-    index = %Index{title: "Help centre", slug: "test"}
+    index = %Index{title: "Help centre", slug: "help-centre-index"}
     assert :ok = FakeCMS.add_pages(wh_pid, [index])
 
     # The content for these tests.
@@ -25,21 +25,6 @@ defmodule AgentGreetingTest do
                    end
                  )
 
-    # # Add some content.
-    # agent_greeting = %ContentPage{
-    #   slug: "plat_help_agent_greeting",
-    #   title: "Agent greeting",
-    #   parent: "test",
-    #   wa_messages: [
-    #     %WAMsg{message: "👨You are now chatting with {operator_name}"}
-    #   ]
-    # }
-
-    # assert :ok =
-    #          FakeCMS.add_pages(wh_pid, [
-    #            %Index{slug: "test", title: "test"},
-    #            agent_greeting
-    #          ])
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -80,6 +65,7 @@ defmodule AgentGreetingTest do
 
   setup [:setup_flow]
 
+  @tag :assignedonly
   test "get greeting for assigned agent", %{flow: flow} do
     FlowTester.start(flow)
     |> receive_message(%{

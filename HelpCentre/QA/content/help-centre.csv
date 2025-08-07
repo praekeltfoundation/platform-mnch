@@ -114,13 +114,13 @@ Sub 5.4.22,1,3760,plat_help_acknowledgement_positive_,Help centre,Acknowledgemen
 
 What would you like to see now?",,,,,[],,,,,,,,,912c6657-d878-4ee3-af47-14eda41ce4d9,,,,,"[{""type"": ""next_message"", ""title"": ""Back to topics list""}, {""type"": ""next_message"", ""title"": ""Help Centre menu""}, {""type"": ""next_message"", ""title"": ""Main menu""}]",,,,,,en
 Sub 5.4.23,1,3761,plat_help_acknowledgement_negative_,Help centre,Acknowledgement negative,,,Acknowledgement negative,That's unfortunate. Let's try again!,,,,,[],,,,,,,,,a4913f05-e795-4109-a232-f879dca87b69,,,,,[],,,,,,en
-Sub 5.4.24,1,3762,plat_help_error_handling_button,Help centre,error handling - button,,,error handling - button,"I don't understand your reply. 
+Sub 5.4.24,1,3762,plat_help_error_handling_button,Help centre,error handling - button,,,error handling - button,"I don't understand your reply.   
 
 👇🏽 Please try that again and respond by tapping a button.",,,,,[],,,,,,,,,22c79cd1-8645-4ea8-b22e-dc8be7bd7c62,,,,,[],,,,,,en
 Sub 5.4.25,1,3788,plat_help_faq_error_message,Help centre,FAQ error message,,,FAQ Topic List error,"Sorry, we didn’t get that. 
 
 Please respond with a number between 1 and 6.",,,,,[],,,,,,,,,8c8f3568-04fc-4ea7-8c05-c44d98bce82e,,,,,[],,,,,,en
-Sub 5.4.26,1,3789,plat_help_agent_greeting,Help centre,Agent greeting,,,Agent greeting,👨You are now chatting with {operator_name} from the CSV,,,,,[],,,,,,,,,d724d87c-4f91-4407-96e3-c95d8441917f,,,,,[],,,,,,en
+Sub 5.4.26,1,3789,plat_help_agent_greeting,Help centre,Agent greeting,,,Agent greeting,👨You are now chatting with {operator_name},,,,,[],,,,,,,,,d724d87c-4f91-4407-96e3-c95d8441917f,,,,,[],,,,,,en
 Sub 5.4.27,1,3790,plat_help_agent_close_chat,Help centre,Agent close chat,,,-8,"👨Glad to have helped, I’m available any time. I’m going to resume the bot now.",,,,,[],,,,,,,,,fe27cdc4-5f19-4e87-bbed-cd6db8a5f0a4,,,,,[],,,,,,en
 Sub 5.4.28,1,3791,plat_help_bot_active_notification,Help centre,Bot active notification,,,Bot active notification,🤖Welcome back! the person has left and now you’re chatting to the bot again.,,,,,[],,,,,,,,,6625005e-25a5-45ff-8257-7c38d41bd4ec,,,,,[],,,,,,en
 Sub 5.4.29,1,3792,plat_help_query_successful,Help centre,Query successful,,,Query successful,Was your query successfully resolved?,,,,,[],,,,,,,,,58f85b61-6e9e-4c2c-a67b-9a6277ca0c9c,,,,,"[{""type"": ""next_message"", ""title"": ""Yes""}, {""type"": ""next_message"", ""title"": ""No""}]",,,,,,en
@@ -181,11 +181,3 @@ Menu 13,0,12418,mpox,,mpox,,,,,,,,,,,,,,,,,,b13f808f-ccff-46f1-b7c9-784dfc924cac
 Menu 14,0,12797,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,en
 Menu 15,0,12863,mental-health,,Mental Health,,,,,,,,,,,,,,,,,,20c6e1a1-663a-4210-bb8e-d4ee64bbeec7,,,,,,,,,,,en
 Menu 16,0,12868,debtest,,DebTestPage,,,,,,,,,,,,,,,,,,fba05d65-d018-4bcc-8d7b-90334c7f6411,,,,,,,,,,,en
-Menu 1,0,2393,ma_test_spanish,,MA_TEST_SPANISH,,,,,,,,,,,,,,,,,,3222c815-39fc-4498-9c87-0c2c351c6853,,,,,,,,,,,es
-Menu 2,0,7429,dev-test-2,,Dev Test 2,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,es
-Menu 1,0,1984,stage-based-messages-por,,Stage-based messages Por,,,,,,,,,,,,,,,,,,35628191-624e-4a13-93bf-499f4e7de017,,,,,,,,,,,pt
-Menu 2,0,1985,helen_test,,Helen test por,,,,,,,,,,,,,,,,,,51cdf6dc-fb64-4197-bda0-f913b6a72811,,,,,,,,,,,pt
-Menu 3,0,1986,hlumi-por-test,,Hlumi por test,,,,,,,,,,,,,,,,,,743fef92-7384-493e-bcb2-3a7f47ac644f,,,,,,,,,,,pt
-Menu 4,0,12786,dev-test,,Dev Test,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,pt
-Menu 5,0,12832,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,pt
-Menu 6,0,12903,functional_copy,,Functional copy,,,,,,,,,,,,,,,,,,ed5fde40-3fe7-48d7-9a90-a7952f1c8db8,,,,,,,,,,,pt
