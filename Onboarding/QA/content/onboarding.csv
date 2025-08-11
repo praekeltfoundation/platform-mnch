@@ -435,10 +435,10 @@ Sub 5.1.88,1,3618,mnch_onboarding_error_handling_button,Onboarding,error handlin
 Sub 5.1.89,1,3619,mnch_onboarding_error_handling_list_message,Onboarding,error handling - list message,,,error handling - list message,"I don't understand your reply. Please try that again. 
 
 👇🏽 Tap on the button below the message, choose your answer from the list, and send.",,,,,[],,,,,,,,,9914578a-4ab0-4b2d-adfb-b1d9555a03d6,,,,,[],,,,,,en
-Sub 5.1.90,1,3620,mnch_onboarding_error_handling_number_input,Onboarding,error handling - number input,,,error handling - number input,"I don't understand your reply. 
+Sub 5.1.90,1,3620,mnch_onboarding_error_handling_number_input,Onboarding,error handling - number input,,,error handling - number input,"I don't understand your reply.   
 
 👇🏽  Please try that again and respond with the number that comes before your answer.",,,,,[],,,,,,,,,070aedd5-b7ca-41b9-adc2-b996eed2d856,,,,,[],,,,,,en
-Sub 5.1.91,1,3621,mnch_onboarding_error_handling_undefined,Onboarding,error handling - undefined,,,error handling - undefined,"Something doesn't look right. 
+Sub 5.1.91,1,3621,mnch_onboarding_error_handling_undefined,Onboarding,error handling - undefined,,,error handling - undefined,"Something doesn't look right.   
 
 Please read the previous instruction and try that again.",,,,,[],,,,,,,,,0be74b50-bf71-43fe-a361-e8894bf360a2,,,,,[],,,,,,en
 Sub 5.1.92,1,3622,mnch_onboarding_unrecognised_number,Onboarding,Unrecognised_number,,,Unrecognised_number,"Sorry, I didn’t get that – let's try again.
@@ -1062,21 +1062,21 @@ To start, dial *120*4216*25#",,,,,,,2dd24fbc-081e-4ba8-bbbd-7d83da76be41,,,,,,,,
 Menu 6,0,3723,test,,TEST,,,,,,,,,,,,,,,,,,7bc53d56-c353-4194-884f-ff4fece7eabb,,,,,,,,,,,en
 Menu 7,0,3730,nurse_home_eng_nurse,,NURSE,,,,,,,,,,,,,,,,,,df3c6763-bc32-44f6-a5a6-495afcca858c,,,,,,,,,,,en
 Menu 8,0,3732,ma_test,,MA_TEST,,,,,,,,,,,,,,,,,,d69e6b91-f87e-43a7-90b4-70f965a60700,,,,,,,,,,,en
-Menu 9,1,3735,mnch_onboarding_drop_off_2nd_reminder,,Drop_off_2nd_reminder,,,Drop_off_2nd_reminder,"Hi {username}!
+Menu 9,1,3735,mnch_onboarding_drop_off_2nd_reminder,Onboarding,Drop_off_2nd_reminder,,,Drop_off_2nd_reminder,"Hi {username}!
 
 Join thousands of people like you who are improving their health and well-being and of their loved ones by getting expert, personalised health info.
 
 *All you need to do to join them, is to answer a few quick questions.*
 
 It will only take a couple of minutes.",,,,,[],,,,,,,,,48c49732-543d-410e-af26-e52028aa0d1b,,,,,"[{""type"": ""next_message"", ""title"": ""Let\u2019s do it""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",,,,,,en
-Menu 10,1,3736,mnch_onboarding_drop_off_3rd_reminder,,Drop_off_3rd_reminder,,,Drop_off_3rd_reminder,"Hi {username}!
+Menu 10,1,3736,mnch_onboarding_drop_off_3rd_reminder,Onboarding,Drop_off_3rd_reminder,,,Drop_off_3rd_reminder,"Hi {username}!
 
 Imagine yourself in the future. You are healthier and happier. That’s what I want to help you achieve! The journey to that future begins now.
 
 *Are you ready to answer some questions?*
 
 It will only take a couple of minutes. (I won’t bother you with this again.)",,,,,[],,,,,,,,,9b699fe9-f212-4717-b76f-8d9128824748,,,,,"[{""type"": ""next_message"", ""title"": ""Let\u2019s do it""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Re_engagement_04.png,,,,,en
-Menu 11,1,3737,mnch_onboarding_reminder_requested,,Reminder_requested,,,Reminder_requested,"Hi {username}!
+Menu 11,1,3737,mnch_onboarding_reminder_requested,Onboarding,Reminder_requested,,,Reminder_requested,"Hi {username}!
 
 *This is your friendly reminder to share more about yourself.* Let’s do this.🔔",,,,,[],,,,,,,,,14f8fe1d-a028-4741-882e-16b24a3b957d,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, let\u2019s go""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Reminder.png,,,,,en
 Menu 12,0,7730,nurse_templates,,NURSE templates,,,,,,,,,,,,,,,,,,52d85323-744f-4b33-a2b8-5c712935d900,,,,,,,,,,,en
@@ -1084,11 +1084,3 @@ Menu 13,0,12418,mpox,,mpox,,,,,,,,,,,,,,,,,,b13f808f-ccff-46f1-b7c9-784dfc924cac
 Menu 14,0,12797,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,en
 Menu 15,0,12863,mental-health,,Mental Health,,,,,,,,,,,,,,,,,,20c6e1a1-663a-4210-bb8e-d4ee64bbeec7,,,,,,,,,,,en
 Menu 16,0,12868,debtest,,DebTestPage,,,,,,,,,,,,,,,,,,fba05d65-d018-4bcc-8d7b-90334c7f6411,,,,,,,,,,,en
-Menu 1,0,2393,ma_test_spanish,,MA_TEST_SPANISH,,,,,,,,,,,,,,,,,,3222c815-39fc-4498-9c87-0c2c351c6853,,,,,,,,,,,es
-Menu 2,0,7429,dev-test-2,,Dev Test 2,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,es
-Menu 1,0,1984,stage-based-messages-por,,Stage-based messages Por,,,,,,,,,,,,,,,,,,35628191-624e-4a13-93bf-499f4e7de017,,,,,,,,,,,pt
-Menu 2,0,1985,helen_test,,Helen test por,,,,,,,,,,,,,,,,,,51cdf6dc-fb64-4197-bda0-f913b6a72811,,,,,,,,,,,pt
-Menu 3,0,1986,hlumi-por-test,,Hlumi por test,,,,,,,,,,,,,,,,,,743fef92-7384-493e-bcb2-3a7f47ac644f,,,,,,,,,,,pt
-Menu 4,0,12786,dev-test,,Dev Test,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,pt
-Menu 5,0,12832,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,pt
-Menu 6,0,12903,functional_copy,,Functional copy,,,,,,,,,,,,,,,,,,ed5fde40-3fe7-48d7-9a90-a7952f1c8db8,,,,,,,,,,,pt
