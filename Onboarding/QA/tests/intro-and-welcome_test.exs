@@ -13,9 +13,14 @@ defmodule IntroAndWelcomeTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
+    doc_priv_pol = %Document{id: 1, title: "Test document", download_url: "https://content-repo-api-qa.prk-k8s.prd-p6t.org/documents/17/privacy_policy.pdf"}
+    assert :ok =
+             FakeCMS.add_documents(wh_pid, [
+               doc_priv_pol,])
+
     # The index page isn't in the content sheet, so we need to add it manually.
-    index = %Index{title: "Onboarding", slug: "test"}
-    assert :ok = FakeCMS.add_pages(wh_pid, [index])
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
     # These options are common to all CSV imports below.
     import_opts = [
@@ -35,10 +40,8 @@ defmodule IntroAndWelcomeTest do
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
-    assert :ok = FakeCMS.add_document(wh_pid, %Document{id: 1, title: "Privacy Policy"})
-
     # Docs aren't included in the imports, so we need to attach this one manually.
-    assert :ok = FakeCMS.add_doc_to_page(wh_pid, "mnch_onboarding_pp_document", 0, 1)
+    FakeCMS.add_doc_to_page(wh_pid, "mnch_onboarding_pp_document", 0, doc_priv_pol.id)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
