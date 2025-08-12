@@ -72,12 +72,14 @@ defmodule ProfilePregnancyHealthTest do
     ]
 
     # The content for these tests.
-    # assert :ok = Helpers.import_content_csv(wh_pid, "profile-pregnancy-health", import_opts)
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
-    # Some content is in the variations sheet, apparently. Also, all of these
-    # pages have an image attachment.
-    var_pages = Helpers.pages_from_content_csv("variations", import_opts)
-    assert :ok = FakeCMS.add_pages(wh_pid, var_pages)
+
+    # Variations
+    var_facts = Helpers.pages_from_content_csv("variations-facts", import_opts)
+    assert :ok = FakeCMS.add_pages(wh_pid, var_facts)
+
+    var_sentiment = Helpers.pages_from_content_csv("variations-sentiment", import_opts)
+    assert :ok = FakeCMS.add_pages(wh_pid, var_sentiment)
 
     # Add images to pages
     FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_content_intro", 0, image_topics_for_you.id)

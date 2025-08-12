@@ -1,0 +1,19 @@
+structure,message,page_id,slug,parent,web_title,web_subtitle,web_body,whatsapp_title,whatsapp_body,whatsapp_template_slug,variation_title,variation_body,list_title,list_items,sms_title,sms_body,ussd_title,ussd_body,messenger_title,messenger_body,viber_title,viber_body,translation_tag,tags,quick_replies,triggers,next_prompt,buttons,image_link,doc_link,media_link,related_pages,footer,language_code
+Sub 5.3.2.1,1,3716,mnch_facts_factoid_1_trimester_1,Facts,factoid_1_trimester_1,,,factoid_1_trimester_1,"*Did you know?* 💡
+
+A uterus can stretch from the size of a lemon to the size of a watermelon during pregnancy 🍋",,,,,[],,,,,,,,,841626f5-bf53-4ad4-b3e2-dcad7223f92e,,,,,"[{""type"": ""next_message"", ""title"": ""Awesome""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
+Sub 5.3.2.2,1,3717,mnch_facts_factoid_2_trimester_1,Facts,factoid_2_trimester_1,,,factoid_2_trimester_1,"*Did you know?* 💡
+
+A woman's blood volume can increase by 40 to 50 percent during pregnancy. This provides the extra oxygen needed for a healthy pregnancy 🤰🏽",,,,,[],,,,,,,,,80f36498-e2b2-4a02-b0ab-8a1f561c65a0,,,,,"[{""type"": ""next_message"", ""title"": ""Awesome""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
+Sub 5.3.2.3,1,3718,mnch_facts_factoid_1_trimester_2,Facts,factoid_1_trimester_2,,,factoid_1_trimester_2,"*Did you know?* 💡
+
+Moms-to-be can start producing breast milk as early as 14 weeks into their pregnancy! 🍼",,,,,[],,,,,,,,,5a9161dc-8eb1-49ac-832f-e60e4b23ce33,,,,,"[{""type"": ""next_message"", ""title"": ""Awesome""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
+Sub 5.3.2.4,1,3719,mnch_facts_factoid_2_trimester_2,Facts,factoid_2_trimester_2,,,factoid_2_trimester_2,"*Did you know?* 💡
+
+Babies can start to taste flavours even before they're born. From week 14 or 15, from the food you eat enters your bloodstream and the fluid surrounding the baby in the womb.",,,,,[],,,,,,,,,e5bb953f-b4dc-4530-a03a-307e5896d6d0,,,,,"[{""type"": ""next_message"", ""title"": ""Awesome""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
+Sub 5.3.2.5,1,3720,mnch_facts_factoid_1_trimester_3,Facts,factoid_1_trimester_3,,,factoid_1_trimester_3,"*Did you know?* 💡
+
+Some women may experience changes in their voice during pregnancy. This is because hormonal changes can cause the vocal cords to swell!",,,,,[],,,,,,,,,e74e8d82-e161-4dc9-b9d9-839279b4830d,,,,,"[{""type"": ""next_message"", ""title"": ""Awesome""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
+Sub 5.3.2.6,1,3721,mnch_facts_factoid_2_trimester_3,Facts,factoid_2_trimester_3,,,factoid_2_trimester_3,"*Did you know* 💡
+
+By the third trimester, a developing baby can recognise their mother’s voice from inside the womb 🤰🏽",,,,,[],,,,,,,,,a4732619-a682-4564-ae31-1a52014d616f,,,,,"[{""type"": ""next_message"", ""title"": ""Awesome""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png,,,,,en
