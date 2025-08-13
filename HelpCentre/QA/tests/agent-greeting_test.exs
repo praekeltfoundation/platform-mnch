@@ -65,7 +65,6 @@ defmodule AgentGreetingTest do
 
   setup [:setup_flow]
 
-  @tag :assignedonly
   test "get greeting for assigned agent", %{flow: flow} do
     FlowTester.start(flow)
     |> receive_message(%{

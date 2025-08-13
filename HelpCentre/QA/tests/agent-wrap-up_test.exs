@@ -111,7 +111,6 @@ defmodule AgentWrapUpTest do
       })
     end
 
-    @tag :fwb
     test "query resolved no", %{flow: flow} do
       flow
       |> FlowTester.start()
