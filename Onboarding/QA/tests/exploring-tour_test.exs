@@ -2,6 +2,7 @@ defmodule ExploringTourTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
 
@@ -12,36 +13,38 @@ defmodule ExploringTourTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add an image.
-    image = %Image{id: 1, title: "Test image", download_url: "https://example.org/image.jpeg"}
-    assert :ok = FakeCMS.add_images(wh_pid, [image])
+    # # Add an image.
+    # image = %Image{id: 1, title: "Test image", download_url: "https://example.org/image.jpeg"}
+    # assert :ok = FakeCMS.add_images(wh_pid, [image])
 
     # The index page isn't in the content sheet, so we need to add it manually.
-    index = %Index{title: "Onboarding", slug: "test"}
-    assert :ok = FakeCMS.add_pages(wh_pid, [index])
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    # Error messages are in a separate sheet.
-    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: [index])
-
-    # The content for these tests.
-    assert :ok = Helpers.import_content_csv(
-                   wh_pid,
-                   "exploring-tour",
-                   existing_pages: [index],
-                   field_transform: fn s ->
-                     s
-                     |> String.replace(~r/\r?\n$/, "")
-                   end
-                 )
-    # Some other pages also have an image attachment.
-    [
-      "mnch_onboarding_tour_card_01",
-      "mnch_onboarding_tour_card_02",
-      "mnch_onboarding_tour_card_03",
-      "mnch_onboarding_tour_card_04",
-      "mnch_onboarding_tour_card_05",
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
     ]
-    |> Enum.each(&FakeCMS.add_img_to_page(wh_pid, &1, 0, image.id))
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
+    
+    # Some other pages also have an image attachment.
+    # [
+    #   "mnch_onboarding_tour_card_01",
+    #   "mnch_onboarding_tour_card_02",
+    #   "mnch_onboarding_tour_card_03",
+    #   "mnch_onboarding_tour_card_04",
+    #   "mnch_onboarding_tour_card_05",
+    # ]
+    # |> Enum.each(&FakeCMS.add_img_to_page(wh_pid, &1, 0, image.id))
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -167,7 +170,7 @@ defmodule ExploringTourTest do
         %{name: "guided_tour_menu", value: "yes"},
       ])
       |> receive_message(%{
-        text: "I hope you've now got a good idea of what {service name} can do.\n\nAt this point, most people choose to create their profile. The more info you give me, the more control you have!\n\n👇🏽 What do you want to do?",
+        text: "I hope you've now got a good idea of what {service name} can do.\r\n\r\nAt this point, most people choose to create their profile. The more info you give me, the more control you have!\r\n\r\n👇🏽 What do you want to do?",
         buttons: button_labels(["Create a profile 👤", "Go to help desk"]),
       })
     end

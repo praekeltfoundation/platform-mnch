@@ -14,7 +14,7 @@ defmodule EDDRemindersTest do
     # TODO: This should have qa_mode set, but the flows still need to be updated to include the return_drafts parameter
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-        # The index page isn't in the content sheet, so we need to add it manually.
+    # The index page isn't in the content sheet, so we need to add it manually.
     indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
     assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
