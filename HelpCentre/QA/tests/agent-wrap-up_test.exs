@@ -14,28 +14,25 @@ defmodule AgentWrapUpTest do
       %Index{title: "Onboarding", slug: "onboarding-index"},
     ]
     
-    assert :ok = FakeCMS.add_pages(wh_pid, indices)
+     assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-  # Error messages are in a separate sheet.
-  assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
-  # These options are common to all CSV imports below.
-  import_opts = [
-    existing_pages: indices,
-    field_transform: fn s ->
-      s
-      |> String.replace(~r/\r?\n$/, "")
-    end
-  ]
-
-  # The content for these tests.
-  assert :ok =
-            Helpers.import_content_csv(
-              wh_pid,
-              "help-centre",
-              import_opts
-            )
-
+    # Error messages are in a separate sheet.
+    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)

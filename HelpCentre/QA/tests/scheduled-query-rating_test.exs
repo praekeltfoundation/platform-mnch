@@ -8,29 +8,31 @@ defmodule ScheduledQueryRatingTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    scheduled_query_rating = %ContentPage{
-      slug: "plat_help_scheduled_query_rating",
-      title: "Scheduled Query Rating",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Hi there!\r\n\r\nEarlier you asked to be transferred to one of our human agents.\r\n\r\nWas your query successfully resolved?",
-          buttons: [
-            %Btn.Next{title: "Yes"},
-            %Btn.Next{title: "No"}
-          ]
-        }
-      ]
-    }
+        # The various index pages aren't in the content sheet, so we need to add them manually.
+    indices = [
+      %Index{title: "Help centre", slug: "help-centre-index"},
+      %Index{title: "Onboarding", slug: "onboarding-index"},
+    ]
+    
+     assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               scheduled_query_rating
-             ])
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
+    # Error messages are in a separate sheet.
+    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
   end

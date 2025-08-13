@@ -7,90 +7,32 @@ defmodule ScheduledCallbackConfirmationTest do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
+    
+    # The various index pages aren't in the content sheet, so we need to add them manually.
+    indices = [
+      %Index{title: "Help centre", slug: "help-centre-index"},
+      %Index{title: "Onboarding", slug: "onboarding-index"},
+    ]
+    
+     assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    # Add some content.
-    error_pg = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-        }
-      ]
-    }
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
-    call_back_confirmation_scheduled = %ContentPage{
-      slug: "plat_help_call_back_confirmation_scheduled",
-      title: "Callback Confirmation Scheduled",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
-          buttons: [
-            %Btn.Next{title: "Yes"},
-            %Btn.Next{title: "No"}
-          ]
-        }
-      ]
-    }
-
-    call_back_confirmation_yes = %ContentPage{
-      slug: "plat_help_call_back_confirmation_yes",
-      title: "Call back confirmation yes",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Thats great to hear. Was the [health agent] able to help you?",
-          buttons: [
-            %Btn.Next{title: "Yes"},
-            %Btn.Next{title: "No"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
-
-    call_back_confirmation_no = %ContentPage{
-      slug: "plat_help_call_back_confirmation_no",
-      title: "Call back confirmation no",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Thanks for letting me know. This feedback will be used to improve the [My Health] service.\r\n\r\nIf you have anything urgent to discuss, go to the nearest health facility and speak to a health worker.\r\n\r\nIf you'd like, you can request another call from a [health agent], or have a look at topics that might interest you. \r\n\r\n👇🏽 What do you want to do?",
-          buttons: [
-            %Btn.Next{title: "Call me back"},
-            %Btn.Next{title: "See topics"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
-
-    agent_helpful_response = %ContentPage{
-      slug: "plat_help_agent_helpful_response",
-      title: "Agent helpful respone",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Please take care of yourself and if you need more information, reply {help} anytime to get the info you need."
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               error_pg,
-               call_back_confirmation_scheduled,
-               call_back_confirmation_yes,
-               call_back_confirmation_no,
-               agent_helpful_response
-             ])
+    # Error messages are in a separate sheet.
+    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)

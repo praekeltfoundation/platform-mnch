@@ -11,20 +11,23 @@ defmodule AgentGreetingTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # The index page isn't in the content sheet, so we need to add it manually.
-    index = %Index{title: "Help centre", slug: "help-centre-index"}
-    assert :ok = FakeCMS.add_pages(wh_pid, [index])
+    indices = [%Index{title: "Help centre", slug: "test-help-centre"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
     # The content for these tests.
-    assert :ok = Helpers.import_content_csv(
-                   wh_pid,
-                   "help-centre",
-                   existing_pages: [index],
-                   field_transform: fn s ->
-                     s
-                     |> String.replace(~r/\r?\n$/, "")
-                   end
-                 )
-
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
