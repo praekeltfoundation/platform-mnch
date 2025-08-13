@@ -34,6 +34,7 @@ defmodule EDDRemindersTest do
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
    
+    # TODO: CSV import doesn't currently support languages, so we manually add these two Portuguese pages for tests
     edd_reminder_pt = %ContentPage{
       slug: "mnch_onboarding_edd_reminder",
       title: "EDD Reminder pt",
