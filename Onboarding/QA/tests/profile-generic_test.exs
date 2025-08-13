@@ -2,6 +2,7 @@ defmodule ProfileGenericTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
 
@@ -12,87 +13,24 @@ defmodule ProfileGenericTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    error_pg = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-        }
-      ]
-    }
+    # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    progress_30_generic = %ContentPage{
-      slug: "mnch_onboarding_profile_progress_30_generic",
-      title: "Profile_progress_30_generic",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Your profile is already 30% complete!\r\n\r\n🟩🟩🟩⬜⬜⬜⬜⬜ \r\n\r\n👤 Basic information {basic_info_count}\n➡️ Personal information {personal_info_count}\n⬜ Daily life {daily_life_count}\r\n\r\n👇🏽 Let’s move on to personal information.",
-          buttons: [
-            %Btn.Next{title: "Continue"},
-            %Btn.Next{title: "Why?"}
-          ]
-        }
-      ]
-    }
-
-    progress_100_generic = %ContentPage{
-      slug: "mnch_onboarding_profile_progress_100_generic",
-      title: "Profile_progress_100_generic",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete! 🎉 🌟\r\n\r\nYou can always edit it or provide more info. \r\n\r\n*Name:* {name}\r\n*Basic info:* {basic_info_count}\r\n*Personal info:* {personal_info_count}\r\n*Get important messages:* {get_important_messages}\r\n\r\n👇🏾 What do you want to do next?",
-          buttons: [
-            %Btn.Next{title: "Explore health guide"},
-            %Btn.Next{title: "View topics for you"},
-            %Btn.Next{title: "Go to main menu"}
-          ]
-        }
-      ]
-    }
-
-    why_personal_info_1 = %ContentPage{
-      slug: "mnch_onboarding_why_personal_info_1",
-      title: "Why_personal_info_1",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "ℹ️ Our team of experts has put together loads of health information for you. To quickly get a selection of the info that is valuable to you, share more information about yourself.\r\n\r\nReady to share?",
-          buttons: [
-            %Btn.Next{title: "Yes, let's go"},
-            %Btn.Next{title: "Not right now"}
-          ]
-        }
-      ]
-    }
-
-    remind_later = %ContentPage{
-      slug: "mnch_onboarding_remind_later",
-      title: "Remind_later",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*All good. I’ll check in with you about this another time.* 🗓️\r\n\r\nFor now, I recommend having a look at some of the most popular topics on {MyHealth}.\r\n\r\n👇🏽 What do you want to do now?",
-          buttons: [
-            %Btn.Next{title: "See popular topics"}
-          ]
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               error_pg,
-               progress_30_generic,
-               progress_100_generic,
-               why_personal_info_1,
-               remind_later
-             ])
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)

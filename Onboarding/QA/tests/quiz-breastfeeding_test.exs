@@ -241,7 +241,7 @@ defmodule QuizBreastfeedingTest do
         buttons: [{"Formula", "Formula"}, {"Formula+breast milk", "Formula+breast milk"}, {"Breast milk only", "Breast milk only"}]
       })
       |> results_match([
-        %{name: "version", value: "1"},
+        %{name: "version", value: "1.0"},
         %{name: "started", value: "breastfeeding_quiz", label: "@v_start"},
         %{name: "locale", value: "en"}
       ])

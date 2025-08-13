@@ -2,6 +2,7 @@ defmodule ProfilePregnantNurseTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
 
@@ -12,104 +13,24 @@ defmodule ProfilePregnantNurseTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    error_pg = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-        }
-      ]
-    }
+   # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    pregnant_nurse_20 = %ContentPage{
-      slug: "mnch_onboarding_pregnant_nurse_20",
-      title: "Pregnant_nurse_20",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "🟩🟩⬜⬜⬜⬜⬜⬜\r\n\r\nYour profile is already 20% complete! I think now is a good time to complete it, but it's up to you.\r\n\r\n👇🏽 What do you want to do next?",
-          buttons: [
-            %Btn.Next{title: "➡️ Complete profile"},
-            %Btn.Next{title: "View topics for you"},
-            %Btn.Next{title: "Explore health guide"}
-          ]
-        }
-      ]
-    }
-
-    pregnant_nurse_40 = %ContentPage{
-      slug: "mnch_onboarding_pregnant_nurse_40",
-      title: "Pregnant_nurse_40",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "🟩🟩🟩🟩⬜⬜⬜⬜\r\n\r\nYour profile is already 40% complete! 🎉\r\n\r\n🤰🏽 Pregnancy info {pregnancy_info_count}\r\n🏥 Employment information {employment_info_count}\r\n➡️ Basic information {basic_info_count}\r\n⬜ Personal information {personal_info_count}\r\n⬜ Daily life {daily_life_count}\r\n\r\n👇🏾 Let’s move on to some basic information.",
-          buttons: [
-            %Btn.Next{title: "Continue"}
-          ]
-        }
-      ]
-    }
-
-    pregnant_nurse_60 = %ContentPage{
-      slug: "mnch_onboarding_pregnant_nurse_60",
-      title: "Pregnant_nurse_60",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Thanks for sharing!\r\n\r\nNow is your chance to tell me more about yourself. This allows me to give you information that is helpful to *you.*\r\n\r\n🟩🟩🟩🟩🟩⬜⬜⬜\r\n\r\nYour profile is already 60% complete! 🎉\r\n🤰🏽 Pregnancy info {pregnancy_info_count}\r\n🏥 Employment information {employment_info_count}\r\n👤 Basic information {basic_info_count}\r\n➡️ Personal information {personal_info_count}\r\n⬜ Daily life {daily_life_count}\r\n\r\n👇🏾 Let’s move on to some personal information.",
-          buttons: [
-            %Btn.Next{title: "Continue ➡️"},
-            %Btn.Next{title: "Why should I?"}
-          ]
-        }
-      ]
-    }
-
-    pregnant_nurse_80 = %ContentPage{
-      slug: "mnch_onboarding_pregnant_nurse_80",
-      title: "Pregnant_nurse_80",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "🟩🟩🟩🟩🟩🟩⬜⬜\r\n\r\n🤰🏽 Pregnancy info {pregnancy_info_count}\r\n🏥 Employment information {employment_info_count}\r\n👤 Basic information {basic_info_count}\r\n🗝️ Personal information {personal_info_count}\r\n➡️ Daily life {daily_life_count}\r\n\r\nYour profile is already 80% there – now is a good time to take 5 minutes and complete it! ⭐\r\n\r\n👇🏽 What would you like to do next?",
-          buttons: [
-            %Btn.Next{title: "➡️ Complete it!"},
-            %Btn.Next{title: "Remind me later"}
-          ]
-        }
-      ]
-    }
-
-    pregnant_nurse_100 = %ContentPage{
-      slug: "mnch_onboarding_pregnant_nurse_100",
-      title: "Pregnant_nurse_100",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\n🤰🏽 Pregnancy info {pregnancy_info_count}\r\n🏥 Employment information {employment_info_count}\r\n👤 Basic information {basic_info_count}\r\n🗝️ Personal information {personal_info_count}\r\n☀️ Daily life {daily_life_count}\r\n\r\nYour profile is 100% complete! 🎉 🌟 ⭐\r\n\r\nYou can always edit it or provide more info.\r\n\r\n👇🏽 What do you want to do next?",
-          buttons: [
-            %Btn.Next{title: "Explore health guide"},
-            %Btn.Next{title: "View topics for you"},
-            %Btn.Next{title: "Go to main menu 📘"}
-          ]
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               error_pg,
-               pregnant_nurse_20,
-               pregnant_nurse_40,
-               pregnant_nurse_60,
-               pregnant_nurse_80,
-               pregnant_nurse_100,
-             ])
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)

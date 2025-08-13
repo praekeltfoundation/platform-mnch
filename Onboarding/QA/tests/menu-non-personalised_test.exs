@@ -2,8 +2,10 @@ defmodule MenuNonPersonalisedTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
+  import Onboarding.QA.Helpers.Macros
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
@@ -11,22 +13,23 @@ defmodule MenuNonPersonalisedTest do
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
     # The index page isn't in the content sheet, so we need to add it manually.
-    index = %Index{title: "Onboarding", slug: "test"}
-    assert :ok = FakeCMS.add_pages(wh_pid, [index])
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    # Error messages are in a separate sheet.
-    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: [index])
-
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
     # The content for these tests.
-    assert :ok = Helpers.import_content_csv(
-                   wh_pid,
-                   "menu-non-personalised",
-                   existing_pages: [index],
-                   field_transform: fn s ->
-                     s
-                     |> String.replace(~r/\r?\n$/, "")
-                   end
-                 )
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)

@@ -2,6 +2,7 @@ defmodule ProfileClassifierTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
   alias FlowTester.FlowStep
   alias Onboarding.QA.Helpers
 
@@ -12,174 +13,24 @@ defmodule ProfileClassifierTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    error_button = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-        }
-      ]
-    }
+# The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    error_name = %ContentPage{
-      slug: "mnch_onboarding_name_error",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`"
-        }
-      ]
-    }
-
-    name = %ContentPage{
-      slug: "mnch_onboarding_name_call",
-      title: "Name",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
-        }
-      ]
-    }
-
-    name_skip = %ContentPage{
-      slug: "mnch_onboarding_name_skip",
-      title: "Name_skip",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Sure, we’ll skip that for now.",
-          buttons: [
-            %Btn.Next{title: "Go back"},
-            %Btn.Next{title: "Got it"}
-          ]
-        }
-      ]
-    }
-
-    domains_01 = %ContentPage{
-      slug: "mnch_onboarding_domains_01",
-      title: "Domains 01",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Great to meet you, {@username}!\r\n\r\nI have tonnes of information on lots of different topics you can explore.\r\n\r\nBut I want to know what topics you're interested in adding to your profile.\r\n\r\nI have some suggestions for you to pick from...",
-          buttons: [
-            %Btn.Next{title: "Let's go"},
-          ]
-        }
-      ]
-    }
-
-    domains_02 = %ContentPage{
-      slug: "mnch_onboarding_domains_02",
-      title: "Domains 02",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Love and relationships*\r\n\r\nEverything you need to know about finding love, having healthy relationships, getting out of bad relationships, and communicating better with your partner.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_03 = %ContentPage{
-      slug: "mnch_onboarding_domains_03",
-      title: "Domains 03",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Pregnancy information*\r\n\r\nWhat you need to know about having a happy and healthy pregnancy from your 1st month 'til your last.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_04 = %ContentPage{
-      slug: "mnch_onboarding_domains_04",
-      title: "Domains 04",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Baby and child health*\r\n\r\nRaising a child is hard work but with the right information, support, tips and tricks, you can enjoy being a super parent!",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_05 = %ContentPage{
-      slug: "mnch_onboarding_domains_05",
-      title: "Domains 05",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Well-being*\r\n\r\nWhether you’re looking to add some mindfulness to your day, learn about the importance of looking after your mental health or finding ways to cope in difficult times, you'll find the right resource for you.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_06 = %ContentPage{
-      slug: "mnch_onboarding_domains_06",
-      title: "Domains 06",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Family planning*\r\n\r\nYou have the power to decide if and when you want children and how many you want. You might want none. You might want lots! Know your options so that you can decide what's best for you.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_07 = %ContentPage{
-      slug: "mnch_onboarding_domains_07",
-      title: "Domains 07",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Info for health professionals*\r\n\r\nAre you a nurse? Get support, information, tips and guides to boost your knowledge and skills.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               error_button,
-               error_name,
-               name,
-               name_skip,
-               domains_01,
-               domains_02,
-               domains_03,
-               domains_04,
-               domains_05,
-               domains_06,
-               domains_07
-             ])
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -289,7 +140,7 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("1234")
       |> receive_message(%{
-        text: "I can *only accept names with letters* – no numbers or symbols.\n\nLet's try this again!\n\nWhat would you like me to call you?\n\nIf you don't want to answer this right now, reply `Skip`",
+        text: "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
       })
     end
 
@@ -327,7 +178,7 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("abcdefghijklmnopqrstu")
       |> receive_message(%{
-        text: "I can *only accept names with letters* – no numbers or symbols.\n\nLet's try this again!\n\nWhat would you like me to call you?\n\nIf you don't want to answer this right now, reply `Skip`",
+        text: "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
       })
     end
 

@@ -56,9 +56,6 @@ defmodule ProfilePregnancyHealthTest do
 
     assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    # Error messages are in a separate sheet.
-    # assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
-
     # These options are common to all CSV imports below.
     import_opts = [
       existing_pages: indices,

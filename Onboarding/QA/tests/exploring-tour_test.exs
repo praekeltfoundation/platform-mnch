@@ -13,10 +13,6 @@ defmodule ExploringTourTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # # Add an image.
-    # image = %Image{id: 1, title: "Test image", download_url: "https://example.org/image.jpeg"}
-    # assert :ok = FakeCMS.add_images(wh_pid, [image])
-
     # The index page isn't in the content sheet, so we need to add it manually.
     indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
     assert :ok = FakeCMS.add_pages(wh_pid, indices)
@@ -36,16 +32,6 @@ defmodule ExploringTourTest do
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
     
-    # Some other pages also have an image attachment.
-    # [
-    #   "mnch_onboarding_tour_card_01",
-    #   "mnch_onboarding_tour_card_02",
-    #   "mnch_onboarding_tour_card_03",
-    #   "mnch_onboarding_tour_card_04",
-    #   "mnch_onboarding_tour_card_05",
-    # ]
-    # |> Enum.each(&FakeCMS.add_img_to_page(wh_pid, &1, 0, image.id))
-
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
   end

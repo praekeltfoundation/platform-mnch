@@ -2,139 +2,34 @@ defmodule PersonalProfileQuestionsTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
-
+  alias FlowTester.Message.TextTransform
   alias Onboarding.QA.Helpers
+  
+  import Onboarding.QA.Helpers.Macros
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    error_button = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-        }
-      ]
-    }
+   # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    error_list = %ContentPage{
-      slug: "mnch_onboarding_error_handling_list_message",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply. Please try that again. \n\n👇🏽 Tap on the button below the message, choose your answer from the list, and send."
-        }
-      ]
-    }
-
-    relationship_status = %ContentPage{
-      slug: "mnch_onboarding_q_relationshipstatus",
-      title: "Relationsip Status",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "If there are any questions you don’t want to answer right now, reply `Skip`\r\n\r\n🗝️ *What is your current relationship status?*",
-          buttons: [
-            %Btn.Next{title: "Single"},
-            %Btn.Next{title: "In a relationship"},
-            %Btn.Next{title: "It's complicated"}
-          ]
-        }
-      ]
-    }
-
-    education = %ContentPage{
-      slug: "mnch_onboarding_q_education",
-      title: "Education",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "🗝️ *What is your highest level of education?*",
-          list_items: [
-            %ListItem.Next{title: "Primary school"},
-            %ListItem.Next{title: "High school"},
-            %ListItem.Next{title: "Diploma"},
-            %ListItem.Next{title: "Degree"},
-            %ListItem.Next{title: "Master's degree"},
-            %ListItem.Next{title: "Doctoral degree"},
-            %ListItem.Next{title: "None"},
-            %ListItem.Next{title: "Skip this question"},
-          ]
-        }
-      ]
-    }
-
-    socio_economic = %ContentPage{
-      slug: "mnch_onboarding_q_socioeconomic",
-      title: "Socio Economic",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "🗝️ *How would you describe your personal finances when it comes to having enough money?*",
-          buttons: [
-            %Btn.Next{title: "Comfortable"},
-            %Btn.Next{title: "I get by"},
-            %Btn.Next{title: "Money is an issue"}
-          ]
-        }
-      ]
-    }
-
-    children = %ContentPage{
-      slug: "mnch_onboarding_children",
-      title: "Children",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "🗝️ *How many children do you have?*",
-          list_items: [
-            %ListItem.Next{title: "None"},
-            %ListItem.Next{title: "1"},
-            %ListItem.Next{title: "2"},
-            %ListItem.Next{title: "3"},
-            %ListItem.Next{title: "More than 3"},
-            %ListItem.Next{title: "Why do you ask?"}
-          ]
-        }
-      ]
-    }
-
-    children_why = %ContentPage{
-      slug: "mnch_onboarding_children_why",
-      title: "ChildrenWhy",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "ℹ️ Children change our lives a lot! Our team of health experts works hard to find information and services that fit your needs.\r\n\r\n*How many children do you have?*",
-          list_items: [
-            %ListItem.Next{title: "None"},
-            %ListItem.Next{title: "1"},
-            %ListItem.Next{title: "2"},
-            %ListItem.Next{title: "3"},
-            %ListItem.Next{title: "More than 3"},
-            %ListItem.Next{title: "Skip this question"}
-          ]
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               error_button,
-               error_list,
-               relationship_status,
-               education,
-               socio_economic,
-               children,
-               children_why
-             ])
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -227,7 +122,7 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"relationship_status" => "single"})
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply. Please try that again. \n\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        text: "I don't understand your reply. Please try that again. \r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
         list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
       })
       |> contact_matches(%{"education" => ""})
@@ -411,7 +306,7 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"socio_economic" => "comfortable"})
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
-        text: "I don't understand your reply. Please try that again. \n\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        text: "I don't understand your reply. Please try that again. \r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
         list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
       })
       |> contact_matches(%{"other_children" => ""})
