@@ -2,6 +2,7 @@ defmodule EDDRemindersTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
 
@@ -10,73 +11,29 @@ defmodule EDDRemindersTest do
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
+    # TODO: This should have qa_mode set, but the flows still need to be updated to include the return_drafts parameter
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    error_button = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-        }
-      ]
-    }
+        # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    error_list = %ContentPage{
-      slug: "mnch_onboarding_error_handling_list_message",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send."
-        }
-      ]
-    }
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
-    error_number = %ContentPage{
-      slug: "mnch_onboarding_unrecognised_number",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply.\r\n\r\n👇🏽  Please try that again and respond with the number that comes before your answer."
-        }
-      ]
-    }
-
-    edd_reminder = %ContentPage{
-      slug: "mnch_onboarding_edd_reminder",
-      title: "EDD Reminder",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Hey {username}\r\n\r\nYour next antenatal visit is coming up soon, don’t forget to ask the health worker to confirm your expected due date 👩🏽‍⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
-          buttons: [
-            %Btn.Next{title: "Got it!"},
-            %Btn.Next{title: "Update due date"},
-            %Btn.Next{title: "How to calculate it"}
-          ]
-        }
-      ],
-      whatsapp_template_name: "edd_reminder_2041"
-    }
-
-    got_it = %ContentPage{
-      slug: "mnch_onboarding_edd_got_it",
-      title: "Got it",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Well done on taking care of you and baby’s health!",
-          buttons: [
-            %Btn.Next{title: "See main menu"},
-          ]
-        }
-      ]
-    }
-
+   
     edd_reminder_pt = %ContentPage{
       slug: "mnch_onboarding_edd_reminder",
       title: "EDD Reminder pt",
@@ -108,87 +65,6 @@ defmodule EDDRemindersTest do
       ]
     }
 
-    edd_month = %ContentPage{
-      slug: "mnch_onboarding_edd_month",
-      title: "EDD Month",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Great.\r\n\r\n👇🏽 Which month are you expecting your baby to be born?"
-        }
-      ]
-    }
-
-    edd_day = %ContentPage{
-      slug: "mnch_onboarding_edd_day",
-      title: "EDD Day",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "On what *day* of the month are you expecting the baby to be born?\r\n\r\nType in a number between 1 and 31.\r\n\r\nIf you don't know, reply `Skip`"
-        }
-      ]
-    }
-
-    edd_confirmed = %ContentPage{
-      slug: "mnch_onboarding_edd_confirmed",
-      title: "EDD Confirmed",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I’ve updated your baby’s estimated due date to: [edd]\r\n\r\nWell done on taking care of yours and baby’s health!",
-          buttons: [
-            %Btn.Next{title: "See main menu"}
-          ]
-        }
-      ]
-    }
-
-    edd_unknown = %ContentPage{
-      slug: "mnch_onboarding_edd_unknown",
-      title: "EDD_unknown_1",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
-          buttons: [
-            %Btn.Next{title: "Update due date"},
-            %Btn.Next{title: "I’ll do this later"},
-          ]
-        }
-      ]
-    }
-
-    do_it_later = %ContentPage{
-      slug: "mnch_onboarding_edd_do_it_later",
-      title: "EDD Do it later",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Ok! We'll remind you again in a while.\r\n\r\n👇🏽 What would you like to do now?",
-          buttons: [
-            %Btn.Next{title: "See main menu"},
-            %Btn.Next{title: "Go to health guide"},
-          ]
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               error_button,
-               error_list,
-               error_number,
-               edd_reminder,
-               got_it,
-               edd_month,
-               edd_day,
-               edd_confirmed,
-               edd_unknown,
-               do_it_later
-             ], "en")
-
       assert :ok =
               FakeCMS.add_pages(wh_pid, [
                 %Index{slug: "test", title: "test"},
@@ -216,6 +92,9 @@ defmodule EDDRemindersTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
     %{flow: flow}
   end
@@ -278,10 +157,8 @@ defmodule EDDRemindersTest do
       flow
       |> FlowTester.start()
       |> receive_message(%{
-        # text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
-        text: "[DEBUG]\nTemplate @body.whatsapp_template_name sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url
-
-The buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
+        # text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\r\nTemplate @body.whatsapp_template_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
@@ -296,8 +173,8 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.set_contact_properties(%{"language" => "por"})
       |> FlowTester.start()
       |> receive_message(%{
-        # text: "[DEBUG]\nTemplate edd_reminder_2041_pt sent with language pt_PT.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
-        text: "[DEBUG]\nTemplate @body.whatsapp_template_name sent with language pt_PT.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+        # text: "[DEBUG]\r\nTemplate edd_reminder_2041_pt sent with language pt_PT.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\r\nTemplate @body.whatsapp_template_name sent with language pt_PT.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
@@ -312,8 +189,8 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{
-        # text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\r\n\r\nThe buttons represented"  <> _,
-        text: "[DEBUG]\nTemplate @body.whatsapp_template_name sent with language en_US.\nBody parameters: [@name]\n\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
+        # text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\n\r\nThe buttons represented"  <> _,
+        text: "[DEBUG]\r\nTemplate @body.whatsapp_template_name sent with language en_US.\r\nBody parameters: [@name]\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
@@ -328,7 +205,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
     #   flow
     #   |> FlowTester.start()
     #   |> receive_message(%{
-    #     text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
+    #     text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
     #     buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
     #   })
     #   |> FlowTester.send(button_label: "nope")
@@ -342,10 +219,8 @@ The buttons represented here are not necessarily the same as the ones in the rea
       flow
       |> FlowTester.start()
       |> receive_message(%{
-        # text: "[DEBUG]\nTemplate edd_reminder_2041 sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url"  <> _,
-        text: "[DEBUG]\nTemplate @body.whatsapp_template_name sent with language en_US.\nBody parameters: [@name]\nMedia link: @image_data.body.meta.download_url
-
-The buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
+        # text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\r\nTemplate @body.whatsapp_template_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario."  <> _,
         buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
       |> FlowTester.send("edd_got_it")
@@ -364,7 +239,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator \r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾\u200D⚕️ \r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
     end
@@ -375,7 +250,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator \r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾\u200D⚕️ \r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
       |> FlowTester.send("Nope")
@@ -410,7 +285,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send(button_label: "Update due date")
       |> receive_message(%{
-        text: "Great. \n\n👇🏽 Which month are you expecting your baby to be born?",
+        text: "Great.\r\n\r\n👇🏽 Which month are you expecting your baby to be born?",
         list: {"Month", ^list_of_months}
       })
     end
@@ -446,6 +321,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> flow_finished()
     end
 
+    @tag :temptest
     test "I'll do this later -> go to health guide", %{flow: flow} do
       flow
       |> FlowTester.start()
@@ -472,7 +348,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send("edd_month")
       |> receive_message(%{
-        text: "Great. \n\n👇🏽 Which month are you expecting your baby to be born?",
+        text: "Great.\r\n\r\n👇🏽 Which month are you expecting your baby to be born?",
         list: {"Month", ^list_of_months}
       })
     end
@@ -489,7 +365,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
-        text: "I don't understand your reply. Please try that again. \n\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
         # list: {"Month", ^list_of_months}
         # TODO: Fix this so it works regardless of current month
         list: {"Month", [
@@ -522,7 +398,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send(month)
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator \r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️ \r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
     end
@@ -540,7 +416,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send(month)
       |> receive_message(%{
-        text: "On what *day* of the month are you expecting the baby to be born? \n\nType in a number between 1 and 31. \n\nIf you don't know, reply `Skip`",
+        text: "On what *day* of the month are you expecting the baby to be born?\r\n\r\nType in a number between 1 and 31.\r\n\r\nIf you don't know, reply `Skip`",
       })
     end
 
@@ -606,7 +482,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send("falalalalaaaaa")
       # TODO: Fix the assertion to get the correct end day for the month
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 30."
+        text: "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 30."
       })
     end
 
@@ -627,7 +503,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send("0")
       # TODO: Fix the assertion to get the correct end day for the month
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 30."
+        text: "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 30."
       })
     end
 
@@ -648,7 +524,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send("32")
       # TODO: Fix the assertion to get the correct end day for the month
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 30."
+        text: "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 30."
       })
     end
 
@@ -694,7 +570,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send("30")
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 29."
+        text: "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 29."
       })
     end
 
@@ -741,7 +617,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> FlowTester.send("32")
       # TODO: Fix the assertion to get the correct end day for the month
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 31."
+        text: "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 31."
       })
     end
 
@@ -787,7 +663,7 @@ The buttons represented here are not necessarily the same as the ones in the rea
       |> receive_message(%{})
       |> FlowTester.send("31")
       |> receive_message(%{
-        text: "Sorry, I didn’t get that – let's try again.\n\n👇🏽 Please reply with a number between 1 and 30."
+        text: "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 30."
       })
     end
   end
