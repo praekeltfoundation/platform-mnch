@@ -17,18 +17,90 @@ defmodule ProfilePregnancyHealthTest do
     # TODO: Clean up the image fixtures (list of slug to filename is an option)
     # Define images.
     image = %Image{id: 1, title: "Test image", download_url: "https://example.org/image.jpeg"}
-    image_loading_1 = %Image{id: 2, title: "Loading 1", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"}
-    image_loading_2 = %Image{id: 3, title: "Loading 2", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png"}
-    image_topics_for_you = %Image{id: 4, title: "Topics for you", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"}
-    image_baby_shower_cute = %Image{id: 5, title: "Baby shower cute", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/baby_shower-cuate.png"}
-    image_pregnancy_stages_rafiki = %Image{id: 6, title: "Pregnancy stages rafiki", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-rafiki.png"}
-    image_pregnancy_stages_rafiki_1 = %Image{id: 7, title: "Pregnancy stages rafiki 1", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-rafiki_1.png"}
-    image_profile_progress_50 = %Image{id: 8, title: "Profile progress 50", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png"}
-    image_pregnancy_stages_pana_1 = %Image{id: 9, title: "Pregnancy stages pana 1", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-pana_1.png"}
-    image_pregnancy_stages_cute = %Image{id: 10, title: "Pregnancy stages cute", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-cuate.png"}
-    image_pregnancy_stages_cute_1 = %Image{id: 11, title: "Pregnancy stages cute 1", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-cuate_1.png"}
-    image_baby_birth_amico_1 = %Image{id: 12, title: "Baby birth amico 1", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Baby_birth-amico_1.png"}
-    image_baby_birth_amico_2 = %Image{id: 13, title: "Baby birth amico 2", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Baby_birth-amico_2.png"}
+
+    image_loading_1 = %Image{
+      id: 2,
+      title: "Loading 1",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_01.png"
+    }
+
+    image_loading_2 = %Image{
+      id: 3,
+      title: "Loading 2",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Loading_02.png"
+    }
+
+    image_topics_for_you = %Image{
+      id: 4,
+      title: "Topics for you",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Topics_for_you.png"
+    }
+
+    image_baby_shower_cute = %Image{
+      id: 5,
+      title: "Baby shower cute",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/baby_shower-cuate.png"
+    }
+
+    image_pregnancy_stages_rafiki = %Image{
+      id: 6,
+      title: "Pregnancy stages rafiki",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-rafiki.png"
+    }
+
+    image_pregnancy_stages_rafiki_1 = %Image{
+      id: 7,
+      title: "Pregnancy stages rafiki 1",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-rafiki_1.png"
+    }
+
+    image_profile_progress_50 = %Image{
+      id: 8,
+      title: "Profile progress 50",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png"
+    }
+
+    image_pregnancy_stages_pana_1 = %Image{
+      id: 9,
+      title: "Pregnancy stages pana 1",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-pana_1.png"
+    }
+
+    image_pregnancy_stages_cute = %Image{
+      id: 10,
+      title: "Pregnancy stages cute",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-cuate.png"
+    }
+
+    image_pregnancy_stages_cute_1 = %Image{
+      id: 11,
+      title: "Pregnancy stages cute 1",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Pregnancy_stages-cuate_1.png"
+    }
+
+    image_baby_birth_amico_1 = %Image{
+      id: 12,
+      title: "Baby birth amico 1",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Baby_birth-amico_1.png"
+    }
+
+    image_baby_birth_amico_2 = %Image{
+      id: 13,
+      title: "Baby birth amico 2",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Baby_birth-amico_2.png"
+    }
 
     assert :ok =
              FakeCMS.add_images(wh_pid, [
@@ -98,28 +170,98 @@ defmodule ProfilePregnancyHealthTest do
     FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_loading_component_02", 0, image_loading_1.id)
 
     FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_loading_02", 0, image_loading_2.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_facts_factoid_1_trimester_1", 0, image_loading_2.id)    
+    FakeCMS.add_img_to_page(wh_pid, "mnch_facts_factoid_1_trimester_1", 0, image_loading_2.id)
     FakeCMS.add_img_to_page(wh_pid, "mnch_facts_factoid_1_trimester_2", 0, image_loading_2.id)
     FakeCMS.add_img_to_page(wh_pid, "mnch_facts_factoid_1_trimester_3", 0, image_loading_2.id)
     FakeCMS.add_img_to_page(wh_pid, "mnch_facts_factoid_2_trimester_1", 0, image_loading_2.id)
     FakeCMS.add_img_to_page(wh_pid, "mnch_facts_factoid_2_trimester_2", 0, image_loading_2.id)
     FakeCMS.add_img_to_page(wh_pid, "mnch_facts_factoid_2_trimester_3", 0, image_loading_2.id)
 
-    FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_excited_happy_first", 0, image_pregnancy_stages_pana_1.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_excited_happy_second", 0, image_baby_birth_amico_1.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_scared_worried_second", 0, image_pregnancy_stages_cute.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_scared_worried_first", 0, image_pregnancy_stages_cute_1.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_scared_worried_third", 0, image_pregnancy_stages_cute_1.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_other_first", 0, image_pregnancy_stages_rafiki_1.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_other_second", 0, image_pregnancy_stages_rafiki.id)
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_sentiment_excited_happy_first",
+      0,
+      image_pregnancy_stages_pana_1.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_sentiment_excited_happy_second",
+      0,
+      image_baby_birth_amico_1.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_sentiment_scared_worried_second",
+      0,
+      image_pregnancy_stages_cute.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_sentiment_scared_worried_first",
+      0,
+      image_pregnancy_stages_cute_1.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_sentiment_scared_worried_third",
+      0,
+      image_pregnancy_stages_cute_1.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_sentiment_other_first",
+      0,
+      image_pregnancy_stages_rafiki_1.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_sentiment_other_second",
+      0,
+      image_pregnancy_stages_rafiki.id
+    )
 
     FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_other_third", 0, image_baby_shower_cute.id)
-    
-    FakeCMS.add_img_to_page(wh_pid, "mnch_sentiment_excited_happy_third", 0, image_baby_birth_amico_2.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_profile_progress_25_secondary_", 0, image_profile_progress_50.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_profile_progress_25_secondary", 0, image_profile_progress_50.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_profile_progress_50_secondary", 0, image_profile_progress_50.id)
-    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_profile_progress_50_secondary_", 0, image_profile_progress_50.id)
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_sentiment_excited_happy_third",
+      0,
+      image_baby_birth_amico_2.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_profile_progress_25_secondary_",
+      0,
+      image_profile_progress_50.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_profile_progress_25_secondary",
+      0,
+      image_profile_progress_50.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_profile_progress_50_secondary",
+      0,
+      image_profile_progress_50.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_profile_progress_50_secondary_",
+      0,
+      image_profile_progress_50.id
+    )
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)

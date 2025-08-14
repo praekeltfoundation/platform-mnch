@@ -23,12 +23,13 @@ defmodule IntroHumanAgentTest do
         |> String.replace("{username}", "{@username}")
         # TODO: Fix this in FakeCMS
         |> String.replace("\u200D", "")
+
         # These transforms are specific to these tests
       end
     ]
+
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
-
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -65,6 +66,7 @@ defmodule IntroHumanAgentTest do
       )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> set_config()
+
     %{flow: flow}
   end
 

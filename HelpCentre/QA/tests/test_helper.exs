@@ -3,7 +3,7 @@ defmodule HelpCentre.QA.Helpers do
   alias FlowTester.WebhookHandler, as: WH
 
   def load_flow(flow_name) do
-    Path.join([__DIR__, "..","flows_json", flow_name <> ".json"])
+    Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
     |> FlowTester.from_json!()
   end
 
@@ -64,6 +64,7 @@ defmodule HelpCentre.QA.Helpers do
 
   def pages_from_content_csv(csv_name, opts \\ []),
     do: FakeCMS.ImportExport.pages_from_csv(csv_path(csv_name), opts)
+
   defmodule Macros do
     # This lets us have cleaner button/list assertions.
     def indexed_list(var, labels) do
@@ -80,5 +81,4 @@ defmodule HelpCentre.QA.Helpers do
       quote do: unquote(indexed_list(option, labels))
     end
   end
-
 end

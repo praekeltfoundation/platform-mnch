@@ -26,9 +26,11 @@ defmodule ProfileGenericTest do
         |> String.replace("{username}", "{@username}")
         # TODO: Fix this in FakeCMS
         |> String.replace("\u200D", "")
+
         # These transforms are specific to these tests
       end
     ]
+
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
@@ -56,6 +58,7 @@ defmodule ProfileGenericTest do
         TextTransform.normalise_newlines(trim_trailing_spaces: true)
       )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+
     %{flow: flow}
   end
 
@@ -66,13 +69,13 @@ defmodule ProfileGenericTest do
       flow
       |> FlowTester.start()
       |> Helpers.handle_basic_profile_flow()
-      |> fn step ->
-        [msg] = step.messages
-        assert String.contains?(msg.text, "Basic information 3/4")
-        assert String.contains?(msg.text, "Personal information 0/4")
-        assert String.contains?(msg.text, "Daily life 0/5")
-        step
-      end.()
+      |> (fn step ->
+            [msg] = step.messages
+            assert String.contains?(msg.text, "Basic information 3/4")
+            assert String.contains?(msg.text, "Personal information 0/4")
+            assert String.contains?(msg.text, "Daily life 0/5")
+            step
+          end).()
       |> receive_message(%{
         text: "Your profile is already 30% complete" <> _,
         buttons: button_labels(["Continue", "Why?"])
@@ -83,13 +86,13 @@ defmodule ProfileGenericTest do
       flow
       |> FlowTester.start()
       |> Helpers.handle_basic_profile_flow()
-      |> fn step ->
-        [msg] = step.messages
-        assert String.contains?(msg.text, "Basic information 3/4")
-        assert String.contains?(msg.text, "Personal information 0/4")
-        assert String.contains?(msg.text, "Daily life 0/5")
-        step
-      end.()
+      |> (fn step ->
+            [msg] = step.messages
+            assert String.contains?(msg.text, "Basic information 3/4")
+            assert String.contains?(msg.text, "Personal information 0/4")
+            assert String.contains?(msg.text, "Daily life 0/5")
+            step
+          end).()
       |> receive_message(%{
         text: "Your profile is already 30% complete" <> _,
         buttons: button_labels(["Continue", "Why?"])
@@ -113,13 +116,13 @@ defmodule ProfileGenericTest do
       flow
       |> FlowTester.start()
       |> Helpers.handle_basic_profile_flow()
-      |> fn step ->
-        [msg] = step.messages
-        assert String.contains?(msg.text, "Basic information 3/4")
-        assert String.contains?(msg.text, "Personal information 0/4")
-        assert String.contains?(msg.text, "Daily life 0/5")
-        step
-      end.()
+      |> (fn step ->
+            [msg] = step.messages
+            assert String.contains?(msg.text, "Basic information 3/4")
+            assert String.contains?(msg.text, "Personal information 0/4")
+            assert String.contains?(msg.text, "Daily life 0/5")
+            step
+          end).()
       |> receive_message(%{
         text: "Your profile is already 30% complete" <> _,
         buttons: button_labels(["Continue", "Why?"])
@@ -141,22 +144,32 @@ defmodule ProfileGenericTest do
       |> FlowTester.set_contact_properties(%{"name" => "Severus"})
       |> FlowTester.set_contact_properties(%{"opted_in" => "true"})
       |> FlowTester.start()
-      |> Helpers.handle_basic_profile_flow(year_of_birth: "1988", province: "Western Cape", area_type: "rural", gender: "male")
+      |> Helpers.handle_basic_profile_flow(
+        year_of_birth: "1988",
+        province: "Western Cape",
+        area_type: "rural",
+        gender: "male"
+      )
       |> receive_message(%{
         text: "Your profile is already 30% complete" <> _,
         buttons: button_labels(["Continue", "Why?"])
       })
       |> FlowTester.send(button_label: "Continue")
-      |> Helpers.handle_personal_info_flow(relationship_status: "single", education: "degree", socio_economic: "i get by", other_children: "0")
+      |> Helpers.handle_personal_info_flow(
+        relationship_status: "single",
+        education: "degree",
+        socio_economic: "i get by",
+        other_children: "0"
+      )
       |> Helpers.handle_daily_life_flow()
-      |> fn step ->
-        [msg] = step.messages
-        assert String.contains?(msg.text, "*Name:* Severus")
-        assert String.contains?(msg.text, "*Basic info:* ✅")
-        assert String.contains?(msg.text, "*Personal info:* ✅")
-        assert String.contains?(msg.text, "*Get important messages:* ✅")
-        step
-      end.()
+      |> (fn step ->
+            [msg] = step.messages
+            assert String.contains?(msg.text, "*Name:* Severus")
+            assert String.contains?(msg.text, "*Basic info:* ✅")
+            assert String.contains?(msg.text, "*Personal info:* ✅")
+            assert String.contains?(msg.text, "*Get important messages:* ✅")
+            step
+          end).()
       |> receive_message(%{
         text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
         buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
@@ -177,20 +190,18 @@ defmodule ProfileGenericTest do
       |> Helpers.handle_personal_info_flow()
       |> Helpers.handle_daily_life_flow()
       |> Helpers.handle_opt_in_reminder_flow()
-      |> fn step ->
-        [msg] = step.messages
-        assert String.contains?(msg.text, "*Name:* Severus")
-        assert String.contains?(msg.text, "*Basic info:* 3/4")
-        assert String.contains?(msg.text, "*Personal info:* 0/4")
-        assert String.contains?(msg.text, "*Get important messages:* ❌")
-        step
-      end.()
+      |> (fn step ->
+            [msg] = step.messages
+            assert String.contains?(msg.text, "*Name:* Severus")
+            assert String.contains?(msg.text, "*Basic info:* 3/4")
+            assert String.contains?(msg.text, "*Personal info:* 0/4")
+            assert String.contains?(msg.text, "*Get important messages:* ❌")
+            step
+          end).()
       |> receive_message(%{
         text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n\r\nYour profile is 100% complete" <> _,
         buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
       })
     end
   end
-
-
 end

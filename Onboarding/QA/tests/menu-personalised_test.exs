@@ -5,7 +5,7 @@ defmodule MenuPersonalisedTest do
   alias FlowTester.Message.TextTransform
   alias Onboarding.QA.Helpers
   import Onboarding.QA.Helpers.Macros
-  
+
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
@@ -24,9 +24,11 @@ defmodule MenuPersonalisedTest do
         |> String.replace("{username}", "{@username}")
         # TODO: Fix this in FakeCMS
         |> String.replace("\u200D", "")
+
         # These transforms are specific to these tests
       end
     ]
+
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
@@ -54,6 +56,7 @@ defmodule MenuPersonalisedTest do
         TextTransform.normalise_newlines(trim_trailing_spaces: true)
       )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+
     %{flow: flow}
   end
 

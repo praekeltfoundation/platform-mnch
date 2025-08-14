@@ -9,13 +9,13 @@ defmodule ScheduledCallbackfollowupTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-       # The various index pages aren't in the content sheet, so we need to add them manually.
+    # The various index pages aren't in the content sheet, so we need to add them manually.
     indices = [
       %Index{title: "Help centre", slug: "help-centre-index"},
-      %Index{title: "Onboarding", slug: "onboarding-index"},
+      %Index{title: "Onboarding", slug: "onboarding-index"}
     ]
-    
-     assert :ok = FakeCMS.add_pages(wh_pid, indices)
+
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
     # These options are common to all CSV imports below.
     import_opts = [
@@ -26,9 +26,11 @@ defmodule ScheduledCallbackfollowupTest do
         |> String.replace("{username}", "{@username}")
         # TODO: Fix this in FakeCMS
         |> String.replace("\u200D", "")
+
         # These transforms are specific to these tests
       end
     ]
+
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
@@ -70,6 +72,7 @@ defmodule ScheduledCallbackfollowupTest do
       )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> set_config()
+
     %{flow: flow}
   end
 

@@ -11,7 +11,7 @@ defmodule FormsTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-        # The index page isn't in the content sheet, so we need to add it manually.
+    # The index page isn't in the content sheet, so we need to add it manually.
     indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
     assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
@@ -30,35 +30,39 @@ defmodule FormsTest do
         |> String.replace("{option_choice}", "{option choice}")
       end
     ]
+
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
-    assert :ok = FakeCMS.add_form(wh_pid, %Forms.Form{
-      id: 1,
-      title: "Test Form",
-      slug: "dma-form",
-      generic_error: "Please choose an option that matches your answer",
-      locale: "en",
-      version: "v1.0",
-      tags: ["dma_form"],
-      high_result_page: "mnch_onboarding_dma_results_high",
-      high_inflection: 5.0,
-      medium_result_page: "mnch_onboarding_dma_results_medium",
-      medium_inflection: 3.0,
-      low_result_page: "mnch_onboarding_dma_results_low",
-      skip_threshold: 1.0,
-      skip_high_result_page: "mnch_onboarding_dma_skip-result",
-      questions: [
-        %Forms.IntegerQuestion{
-          question: "Thanks, {{name}}\r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*",
-          explainer: "TEST: Explainer text",
-          error: "Oh no",
-          semantic_id: "forms-integer",
-          min: 0,
-          max: 10
-        },
-      ]
-    })
+    assert :ok =
+             FakeCMS.add_form(wh_pid, %Forms.Form{
+               id: 1,
+               title: "Test Form",
+               slug: "dma-form",
+               generic_error: "Please choose an option that matches your answer",
+               locale: "en",
+               version: "v1.0",
+               tags: ["dma_form"],
+               high_result_page: "mnch_onboarding_dma_results_high",
+               high_inflection: 5.0,
+               medium_result_page: "mnch_onboarding_dma_results_medium",
+               medium_inflection: 3.0,
+               low_result_page: "mnch_onboarding_dma_results_low",
+               skip_threshold: 1.0,
+               skip_high_result_page: "mnch_onboarding_dma_skip-result",
+               questions: [
+                 %Forms.IntegerQuestion{
+                   question:
+                     "Thanks, {{name}}\r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*",
+                   explainer: "TEST: Explainer text",
+                   error: "Oh no",
+                   semantic_id: "forms-integer",
+                   min: 0,
+                   max: 10
+                 }
+               ]
+             })
+
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
   end
@@ -83,6 +87,7 @@ defmodule FormsTest do
         TextTransform.normalise_newlines(trim_trailing_spaces: true)
       )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+
     %{flow: flow}
   end
 
@@ -96,7 +101,8 @@ defmodule FormsTest do
       |> FlowTester.set_local_params("config", %{"assessment_tag" => "dma_form"})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "Thanks, \r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*",
+        text:
+          "Thanks, \r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*"
       })
       |> FlowTester.send("1")
       |> results_match([
@@ -111,9 +117,10 @@ defmodule FormsTest do
         %{name: "end", value: "dma-form", label: "@slug_end"},
         %{name: "risk", value: "low", label: "@result_tag"},
         %{name: "score", value: 0, label: "@result_tag"},
-        %{name: "max_score", value: 0, label: "@result_tag"},
+        %{name: "max_score", value: 0, label: "@result_tag"}
       ])
     end
   end
 end
+
 # FWB-FormsIssue
