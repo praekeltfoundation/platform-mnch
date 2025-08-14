@@ -2,6 +2,7 @@ defmodule ScheduledCallbackConfirmationTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
@@ -64,6 +65,9 @@ defmodule ScheduledCallbackConfirmationTest do
     flow =
       init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> set_config()
     %{flow: flow}
@@ -92,7 +96,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
     end
@@ -102,7 +106,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -116,7 +120,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -137,7 +141,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -157,7 +161,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "No")

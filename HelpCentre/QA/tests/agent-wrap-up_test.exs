@@ -2,6 +2,7 @@ defmodule AgentWrapUpTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
@@ -64,6 +65,9 @@ defmodule AgentWrapUpTest do
     flow =
       init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> set_config()
     %{flow: flow}
@@ -117,7 +121,7 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that.\r\n\r\nI would love to assist you with your problem, let’s try again.\r\n\r\nWhat would you like to do next?👇🏾"
       })
     end
 
@@ -130,12 +134,12 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that.\r\n\r\nI would love to assist you with your problem, let’s try again.\r\n\r\nWhat would you like to do next?👇🏾"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_message(%{
         text:
-          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. \r\n\r\nWhat would you like to do?"
+          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\r\n\r\nWhat would you like to do?"
       })
     end
 
@@ -148,12 +152,12 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that.\r\n\r\nI would love to assist you with your problem, let’s try again.\r\n\r\nWhat would you like to do next?👇🏾"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_message(%{
         text:
-          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. \r\n\r\nWhat would you like to do?"
+          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\r\n\r\nWhat would you like to do?"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_messages([

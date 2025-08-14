@@ -51,6 +51,9 @@ defmodule PersonalProfileQuestionsTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
     %{flow: flow}
   end
@@ -122,7 +125,7 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"relationship_status" => "single"})
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply. Please try that again. \r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
         list: {"Education", [{"Primary school", "Primary school"}, {"High school", "High school"}, {"Diploma", "Diploma"}, {"Degree", "Degree"}, {"Master's degree", "Master's degree"}, {"Doctoral degree", "Doctoral degree"}, {"None", "None"}, {"Skip this question", "Skip this question"}]},
       })
       |> contact_matches(%{"education" => ""})
@@ -306,7 +309,7 @@ defmodule PersonalProfileQuestionsTest do
       |> contact_matches(%{"socio_economic" => "comfortable"})
       |> FlowTester.send("falalalalaaa")
       |> receive_message(%{
-        text: "I don't understand your reply. Please try that again. \r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
+        text: "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
         list: {"Children", [{"None", "None"}, {1, "1"}, {2, "2"}, {3, "3"}, {"More than 3", "More than 3"}, {"Why do you ask?", "Why do you ask?"}],}
       })
       |> contact_matches(%{"other_children" => ""})

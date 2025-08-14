@@ -51,6 +51,9 @@ defmodule ProfileHCWTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
     %{flow: flow}
   end
@@ -95,7 +98,7 @@ defmodule ProfileHCWTest do
         step
       end.()
       |> receive_message(%{
-        text: "Thanks for sharing! \r\n\r\nNow is your chance to tell me more about yourself" <> _,
+        text: "Thanks for sharing!\r\n\r\nNow is your chance to tell me more about yourself" <> _,
         buttons: button_labels(["Sure, let's go ➡️", "Why?"])
       })
       |> FlowTester.send(button_label: "Sure, let's go ➡️")
@@ -123,7 +126,7 @@ defmodule ProfileHCWTest do
         step
       end.()
       |> receive_message(%{
-        text: "🟩🟩🟩🟩🟩🟩⬜⬜ " <> _,
+        text: "🟩🟩🟩🟩🟩🟩⬜⬜\r\n" <> _,
         buttons: button_labels(["➡️ Complete it!", "Remind me later"])
       })
       |> FlowTester.send(button_label: "➡️ Complete it!")
@@ -137,7 +140,7 @@ defmodule ProfileHCWTest do
         step
       end.()
       |> receive_message(%{
-        text: "🟩🟩🟩🟩🟩🟩🟩🟩 " <> _,
+        text: "🟩🟩🟩🟩🟩🟩🟩🟩\r\n" <> _,
         buttons: button_labels(["Explore health guide", "View topics for you", "Go to main menu"])
       })
     end

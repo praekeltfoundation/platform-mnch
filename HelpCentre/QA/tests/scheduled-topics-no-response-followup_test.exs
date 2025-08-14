@@ -3,6 +3,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
   alias FlowTester.WebhookHandler, as: WH
   alias FlowTester.WebhookHandler.Generic
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
@@ -82,6 +83,9 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> setup_fake_aaq(ctx)
       |> set_config()
@@ -113,7 +117,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n👇🏽 Was the information I recommended helpful?",
+          "🤖 Hello again!\r\n\r\nI see you haven't replied.\r\n\r\n👇🏽 Was the information I recommended helpful?",
         buttons: button_labels(["Yes 👍🏽", "No 👎🏽"])
       })
     end
@@ -125,7 +129,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
       })
       |> FlowTester.start()
       |> receive_message(%{
-        text: "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n" <> _,
+        text: "🤖 Hello again!\r\n\r\nI see you haven't replied.\r\n\r\n" <> _,
         buttons: button_labels(["Yes 👍🏽", "No 👎🏽"])
       })
       |> FlowTester.send(button_label: "Yes 👍🏽")
@@ -144,7 +148,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
       })
       |> FlowTester.start()
       |> receive_message(%{
-        text: "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n" <> _,
+        text: "🤖 Hello again!\r\n\r\nI see you haven't replied.\r\n\r\n" <> _,
         buttons: button_labels(["Yes 👍🏽", "No 👎🏽"])
       })
       |> FlowTester.send(button_label: "No 👎🏽")

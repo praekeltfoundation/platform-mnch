@@ -2,6 +2,7 @@ defmodule ScheduledCallbackfollowupTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
@@ -64,6 +65,9 @@ defmodule ScheduledCallbackfollowupTest do
     flow =
       init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> set_config()
     %{flow: flow}

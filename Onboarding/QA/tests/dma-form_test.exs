@@ -3,6 +3,7 @@ defmodule DMAFormTest do
 
   alias FlowTester.WebhookHandler, as: WH
   alias FlowTester.FlowStep
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
 
@@ -231,6 +232,9 @@ defmodule DMAFormTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
     %{flow: flow}
   end

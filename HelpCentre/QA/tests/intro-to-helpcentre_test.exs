@@ -4,6 +4,7 @@ defmodule IntroToHelpCentreTest do
   alias FlowTester.FlowStep
   alias FlowTester.WebhookHandler.Generic
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
@@ -140,6 +141,9 @@ defmodule IntroToHelpCentreTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> Helpers.setup_fake_turn(ctx)
       |> setup_fake_aaq(ctx)
@@ -241,7 +245,7 @@ defmodule IntroToHelpCentreTest do
       |> FlowTester.send("xyz")
       |> receive_message(%{
         text:
-          "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?" <>
+          "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately.\r\n\r\n👇🏽 What do you want to do?" <>
             _
       })
     end
@@ -251,7 +255,7 @@ defmodule IntroToHelpCentreTest do
       |> FlowTester.send("My tummy hurts")
       |> receive_message(%{
         text:
-          "🤖 Here are some topics you might find helpful.\r\n\r\n1. Baby's first teeth\n2. Vaginal discharge in pregnancy\n3. Baby's growth - Developmental milestones\n4. Toothache in pregnancy\n5. Latching baby to the breast\r\n6. None of these are helpful – speak to [health agent]\r\n\r\n👇🏽 Please reply with the number of your selection."
+          "🤖 Here are some topics you might find helpful.\r\n\r\n1. Baby's first teeth\r\n2. Vaginal discharge in pregnancy\r\n3. Baby's growth - Developmental milestones\r\n4. Toothache in pregnancy\r\n5. Latching baby to the breast\r\n6. None of these are helpful – speak to [health agent]\r\n\r\n👇🏽 Please reply with the number of your selection."
       })
     end
   end
