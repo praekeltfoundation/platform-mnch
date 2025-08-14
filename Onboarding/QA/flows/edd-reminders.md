@@ -53,7 +53,7 @@ Here we do any setup and fetching of values before we start the flow.
 ```stack
 card FetchError, then: GetLocaleCodes do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  
+
   page =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
@@ -131,13 +131,16 @@ card EDDReminder, then: DisplayEDDReminder do
     )
 
   message = content_data.body.messages[0]
-  whatsapp_template_name = content_data.body.body.whatsapp_template_name
+  log("@content_data.body")
+  whatsapp_template_name = message.submission_name
   button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayEDDReminder when contact.data_preference == "text only",
   then: DisplayEDDReminderError do
+  log("Text Only")
+
   send_message_template(
     "@whatsapp_template_name",
     "@template_locale",
@@ -148,6 +151,7 @@ end
 
 # Display with image
 card DisplayEDDReminder, then: DisplayEDDReminderError do
+  log("Not Text Only")
   image_id = content_data.body.messages[0].image
 
   image_data =
@@ -324,7 +328,8 @@ card EDDMonthUnknown, "I don't know", then: EDDMonthUnknownError do
       ],
       query: [
         ["channel", "whatsapp"],
-        ["locale", "en"]]
+        ["locale", "en"]
+      ]
     )
 
   message = page.body.messages[0]
@@ -362,7 +367,7 @@ card EDDDay, then: ValidateEDDDay do
       query: [
         ["channel", "whatsapp"],
         ["locale", "en"]
-        ]
+      ]
     )
 
   long_months = [1, 3, 5, 7, 8, 10, 12]
@@ -513,7 +518,6 @@ end
 
 ```stack
 card EDDLater, then: DisplayEDDLater do
-
   content_data =
     get(
       "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_do_it_later/",

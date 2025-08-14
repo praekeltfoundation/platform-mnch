@@ -10,59 +10,43 @@ defmodule QuizBreastfeedingTest do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
-    FakeCMS.add_images(wh_pid, [
-      %Image{
-        id: 1,
-        download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/6a5cefe396bea35baa1cc604f1aaab56.png",
-        title: "Breastfeeding quiz champion"
-      },
-      %Image{
-        id: 2,
-        download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/aa517ea3807b24713d0e1188e8687509.png",
-        title: "Breastfeeding quiz good"
-      },
-      %Image{
-        id: 3,
-        download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/c6e7dabb45604e0946d282a7985e92c3.png",
-        title: "Breastfeeding quiz learner"
-      },
-    ])
-    assert :ok = FakeCMS.add_pages(wh_pid, [
-      %Index{slug: "home", title: "Home"},
-      %ContentPage{
-        slug: "breastfeeding-quiz-champion",
-        title: "Breastfeeding Quiz Champion",
-        parent: "home",
-        wa_messages: [
-          %WAMsg{
-            message: "*You are a champion!* 🏆\r\n\r\nYou got {score} out of {max_score} answers right. Well done!\r\n\r\nYou’ve earned your breastfeeding hero sticker.\r\n\r\nWhat do you want to explore next?",
-            image: 1,
-          }
-        ]
-      },
-      %ContentPage{
-        slug: "breastfeeding-quiz-good",
-        title: "Breastfeeding Quiz Good",
-        parent: "home",
-        wa_messages: [
-          %WAMsg{
-            message: "*Getting there*\r\n\r\nYou got {score} out of {max_score} answers right. Hopefully, you learnt some useful things about breastfeeding along the way.\r\n\r\nThanks for taking part. Here's a special breastfeeding sticker for you.\r\n\r\nWhat would you like to explore next?",
-            image: 2,
-          }
-        ]
-      },
-      %ContentPage{
-        slug: "breastfeeding-quiz-learner",
-        title: "Breastfeeding Quiz Learner",
-        parent: "home",
-        wa_messages: [
-          %WAMsg{
-            message: "*Up for the challenge?*\r\n\r\nYou didn't get any answers correct this time. Hopefully you learnt some useful things about breastfeeding along the way.\r\n\r\nHere's a special breastfeeding sticker for you.\r\n\r\nWhat would you like to explore next?",
-            image: 3,
-          }
-        ]
-      }
-    ])
+
+    # TODO: Clean up the image fixtures (list of slug to filename is an option)
+    # Define images.
+    image_quiz_champion = %Image{id: 1, title: "Breastfeeding quiz champion", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/6a5cefe396bea35baa1cc604f1aaab56.png"}
+    image_quiz_good = %Image{id: 2, title: "Breastfeeding quiz good", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/aa517ea3807b24713d0e1188e8687509.png"}
+    image_quiz_learner = %Image{id: 3, title: "Breastfeeding quiz learner", download_url: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/c6e7dabb45604e0946d282a7985e92c3.png"}
+
+    assert :ok =
+          FakeCMS.add_images(wh_pid, [
+            image_quiz_champion,
+            image_quiz_good,
+            image_quiz_learner,
+          ])
+
+       # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
+
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+      end
+    ]
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
+
+    # Add images to pages
+    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_breastfeeding-quiz-champion", 0, image_quiz_champion.id)
+    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_breastfeeding-quiz-good", 0, image_quiz_good.id)
+    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_breastfeeding-quiz-learner", 0, image_quiz_learner.id)
 
     assert :ok = FakeCMS.add_form(wh_pid, %Forms.Form{
       id: 1,
@@ -72,11 +56,11 @@ defmodule QuizBreastfeedingTest do
       locale: "en",
       version: "1.0",
       tags: ["breastfeeding_quiz"],
-      high_result_page: "breastfeeding-quiz-champion",
+      high_result_page: "mnch_onboarding_breastfeeding-quiz-champion",
       high_inflection: 75.0,
-      medium_result_page: "breastfeeding-quiz-good",
+      medium_result_page: "mnch_onboarding_breastfeeding-quiz-good",
       medium_inflection: 25.0,
-      low_result_page: "breastfeeding-quiz-learner",
+      low_result_page: "mnch_onboarding_breastfeeding-quiz-learner",
       skip_threshold: 100.0,
       skip_high_result_page: nil,
       questions: [

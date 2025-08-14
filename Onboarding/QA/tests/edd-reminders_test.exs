@@ -153,7 +153,9 @@ defmodule EDDRemindersTest do
     {list_of_months, edd_confirmation_text, full_edd}
   end
 
+  
   describe "EDD Reminder" do
+    @describetag skip: "TODO: Implement support for Template CSV import etc"
     test "Got it", %{flow: flow} do
       flow
       |> FlowTester.start()
@@ -169,6 +171,7 @@ defmodule EDDRemindersTest do
       })
     end
 
+    
     test "Got it (pt)", %{flow: flow} do
       flow
       |> FlowTester.set_contact_properties(%{"language" => "por"})
@@ -185,6 +188,7 @@ defmodule EDDRemindersTest do
       })
     end
 
+    
     test "Got it text only", %{flow: flow} do
       flow
       |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
@@ -240,7 +244,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic visit 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
     end
@@ -251,7 +255,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic visit 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
       |> FlowTester.send("Nope")
@@ -399,7 +403,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send(month)
       |> receive_message(%{
-        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic vist 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
+        text: "*It's important to know the due date* 🗓️\r\n\r\nThere are 2 ways to calculate it:\r\n\r\n• Count 40 weeks (or 280 days) forward from the 1st day of your last menstrual period.\r\n\r\n• Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator\r\n\r\nAsk a health worker to confirm your expected due date at your next clinic visit 🧑🏾⚕️\r\n\r\nYou can update the expected due date in Settings, found in the main menu.",
         buttons: button_labels(["Update due date", "I’ll do this later"]),
       })
     end

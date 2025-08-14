@@ -1,5 +1,26 @@
 structure,message,page_id,slug,parent,web_title,web_subtitle,web_body,whatsapp_title,whatsapp_body,whatsapp_template_slug,variation_title,variation_body,list_title,list_items,sms_title,sms_body,ussd_title,ussd_body,messenger_title,messenger_body,viber_title,viber_body,translation_tag,tags,quick_replies,triggers,next_prompt,buttons,image_link,doc_link,media_link,related_pages,footer,language_code
 Menu 1,0,1980,mnch_main,,mnch,,,,,,,,,,,,,,,,,,a4192a58-04fe-4766-9d00-9ec4769ce3d8,,,,,,,,,,,en
+Sub 1.12,1,12790,mnch_onboarding_breastfeeding-quiz-champion,mnch,Breastfeeding quiz champion,,,Breastfeeding quiz champion,"*You are a champion!* 🏆
+
+You got {score} out of {max_score} answers right. Well done!
+
+You’ve earned your breastfeeding hero sticker.
+
+What do you want to explore next?",,,,,[],,,,,,,,,26ab36c7-2f2b-4c18-a546-eb2c64da3be1,,,,,[],https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/6a5cefe396bea35baa1cc604f1aaab56.png,,,,,en
+Sub 1.13,1,12791,mnch_onboarding_breastfeeding-quiz-good,mnch,Breastfeeding quiz good,,,Breastfeeding quiz good,"*Getting there*
+
+You got {score} out of {max_score} answers right. Hopefully, you learnt some useful things about breastfeeding along the way.
+
+Thanks for taking part. Here's a special breastfeeding sticker for you.
+
+What would you like to explore next?",,,,,[],,,,,,,,,6cf496ef-5332-417e-926c-9778c58df47b,,,,,[],https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/aa517ea3807b24713d0e1188e8687509.png,,,,,en
+Sub 1.14,1,12792,mnch_onboarding_breastfeeding-quiz-learner,mnch,Breastfeeding quiz learner,,,Breastfeeding quiz learner,"*Up for the challenge?*
+
+You didn't get any answers correct this time. Hopefully you learnt some useful things about breastfeeding along the way.
+
+Here's a special breastfeeding sticker for you.
+
+What would you like to explore next?",,,,,[],,,,,,,,,f1a0ef23-8e91-41e4-a8e1-0b227cf1755b,,,,,[],https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/c6e7dabb45604e0946d282a7985e92c3.png,,,,,en
 Menu 2,0,1982,faqs,,FAQs,,,,,,,,,,,,,,,,,,34f2ee6d-0e17-4b59-899d-e184af5e4863,,,,,,,,,,,en
 Menu 3,0,1983,dev-test,,Dev Test,,,,,,,,,,,,,,,,,,058b1a58-34f7-4589-bc79-a0372860ee17,,,,,,,,,,,en
 Menu 4,0,3175,main-menu,,Main Menu,,,,,,,,,,,,,,,,,,a0b85075-d01b-46bf-8997-8591e87ba171,,,,,,,,,,,en
@@ -349,11 +370,7 @@ Sub 5.1.71,1,3601,mnch_onboarding_profile_progress_50_secondary_,Onboarding,Prof
 Your profile is already 50% complete!
 
 👇🏽 What would you like to do next? 🦄",,,,,[],,,,,,,,,af08849b-fb39-4bc1-be57-0d6d7b320c20,,,,,"[{""type"": ""next_message"", ""title"": ""\u27a1\ufe0f Complete profile""}, {""type"": ""next_message"", ""title"": ""View topics for you""}, {""type"": ""next_message"", ""title"": ""Explore health guide""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_50.png,,,,,en
-Sub 5.1.72,1,3602,mnch_onboarding_edd_reminder,Onboarding,EDD_reminder,,,EDD_reminder,"Hey {@username} 
-
-Your next antenatal visit is coming up soon, don’t forget to ask the health worker to confirm your expected due date 👩🏽‍⚕️ 
-
-You can update the expected due date in Settings, found in the main menu.",,,,,[],,,,,,,,,035c8b91-8d01-492d-928c-fa53140a091c,,,,,"[{""type"": ""next_message"", ""title"": ""Got it!""}, {""type"": ""next_message"", ""title"": ""Update due date""}, {""type"": ""next_message"", ""title"": ""How to calculate it""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/EDD_Reminder.png,,,,,en
+Sub 5.1.72,1,3602,mnch_onboarding_edd_reminder,Onboarding,EDD_reminder,,,EDD_reminder,,mnch_onboarding_edd_reminder,,,,,,,,,,,,,035c8b91-8d01-492d-928c-fa53140a091c,,,,,,,,,,,en
 Sub 5.1.73,1,3603,mnch_onboarding_edd_got_it,Onboarding,EDD_got_it,,,EDD_got_it,Well done on taking care of you and baby’s health 🫶🏽,,,,,[],,,,,,,,,1caed98f-9458-4ca7-b6b0-5080106ffbd9,,,,,"[{""type"": ""go_to_page"", ""title"": ""See main menu"", ""slug"": ""mnch_onboarding_edd_month""}]",,,,,,en
 Sub 5.1.74,1,3604,mnch_onboarding_edd_month,Onboarding,EDD_month,,,EDD_month,"Great. 
 
@@ -816,7 +833,7 @@ There are 2 ways to calculate it:
 
 • Use this free due date calculator: https://www.pampers.com/en-us/pregnancy/due-date-calculator 
 
-Ask a health worker to confirm your expected due date at your next clinic vist 🧑🏾‍⚕️ 
+Ask a health worker to confirm your expected due date at your next clinic visit 🧑🏾⚕️
 
 You can update the expected due date in Settings, found in the main menu.",,,,,[],,,,,,,,,15703274-945d-4bf4-a81f-2f4883810fa1,,,,,"[{""type"": ""go_to_page"", ""title"": ""Update due date"", ""slug"": ""mnch_onboarding_edd_do_it_later""}, {""type"": ""go_to_page"", ""title"": ""I\u2019ll do this later"", ""slug"": ""mnch_onboarding_edd_do_it_later""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/EDD_Unknown.png,,,,,en
 Sub 5.1.149,1,3727,mnch_onboarding_non_personalised_menu,Onboarding,non_personalised_menu,,,non_personalised_menu,"*{MyHealth} main menu*
@@ -1011,6 +1028,13 @@ Now is your chance to tell me more about yourself, so I give you information tha
 ⬜ Daily life {daily_life_count}
 
 👇🏾  Are you ready to answer a few questions?",,,,,[],,,,,,,,,bd9faded-12a3-4962-985b-5bf974f8a78a,,,,,"[{""type"": ""next_message"", ""title"": ""Sure, let's go \u27a1\ufe0f""}, {""type"": ""next_message"", ""title"": ""Why?""}]",,,,,,en
+Sub 5.1.174,1,7733,mnch_onboarding_dma_skip-result,Onboarding,Skip Result Page,,,Skip Result Page,You are seeing this message because you skipped an answer.,,,,,[],,,,"You skipped some questions, so we're not sure how you feel about health decisions. 
+
+Would you like to finish these now?
+
+Reply:
+1. Yes
+2. No, thanks",,,,,41243c56-7d2c-48f4-b627-4eb8e7d1048f,,,,,[],,,,,,en
 Sub 5.1.175,1,12365,mnch_onboarding_dma_results_high,Onboarding,DMA_results_high,,,DMA_results_high,"*Thank you for completing this*
 
 You seem comfortable and confident making decisions about your health.
@@ -1059,28 +1083,20 @@ Sub 5.1.182,1,12900,mnch_onboarding_error_handling_ussd,Onboarding,mnch_onboardi
 Sub 5.1.183,1,12901,mnch_onboarding_reengagement_sms,Onboarding,ReEngagement,,,,,,,,,,,"Hi {{name}}, you started a health check on MomConnect. Finish it to learn something new. It only takes a minute. 
 
 To start, dial *120*4216*25#",,,,,,,2dd24fbc-081e-4ba8-bbbd-7d83da76be41,,,,,,,,,,,en
-Menu 6,0,3723,test,,TEST,,,,,,,,,,,,,,,,,,7bc53d56-c353-4194-884f-ff4fece7eabb,,,,,,,,,,,en
-Menu 7,0,3730,nurse_home_eng_nurse,,NURSE,,,,,,,,,,,,,,,,,,df3c6763-bc32-44f6-a5a6-495afcca858c,,,,,,,,,,,en
-Menu 8,0,3732,ma_test,,MA_TEST,,,,,,,,,,,,,,,,,,d69e6b91-f87e-43a7-90b4-70f965a60700,,,,,,,,,,,en
-Menu 9,1,3735,mnch_onboarding_drop_off_2nd_reminder,Onboarding,Drop_off_2nd_reminder,,,Drop_off_2nd_reminder,"Hi {username}!
+Sub 5.1.184,1,3735,mnch_onboarding_drop_off_2nd_reminder,Onboarding,Drop_off_2nd_reminder,,,Drop_off_2nd_reminder,"Hi {username}!
 
 Join thousands of people like you who are improving their health and well-being and of their loved ones by getting expert, personalised health info.
 
 *All you need to do to join them, is to answer a few quick questions.*
 
 It will only take a couple of minutes.",,,,,[],,,,,,,,,48c49732-543d-410e-af26-e52028aa0d1b,,,,,"[{""type"": ""next_message"", ""title"": ""Let\u2019s do it""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",,,,,,en
-Menu 10,1,3736,mnch_onboarding_drop_off_3rd_reminder,Onboarding,Drop_off_3rd_reminder,,,Drop_off_3rd_reminder,"Hi {username}!
+Sub 5.1.185,1,3736,mnch_onboarding_drop_off_3rd_reminder,Onboarding,Drop_off_3rd_reminder,,,Drop_off_3rd_reminder,"Hi {username}!
 
 Imagine yourself in the future. You are healthier and happier. That’s what I want to help you achieve! The journey to that future begins now.
 
 *Are you ready to answer some questions?*
 
 It will only take a couple of minutes. (I won’t bother you with this again.)",,,,,[],,,,,,,,,9b699fe9-f212-4717-b76f-8d9128824748,,,,,"[{""type"": ""next_message"", ""title"": ""Let\u2019s do it""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Re_engagement_04.png,,,,,en
-Menu 11,1,3737,mnch_onboarding_reminder_requested,Onboarding,Reminder_requested,,,Reminder_requested,"Hi {username}!
+Sub 5.1.186,1,3737,mnch_onboarding_reminder_requested,Onboarding,Reminder_requested,,,Reminder_requested,"Hi {username}!
 
 *This is your friendly reminder to share more about yourself.* Let’s do this.🔔",,,,,[],,,,,,,,,14f8fe1d-a028-4741-882e-16b24a3b957d,,,,,"[{""type"": ""next_message"", ""title"": ""Yes, let\u2019s go""}, {""type"": ""next_message"", ""title"": ""Remind me tomorrow""}]",https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Reminder.png,,,,,en
-Menu 12,0,7730,nurse_templates,,NURSE templates,,,,,,,,,,,,,,,,,,52d85323-744f-4b33-a2b8-5c712935d900,,,,,,,,,,,en
-Menu 13,0,12418,mpox,,mpox,,,,,,,,,,,,,,,,,,b13f808f-ccff-46f1-b7c9-784dfc924cac,,,,,,,,,,,en
-Menu 14,0,12797,sms_tests,,sms_test,,,,,,,,,,,,,,,,,,11db036d-18d8-4666-8c62-c7a14392d25d,,,,,,,,,,,en
-Menu 15,0,12863,mental-health,,Mental Health,,,,,,,,,,,,,,,,,,20c6e1a1-663a-4210-bb8e-d4ee64bbeec7,,,,,,,,,,,en
-Menu 16,0,12868,debtest,,DebTestPage,,,,,,,,,,,,,,,,,,fba05d65-d018-4bcc-8d7b-90334c7f6411,,,,,,,,,,,en

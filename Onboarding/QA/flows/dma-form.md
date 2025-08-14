@@ -722,7 +722,8 @@ card DisplayEndPage do
       timeout: 5_000,
       cache_ttl: 60_000,
       query: [
-        ["channel", "whatsapp"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [
         ["content-type", "application/json"],
