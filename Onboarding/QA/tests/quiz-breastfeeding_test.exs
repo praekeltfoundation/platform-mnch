@@ -54,7 +54,7 @@ defmodule QuizBreastfeedingTest do
       slug: "breastfeeding-quiz",
       generic_error: "Sorry, I didn't understand that. Please click one of the buttons.",
       locale: "en",
-      version: "1.0",
+      version: "1",
       tags: ["breastfeeding_quiz"],
       high_result_page: "mnch_onboarding_breastfeeding-quiz-champion",
       high_inflection: 75.0,
@@ -225,7 +225,7 @@ defmodule QuizBreastfeedingTest do
         buttons: [{"Formula", "Formula"}, {"Formula+breast milk", "Formula+breast milk"}, {"Breast milk only", "Breast milk only"}]
       })
       |> results_match([
-        %{name: "version", value: "1.0"},
+        %{name: "version", value: "1"},
         %{name: "started", value: "breastfeeding_quiz", label: "@v_start"},
         %{name: "locale", value: "en"}
       ])
