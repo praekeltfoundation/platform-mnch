@@ -31,6 +31,21 @@ defmodule EDDRemindersTest do
         # These transforms are specific to these tests
       end
     ]
+    # The onboarding.csv content file contains a page that references a Whatsapp Template.
+    # We don't support importing of templates yet, so for now we add it manually  
+    FakeCMS.add_template(wh_pid, %WATemplate{
+      id: "1",
+      slug: "mnch_onboarding_edd_reminder",
+      category: "MARKETING",
+      image: nil,
+      message: "This is a test message",
+      buttons: [],
+      example_values: [],
+      submission_status: "",
+      submission_name: "",
+      submission_result: ""
+    })
+
 
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
@@ -164,14 +179,16 @@ defmodule EDDRemindersTest do
   end
 
   describe "EDD Reminder" do
-    @describetag skip: "TODO: Implement support for Template CSV import etc"
+    # @describetag skip: "TODO: Implement support for Template CSV import etc"
+    @tag :thisone
     test "Got it", %{flow: flow} do
       flow
+     
       |> FlowTester.start()
       |> receive_message(%{
         # text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
         text:
-          "[DEBUG]\r\nTemplate @body.whatsapp_template_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
+          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
         buttons: [
           {"edd_got_it", "edd_got_it"},
@@ -193,7 +210,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{
         # text: "[DEBUG]\r\nTemplate edd_reminder_2041_pt sent with language pt_PT.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
         text:
-          "[DEBUG]\r\nTemplate @body.whatsapp_template_name sent with language pt_PT.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url" <>
+          "[DEBUG]\r\nTemplate @submission_name sent with language pt_PT.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url" <>
             _,
         buttons: [
           {"edd_got_it", "edd_got_it"},
@@ -215,7 +232,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{
         # text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\n\r\nThe buttons represented"  <> _,
         text:
-          "[DEBUG]\r\nTemplate @body.whatsapp_template_name sent with language en_US.\r\nBody parameters: [@name]\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
+          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
         buttons: [
           {"edd_got_it", "edd_got_it"},
@@ -251,7 +268,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{
         # text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
         text:
-          "[DEBUG]\r\nTemplate @body.whatsapp_template_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
+          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
         buttons: [
           {"edd_got_it", "edd_got_it"},

@@ -29,6 +29,21 @@ defmodule MenuPersonalisedTest do
       end
     ]
 
+    # The onboarding.csv content file contains a page that references a Whatsapp Template.
+    # We don't support importing of templates yet, so for now we add it manually  
+    FakeCMS.add_template(wh_pid, %WATemplate{
+      id: "1",
+      slug: "mnch_onboarding_edd_reminder",
+      category: "MARKETING",
+      image: nil,
+      message: "This is a test message",
+      buttons: [],
+      example_values: [],
+      submission_status: "",
+      submission_name: "",
+      submission_result: ""
+    })
+
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
