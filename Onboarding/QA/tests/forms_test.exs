@@ -31,21 +31,6 @@ defmodule FormsTest do
       end
     ]
 
-    # The onboarding.csv content file contains a page that references a Whatsapp Template.
-    # We don't support importing of templates yet, so for now we add it manually  
-    FakeCMS.add_template(wh_pid, %WATemplate{
-      id: "1",
-      slug: "mnch_onboarding_edd_reminder",
-      category: "MARKETING",
-      image: nil,
-      message: "This is a test message",
-      buttons: [],
-      example_values: [],
-      submission_status: "",
-      submission_name: "",
-      submission_result: ""
-    })
-
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
@@ -109,6 +94,7 @@ defmodule FormsTest do
   setup [:setup_flow]
 
   describe "DMA Form" do
+    # TODO: I don't see the point of this test file, as 'dma-form_test.ex' already tests form functionality in much more depth
     @tag skip: "TODO: Implement support for Template CSV import etc"
     test "First question", %{flow: flow} do
       flow
