@@ -34,28 +34,17 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "c
 
 card FetchError, then: CallbackFollowup do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 card GotoMainMenu do
@@ -84,28 +73,18 @@ end
 
 ```stack
 card CallbackFollowup, then: CallbackFollowupError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_call_back_follow_up"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_call_back_follow_up/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_followup_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  callback_followup_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     GotoCallback: "@button_labels[0]",

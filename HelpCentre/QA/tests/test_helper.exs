@@ -3,7 +3,7 @@ defmodule HelpCentre.QA.Helpers do
   alias FlowTester.WebhookHandler, as: WH
 
   def load_flow(flow_name) do
-    Path.join([__DIR__, "..","flows_json", flow_name <> ".json"])
+    Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
     |> FlowTester.from_json!()
   end
 
@@ -55,5 +55,30 @@ defmodule HelpCentre.QA.Helpers do
     )
 
     WH.set_adapter(step, "https://whatsapp-praekelt-cloud.turn.io/", Generic.wh_adapter(gen_pid))
+  end
+
+  def csv_path(csv_name), do: Path.join([__DIR__, "..", "content", csv_name <> ".csv"])
+
+  def import_content_csv(fakecms_pid, csv_name, opts \\ []),
+    do: FakeCMS.ImportExport.import_pages_from_csv(fakecms_pid, csv_path(csv_name), opts)
+
+  def pages_from_content_csv(csv_name, opts \\ []),
+    do: FakeCMS.ImportExport.pages_from_csv(csv_path(csv_name), opts)
+
+  defmodule Macros do
+    # This lets us have cleaner button/list assertions.
+    def indexed_list(var, labels) do
+      Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
+    end
+
+    # The common case for buttons.
+    defmacro button_labels(labels) do
+      quote do: unquote(indexed_list("button_labels", labels))
+    end
+
+    # The common case for lists.
+    defmacro list_items(labels, option \\ "list_items") do
+      quote do: unquote(indexed_list(option, labels))
+    end
   end
 end

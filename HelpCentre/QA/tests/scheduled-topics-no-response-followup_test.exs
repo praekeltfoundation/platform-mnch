@@ -3,63 +3,40 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
   alias FlowTester.WebhookHandler, as: WH
   alias FlowTester.WebhookHandler.Generic
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    topics_no_response_follow_up = %ContentPage{
-      slug: "plat_help_topics_no_response_follow_up",
-      title: "Topics no response follow up",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n👇🏽 Was the information I recommended helpful?",
-          buttons: [
-            %Btn.Next{title: "Yes 👍🏽"},
-            %Btn.Next{title: "No 👎🏽"}
-          ]
-        }
-      ]
-    }
+    # The various index pages aren't in the content sheet, so we need to add them manually.
+    indices = [
+      %Index{title: "Help centre", slug: "help-centre-index"},
+      %Index{title: "Onboarding", slug: "onboarding-index"}
+    ]
 
-    acknowledgement_positive = %ContentPage{
-      slug: "plat_help_acknowledgement_positive_",
-      title: "Acknowledgement Positive",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I'm happy to hear that.\r\n\r\nWhat would you like to see now?",
-          buttons: [
-            %Btn.Next{title: "Back to topics list"},
-            %Btn.Next{title: "Help Centre menu"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    acknowledgement_negative = %ContentPage{
-      slug: "plat_help_acknowledgement_negative_",
-      title: "Acknowledgement Negative",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "That's unfortunate. Let's try again!"
-        }
-      ]
-    }
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
 
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               topics_no_response_follow_up,
-               acknowledgement_positive,
-               acknowledgement_negative
-             ])
+        # These transforms are specific to these tests
+      end
+    ]
+
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
+
+    # Error messages are in a separate sheet.
+    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -108,6 +85,9 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> setup_fake_aaq(ctx)
       |> set_config()
@@ -139,7 +119,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n👇🏽 Was the information I recommended helpful?",
+          "🤖 Hello again!\r\n\r\nI see you haven't replied.\r\n\r\n👇🏽 Was the information I recommended helpful?",
         buttons: button_labels(["Yes 👍🏽", "No 👎🏽"])
       })
     end
@@ -151,7 +131,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
       })
       |> FlowTester.start()
       |> receive_message(%{
-        text: "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n" <> _,
+        text: "🤖 Hello again!\r\n\r\nI see you haven't replied.\r\n\r\n" <> _,
         buttons: button_labels(["Yes 👍🏽", "No 👎🏽"])
       })
       |> FlowTester.send(button_label: "Yes 👍🏽")
@@ -170,7 +150,7 @@ defmodule ScheduledTopicsNoResponseFollowupTest do
       })
       |> FlowTester.start()
       |> receive_message(%{
-        text: "🤖 Hello again!\r\n\r\nI see you haven't replied. \r\n\r\n" <> _,
+        text: "🤖 Hello again!\r\n\r\nI see you haven't replied.\r\n\r\n" <> _,
         buttons: button_labels(["Yes 👍🏽", "No 👎🏽"])
       })
       |> FlowTester.send(button_label: "No 👎🏽")

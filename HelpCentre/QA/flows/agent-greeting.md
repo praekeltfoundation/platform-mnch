@@ -49,27 +49,17 @@ card GetLatestMessage, then: GetPageContent do
 end
 
 card GetPageContent, then: SendGreeting do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_agent_greeting"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_greeting/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  greeting_msg = page.body.body.text.value.message
+  greeting_msg = page.body.messages[0].text
 end
 
 card SendGreeting when is_nil_or_empty(chat.assigned_to) do

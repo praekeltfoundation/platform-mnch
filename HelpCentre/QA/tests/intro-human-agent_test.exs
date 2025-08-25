@@ -1,6 +1,8 @@
 defmodule IntroHumanAgentTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
+
   alias HelpCentre.QA.Helpers
 
   def setup_fake_cms(auth_token) do
@@ -8,54 +10,26 @@ defmodule IntroHumanAgentTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    emergency = %ContentPage{
-      slug: "plat_help_route_to_operator_emergency",
-      title: "Route to operator emergency",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "We will let the helpdesk know that this is an emergency situation"}
-      ]
-    }
+    # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Help centre", slug: "test-help-centre"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    search_myhealth = %ContentPage{
-      slug: "plat_help_route_to_operator_search_myhealth",
-      title: "Route to operator Search MyHealth",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "You searched for {xxx}"}
-      ]
-    }
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
 
-    tech_support = %ContentPage{
-      slug: "plat_help_route_to_operator_tech_support",
-      title: "Route to operator Tech support",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "You searched for {xxx}"}
-      ]
-    }
+        # These transforms are specific to these tests
+      end
+    ]
 
-    failed_attempts = %ContentPage{
-      slug: "plat_help_route_to_operator_failed_attempts",
-      title: "Route to operator failed attempts",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "It seems that the bot has been unable to assist you so we will be routing you to a human helpdesk operator to try to resolve your issue"
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               emergency,
-               tech_support,
-               failed_attempts,
-               search_myhealth
-             ])
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -87,8 +61,12 @@ defmodule IntroHumanAgentTest do
     flow =
       init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> set_config()
+
     %{flow: flow}
   end
 

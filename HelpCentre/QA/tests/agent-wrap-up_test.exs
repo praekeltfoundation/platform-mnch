@@ -2,112 +2,40 @@ defmodule AgentWrapUpTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    query_successful = %ContentPage{
-      slug: "plat_help_query_successful",
-      title: "Query successful",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Was your query successfully resolved?",
-          buttons: [
-            %Btn.Next{title: "Yes"},
-            %Btn.Next{title: "No"}
-          ]
-        }
-      ]
-    }
+    # The various index pages aren't in the content sheet, so we need to add them manually.
+    indices = [
+      %Index{title: "Help centre", slug: "help-centre-index"},
+      %Index{title: "Onboarding", slug: "onboarding-index"}
+    ]
 
-    agent_helpful_response = %ContentPage{
-      slug: "plat_help_agent_helpful_response",
-      title: "Query successful",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Please take care of yourself and if you need more information, reply {help} anytime to get the info you need."
-        }
-      ]
-    }
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    agent_unsuccessful_response = %ContentPage{
-      slug: "plat_help_agent_unsuccessful_response",
-      title: "Agent unsuccessful response",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾",
-          buttons: [
-            %Btn.Next{title: "Call me back"},
-            %Btn.Next{title: "Search MyHealth"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
 
-    call_back_response = %ContentPage{
-      slug: "plat_help_call_back_response",
-      title: "Call back response",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. \r\n\r\nWhat would you like to do?",
-          buttons: [
-            %Btn.Next{title: "Call me back"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
+        # These transforms are specific to these tests
+      end
+    ]
 
-    call_back_confirmation = %ContentPage{
-      slug: "plat_help_call_back_confirmation",
-      title: "Call back confirmation",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "A trained counsellor/nurse will call you back.\r\n\r\nThey’ll be able to talk to you about any health related queries you might have. Try and clearly explain your concerns and they will gladly assist."
-        }
-      ]
-    }
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
-    call_back_number_confirmation = %ContentPage{
-      slug: "plat_help_agent_call_back_number_confirmation",
-      title: "Call back confirmation",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Should a counsellor call you on the WhatsApp number you are currently using to chat?",
-          buttons: [
-            %Btn.Next{title: "Use this number"},
-            %Btn.Next{title: "Use different number"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               query_successful,
-               agent_helpful_response,
-               agent_unsuccessful_response,
-               call_back_response,
-               call_back_confirmation,
-               call_back_number_confirmation
-             ])
+    # Error messages are in a separate sheet.
+    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -139,8 +67,12 @@ defmodule AgentWrapUpTest do
     flow =
       init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> set_config()
+
     %{flow: flow}
   end
 
@@ -192,7 +124,7 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that.\r\n\r\nI would love to assist you with your problem, let’s try again.\r\n\r\nWhat would you like to do next?👇🏾"
       })
     end
 
@@ -205,12 +137,12 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that.\r\n\r\nI would love to assist you with your problem, let’s try again.\r\n\r\nWhat would you like to do next?👇🏾"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_message(%{
         text:
-          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. \r\n\r\nWhat would you like to do?"
+          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\r\n\r\nWhat would you like to do?"
       })
     end
 
@@ -223,12 +155,12 @@ defmodule AgentWrapUpTest do
       |> FlowTester.send(button_label: "No")
       |> receive_message(%{
         text:
-          "Sorry to hear that. \r\n\r\nI would love to assist you with your problem, let’s try again. \r\n\r\nWhat would you like to do next?👇🏾"
+          "Sorry to hear that.\r\n\r\nI would love to assist you with your problem, let’s try again.\r\n\r\nWhat would you like to do next?👇🏾"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_message(%{
         text:
-          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes. \r\n\r\nWhat would you like to do?"
+          "You can use our counsellor call back function to speak to a trained counsellor. If you opt for this, a counsellor will call you back and it usually takes around 5 minutes.\r\n\r\nWhat would you like to do?"
       })
       |> FlowTester.send(button_label: "Call me back")
       |> receive_messages([

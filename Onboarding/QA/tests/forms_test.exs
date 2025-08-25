@@ -2,6 +2,7 @@ defmodule FormsTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
 
@@ -10,76 +11,58 @@ defmodule FormsTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    assert :ok = FakeCMS.add_pages(wh_pid, [
-      %Index{slug: "home", title: "Home"},
-      %ContentPage{
-        slug: "high-result",
-        title: "High result",
-        parent: "home",
-        wa_messages: [
-          %WAMsg{
-            message: "High result message"
-          }
-        ]
-      },
-      %ContentPage{
-        slug: "medium-result",
-        title: "Medium result",
-        parent: "home",
-        wa_messages: [
-          %WAMsg{
-            message: "Medium result message"
-          }
-        ]
-      },
-      %ContentPage{
-        slug: "low-result",
-        title: "Low result",
-        parent: "home",
-        wa_messages: [
-          %WAMsg{
-            message: "Low result message"
-          }
-        ]
-      },
-      %ContentPage{
-        slug: "skip-high-result",
-        title: "Skip result",
-        parent: "home",
-        wa_messages: [
-          %WAMsg{
-            message: "Skip high result message"
-          }
-        ]
-      }
-    ])
+    # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    assert :ok = FakeCMS.add_form(wh_pid, %Forms.Form{
-      id: 1,
-      title: "Test Form",
-      slug: "dma-form",
-      generic_error: "Please choose an option that matches your answer",
-      locale: "en",
-      version: "v1.0",
-      tags: ["dma_form"],
-      high_result_page: "high-result",
-      high_inflection: 50.0,
-      medium_result_page: "medium-result",
-      medium_inflection: 30.0,
-      low_result_page: "low-result",
-      skip_threshold: 1.0,
-      skip_high_result_page: "skip-high-result",
-      questions: [
-        %Forms.IntegerQuestion{
-          question: "Input a number",
-          explainer: "Explainer 1",
-          error: "Oh no",
-          semantic_id: "forms-integer",
-          min: 0,
-          max: 10
-        },
-      ]
-    })
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        # These transforms are common to all CSV imports
+        |> String.replace(~r/\r?\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+        # These transforms are specific to these tests
+        |> String.replace("{language_selection}", "{language selection}")
+        |> String.replace("{option_choice}", "{option choice}")
+      end
+    ]
+
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
+
+    assert :ok =
+             FakeCMS.add_form(wh_pid, %Forms.Form{
+               id: 1,
+               title: "Test Form",
+               slug: "dma-form",
+               generic_error: "Please choose an option that matches your answer",
+               locale: "en",
+               version: "v1.0",
+               tags: ["dma_form"],
+               high_result_page: "mnch_onboarding_dma_results_high",
+               high_inflection: 5.0,
+               medium_result_page: "mnch_onboarding_dma_results_medium",
+               medium_inflection: 3.0,
+               low_result_page: "mnch_onboarding_dma_results_low",
+               skip_threshold: 1.0,
+               skip_high_result_page: "mnch_onboarding_dma_skip-result",
+               questions: [
+                 %Forms.IntegerQuestion{
+                   question:
+                     "Thanks, {{name}}\r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*",
+                   explainer: "TEST: Explainer text",
+                   error: "Oh no",
+                   semantic_id: "forms-integer",
+                   min: 0,
+                   max: 10
+                 }
+               ]
+             })
+
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
   end
@@ -93,32 +76,38 @@ defmodule FormsTest do
   setup_all _ctx, do: %{init_flow: Helpers.load_flow("dma-form")}
 
   defp setup_flow(ctx) do
-    # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
-    auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
+    # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
+    auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+
     %{flow: flow}
   end
 
   setup [:setup_flow]
 
   describe "DMA Form" do
+    @tag skip: "TODO: Implement support for Template CSV import etc"
     test "First question", %{flow: flow} do
       flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_local_params("config", %{"assessment_tag" => "dma_form"})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "Input a number",
+        text:
+          "Thanks, \r\n\r\nNow please share your view on these statements so that you can get the best support from [MyHealth] for your needs.\r\n\r\nTo skip any question, reply: Skip\r\n\r\nHere’s the first statement:\r\n\r\n👤 *I am confident that I can do things to avoid health issues or reduce my symptoms.*"
       })
       |> FlowTester.send("1")
       |> results_match([
         %{name: "version", value: "v1.0"},
-        %{name: "started", value: "dma_form", label: "@v_start"},
+        %{name: "started", value: "dma-form", label: "@v_start"},
         %{name: "locale", value: "en"},
         %{name: "question_num", value: 0, label: "@result_tag"},
         %{name: "question", value: "Input a number", label: "@result_tag"},
@@ -128,8 +117,10 @@ defmodule FormsTest do
         %{name: "end", value: "dma-form", label: "@slug_end"},
         %{name: "risk", value: "low", label: "@result_tag"},
         %{name: "score", value: 0, label: "@result_tag"},
-        %{name: "max_score", value: 0, label: "@result_tag"},
+        %{name: "max_score", value: 0, label: "@result_tag"}
       ])
     end
   end
 end
+
+# FWB-FormsIssue

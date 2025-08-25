@@ -2,95 +2,40 @@ defmodule ScheduledCallbackConfirmationTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    error_pg = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-        }
-      ]
-    }
+    # The various index pages aren't in the content sheet, so we need to add them manually.
+    indices = [
+      %Index{title: "Help centre", slug: "help-centre-index"},
+      %Index{title: "Onboarding", slug: "onboarding-index"}
+    ]
 
-    call_back_confirmation_scheduled = %ContentPage{
-      slug: "plat_help_call_back_confirmation_scheduled",
-      title: "Callback Confirmation Scheduled",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
-          buttons: [
-            %Btn.Next{title: "Yes"},
-            %Btn.Next{title: "No"}
-          ]
-        }
-      ]
-    }
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    call_back_confirmation_yes = %ContentPage{
-      slug: "plat_help_call_back_confirmation_yes",
-      title: "Call back confirmation yes",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Thats great to hear. Was the [health agent] able to help you?",
-          buttons: [
-            %Btn.Next{title: "Yes"},
-            %Btn.Next{title: "No"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
 
-    call_back_confirmation_no = %ContentPage{
-      slug: "plat_help_call_back_confirmation_no",
-      title: "Call back confirmation no",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Thanks for letting me know. This feedback will be used to improve the [My Health] service.\r\n\r\nIf you have anything urgent to discuss, go to the nearest health facility and speak to a health worker.\r\n\r\nIf you'd like, you can request another call from a [health agent], or have a look at topics that might interest you. \r\n\r\n👇🏽 What do you want to do?",
-          buttons: [
-            %Btn.Next{title: "Call me back"},
-            %Btn.Next{title: "See topics"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
+        # These transforms are specific to these tests
+      end
+    ]
 
-    agent_helpful_response = %ContentPage{
-      slug: "plat_help_agent_helpful_response",
-      title: "Agent helpful respone",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Please take care of yourself and if you need more information, reply {help} anytime to get the info you need."
-        }
-      ]
-    }
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               error_pg,
-               call_back_confirmation_scheduled,
-               call_back_confirmation_yes,
-               call_back_confirmation_no,
-               agent_helpful_response
-             ])
+    # Error messages are in a separate sheet.
+    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -122,8 +67,12 @@ defmodule ScheduledCallbackConfirmationTest do
     flow =
       init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> set_config()
+
     %{flow: flow}
   end
 
@@ -150,7 +99,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
     end
@@ -160,7 +109,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -174,7 +123,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -195,7 +144,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "Yes")
@@ -215,7 +164,7 @@ defmodule ScheduledCallbackConfirmationTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "Hi there \r\n\r\nYou requested a call-back a few minutes ago. \r\n\r\nDid you receive the call?",
+          "Hi there\r\n\r\nYou requested a call-back a few minutes ago.\r\n\r\nDid you receive the call?",
         buttons: button_labels(["Yes", "No"])
       })
       |> FlowTester.send(button_label: "No")

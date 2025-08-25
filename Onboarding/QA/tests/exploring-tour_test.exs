@@ -2,6 +2,7 @@ defmodule ExploringTourTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
 
   alias Onboarding.QA.Helpers
 
@@ -12,36 +13,26 @@ defmodule ExploringTourTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add an image.
-    image = %Image{id: 1, title: "Test image", download_url: "https://example.org/image.jpeg"}
-    assert :ok = FakeCMS.add_images(wh_pid, [image])
-
     # The index page isn't in the content sheet, so we need to add it manually.
-    index = %Index{title: "Onboarding", slug: "test"}
-    assert :ok = FakeCMS.add_pages(wh_pid, [index])
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    # Error messages are in a separate sheet.
-    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: [index])
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+
+        # These transforms are specific to these tests
+      end
+    ]
 
     # The content for these tests.
-    assert :ok = Helpers.import_content_csv(
-                   wh_pid,
-                   "exploring-tour",
-                   existing_pages: [index],
-                   field_transform: fn s ->
-                     s
-                     |> String.replace(~r/\r?\n$/, "")
-                   end
-                 )
-    # Some other pages also have an image attachment.
-    [
-      "mnch_onboarding_tour_card_01",
-      "mnch_onboarding_tour_card_02",
-      "mnch_onboarding_tour_card_03",
-      "mnch_onboarding_tour_card_04",
-      "mnch_onboarding_tour_card_05",
-    ]
-    |> Enum.each(&FakeCMS.add_img_to_page(wh_pid, &1, 0, image.id))
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -56,14 +47,18 @@ defmodule ExploringTourTest do
   setup_all _ctx, do: %{init_flow: Helpers.load_flow("exploring-tour")}
 
   defp setup_flow(ctx) do
-    # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
-    auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
+    # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
+    auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+
     %{flow: flow}
   end
 
@@ -75,11 +70,12 @@ defmodule ExploringTourTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> results_match([
-        %{name: "guided_tour_started", value: "yes"},
+        %{name: "guided_tour_started", value: "yes"}
       ])
       |> receive_message(%{
-        text: "Great, let's talk about what {MyHealth} has to offer you.\r\n\r\n🟩⬜⬜⬜⬜\r\n\r\n*Information from the experts*\r\n\r\n24/7 access to health information right here on WhatsApp.",
-        buttons: button_labels(["Next"]),
+        text:
+          "Great, let's talk about what {MyHealth} has to offer you.\r\n\r\n🟩⬜⬜⬜⬜\r\n\r\n*Information from the experts*\r\n\r\n24/7 access to health information right here on WhatsApp.",
+        buttons: button_labels(["Next"])
       })
     end
 
@@ -90,8 +86,9 @@ defmodule ExploringTourTest do
       |> receive_message(%{})
       |> FlowTester.send(button_label: "Next")
       |> receive_message(%{
-        text: "🟩🟩⬜⬜⬜\r\n\r\n*Important reminders*\r\n\r\nHealth-related reminders, specific to you, when you need them.",
-        buttons: button_labels(["Next"]),
+        text:
+          "🟩🟩⬜⬜⬜\r\n\r\n*Important reminders*\r\n\r\nHealth-related reminders, specific to you, when you need them.",
+        buttons: button_labels(["Next"])
       })
     end
 
@@ -104,8 +101,9 @@ defmodule ExploringTourTest do
       |> receive_message(%{})
       |> FlowTester.send(button_label: "Next")
       |> receive_message(%{
-        text: "🟩🟩🟩⬜⬜\r\n\r\n*Help in a hurry*\r\n\r\nContact numbers and resources for emergencies.",
-        buttons: button_labels(["Next"]),
+        text:
+          "🟩🟩🟩⬜⬜\r\n\r\n*Help in a hurry*\r\n\r\nContact numbers and resources for emergencies.",
+        buttons: button_labels(["Next"])
       })
     end
 
@@ -120,8 +118,9 @@ defmodule ExploringTourTest do
       |> receive_message(%{})
       |> FlowTester.send(button_label: "Next")
       |> receive_message(%{
-        text: "🟩🟩🟩🟩⬜\r\n\r\n*Someone to talk to*\r\n\r\nExperts ready to help you with your health concerns.",
-        buttons: button_labels(["Next"]),
+        text:
+          "🟩🟩🟩🟩⬜\r\n\r\n*Someone to talk to*\r\n\r\nExperts ready to help you with your health concerns.",
+        buttons: button_labels(["Next"])
       })
     end
 
@@ -139,11 +138,12 @@ defmodule ExploringTourTest do
       |> FlowTester.send(button_label: "Next")
       |> results_match([
         %{name: "guided_tour_started", value: "yes"},
-        %{name: "guided_tour_completed", value: "yes"},
+        %{name: "guided_tour_completed", value: "yes"}
       ])
       |> receive_message(%{
-        text: "🟩🟩🟩🟩🟩\r\n\r\n*Progress tracking*\r\n\r\nWhether it's your stress levels or pregnancy, I'll keep track of things.",
-        buttons: button_labels(["Got it!"]),
+        text:
+          "🟩🟩🟩🟩🟩\r\n\r\n*Progress tracking*\r\n\r\nWhether it's your stress levels or pregnancy, I'll keep track of things.",
+        buttons: button_labels(["Got it!"])
       })
     end
 
@@ -164,11 +164,12 @@ defmodule ExploringTourTest do
       |> results_match([
         %{name: "guided_tour_started", value: "yes"},
         %{name: "guided_tour_completed", value: "yes"},
-        %{name: "guided_tour_menu", value: "yes"},
+        %{name: "guided_tour_menu", value: "yes"}
       ])
       |> receive_message(%{
-        text: "I hope you've now got a good idea of what {service name} can do.\r\n\r\nAt this point, most people choose to create their profile. The more info you give me, the more control you have!\r\n\r\n👇🏽 What do you want to do?",
-        buttons: button_labels(["Create a profile 👤", "Go to help desk"]),
+        text:
+          "I hope you've now got a good idea of what {service name} can do.\r\n\r\nAt this point, most people choose to create their profile. The more info you give me, the more control you have!\r\n\r\n👇🏽 What do you want to do?",
+        buttons: button_labels(["Create a profile 👤", "Go to help desk"])
       })
     end
 

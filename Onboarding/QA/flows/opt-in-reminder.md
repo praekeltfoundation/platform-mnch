@@ -8,28 +8,18 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "o
 ```stack
 card FetchError, then: OptInReminder do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 ```
@@ -40,28 +30,18 @@ end
 
 ```stack
 card OptInReminder, then: DisplayOptInReminder do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_opt_in_reminder"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_opt_in_reminder/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -71,13 +51,13 @@ card DisplayOptInReminder when contact.data_preference == "text only",
     OptInYes: "@button_labels[0]",
     OptInNo: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayOptInReminder, then: DisplayOptInReminderError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -92,7 +72,7 @@ card DisplayOptInReminder, then: DisplayOptInReminderError do
     OptInNo: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -113,28 +93,18 @@ end
 card OptInNo do
   update_contact(opted_in: "false")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_opt_in_no"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_opt_in_no/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  text("@message.message")
+  message = page.body.messages[0]
+  text("@message.text")
 end
 
 ```
@@ -145,28 +115,18 @@ end
 card OptInYes do
   update_contact(opted_in: "true")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_opt_in_yes"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_opt_in_yes/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
+  message = page.body.messages[0]
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
   text("@loading_message")
 end
 

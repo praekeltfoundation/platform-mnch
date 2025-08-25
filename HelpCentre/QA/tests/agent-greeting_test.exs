@@ -2,27 +2,35 @@ defmodule AgentGreetingTest do
   use FlowTester.Case
   alias FlowTester.WebhookHandler, as: WH
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
+
+  import HelpCentre.QA.Helpers.Macros
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    agent_greeting = %ContentPage{
-      slug: "plat_help_agent_greeting",
-      title: "Agent greeting",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "👨You are now chatting with {operator_name}"}
-      ]
-    }
+    # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Help centre", slug: "test-help-centre"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               agent_greeting
-             ])
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
+
+        # These transforms are specific to these tests
+      end
+    ]
+
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -54,26 +62,14 @@ defmodule AgentGreetingTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> Helpers.setup_fake_turn(ctx)
       |> set_config()
 
     %{flow: flow}
-  end
-
-  # This lets us have cleaner button/list assertions.
-  def indexed_list(var, labels) do
-    Enum.with_index(labels, fn lbl, idx -> {"@#{var}[#{idx}]", lbl} end)
-  end
-
-  # The common case for buttons.
-  defmacro button_labels(labels) do
-    quote do: unquote(indexed_list("button_labels", labels))
-  end
-
-  # The common case for lists.
-  defmacro list_items(labels) do
-    quote do: unquote(indexed_list("list_items", labels))
   end
 
   setup [:setup_flow]

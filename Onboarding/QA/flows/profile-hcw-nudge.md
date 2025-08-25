@@ -30,50 +30,29 @@ Here we do any setup and fetching of values before we start the flow.
 ```stack
 card FetchError, then: HCWNudge do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
+  button_error_text = page.body.messages[0].text
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_list_message/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_list_message"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  list_error_text = page.body.body.text.value.message
+  list_error_text = page.body.messages[0].text
 end
 
 ```
@@ -82,28 +61,18 @@ end
 
 ```stack
 card HCWNudge, then: HCWNudgeError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_nudge_complete_profile"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_nudge_complete_profile/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   write_result("profile_completion", "0%")
 
@@ -111,7 +80,7 @@ card HCWNudge, then: HCWNudgeError do
     CompleteProfile: "@button_labels[0]",
     MainMenu: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -127,7 +96,7 @@ end
 card CompleteProfile do
   # Go to HCWProfile to complete
   log("Go to HCWProfile to complete")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("9aa596d3-40f0-4349-8322-e44d1fd1d127")
 end
 
 card MainMenu do

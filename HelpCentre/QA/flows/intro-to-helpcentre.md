@@ -72,28 +72,18 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "i
 ```stack
 card FetchError, then: InitHelpdesk do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 ```
@@ -177,54 +167,35 @@ card HelpCentre
      when is_nil_or_empty(contact.returning_help_centre_user) or
             contact.returning_help_centre_user == false,
      then: ShowHelpCentreMenu do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_welcome_help_centre_first"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_welcome_help_centre_first/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  intro_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  intro_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
   update_contact(returning_help_centre_user: "true")
 end
 
 card HelpCentre when contact.returning_help_centre_user == true, then: ShowHelpCentreMenu do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_welcome_help_centre_returning"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_welcome_help_centre_returning/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  intro_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  intro_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 end
 
 card HelpCentre do
@@ -261,28 +232,18 @@ end
 card MedicalEmergency, then: MedicalEmergencyError do
   write_result("emergency_help", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_medical_emergency"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_medical_emergency/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  emergency_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  emergency_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     EmergencyNumbers: "@button_labels[0]",
@@ -315,28 +276,18 @@ end
 card EmergencyNumbers, then: EmergencyNumbersError do
   write_result("emergency_numbers_requested", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_emergency_contact_numbers"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_emergency_contact_numbers/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  emergency_numbers_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  emergency_numbers_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     ChatToHealthAgent: "@button_labels[0]",
@@ -371,27 +322,17 @@ card SearchMyHealth, then: CheckInbound do
   inbound_query_urgency = "low"
   num_inbound_attempts = 0
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_search_myhealth_prompt"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_search_myhealth_prompt/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  search_msg = page.body.body.text.value.message
+  search_msg = page.body.messages[0].text
 
   user_question =
     ask("""
@@ -429,27 +370,17 @@ card TechSupport, then: CheckInbound do
   inbound_query_urgency = "low"
   num_inbound_attempts = 0
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_technical_issue_prompt"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_technical_issue_prompt/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  tech_support_msg = page.body.body.text.value.message
+  tech_support_msg = page.body.messages[0].text
 
   user_question =
     ask("""
@@ -545,27 +476,17 @@ end
 
 ```stack
 card NonTextDetected, then: CheckInbound do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_invalid_media_catch_all"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_invalid_media_catch_all/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  non_text_msg = page.body.body.text.value.message
+  non_text_msg = page.body.messages[0].text
 
   user_question =
     ask("""
@@ -574,27 +495,17 @@ card NonTextDetected, then: CheckInbound do
 end
 
 card GibberishDetected, then: CheckInbound do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_general_catch_all"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_general_catch_all/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  gibberish_msg = page.body.body.text.value.message
+  gibberish_msg = page.body.messages[0].text
 
   user_question =
     ask("""
@@ -655,28 +566,18 @@ card RouteUrgency when urgency_score == 1.0, then: RouteUrgencyError do
 
   log("Attach Label Result = @attach_label_result")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_medical_emergency_secondary"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_medical_emergency_secondary/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  urgent_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  urgent_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     EmergencyNumbers: "@button_labels[0]",
@@ -725,27 +626,17 @@ card DisplayFAQTopicsList, then: ValidateFAQSelection do
     "Scheduled stack `HC: Scheduled - Topics No Response followup - 988b513e-8063-4f2c-821c-94e75536f09f` to run in 15 minutes"
   )
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_faqs_topics_list"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_faqs_topics_list/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  topic_list_msg = page.body.body.text.value.message
+  topic_list_msg = page.body.messages[0].text
   substituted_msg = substitute(topic_list_msg, "{faq_topic_list}", "@faq_topic_list")
 
   selected_faq =
@@ -805,27 +696,17 @@ end
 card ValidateFAQSelectionError, then: ValidateFAQSelection do
   log("Error on  RouteFAQSelection")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_faqs_topics_list_error"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_faqs_topics_list_error/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  topic_list_error_msg = page.body.body.text.value.message
+  topic_list_error_msg = page.body.messages[0].text
 
   selected_faq =
     ask("@topic_list_error_msg")
@@ -839,28 +720,18 @@ end
 card DisplayFAQ, then: DisplayFAQError do
   log("DisplayFAQ")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_faq_topic_content"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_faq_topic_content/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  display_faq_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  display_faq_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
   text("@body['@selected_faq'].text")
 
   buttons(
@@ -944,28 +815,18 @@ end
 card AcknowledgePositive do
   log("AcknowledgePositive")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_acknowledgement_positive_"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_acknowledgement_positive_/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  ack_pos_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  ack_pos_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     RouteUrgency: "@button_labels[0]",
@@ -989,27 +850,17 @@ end
 card AcknowledgeNegative, then: RouteUrgency do
   log("AcknowledgeNegative")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_acknowledgement_negative_"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_acknowledgement_negative_/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  ack_neg_msg = page.body.body.text.value.message
+  ack_neg_msg = page.body.messages[0].text
   text("@ack_neg_msg")
 end
 
@@ -1057,28 +908,18 @@ card HelpdeskOpen do
 end
 
 card HelpdeskClosed, then: HelpdeskClosedError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_help_desk_entry_offline"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_help_desk_entry_offline/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  closed_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  closed_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     HelpCentre: "@button_labels[0]",

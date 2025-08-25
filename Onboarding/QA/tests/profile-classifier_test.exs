@@ -2,6 +2,7 @@ defmodule ProfileClassifierTest do
   use FlowTester.Case
 
   alias FlowTester.WebhookHandler, as: WH
+  alias FlowTester.Message.TextTransform
   alias FlowTester.FlowStep
   alias Onboarding.QA.Helpers
 
@@ -12,174 +13,26 @@ defmodule ProfileClassifierTest do
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    error_button = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button."
-        }
-      ]
-    }
+    # The index page isn't in the content sheet, so we need to add it manually.
+    indices = [%Index{title: "Onboarding", slug: "test-onboarding"}]
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    error_name = %ContentPage{
-      slug: "mnch_onboarding_name_error",
-      title: "error",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`"
-        }
-      ]
-    }
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
 
-    name = %ContentPage{
-      slug: "mnch_onboarding_name_call",
-      title: "Name",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
-        }
-      ]
-    }
+        # These transforms are specific to these tests
+      end
+    ]
 
-    name_skip = %ContentPage{
-      slug: "mnch_onboarding_name_skip",
-      title: "Name_skip",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Sure, we’ll skip that for now.",
-          buttons: [
-            %Btn.Next{title: "Go back"},
-            %Btn.Next{title: "Got it"}
-          ]
-        }
-      ]
-    }
-
-    domains_01 = %ContentPage{
-      slug: "mnch_onboarding_domains_01",
-      title: "Domains 01",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "Great to meet you, {@username}!\r\n\r\nI have tonnes of information on lots of different topics you can explore.\r\n\r\nBut I want to know what topics you're interested in adding to your profile.\r\n\r\nI have some suggestions for you to pick from...",
-          buttons: [
-            %Btn.Next{title: "Let's go"},
-          ]
-        }
-      ]
-    }
-
-    domains_02 = %ContentPage{
-      slug: "mnch_onboarding_domains_02",
-      title: "Domains 02",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Love and relationships*\r\n\r\nEverything you need to know about finding love, having healthy relationships, getting out of bad relationships, and communicating better with your partner.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_03 = %ContentPage{
-      slug: "mnch_onboarding_domains_03",
-      title: "Domains 03",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Pregnancy information*\r\n\r\nWhat you need to know about having a happy and healthy pregnancy from your 1st month 'til your last.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_04 = %ContentPage{
-      slug: "mnch_onboarding_domains_04",
-      title: "Domains 04",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Baby and child health*\r\n\r\nRaising a child is hard work but with the right information, support, tips and tricks, you can enjoy being a super parent!",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_05 = %ContentPage{
-      slug: "mnch_onboarding_domains_05",
-      title: "Domains 05",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Well-being*\r\n\r\nWhether you’re looking to add some mindfulness to your day, learn about the importance of looking after your mental health or finding ways to cope in difficult times, you'll find the right resource for you.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_06 = %ContentPage{
-      slug: "mnch_onboarding_domains_06",
-      title: "Domains 06",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Family planning*\r\n\r\nYou have the power to decide if and when you want children and how many you want. You might want none. You might want lots! Know your options so that you can decide what's best for you.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    domains_07 = %ContentPage{
-      slug: "mnch_onboarding_domains_07",
-      title: "Domains 07",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Info for health professionals*\r\n\r\nAre you a nurse? Get support, information, tips and guides to boost your knowledge and skills.",
-          buttons: [
-            %Btn.Next{title: "➕ Add this topic"},
-            %Btn.Next{title: "Not interested"},
-          ]
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               error_button,
-               error_name,
-               name,
-               name_skip,
-               domains_01,
-               domains_02,
-               domains_03,
-               domains_04,
-               domains_05,
-               domains_06,
-               domains_07
-             ])
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -194,14 +47,18 @@ defmodule ProfileClassifierTest do
   setup_all _ctx, do: %{init_flow: Helpers.load_flow("profile-classifier")}
 
   defp setup_flow(ctx) do
-    # When talking to real contentrepo, get the auth token from the API_TOKEN envvar.
-    auth_token = System.get_env("API_TOKEN", "CRauthTOKEN123")
+    # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
+    auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
     kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
 
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+
     %{flow: flow}
   end
 
@@ -213,7 +70,8 @@ defmodule ProfileClassifierTest do
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
-        text: "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
+        text:
+          "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`"
       })
       |> contact_matches(%{"checkpoint" => "profile_classifier"})
       |> result_matches(%{name: "profile_classifier_started", value: "yes"})
@@ -239,7 +97,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Go back")
       |> receive_message(%{
-        text: "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
+        text:
+          "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`"
       })
     end
 
@@ -252,7 +111,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Got it")
       |> receive_message(%{
-        text: "Great to meet you!\r\n\r\nI have tonnes of information on lots of different topics you can explore.\r\n\r\nBut I want to know what topics you're interested in adding to your profile.\r\n\r\nI have some suggestions for you to pick from...",
+        text:
+          "Great to meet you!\r\n\r\nI have tonnes of information on lots of different topics you can explore.\r\n\r\nBut I want to know what topics you're interested in adding to your profile.\r\n\r\nI have some suggestions for you to pick from..."
       })
     end
 
@@ -264,7 +124,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("falalalalaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        text:
+          "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
         buttons: button_labels(["Go back", "Got it"])
       })
     end
@@ -278,7 +139,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Go back")
       |> receive_message(%{
-        text: "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
+        text:
+          "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`"
       })
     end
 
@@ -289,7 +151,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("1234")
       |> receive_message(%{
-        text: "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
+        text:
+          "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`"
       })
     end
 
@@ -315,7 +178,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send("Bond")
       |> contact_matches(%{"name" => "Bond"})
       |> receive_message(%{
-        text: "Great to meet you, Bond!\r\n\r\nI have tonnes of information on lots of different topics you can explore.\r\n\r\nBut I want to know what topics you're interested in adding to your profile.\r\n\r\nI have some suggestions for you to pick from...",
+        text:
+          "Great to meet you, Bond!\r\n\r\nI have tonnes of information on lots of different topics you can explore.\r\n\r\nBut I want to know what topics you're interested in adding to your profile.\r\n\r\nI have some suggestions for you to pick from...",
         buttons: button_labels(["Let's go"])
       })
     end
@@ -327,7 +191,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("abcdefghijklmnopqrstu")
       |> receive_message(%{
-        text: "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`",
+        text:
+          "I can *only accept names with letters* – no numbers or symbols.\r\n\r\nLet's try this again!\r\n\r\nWhat would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`"
       })
     end
 
@@ -339,7 +204,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send("abcdefghijklmnopqrst")
       |> contact_matches(%{"name" => "abcdefghijklmnopqrst"})
       |> receive_message(%{
-        text: "Great to meet you, abcdefghijklmnopqrst!\r\n\r\nI have tonnes of information on lots of different topics you can explore.\r\n\r\nBut I want to know what topics you're interested in adding to your profile.\r\n\r\nI have some suggestions for you to pick from...",
+        text:
+          "Great to meet you, abcdefghijklmnopqrst!\r\n\r\nI have tonnes of information on lots of different topics you can explore.\r\n\r\nBut I want to know what topics you're interested in adding to your profile.\r\n\r\nI have some suggestions for you to pick from...",
         buttons: button_labels(["Let's go"])
       })
     end
@@ -353,12 +219,14 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send(button_label: "Let's go")
       |> receive_message(%{
-        text: "*Love and relationships*\r\n\r\nEverything you need to know about finding love, having healthy relationships, getting out of bad relationships, and communicating better with your partner.",
+        text:
+          "*Love and relationships*\r\n\r\nEverything you need to know about finding love, having healthy relationships, getting out of bad relationships, and communicating better with your partner.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        text:
+          "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -374,7 +242,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "➕ Add this topic")
       |> contact_matches(%{"love_and_relationships" => "true"})
       |> receive_message(%{
-        text: "*Pregnancy information*\r\n\r\nWhat you need to know about having a happy and healthy pregnancy from your 1st month 'til your last.",
+        text:
+          "*Pregnancy information*\r\n\r\nWhat you need to know about having a happy and healthy pregnancy from your 1st month 'til your last.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -390,7 +259,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "Not interested")
       |> contact_matches(%{"love_and_relationships" => "false"})
       |> receive_message(%{
-        text: "*Pregnancy information*\r\n\r\nWhat you need to know about having a happy and healthy pregnancy from your 1st month 'til your last.",
+        text:
+          "*Pregnancy information*\r\n\r\nWhat you need to know about having a happy and healthy pregnancy from your 1st month 'til your last.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -406,7 +276,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        text:
+          "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -423,7 +294,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "➕ Add this topic")
       |> contact_matches(%{"pregnancy_information" => "true"})
       |> receive_message(%{
-        text: "*Baby and child health*\r\n\r\nRaising a child is hard work but with the right information, support, tips and tricks, you can enjoy being a super parent!",
+        text:
+          "*Baby and child health*\r\n\r\nRaising a child is hard work but with the right information, support, tips and tricks, you can enjoy being a super parent!",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -440,7 +312,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "Not interested")
       |> contact_matches(%{"pregnancy_information" => "false"})
       |> receive_message(%{
-        text: "*Baby and child health*\r\n\r\nRaising a child is hard work but with the right information, support, tips and tricks, you can enjoy being a super parent!",
+        text:
+          "*Baby and child health*\r\n\r\nRaising a child is hard work but with the right information, support, tips and tricks, you can enjoy being a super parent!",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -457,7 +330,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        text:
+          "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -475,7 +349,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "➕ Add this topic")
       |> contact_matches(%{"baby_and_child" => "true"})
       |> receive_message(%{
-        text: "*Well-being*\r\n\r\nWhether you’re looking to add some mindfulness to your day, learn about the importance of looking after your mental health or finding ways to cope in difficult times, you'll find the right resource for you.",
+        text:
+          "*Well-being*\r\n\r\nWhether you’re looking to add some mindfulness to your day, learn about the importance of looking after your mental health or finding ways to cope in difficult times, you'll find the right resource for you.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -493,7 +368,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "Not interested")
       |> contact_matches(%{"baby_and_child" => "false"})
       |> receive_message(%{
-        text: "*Well-being*\r\n\r\nWhether you’re looking to add some mindfulness to your day, learn about the importance of looking after your mental health or finding ways to cope in difficult times, you'll find the right resource for you.",
+        text:
+          "*Well-being*\r\n\r\nWhether you’re looking to add some mindfulness to your day, learn about the importance of looking after your mental health or finding ways to cope in difficult times, you'll find the right resource for you.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -511,7 +387,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        text:
+          "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -530,7 +407,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "➕ Add this topic")
       |> contact_matches(%{"well_being" => "true"})
       |> receive_message(%{
-        text: "*Family planning*\r\n\r\nYou have the power to decide if and when you want children and how many you want. You might want none. You might want lots! Know your options so that you can decide what's best for you.",
+        text:
+          "*Family planning*\r\n\r\nYou have the power to decide if and when you want children and how many you want. You might want none. You might want lots! Know your options so that you can decide what's best for you.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -549,7 +427,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "Not interested")
       |> contact_matches(%{"well_being" => "false"})
       |> receive_message(%{
-        text: "*Family planning*\r\n\r\nYou have the power to decide if and when you want children and how many you want. You might want none. You might want lots! Know your options so that you can decide what's best for you.",
+        text:
+          "*Family planning*\r\n\r\nYou have the power to decide if and when you want children and how many you want. You might want none. You might want lots! Know your options so that you can decide what's best for you.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -568,7 +447,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        text:
+          "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -588,7 +468,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "➕ Add this topic")
       |> contact_matches(%{"family_planning" => "true"})
       |> receive_message(%{
-        text: "*Info for health professionals*\r\n\r\nAre you a nurse? Get support, information, tips and guides to boost your knowledge and skills.",
+        text:
+          "*Info for health professionals*\r\n\r\nAre you a nurse? Get support, information, tips and guides to boost your knowledge and skills.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -608,7 +489,8 @@ defmodule ProfileClassifierTest do
       |> FlowTester.send(button_label: "Not interested")
       |> contact_matches(%{"family_planning" => "false"})
       |> receive_message(%{
-        text: "*Info for health professionals*\r\n\r\nAre you a nurse? Get support, information, tips and guides to boost your knowledge and skills.",
+        text:
+          "*Info for health professionals*\r\n\r\nAre you a nurse? Get support, information, tips and guides to boost your knowledge and skills.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end
@@ -628,7 +510,8 @@ defmodule ProfileClassifierTest do
       |> FlowStep.clear_messages()
       |> FlowTester.send("falalalalaaaaa")
       |> receive_message(%{
-        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        text:
+          "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
         buttons: button_labels(["➕ Add this topic", "Not interested"])
       })
     end

@@ -1,5 +1,4 @@
 defmodule Onboarding.QA.Helpers do
-
   def load_flow(flow_name) do
     Path.join([__DIR__, "..", "flows_json", flow_name <> ".json"])
     |> FlowTester.from_json!()
@@ -19,116 +18,170 @@ defmodule Onboarding.QA.Helpers do
 
   # Technically this should be all the profile fields in Turn, but we can fill them in as we go along
   defp init_base(context) do
-    context |> FlowTester.set_contact_properties(%{"profile_completion" => "", "checkpoint" => ""})
+    context
+    |> FlowTester.set_contact_properties(%{"profile_completion" => "", "checkpoint" => ""})
   end
 
   # The contact fields that get filled in the intro flow
   defp init_intro(context) do
-    context |> FlowTester.set_contact_properties(%{"language" => "", "opted_in" => "false", "intent" => "", "data_preference" => ""})
+    context
+    |> FlowTester.set_contact_properties(%{
+      "language" => "",
+      "opted_in" => "false",
+      "intent" => "",
+      "data_preference" => ""
+    })
   end
 
   # The contact fields that get filled in the basic info flow
   defp init_basic_info(context) do
-    context |> FlowTester.set_contact_properties(%{"year_of_birth" => "", "province" => "", "area_type" => "", "gender" => ""})
+    context
+    |> FlowTester.set_contact_properties(%{
+      "year_of_birth" => "",
+      "province" => "",
+      "area_type" => "",
+      "gender" => ""
+    })
   end
 
   # The contact fields that get filled in the personal info flow
   defp init_personal_info(context) do
-    context |> FlowTester.set_contact_properties(%{"relationship_status" => "", "education" => "", "socio_economic" => "", "other_children" => ""})
+    context
+    |> FlowTester.set_contact_properties(%{
+      "relationship_status" => "",
+      "education" => "",
+      "socio_economic" => "",
+      "other_children" => ""
+    })
   end
 
   # The contact fields that get filled in the DMA Form flow
   defp init_daily_life(context) do
-    context |> FlowTester.set_contact_properties(%{"dma_01" => "", "dma_02" => "", "dma_03" => "", "dma_04" => "", "dma_05" => ""})
+    context
+    |> FlowTester.set_contact_properties(%{
+      "dma_01" => "",
+      "dma_02" => "",
+      "dma_03" => "",
+      "dma_04" => "",
+      "dma_05" => ""
+    })
   end
 
   defp init_intro_and_welcome(context) do
-    context |> FlowTester.set_contact_properties(%{"privacy_policy_accepted" => "", "opted_in" => false})
+    context
+    |> FlowTester.set_contact_properties(%{"privacy_policy_accepted" => "", "opted_in" => false})
   end
 
   # The contact fields that get filled in the HCW Profile flow
   defp init_hcw_info(context) do
-    context |> FlowTester.set_contact_properties(%{"occupational_role" => "", "facility_type" => "", "professional_support" => ""})
+    context
+    |> FlowTester.set_contact_properties(%{
+      "occupational_role" => "",
+      "facility_type" => "",
+      "professional_support" => ""
+    })
   end
 
   defp init_profile_classifier(context) do
-    context |> FlowTester.set_contact_properties(%{"love_and_relationships" => "false", "pregnancy_information" => "false", "baby_and_child" => "false", "well_being" => "false", "family_planning" => "false", "info_for_health_professionals" => "false"})
+    context
+    |> FlowTester.set_contact_properties(%{
+      "love_and_relationships" => "false",
+      "pregnancy_information" => "false",
+      "baby_and_child" => "false",
+      "well_being" => "false",
+      "family_planning" => "false",
+      "info_for_health_professionals" => "false"
+    })
   end
 
-  def basic_profile_flow_uuid(), do: "26e0c9e4-6547-4e3f-b9f4-e37c11962b6d"
+  def basic_profile_flow_uuid(), do: "74bd3d95-2aec-4174-ad32-926952c795ca"
 
-  def personal_info_uuid(), do: "61a880e4-cf7b-47c5-a047-60802aaa7975"
+  def personal_info_uuid(), do: "e1e033d4-897a-4c9b-9eea-2411458c3c4c"
 
-  def daily_life_uuid(), do: "690a9ffd-db6d-42df-ad8f-a1e5b469a099"
+  def daily_life_uuid(), do: "9bd8c27a-d08e-4c9e-8623-b4007373437e"
 
-  def opt_in_reminder_uuid(), do: "537e4867-eb26-482d-96eb-d4783828c622"
+  def opt_in_reminder_uuid(), do: "f36d4d47-9cc7-4202-a73f-db6f03e478cd"
 
-  def profile_hcw_uuid(), do: "38cca9df-21a1-4edc-9c13-5724904ca3c3"
+  def profile_hcw_uuid(), do: "9aa596d3-40f0-4349-8322-e44d1fd1d127"
 
-  def profile_classifier_uuid(), do: "bd590c1e-7a06-49ed-b3a1-623cf94e8644"
+  def profile_classifier_uuid(), do: "c77efa62-1c9d-4ace-ae7a-4585e4e929d1"
 
-  def explore_uuid(), do: "4288d6a9-23c9-4fc6-95b7-c675a6254ea5"
+  def explore_uuid(), do: "359b3ff4-796d-4b80-91a6-15532c7bdb90"
 
-  def edd_reminder_uuid(), do: "15c9127a-2e90-4b99-a41b-25e2a39d453f"
+  def edd_reminder_uuid(), do: "99754af5-1696-48c8-8562-4b52c13db61d"
 
-  def profile_pregnancy_health_uuid(), do: "d5f5cfef-1961-4459-a9fe-205a1cabfdfb"
+  def profile_pregnancy_health_uuid(), do: "f582feb5-8605-4509-8279-ec17202b42a6"
 
-  def generic_profile_uuid(), do: "51701b44-bcca-486e-9c99-bf3545a8ba2d"
+  def generic_profile_uuid(), do: "718e6b27-d818-40cf-8a7b-50c17bd236ba"
 
-  def help_center_uuid(), do: "ea366b74-df7b-41ed-a479-7d501435d38e"
+  def help_center_uuid(), do: "7b50f9f4-b6cf-424b-8893-8fef6d0f489b"
 
-  def non_personalised_menu_uuid(), do: "c73d7bc1-4b07-44f0-9949-38d2b88f4707"
+  def non_personalised_menu_uuid(), do: "141a7271-30ec-4b31-83a5-11e4fa655df7"
 
-  def handle_basic_profile_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, basic_profile_flow_uuid(), fn step ->
-    FlowTester.set_contact_properties(step, %{
-      "year_of_birth" => Keyword.get(opts, :year_of_birth, "1988"),
-      "province" => Keyword.get(opts, :province, "Western Cape"),
-      "area_type" => Keyword.get(opts, :area_type, ""),
-      "gender" => Keyword.get(opts, :gender, "male")})
-  end)
+  def handle_basic_profile_flow(step, opts \\ []),
+    do:
+      FlowTester.handle_child_flow(step, basic_profile_flow_uuid(), fn step ->
+        FlowTester.set_contact_properties(step, %{
+          "year_of_birth" => Keyword.get(opts, :year_of_birth, "1988"),
+          "province" => Keyword.get(opts, :province, "Western Cape"),
+          "area_type" => Keyword.get(opts, :area_type, ""),
+          "gender" => Keyword.get(opts, :gender, "male")
+        })
+      end)
 
   def handle_personal_info_flow(step, opts \\ []),
-    do: FlowTester.handle_child_flow(step, personal_info_uuid(), fn step ->
-    FlowTester.set_contact_properties(step, %{
-      "relationship_status" => Keyword.get(opts, :relationship_status, ""),
-      "education" => Keyword.get(opts, :education, ""),
-      "socio_economic" => Keyword.get(opts, :socio_economic, ""),
-      "other_children" => Keyword.get(opts, :other_children, "")
-      })
-  end
-    )
+    do:
+      FlowTester.handle_child_flow(step, personal_info_uuid(), fn step ->
+        FlowTester.set_contact_properties(step, %{
+          "relationship_status" => Keyword.get(opts, :relationship_status, ""),
+          "education" => Keyword.get(opts, :education, ""),
+          "socio_economic" => Keyword.get(opts, :socio_economic, ""),
+          "other_children" => Keyword.get(opts, :other_children, "")
+        })
+      end)
 
-  def handle_daily_life_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, daily_life_uuid(), fn step ->
-    FlowTester.set_contact_properties(step, %{
-      "dma_01" => Keyword.get(opts, :dma_01, "answer"),
-      "dma_02" => Keyword.get(opts, :dma_02, ""),
-      "dma_03" => Keyword.get(opts, :dma_03, ""),
-      "dma_04" => Keyword.get(opts, :dma_04, ""),
-      "dma_05" => Keyword.get(opts, :dma_05, "")})
-  end)
+  def handle_daily_life_flow(step, opts \\ []),
+    do:
+      FlowTester.handle_child_flow(step, daily_life_uuid(), fn step ->
+        FlowTester.set_contact_properties(step, %{
+          "dma_01" => Keyword.get(opts, :dma_01, "answer"),
+          "dma_02" => Keyword.get(opts, :dma_02, ""),
+          "dma_03" => Keyword.get(opts, :dma_03, ""),
+          "dma_04" => Keyword.get(opts, :dma_04, ""),
+          "dma_05" => Keyword.get(opts, :dma_05, "")
+        })
+      end)
 
-  def handle_opt_in_reminder_flow(step), do: FlowTester.handle_child_flow(step, opt_in_reminder_uuid())
+  def handle_opt_in_reminder_flow(step),
+    do: FlowTester.handle_child_flow(step, opt_in_reminder_uuid())
 
-  def handle_profile_hcw_flow(step, opts \\ []), do: FlowTester.handle_child_flow(step, profile_hcw_uuid(), fn step ->
-    FlowTester.set_contact_properties(step, %{
-      "occupational_role" => Keyword.get(opts, :occupational_role, ""),
-      "facility_type" => Keyword.get(opts, :facility_type, ""),
-      "professional_support" => Keyword.get(opts, :professional_support, "")})
-  end)
+  def handle_profile_hcw_flow(step, opts \\ []),
+    do:
+      FlowTester.handle_child_flow(step, profile_hcw_uuid(), fn step ->
+        FlowTester.set_contact_properties(step, %{
+          "occupational_role" => Keyword.get(opts, :occupational_role, ""),
+          "facility_type" => Keyword.get(opts, :facility_type, ""),
+          "professional_support" => Keyword.get(opts, :professional_support, "")
+        })
+      end)
 
-  def handle_profile_classifier_flow(step), do: FlowTester.handle_child_flow(step, profile_classifier_uuid())
+  def handle_profile_classifier_flow(step),
+    do: FlowTester.handle_child_flow(step, profile_classifier_uuid())
 
   def handle_explore_flow(step), do: FlowTester.handle_child_flow(step, explore_uuid())
 
   def handle_edd_reminder_flow(step), do: FlowTester.handle_child_flow(step, edd_reminder_uuid())
 
-  def handle_profile_pregnancy_health_flow(step), do: FlowTester.handle_child_flow(step, profile_pregnancy_health_uuid())
+  def handle_profile_pregnancy_health_flow(step),
+    do: FlowTester.handle_child_flow(step, profile_pregnancy_health_uuid())
 
-  def handle_generic_profile_flow(step), do: FlowTester.handle_child_flow(step, generic_profile_uuid())
+  def handle_generic_profile_flow(step),
+    do: FlowTester.handle_child_flow(step, generic_profile_uuid())
 
   def handle_help_center_flow(step), do: FlowTester.handle_child_flow(step, help_center_uuid())
 
-  def handle_non_personalised_menu_flow(step), do: FlowTester.handle_child_flow(step, non_personalised_menu_uuid())
+  def handle_non_personalised_menu_flow(step),
+    do: FlowTester.handle_child_flow(step, non_personalised_menu_uuid())
 
   def csv_path(csv_name), do: Path.join([__DIR__, "..", "content", csv_name <> ".csv"])
 
@@ -154,5 +207,4 @@ defmodule Onboarding.QA.Helpers do
       quote do: unquote(indexed_list(option, labels))
     end
   end
-
 end

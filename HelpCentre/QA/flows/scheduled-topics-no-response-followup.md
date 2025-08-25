@@ -39,17 +39,17 @@ card FetchError, then: TopicsNoResponseFollowup do
   feedback_secret_key = aaq_metadata.feedback_secret_key
 
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["slug", "mnch_onboarding_error_handling_button"],
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  button_error_text = search.body.results[0].body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 card GotoMainMenu do
@@ -75,18 +75,18 @@ end
 
 ```stack
 card TopicsNoResponseFollowup, then: TopicsNoResponseFollowupError do
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_topics_no_response_follow_up/",
       query: [
-        ["slug", "plat_help_topics_no_response_follow_up"],
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_conf_msg = search.body.results[0].body.text.value.message
-  button_labels = map(search.body.results[0].body.text.value.buttons, & &1.value.title)
+  callback_conf_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     TopicsNoResponseFollowupYes: "@button_labels[0]",
@@ -134,18 +134,18 @@ card TopicsNoResponseFollowupYes, then: TopicsNoResponseFollowupYesError do
   log("Page Feedback result = @feedback_result")
   write_result("aaq_faq_list_helpful", "yes")
 
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_acknowledgement_positive_/",
       query: [
-        ["slug", "plat_help_acknowledgement_positive_"],
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  conf_yes_msg = search.body.results[0].body.text.value.message
-  button_labels = map(search.body.results[0].body.text.value.buttons, & &1.value.title)
+  conf_yes_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     GotoFAQTopicsList: "@button_labels[0]",
@@ -200,17 +200,17 @@ card TopicsNoResponseFollowupNo, then: GotoFAQTopicsList do
   log("Page Feedback result = @feedback_result")
   write_result("aaq_faq_list_helpful", "no")
 
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_acknowledgement_negative_/",
       query: [
-        ["slug", "plat_help_acknowledgement_negative_"],
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_conf_no = search.body.results[0].body.text.value.message
+  callback_conf_no = page.body.messages[0].text
   text("@callback_conf_no")
 end
 

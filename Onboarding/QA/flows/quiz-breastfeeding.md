@@ -731,11 +731,12 @@ card FetchEndPage, then: DisplayEndPage do
   write_result("max_score", max_score, label: "@result_tag")
 
   response =
-    get("https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+    get("https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/@page_id/",
       timeout: 5_000,
       cache_ttl: 60_000,
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [
         ["content-type", "application/json"],
@@ -743,10 +744,10 @@ card FetchEndPage, then: DisplayEndPage do
       ]
     )
 
-  message_body = response.body.body.text.value.message
+  message_body = response.body.messages[0].text
   message_body = substitute(message_body, "{score}", "@round(score)")
   message_body = substitute(message_body, "{max_score}", "@round(max_score)")
-  image_id = response.body.body.text.value.image
+  image_id = response.body.messages[0].image
 end
 
 card DisplayEndPage when isnumber(image_id) do

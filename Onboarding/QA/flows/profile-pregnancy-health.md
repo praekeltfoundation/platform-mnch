@@ -36,72 +36,41 @@ Here we do any setup and fetching of values before we start the flow.
 card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
 
-  search =
+  page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
+  button_error_text = page.body.messages[0].text
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_list_message/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_list_message"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
+  list_error_text = page.body.messages[0].text
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_unrecognised_number/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  list_error_text = page.body.body.text.value.message
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_unrecognised_number"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
-      query: [
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  unrecognised_number_text = page.body.body.text.value.message
+  unrecognised_number_text = page.body.messages[0].text
 end
 
 ```
@@ -226,28 +195,18 @@ This is the first Profile question. This one applies to all flows, and from here
 
 ```stack
 card Question1, then: Question1Error do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnancy_qa_01"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnancy_qa_01/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   status =
     buttons(
@@ -255,7 +214,7 @@ card Question1, then: Question1Error do
       PartnerPregnant: "@button_labels[1]",
       Curious: "@button_labels[2]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -293,22 +252,12 @@ Presents the user with a list of 9 months to select from, starting from the curr
 
 ```stack
 card PregnantEDDMonth, then: EDDMonthError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnancy_qa_02"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnancy_qa_02/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -337,7 +286,7 @@ card PregnantEDDMonth, then: EDDMonthError do
     ThisMonthPlusEight,
     EDDMonthUnknown
   ]) do
-    text("@page.body.body.text.value.message")
+    text("@page.body.messages[0].text")
   end
 end
 
@@ -404,28 +353,20 @@ card ThisMonthPlusEight, "@datevalue(this_month_plus_eight, \"%B\")", then: Preg
 end
 
 card EDDMonthUnknown, "I don't know", then: DisplayEDDMonthUnknown do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_unknown_1"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_unknown_1/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -435,13 +376,13 @@ card DisplayEDDMonthUnknown when contact.data_preference == "text only",
     PregnantEDDMonth: "@button_labels[0]",
     EDDMonthUnknownBranch: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card DisplayEDDMonthUnknown, then: EDDMonthUnknownError do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -456,7 +397,7 @@ card DisplayEDDMonthUnknown, then: EDDMonthUnknownError do
     EDDMonthUnknownBranch: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -470,7 +411,7 @@ card EDDMonthUnknownError, then: EDDMonthUnknownError do
 end
 
 card EDDMonthUnknownBranch when status == "im_pregnant", then: ProfileProgress25 do
-  schedule_stack("15c9127a-2e90-4b99-a41b-25e2a39d453f", at: datetime_add(now(), 5, "D"))
+  schedule_stack("99754af5-1696-48c8-8562-4b52c13db61d", at: datetime_add(now(), 5, "D"))
   log("EDD month unknown, navigating to profile progess 50%")
 end
 
@@ -490,24 +431,16 @@ Asks the user to enter the EDD day
 
 ```stack
 card PregnantEDDDay, then: ValidateEDDDay do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnancy_qa_03"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnancy_qa_03/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   long_months = [1, 3, 5, 7, 8, 10, 12]
@@ -517,7 +450,7 @@ card PregnantEDDDay, then: ValidateEDDDay do
   max_date = if has_member(long_months, edd_date_month), do: 31, else: max_date
   max_date = if has_member(short_months, edd_date_month), do: 30, else: max_date
   log("max day @max_date, edd date month @edd_date_month")
-  edd_day = ask("@page.body.body.text.value.message")
+  edd_day = ask("@page.body.messages[0].text")
 end
 
 card ValidateEDDDay when not has_pattern("@edd_day", "^\d+$"),
@@ -550,34 +483,26 @@ end
 
 ```stack
 card EDDConfirmation, then: PregnantEDDConfirmationError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_confirm_edd"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_confirm_edd/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   edd_date_full = date(edd_date_year, edd_date_month, edd_day)
   month_name = datevalue(edd_date_full, "%B")
-  question = substitute("@page.body.body.text.value.message", "{dd}", "@edd_day")
+  question = substitute("@page.body.messages[0].text", "{dd}", "@edd_day")
   question = substitute("@question", "{month_name}", "@month_name")
   question = substitute("@question", "{yyyy}", "@edd_date_year")
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     SaveEDDAndContinue: "@button_labels[0]",
@@ -627,32 +552,22 @@ end
 
 ```stack
 card PregnantFeeling, then: PregnantFeelingError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnancy_qa_05"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnancy_qa_05/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  list_items = map(message.list_items, & &1.value)
+  message = page.body.messages[0]
+  list_items = map(message.list_items, & &1.title)
 
   feeling =
     list("I'm feeling", SaveFeeling, map(list_items, &[&1, &1])) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -677,41 +592,31 @@ Branch showing image depending on the data preference
 
 ```stack
 card PregnancyContentStart, then: PregnancyContentBranch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnancy_content_00"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnancy_content_00/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card PregnancyContentBranch when contact.data_preference == "text only",
   then: PregnancyContentBranchError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card PregnancyContentBranch, then: PregnancyContentBranchError do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -723,7 +628,7 @@ card PregnancyContentBranch, then: PregnancyContentBranchError do
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -851,29 +756,19 @@ Branch showing image depending on the data preference
 
 ```stack
 card Loading1, then: Loading1Branch do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_loading_01"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_loading_01/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -885,7 +780,7 @@ end
 
 # Show image
 card Loading1Branch, then: Loading1BranchError do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -945,9 +840,10 @@ To get the trimester we first need the pregnancy in weeks. We can get that by us
 ```
 page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/?tag=priority&tag=trimester_@trimester",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/?tag=priority&tag=trimester_@trimester",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -962,9 +858,10 @@ We can look at the WHO code to see how they excluded viewed items.
 ```
 page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/?tag=trimester_@trimester",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/?tag=trimester_@trimester",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -1004,27 +901,17 @@ end
 
 ```stack
 card TopicsStart, then: DisplayTopicStart do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_topics_01"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_topics_01/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
 end
 
 card DisplayTopicStart when contact.data_preference == "text only", then: TopicsStartError do
@@ -1038,13 +925,13 @@ card DisplayTopicStart when contact.data_preference == "text only", then: Topics
     ArticleTopic: "item 4",
     ArticleFeedbackNo: "Show me other topics"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayTopicStart, then: TopicsStartError do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -1064,7 +951,7 @@ card DisplayTopicStart, then: TopicsStartError do
       ArticleTopic: "item 4",
       ArticleFeedbackNo: "Show me other topics"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -1106,34 +993,26 @@ end
 
 ```stack
 card ArticleFeedback, then: ArticleFeedbackError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_content_feedback"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_content_feedback/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     ArticleFeedbackYes: "@button_labels[0]",
     ArticleFeedbackNo: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -1152,35 +1031,27 @@ end
 
 card ArticleFeedbackNo, then: ArticleFeedbackNoError do
   # TODO: Save article feedback
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_content_feedback_no"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_content_feedback_no/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     CompleteProfile: "@button_labels[0]",
     MomReminderOptIn: "@button_labels[1]",
     MomReminderOptIn: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -1204,7 +1075,7 @@ card MomReminderOptIn
             is_nil_or_empty(contact.opted_in),
      then: HealthProfessionals do
   log("haven't opted in")
-  run_stack("537e4867-eb26-482d-96eb-d4783828c622")
+  run_stack("f36d4d47-9cc7-4202-a73f-db6f03e478cd")
 end
 
 card MomReminderOptIn, then: HealthProfessionals do
@@ -1218,7 +1089,7 @@ end
 ```stack
 card HealthProfessionals when contact.info_for_health_professionals == true do
   log("Go to Pregnant nurse")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("1ed10e1b-f812-4730-8ec5-3f46088c41c7")
 end
 
 card HealthProfessionals, then: ProfileProgress25 do
@@ -1234,28 +1105,20 @@ card ProfileProgress25, then: DisplayProfileProgress25 do
   write_result("profile_completion", "25%")
   update_contact(profile_completion: "25%")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_25"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_profile_progress_25/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1266,13 +1129,13 @@ card DisplayProfileProgress25 when contact.data_preference == "text only",
     TopicsForYou: "@button_labels[1]",
     ExploreHealthGuide: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card DisplayProfileProgress25, then: ProfileProgress25Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -1288,7 +1151,7 @@ card DisplayProfileProgress25, then: ProfileProgress25Error do
     ExploreHealthGuide: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -1311,28 +1174,20 @@ card ProfileProgress25Secondary, then: DisplayProfileProgress25Secondary do
   write_result("profile_completion", "25%")
   update_contact(profile_completion: "25%")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_25_secondary"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_profile_progress_25_secondary/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1343,13 +1198,13 @@ card DisplayProfileProgress25Secondary when contact.data_preference == "text onl
     TopicsForYou: "@button_labels[1]",
     ExploreHealthGuide: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card DisplayProfileProgress25Secondary, then: ProfileProgress25SecondaryError do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -1365,7 +1220,7 @@ card DisplayProfileProgress25Secondary, then: ProfileProgress25SecondaryError do
     ExploreHealthGuide: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -1388,28 +1243,20 @@ card ProfileProgress25Secondary2, then: DisplayProfileProgress25Secondary2 do
   write_result("profile_completion", "25%")
   update_contact(profile_completion: "25%")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_25_secondary_"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_profile_progress_25_secondary_/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1420,13 +1267,13 @@ card DisplayProfileProgress25Secondary2 when contact.data_preference == "text on
     TopicsForYou: "@button_labels[1]",
     ExploreHealthGuide: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card DisplayProfileProgress25Secondary2, then: ProfileProgress25Secondary2Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -1442,7 +1289,7 @@ card DisplayProfileProgress25Secondary2, then: ProfileProgress25Secondary2Error 
     ExploreHealthGuide: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -1465,7 +1312,7 @@ card CompleteProfile, then: ProfileProgress50 do
   # Kick off Basic Profile Questions
   log("Running Basic Profile Questions")
   update_contact(checkpoint: "pregnancy_basic_info")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("74bd3d95-2aec-4174-ad32-926952c795ca")
 end
 
 ```
@@ -1496,7 +1343,7 @@ end
 
 ```stack
 card MainMenu do
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("fb98bb9d-60a6-47a1-a474-bb0f45b80030")
 end
 
 ```
@@ -1508,27 +1355,19 @@ card ProfileProgress50, then: ProfileProgress50Error do
   write_result("profile_completion", "50%")
   update_contact(profile_completion: "50%")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_50"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_profile_progress_50/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
 
   pregnancy_questions_answers = [
     contact.pregnancy_status,
@@ -1606,7 +1445,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  progress_message = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  progress_message = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
 
   progress_message =
     substitute(progress_message, "{personal_info_count}", "@personal_questions_value")
@@ -1615,7 +1454,7 @@ card ProfileProgress50, then: ProfileProgress50Error do
     substitute(progress_message, "{pregnancy_info_count}", "@pregnancy_questions_value")
 
   progress_message = substitute(progress_message, "{daily_life_count}", "@dma_questions_value")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(ContinueProfileCompletion: "@button_labels[0]") do
     text("@progress_message")
@@ -1631,13 +1470,13 @@ end
 card ContinueProfileCompletion, then: PregnancyDailyLifeInfo do
   update_contact(checkpoint: "pregnancy_personal_info")
   log("Personal Profile Questions")
-  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+  run_stack("e1e033d4-897a-4c9b-9eea-2411458c3c4c")
 end
 
 card PregnancyDailyLifeInfo, then: ProfileProgress100 do
   update_contact(checkpoint: "pregnancy_daily_life_info")
   log("Placeholder Form")
-  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
+  run_stack("9bd8c27a-d08e-4c9e-8623-b4007373437e")
 end
 
 ```
@@ -1648,29 +1487,21 @@ end
 card ProfileProgress100, then: DisplayProfileProgress100 do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_profile_progress_100"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
+  cancel_scheduled_stacks("689e019d-beb5-4ba2-8c04-f4663a67ab81")
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_profile_progress_100/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   name = if is_nil_or_empty(contact.name), do: "None", else: contact.name
 
   opted_in =
@@ -1738,14 +1569,14 @@ card ProfileProgress100, then: DisplayProfileProgress100 do
 
   edd_string = if is_nil_or_empty("@contact.edd"), do: "Unknown", else: "@contact.edd"
 
-  loading_message = substitute(message.message, "{name}", "@name")
+  loading_message = substitute(message.text, "{name}", "@name")
   loading_message = substitute(loading_message, "{edd}", "@edd_string")
 
   loading_message =
     substitute(loading_message, "{profile_questions}", "@questions_count/@answers_count")
 
   loading_message = substitute(loading_message, "{get_important_messages}", "@opted_in")
-  button_labels = map(message.buttons, & &1.value.title)
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -1762,7 +1593,7 @@ end
 
 # Display with image
 card DisplayProfileProgress100, then: ProfileProgress100Error do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -1798,41 +1629,31 @@ end
 
 ```stack
 card SentimentOtherFirst, then: DisplaySentimentOtherFirst do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_other_first"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_other_first/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentOtherFirst when contact.data_preference == "text only",
   then: DisplaySentimentOtherFirstError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentOtherFirst, then: DisplaySentimentOtherFirstError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -1844,7 +1665,7 @@ card DisplaySentimentOtherFirst, then: DisplaySentimentOtherFirstError do
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -1860,41 +1681,31 @@ end
 
 ```stack
 card SentimentOtherSecond, then: DisplaySentimentOtherSecond do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_other_second"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_other_second/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentOtherSecond when contact.data_preference == "text only",
   then: DisplaySentimentOtherSecondError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentOtherSecond, then: DisplaySentimentOtherSecondError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -1906,7 +1717,7 @@ card DisplaySentimentOtherSecond, then: DisplaySentimentOtherSecondError do
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -1922,41 +1733,31 @@ end
 
 ```stack
 card SentimentOtherThird, then: DisplaySentimentOtherThird do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_other_third"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_other_third/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentOtherThird when contact.data_preference == "text only",
   then: DisplaySentimentOtherThirdError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentOtherThird, then: DisplaySentimentOtherThirdError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -1968,7 +1769,7 @@ card DisplaySentimentOtherThird, then: DisplaySentimentOtherThirdError do
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -1984,41 +1785,31 @@ end
 
 ```stack
 card SentimentScaredWorriedFirst, then: DisplaySentimentScaredWorriedFirst do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_scared_worried_first"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_scared_worried_first/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentScaredWorriedFirst when contact.data_preference == "text only",
   then: DisplaySentimentScaredWorriedFirstError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentScaredWorriedFirst, then: DisplaySentimentScaredWorriedFirstError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2030,7 +1821,7 @@ card DisplaySentimentScaredWorriedFirst, then: DisplaySentimentScaredWorriedFirs
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2046,41 +1837,31 @@ end
 
 ```stack
 card SentimentScaredWorriedSecond, then: DisplaySentimentScaredWorriedSecond do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_scared_worried_second"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_scared_worried_second/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentScaredWorriedSecond when contact.data_preference == "text only",
   then: DisplaySentimentScaredWorriedSecondError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentScaredWorriedSecond, then: DisplaySentimentScaredWorriedSecondError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2092,7 +1873,7 @@ card DisplaySentimentScaredWorriedSecond, then: DisplaySentimentScaredWorriedSec
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2108,41 +1889,31 @@ end
 
 ```stack
 card SentimentScaredWorriedThird, then: DisplaySentimentScaredWorriedThird do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_scared_worried_third"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_scared_worried_third/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentScaredWorriedThird when contact.data_preference == "text only",
   then: DisplaySentimentScaredWorriedThirdError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentScaredWorriedThird, then: DisplaySentimentScaredWorriedThirdError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2154,7 +1925,7 @@ card DisplaySentimentScaredWorriedThird, then: DisplaySentimentScaredWorriedThir
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2170,41 +1941,31 @@ end
 
 ```stack
 card SentimentExcitedHappyFirst, then: DisplaySentimentExcitedHappyFirst do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_excited_happy_first"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_excited_happy_first/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentExcitedHappyFirst when contact.data_preference == "text only",
   then: DisplaySentimentExcitedHappyFirstError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentExcitedHappyFirst, then: DisplaySentimentExcitedHappyFirstError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2216,7 +1977,7 @@ card DisplaySentimentExcitedHappyFirst, then: DisplaySentimentExcitedHappyFirstE
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2232,41 +1993,31 @@ end
 
 ```stack
 card SentimentExcitedHappySecond, then: DisplaySentimentExcitedHappySecond do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_excited_happy_second"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_excited_happy_second/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentExcitedHappySecond when contact.data_preference == "text only",
   then: DisplaySentimentExcitedHappySecondError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentExcitedHappySecond, then: DisplaySentimentExcitedHappySecondError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2278,7 +2029,7 @@ card DisplaySentimentExcitedHappySecond, then: DisplaySentimentExcitedHappySecon
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2294,41 +2045,31 @@ end
 
 ```stack
 card SentimentExcitedHappyThird, then: DisplaySentimentExcitedHappyThird do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_sentiment_excited_happy_third"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_sentiment_excited_happy_third/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplaySentimentExcitedHappyThird when contact.data_preference == "text only",
   then: DisplaySentimentExcitedHappyThirdError do
   buttons(Loading1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplaySentimentExcitedHappyThird, then: DisplaySentimentExcitedHappyThirdError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2340,7 +2081,7 @@ card DisplaySentimentExcitedHappyThird, then: DisplaySentimentExcitedHappyThirdE
 
   buttons(Loading1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2356,41 +2097,31 @@ end
 
 ```stack
 card FactsFactoid1Trimester1, then: DisplayFactsFactoid1Trimester1 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_facts_factoid_1_trimester_1"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_facts_factoid_1_trimester_1/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayFactsFactoid1Trimester1 when contact.data_preference == "text only",
   then: DisplayFactsFactoid1Trimester1Error do
   buttons(FactsFactoid2Trimester1: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayFactsFactoid1Trimester1, then: DisplayFactsFactoid1Trimester1Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2402,7 +2133,7 @@ card DisplayFactsFactoid1Trimester1, then: DisplayFactsFactoid1Trimester1Error d
 
   buttons(FactsFactoid2Trimester1: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2418,41 +2149,31 @@ end
 
 ```stack
 card FactsFactoid1Trimester2, then: DisplayFactsFactoid1Trimester2 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_facts_factoid_1_trimester_2"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_facts_factoid_1_trimester_2/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayFactsFactoid1Trimester2 when contact.data_preference == "text only",
   then: DisplayFactsFactoid1Trimester2Error do
   buttons(FactsFactoid2Trimester2: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayFactsFactoid1Trimester2, then: DisplayFactsFactoid1Trimester2Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2464,7 +2185,7 @@ card DisplayFactsFactoid1Trimester2, then: DisplayFactsFactoid1Trimester2Error d
 
   buttons(FactsFactoid2Trimester2: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2480,41 +2201,31 @@ end
 
 ```stack
 card FactsFactoid1Trimester3, then: DisplayFactsFactoid1Trimester3 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_facts_factoid_1_trimester_3"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_facts_factoid_1_trimester_3/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayFactsFactoid1Trimester3 when contact.data_preference == "text only",
   then: DisplayFactsFactoid1Trimester3Error do
   buttons(FactsFactoid2Trimester3: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayFactsFactoid1Trimester3, then: DisplayFactsFactoid1Trimester3Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2526,7 +2237,7 @@ card DisplayFactsFactoid1Trimester3, then: DisplayFactsFactoid1Trimester3Error d
 
   buttons(FactsFactoid2Trimester3: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2542,41 +2253,31 @@ end
 
 ```stack
 card FactsFactoid2Trimester1, then: DisplayFactsFactoid2Trimester1 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_facts_factoid_2_trimester_1"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_facts_factoid_2_trimester_1/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayFactsFactoid2Trimester1 when contact.data_preference == "text only",
   then: DisplayFactsFactoid2Trimester1Error do
   buttons(FactoidTrimester1GoToNext: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayFactsFactoid2Trimester1, then: DisplayFactsFactoid2Trimester1Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2588,7 +2289,7 @@ card DisplayFactsFactoid2Trimester1, then: DisplayFactsFactoid2Trimester1Error d
 
   buttons(FactoidTrimester1GoToNext: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2616,41 +2317,31 @@ end
 
 ```stack
 card FactsFactoid2Trimester2, then: DisplayFactsFactoid2Trimester2 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_facts_factoid_2_trimester_2"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_facts_factoid_2_trimester_2/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayFactsFactoid2Trimester2 when contact.data_preference == "text only",
   then: DisplayFactsFactoid2Trimester2Error do
   buttons(FactoidTrimester2GoToNext: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayFactsFactoid2Trimester2, then: DisplayFactsFactoid2Trimester2Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2662,7 +2353,7 @@ card DisplayFactsFactoid2Trimester2, then: DisplayFactsFactoid2Trimester2Error d
 
   buttons(FactoidTrimester2GoToNext: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2690,41 +2381,31 @@ end
 
 ```stack
 card FactsFactoid2Trimester3, then: DisplayFactsFactoid2Trimester3 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_facts_factoid_2_trimester_3"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_facts_factoid_2_trimester_3/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayFactsFactoid2Trimester3 when contact.data_preference == "text only",
   then: DisplayFactsFactoid2Trimester3Error do
   buttons(FactoidTrimester3GoToNext: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayFactsFactoid2Trimester3, then: DisplayFactsFactoid2Trimester3Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -2736,7 +2417,7 @@ card DisplayFactsFactoid2Trimester3, then: DisplayFactsFactoid2Trimester3Error d
 
   buttons(FactoidTrimester3GoToNext: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2774,35 +2455,25 @@ card PartnerPregnant, then: PartnerEDDMonth do
 end
 
 card PartnerPregnantGender, then: PartnerPregnantGenderError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_secondary_04"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_secondary_04/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     PartnerGenderMale: "@button_labels[0]",
     PartnerGenderFemale: "@button_labels[1]",
     PartnerGenderOther: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -2834,22 +2505,12 @@ end
 
 ```stack
 card PartnerEDDMonth, then: PartnerEDDMonthError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_secondary_02"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_secondary_02/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -2878,7 +2539,7 @@ card PartnerEDDMonth, then: PartnerEDDMonthError do
     ThisMonthPlusEight,
     PartnerEDDMonthUnknown
   ]) do
-    text("@page.body.body.text.value.message")
+    text("@page.body.messages[0].text")
   end
 end
 
@@ -2945,28 +2606,20 @@ card ThisMonthPlusEight, "@datevalue(this_month_plus_eight, \"%B\")", then: Part
 end
 
 card PartnerEDDMonthUnknown, "I don't know", then: DisplayPartnerEDDMonthUnknown do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_unknown_secondary"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_unknown_secondary/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -2976,13 +2629,13 @@ card DisplayPartnerEDDMonthUnknown when contact.data_preference == "text only",
     PartnerEDDMonth: "@button_labels[0]",
     EDDMonthUnknownBranch: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Show image
 card DisplayPartnerEDDMonthUnknown, then: PartnerEDDMonthUnknownError do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -2997,7 +2650,7 @@ card DisplayPartnerEDDMonthUnknown, then: PartnerEDDMonthUnknownError do
     EDDMonthUnknownBranch: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -3016,24 +2669,16 @@ end
 
 ```stack
 card PartnerEDDDay, then: PartnerValidateEDDDay do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_secondary_03"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_secondary_03/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   long_months = [1, 3, 5, 7, 8, 10, 12]
@@ -3043,7 +2688,7 @@ card PartnerEDDDay, then: PartnerValidateEDDDay do
   max_date = if has_member(long_months, edd_date_month), do: 31, else: max_date
   max_date = if has_member(short_months, edd_date_month), do: 30, else: max_date
   log("max day @max_date, edd date month @edd_date_month")
-  edd_day = ask("@page.body.body.text.value.message")
+  edd_day = ask("@page.body.messages[0].text")
 end
 
 card PartnerValidateEDDDay when not has_pattern("@edd_day", "^\d+$"),
@@ -3076,35 +2721,26 @@ end
 
 ```stack
 card PartnerEDDConfirmation, then: PartnerEDDConfirmationError do
-  search =
+ page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_confirm_edd"],
-        ["whatsapp", "true"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
-  page =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_confirm_edd/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   edd_date_full = date(edd_date_year, edd_date_month, edd_day)
   month_name = datevalue(edd_date_full, "%B")
-  question = substitute("@page.body.body.text.value.message", "{dd}", "@edd_day")
+  question = substitute("@page.body.messages[0].text", "{dd}", "@edd_day")
   question = substitute("@question", "{month_name}", "@month_name")
   question = substitute("@question", "{yyyy}", "@edd_date_year")
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     SavePartnerEDD: "@button_labels[0]",
@@ -3141,29 +2777,19 @@ end
 
 ```stack
 card Loading01Secondary, then: Loading01SecondaryGoTo do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_loading_01_secondary"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_loading_01_secondary/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card Loading01SecondaryGoTo when is_nil_or_empty(edd_date_full),
@@ -3185,7 +2811,7 @@ end
 
 # Display with image
 card DisplayLoading01Secondary, then: DisplayLoading01SecondaryError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -3217,7 +2843,7 @@ end
 
 # Display with image
 card DisplayLoading01SecondaryNoEDD, then: DisplayLoading01SecondaryNoEDDError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -3245,41 +2871,31 @@ end
 
 ```stack
 card Loading02Secondary, then: DisplayLoading02Secondary do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_loading_02_secondary"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_loading_02_secondary/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayLoading02Secondary when contact.data_preference == "text only",
   then: DisplayLoading02SecondaryError do
   buttons(ContentIntro: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayLoading02Secondary, then: DisplayLoading02SecondaryError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -3291,7 +2907,7 @@ card DisplayLoading02Secondary, then: DisplayLoading02SecondaryError do
 
   buttons(ContentIntro: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -3307,28 +2923,18 @@ end
 
 ```stack
 card ContentIntro, then: DisplayContentIntro do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_content_intro"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_content_intro/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  menu_items = map(message.list_items, & &1.value)
+  message = content_data.body.messages[0]
+  menu_items = map(message.list_items, & &1.title)
 end
 
 # #TODO Content
@@ -3344,13 +2950,13 @@ card DisplayContentIntro when contact.data_preference == "text only",
       Topic4: "@menu_items[3]",
       Other: "@menu_items[4]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
 # Display with image
 card DisplayContentIntro, then: DisplayContentIntroError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -3369,7 +2975,7 @@ card DisplayContentIntro, then: DisplayContentIntroError do
       Other: "@menu_items[4]"
     ) do
       image("@image_data.body.meta.download_url")
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -3412,28 +3018,18 @@ end
 
 ```stack
 card ArticleTopic01Secondary, then: DisplayArticleTopic01Secondary do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_article_topic_01_secondary"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_article_topic_01_secondary/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # TODO Content
@@ -3446,13 +3042,13 @@ card DisplayArticleTopic01Secondary when contact.data_preference == "text only",
     ContentFeedback: "@button_labels[1]",
     ContentIntro: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayArticleTopic01Secondary, then: DisplayArticleTopic01SecondaryError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -3468,7 +3064,7 @@ card DisplayArticleTopic01Secondary, then: DisplayArticleTopic01SecondaryError d
     ContentIntro: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -3488,28 +3084,18 @@ end
 
 ```stack
 card ContentFeedback, then: DisplayContentFeedback do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_content_feedback"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_content_feedback/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayContentFeedback, then: DisplayContentFeedbackError do
@@ -3517,7 +3103,7 @@ card DisplayContentFeedback, then: DisplayContentFeedbackError do
     ReminderOptIn: "@button_labels[0]",
     ContentFeedbackNo: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -3536,28 +3122,18 @@ end
 
 ```stack
 card ContentFeedbackNo, then: DisplayContentFeedbackNo do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_content_feedback_no"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_content_feedback_no/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayContentFeedbackNo, then: DisplayContentFeedbackNoError do
@@ -3566,7 +3142,7 @@ card DisplayContentFeedbackNo, then: DisplayContentFeedbackNoError do
     ProfileProgress25Secondary: "@button_labels[1]",
     ProfileProgress25Secondary: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -3581,7 +3157,7 @@ card DisplayContentFeedbackNoError, then: DisplayContentFeedbackNoError do
 end
 
 card SecondaryOnboarding, then: ProfileProgress50 do
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("74bd3d95-2aec-4174-ad32-926952c795ca")
 end
 
 ```
@@ -3593,28 +3169,18 @@ card ReminderOptIn
      when contact.opted_in == false or
             is_nil_or_empty(contact.opted_in),
      then: DisplayReminderOptIn do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_reminder_opt_in"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_reminder_opt_in/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayReminderOptIn, then: DisplayReminderOptInError do
@@ -3622,7 +3188,7 @@ card DisplayReminderOptIn, then: DisplayReminderOptInError do
     ReminderOptInYes: "@button_labels[0]",
     ReminderOptInNo: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -3647,28 +3213,18 @@ end
 card ReminderOptInYes, then: HealthProfessionalsSecondary do
   update_contact(opted_in: "true")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_reminder_opt_in_yes"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_reminder_opt_in_yes/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
+  message = content_data.body.messages[0]
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
   text("@loading_message")
 end
 
@@ -3680,29 +3236,19 @@ end
 card ReminderOptInNo, then: HealthProfessionalsSecondary do
   update_contact(opted_in: "false")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_reminder_opt_in_no"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_reminder_opt_in_no/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
 
-  text("@message.message")
+  text("@message.text")
 end
 
 ```
@@ -3712,7 +3258,7 @@ end
 ```stack
 card HealthProfessionalsSecondary when contact.info_for_health_professionals == true do
   log("Go to Pregnant nurse")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("1ed10e1b-f812-4730-8ec5-3f46088c41c7")
 end
 
 card HealthProfessionalsSecondary, then: ProfileProgress25Secondary do
@@ -3731,28 +3277,18 @@ card Curious, then(Curious01) do
 end
 
 card Curious01, then: DisplayCurious do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_curious_01"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_curious_01/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayCurious, then: DisplayCuriousError do
@@ -3762,7 +3298,7 @@ card DisplayCurious, then: DisplayCuriousError do
       FemaleGender: "@button_labels[1]",
       OtherGender: "@button_labels[2]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -3795,29 +3331,19 @@ end
 
 ```stack
 card Curious02, then: DisplayCurious02 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_curious_02"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_curious_02/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
-  menu_items = map(message.list_items, & &1.value)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayCurious02, then: DisplayCurious02Error do
@@ -3829,7 +3355,7 @@ card DisplayCurious02, then: DisplayCurious02Error do
       Children3: "@menu_items[3]",
       Children4: "@menu_items[4]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -3872,28 +3398,18 @@ end
 
 ```stack
 card Curious03, then: DisplayCurious03 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_curious_03"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_curious_03/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  menu_items = map(message.list_items, & &1.value)
+  message = content_data.body.messages[0]
+  menu_items = map(message.list_items, & &1.title)
 end
 
 card DisplayCurious03, then: DisplayCurious03Error do
@@ -3905,7 +3421,7 @@ card DisplayCurious03, then: DisplayCurious03Error do
       GeneralInfo: "@menu_items[3]",
       SkipQuestion: "@menu_items[4]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -3948,29 +3464,19 @@ end
 
 ```stack
 card LoadingComponent01, then: DisplayLoadingComponent01 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_loading_component_01"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_loading_component_01/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "{@username}", "@contact.name")
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  loading_message = substitute(message.text, "{@username}", "@contact.name")
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # TODO display facts 
@@ -3984,7 +3490,7 @@ end
 
 # Display with image
 card DisplayLoadingComponent01, then: DisplayLoadingComponent01Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -4030,28 +3536,18 @@ end
 
 ```stack
 card LoadingComponent02, then: DisplayLoadingComponent02 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_loading_component_02"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_loading_component_02/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # TODO Content
@@ -4060,13 +3556,13 @@ end
 card DisplayLoadingComponent02 when contact.data_preference == "text only",
   then: DisplayLoadingComponent02Error do
   buttons(CuriousContentIntro: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayLoadingComponent02, then: DisplayLoadingComponent02Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -4078,7 +3574,7 @@ card DisplayLoadingComponent02, then: DisplayLoadingComponent02Error do
 
   buttons(CuriousContentIntro: "@button_labels[0]") do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -4094,28 +3590,18 @@ end
 
 ```stack
 card CuriousContentIntro, then: DisplayCuriousContentIntro do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_curious_content_intro"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_curious_content_intro/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  menu_items = map(message.list_items, & &1.value)
+  message = content_data.body.messages[0]
+  menu_items = map(message.list_items, & &1.title)
 end
 
 # #TODO Content
@@ -4131,13 +3617,13 @@ card DisplayCuriousContentIntro when contact.data_preference == "text only",
       ArticleTopic01: "@menu_items[3]",
       CuriousContentFeedback: "@menu_items[4]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
 # Display with image
 card DisplayCuriousContentIntro, then: DisplayCuriousContentIntroError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -4157,7 +3643,7 @@ card DisplayCuriousContentIntro, then: DisplayCuriousContentIntroError do
       ArticleTopic01: "@menu_items[3]",
       CuriousContentFeedback: "@menu_items[4]"
     ) do
-      text("@message.message")
+      text("@message.text")
     end
 end
 
@@ -4180,28 +3666,18 @@ end
 
 ```stack
 card ArticleTopic01, then: DisplayArticleTopic01 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_article_topic_01"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_article_topic_01/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # TODO Content
@@ -4214,13 +3690,13 @@ card DisplayArticleTopic01 when contact.data_preference == "text only",
     CuriousContent05: "@button_labels[1]",
     CuriousContentIntro: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayArticleTopic01, then: DisplayArticleTopic01Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -4236,7 +3712,7 @@ card DisplayArticleTopic01, then: DisplayArticleTopic01Error do
     CuriousContentIntro: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -4256,28 +3732,18 @@ end
 
 ```stack
 card CuriousContent05, then: DisplayCuriousContent05 do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_curious_content_05"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_curious_content_05/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayCuriousContent05, then: DisplayCuriousContent05Error do
@@ -4285,7 +3751,7 @@ card DisplayCuriousContent05, then: DisplayCuriousContent05Error do
     CuriousReminderOptIn: "@button_labels[0]",
     CuriousContentFeedback: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -4304,28 +3770,18 @@ end
 
 ```stack
 card CuriousContentFeedback, then: DisplayCuriousContentFeedback do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_curious_content_feedback"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_curious_content_feedback/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayCuriousContentFeedback, then: DisplayCuriousContentFeedbackError do
@@ -4334,7 +3790,7 @@ card DisplayCuriousContentFeedback, then: DisplayCuriousContentFeedbackError do
     ProfileProgress25Secondary2: "@button_labels[1]",
     ProfileProgress25Secondary2: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -4349,7 +3805,7 @@ card DisplayCuriousContentFeedbackError, then: DisplayCuriousContentFeedbackErro
 end
 
 card BaseProfile, then: ProfileProgress50 do
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("74bd3d95-2aec-4174-ad32-926952c795ca")
 end
 
 ```
@@ -4362,7 +3818,7 @@ card CuriousReminderOptIn
             is_nil_or_empty(contact.opted_in),
      then: HealthProfessionalsSecondary2 do
   log("haven't opted in")
-  run_stack("537e4867-eb26-482d-96eb-d4783828c622")
+  run_stack("f36d4d47-9cc7-4202-a73f-db6f03e478cd")
 end
 
 card CuriousReminderOptIn, then: HealthProfessionalsSecondary2 do
@@ -4376,7 +3832,7 @@ end
 ```stack
 card HealthProfessionalsSecondary2 when contact.info_for_health_professionals == true do
   log("Go to Pregnant nurse")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("1ed10e1b-f812-4730-8ec5-3f46088c41c7")
 end
 
 card HealthProfessionalsSecondary2, then: ProfileProgress25Secondary2 do

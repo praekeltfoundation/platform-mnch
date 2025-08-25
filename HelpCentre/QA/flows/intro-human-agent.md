@@ -99,27 +99,17 @@ card RTOEmergency, then: HANDOVER_STARTS_1 do
   update_contact(route_to_operator_origin: "")
   write_result("route_to_operator", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_route_to_operator_emergency"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_route_to_operator_emergency/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  msg = page.body.body.text.value.message
+  msg = page.body.messages[0].text
 
   text("@msg")
 end
@@ -133,27 +123,17 @@ card RTOSearchMyHealth, then: HANDOVER_STARTS_1 do
   update_contact(route_to_operator_origin: "")
   write_result("route_to_operator", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_route_to_operator_search_myhealth"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_route_to_operator_search_myhealth/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  msg = page.body.body.text.value.message
+  msg = page.body.messages[0].text
   substituted_msg = substitute(msg, "{xxx}", "'@contact.route_to_operator_search_text'")
 
   text("@substituted_msg")
@@ -168,27 +148,17 @@ card RTOTechSupport, then: HANDOVER_STARTS_1 do
   update_contact(route_to_operator_origin: "")
   write_result("route_to_operator", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_route_to_operator_tech_support"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_route_to_operator_tech_support/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  msg = page.body.body.text.value.message
+  msg = page.body.messages[0].text
   substituted_msg = substitute(msg, "{xxx}", "'@contact.route_to_operator_search_text'")
 
   text("@substituted_msg")
@@ -203,27 +173,17 @@ card RTOFailedAttempts, then: HANDOVER_STARTS_1 do
   update_contact(route_to_operator_origin: "")
   write_result("route_to_operator", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_route_to_operator_failed_attempts"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_route_to_operator_failed_attempts/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  msg = page.body.body.text.value.message
+  msg = page.body.messages[0].text
   text("@msg")
 end
 

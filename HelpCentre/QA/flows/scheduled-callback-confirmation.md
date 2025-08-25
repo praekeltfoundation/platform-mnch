@@ -32,28 +32,17 @@ The following variable(s) are set in the `settings` global dictionary
 ```stack
 card FetchError, then: CallbackConfirmation do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 card GotoMainMenu do
@@ -81,28 +70,18 @@ end
 
 ```stack
 card CallbackConfirmation, then: CallbackConfirmationError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_call_back_confirmation_scheduled"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_call_back_confirmation_scheduled/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_conf_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  callback_conf_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     CallbackConfirmationYes: "@button_labels[0]",
@@ -129,28 +108,18 @@ end
 card CallbackConfirmationYes, then: CallbackConfirmationYesError do
   write_result("callback_completed", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_call_back_confirmation_yes"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_call_back_confirmation_yes/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  conf_yes_msg = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  conf_yes_msg = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     AgentHelpfulResponse: "@button_labels[0]",
@@ -181,28 +150,18 @@ end
 card CallbackConfirmationNo do
   write_result("callback_completed", "no")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_call_back_confirmation_no"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_call_back_confirmation_no/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  callback_conf_no = page.body.body.text.value.message
-  button_labels = map(page.body.body.text.value.buttons, & &1.value.title)
+  callback_conf_no = page.body.messages[0].text
+  button_labels = map(page.body.messages[0].buttons, & &1.title)
 
   buttons(
     GotoCallback: "@button_labels[0]",
@@ -231,27 +190,17 @@ end
 card AgentHelpfulResponse do
   write_result("callback_helpful", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "plat_help_agent_helpful_response"]
-      ],
-      headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/plat_help_agent_helpful_response/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.settings.contentrepo_qa_token"]]
     )
 
-  agent_helpful_msg = page.body.body.text.value.message
+  agent_helpful_msg = page.body.messages[0].text
 
   text("@agent_helpful_msg")
 end

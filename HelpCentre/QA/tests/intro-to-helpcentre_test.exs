@@ -4,222 +4,40 @@ defmodule IntroToHelpCentreTest do
   alias FlowTester.FlowStep
   alias FlowTester.WebhookHandler.Generic
   alias HelpCentre.QA.Helpers
+  alias FlowTester.Message.TextTransform
 
   def setup_fake_cms(auth_token) do
     use FakeCMS
     # Start the handler.
     wh_pid = start_link_supervised!({FakeCMS, %FakeCMS.Config{auth_token: auth_token}})
 
-    # Add some content.
-    agent_greeting = %ContentPage{
-      slug: "mnch_onboarding_error_handling_button",
-      title: "Agent greeting",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "👨You1 are now chatting with {operator_name}"}
-      ]
-    }
+    # The various index pages aren't in the content sheet, so we need to add them manually.
+    indices = [
+      %Index{title: "Help centre", slug: "help-centre-index"},
+      %Index{title: "Onboarding", slug: "onboarding-index"}
+    ]
 
-    help_centre_first = %ContentPage{
-      slug: "plat_help_welcome_help_centre_first",
-      title: "Welcome Help Centre first",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Welcome to the [MyHealth] Help Centre*",
-          buttons: [
-            %Btn.Next{title: "Emergency help"},
-            %Btn.Next{title: "Search MyHealth"},
-            %Btn.Next{title: "Tech support"}
-          ]
-        }
-      ]
-    }
+    assert :ok = FakeCMS.add_pages(wh_pid, indices)
 
-    help_centre_returning = %ContentPage{
-      slug: "plat_help_welcome_help_centre_returning",
-      title: "Welcome Help Centre returning",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Welcome back to the Help Centre*",
-          buttons: [
-            %Btn.Next{title: "Emergency help"},
-            %Btn.Next{title: "Search MyHealth"},
-            %Btn.Next{title: "Tech support"}
-          ]
-        }
-      ]
-    }
+    # These options are common to all CSV imports below.
+    import_opts = [
+      existing_pages: indices,
+      field_transform: fn s ->
+        s
+        |> String.replace(~r/\r?\r\n$/, "")
+        |> String.replace("{username}", "{@username}")
+        # TODO: Fix this in FakeCMS
+        |> String.replace("\u200D", "")
 
-    medical_emergency = %ContentPage{
-      slug: "plat_help_medical_emergency",
-      title: "Medical emergency",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "If you're in a health emergency, please contact emergency services",
-          buttons: [
-            %Btn.Next{title: "Emergency Numbers"},
-            %Btn.Next{title: "Search MyHealth"},
-            %Btn.Next{title: "Talk to health agent"}
-          ]
-        }
-      ]
-    }
+        # These transforms are specific to these tests
+      end
+    ]
 
-    emergency_contact_numbers = %ContentPage{
-      slug: "plat_help_emergency_contact_numbers",
-      title: "Emergency contact numbers",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message: "*Emergency contact numbers*",
-          buttons: [
-            %Btn.Next{title: "Help centre 📞"},
-            %Btn.Next{title: "Emergency Numbers"},
-            %Btn.Next{title: "Go to main menu"}
-          ]
-        }
-      ]
-    }
+    # The content for these tests.
+    assert :ok = Helpers.import_content_csv(wh_pid, "help-centre", import_opts)
 
-    search_myhealth_prompt = %ContentPage{
-      slug: "plat_help_search_myhealth_prompt",
-      title: "Search MyHealth prompt",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "Let's find you the information you need.\r\n\r\nJust type in what you are looking for and press send."
-        }
-      ]
-    }
-
-    technical_issue_prompt = %ContentPage{
-      slug: "plat_help_technical_issue_prompt",
-      title: "Technical issue prompt",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "technical_issue_prompt"}
-      ]
-    }
-
-    invalid_media_catch_all = %ContentPage{
-      slug: "plat_help_invalid_media_catch_all",
-      title: "Invalid media catch all",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "plat_help_invalid_media_catch_all"}
-      ]
-    }
-
-    general_catch_all = %ContentPage{
-      slug: "plat_help_general_catch_all",
-      title: "General catch all",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "plat_help_general_catch_all"}
-      ]
-    }
-
-    medical_emergency_secondary = %ContentPage{
-      slug: "plat_help_medical_emergency_secondary",
-      title: "Medical emergency secondary",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?"
-        }
-      ]
-    }
-
-    faqs_topics_list = %ContentPage{
-      slug: "plat_help_faqs_topics_list",
-      title: "FAQs topics list",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "🤖 Here are some topics you might find helpful.\r\n\r\n{faq_topic_list}\r\n6. None of these are helpful – speak to [health agent]\r\n\r\n👇🏽 Please reply with the number of your selection."
-        }
-      ]
-    }
-
-    faq_error_message = %ContentPage{
-      slug: "plat_help_faq_error_message",
-      title: "FAQ Error Message",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "faqs_topics_list_error"}
-      ]
-    }
-
-    faq_topic_content = %ContentPage{
-      slug: "plat_help_faq_topic_content",
-      title: "FAQ topic content",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "faq_topic_content"}
-      ]
-    }
-
-    acknowledgement_positive = %ContentPage{
-      slug: "plat_help_acknowledgement_positive_",
-      title: "Acknowledgement positive ",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "acknowledgement_positive"}
-      ]
-    }
-
-    acknowledgement_negative = %ContentPage{
-      slug: "plat_help_acknowledgement_negative_",
-      title: " Acknowledgement negative ",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{message: "acknowledgement_negative"}
-      ]
-    }
-
-    help_desk_entry_offline = %ContentPage{
-      slug: "plat_help_help_desk_entry_offline",
-      title: "Help desk entry offline",
-      parent: "test",
-      wa_messages: [
-        %WAMsg{
-          message:
-            "[Health agents] are available between [9am - 4pm on weekdays].\r\n\r\n👇🏽 You are welcome to browse the service by choosing an option below.",
-          buttons: [
-            %Btn.Next{title: "Help Centre menu"},
-            %Btn.Next{title: "Topics for you"},
-            %Btn.Next{title: "Main menu"}
-          ]
-        }
-      ]
-    }
-
-    assert :ok =
-             FakeCMS.add_pages(wh_pid, [
-               %Index{slug: "test", title: "test"},
-               agent_greeting,
-               help_centre_first,
-               help_centre_returning,
-               medical_emergency,
-               emergency_contact_numbers,
-               search_myhealth_prompt,
-               technical_issue_prompt,
-               invalid_media_catch_all,
-               general_catch_all,
-               medical_emergency_secondary,
-               faqs_topics_list,
-               faq_error_message,
-               faq_topic_content,
-               acknowledgement_positive,
-               acknowledgement_negative,
-               help_desk_entry_offline
-             ])
+    # Error messages are in a separate sheet.
+    assert :ok = Helpers.import_content_csv(wh_pid, "error-messages", existing_pages: indices)
 
     # Return the adapter.
     FakeCMS.wh_adapter(wh_pid)
@@ -325,6 +143,9 @@ defmodule IntroToHelpCentreTest do
     flow =
       ctx.init_flow
       |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+      |> FlowTester.add_message_text_transform(
+        TextTransform.normalise_newlines(trim_trailing_spaces: true)
+      )
       |> FlowTester.set_global_dict("settings", %{"contentrepo_qa_token" => auth_token})
       |> Helpers.setup_fake_turn(ctx)
       |> setup_fake_aaq(ctx)
@@ -426,7 +247,7 @@ defmodule IntroToHelpCentreTest do
       |> FlowTester.send("xyz")
       |> receive_message(%{
         text:
-          "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately. \r\n\r\n👇🏽 What do you want to do?" <>
+          "If you're in a health emergency, please contact emergency services or go to the nearest health facility immediately.\r\n\r\n👇🏽 What do you want to do?" <>
             _
       })
     end
@@ -436,7 +257,7 @@ defmodule IntroToHelpCentreTest do
       |> FlowTester.send("My tummy hurts")
       |> receive_message(%{
         text:
-          "🤖 Here are some topics you might find helpful.\r\n\r\n1. Baby's first teeth\n2. Vaginal discharge in pregnancy\n3. Baby's growth - Developmental milestones\n4. Toothache in pregnancy\n5. Latching baby to the breast\r\n6. None of these are helpful – speak to [health agent]\r\n\r\n👇🏽 Please reply with the number of your selection."
+          "🤖 Here are some topics you might find helpful.\r\n\r\n1. Baby's first teeth\r\n2. Vaginal discharge in pregnancy\r\n3. Baby's growth - Developmental milestones\r\n4. Toothache in pregnancy\r\n5. Latching baby to the breast\r\n6. None of these are helpful – speak to [health agent]\r\n\r\n👇🏽 Please reply with the number of your selection."
       })
     end
   end

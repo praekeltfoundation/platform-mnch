@@ -53,32 +53,22 @@ Here we do any setup and fetching of values before we start the flow.
 ```stack
 card FetchError, then: GetLocaleCodes do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 
   search =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/",
       query: [
         ["slug", "mnch_onboarding_error_handling_list_message"]
       ],
@@ -89,36 +79,27 @@ card FetchError, then: GetLocaleCodes do
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_list_message/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  list_error_text = page.body.body.text.value.message
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_unrecognised_number"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
+  list_error_text = page.body.messages[0].text
 
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_unrecognised_number/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  unrecognised_number_text = page.body.body.text.value.message
+  unrecognised_number_text = page.body.messages[0].text
 end
 
 card GetLocaleCodes when contact.language = "por", then: EDDReminder do
@@ -139,36 +120,27 @@ end
 
 ```stack
 card EDDReminder, then: DisplayEDDReminder do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_reminder"],
-        ["locale", "@cms_locale"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_reminder/",
       query: [
-        ["whatsapp", "true"],
+        ["channel", "whatsapp"],
         ["locale", "@cms_locale"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  whatsapp_template_name = content_data.body.body.whatsapp_template_name
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  log("@content_data.body")
+  whatsapp_template_name = message.submission_name
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
 card DisplayEDDReminder when contact.data_preference == "text only",
   then: DisplayEDDReminderError do
+  log("Text Only")
+
   send_message_template(
     "@whatsapp_template_name",
     "@template_locale",
@@ -179,7 +151,8 @@ end
 
 # Display with image
 card DisplayEDDReminder, then: DisplayEDDReminderError do
-  image_id = content_data.body.body.text.value.image
+  log("Not Text Only")
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -214,35 +187,23 @@ end
 
 ```stack
 card EDDGotIt, "@button_labels[0]", then: DisplayEDDGotIt do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_got_it"],
-        ["locale", "@cms_locale"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_got_it/",
       query: [
-        ["whatsapp", "true"],
+        ["channel", "whatsapp"],
         ["locale", "@cms_locale"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayEDDGotIt, then: DisplayEDDGotItError do
   buttons(MainMenu: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -258,22 +219,12 @@ end
 
 ```stack
 card EDDMonth, "@button_labels[1]", then: EDDMonthError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_month"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_month/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
@@ -302,7 +253,7 @@ card EDDMonth, "@button_labels[1]", then: EDDMonthError do
     ThisMonthPlusEight,
     EDDMonthUnknown
   ]) do
-    text("@page.body.body.text.value.message")
+    text("@page.body.messages[0].text")
   end
 end
 
@@ -369,34 +320,26 @@ card ThisMonthPlusEight, "@datevalue(this_month_plus_eight, \"%B\")", then: EDDD
 end
 
 card EDDMonthUnknown, "I don't know", then: EDDMonthUnknownError do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_unknown"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_unknown/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
-  message = page.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = page.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(
     EDDMonth: "@button_labels[0]",
     EDDLater: "@button_labels[1]"
   ) do
-    text("@page.body.body.text.value.message")
+    text("@page.body.messages[0].text")
   end
 end
 
@@ -415,24 +358,16 @@ end
 
 ```stack
 card EDDDay, then: ValidateEDDDay do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_day"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_day/",
       headers: [
         ["Authorization", "Token @global.config.contentrepo_token"]
       ],
-      query: [["whatsapp", "true"]]
+      query: [
+        ["channel", "whatsapp"],
+        ["locale", "en"]
+      ]
     )
 
   long_months = [1, 3, 5, 7, 8, 10, 12]
@@ -442,7 +377,7 @@ card EDDDay, then: ValidateEDDDay do
   max_date = if has_member(long_months, edd_date_month), do: 31, else: max_date
   max_date = if has_member(short_months, edd_date_month), do: 30, else: max_date
   log("max day @max_date, edd date month @edd_date_month")
-  edd_day = ask("@page.body.body.text.value.message")
+  edd_day = ask("@page.body.messages[0].text")
 end
 
 card ValidateEDDDay when not has_pattern("@edd_day", "^\d+$"),
@@ -489,29 +424,19 @@ end
 
 ```stack
 card EDDConfirm, then: DisplayEDDConfirm do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_confirmed"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_confirmed/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  loading_message = substitute(message.message, "[edd]", "@edd_date_full_str")
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  loading_message = substitute(message.text, "[edd]", "@edd_date_full_str")
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayEDDConfirm, then: DisplayEDDConfirmError do
@@ -532,28 +457,18 @@ end
 
 ```stack
 card EDDRUnknown, "@button_labels[2]", then: DisplayEDDUnknown do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_unknown"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_unknown/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -563,13 +478,13 @@ card DisplayEDDUnknown when contact.data_preference == "text only",
     EDDMonth: "@button_labels[0]",
     EDDLater: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayEDDUnknown, then: DisplayEDDUnknownError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -584,7 +499,7 @@ card DisplayEDDUnknown, then: DisplayEDDUnknownError do
     EDDLater: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -603,28 +518,18 @@ end
 
 ```stack
 card EDDLater, then: DisplayEDDLater do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_edd_do_it_later"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_edd_do_it_later/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayEDDLater, then: DisplayEDDLaterError do
@@ -632,7 +537,7 @@ card DisplayEDDLater, then: DisplayEDDLaterError do
     MainMenu: "@button_labels[0]",
     HealthGuide: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -652,12 +557,12 @@ end
 ```stack
 card MainMenu do
   text("Main menu goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("f582feb5-8605-4509-8279-ec17202b42a6")
 end
 
 card HealthGuide do
   text("Health guide goes here")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("f582feb5-8605-4509-8279-ec17202b42a6")
 end
 
 ```

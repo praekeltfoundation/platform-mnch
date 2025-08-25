@@ -36,28 +36,17 @@ Here we do any setup and fetching of values before we start the flow.
 ```stack
 card FetchError, then: Checkpoint do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 ```
@@ -104,28 +93,18 @@ card PregnantNurse20, then: DisplayPregnantNurse20 do
   update_contact(profile_completion: "20%")
   update_contact(checkpoint: "pregnant_nurse_profile_20")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnant_nurse_20"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnant_nurse_20/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -136,13 +115,13 @@ card DisplayPregnantNurse20 when contact.data_preference == "text only",
     TopicsForYou: "@button_labels[1]",
     HealthGuide: "@button_labels[2]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayPregnantNurse20, then: PregnantNurse20Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -158,7 +137,7 @@ card DisplayPregnantNurse20, then: PregnantNurse20Error do
     HealthGuide: "@button_labels[2]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -193,7 +172,7 @@ end
 ```stack
 card CompleteProfile, then: PregnantNurse40 do
   log("Running Nurse Profile Questions")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("9aa596d3-40f0-4349-8322-e44d1fd1d127")
 end
 
 ```
@@ -206,28 +185,18 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
   update_contact(profile_completion: "40%")
   update_contact(checkpoint: "pregnant_nurse_profile_40")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnant_nurse_40"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnant_nurse_40/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -323,7 +292,7 @@ card PregnantNurse40, then: DisplayPregnantNurse40 do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
@@ -349,7 +318,7 @@ end
 ```stack
 card BasicProfileQuestions, then: PregnantNurse60 do
   log("Running Basic Profile Questions")
-  run_stack("26e0c9e4-6547-4e3f-b9f4-e37c11962b6d")
+  run_stack("74bd3d95-2aec-4174-ad32-926952c795ca")
 end
 
 ```
@@ -362,28 +331,18 @@ card PregnantNurse60, then: PregnantNurse60Error do
   update_contact(profile_completion: "60%")
   update_contact(checkpoint: "pregnant_nurse_profile_60")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnant_nurse_60"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnant_nurse_60/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -479,7 +438,7 @@ card PregnantNurse60, then: PregnantNurse60Error do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
@@ -512,7 +471,7 @@ end
 card PersonalProfileQuestions, then: PregnantNurse80 do
   write_result("questioning_info_gathering", "no")
   log("Go to Personal Questions")
-  run_stack("61a880e4-cf7b-47c5-a047-60802aaa7975")
+  run_stack("e1e033d4-897a-4c9b-9eea-2411458c3c4c")
 end
 
 ```
@@ -523,28 +482,18 @@ end
 card WhyPersonalInfo, then: DisplayWhyPersonalInfo do
   write_result("questioning_info_gathering", "yes")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_why_personal_info"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_why_personal_info/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -554,13 +503,13 @@ card DisplayWhyPersonalInfo when contact.data_preference == "text only",
     PersonalProfileQuestions: "@button_labels[0]",
     RemindLater: "@button_labels[1]"
   ) do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
 # Display with image
 card DisplayWhyPersonalInfo, then: WhyPersonalInfoError do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -575,7 +524,7 @@ card DisplayWhyPersonalInfo, then: WhyPersonalInfoError do
     RemindLater: "@button_labels[1]"
   ) do
     image("@image_data.body.meta.download_url")
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -594,33 +543,23 @@ end
 
 ```stack
 card RemindLater, then: RemindLaterError do
-  schedule_stack("1fb80591-565b-4e5f-a18d-e02420a12058", in: 23 * 60 * 60)
-
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_remind_me_later"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
+  schedule_stack("107bebf6-eb76-4886-a0ee-1a11067fe089", in: 23 * 60 * 60)
 
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_remind_me_later/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   buttons(TopicsForYou: "@button_labels[0]") do
-    text("@message.message")
+    text("@message.text")
   end
 end
 
@@ -640,28 +579,18 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
   update_contact(profile_completion: "80%")
   update_contact(checkpoint: "pregnant_nurse_profile_80")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnant_nurse_80"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnant_nurse_80/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -757,7 +686,7 @@ card PregnantNurse80, then: DisplayPregnantNurse80 do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
@@ -779,7 +708,7 @@ end
 
 # Display with image
 card DisplayPregnantNurse80, then: PregnantNurse80Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -814,7 +743,7 @@ end
 ```stack
 card LOCAssessment, then: PregnantNurse100 do
   log("DMA Form")
-  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
+  run_stack("9bd8c27a-d08e-4c9e-8623-b4007373437e")
 end
 
 ```
@@ -826,28 +755,18 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
   write_result("profile_completion", "100%")
   update_contact(profile_completion: "100%")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_pregnant_nurse_100"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_pregnant_nurse_100/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
-  button_labels = map(message.buttons, & &1.value.title)
+  message = content_data.body.messages[0]
+  button_labels = map(message.buttons, & &1.title)
 
   basic_questions_answers = [
     contact.gender,
@@ -943,7 +862,7 @@ card PregnantNurse100, then: DisplayPregnantNurse100 do
 
   dma_questions_value = "@dma_questions_count/@dma_questions_answers_count"
 
-  message_text = substitute(message.message, "{basic_info_count}", "@basic_questions_value")
+  message_text = substitute(message.text, "{basic_info_count}", "@basic_questions_value")
   message_text = substitute(message_text, "{personal_info_count}", "@personal_questions_value")
   message_text = substitute(message_text, "{pregnancy_info_count}", "@pregnancy_questions_value")
   message_text = substitute(message_text, "{daily_life_count}", "@dma_questions_value")
@@ -966,7 +885,7 @@ end
 
 # Display with image
 card DisplayPregnantNurse100, then: PregnantNurse100Error do
-  image_id = content_data.body.body.text.value.image
+  image_id = content_data.body.messages[0].image
 
   image_data =
     get(
@@ -1003,7 +922,7 @@ end
 ```stack
 card MainMenu do
   log("Go to Main Menu")
-  run_stack("21b892d6-685c-458e-adae-304ece46022a")
+  run_stack("fb98bb9d-60a6-47a1-a474-bb0f45b80030")
 end
 
 ```

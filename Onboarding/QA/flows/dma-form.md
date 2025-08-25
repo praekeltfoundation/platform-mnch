@@ -718,11 +718,12 @@ card DisplayEndPage do
   write_result("max_score", max_score, label: "@result_tag")
 
   response =
-    get("https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+    get("https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/@page_id/",
       timeout: 5_000,
       cache_ttl: 60_000,
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [
         ["content-type", "application/json"],
@@ -731,7 +732,7 @@ card DisplayEndPage do
     )
 
   log("@page_id")
-  message_body = response.body.body.text.value.message
+  message_body = response.body.messages[0].text
   text("@message_body")
 end
 

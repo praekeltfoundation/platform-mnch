@@ -10,28 +10,17 @@ trigger(on: "MESSAGE RECEIVED") when has_only_phrase(event.message.text.body, "e
 ```stack
 card FetchError, then: DropOffRedirect do
   # Fetch and store the error message, so that we don't need to do it for every error card
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_error_handling_button"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  # We get the page ID and construct the URL, instead of using the `detail_url` directly, because we need the URL parameter for `get` to start with `https://`, otherwise stacks gives us an error
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_error_handling_button/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  button_error_text = page.body.body.text.value.message
+  button_error_text = page.body.messages[0].text
 end
 
 ```
@@ -42,8 +31,8 @@ end
 card DropOffRedirect when contact.reengagement_message == "1st message", then: DropOff2ndReminder do
   log("To send 2nd message")
   # cancel any scheduled stacks for this journey
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 23 * 60 * 60)
+  cancel_scheduled_stacks("689e019d-beb5-4ba2-8c04-f4663a67ab81")
+  schedule_stack("689e019d-beb5-4ba2-8c04-f4663a67ab81", in: 23 * 60 * 60)
 end
 
 card DropOffRedirect when contact.reengagement_message == "2nd message", then: DropOff3rdReminder do
@@ -57,8 +46,8 @@ end
 card DropOffRedirect, then: DropOff1stReminder do
   log("To send 1st message")
   # cancel any scheduled stacks for this journey
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 22 * 60 * 60)
+  cancel_scheduled_stacks("689e019d-beb5-4ba2-8c04-f4663a67ab81")
+  schedule_stack("689e019d-beb5-4ba2-8c04-f4663a67ab81", in: 22 * 60 * 60)
 end
 
 ```
@@ -69,30 +58,20 @@ end
 card DropOff1stReminder, then: DisplayDropOff1stReminder do
   update_contact(reengagement_message: "1st message")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_drop_off_1h_later"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_drop_off_1h_later/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
-  loading_message = substitute(message.message, "{username}", "@name")
-  button_labels = map(message.buttons, & &1.value.title)
+  loading_message = substitute(message.text, "{username}", "@name")
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayDropOff1stReminder, then: DisplayDropOff1stReminderError do
@@ -121,30 +100,20 @@ end
 card DropOff2ndReminder, then: DisplayDropOff2ndReminder do
   update_contact(reengagement_message: "2nd message")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_drop_off_2nd_reminder"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   content_data =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_drop_off_2nd_reminder/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = content_data.body.body.text.value
+  message = content_data.body.messages[0]
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
-  loading_message = substitute(message.message, "{username}", "@name")
-  button_labels = map(message.buttons, & &1.value.title)
+  loading_message = substitute(message.text, "{username}", "@name")
+  button_labels = map(message.buttons, & &1.title)
 end
 
 card DisplayDropOff2ndReminder, then: DisplayDropOff2ndReminderError do
@@ -173,30 +142,20 @@ end
 card DropOff3rdReminder, then: DisplayDropOff3rdReminder do
   update_contact(reengagement_message: "3rd message")
 
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_drop_off_3rd_reminder"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_drop_off_3rd_reminder/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
-  loading_message = substitute(message.message, "{username}", "@name")
-  button_labels = map(message.buttons, & &1.value.title)
+  loading_message = substitute(message.text, "{username}", "@name")
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -212,7 +171,7 @@ end
 
 # Show image
 card DisplayDropOff3rdReminder, then: DropOff3rdReminderError do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -246,31 +205,21 @@ end
 
 ```stack
 card ReminderRequest, then: DisplayReminderRequest do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_reminder_requested"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_reminder_requested/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
 
   name = if is_nil_or_empty(contact.name), do: "there", else: contact.name
-  loading_message = substitute(message.message, "{username}", "@name")
-  button_labels = map(message.buttons, & &1.value.title)
+  loading_message = substitute(message.text, "{username}", "@name")
+  button_labels = map(message.buttons, & &1.title)
 end
 
 # Text only
@@ -286,7 +235,7 @@ end
 
 # Show image
 card DisplayReminderRequest, then: ReminderRequestError do
-  image_id = page.body.body.text.value.image
+  image_id = page.body.messages[0].image
 
   image_data =
     get(
@@ -370,8 +319,8 @@ Will resend a reminder after 23 hours
 card RemindMe, then: ReminderMeMessage do
   update_contact(reengagement_message: "remind me")
   # cancel any scheduled stacks for this journey
-  cancel_scheduled_stacks("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d")
-  schedule_stack("b11c7c9c-7f02-42c1-9f54-785f7ac5ef0d", in: 23 * 60 * 60)
+  cancel_scheduled_stacks("689e019d-beb5-4ba2-8c04-f4663a67ab81")
+  schedule_stack("689e019d-beb5-4ba2-8c04-f4663a67ab81", in: 23 * 60 * 60)
 end
 
 ```
@@ -380,29 +329,19 @@ end
 
 ```stack
 card ReminderMeMessage do
-  search =
-    get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/",
-      query: [
-        ["slug", "mnch_onboarding_response_remind_me"]
-      ],
-      headers: [["Authorization", "Token @global.config.contentrepo_token"]]
-    )
-
-  page_id = search.body.results[0].id
-
   page =
     get(
-      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v2/pages/@page_id/",
+      "https://content-repo-api-qa.prk-k8s.prd-p6t.org/api/v3/pages/mnch_onboarding_response_remind_me/",
       query: [
-        ["whatsapp", "true"]
+        ["channel", "whatsapp"],
+        ["locale", "en"]
       ],
       headers: [["Authorization", "Token @global.config.contentrepo_token"]]
     )
 
-  message = page.body.body.text.value
+  message = page.body.messages[0]
 
-  text("@message.message")
+  text("@message.text")
 end
 
 ```
@@ -412,7 +351,7 @@ end
 ```stack
 card PregnancyQuestions do
   log("Pregnancy Questions")
-  run_stack("d5f5cfef-1961-4459-a9fe-205a1cabfdfb")
+  run_stack("f582feb5-8605-4509-8279-ec17202b42a6")
 end
 
 ```
@@ -422,7 +361,7 @@ end
 ```stack
 card PregnantNurseQuestions do
   log("Pregnant Nurse Questions")
-  run_stack("406cd221-3e6d-41cb-bc1e-cec65d412fb8")
+  run_stack("1ed10e1b-f812-4730-8ec5-3f46088c41c7")
 end
 
 ```
@@ -432,7 +371,7 @@ end
 ```stack
 card ProfileGeneric do
   log("Profile Generic")
-  run_stack("51701b44-bcca-486e-9c99-bf3545a8ba2d")
+  run_stack("718e6b27-d818-40cf-8a7b-50c17bd236ba")
 end
 
 ```
@@ -442,7 +381,7 @@ end
 ```stack
 card HCWProfile do
   log("Personal Profile")
-  run_stack("38cca9df-21a1-4edc-9c13-5724904ca3c3")
+  run_stack("9aa596d3-40f0-4349-8322-e44d1fd1d127")
 end
 
 ```
@@ -452,7 +391,7 @@ end
 ```stack
 card ExploringTour do
   log("Exploring Tour")
-  run_stack("4288d6a9-23c9-4fc6-95b7-c675a6254ea5")
+  run_stack("359b3ff4-796d-4b80-91a6-15532c7bdb90")
 end
 
 ```
@@ -462,7 +401,7 @@ end
 ```stack
 card ProfileClassifier do
   log("Profile Classifier")
-  run_stack("bd590c1e-7a06-49ed-b3a1-623cf94e8644")
+  run_stack("c77efa62-1c9d-4ace-ae7a-4585e4e929d1")
 end
 
 ```
@@ -472,7 +411,7 @@ end
 ```stack
 card IntroAndWelcome do
   log("Intro and Welcome")
-  run_stack("5e59aafb-fc30-41f9-b268-6268173b2aff")
+  run_stack("e2203073-f8b3-45f4-b19d-4079d5af368a")
 end
 
 ```
@@ -482,7 +421,7 @@ end
 ```stack
 card LOCAssessment do
   log("Placeholder Form")
-  run_stack("690a9ffd-db6d-42df-ad8f-a1e5b469a099")
+  run_stack("9bd8c27a-d08e-4c9e-8623-b4007373437e")
 end
 
 ```
