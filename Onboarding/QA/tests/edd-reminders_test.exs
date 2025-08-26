@@ -179,22 +179,20 @@ defmodule EDDRemindersTest do
   end
 
   describe "EDD Reminder" do
-    # @describetag skip: "TODO: Implement support for Template CSV import etc"
-    @tag :thisone
     test "Got it", %{flow: flow} do
       flow
      
       |> FlowTester.start()
       |> receive_message(%{
-        # text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
         text:
           "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
-        buttons: [
-          {"edd_got_it", "edd_got_it"},
-          {"edd_month", "edd_month"},
-          {"eddr_unknown", "eddr_unknown"}
-        ]
+        # buttons: [
+        #   {"edd_got_it", "edd_got_it"},
+        #   {"edd_month", "edd_month"},
+        #   {"eddr_unknown", "eddr_unknown"}
+        # ]
+        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"]),
       })
       |> FlowTester.send("edd_got_it")
       |> receive_message(%{
@@ -208,15 +206,15 @@ defmodule EDDRemindersTest do
       |> FlowTester.set_contact_properties(%{"language" => "por"})
       |> FlowTester.start()
       |> receive_message(%{
-        # text: "[DEBUG]\r\nTemplate edd_reminder_2041_pt sent with language pt_PT.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
         text:
           "[DEBUG]\r\nTemplate @submission_name sent with language pt_PT.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url" <>
             _,
-        buttons: [
-          {"edd_got_it", "edd_got_it"},
-          {"edd_month", "edd_month"},
-          {"eddr_unknown", "eddr_unknown"}
-        ]
+        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])
+        # buttons: [
+        #   {"edd_got_it", "edd_got_it"},
+        #   {"edd_month", "edd_month"},
+        #   {"eddr_unknown", "eddr_unknown"}
+        # ]
       })
       |> FlowTester.send("edd_got_it")
       |> receive_message(%{
@@ -234,11 +232,13 @@ defmodule EDDRemindersTest do
         text:
           "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
-        buttons: [
-          {"edd_got_it", "edd_got_it"},
-          {"edd_month", "edd_month"},
-          {"eddr_unknown", "eddr_unknown"}
-        ]
+            # buttons: button_labels(["Got it!", "Month", "Unknown"]),
+        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])     
+        # buttons: [
+        #   {"edd_got_it", "edd_got_it"},
+        #   {"edd_month", "edd_month"},
+        #   {"eddr_unknown", "eddr_unknown"}
+        # ]
       })
       |> FlowTester.send("edd_got_it")
       |> receive_message(%{
@@ -248,19 +248,20 @@ defmodule EDDRemindersTest do
     end
 
     # TODO: Figure out why this doesn't work - it probably has something to do with the fact that we're sending a template
-    # test "Got it error", %{flow: flow} do
-    #   flow
-    #   |> FlowTester.start()
-    #   |> receive_message(%{
-    #     text: "[DEBUG]\r\nTemplate edd_reminder_2041 sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
-    #     buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
-    #   })
-    #   |> FlowTester.send(button_label: "nope")
-    #   |> receive_message(%{
-    #     text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
-    #     buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
-    #   })
-    # end
+    test "Got it error", %{flow: flow} do
+      flow
+      |> FlowTester.start()
+      |> receive_message(%{
+        text: "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
+        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"]),
+        # buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
+      })
+      |> FlowTester.send("nope")
+      |> receive_message(%{
+        text: "I don't understand your reply.\r\n\r\n👇🏽 Please try that again and respond by tapping a button.",
+        # buttons: button_labels(["Got it!", "Month", "Unknown"]),
+      })
+    end
 
     test "Got it -> Main menu", %{flow: flow} do
       flow
@@ -270,11 +271,12 @@ defmodule EDDRemindersTest do
         text:
           "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
-        buttons: [
-          {"edd_got_it", "edd_got_it"},
-          {"edd_month", "edd_month"},
-          {"eddr_unknown", "eddr_unknown"}
-        ]
+        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])    
+        # buttons: [
+        #   {"edd_got_it", "edd_got_it"},
+        #   {"edd_month", "edd_month"},
+        #   {"eddr_unknown", "eddr_unknown"}
+        # ]
       })
       |> FlowTester.send("edd_got_it")
       |> receive_message(%{
