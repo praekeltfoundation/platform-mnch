@@ -689,7 +689,6 @@ defmodule ProfilePregnancyHealthTest do
   end
 
   describe "checkpoints" do
-    @tag :thisone
     test "pregnant mom 0%", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
