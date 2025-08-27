@@ -30,7 +30,23 @@ Please make sure to update tests as appropriate.
 
 ## Tests
 
-Running the tests requires elixir >= 1.17 (for Date.shift)
+Running the tests requires elixir >= 1.18 (for hexdocs)
+
+### Test Content
+The journey tests for HelpCentre and Onboarding use CSV files to import content used in the tests.
+
+The content import files are located in the ./QA/content/ directories for each of the above sections
+
+HelpCentre also uses a `error_messages.csv`, as the journeys all use error messages with slugs starting with `mnch-onboarding-*` for example `mnch_onboarding_error_handling_button`.  We split these out into a smaller csv file so we don't have to import the entire onboarding.csv just for these few error messages.  Ideally we should split the error messages for each section out into their own, for example `mnch_onboarding_error_handling_button` or use another more generic approach.
+
+Onboarding also has two extra files for variation messages, `variations-facts.csv` and `variations-sentiment.csv`, as these pages do not use the same slug prefix as used above, but rather use `mnch-facts` and `mnch-sentiment` respectively
+
+To export the content, go to the Content Pages section of the CMS Admin interface, and search for the prefix `mnch_onboarding_` or `mnch_helpcentre_` respectively.  Select the locale in the right hand panel to filter the results. For now we only export the English content, and have manual fixtures for other language pages where needed. Save the file as csv by clicking the arrow next to `Download XLSX` and select `Download CSV`.  
+
+Optionally, I manually clean up the CSV file by deleting a bunch of random dummy / test folders and pages in various languages from the bottom of the file, that is unrelated to this repo's function. 
+
+Upload the file to the relevant folder mentioned above, and run the tests to check if everything is in order.  
+
 
 ## Opening Journey as Markdown
 You can open a Turn Journey as a markdown file by taking the url, removing `/app` and appending `?format=md`. A one click solution is to add the following code as a bookmark
