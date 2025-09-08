@@ -32,7 +32,7 @@ defmodule EDDRemindersTest do
       end
     ]
     # The onboarding.csv content file contains a page that references a Whatsapp Template.
-    # We don't support importing of templates yet, so for now we add it manually  
+    # We don't support importing of templates yet, so for now we add it manually
     FakeCMS.add_template(wh_pid, %WATemplate{
       id: "1",
       slug: "mnch_onboarding_edd_reminder",
@@ -173,15 +173,25 @@ defmodule EDDRemindersTest do
         "-" <> "#{edd_month}" <> "-#{selected_edd_day}"
 
     edd_confirmation_text =
-      "I’ve updated your baby’s estimated due date to: #{full_edd}\r\n\r\nWell done on taking care of yours and baby’s health!"
+      "I’ve updated your baby’s estimated due date to: #{full_edd}\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽"
 
     {list_of_months, edd_confirmation_text, full_edd}
+  end
+
+  defp get_max_date(month_number) do
+    long_months = [1, 3, 5, 7, 8, 10, 12]
+    short_months = [4, 6, 9, 11]
+    #  February
+    max_date = 29
+    max_date = if month_number in long_months, do: 31, else: max_date
+    max_date = if month_number in short_months, do: 30, else: max_date
+    max_date
   end
 
   describe "EDD Reminder" do
     test "Got it", %{flow: flow} do
       flow
-     
+
       |> FlowTester.start()
       |> receive_message(%{
         text:
@@ -232,7 +242,7 @@ defmodule EDDRemindersTest do
           "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
             # buttons: button_labels(["Got it!", "Month", "Unknown"]),
-        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])     
+        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])
         # buttons: [
         #   {"edd_got_it", "edd_got_it"},
         #   {"edd_month", "edd_month"},
@@ -269,7 +279,7 @@ defmodule EDDRemindersTest do
         text:
           "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
-        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])    
+        # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])
         # buttons: [
         #   {"edd_got_it", "edd_got_it"},
         #   {"edd_month", "edd_month"},
@@ -424,22 +434,7 @@ defmodule EDDRemindersTest do
       |> receive_message(%{
         text:
           "I don't understand your reply. Please try that again.\r\n\r\n👇🏽 Tap on the button below the message, choose your answer from the list, and send.",
-        # list: {"Month", ^list_of_months}
-        # TODO: Fix this so it works regardless of current month
-        list:
-          {"Month",
-           [
-             {"@datevalue(this_month, \"%B\")", "August"},
-             {"@datevalue(this_month_plus_one, \"%B\")", "September"},
-             {"@datevalue(this_month_plus_two, \"%B\")", "October"},
-             {"@datevalue(this_month_plus_three, \"%B\")", "November"},
-             {"@datevalue(this_month_plus_four, \"%B\")", "December"},
-             {"@datevalue(this_month_plus_five, \"%B\")", "January"},
-             {"@datevalue(this_month_plus_six, \"%B\")", "February"},
-             {"@datevalue(this_month_plus_seven, \"%B\")", "March"},
-             {"@datevalue(this_month_plus_eight, \"%B\")", "April"},
-             {"I don't know", "I don't know"}
-           ]}
+        list: {"Month", ^list_of_months}
       })
     end
 
@@ -498,9 +493,8 @@ defmodule EDDRemindersTest do
       |> receive_message(%{})
       |> FlowTester.send("25")
       |> receive_message(%{
-        # text:  ^edd_confirmation_text,
-        text:
-          "I’ve updated your baby’s estimated due date to: 2025-09-25\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽"
+        text:  ^edd_confirmation_text,
+        buttons: button_labels(["See main menu"])
       })
       |> contact_matches(%{"edd" => ^full_edd})
       |> result_matches(%{name: "edd", value: ^full_edd})
@@ -531,8 +525,10 @@ defmodule EDDRemindersTest do
     test "edd day then not number error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
-      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      {list_of_months, _edd_confirmation_text, full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
+      month_number = String.split(full_edd, "-") |> Enum.at(1) |> String.to_integer()
+      max_date = get_max_date(month_number)
 
       flow
       |> Helpers.init_contact_fields()
@@ -543,18 +539,21 @@ defmodule EDDRemindersTest do
       |> FlowTester.send(month)
       |> receive_message(%{})
       |> FlowTester.send("falalalalaaaaa")
-      # TODO: Fix the assertion to get the correct end day for the month
-      |> receive_message(%{
-        text:
-          "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 30."
-      })
+      |> (fn step ->
+        [msg] = step.messages
+        assert String.contains?(msg.text, "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and #{max_date}.")
+        step
+      end).()
+      |> receive_message(%{})
     end
 
     test "edd day then not a day error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
-      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      {list_of_months, _edd_confirmation_text, full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
+      month_number = String.split(full_edd, "-") |> Enum.at(1) |> String.to_integer()
+      max_date = get_max_date(month_number)
 
       flow
       |> Helpers.init_contact_fields()
@@ -565,18 +564,22 @@ defmodule EDDRemindersTest do
       |> FlowTester.send(month)
       |> receive_message(%{})
       |> FlowTester.send("0")
-      # TODO: Fix the assertion to get the correct end day for the month
-      |> receive_message(%{
-        text:
-          "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 30."
-      })
+      |> (fn step ->
+        [msg] = step.messages
+        assert String.contains?(msg.text, "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and #{max_date}.")
+        step
+      end).()
+      |> receive_message(%{})
     end
 
     test "edd day then above max day error", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
-      {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
+      {list_of_months, _edd_confirmation_text, full_edd} = get_edd(months, month_words)
       month = elem(Enum.at(list_of_months, 1), 0)
+      month_number = String.split(full_edd, "-") |> Enum.at(1) |> String.to_integer()
+
+      max_date = get_max_date(month_number)
 
       flow
       |> Helpers.init_contact_fields()
@@ -587,11 +590,12 @@ defmodule EDDRemindersTest do
       |> FlowTester.send(month)
       |> receive_message(%{})
       |> FlowTester.send("32")
-      # TODO: Fix the assertion to get the correct end day for the month
-      |> receive_message(%{
-        text:
-          "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and 30."
-      })
+      |> (fn step ->
+        [msg] = step.messages
+        assert String.contains?(msg.text, "Sorry, I didn’t get that – let's try again.\r\n\r\n👇🏽 Please reply with a number between 1 and #{max_date}.")
+        step
+      end).()
+      |> receive_message(%{})
     end
 
     test "edd day then feb 29 is valid", %{flow: flow} do
