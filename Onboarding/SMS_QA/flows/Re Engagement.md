@@ -21,6 +21,7 @@ card ReEngagementSms do
   message = content_data.body.results[0].body.text.message
   name = if(is_nil_or_empty(contact.name), do: "", else: contact.name)
   message = substitute(message, "{{name}}", "@name")
+  update_contact(route_to_journey: "dma")
   text("@message")
 end
 

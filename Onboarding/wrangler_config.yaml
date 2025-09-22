@@ -4,3 +4,5 @@ environments:
   path: QA
 - name: Prod
   path: Prod
+- name: SMS_QA
+  path: SMS_QA

@@ -1,0 +1,16 @@
+cms_url: ''
+journey_uuids:
+- name: Test journey
+  uuid: 16eb0108-2ced-44a2-8a1d-6e6737d8b46d
+- name: Re Engagement
+  uuid: 387a852d-e38e-42be-a7c8-9a7af6680c6e
+- name: Start Registration
+  uuid: 9834e764-8823-4ed7-8a3a-421058a79bfe
+- name: Send Next Message
+  uuid: df22a4cc-1ac3-4fbf-93a8-c8e820031aea
+- name: Push Message Signup
+  uuid: 1ffa8596-d607-4bde-9f6e-cbb3bdfad2aa
+- name: Schedule Next Push Message
+  uuid: fac94d2c-682f-4fea-8b7b-ab284a26d311
+token_env_key: TURN_TOKEN_SMS_QA
+turn_base_url: https://whatsapp.turn.io/
