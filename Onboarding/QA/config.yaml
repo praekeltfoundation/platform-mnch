@@ -1,3 +1,4 @@
+# This is the "Reach CAPI QA" +27600143703 number in the Praekelt.org organisation
 turn_base_url: https://whatsapp-praekelt-cloud.turn.io/
 token_env_key: TURN_TOKEN_QA
 cms_url: https://content-repo-api-qa.prk-k8s.prd-p6t.org

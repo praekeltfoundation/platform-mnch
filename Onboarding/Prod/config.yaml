@@ -1,46 +1,47 @@
-turn_base_url: https://whatsapp-praekelt-cloud.turn.io/
+# This is the "My Health By Reach Digital Health" +25420764111 number in the Reach Digital health organisation
+turn_base_url: https://whatsapp.who.turn.io/
 token_env_key: TURN_TOKEN_PROD
 cms_url: https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org
 journey_uuids:
 - name: basic-questions
-  uuid: 74bd3d95-2aec-4174-ad32-926952c795ca
+  uuid: fe7139a4-60c5-4ced-ad82-daa43f483c37
 - name: dma-form
-  uuid: 9bd8c27a-d08e-4c9e-8623-b4007373437e
+  uuid: b283e7c1-0a79-45ab-976c-5566d9ba06cd
 - name: edd-reminders
-  uuid: 99754af5-1696-48c8-8562-4b52c13db61d
+  uuid: 5b67121a-b097-4eec-9493-e948f71d3c6f
 - name: exploring-tour
-  uuid: 359b3ff4-796d-4b80-91a6-15532c7bdb90
+  uuid: 160ac3f4-ab18-4610-bbab-c003f79e1197
 - name: exploring-tour-reminders
-  uuid: 9a69c7bf-607a-4d9a-930b-0079a55e536c
+  uuid: c68d4257-74e1-45da-8d49-951b012ec65e
 - name: intro-and-welcome
-  uuid: e2203073-f8b3-45f4-b19d-4079d5af368a
+  uuid: 47111691-cb8d-4cf0-8ecc-ed6792108157
 - name: intro-and-welcome-reminders
-  uuid: 8407c748-140f-43fa-b5f4-b5652e07f484
+  uuid: d28a1658-18af-4552-a985-905cf040d50e
 - name: menu-non-personalised
-  uuid: 141a7271-30ec-4b31-83a5-11e4fa655df7
+  uuid: d02746ff-a3e2-4153-99ff-cd01a941a00d
 - name: menu-personalised
-  uuid: bd10611d-73b6-4c56-a4ca-41d4136d0d6a
+  uuid: 31bfb947-74a5-4b3b-8dec-def4b7732fd5
 - name: menu-redirect
-  uuid: fb98bb9d-60a6-47a1-a474-bb0f45b80030
+  uuid: 75eada25-7a3e-4df8-a19c-39ace798427d
 - name: opt-in-reminder
-  uuid: f36d4d47-9cc7-4202-a73f-db6f03e478cd
+  uuid: 3ef42a80-1039-4193-9ad3-4ff56b80de2e
 - name: personal-profile-questions
-  uuid: e1e033d4-897a-4c9b-9eea-2411458c3c4c
+  uuid: 67e29cda-52a9-4eb4-9fc0-224c44585c8c
 - name: profile
-  uuid: 90d3135d-6c0c-43c2-b2a8-a099d63639bf
+  uuid: f085a8b1-5e73-408d-bcc2-9487d0512085
 - name: profile-classifier
-  uuid: c77efa62-1c9d-4ace-ae7a-4585e4e929d1
+  uuid: e1f6a4d6-f245-4203-aed5-6577bbd4d96a
 - name: profile-generic
-  uuid: 718e6b27-d818-40cf-8a7b-50c17bd236ba
+  uuid: a7eae888-77a0-4e68-ac47-ceb03676bef1
 - name: profile-hcw
-  uuid: 9aa596d3-40f0-4349-8322-e44d1fd1d127
+  uuid: c4c8d015-2255-4aeb-94be-eb0b7a2174e0
 - name: profile-hcw-nudge
-  uuid: 03656be1-d528-453b-b7f7-efd3cbbf1123
+  uuid: 97e8ba1c-5638-4515-bd5d-ca6aca01e7f8
 - name: profile-pregnancy-health
-  uuid: f582feb5-8605-4509-8279-ec17202b42a6
+  uuid: 2063ff09-4405-4cf2-9a57-12ffa00c99da
 - name: profile-pregnant-nurse
-  uuid: 1ed10e1b-f812-4730-8ec5-3f46088c41c7
+  uuid: 8e71f3ab-9d34-491e-930a-2b1435a9afed
 - name: profile-pregnant-nurse-reminder
-  uuid: 107bebf6-eb76-4886-a0ee-1a11067fe089
+  uuid: d7cc2c04-5931-4910-9f1e-0cebbb80d1f8
 - name: re-engagement
-  uuid: 689e019d-beb5-4ba2-8c04-f4663a67ab81
+  uuid: 78cca41f-d27d-4669-ae16-a785744047a1
