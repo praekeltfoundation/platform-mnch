@@ -1,0 +1,17 @@
+# This is the Platform QA USSD *120*4216*25# line on the Praekelt.org organisation
+cms_url: ''
+journey_uuids:
+- name: MomConnect Public Registration
+  uuid: b6561421-93d4-4fda-83fc-7ee5baf8da05
+- name: 'Callback: MomConnect Public Registration Complete'
+  uuid: a82040e2-874d-4621-ba0c-1a0de8189b83
+- name: MomConnect Public Registration Messaging
+  uuid: c90fc3f3-4b5a-428c-9d80-149e0fb9ba69
+- name: DMA Form
+  uuid: 75acc332-9d46-4a92-baf8-ae3ebf8448c2
+- name: Stage based messaging
+  uuid: c151e915-7070-4682-a101-82824954a12f
+- name: Journey Router
+  uuid: 301e34fb-4413-4517-a585-21dac312cb21
+token_env_key: TURN_TOKEN_USSD_QA
+turn_base_url: https://whatsapp.turn.io/

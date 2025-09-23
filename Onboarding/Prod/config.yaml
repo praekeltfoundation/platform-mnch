@@ -1,0 +1,47 @@
+# This is the "My Health By Reach Digital Health" +25420764111 number in the Reach Digital health organisation
+turn_base_url: https://whatsapp.who.turn.io/
+token_env_key: TURN_TOKEN_PROD
+cms_url: https://platform-mnch-contentrepo.prk-k8s.prd-p6t.org
+journey_uuids:
+- name: basic-questions
+  uuid: fe7139a4-60c5-4ced-ad82-daa43f483c37
+- name: dma-form
+  uuid: b283e7c1-0a79-45ab-976c-5566d9ba06cd
+- name: edd-reminders
+  uuid: 5b67121a-b097-4eec-9493-e948f71d3c6f
+- name: exploring-tour
+  uuid: 160ac3f4-ab18-4610-bbab-c003f79e1197
+- name: exploring-tour-reminders
+  uuid: c68d4257-74e1-45da-8d49-951b012ec65e
+- name: intro-and-welcome
+  uuid: 47111691-cb8d-4cf0-8ecc-ed6792108157
+- name: intro-and-welcome-reminders
+  uuid: d28a1658-18af-4552-a985-905cf040d50e
+- name: menu-non-personalised
+  uuid: d02746ff-a3e2-4153-99ff-cd01a941a00d
+- name: menu-personalised
+  uuid: 31bfb947-74a5-4b3b-8dec-def4b7732fd5
+- name: menu-redirect
+  uuid: 75eada25-7a3e-4df8-a19c-39ace798427d
+- name: opt-in-reminder
+  uuid: 3ef42a80-1039-4193-9ad3-4ff56b80de2e
+- name: personal-profile-questions
+  uuid: 67e29cda-52a9-4eb4-9fc0-224c44585c8c
+- name: profile
+  uuid: f085a8b1-5e73-408d-bcc2-9487d0512085
+- name: profile-classifier
+  uuid: e1f6a4d6-f245-4203-aed5-6577bbd4d96a
+- name: profile-generic
+  uuid: a7eae888-77a0-4e68-ac47-ceb03676bef1
+- name: profile-hcw
+  uuid: c4c8d015-2255-4aeb-94be-eb0b7a2174e0
+- name: profile-hcw-nudge
+  uuid: 97e8ba1c-5638-4515-bd5d-ca6aca01e7f8
+- name: profile-pregnancy-health
+  uuid: 2063ff09-4405-4cf2-9a57-12ffa00c99da
+- name: profile-pregnant-nurse
+  uuid: 8e71f3ab-9d34-491e-930a-2b1435a9afed
+- name: profile-pregnant-nurse-reminder
+  uuid: d7cc2c04-5931-4910-9f1e-0cebbb80d1f8
+- name: re-engagement
+  uuid: 78cca41f-d27d-4669-ae16-a785744047a1
