@@ -1,6 +1,8 @@
 # Platform Maternal, Newborn, and Child Health (MNCH)
 This repo holds a collection of flows. The purpose of these flows is to act as base/building blocks, to be able to create MNCH services. They're designed to be reusable across multiple services.
 
+More information about the flows can be found in the [Onboarding/README.md](Onboarding/README.md) file.
+
 ## Architecture
 The flows use [ContentRepo](https://github.com/praekeltfoundation/contentrepo/) to store and manage the content of the flows.
 

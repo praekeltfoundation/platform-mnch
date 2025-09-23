@@ -30,7 +30,12 @@ Please make sure to update tests as appropriate.
 
 ## Tests
 
-Running the tests requires elixir >= 1.18 (for hexdocs)
+Running the tests requires elixir >= 1.17 (for hexdocs) and the (flow_tester)[https://github.com/praekeltfoundation/flow_tester] to be set up and installed.
+
+You can run the tests using a similar command to:
+```
+../flow_tester/run_flow_tests.exs Onboarding/QA/tests/
+```
 
 ### Test Content
 The journey tests for HelpCentre and Onboarding use CSV files to import content used in the tests.
@@ -41,22 +46,28 @@ HelpCentre also uses a `error_messages.csv`, as the journeys all use error messa
 
 Onboarding also has two extra files for variation messages, `variations-facts.csv` and `variations-sentiment.csv`, as these pages do not use the same slug prefix as used above, but rather use `mnch-facts` and `mnch-sentiment` respectively
 
-To export the content, go to the Content Pages section of the CMS Admin interface, and search for the prefix `mnch_onboarding_` or `mnch_helpcentre_` respectively.  Select the locale in the right hand panel to filter the results. For now we only export the English content, and have manual fixtures for other language pages where needed. Save the file as csv by clicking the arrow next to `Download XLSX` and select `Download CSV`.  
+To export the content, go to the Content Pages section of the CMS Admin interface, and search for the prefix `mnch_onboarding_` or `mnch_helpcentre_` respectively.  Select the locale in the right hand panel to filter the results. For now we only export the English content, and have manual fixtures for other language pages where needed. Save the file as csv by clicking the arrow next to `Download XLSX` and select `Download CSV`.
 
-Optionally, I manually clean up the CSV file by deleting a bunch of random dummy / test folders and pages in various languages from the bottom of the file, that is unrelated to this repo's function. 
+Optionally, I manually clean up the CSV file by deleting a bunch of random dummy / test folders and pages in various languages from the bottom of the file, that is unrelated to this repo's function.
 
-Upload the file to the relevant folder mentioned above, and run the tests to check if everything is in order.  
+Upload the file to the relevant folder mentioned above, and run the tests to check if everything is in order.
 
 
-## Opening Journey as Markdown
-You can open a Turn Journey as a markdown file by taking the url, removing `/app` and appending `?format=md`. A one click solution is to add the following code as a bookmark
+## Managing and editing Journeys
+This repo uses the (flow-wrangler)[https://github.com/flow-wrangler/flow-wrangler] CLI tool to manage the Journeys. Please see that repo for instructions on how to set up and use it.
 
-```
-javascript:var%20winURL%20=%20window.location.href;if(winURL.indexOf('/app')%20%3E%200)%7BwinURL%20=%20winURL.replace('/app',%20'') + '?format=md';window.location.assign(winURL);%7Delse%7Balert('Incorrect%20URL%20format');%7D
-```
+The environment variables that are used for this project are as follows:
+
+`TURN_TOKEN_QA` - This is the "Reach CAPI QA" +27600143703 number in the Praekelt.org organisation
+
+`TURN_TOKEN_PROD` - This is the "My Health By Reach Digital Health" +25420764111 number in the Reach Digital health organisation
+
+`TURN_TOKEN_SMS_QA` - This is the Platform QA SMS *24545 line on the Praekelt.org organisation
+
+`TURN_TOKEN_USSD_QA` - This is the Platform QA USSD *120*4216*25# line on the Praekelt.org organisation
 
 ## Gitleaks
-When committing the Markdown files, you have to remember to remove any API keys that may be saved in them. Typically we store these in a config dictionary at the top of a Journey so that we can use it throughout. To help with remembering, you can set up Gitleaks in a pre-commit hook.
+When committing the Markdown files, you have to remember to remove any API keys that may be saved in them. Typically we store these in a config dictionary in the Turn globals that for that number. To help with remembering, you can set up Gitleaks in a pre-commit hook.
 
 1. Install [gitleaks](https://github.com/gitleaks/gitleaks?tab=readme-ov-file#installing)
 2. In your `.git/hooks` directory make a `pre-commit` file with the following content
@@ -105,21 +116,14 @@ regex = '''[a-zA-Z0-9]{40}'''
 5. Make sure your pre-commit file is executable (`chmod 755 pre-commit`)
 
 ## Deploying to Production
-1. `poetry install`
-1. Download the latest version of the Journeys from the QA environment. See `Opening Journey as Markdown` above for more info on how to do this. 
-1. Make a new Journey on the Production environment for each Journey that you want to deploy. DO NOT MODIFY THE JOURNEY YET.
-1. Add the Journey with the QA and Prod UUID to `stacks_config.yaml` e.g.
-    ```yaml
-      - name: Onboarding
-        prod_uuid: 1d791269-d1a1-49f8-8947-dab61f3e3cb9
-        qa_uuid: 7dad867e-b140-4d38-a3b4-c4ad98525d4d
-    ``` 
-1. Run `python3 convert_qa_files_to_prod.py` to create all the necessary Prod files and update any new changes to existing Prod files.
-1. Run `yamllint .` to ensure the YAML file is correctly formatted.
-1. Run `pytest` to ensure that all files have been successfully created and the stacks files line up correctly with the `stacks_config.yaml` file.
-1. Create a PR for review.
+1. If there are any new Journeys, add them to the relevant environment's `config.yaml` file. For production, you'll need to create an empty Journey in order to get a UUID for it.
+1. Download the latest version of the Journeys from the QA environment. See (how do I download my journeys)[https://github.com/praekeltfoundation/flow-wrangler/?tab=readme-ov-file#how-do-i-download-my-journeys] for more info on how to do this.
+1. Run and update the elixir tests
+1. If there are changes to QA, create a PR and get approval, and get the QA team to test, before deploying to production
+1. Run the relevant (convert command)[https://github.com/praekeltfoundation/flow-wrangler/?tab=readme-ov-file#how-do-i-convert-my-journeys] for the environment. You can find the list of conversions in `wrangler_config.yaml`
 1. Create any new Custom Fields that are required.
-1. Copy the Prod file/s to the Prod enviroment.
+1. Create a PR and get approval before uploading the Journeys to Production
+1. (Upload the Journeys)[https://github.com/praekeltfoundation/flow-wrangler/?tab=readme-ov-file#how-do-i-upload-my-journeys] to Production
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
