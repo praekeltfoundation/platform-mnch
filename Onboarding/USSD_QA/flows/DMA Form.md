@@ -1,7 +1,7 @@
 <!-- { section: "09b5747d-524b-48e4-a1da-2a42ce158dc9", x: 500, y: 48} -->
 
 ```stack
-trigger(on: "MESSAGE RECEIVED") when has_any_exact_phrase(event.message.text.body, ["0", "hi"])
+
 
 ```
 

@@ -1,7 +1,6 @@
+# This is the Platform QA SMS *24545 line on the Praekelt.org organisation
 cms_url: ''
 journey_uuids:
-- name: Test journey
-  uuid: 16eb0108-2ced-44a2-8a1d-6e6737d8b46d
 - name: Re Engagement
   uuid: 387a852d-e38e-42be-a7c8-9a7af6680c6e
 - name: Start Registration

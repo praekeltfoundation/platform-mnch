@@ -6,3 +6,5 @@ environments:
   path: Prod
 - name: SMS_QA
   path: SMS_QA
+- name: USSD_QA
+  path: USSD_QA
