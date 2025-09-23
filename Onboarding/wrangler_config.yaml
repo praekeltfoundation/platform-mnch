@@ -1,4 +1,7 @@
-conversions: []
+conversions:
+- name: whatsapp_prod
+  from: QA
+  to: Prod
 environments:
 - name: QA
   path: QA
