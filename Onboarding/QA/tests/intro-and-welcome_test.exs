@@ -1,6 +1,7 @@
 defmodule IntroAndWelcomeTest do
   use FlowTester.Case
 
+  alias FlowTester.MultiFlow
   alias FlowTester.WebhookHandler, as: WH
   alias FlowTester.Message.TextTransform
 
@@ -46,7 +47,7 @@ defmodule IntroAndWelcomeTest do
     ]
 
     # The onboarding.csv content file contains a page that references a Whatsapp Template.
-    # We don't support importing of templates yet, so for now we add it manually  
+    # We don't support importing of templates yet, so for now we add it manually
     FakeCMS.add_template(wh_pid, %WATemplate{
       id: "1",
       slug: "mnch_onboarding_edd_reminder",
@@ -70,35 +71,76 @@ defmodule IntroAndWelcomeTest do
     FakeCMS.wh_adapter(wh_pid)
   end
 
-  defp real_or_fake_cms(step, base_url, _auth_token, :real),
-    do: WH.allow_http(step, base_url)
+  # defp real_or_fake_cms(step, base_url, _auth_token, :real),
+  #   do: WH.allow_http(step, base_url)
 
-  defp real_or_fake_cms(step, base_url, auth_token, :fake),
-    do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
+  # defp real_or_fake_cms(step, base_url, auth_token, :fake),
+  #   do: WH.set_adapter(step, base_url, setup_fake_cms(auth_token))
 
-  setup_all _ctx, do: %{init_flow: Helpers.load_flow("intro-and-welcome")}
-
-  defp setup_flow(ctx) do
-    # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
-    auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
-    kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
-
-    flow =
-      ctx.init_flow
-      |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+  defp setup_flow(flow, fakecms_wh, mf_pid) do
+    flow = flow
+      |> WH.set_adapter("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", fakecms_wh)
       |> FlowTester.add_message_text_transform(
         TextTransform.normalise_newlines(trim_trailing_spaces: true)
       )
-      |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+      |> FlowTester.set_global_dict("config", %{"contentrepo_token" => "CRauthTOKEN123"})
 
-    %{flow: flow}
+    {:ok, flow_uuid} = MultiFlow.add_flow(mf_pid, flow)
+
+    flow_uuid
   end
 
-  setup [:setup_flow]
+  defp setup_multi_flow(_ctx) do
+    fakecms_wh = setup_fake_cms("CRauthTOKEN123")
+
+    mf_pid = start_link_supervised!({MultiFlow, nil})
+    init_flow_uuid = setup_flow(Helpers.load_flow("intro-and-welcome"), fakecms_wh, mf_pid)
+
+    exploring_tour_flow_uuid =
+      setup_flow(Helpers.load_flow("exploring-tour"), fakecms_wh, mf_pid)
+
+    profile_classifier_flow_uuid =
+      setup_flow(Helpers.load_flow("profile-classifier"), fakecms_wh, mf_pid)
+
+    non_personalise_menu_uuid =
+      setup_flow(Helpers.load_flow("menu-non-personalised"), fakecms_wh, mf_pid)
+
+    %{
+      init_flow_uuid: init_flow_uuid,
+      mf_pid: mf_pid,
+      init_flow: MultiFlow.get_flow(mf_pid, init_flow_uuid),
+      exploring_tour_flow_uuid: exploring_tour_flow_uuid,
+      exploring_tour_flow: MultiFlow.get_flow(mf_pid, exploring_tour_flow_uuid),
+      profile_classifier_flow_uuid: profile_classifier_flow_uuid,
+      profile_classifier_flow: MultiFlow.get_flow(mf_pid, profile_classifier_flow_uuid),
+      non_personalise_menu_uuid: non_personalise_menu_uuid,
+      non_personalise_menu: MultiFlow.get_flow(mf_pid, non_personalise_menu_uuid)
+    }
+  end
+
+  setup [:setup_multi_flow]
+
+  # defp setup_flow(ctx) do
+  #   # When talking to real contentrepo, get the auth token from the CMS_AUTH_TOKEN envvar.
+  #   auth_token = System.get_env("CMS_AUTH_TOKEN", "CRauthTOKEN123")
+  #   kind = if auth_token == "CRauthTOKEN123", do: :fake, else: :real
+
+  #   flow =
+  #     ctx.init_flow
+  #     |> real_or_fake_cms("https://content-repo-api-qa.prk-k8s.prd-p6t.org/", auth_token, kind)
+  #     |> FlowTester.add_message_text_transform(
+  #       TextTransform.normalise_newlines(trim_trailing_spaces: true)
+  #     )
+  #     |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+
+  #   %{init_flow: init_flow}
+  # end
+
+  # setup [:setup_flow]
 
   describe "Intro and Welcome" do
-    test "Branch: Opt in", %{flow: flow} do
-      flow
+    test "Branch: Opt in", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{
         "privacy_policy_accepted" => "yes",
@@ -112,8 +154,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Branch: User intent", %{flow: flow} do
-      flow
+    test "Branch: User intent", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{
         "privacy_policy_accepted" => "yes",
@@ -127,8 +169,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Branch: Privacy Policy", %{flow: flow} do
-      flow
+    test "Branch: Privacy Policy", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{
         "privacy_policy_accepted" => "no",
@@ -144,8 +186,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Welcome message then change my language", %{flow: flow} do
-      flow
+    test "Welcome message then change my language", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -162,8 +204,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Welcome message then error", %{flow: flow} do
-      flow
+    test "Welcome message then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -179,8 +221,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Welcome message then continue with current set language", %{flow: flow} do
-      flow
+    test "Welcome message then continue with current set language", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.set_contact_properties(%{"language" => "pt"})
       |> FlowTester.start()
@@ -198,8 +240,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "pt"})
     end
 
-    test "Welcome message then continue with default language", %{flow: flow} do
-      flow
+    test "Welcome message then continue with default language", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -216,8 +258,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "eng"})
     end
 
-    test "Change my language then error", %{flow: flow} do
-      flow
+    test "Change my language then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -242,8 +284,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Change my language then English", %{flow: flow} do
-      flow
+    test "Change my language then English", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -267,8 +309,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "eng"})
     end
 
-    test "Change my language then French", %{flow: flow} do
-      flow
+    test "Change my language then French", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -291,8 +333,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "fra"})
     end
 
-    test "Change my language then Português", %{flow: flow} do
-      flow
+    test "Change my language then Português", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -315,8 +357,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "por"})
     end
 
-    test "Change my language then Arabic", %{flow: flow} do
-      flow
+    test "Change my language then Arabic", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -339,8 +381,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "ara"})
     end
 
-    test "Change my language then Spanish", %{flow: flow} do
-      flow
+    test "Change my language then Spanish", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -363,8 +405,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "spa"})
     end
 
-    test "Change my language then Chinese", %{flow: flow} do
-      flow
+    test "Change my language then Chinese", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -387,8 +429,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"language" => "zho"})
     end
 
-    test "Language confirmation then error", %{flow: flow} do
-      flow
+    test "Language confirmation then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -417,8 +459,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Language confirmation then welcome", %{flow: flow} do
-      flow
+    test "Language confirmation then welcome", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -447,8 +489,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Privacy policy then error", %{flow: flow} do
-      flow
+    test "Privacy policy then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -472,8 +514,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => ""})
     end
 
-    test "Privacy policy then yes", %{flow: flow} do
-      flow
+    test "Privacy policy then yes", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -497,8 +539,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
     end
 
-    test "Privacy policy then no", %{flow: flow} do
-      flow
+    test "Privacy policy then no", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -522,8 +564,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "no"})
     end
 
-    test "Privacy policy then no then error", %{flow: flow} do
-      flow
+    test "Privacy policy then no then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -553,8 +595,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Privacy policy then no then see policy", %{flow: flow} do
-      flow
+    test "Privacy policy then no then see policy", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -586,8 +628,8 @@ defmodule IntroAndWelcomeTest do
       # TODO: Add a test to see that the scheduled stack has been scheduled
     end
 
-    test "Privacy policy then read a summary", %{flow: flow} do
-      flow
+    test "Privacy policy then read a summary", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -610,8 +652,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Privacy policy then read a summary then error", %{flow: flow} do
-      flow
+    test "Privacy policy then read a summary then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -640,8 +682,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Privacy policy then read a summary then yes", %{flow: flow} do
-      flow
+    test "Privacy policy then read a summary then yes", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -671,8 +713,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
     end
 
-    test "Privacy policy then read a summary then no", %{flow: flow} do
-      flow
+    test "Privacy policy then read a summary then no", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -702,8 +744,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"privacy_policy_accepted" => "no"})
     end
 
-    test "Opt in then error", %{flow: flow} do
-      flow
+    test "Opt in then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -733,8 +775,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Opt in accepted", %{flow: flow} do
-      flow
+    test "Opt in accepted", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -765,8 +807,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "true"})
     end
 
-    test "Opt in declined", %{flow: flow} do
-      flow
+    test "Opt in declined", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -797,8 +839,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"opted_in" => "false"})
     end
 
-    test "User intent error", %{flow: flow} do
-      flow
+    test "User intent error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -835,8 +877,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "User intent create profile", %{flow: flow} do
-      flow
+    test "User intent create profile", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -874,8 +916,8 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"intent" => "create profile"})
     end
 
-    test "User intent explore", %{flow: flow} do
-      flow
+    test "User intent explore", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -913,44 +955,31 @@ defmodule IntroAndWelcomeTest do
       |> contact_matches(%{"intent" => "explore"})
     end
 
-    test "User intent speak to agent", %{flow: flow} do
-      flow
+    test "User intent speak to agent", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
-      |> receive_message(%{
-        text:
-          "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
-        buttons: button_labels(["Get started", "Change my language"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "Get started")
-      |> receive_message(%{
-        text:
-          "*Your information is safe and won't be shared* 🔒\r\n\r\nThe information you share is only used to give you personalised advice and information.\r\n\r\nRead the privacy policy attached and let me know if you accept it.",
-        buttons: button_labels(["Yes, I accept ✅", "No, I don’t accept", "Read a summary"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"language" => "eng"})
       |> FlowTester.send(button_label: "Yes, I accept ✅")
-      |> receive_message(%{
-        text:
-          "*Sometimes I'll need to send you important messages – like appointment reminders or urgent health news* 🔔\r\n\r\nYou can choose which types messages you want to receive later from your profile. It’s also easy to stop messages at any time.\r\n\r\n👇🏽 Can I send you these messages?",
-        buttons: button_labels(["Yes ✅", "Decide later"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
-      |> receive_message(%{
-        text:
-          "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
-        buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Go to help desk")
       |> contact_matches(%{"intent" => "get health advice"})
-      |> Helpers.handle_non_personalised_menu_flow()
-      |> flow_finished()
+      |> receive_message(%{
+        text: "*{MyHealth} main menu*\r\n\r\nTap `≡ Menu` to make your choice.\r\n\r\n*Get health advice*\r\n👩🏽⚕️ Your health guide\r\n📚 View topics for you\r\n📞 Help centre\r\n\r\n*Settings*\r\n👤 Your profile (0%)\r\n🔔 Manage updates\r\n📱 Manage data\r\n\r\n*{MyHealth} Service*\r\n🚌 Take a tour\r\nℹ️ About and privacy policy\r\n\r\nTo return here at any time, send in the word `menu`",
+        list: {"Menu",
+           list_items(["Health Guide", "View Topics", "Go to Help Center", "Profile", "Manage Updates", "Manage Data", "Take a Tour", "About this Service"], "menu_items")}
+      })
     end
 
-    test "Data preferences then error", %{flow: flow} do
-      flow
+    test "Data preferences then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -995,8 +1024,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preferences all then data preference selected", %{flow: flow} do
-      flow
+    test "Data preferences all then data preference selected", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1041,8 +1070,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preferences text and images then data preference selected", %{flow: flow} do
-      flow
+    test "Data preferences text and images then data preference selected", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1087,8 +1116,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preferences text only then data preference selected", %{flow: flow} do
-      flow
+    test "Data preferences text only then data preference selected", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1133,8 +1162,8 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preference selected then error", %{flow: flow} do
-      flow
+    test "Data preference selected then error", %{init_flow: init_flow} do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
       |> receive_message(%{
@@ -1185,102 +1214,80 @@ defmodule IntroAndWelcomeTest do
       })
     end
 
-    test "Data preference selected then create profile", %{flow: flow} do
-      flow
+    test "Data preference selected then create profile", %{
+      init_flow: init_flow
+    } do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
-      |> receive_message(%{
-        text:
-          "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
-        buttons: button_labels(["Get started", "Change my language"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "Get started")
-      |> receive_message(%{
-        text:
-          "*Your information is safe and won't be shared* 🔒\r\n\r\nThe information you share is only used to give you personalised advice and information.\r\n\r\nRead the privacy policy attached and let me know if you accept it.",
-        buttons: button_labels(["Yes, I accept ✅", "No, I don’t accept", "Read a summary"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"language" => "eng"})
       |> FlowTester.send(button_label: "Yes, I accept ✅")
-      |> receive_message(%{
-        text:
-          "*Sometimes I'll need to send you important messages – like appointment reminders or urgent health news* 🔔\r\n\r\nYou can choose which types messages you want to receive later from your profile. It’s also easy to stop messages at any time.\r\n\r\n👇🏽 Can I send you these messages?",
-        buttons: button_labels(["Yes ✅", "Decide later"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
-      |> receive_message(%{
-        text:
-          "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
-        buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Create a profile 👤")
-      |> receive_message(%{
-        text:
-          "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
-        buttons: button_labels(["All", "Text & images", "Text only"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"intent" => "create profile"})
       |> FlowTester.send(button_label: "All")
       |> contact_matches(%{"data_preference" => "all"})
+      |> receive_message(%{})
+      |> FlowTester.send(button_label: "That's great!")
       |> receive_message(%{
         text:
-          "Got it 👍🏽\r\n\r\nI'll share all for now.\r\n\r\nYou can change this at any time in `Settings`",
-        buttons: button_labels(["That's great!"])
+          "What would you like me to call you?\r\n\r\nIf you don't want to answer this right now, reply `Skip`"
       })
-      |> FlowTester.send(button_label: "That's great!")
-      |> Helpers.handle_profile_classifier_flow()
-      |> flow_finished()
+      |> contact_matches(%{"checkpoint" => "profile_classifier"})
+      |> results_match(
+        [
+          %{name: "intro_completed", value: "yes"},
+          %{name: "profile_classifier_started", value: "yes"}
+        ]
+      )
     end
 
-    test "Data preference selected then explore", %{flow: flow} do
-      flow
+    test "Data preference selected then explore", %{
+      init_flow: init_flow
+    } do
+      init_flow
       |> Helpers.init_contact_fields()
       |> FlowTester.start()
-      |> receive_message(%{
-        text:
-          "*Welcome to {MyHealth}*\r\n\r\nGet free healthcare support for you and those you care for.\r\n\r\nOn this chatbot, you'll find personalised info, advice, and reminders.\r\n\r\n👇🏽 Let’s get started!",
-        buttons: button_labels(["Get started", "Change my language"])
-      })
+      |> receive_message(%{})
       |> FlowTester.send(button_label: "Get started")
-      |> receive_message(%{
-        text:
-          "*Your information is safe and won't be shared* 🔒\r\n\r\nThe information you share is only used to give you personalised advice and information.\r\n\r\nRead the privacy policy attached and let me know if you accept it.",
-        buttons: button_labels(["Yes, I accept ✅", "No, I don’t accept", "Read a summary"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"language" => "eng"})
       |> FlowTester.send(button_label: "Yes, I accept ✅")
-      |> receive_message(%{
-        text:
-          "*Sometimes I'll need to send you important messages – like appointment reminders or urgent health news* 🔔\r\n\r\nYou can choose which types messages you want to receive later from your profile. It’s also easy to stop messages at any time.\r\n\r\n👇🏽 Can I send you these messages?",
-        buttons: button_labels(["Yes ✅", "Decide later"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"privacy_policy_accepted" => "yes"})
       |> FlowTester.send(button_label: "Yes ✅")
-      |> receive_message(%{
-        text:
-          "Let's create your profile! The better I know you, the more I can do for you.\r\n\r\n*You have a few options:*\r\n\r\n• Create your profile and take control of {MyHealth}\r\n\r\n• Explore the service\r\n\r\n• Get assistance from an expert at the help desk\r\n\r\n👇🏽 What do you want to do?",
-        buttons: button_labels(["Create a profile 👤", "Explore the service", "Go to help desk"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"opted_in" => "true"})
       |> FlowTester.send(button_label: "Explore the service")
-      |> receive_message(%{
-        text:
-          "Before we get started, you can choose how to receive the information I have for you. This is so you can manage your data costs 📱\r\n\r\nYou can choose:\r\n\r\n• Text, images, audio & video (All)\r\n\r\n• Text and images\r\n\r\n• Text only\r\n\r\n👇🏽 What would you like?",
-        buttons: button_labels(["All", "Text & images", "Text only"])
-      })
+      |> receive_message(%{})
       |> contact_matches(%{"intent" => "explore"})
-      |> FlowTester.send(button_label: "All")
-      |> contact_matches(%{"data_preference" => "all"})
+      |> FlowTester.send(button_label: "Text only")
+      |> contact_matches(%{"data_preference" => "text only"})
       |> receive_message(%{
         text:
-          "Got it 👍🏽\r\n\r\nI'll share all for now.\r\n\r\nYou can change this at any time in `Settings`",
+          "Got it 👍🏽\r\n\r\nI'll share text only for now.\r\n\r\nYou can change this at any time in `Settings`",
         buttons: button_labels(["That's great!"])
       })
       |> FlowTester.send(button_label: "That's great!")
-      |> Helpers.handle_explore_flow()
-      |> flow_finished()
+      |> results_match([
+        %{name: "intro_completed", value: "yes"},
+        %{name: "guided_tour_started", value: "yes"}
+      ])
+      # Explore init_flow
+      # Card 1
+      |> receive_message(%{
+        text:
+          "Great, let's talk about what {MyHealth} has to offer you.\r\n\r\n🟩⬜⬜⬜⬜\r\n\r\n*Information from the experts*\r\n\r\n24/7 access to health information right here on WhatsApp.",
+        buttons: button_labels(["Next"])
+      })
     end
   end
 end
