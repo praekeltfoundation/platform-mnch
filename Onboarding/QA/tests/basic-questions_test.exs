@@ -31,7 +31,7 @@ defmodule BasicQuestionsTest do
     ]
 
     # The onboarding.csv content file contains a page that references a Whatsapp Template.
-    # We don't support importing of templates yet, so for now we add it manually  
+    # We don't support importing of templates yet, so for now we add it manually
     FakeCMS.add_template(wh_pid, %WATemplate{
       id: "1",
       slug: "mnch_onboarding_edd_reminder",

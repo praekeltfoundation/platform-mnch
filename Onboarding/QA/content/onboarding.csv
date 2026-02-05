@@ -854,7 +854,7 @@ Tap `≡ Menu` to make your choice.
 🚌 Take a tour
 ℹ️ About and privacy policy
 
-To return here at any time, send in the word `menu`",,,,Menu,"[{""type"": ""next_message"", ""title"": ""Health Guide""}, {""type"": ""next_message"", ""title"": ""View Topics""}, {""type"": ""next_message"", ""title"": ""Go to Help Center""}, {""type"": ""next_message"", ""title"": ""Profile""}, {""type"": ""next_message"", ""title"": ""ManageUpdate""}, {""type"": ""next_message"", ""title"": ""Manage Data""}, {""type"": ""next_message"", ""title"": ""Take a Tour""}, {""type"": ""next_message"", ""title"": ""About this Service""}]",,,,,,,,,45a78166-5a75-4986-a405-1f94f315df21,,,,,[],,,,,,en
+To return here at any time, send in the word `menu`",,,,Menu,"[{""type"": ""next_message"", ""title"": ""Health Guide""}, {""type"": ""next_message"", ""title"": ""View Topics""}, {""type"": ""next_message"", ""title"": ""Go to Help Center""}, {""type"": ""next_message"", ""title"": ""Profile""}, {""type"": ""next_message"", ""title"": ""Manage Updates""}, {""type"": ""next_message"", ""title"": ""Manage Data""}, {""type"": ""next_message"", ""title"": ""Take a Tour""}, {""type"": ""next_message"", ""title"": ""About this Service""}]",,,,,,,,,45a78166-5a75-4986-a405-1f94f315df21,,,,,[],,,,,,en
 Sub 5.1.150,1,3728,mnch_onboarding_personalisation_prompt_zero,Onboarding,personalisation_prompt_zero,,,personalisation_prompt_zero,"Hi there!
 
 To build your health guide, tell me more about yourself.
