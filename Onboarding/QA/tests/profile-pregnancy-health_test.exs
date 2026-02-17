@@ -1248,7 +1248,7 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then feb 29 is valid", %{flow: flow} do
-      fake_time = ~U[2023-02-28 00:00:00Z]
+      fake_time = ~U[2024-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
@@ -3365,7 +3365,7 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then feb 29 is valid", %{flow: flow} do
-      fake_time = ~U[2023-02-28 00:00:00Z]
+      fake_time = ~U[2024-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)

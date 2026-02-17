@@ -31,7 +31,7 @@ defmodule ProfileHCWTest do
     ]
 
     # The onboarding.csv content file contains a page that references a Whatsapp Template.
-    # We don't support importing of templates yet, so for now we add it manually  
+    # We don't support importing of templates yet, so for now we add it manually
     FakeCMS.add_template(wh_pid, %WATemplate{
       id: "1",
       slug: "mnch_onboarding_edd_reminder",
@@ -82,6 +82,7 @@ defmodule ProfileHCWTest do
     test "100% complete", %{flow: flow} do
       flow
       |> Helpers.init_contact_fields()
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> contact_matches(%{"profile_completion" => "0%", "checkpoint" => "hcw_profile_0"})
       |> receive_message(%{
