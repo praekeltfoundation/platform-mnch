@@ -3841,7 +3841,6 @@ defmodule ProfilePregnancyHealthTest do
       })
     end
 
-    @tag :whatever
     test "article topic then choose another topic", %{flow: flow} do
       months = get_months()
       month_words = get_month_words(months)
