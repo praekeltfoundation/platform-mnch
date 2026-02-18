@@ -37,7 +37,7 @@ defmodule EDDRemindersTest do
       id: "1",
       slug: "mnch_onboarding_edd_reminder",
       category: "MARKETING",
-      image: nil,
+      image: "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/EDD_Reminder.png",
       message: "This is a test message",
       buttons: [],
       example_values: [],
@@ -118,6 +118,7 @@ defmodule EDDRemindersTest do
         TextTransform.normalise_newlines(trim_trailing_spaces: true)
       )
       |> FlowTester.set_global_dict("config", %{"contentrepo_token" => auth_token})
+      #|> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
 
     %{flow: flow}
   end
@@ -193,9 +194,10 @@ defmodule EDDRemindersTest do
       flow
 
       |> FlowTester.start()
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> receive_message(%{
         text:
-          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
+          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
         # buttons: [
         #   {"edd_got_it", "edd_got_it"},
@@ -213,11 +215,11 @@ defmodule EDDRemindersTest do
 
     test "Got it (pt)", %{flow: flow} do
       flow
-      |> FlowTester.set_contact_properties(%{"language" => "por"})
+      |> FlowTester.set_contact_properties(%{"language" => "por", "data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "[DEBUG]\r\nTemplate @submission_name sent with language pt_PT.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url" <>
+          "[DEBUG]\r\nTemplate @submission_name sent with language pt_PT.\r\n" <>
             _,
         # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])
         # buttons: [
@@ -239,7 +241,7 @@ defmodule EDDRemindersTest do
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
+          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
             # buttons: button_labels(["Got it!", "Month", "Unknown"]),
         # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])
@@ -256,12 +258,12 @@ defmodule EDDRemindersTest do
       })
     end
 
-    # TODO: Figure out why this doesn't work - it probably has something to do with the fact that we're sending a template
     test "Got it error", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{
-        text: "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url"  <> _,
+        text: "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\n"  <> _,
         # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"]),
         # buttons: [{"edd_got_it", "edd_got_it"}, {"edd_month", "edd_month"}, {"eddr_unknown", "eddr_unknown"}],
       })
@@ -274,10 +276,11 @@ defmodule EDDRemindersTest do
 
     test "Got it -> Main menu", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{
         text:
-          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\nBody parameters: [@name]\r\nMedia link: @image_data.body.meta.download_url\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
+          "[DEBUG]\r\nTemplate @submission_name sent with language en_US.\r\n\r\nThe buttons represented here are not necessarily the same as the ones in the real template. Please double check the template buttons when running the flow in a real-world scenario." <>
             _,
         # buttons: button_labels(["Got it!", "Update due date", "How to calculate it"])
         # buttons: [
@@ -298,6 +301,7 @@ defmodule EDDRemindersTest do
 
     test "EDD Unknown", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -310,6 +314,7 @@ defmodule EDDRemindersTest do
 
     test "EDD Unknown error", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -328,6 +333,7 @@ defmodule EDDRemindersTest do
 
     test "EDD Unknown -> I'll do this later", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -345,6 +351,7 @@ defmodule EDDRemindersTest do
       {list_of_months, _edd_confirmation_text, _full_edd} = get_edd(months, month_words)
 
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -358,6 +365,7 @@ defmodule EDDRemindersTest do
 
     test "I'll do this later error", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -374,6 +382,7 @@ defmodule EDDRemindersTest do
 
     test "I'll do this later -> main menu", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -391,6 +400,7 @@ defmodule EDDRemindersTest do
     @tag :temptest
     test "I'll do this later -> go to health guide", %{flow: flow} do
       flow
+      |> FlowTester.set_contact_properties(%{"data_preference" => "text only"})
       |> FlowTester.start()
       |> receive_message(%{})
       |> FlowTester.send("eddr_unknown")
@@ -599,7 +609,7 @@ defmodule EDDRemindersTest do
     end
 
     test "edd day then feb 29 is valid", %{flow: flow} do
-      fake_time = ~U[2023-02-28 00:00:00Z]
+      fake_time = ~U[2024-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
@@ -617,7 +627,7 @@ defmodule EDDRemindersTest do
       |> FlowTester.send("29")
       |> receive_message(%{
         text:
-          "I’ve updated your baby’s estimated due date to: 2023-02-29\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽",
+          "I’ve updated your baby’s estimated due date to: 2024-02-29\r\n\r\nWell done on taking care of yours and baby’s health 🫶🏽",
         # text: ^edd_confirmation_text,
         buttons: button_labels(["See main menu"])
       })

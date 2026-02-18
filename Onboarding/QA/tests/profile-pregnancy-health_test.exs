@@ -102,6 +102,27 @@ defmodule ProfilePregnancyHealthTest do
         "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Baby_birth-amico_2.png"
     }
 
+    image_mood_swings = %Image{
+      id: 14,
+      title: "Mood swings",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Mood_swings.png"
+    }
+
+    image_profile_progess_100 = %Image{
+      id: 15,
+      title: "Profile progress 100",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/Profile_progress_100.png"
+    }
+
+    image_edd_unknown = %Image{
+      id: 16,
+      title: "EDD unknown",
+      download_url:
+        "https://prk-content-repo-qa-public.s3.af-south-1.amazonaws.com/original_images/EDD_Unknown.png"
+    }
+
     assert :ok =
              FakeCMS.add_images(wh_pid, [
                image,
@@ -112,11 +133,14 @@ defmodule ProfilePregnancyHealthTest do
                image_pregnancy_stages_rafiki,
                image_pregnancy_stages_rafiki_1,
                image_profile_progress_50,
+               image_profile_progess_100,
                image_pregnancy_stages_pana_1,
                image_pregnancy_stages_cute,
                image_pregnancy_stages_cute_1,
                image_baby_birth_amico_1,
-               image_baby_birth_amico_2
+               image_baby_birth_amico_2,
+               image_mood_swings,
+               image_edd_unknown
              ])
 
     # The various index pages aren't in the content sheet, so we need to add them manually.
@@ -141,7 +165,7 @@ defmodule ProfilePregnancyHealthTest do
     ]
 
     # The onboarding.csv content file contains a page that references a Whatsapp Template.
-    # We don't support importing of templates yet, so for now we add it manually  
+    # We don't support importing of templates yet, so for now we add it manually
     FakeCMS.add_template(wh_pid, %WATemplate{
       id: "1",
       slug: "mnch_onboarding_edd_reminder",
@@ -158,8 +182,6 @@ defmodule ProfilePregnancyHealthTest do
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
-
-
     # Variations
     var_facts = Helpers.pages_from_content_csv("variations-facts", import_opts)
     assert :ok = FakeCMS.add_pages(wh_pid, var_facts)
@@ -170,7 +192,10 @@ defmodule ProfilePregnancyHealthTest do
     # Add images to pages
     FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_content_intro", 0, image_topics_for_you.id)
     FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_topics_01", 0, image_topics_for_you.id)
+    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_article_topic_01", 0, image_mood_swings.id)
     FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_content_intro", 0, image_topics_for_you.id)
+
+    FakeCMS.add_img_to_page(wh_pid, "mnch_onboarding_article_topic_01_secondary", 0, image_loading_1.id)
 
     FakeCMS.add_img_to_page(
       wh_pid,
@@ -254,6 +279,13 @@ defmodule ProfilePregnancyHealthTest do
 
     FakeCMS.add_img_to_page(
       wh_pid,
+      "mnch_onboarding_profile_progress_25",
+      0,
+      image_profile_progress_50.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
       "mnch_onboarding_profile_progress_25_secondary_",
       0,
       image_profile_progress_50.id
@@ -278,6 +310,48 @@ defmodule ProfilePregnancyHealthTest do
       "mnch_onboarding_profile_progress_50_secondary_",
       0,
       image_profile_progress_50.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_profile_progress_100",
+      0,
+      image_profile_progess_100.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_profile_progress_100_generic",
+      0,
+      image_profile_progess_100.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_profile_progress_100_hcw",
+      0,
+      image_profile_progess_100.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_edd_unknown",
+      0,
+      image_edd_unknown.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_edd_unknown_1",
+      0,
+      image_edd_unknown.id
+    )
+
+    FakeCMS.add_img_to_page(
+      wh_pid,
+      "mnch_onboarding_edd_unknown_secondary",
+      0,
+      image_edd_unknown.id
     )
 
     # Return the adapter.
@@ -1172,7 +1246,7 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then feb 29 is valid", %{flow: flow} do
-      fake_time = ~U[2023-02-28 00:00:00Z]
+      fake_time = ~U[2024-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
@@ -3289,7 +3363,7 @@ defmodule ProfilePregnancyHealthTest do
     end
 
     test "edd day then feb 29 is valid", %{flow: flow} do
-      fake_time = ~U[2023-02-28 00:00:00Z]
+      fake_time = ~U[2024-02-28 00:00:00Z]
       months = get_months(fake_time)
       month_words = get_month_words(months)
       {list_of_months, edd_confirmation_text, _full_edd} = get_edd(months, month_words, 29, 0)
