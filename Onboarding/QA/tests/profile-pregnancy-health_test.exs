@@ -182,8 +182,6 @@ defmodule ProfilePregnancyHealthTest do
     # The content for these tests.
     assert :ok = Helpers.import_content_csv(wh_pid, "onboarding", import_opts)
 
-
-
     # Variations
     var_facts = Helpers.pages_from_content_csv("variations-facts", import_opts)
     assert :ok = FakeCMS.add_pages(wh_pid, var_facts)
